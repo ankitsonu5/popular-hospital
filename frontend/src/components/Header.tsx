@@ -102,7 +102,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedSpecialty, setSelectedSpecialty] = useState<string | null>(null);
+  const [selectedSpecialty, setSelectedSpecialty] = useState('Super Specialties');
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
   const [activeMobileSubCategory, setActiveMobileSubCategory] = useState<string | null>(null);
@@ -200,6 +200,7 @@ export function Header() {
   };
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm lg:shadow-none ${
         scrolled ? 'lg:bg-white lg:shadow-sm' : 'lg:bg-transparent'
@@ -283,27 +284,19 @@ export function Header() {
                             
                             {/* Content Area */}
                             <div className="w-2/3 bg-gray-50/50 p-6 min-h-[300px]">
-                                 {selectedSpecialty ? (
-                                    <>
-                                        <h3 className="text-hospital-teal font-heading font-semibold mb-3 text-sm uppercase tracking-wider">{selectedSpecialty}</h3>
-                                        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                                            {specialtiesContent[selectedSpecialty]?.map((subItem) => (
-                                                <Link 
-                                                href={subItem.href} 
-                                                key={subItem.label} 
-                                                className="text-sm text-gray-600 hover:text-hospital-teal transition-colors block py-1"
-                                                onClick={() => setActiveDropdown(null)}
-                                                >
-                                                    {subItem.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </>
-                                 ) : (
-                                     <div className="h-full flex items-center justify-center text-gray-400 text-sm italic">
-                                         Hover over a specialtiy category to view details
-                                     </div>
-                                 )}
+                                <h3 className="text-hospital-teal font-heading font-semibold mb-3 text-sm uppercase tracking-wider">{selectedSpecialty}</h3>
+                                <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                                    {specialtiesContent[selectedSpecialty]?.map((subItem) => (
+                                        <Link 
+                                        href={subItem.href} 
+                                        key={subItem.label} 
+                                        className="text-sm text-gray-600 hover:text-hospital-teal transition-colors block py-1"
+                                        onClick={() => setActiveDropdown(null)}
+                                        >
+                                            {subItem.label}
+                                        </Link>
+                                    ))}
+                                </div>
                             </div>
                           </div>
                         ) : (
@@ -536,5 +529,7 @@ export function Header() {
         </div>
       )}
     </header>
+    {pathname !== '/' && <div className="h-16 sm:h-18 md:h-20" />}
+    </>
   );
 }
