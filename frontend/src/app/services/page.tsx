@@ -19,6 +19,8 @@ const services = [
   { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", icon: "eye" },
   { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", icon: "tooth" },
   { title: "Pulmonology", desc: "Respiratory and lung health specialists.", icon: "lungs" },
+  { title: "Pathology", desc: "Advanced diagnostic laboratory services.", icon: "microscope" },
+  { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan.", icon: "scan" },
 ];
 
 export default function ServicesPage() {
@@ -61,7 +63,10 @@ export default function ServicesPage() {
                 </div>
                 
                 <div className="mt-8 flex items-end justify-between">
-                    <Link href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} className="ml-auto w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#0066cc]">
+                    <Link
+                      href={service.title === 'Pathology' ? '/specialties/pathology' : service.title === 'Radiology' ? '/specialties/radiology' : `/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="ml-auto w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#0066cc]"
+                    >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                         </svg>

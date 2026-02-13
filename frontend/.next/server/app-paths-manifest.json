@@ -1,7 +1,9 @@
 {
+  "/about/leadership/page": "app/about/leadership/page.js",
+  "/about/csr/page": "app/about/csr/page.js",
   "/specialties/interventional-radiology/page": "app/specialties/interventional-radiology/page.js",
   "/page": "app/page.js",
-  "/branches/page": "app/branches/page.js",
-  "/doctors/page": "app/doctors/page.js",
+  "/specialties/radiology/page": "app/specialties/radiology/page.js",
+  "/specialties/pathology/page": "app/specialties/pathology/page.js",
   "/services/page": "app/services/page.js"
 }

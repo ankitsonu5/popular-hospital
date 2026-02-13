@@ -89,7 +89,8 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Dental", href: "/specialties/dental" },
     { label: "Department Of Respiratory Medicine", href: "/specialties/respiratory" },
     { label: "Pain Management Clinic", href: "/specialties/pain-management" },
-    { label: "Psychiatry Department", href: "/specialties/psychiatry" }
+    { label: "Psychiatry Department", href: "/specialties/psychiatry" },
+    { label: "Pathology", href: "/specialties/pathology" }
   ],
   "Our Expertise": [
     { label: "Robot-Assisted Surgery", href: "/expertise/robot-assisted" },

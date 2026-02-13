@@ -239,6 +239,7 @@ export default function HomePage() {
               { title: "Neuro Surgery", desc: "Advanced surgical treatments for brain and spine disorders.", icon: "brain" },
               { title: "Gastroenterology", desc: "Expert care for digestive system and liver heath.", icon: "stomach" },
               { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", icon: "kidney" },
+              { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan.", icon: "scan" },
               { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", icon: "ribbon" },
               { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", icon: "bladder" },
               { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", icon: "burn" },
@@ -251,6 +252,7 @@ export default function HomePage() {
               { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", icon: "eye" },
               { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", icon: "tooth" },
               { title: "Pulmonology", desc: "Respiratory and lung health specialists.", icon: "lungs" },
+              { title: "Pathology", desc: "Advanced diagnostic laboratory services.", icon: "microscope" },
             ].slice(0, 8).map((service, idx) => (
               <div
                 key={service.title}
@@ -267,7 +269,10 @@ export default function HomePage() {
                 </div>
                 
                 <div className="mt-8 flex items-end justify-between">
-                    <Link href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} className="ml-auto w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#0066cc]">
+                    <Link
+                      href={service.title === 'Pathology' ? '/specialties/pathology' : service.title === 'Radiology' ? '/specialties/radiology' : `/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="ml-auto w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#0066cc]"
+                    >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                         </svg>
