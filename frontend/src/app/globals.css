@@ -7,13 +7,24 @@
   --color-primary-dark: #0f766e;
   --color-navy: #1e3a5f;
   --color-bg: #fafafa;
-  /* Apple system font stack – SF Pro on macOS/iOS */
-  --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body {
   @apply bg-hospital-white text-gray-800 antialiased;
-  font-family: var(--font-apple);
+  font-family: var(--font-lato), 'Lato', sans-serif;
+}
+
+/* Apply Montserrat to all headings */
+h1, h2, h3, h4, h5, h6,
+[class*="heading"],
+[class*="title"],
+.font-heading {
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+}
+
+/* Ensure paragraphs use Lato */
+p, span, div, a, li, td, th, label, input, textarea, select, button {
+  font-family: var(--font-lato), 'Lato', sans-serif;
 }
 
 @layer components {
@@ -28,5 +39,46 @@ body {
   }
   .section-heading {
     @apply text-2xl font-bold tracking-tight text-hospital-navy sm:text-3xl;
+    font-family: 'Montserrat', sans-serif;
   }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 30s linear infinite;
+}
+
+.pause-scroll:hover {
+  animation-play-state: paused !important;
+}
+
+/* Model of Care hover effects */
+.group\/node-top:hover ~ .absolute.top-0,
+.group\/node-rt:hover ~ .absolute.top-\[25\%\].right-\[5\%\],
+.group\/node-rb:hover ~ .absolute.bottom-\[25\%\].right-\[5\%\],
+.group\/node-lb:hover ~ .absolute.bottom-\[25\%\].left-\[5\%\],
+.group\/node-lt:hover ~ .absolute.top-\[25\%\].left-\[5\%\] {
+  background-color: #ff4d29 !important;
+  border-color: #ff4d29 !important;
 }
