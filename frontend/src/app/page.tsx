@@ -81,7 +81,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative mt-12 md:-mt-40 lg:-mt-44 z-10 pb-0 sm:pb-0 md:pb-14">
+      <section className="relative mt-12 md:-mt-20 z-10 pb-0 sm:pb-0 md:pb-14">
         <div className="mx-auto max-w-6xl px-2 sm:px-4 md:px-6 lg:px-8 xl:max-w-7xl 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
@@ -211,239 +211,81 @@ export default function HomePage() {
 
       {/* Our Services Section */}
       <section
-        className="py-16 sm:py-20 bg-gray-50"
+        className="py-20 bg-[#f5f5f7]" // Apple-like light gray background
         aria-labelledby="our-services"
       >
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <div className="text-center mb-12">
-            <span className="text-sm font-semibold uppercase tracking-wide text-hospital-teal mb-2 block">
-              Our Services
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-4 font-heading">
-              We Serve In Different Areas For Our Patients
-            </h2>
-          </div>
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-12">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                   <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
+                     Excellence in Care
+                   </span>
+                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1d1d1f] font-heading tracking-tight">
+                     Specialized Departments.
+                   </h2>
+                </div>
+                 <Link
+                    href="/services"
+                    className="hidden md:flex items-center gap-2 text-[#0066cc] hover:underline font-medium text-lg transition-all"
+                  >
+                    View all departments
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                  </Link>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[
-              {
-                title: "Food & Nutrition",
-                icon: (
-                  <svg
-                    className="w-12 h-12 text-hospital-teal"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                    />
-                  </svg>
-                ),
-                doctors: "20+",
-              },
-              {
-                title: "Ophthalmology",
-                icon: (
-                  <svg
-                    className="w-12 h-12 text-hospital-teal"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                ),
-                doctors: "20+",
-              },
-              {
-                title: "Dental Care",
-                icon: (
-                  <svg
-                    className="w-12 h-12 text-hospital-teal"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                ),
-                doctors: "20+",
-              },
-              {
-                title: "Surgery",
-                icon: (
-                  <svg
-                    className="w-12 h-12 text-hospital-teal"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                    />
-                  </svg>
-                ),
-                doctors: "25+",
-              },
-              {
-                title: "Orthopedic",
-                icon: (
-                  <svg
-                    className="w-12 h-12 text-hospital-teal"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                    />
-                  </svg>
-                ),
-                doctors: "20+",
-              },
-              {
-                title: "Neurology",
-                icon: (
-                  <svg
-                    className="w-12 h-12 text-hospital-teal"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                    />
-                  </svg>
-                ),
-                doctors: "20+",
-              },
-              {
-                title: "Cardiology",
-                icon: (
-                  <svg
-                    className="w-12 h-12 text-hospital-teal"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    />
-                  </svg>
-                ),
-                doctors: "20+",
-              },
-              {
-                title: "Medicine & Nephrology",
-                icon: (
-                  <svg
-                    className="w-12 h-12 text-hospital-teal"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                    />
-                  </svg>
-                ),
-                doctors: "20+",
-              },
-            ].map((service) => (
+              { title: "Cardiology", desc: "Comprehensive heart care including diagnostics and surgery.", icon: "heart" },
+              { title: "Neuro Surgery", desc: "Advanced surgical treatments for brain and spine disorders.", icon: "brain" },
+              { title: "Gastroenterology", desc: "Expert care for digestive system and liver heath.", icon: "stomach" },
+              { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", icon: "kidney" },
+              { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", icon: "ribbon" },
+              { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", icon: "bladder" },
+              { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", icon: "burn" },
+              { title: "Laparoscopic", desc: "Minimally invasive general surgical procedures.", icon: "scalpel" },
+              { title: "Obstetrics", desc: "Care for pregnancy, childbirth, and women's health.", icon: "baby" },
+              { title: "Paediatrics", desc: "Medical care for infants, children, and adolescents.", icon: "child" },
+              { title: "Orthopaedic", desc: "Treatment for bones, joints, ligaments, and nerves.", icon: "bone" },
+              { title: "General Medicine", desc: "Primary care for overall health and wellbeing.", icon: "pill" },
+              { title: "ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", icon: "ear" },
+              { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", icon: "eye" },
+              { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", icon: "tooth" },
+              { title: "Pulmonology", desc: "Respiratory and lung health specialists.", icon: "lungs" },
+            ].slice(0, 8).map((service, idx) => (
               <div
                 key={service.title}
-                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[320px] overflow-hidden"
               >
-                <div className="mb-4">{service.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-heading">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  {service.doctors} Doctors are available under this department
-                  who serve.
-                </p>
-                <Link
-                  href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="text-sm font-medium text-hospital-teal hover:text-teal-700 inline-flex items-center gap-1"
-                >
-                  <span>Read More</span>
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
+                <div>
+                  <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2 block">Department</span>
+                  <h3 className="text-3xl font-bold text-[#1d1d1f] mb-4 font-heading leading-tight max-w-[80%]">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed max-w-[90%] font-medium">
+                    {service.desc}
+                  </p>
+                </div>
+                
+                <div className="mt-8 flex items-end justify-between">
+                    <Link href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} className="ml-auto w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#0066cc]">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </Link>
+                </div>
               </div>
             ))}
           </div>
-
-          <div className="text-center">
-            <p className="text-gray-600">
-              We have 8+ more Care Service including Emergency Department.{" "}
-              <Link
-                href="/services"
-                className="text-hospital-teal font-medium hover:text-teal-700 inline-flex items-center gap-1"
-              >
-                <span>View All</span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
-            </p>
-          </div>
+          
+           <div className="mt-12 text-center md:hidden">
+                <Link
+                    href="/services"
+                    className="inline-flex items-center gap-2 text-[#0066cc] font-medium text-lg"
+                  >
+                    View all departments
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                  </Link>
+           </div>
         </div>
       </section>
 
@@ -1744,7 +1586,7 @@ export default function HomePage() {
                     onChange={(e) =>
                       setFormData({ ...formData, agreeTerms: e.target.checked })
                     }
-                    className="mt-1 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                    className="mt-1 w-4 h-4 rounded border-gray-300 text-[#E85222] focus:ring-2 focus:ring-[#E85222] accent-[#E85222]"
                   />
                   <label htmlFor="agreeTerms" className="text-sm text-gray-700">
                     I agree with the terms.
@@ -1817,7 +1659,7 @@ function SimpleCard({
   const isBlue = variant === 'blue';
 
   // Mobile styles matching the reference image (Blue/Green cards)
-  const mobileClasses = `flex flex-col items-start justify-between p-6 rounded-[2rem] w-full min-h-[180px] shadow-sm ${isBlue ? 'bg-[#E0EEF7]' : 'bg-[#E4F5E6]'
+  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${isBlue ? 'bg-[#E0EEF7]' : 'bg-[#E4F5E6]'
     }`;
 
   // Desktop styles maintaining the original white bar look
@@ -1829,17 +1671,17 @@ function SimpleCard({
       className={`${mobileClasses} ${desktopClasses} transition-all group`}
     >
       {/* Mobile Icon & Content */}
-      <div className="flex flex-col items-start gap-3 md:hidden">
+      <div className="flex flex-col items-start gap-2 md:hidden">
         <div className={`p-2 rounded-full ${isBlue ? 'bg-white/50' : 'bg-white/50'} text-gray-800`}>
           {/* Icons based on title for mobile */}
           {title.includes('Visitor') ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           ) : title.includes('Doctor') ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
           ) : title.includes('Location') ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
           ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
           )}
         </div>
         <span className="text-sm font-bold font-heading uppercase tracking-wider text-gray-900">
@@ -1848,14 +1690,14 @@ function SimpleCard({
       </div>
 
       {/* Desktop Title */}
-      <span className="hidden md:block text-base lg:text-lg font-medium font-heading whitespace-nowrap text-gray-800 group-hover:text-gray-900">
+      <span className="hidden md:block text-sm lg:text-lg font-medium font-heading whitespace-nowrap text-gray-800 group-hover:text-gray-900">
         {title}
       </span>
 
       {/* Mobile "Learn More" */}
-      <div className="md:hidden flex items-center gap-2 text-sm font-bold text-gray-900 mt-4">
+      <div className="md:hidden flex items-center gap-2 text-xs font-bold text-gray-900 mt-2">
         Learn More
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
       </div>
 
       {/* Desktop Arrow Circle */}

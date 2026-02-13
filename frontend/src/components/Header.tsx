@@ -101,6 +101,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
 
 export function Header() {
   const pathname = usePathname();
+  const isTransparentPage = pathname === '/';
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedSpecialty, setSelectedSpecialty] = useState('Super Specialties');
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -202,14 +203,14 @@ export function Header() {
   return (
     <>
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm lg:shadow-none ${
-        scrolled ? 'lg:bg-white lg:shadow-sm' : 'lg:bg-transparent'
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm xl:shadow-none ${
+        scrolled || !isTransparentPage ? 'xl:bg-white xl:shadow-sm' : 'xl:bg-transparent'
       }`}
     >
       {/* Desktop Gradient Overlay - Show from lg */}
       <div 
-        className={`absolute inset-0 pointer-events-none transition-opacity duration-300 hidden lg:block ${
-          scrolled ? 'opacity-0' : 'opacity-100'
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-300 hidden xl:block ${
+          scrolled || !isTransparentPage ? 'opacity-0' : 'opacity-100'
         }`}
         style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)' }}
       />
@@ -229,7 +230,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation - Show from 1025px */}
-          <nav className="hidden min-[1025px]:flex min-[1025px]:items-center min-[1025px]:justify-center min-[1025px]:flex-1 min-[1025px]:gap-0.5" aria-label="Main navigation">
+          <nav className="hidden xl:flex xl:items-center xl:justify-center xl:flex-1 xl:gap-0.5" aria-label="Main navigation">
             {menuItems.map((item) => (
               <div
                 key={item.label}
@@ -242,13 +243,13 @@ export function Header() {
                     <button
                       type="button"
                       className={`flex items-center gap-1 px-2 lg:px-2 xl:px-3 2xl:px-5 py-2.5 text-xs lg:text-sm xl:text-[13px] min-[1366px]:text-[14px] 2xl:text-base font-medium transition-colors font-heading whitespace-nowrap ${
-                        scrolled
+                        scrolled || !isTransparentPage
                           ? (activeDropdown === item.label ? 'text-hospital-teal' : 'text-gray-700 hover:text-hospital-teal')
                           : 'text-white hover:text-gray-200'
                       }`}
                     >
                       {item.label}
-                      <svg className={`h-3 w-3 xl:h-3.5 xl:w-3.5 flex-shrink-0 ${!scrolled ? 'text-white' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className={`h-3 w-3 xl:h-3.5 xl:w-3.5 flex-shrink-0 ${!scrolled && isTransparentPage ? 'text-white' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
@@ -330,7 +331,7 @@ export function Header() {
                   <Link
                     href={item.href || '#'}
                     className={`px-2 lg:px-2 xl:px-3 2xl:px-5 py-2.5 text-xs lg:text-sm xl:text-[13px] min-[1366px]:text-[14px] 2xl:text-base font-medium transition-colors font-heading whitespace-nowrap ${
-                      scrolled
+                      scrolled || !isTransparentPage
                         ? (pathname === item.href ? 'text-hospital-teal' : 'text-gray-700 hover:text-hospital-teal')
                         : 'text-white hover:text-gray-200'
                     }`}
@@ -366,7 +367,7 @@ export function Header() {
             {/* Phone Number - Medium screens */}
             <a
               href="tel:18001234567"
-              className="hidden md:flex lg:hidden items-center gap-1.5 text-sm font-medium transition-colors text-gray-600 hover:text-hospital-teal"
+              className="hidden md:flex xl:hidden items-center gap-1.5 text-sm font-medium transition-colors text-gray-600 hover:text-hospital-teal"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -377,7 +378,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="lg:hidden rounded-lg p-2 transition-colors text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+              className="xl:hidden rounded-lg p-2 transition-colors text-gray-600 hover:bg-gray-100 hover:text-gray-900"
               aria-expanded={menuOpen}
               aria-label="Toggle menu"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -396,7 +397,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="border-t border-gray-100 bg-white lg:hidden">
+        <div className="border-t border-gray-100 bg-white xl:hidden">
           <div className="mx-auto w-full max-w-[1920px] px-4 py-4">
             <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
               {menuItems.map((item) => (

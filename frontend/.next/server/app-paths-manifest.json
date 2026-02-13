@@ -1,4 +1,7 @@
 {
+  "/specialties/interventional-radiology/page": "app/specialties/interventional-radiology/page.js",
   "/page": "app/page.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/branches/page": "app/branches/page.js",
+  "/doctors/page": "app/doctors/page.js",
+  "/services/page": "app/services/page.js"
 }
