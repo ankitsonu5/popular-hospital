@@ -28,7 +28,7 @@ export default function HomePage() {
         direction === "left"
           ? scrollContainerRef.current.scrollLeft - scrollAmount
           : scrollContainerRef.current.scrollLeft + scrollAmount;
-      
+
       scrollContainerRef.current.scrollTo({
         left: newScrollLeft,
         behavior: "smooth",
@@ -101,19 +101,19 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="mt-16 pt-0 pb-16 sm:pt-0 sm:pb-20 md:py-20 bg-[#0b1c43]" aria-labelledby="about-us">
+      <section className="mt-16 pt-0 pb-16 sm:pt-0 sm:pb-20 md:py-20 bg-white" aria-labelledby="about-us">
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-stretch">
             {/* Left Side - Text Content */}
             <div className="flex flex-col justify-between min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
               <div>
-                <span className="text-sm font-semibold uppercase tracking-wide text-teal-300 mb-2 block">
+                <span className="text-sm font-semibold uppercase tracking-wide text-hospital-teal mb-2 block">
                   About Popular Hospital
                 </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-heading">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 font-heading" style={{ color: '#0b1c43' }}>
                   We Provide Finest Patient's Care & Amenities
                 </h2>
-                <p className="text-gray-200 mb-6 text-base leading-relaxed">
+                <p className="text-gray-600 mb-6 text-base leading-relaxed">
                   Embrace a world of comprehensive healthcare where your
                   well-being takes center stage. At Popular Hospital, we're
                   dedicated to providing you with personalized and compassionate
@@ -134,7 +134,7 @@ export default function HomePage() {
                   ].map((feature) => (
                     <div key={feature} className="flex items-center gap-2">
                       <svg
-                        className="w-5 h-5 text-teal-300 flex-shrink-0"
+                        className="w-5 h-5 text-hospital-teal flex-shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -146,14 +146,14 @@ export default function HomePage() {
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
-                      <span className="text-gray-200 text-sm leading-relaxed">
+                      <span className="text-gray-700 text-sm leading-relaxed">
                         {feature}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <p className="text-gray-200 mb-6 text-base leading-relaxed">
+                <p className="text-gray-600 mb-6 text-base leading-relaxed">
                   Ut wisi enim ad minim veniam, quis laore nostrud exerci tation
                   ulm hedi corper turet suscipit lobortis nisl ut aliquip erat
                   volutpat autem vel eum iriure dolor in hendrerit in vulputate
@@ -696,11 +696,10 @@ export default function HomePage() {
               ].map((testimonial, index) => (
                 <div
                   key={`top-${index}`}
-                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${
-                    testimonial.type === "text"
+                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${testimonial.type === "text"
                       ? "w-[300px] sm:w-[400px] lg:w-[500px]"
                       : "w-[260px] sm:w-[300px] lg:w-[360px]"
-                  }`}
+                    }`}
                 >
                   {testimonial.type === "text" ? (
                     <div
@@ -771,11 +770,10 @@ export default function HomePage() {
               ].map((testimonial, index) => (
                 <div
                   key={`top-duplicate-${index}`}
-                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${
-                    testimonial.type === "text"
+                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${testimonial.type === "text"
                       ? "w-[300px] sm:w-[400px] lg:w-[500px]"
                       : "w-[260px] sm:w-[300px] lg:w-[360px]"
-                  }`}
+                    }`}
                 >
                   {testimonial.type === "text" ? (
                     <div
@@ -861,11 +859,10 @@ export default function HomePage() {
               ].map((testimonial, index) => (
                 <div
                   key={`bottom-${index}`}
-                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${
-                    testimonial.type === "text"
+                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${testimonial.type === "text"
                       ? "w-[300px] sm:w-[400px] lg:w-[500px]"
                       : "w-[260px] sm:w-[300px] lg:w-[360px]"
-                  }`}
+                    }`}
                 >
                   {testimonial.type === "text" ? (
                     <div
@@ -943,11 +940,10 @@ export default function HomePage() {
               ].map((testimonial, index) => (
                 <div
                   key={`bottom-duplicate-${index}`}
-                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${
-                    testimonial.type === "text"
+                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${testimonial.type === "text"
                       ? "w-[300px] sm:w-[400px] lg:w-[500px]"
                       : "w-[260px] sm:w-[300px] lg:w-[360px]"
-                  }`}
+                    }`}
                 >
                   {testimonial.type === "text" ? (
                     <div
@@ -983,7 +979,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      {/* Video Modal */}
+        {/* Video Modal */}
         {selectedVideo && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
@@ -1036,10 +1032,10 @@ export default function HomePage() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1e3a8a] tracking-tight font-heading">
               Our Locations. <span className="text-[#6e6e73]">Always within reach.</span>
             </h2>
-            
+
             {/* Navigation Buttons */}
             <div className="hidden sm:flex gap-4 mb-2">
-              <button 
+              <button
                 onClick={() => scroll('left')}
                 className="w-12 h-12 rounded-full bg-[#d2d2d7] hover:bg-[#86868b] text-white flex items-center justify-center transition-colors shadow-sm"
                 aria-label="Previous locations"
@@ -1048,7 +1044,7 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <button 
+              <button
                 onClick={() => scroll('right')}
                 className="w-12 h-12 rounded-full bg-[#d2d2d7] hover:bg-[#86868b] text-white flex items-center justify-center transition-colors shadow-sm"
                 aria-label="Next locations"
@@ -1061,9 +1057,9 @@ export default function HomePage() {
           </div>
 
           {/* Cards Scroll Container */}
-          <div 
+          <div
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth" 
+            className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {[
@@ -1085,7 +1081,7 @@ export default function HomePage() {
                 bgGradient: "bg-white",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                 image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop"
+                image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop"
               },
               {
                 city: "Mirzapur",
@@ -1095,7 +1091,7 @@ export default function HomePage() {
                 bgGradient: "bg-[#000000]",
                 textColor: "text-[#f5f5f7]",
                 subTextColor: "text-gray-400",
-                 image: "https://images.unsplash.com/photo-1516549655169-df83a253836f?q=80&w=2070&auto=format&fit=crop"
+                image: "https://images.unsplash.com/photo-1516549655169-df83a253836f?q=80&w=2070&auto=format&fit=crop"
               },
               {
                 city: "Gopiganj",
@@ -1105,7 +1101,7 @@ export default function HomePage() {
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                 image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2128&auto=format&fit=crop"
+                image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2128&auto=format&fit=crop"
               },
               {
                 city: "Bachhaon",
@@ -1115,10 +1111,10 @@ export default function HomePage() {
                 bgGradient: "bg-[#161617]",
                 textColor: "text-white",
                 subTextColor: "text-gray-500",
-                 image: "https://images.unsplash.com/photo-1596541223806-117580afc848?q=80&w=2028&auto=format&fit=crop"
+                image: "https://images.unsplash.com/photo-1596541223806-117580afc848?q=80&w=2028&auto=format&fit=crop"
               }
             ].map((location, index) => (
-              <div 
+              <div
                 key={index}
                 className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[480px] sm:h-[520px] rounded-[32px] overflow-hidden snap-center group transition-transform duration-500 hover:scale-[1.02] shadow-xl border border-gray-100/10"
               >
@@ -1135,13 +1131,12 @@ export default function HomePage() {
                       {location.address}
                     </p>
                   </div>
-                  
+
                   <div className="flex items-center gap-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                    <button className={`px-6 py-3 rounded-full font-medium transition-colors ${
-                      location.theme === 'dark' 
-                        ? 'bg-white text-black hover:bg-gray-100' 
+                    <button className={`px-6 py-3 rounded-full font-medium transition-colors ${location.theme === 'dark'
+                        ? 'bg-white text-black hover:bg-gray-100'
                         : 'bg-black text-white hover:bg-gray-800'
-                    }`}>
+                      }`}>
                       Get Directions
                     </button>
                   </div>
@@ -1149,14 +1144,13 @@ export default function HomePage() {
 
                 {/* Background Image with Gradient Overlay */}
                 <div className="absolute inset-0 z-10">
-                  <div className={`absolute inset-0 bg-gradient-to-b ${
-                    location.theme === 'dark' 
-                      ? 'from-black/90 via-black/50 to-transparent' 
+                  <div className={`absolute inset-0 bg-gradient-to-b ${location.theme === 'dark'
+                      ? 'from-black/90 via-black/50 to-transparent'
                       : 'from-white/95 via-white/60 to-transparent'
-                  }`} />
+                    }`} />
                 </div>
-                
-                <img 
+
+                <img
                   src={location.image}
                   alt={location.name}
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
@@ -1452,11 +1446,10 @@ export default function HomePage() {
             ].map((faq, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-xl border transition-all duration-300 ${
-                  openFaqIndex === index
+                className={`bg-white rounded-xl border transition-all duration-300 ${openFaqIndex === index
                     ? "border-[#2a7a8c] shadow-md"
                     : "border-[#d0e3f0] shadow-sm hover:shadow-md"
-                }`}
+                  }`}
               >
                 <button
                   onClick={() =>
@@ -1469,16 +1462,14 @@ export default function HomePage() {
                     {faq.question}
                   </span>
                   <div
-                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                      openFaqIndex === index
+                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index
                         ? "border-[#2a7a8c] bg-[#2a7a8c] rotate-45"
                         : "border-[#2a7a8c] bg-white"
-                    }`}
+                      }`}
                   >
                     <svg
-                      className={`w-5 h-5 transition-colors duration-300 ${
-                        openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
-                      }`}
+                      className={`w-5 h-5 transition-colors duration-300 ${openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
+                        }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1493,11 +1484,10 @@ export default function HomePage() {
                   </div>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openFaqIndex === index
+                  className={`overflow-hidden transition-all duration-300 ${openFaqIndex === index
                       ? "max-h-[500px] opacity-100"
                       : "max-h-0 opacity-0"
-                  }`}
+                    }`}
                 >
                   <div className="px-5 sm:px-6 pb-5 pt-0">
                     <div className="pt-3 border-t border-gray-100">
@@ -1825,12 +1815,11 @@ function SimpleCard({
   variant?: 'blue' | 'green';
 }) {
   const isBlue = variant === 'blue';
-  
+
   // Mobile styles matching the reference image (Blue/Green cards)
-  const mobileClasses = `flex flex-col items-start justify-between p-6 rounded-[2rem] w-full min-h-[180px] shadow-sm ${
-    isBlue ? 'bg-[#E0EEF7]' : 'bg-[#E4F5E6]'
-  }`;
-  
+  const mobileClasses = `flex flex-col items-start justify-between p-6 rounded-[2rem] w-full min-h-[180px] shadow-sm ${isBlue ? 'bg-[#E0EEF7]' : 'bg-[#E4F5E6]'
+    }`;
+
   // Desktop styles maintaining the original white bar look
   const desktopClasses = `md:bg-white md:rounded-none md:shadow-none md:min-h-0 md:p-0 md:flex-row md:items-center md:justify-center md:gap-3 md:px-4 md:py-4 md:w-auto md:flex-1 md:min-w-0 md:border-r md:border-gray-100 md:last:border-0 md:hover:bg-[#FBF8ED]`;
 
@@ -1857,7 +1846,7 @@ function SimpleCard({
           {title}
         </span>
       </div>
-      
+
       {/* Desktop Title */}
       <span className="hidden md:block text-base lg:text-lg font-medium font-heading whitespace-nowrap text-gray-800 group-hover:text-gray-900">
         {title}
@@ -1865,7 +1854,7 @@ function SimpleCard({
 
       {/* Mobile "Learn More" */}
       <div className="md:hidden flex items-center gap-2 text-sm font-bold text-gray-900 mt-4">
-        Learn More 
+        Learn More
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
       </div>
 
