@@ -2,10 +2,10 @@ import Image from 'next/image';
 
 const leaders = [
   {
-    name: "Dr. Founder Name",
+    name: "Dr. A.K. Kaushik",
     role: "Founder & Chairman",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop",
-    bio: "A visionary leader with over 40 years of experience in healthcare. Dr. Name established Popular Hospital with the dream of providing world-class medical care to the community."
+    image: "/images/leadership/dr-ak-kaushik.jpg",
+    bio: "A visionary leader with over 40 years of experience in healthcare. Dr. Kaushik established Popular Hospital with the dream of providing world-class medical care to the community."
   },
   {
     name: "Ms. Sarah Johnson",

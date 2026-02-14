@@ -321,7 +321,7 @@ export default function HomePage() {
           <div className="lg:hidden flex flex-col items-center gap-12">
             <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border-[8px] border-white shadow-xl overflow-hidden shrink-0">
               <img
-                src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
+                src="/images/model-of-care-center.jpg"
                 alt="Model of Care"
                 className="w-full h-full object-cover"
               />
@@ -377,7 +377,7 @@ export default function HomePage() {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
               <div className="relative w-[400px] h-[400px] rounded-full overflow-hidden border-[12px] border-white shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000"
+                  src="/images/model-of-care-center.jpg"
                   alt="Surgery Team"
                   className="w-full h-full object-cover"
                 />
@@ -518,14 +518,14 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-one.mp4",
                 },
                 {
                   type: "video",
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-two.mp4",
                 },
                 {
                   type: "text",
@@ -538,7 +538,7 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-three.mp4",
                 },
               ].map((testimonial, index) => (
                 <div
@@ -566,10 +566,13 @@ export default function HomePage() {
                       }
                       className="relative h-[240px] sm:h-[280px] lg:h-[320px] bg-gray-200 flex items-center justify-center cursor-pointer w-full group"
                     >
-                      <img
-                        src={testimonial.thumbnail}
-                        alt={testimonial.name}
+                      <video
+                        src={testimonial.videoUrl}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
                       />
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
                       <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -592,14 +595,14 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-one.mp4",
                 },
                 {
                   type: "video",
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-two.mp4",
                 },
                 {
                   type: "text",
@@ -612,7 +615,7 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-three.mp4",
                 },
               ].map((testimonial, index) => (
                 <div
@@ -640,10 +643,13 @@ export default function HomePage() {
                       }
                       className="relative h-[240px] sm:h-[280px] lg:h-[320px] bg-gray-200 flex items-center justify-center cursor-pointer w-full group"
                     >
-                      <img
-                        src={testimonial.thumbnail}
-                        alt={testimonial.name}
+                      <video
+                        src={testimonial.videoUrl}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
                       />
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
                       <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -668,7 +674,7 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/heroMain.mp4",
                 },
                 {
                   type: "text",
@@ -681,14 +687,14 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-one.mp4",
                 },
                 {
                   type: "video",
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-two.mp4",
                 },
                 {
                   type: "text",
@@ -701,7 +707,7 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-three.mp4",
                 },
               ].map((testimonial, index) => (
                 <div
@@ -729,10 +735,13 @@ export default function HomePage() {
                       }
                       className="relative h-[240px] sm:h-[280px] lg:h-[320px] bg-gray-200 flex items-center justify-center cursor-pointer w-full group"
                     >
-                      <img
-                        src={testimonial.thumbnail}
-                        alt={testimonial.name}
+                      <video
+                        src={testimonial.videoUrl}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
                       />
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
                       <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -749,7 +758,7 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/heroMain.mp4",
                 },
                 {
                   type: "text",
@@ -762,14 +771,14 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-one.mp4",
                 },
                 {
                   type: "video",
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-two.mp4",
                 },
                 {
                   type: "text",
@@ -782,7 +791,7 @@ export default function HomePage() {
                   name: "Patient Review",
                   thumbnail:
                     "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                  videoUrl: "/videos/testimonial-three.mp4",
                 },
               ].map((testimonial, index) => (
                 <div
@@ -810,10 +819,13 @@ export default function HomePage() {
                       }
                       className="relative h-[240px] sm:h-[280px] lg:h-[320px] bg-gray-200 flex items-center justify-center cursor-pointer w-full group"
                     >
-                      <img
-                        src={testimonial.thumbnail}
-                        alt={testimonial.name}
+                      <video
+                        src={testimonial.videoUrl}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
                       />
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
                       <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -859,12 +871,21 @@ export default function HomePage() {
                 className="relative w-full"
                 style={{ paddingBottom: "56.25%" }}
               >
-                <iframe
-                  src={selectedVideo}
-                  className="absolute inset-0 w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                {selectedVideo?.includes("youtube") || selectedVideo?.includes("vimeo") ? (
+                  <iframe
+                    src={selectedVideo}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <video
+                    src={selectedVideo || ""}
+                    className="absolute inset-0 w-full h-full"
+                    controls
+                    autoPlay
+                  ></video>
+                )}
               </div>
             </div>
           </div>
@@ -918,7 +939,7 @@ export default function HomePage() {
                 bgGradient: "bg-gradient-to-br from-[#1c1c1e] to-[#2c2c2e]",
                 textColor: "text-white",
                 subTextColor: "text-gray-400",
-                image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=2073&auto=format&fit=crop"
+                image: "/images/branches/One.webp"
               },
               {
                 city: "Varanasi",
@@ -928,7 +949,7 @@ export default function HomePage() {
                 bgGradient: "bg-white",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop"
+                image: "/images/branches/two.png"
               },
               {
                 city: "Mirzapur",

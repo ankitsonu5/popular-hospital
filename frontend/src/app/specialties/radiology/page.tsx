@@ -16,7 +16,7 @@ export default function RadiologyPage() {
         {/* Background Image Overlay */}
         <div className="absolute inset-0 z-0">
              <Image
-                src="https://images.unsplash.com/photo-1516549655169-df83a0833860?auto=format&fit=crop&q=80&w=2000"
+                src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=2000"
                 alt="Radiology Imaging"
                 fill
                 className="object-cover opacity-40 mix-blend-overlay"
