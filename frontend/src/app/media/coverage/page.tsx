@@ -100,6 +100,7 @@ export default function MediaCoveragePage() {
           src="/about-section-image.png"
           alt=""
           fill
+          sizes="100vw"
           className="object-cover opacity-15"
         />
         <div className="absolute inset-0 bg-[#0b1c43]/75" />
@@ -147,6 +148,7 @@ export default function MediaCoveragePage() {
                     src={item.image}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* Overlay on hover */}

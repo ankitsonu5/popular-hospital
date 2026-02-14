@@ -189,6 +189,7 @@ export default async function NewsDetailPage({
           src={article.heroImage}
           alt=""
           fill
+          sizes="100vw"
           className="object-cover opacity-20"
           priority
         />
@@ -280,6 +281,7 @@ export default async function NewsDetailPage({
                   src={img}
                   alt={`${article.title} - Image ${index + 1}`}
                   fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -354,6 +356,7 @@ export default async function NewsDetailPage({
                     src={related.heroImage}
                     alt={related.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute top-3 left-3">

@@ -18,9 +18,9 @@ export function Footer() {
               />
             </Link>
             
-            <div className="space-y-6 text-sm text-gray-200">
+            <div className="space-y-6 text-base text-gray-200">
               <div>
-                <h4 className="font-semibold text-white mb-2">Locations:</h4>
+                <h4 className="text-lg font-semibold text-white mb-2">Locations:</h4>
                 <p className="leading-relaxed">
                   Popular Hospital, N 10/60 A-2,
                   <br />
@@ -31,7 +31,7 @@ export function Footer() {
               </div>
               
               <div>
-                <h4 className="font-semibold text-white mb-2">Visiting Hours:</h4>
+                <h4 className="text-lg font-semibold text-white mb-2">Visiting Hours:</h4>
                 <p className="leading-relaxed">
                   All Days:
                   <br />
@@ -46,8 +46,8 @@ export function Footer() {
 
           {/* Column 2: Community */}
           <div>
-            <h3 className="text-lg font-bold font-heading mb-6">Community</h3>
-            <ul className="space-y-3 text-sm text-gray-200">
+            <h3 className="text-xl font-bold font-heading mb-6">Community</h3>
+            <ul className="space-y-3 text-base text-gray-200">
               <li><Link href="/doctors" className="hover:text-white transition-colors">Doctors</Link></li>
               <li><Link href="/testimonials" className="hover:text-white transition-colors">Testimonials</Link></li>
               <li><Link href="/faqs" className="hover:text-white transition-colors">FAQs</Link></li>
@@ -58,8 +58,8 @@ export function Footer() {
 
           {/* Column 3: About */}
           <div>
-            <h3 className="text-lg font-bold font-heading mb-6">About</h3>
-            <ul className="space-y-3 text-sm text-gray-200">
+            <h3 className="text-xl font-bold font-heading mb-6">About</h3>
+            <ul className="space-y-3 text-base text-gray-200">
               <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
               <li><Link href="/education" className="hover:text-white transition-colors">Education</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
@@ -70,8 +70,8 @@ export function Footer() {
 
           {/* Column 4: Support */}
           <div>
-            <h3 className="text-lg font-bold font-heading mb-6">Support</h3>
-            <ul className="space-y-3 text-sm text-gray-200">
+            <h3 className="text-xl font-bold font-heading mb-6">Support</h3>
+            <ul className="space-y-3 text-base text-gray-200">
               <li><Link href="/visitor-info" className="hover:text-white transition-colors">Visitor Information</Link></li>
               <li><Link href="/emergency" className="hover:text-white transition-colors">Emergency Care</Link></li>
               <li><Link href="/donate" className="hover:text-white transition-colors">Donate</Link></li>
@@ -80,7 +80,7 @@ export function Footer() {
             </ul>
             
             <div className="mt-8">
-              <h4 className="font-semibold text-white mb-2">Social Media:</h4>
+              <h4 className="text-lg font-semibold text-white mb-2">Social Media:</h4>
               <div className="flex gap-4">
                 <a href="#" className="text-white hover:text-gray-300 transition-colors">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" /></svg>
@@ -99,7 +99,7 @@ export function Footer() {
         </div>
         
         {/* Footer Bottom */}
-        <div className="mt-16 pt-8 border-t border-gray-500/30 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-gray-300">
+        <div className="mt-16 pt-8 border-t border-gray-500/30 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base text-gray-300">
           <p>© {new Date().getFullYear()} Popular Hospital. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>

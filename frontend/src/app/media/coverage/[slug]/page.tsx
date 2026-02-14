@@ -197,6 +197,7 @@ export default async function MediaCoverageDetailPage({
           src={item.heroImage}
           alt=""
           fill
+          sizes="100vw"
           className="object-cover opacity-20"
           priority
         />
@@ -286,6 +287,7 @@ export default async function MediaCoverageDetailPage({
                   src={img}
                   alt={`${item.title} - Image ${index + 1}`}
                   fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -355,6 +357,7 @@ export default async function MediaCoverageDetailPage({
                     src={related.heroImage}
                     alt={related.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute top-2 right-2">
