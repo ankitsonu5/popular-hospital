@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from 'next/link';
 import { Metadata } from 'next';
+import RadiologyVideoSection from "../../../components/RadiologyVideoSection";
 
 export const metadata: Metadata = {
   title: 'Radiology & Imaging Services | Popular Hospital',
@@ -51,8 +52,8 @@ export default function RadiologyPage() {
         </div>
       </section>
 
-      {/* Floating Cards / Features */}
-      <section className="relative z-20 -mt-16 pb-20 px-4">
+      {/* Floating Cards / Features - Scan Types */}
+      <section className="relative z-20 -mt-16 pb-10 px-4">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -80,8 +81,124 @@ export default function RadiologyPage() {
         </div>
       </section>
 
+      {/* Feature Stats Cards - Qualities (Added from Interventional) */}
+      <section className="py-12 bg-gray-50/30">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+                { title: 'Patient Safety', desc: 'Lowest radiation dose protocols', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+                { title: 'Modern Tech', desc: 'Latest 3T MRI & 128 Slice CT', icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z' },
+                { title: 'Certified Experts', desc: 'Board-certified radiologists', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+                { title: '24/7 Services', desc: 'Emergency radiology support', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
+            ].map((card, idx) => (
+                <div key={idx} className="bg-white p-6 rounded-xl border border-gray-100/80 hover:border-teal-100 transition-all duration-300">
+                <div className="flex items-center gap-4 mb-3">
+                     <div className="w-10 h-10 bg-teal-50 rounded-lg flex items-center justify-center text-teal-600">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={card.icon} />
+                        </svg>
+                    </div>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-1">{card.title}</h3>
+                <p className="text-gray-500 text-sm">{card.desc}</p>
+                </div>
+            ))}
+            </div>
+        </div>
+      </section>
+
+      {/* Exceptional Care Section with Video (Added from Interventional) */}
+      <section className="py-20 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="w-full lg:w-1/2">
+                <div className="relative">
+                     <span className="text-teal-600 font-bold tracking-wider text-sm uppercase mb-2 block">Patient Centered Care</span>
+                     <h2 className="text-3xl md:text-5xl font-bold font-heading text-gray-900 mb-6 relative z-10">
+                        Exceptional <br />
+                        <span className="text-teal-600">Radiology Care</span> for Patients
+                     </h2>
+                </div>
+              <p className="text-gray-600 leading-relaxed mb-6 text-lg">
+                Our Department combines personalized care with cutting-edge technology. Whether you need a routine X-ray or a complex MRI, our team ensures a comfortable, safe, and precise imaging experience.
+              </p>
+              <ul className="space-y-4 mb-8">
+                {[
+                  'Advanced 3D Mammography',
+                  'High-Field Open MRI for claustrophobic patients',
+                  'Low-dose CT technology for patient safety',
+                  'Same-day appointments for urgent cases'
+                ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
+                        <span className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 flex-shrink-0">
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                        </span>
+                        {item}
+                    </li>
+                ))}
+              </ul>
+              <button className="px-6 py-3 bg-[#F05A28] text-white rounded-lg font-medium hover:bg-[#d0491c] transition-colors shadow-lg shadow-orange-500/20">
+                Meet Our Specialists
+              </button>
+            </div>
+            <div className="w-full lg:w-1/2 relative">
+               <RadiologyVideoSection />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Sections - Alternating (Added from Interventional) */}
+      <section className="py-20 bg-gray-50">
+           <div className="mx-auto w-full max-w-[1366px] px-4">
+              {/* Section 1 */}
+              <div className="flex flex-col md:flex-row items-center gap-12 mb-20">
+                 <div className="w-full md:w-1/2 order-2 md:order-1">
+                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-lg group">
+                         <Image 
+                             src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop"
+                             alt="Advanced Technology"
+                             fill
+                             className="object-cover group-hover:scale-110 transition-transform duration-700"
+                         />
+                          <div className="absolute inset-0 bg-gradient-to-r from-teal-900/40 to-transparent"></div>
+                    </div>
+                 </div>
+                 <div className="w-full md:w-1/2 order-1 md:order-2">
+                     <span className="text-teal-600 font-bold tracking-wider text-sm uppercase mb-2 block">Innovation</span>
+                     <h3 className="text-3xl font-bold font-heading text-gray-900 mb-4">Advanced Technology</h3>
+                     <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                         We utilize the absolute latest in diagnostic imaging technology. Our 3T MRI machines provide clearer images in less time, while our advanced PET-CT scanners allow for early detection of critical conditions with minimal radiation exposure.
+                     </p>
+                 </div>
+              </div>
+
+              {/* Section 2 */}
+              <div className="flex flex-col md:flex-row items-center gap-12">
+                 <div className="w-full md:w-1/2">
+                     <span className="text-teal-600 font-bold tracking-wider text-sm uppercase mb-2 block">Precision</span>
+                     <h3 className="text-3xl font-bold font-heading text-gray-900 mb-4">Accurate Radiology Reporting</h3>
+                     <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                         Our radiologists are sub-specialty trained, meaning your neuro-scan is read by a neuro-radiologist, and your cardiac scan by a cardiac specialist. This expert review ensures the highest accuracy for your diagnosis.
+                     </p>
+                 </div>
+                  <div className="w-full md:w-1/2">
+                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-lg group">
+                         <Image 
+                             src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1964&auto=format&fit=crop"
+                             alt="Radiology Reporting"
+                             fill
+                             className="object-cover group-hover:scale-110 transition-transform duration-700"
+                         />
+                         <div className="absolute inset-0 bg-gradient-to-l from-teal-900/40 to-transparent"></div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+      </section>
+
       {/* Services Grid (Teal Section) - Keep consistent with Pathology */}
-      <section className="bg-[#00A99D] py-24 text-white mt-10">
+      <section className="bg-[#00A99D] py-24 text-white">
            <div className="mx-auto w-full max-w-[1366px] px-4">
                <div className="text-center mb-16 max-w-2xl mx-auto">
                    <span className="text-teal-200 font-bold tracking-widest text-sm uppercase mb-3 block">Our Expertise</span>

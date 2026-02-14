@@ -29,15 +29,15 @@ export default function VisionMissionPage() {
                 <div className="lg:col-span-5 relative">
                     <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                            src="https://images.unsplash.com/photo-1573497161161-c3e73707e25c?q=80&w=800&auto=format&fit=crop"
-                            alt="Dr. Founder Name - Founder of Popular Hospital"
+                            src="/images/leadership/dr-ak-kaushik.jpg"
+                            alt="Dr. A.K. Kaushik - Founder of Popular Hospital"
                             fill
                             className="object-cover"
                         />
                         {/* Overlay Gradient */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         <div className="absolute bottom-6 left-6 text-white">
-                            <p className="text-lg font-bold">Dr. Founder Name</p>
+                            <p className="text-lg font-bold">Dr. A.K. Kaushik</p>
                             <p className="text-sm opacity-90">Founder Chairman</p>
                         </div>
                     </div>
