@@ -75,6 +75,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/services/layout.js"
+    ],
+    "/specialties/pathology/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/specialties/pathology/page.js"
     ]
   }
 }

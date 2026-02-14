@@ -1,8 +1,7 @@
 {
   "/page": "app/page.js",
-  "/news/[slug]/page": "app/news/[slug]/page.js",
-  "/locations/[slug]/page": "app/locations/[slug]/page.js",
-  "/stories/page": "app/stories/page.js",
   "/about/cashless-empanelment/page": "app/about/cashless-empanelment/page.js",
+  "/stories/page": "app/stories/page.js",
+  "/specialties/pathology/page": "app/specialties/pathology/page.js",
   "/services/page": "app/services/page.js"
 }
