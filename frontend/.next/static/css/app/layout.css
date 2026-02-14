@@ -1614,6 +1614,9 @@ video {
 .border-gray-100\/10 {
   border-color: rgb(243 244 246 / 0.1);
 }
+.border-gray-100\/80 {
+  border-color: rgb(243 244 246 / 0.8);
+}
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
@@ -1669,9 +1672,6 @@ video {
 }
 .border-white\/5 {
   border-color: rgb(255 255 255 / 0.05);
-}
-.border-gray-100\/80 {
-  border-color: rgb(243 244 246 / 0.8);
 }
 .border-b-transparent {
   border-bottom-color: transparent;
@@ -1801,6 +1801,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
 }
+.bg-gray-50\/30 {
+  background-color: rgb(249 250 251 / 0.3);
+}
 .bg-gray-50\/50 {
   background-color: rgb(249 250 251 / 0.5);
 }
@@ -1876,9 +1879,6 @@ video {
 }
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
-}
-.bg-gray-50\/30 {
-  background-color: rgb(249 250 251 / 0.3);
 }
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
@@ -2113,6 +2113,9 @@ video {
 .pb-0\.5 {
   padding-bottom: 0.125rem;
 }
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
 .pb-12 {
   padding-bottom: 3rem;
 }
@@ -2151,9 +2154,6 @@ video {
 }
 .pt-8 {
   padding-top: 2rem;
-}
-.pb-10 {
-  padding-bottom: 2.5rem;
 }
 .text-left {
   text-align: left;
@@ -2496,12 +2496,12 @@ video {
   --tw-shadow-color: rgb(37 99 235 / 0.3);
   --tw-shadow: var(--tw-shadow-colored);
 }
-.shadow-teal-500\/30 {
-  --tw-shadow-color: rgb(20 184 166 / 0.3);
-  --tw-shadow: var(--tw-shadow-colored);
-}
 .shadow-orange-500\/20 {
   --tw-shadow-color: rgb(249 115 22 / 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-teal-500\/30 {
+  --tw-shadow-color: rgb(20 184 166 / 0.3);
   --tw-shadow: var(--tw-shadow-colored);
 }
 .ring {
@@ -2659,13 +2659,13 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
   --tw-border-opacity: 1;
   border-color: rgb(13 148 136 / var(--tw-border-opacity, 1));
 }
-.hover\:border-white:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
-}
 .hover\:border-teal-100:hover {
   --tw-border-opacity: 1;
   border-color: rgb(204 251 241 / var(--tw-border-opacity, 1));
+}
+.hover\:border-white:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 .hover\:bg-\[\#86868b\]:hover {
   --tw-bg-opacity: 1;

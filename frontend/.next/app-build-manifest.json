@@ -21,20 +21,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/specialties/radiology/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/specialties/radiology/page.js"
-    ],
-    "/specialties/pathology/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/specialties/pathology/page.js"
-    ],
-    "/about/vision-mission/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/vision-mission/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

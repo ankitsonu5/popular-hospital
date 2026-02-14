@@ -932,34 +932,14 @@ export default function HomePage() {
           >
             {[
               {
-                city: "Varanasi",
+                city: "Gopiganj",
                 name: "Popular Hospital",
-                address: "N-10 / 60, A-2, B.L.W. Road, Kakarmatta",
-                theme: "dark",
-                bgGradient: "bg-gradient-to-br from-[#1c1c1e] to-[#2c2c2e]",
-                textColor: "text-white",
-                subTextColor: "text-gray-400",
-                image: "/images/branches/One.webp"
-              },
-              {
-                city: "Varanasi",
-                name: "City Hospital",
-                address: "Chandrika Nagar Colony, Sigra",
+                address: "G.T. Road, Khagra, Near IndusInd Bank",
                 theme: "light",
-                bgGradient: "bg-white",
+                bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                image: "/images/branches/two.png"
-              },
-              {
-                city: "Mirzapur",
-                name: "Popular Hospital",
-                address: "Near Narayan Police Chowki, Jangi Road",
-                theme: "dark",
-                bgGradient: "bg-[#000000]",
-                textColor: "text-[#f5f5f7]",
-                subTextColor: "text-gray-400",
-                image: "https://images.unsplash.com/photo-1516549655169-df83a253836f?q=80&w=2070&auto=format&fit=crop"
+                image: "/images/branches/One.webp"      
               },
               {
                 city: "Gopiganj",
@@ -969,17 +949,36 @@ export default function HomePage() {
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2128&auto=format&fit=crop"
+                image: "/images/branches/two.webp"              
               },
               {
-                city: "Bachhaon",
+                city: "Gopiganj",
                 name: "Popular Hospital",
-                address: "Chunar Road, Bachhaon, Varanasi",
-                theme: "dark",
-                bgGradient: "bg-[#161617]",
-                textColor: "text-white",
-                subTextColor: "text-gray-500",
-                image: "https://images.unsplash.com/photo-1596541223806-117580afc848?q=80&w=2028&auto=format&fit=crop"
+                address: "G.T. Road, Khagra, Near IndusInd Bank",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/One.webp"      
+              },
+              {
+                city: "Gopiganj",
+                name: "Popular Hospital",
+                address: "G.T. Road, Khagra, Near IndusInd Bank",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/One.webp"                    },
+              {
+                city: "Gopiganj",
+                name: "Popular Hospital",
+                address: "G.T. Road, Khagra, Near IndusInd Bank",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/One.webp"      
               }
             ].map((location, index) => (
               <div
