@@ -93,7 +93,7 @@ export default function HomePage() {
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/doctors" title="Find a Doctor" variant="green" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/branches" title="Our Locations" variant="blue" />
+            <SimpleCard href="#our-locations" title="Our Locations" variant="blue" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/contact" title="Connect with Us" isLast={true} variant="green" />
           </div>
@@ -893,7 +893,7 @@ export default function HomePage() {
       </section>
 
       {/* Our Locations Section - Apple Style */}
-      <section className="py-24 bg-[#f5f5f7] overflow-hidden">
+      <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
         <div className="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12 relative">
           {/* Section Header */}
           <div className="mb-12 flex items-end justify-between">
@@ -932,6 +932,7 @@ export default function HomePage() {
           >
             {[
               {
+                slug: "gopiganj-main",
                 city: "Gopiganj",
                 name: "Popular Hospital",
                 address: "G.T. Road, Khagra, Near IndusInd Bank",
@@ -942,9 +943,10 @@ export default function HomePage() {
                 image: "/images/branches/One.webp"      
               },
               {
+                slug: "gopiganj-city-centre",
                 city: "Gopiganj",
                 name: "Popular Hospital",
-                address: "G.T. Road, Khagra, Near IndusInd Bank",
+                address: "City Centre, Main Market Road",
                 theme: "light",
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
@@ -952,9 +954,10 @@ export default function HomePage() {
                 image: "/images/branches/two.webp"              
               },
               {
-                city: "Gopiganj",
+                slug: "bhadohi",
+                city: "Bhadohi",
                 name: "Popular Hospital",
-                address: "G.T. Road, Khagra, Near IndusInd Bank",
+                address: "Near Bus Stand, Station Road",
                 theme: "light",
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
@@ -962,18 +965,21 @@ export default function HomePage() {
                 image: "/images/branches/One.webp"      
               },
               {
-                city: "Gopiganj",
+                slug: "aurai",
+                city: "Aurai",
                 name: "Popular Hospital",
-                address: "G.T. Road, Khagra, Near IndusInd Bank",
+                address: "Main Road, Near Aurai Chauraha",
                 theme: "light",
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                image: "/images/branches/One.webp"                    },
+                image: "/images/branches/two.webp"
+              },
               {
-                city: "Gopiganj",
+                slug: "jangiganj",
+                city: "Jangiganj",
                 name: "Popular Hospital",
-                address: "G.T. Road, Khagra, Near IndusInd Bank",
+                address: "GT Road, Near Railway Crossing",
                 theme: "light",
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
@@ -982,7 +988,7 @@ export default function HomePage() {
               }
             ].map((location, index) => (
               <div
-                key={index}
+                key={location.slug}
                 className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[480px] sm:h-[520px] rounded-[32px] overflow-hidden snap-center group transition-transform duration-500 hover:scale-[1.02] shadow-xl border border-gray-100/10"
               >
                 {/* Content Overlay */}
@@ -1000,12 +1006,15 @@ export default function HomePage() {
                   </div>
 
                   <div className="flex items-center gap-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                    <button className={`px-6 py-3 rounded-full font-medium transition-colors ${location.theme === 'dark'
+                    <Link
+                      href={`/locations/${location.slug}`}
+                      className={`px-6 py-3 rounded-full font-medium transition-colors ${location.theme === 'dark'
                         ? 'bg-white text-black hover:bg-gray-100'
                         : 'bg-black text-white hover:bg-gray-800'
-                      }`}>
+                      }`}
+                    >
                       Get Directions
-                    </button>
+                    </Link>
                   </div>
                 </div>
 
@@ -1241,6 +1250,29 @@ export default function HomePage() {
                 </Link>
               </div>
             </article>
+          </div>
+
+          {/* View All Link */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/media/news"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
+            >
+              <span>View All News & Articles</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>

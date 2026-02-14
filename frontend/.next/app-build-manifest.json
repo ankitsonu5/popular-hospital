@@ -1,9 +1,9 @@
 {
   "pages": {
-    "/page": [
+    "/about/our-story/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/about/our-story/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -21,30 +21,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/_not-found/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/page.js"
+    ],
+    "/locations/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/locations/[slug]/page.js"
+    ],
+    "/about/cashless-empanelment/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/about/cashless-empanelment/page.js"
     ],
     "/specialties/pathology/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/specialties/pathology/page.js"
     ],
-    "/specialties/radiology/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/specialties/radiology/page.js"
-    ],
     "/about/vision-mission/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/about/vision-mission/page.js"
-    ],
-    "/about/leadership/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/leadership/page.js"
     ]
   }
 }
