@@ -221,7 +221,7 @@ export function Header() {
         className={`absolute inset-0 pointer-events-none transition-opacity duration-300 hidden xl:block ${
           scrolled || !isTransparentPage ? 'opacity-0' : 'opacity-100'
         }`}
-        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%)' }}
       />
       
       <div className="relative mx-auto w-full max-w-[1366px] px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">

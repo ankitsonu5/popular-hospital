@@ -1,7 +1,7 @@
 {
   "/media/coverage/[slug]/page": "app/media/coverage/[slug]/page.js",
-  "/media/news/page": "app/media/news/page.js",
-  "/news/[slug]/page": "app/news/[slug]/page.js",
+  "/specialties/pathology/page": "app/specialties/pathology/page.js",
+  "/about/cashless-empanelment/page": "app/about/cashless-empanelment/page.js",
   "/page": "app/page.js",
-  "/locations/[slug]/page": "app/locations/[slug]/page.js"
+  "/services/page": "app/services/page.js"
 }
