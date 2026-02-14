@@ -874,7 +874,7 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="flex items-center gap-4 opacity-100 transform translate-y-0 lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-300">
                     <Link
                       href={`/locations/${location.slug}`}
                       className={`px-6 py-3 rounded-full font-medium transition-colors ${location.theme === 'dark'
