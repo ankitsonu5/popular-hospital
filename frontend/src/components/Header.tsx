@@ -224,10 +224,15 @@ export function Header() {
         style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)' }}
       />
       
-      <div className="relative mx-auto w-full max-w-[1920px] px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto w-full max-w-[1366px] px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
         <div className="flex h-16 sm:h-18 md:h-20 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0 group">
+          <Link 
+            href="/" 
+            className={`flex items-center flex-shrink-0 group transition-all duration-300 ${
+              scrolled || !isTransparentPage ? '' : 'bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 shadow-sm'
+            }`}
+          >
             <Image
               src="/logo-horizontal.png"
               alt="Popular Hospital"

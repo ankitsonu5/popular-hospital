@@ -1,26 +1,27 @@
 
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 const services = [
-  { title: "Cardiology", desc: "Comprehensive heart care including diagnostics and surgery.", icon: "heart" },
-  { title: "Neuro Surgery", desc: "Advanced surgical treatments for brain and spine disorders.", icon: "brain" },
-  { title: "Gastroenterology", desc: "Expert care for digestive system and liver heath.", icon: "stomach" },
-  { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", icon: "kidney" },
-  { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", icon: "ribbon" },
-  { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", icon: "bladder" },
-  { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", icon: "burn" },
-  { title: "Laparoscopic", desc: "Minimally invasive general surgical procedures.", icon: "scalpel" },
-  { title: "Obstetrics", desc: "Care for pregnancy, childbirth, and women's health.", icon: "baby" },
-  { title: "Paediatrics", desc: "Medical care for infants, children, and adolescents.", icon: "child" },
-  { title: "Orthopaedic", desc: "Treatment for bones, joints, ligaments, and nerves.", icon: "bone" },
-  { title: "General Medicine", desc: "Primary care for overall health and wellbeing.", icon: "pill" },
-  { title: "ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", icon: "ear" },
-  { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", icon: "eye" },
-  { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", icon: "tooth" },
-  { title: "Pulmonology", desc: "Respiratory and lung health specialists.", icon: "lungs" },
-  { title: "Pathology", desc: "Advanced diagnostic laboratory services.", icon: "microscope" },
-  { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan.", icon: "scan" },
+  { title: "Cardiology", desc: "Comprehensive heart care including diagnostics and surgery.", image: "/images/speciliazation/department-of-cardiology.png" },
+  { title: "Neuro Surgery", desc: "Advanced surgical treatments for brain and spine disorders.", image: "/images/speciliazation/department-of-neuro-sciences.png" },
+  { title: "Gastroenterology", desc: "Expert care for digestive system and liver heath.", image: "/images/speciliazation/deaprtment-of-gastroenterology.png" },
+  { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", image: "/images/speciliazation/department-of-nephrology.png" },
+  { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", image: "/images/speciliazation/department-of-oncology.png" },
+  { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", image: "/images/speciliazation/department-of-urology.png" },
+  { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", image: "/images/speciliazation/deaprtment-of-burns-and-plastic-surgery.png" },
+  { title: "Laparoscopic", desc: "Minimally invasive general surgical procedures.", image: "/images/speciliazation/department-of-general-and-laparoscopic-surgery.png" },
+  { title: "Obstetrics", desc: "Care for pregnancy, childbirth, and women's health.", image: "/images/speciliazation/department-of-obstetrics-and-gynecology.png" },
+  { title: "Paediatrics", desc: "Medical care for infants, children, and adolescents.", image: "/images/speciliazation/department-of-paediatrics-and-neonatology.png" },
+  { title: "Orthopaedic", desc: "Treatment for bones, joints, ligaments, and nerves.", image: "/images/speciliazation/department-of-orthopaedic-and-joint-replacement.png" },
+  { title: "General Medicine", desc: "Primary care for overall health and wellbeing.", image: "/images/speciliazation/department-of-internal-medicine.png" },
+  { title: "ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", image: "/images/speciliazation/department-of-ent.png" },
+  { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", image: "/images/speciliazation/deaprtment-of-ophthalmology.png" },
+  { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", image: "/images/speciliazation/deaprtment-of-dental.png" },
+  { title: "Pulmonology", desc: "Respiratory and lung health specialists.", image: "/images/speciliazation/department-of-pulmonology-and-chest-respiratory-medicine.png" },
+  { title: "Pathology", desc: "Advanced diagnostic laboratory services." },
+  { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan." },
 ];
 
 export default function ServicesPage() {
@@ -50,9 +51,20 @@ export default function ServicesPage() {
             {services.map((service, idx) => (
               <div
                 key={service.title}
-                className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[320px] overflow-hidden"
+                className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[420px] overflow-hidden"
               >
                 <div>
+                  {service.image && (
+                    <div className="mb-6 w-20 h-20 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors mx-auto">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        width={48}
+                        height={48}
+                        className="w-12 h-12 object-contain"
+                      />
+                    </div>
+                  )}
                   <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2 block">Department</span>
                   <h3 className="text-3xl font-bold text-[#1d1d1f] mb-4 font-heading leading-tight max-w-[80%]">
                     {service.title}

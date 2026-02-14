@@ -1,8 +1,8 @@
 {
-  "/about/our-story/page": "app/about/our-story/page.js",
   "/page": "app/page.js",
+  "/news/[slug]/page": "app/news/[slug]/page.js",
   "/locations/[slug]/page": "app/locations/[slug]/page.js",
+  "/stories/page": "app/stories/page.js",
   "/about/cashless-empanelment/page": "app/about/cashless-empanelment/page.js",
-  "/specialties/pathology/page": "app/specialties/pathology/page.js",
-  "/about/vision-mission/page": "app/about/vision-mission/page.js"
+  "/services/page": "app/services/page.js"
 }

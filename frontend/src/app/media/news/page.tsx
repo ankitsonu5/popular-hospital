@@ -15,7 +15,7 @@ const newsArticles = [
     title: "Best Medical Network Directory For Physicians & Clients",
     excerpt:
       "Tips for Maintaining a Healthy Heart Hypertension, commonly known as high blood pressure, is one of the most prevalent chronic conditions worldwide. It affects millions of people and is a leading risk factor for heart disease, stroke, and kidney disease.",
-    image: "/about-section-image.png",
+    image: "/images/latestnews/one.jpg",
     date: "February 10, 2026",
     category: "Healthcare",
   },
@@ -24,7 +24,7 @@ const newsArticles = [
     title: "The Importance of Regular Health Checkups",
     excerpt:
       "Tips for Maintaining a Healthy Heart Hypertension, commonly known as high blood pressure, is a silent killer that can go unnoticed for years. Regular health checkups help in early detection and prevention of serious conditions.",
-    image: "/about-section-image.png",
+    image: "/images/latestnews/two.jpg",
     date: "February 8, 2026",
     category: "Wellness",
   },
@@ -33,7 +33,7 @@ const newsArticles = [
     title: "Managing Better Stress for Better Mental Health",
     excerpt:
       "Tips for Maintaining a Healthy Heart Hypertension, commonly known as high blood pressure, can be managed through stress reduction techniques. Mental health is equally important as physical health for overall wellbeing.",
-    image: "/about-section-image.png",
+    image: "/images/latestnews/three.jpg",
     date: "February 5, 2026",
     category: "Mental Health",
   },
