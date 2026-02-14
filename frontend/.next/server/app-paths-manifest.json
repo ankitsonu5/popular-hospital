@@ -1,7 +1,7 @@
 {
-  "/specialties/radiology/page": "app/specialties/radiology/page.js",
   "/specialties/pathology/page": "app/specialties/pathology/page.js",
-  "/about/vision-mission/page": "app/about/vision-mission/page.js",
   "/page": "app/page.js",
+  "/specialties/radiology/page": "app/specialties/radiology/page.js",
+  "/about/vision-mission/page": "app/about/vision-mission/page.js",
   "/about/leadership/page": "app/about/leadership/page.js"
 }
