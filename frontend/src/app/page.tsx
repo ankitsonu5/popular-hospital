@@ -132,6 +132,7 @@ export default function HomePage() {
         <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
           <div className="flex items-center gap-2 text-[#E85222] font-bold tracking-widest text-xs uppercase font-heading">
             <span className="w-2 h-2 rounded-full bg-[#E85222] animate-pulse"></span>
+            
             Updates
           </div>
         </div>
