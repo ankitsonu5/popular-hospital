@@ -75,13 +75,39 @@ export default function HomePage() {
             <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
           <div
-            className="absolute inset-0 bg-gradient-to-b from-hospital-navy/[0.125] to-teal-900/[0.125]"
+            className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#0b1c43]/90 via-[#0b1c43]/50 to-transparent"
             aria-hidden
           />
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 sm:pb-20 md:pb-32 lg:pb-40 z-20 px-4 text-center">
+            <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-5xl font-bold text-white font-heading mb-2 sm:mb-3 drop-shadow-lg tracking-tight leading-tight">
+              आपकी सेहत, <br className="sm:hidden"/> हमारी प्राथमिकता
+            </h1>
+            
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto mt-1 sm:mt-2">
+              <Link 
+                href="/book" 
+                className="flex items-center justify-center gap-2 px-6 py-3 lg:px-8 lg:py-4 bg-[#E85222] hover:bg-[#d1451a] text-white rounded-full font-bold text-sm lg:text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group"
+              >
+                <svg className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Book Appointment
+              </Link>
+              <Link 
+                href="/services" 
+                className="flex items-center justify-center gap-2 px-6 py-3 lg:px-8 lg:py-4 bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white hover:text-[#0b1c43] rounded-full font-bold text-sm lg:text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group"
+              >
+                Explore Services
+                <svg className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="relative mt-12 md:-mt-20 z-10 pb-0 sm:pb-0 md:pb-14">
+      <section className="relative mt-12 md:-mt-20 z-30 pb-0 sm:pb-0 md:pb-14">
         <div className="mx-auto max-w-6xl px-2 sm:px-4 md:px-6 lg:px-8 xl:max-w-7xl 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
@@ -99,6 +125,36 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Notification Ticker */}
+      <div className="bg-[#0b1c43] text-white py-3 overflow-hidden border-t border-b border-[#1e3a8a]/30 relative z-20 group cursor-pointer transition-colors hover:bg-[#0e2455]">
+        <Link href="/updates" className="absolute inset-0 z-30" aria-label="View all updates"></Link>
+        <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
+          <div className="flex items-center gap-2 text-[#E85222] font-bold tracking-widest text-xs uppercase font-heading">
+            <span className="w-2 h-2 rounded-full bg-[#E85222] animate-pulse"></span>
+            Updates
+          </div>
+        </div>
+        <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-32">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity">
+               <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                 <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">New</span>
+                 OPD timings for Cardiology have been updated to 9 AM - 5 PM.
+               </span>
+               <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+               <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                  Free Heart Health Checkup Camp scheduled for 15th March 2026.
+               </span>
+               <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+               <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                  Emergency Trauma Center is now fully operational 24/7.
+               </span>
+               <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* About Section */}
       <section className="mt-16 pt-0 pb-16 sm:pt-0 sm:pb-20 md:py-20 bg-white" aria-labelledby="about-us">
@@ -119,7 +175,6 @@ export default function HomePage() {
                   dedicated to providing you with personalized and compassionate
                   medical services.
                 </p>
-
                 {/* Feature List */}
                 <div className="grid grid-cols-2 gap-3 mb-6">
                   {[
@@ -152,14 +207,12 @@ export default function HomePage() {
                     </div>
                   ))}
                 </div>
-
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
                   Ut wisi enim ad minim veniam, quis laore nostrud exerci tation
                   ulm hedi corper turet suscipit lobortis nisl ut aliquip erat
-                  volutpat autem vel eum iriure dolor in hendrerit in vulputate
+                  volutpat autem vel eum iriure dolor in hendrerit in vulputate 
                   velit.
                 </p>
-
                 {/* Button */}
                 <Link
                   href="/about"
@@ -214,7 +267,7 @@ export default function HomePage() {
         className="py-20 bg-[#f5f5f7]" // Apple-like light gray background
         aria-labelledby="our-services"
       >
-        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16">
                 <div>
                    <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
@@ -232,7 +285,7 @@ export default function HomePage() {
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                   </Link>
             </div>
-
+            
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[
               { title: "Cardiology", desc: "Comprehensive heart care including diagnostics and surgery.", image: "/images/departments-images/cardiology.jpeg" },
@@ -513,7 +566,7 @@ export default function HomePage() {
         className="py-16 sm:py-20 bg-white"
         aria-labelledby="patients-speak"
       >
-        <div className="mx-auto w-full max-w-[1920px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 font-heading">
             Patients Speak
           </h2>
@@ -772,7 +825,7 @@ export default function HomePage() {
 
       {/* Our Locations Section - Apple Style */}
       <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
-        <div className="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12 relative">
+        <div className="mx-auto max-w-[1366px] px-6 sm:px-8 lg:px-12 relative">
           {/* Section Header */}
           <div className="mb-12 flex items-end justify-between">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1e3a8a] tracking-tight font-heading">

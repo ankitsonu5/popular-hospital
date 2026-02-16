@@ -59,7 +59,7 @@ export default function LeadershipPage() {
         {/* Leaders Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {leaders.map((leader, index) => (
-                <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group">
                     <div className="relative aspect-[4/5] w-full overflow-hidden">
                         <Image
                             src={leader.image}

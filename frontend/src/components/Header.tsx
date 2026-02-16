@@ -218,10 +218,10 @@ export function Header() {
     >
       {/* Desktop Gradient Overlay - Show from lg */}
       <div 
-        className={`absolute inset-0 pointer-events-none transition-opacity duration-300 hidden xl:block ${
+        className={`absolute top-0 left-0 right-0 h-48 pointer-events-none transition-opacity duration-300 hidden xl:block ${
           scrolled || !isTransparentPage ? 'opacity-0' : 'opacity-100'
         }`}
-        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 80%, rgba(0,0,0,0) 100%)' }}
       />
       
       <div className="relative mx-auto w-full max-w-[1366px] px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">

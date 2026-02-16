@@ -27,22 +27,22 @@ const services = [
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
-        {/* Header Section */}
-        <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
-            <div className="mx-auto w-full max-w-[1440px]">
-                <div className="max-w-3xl">
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
-                        Our Expertise
-                    </span>
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1e3a8a] font-heading tracking-tight mb-6">
-                        Specialized Departments.
-                    </h1>
-                    <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">
-                        At Popular Hospital, we provide world-class healthcare across a wide range of specialties. Our dedicated teams of doctors and specialists ensure the best possible care for every patient.
-                    </p>
-                </div>
-            </div>
-        </section>
+      {/* Header Section */}
+      <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
+        <div className="mx-auto w-full max-w-[1440px]">
+          <div className="max-w-3xl">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
+              Our Expertise
+            </span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1e3a8a] font-heading tracking-tight mb-6">
+              Specialized Departments.
+            </h1>
+            <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">
+              At Popular Hospital, we provide world-class healthcare across a wide range of specialties. Our dedicated teams of doctors and specialists ensure the best possible care for every patient.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Services Grid */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -54,7 +54,7 @@ export default function ServicesPage() {
                 className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden"
               >
                 {/* Image Section */}
-                <div className="w-full h-48 relative flex-shrink-0 bg-gray-100">  
+                <div className="w-full h-48 relative flex-shrink-0 bg-gray-100">
                   {service.image && (
                     <Image
                       src={service.image}
@@ -79,15 +79,15 @@ export default function ServicesPage() {
                       {service.desc}
                     </p>
                   </div>
-                  
+
                   <div className="mt-auto flex justify-end">
                     <Link
                       href={service.title === 'Pathology' ? '/specialties/pathology' : service.title === 'Radiology' ? '/specialties/radiology' : `/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
                       className="w-10 h-10 rounded-full bg-[#E85222] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#d14011]"
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                        </svg>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                      </svg>
                     </Link>
                   </div>
                 </div>
