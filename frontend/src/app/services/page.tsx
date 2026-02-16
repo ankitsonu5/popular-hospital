@@ -54,7 +54,7 @@ export default function ServicesPage() {
                 className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden"
               >
                 {/* Image Section */}
-                <div className="w-full h-48 relative flex-shrink-0 bg-gray-100">
+                <div className="w-full h-48 relative flex-shrink-0 bg-gray-100">  
                   {service.image && (
                     <Image
                       src={service.image}

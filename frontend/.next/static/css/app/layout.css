@@ -909,10 +909,6 @@ video {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
-.-mx-8 {
-  margin-left: -2rem;
-  margin-right: -2rem;
-}
 .-mb-10 {
   margin-bottom: -2.5rem;
 }
@@ -991,9 +987,6 @@ video {
 .ml-4 {
   margin-left: 1rem;
 }
-.ml-auto {
-  margin-left: auto;
-}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -1032,9 +1025,6 @@ video {
 }
 .mt-auto {
   margin-top: auto;
-}
-.-mt-8 {
-  margin-top: -2rem;
 }
 .line-clamp-1 {
   overflow: hidden;
@@ -1179,9 +1169,6 @@ video {
 }
 .h-\[400px\] {
   height: 400px;
-}
-.h-\[420px\] {
-  height: 420px;
 }
 .h-\[480px\] {
   height: 480px;
@@ -1377,12 +1364,6 @@ video {
 }
 .max-w-\[500px\] {
   max-width: 500px;
-}
-.max-w-\[80\%\] {
-  max-width: 80%;
-}
-.max-w-\[90\%\] {
-  max-width: 90%;
 }
 .max-w-md {
   max-width: 28rem;
@@ -3293,10 +3274,6 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
   --tw-border-opacity: 1;
   border-left-color: rgb(11 28 67 / var(--tw-border-opacity, 1));
 }
-.group:hover .group-hover\:bg-\[\#0066cc\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 102 204 / var(--tw-bg-opacity, 1));
-}
 .group:hover .group-hover\:bg-\[\#162c6b\] {
   --tw-bg-opacity: 1;
   background-color: rgb(22 44 107 / var(--tw-bg-opacity, 1));
@@ -3312,12 +3289,12 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
   --tw-bg-opacity: 1;
   background-color: rgb(208 73 28 / var(--tw-bg-opacity, 1));
 }
+.group:hover .group-hover\:bg-\[\#d14011\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 64 17 / var(--tw-bg-opacity, 1));
+}
 .group:hover .group-hover\:bg-black\/10 {
   background-color: rgb(0 0 0 / 0.1);
-}
-.group:hover .group-hover\:bg-blue-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 246 255 / var(--tw-bg-opacity, 1));
 }
 .group:hover .group-hover\:bg-blue-600 {
   --tw-bg-opacity: 1;
@@ -3337,10 +3314,6 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
 .group:hover .group-hover\:bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-.group:hover .group-hover\:bg-\[\#d14011\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 64 17 / var(--tw-bg-opacity, 1));
 }
 .group:hover .group-hover\:text-\[\#00B4D8\] {
   --tw-text-opacity: 1;
