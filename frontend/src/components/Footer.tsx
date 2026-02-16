@@ -77,6 +77,7 @@ export function Footer() {
               <li><Link href="/donate" className="hover:text-white transition-colors">Donate</Link></li>
               <li><Link href="/online-services" className="hover:text-white transition-colors">Online Services</Link></li>
               <li><Link href="/pay-bills" className="hover:text-white transition-colors">Pay Your Bills</Link></li>
+              <li><Link href="/feedback" className="hover:text-white transition-colors">Feedback</Link></li>
             </ul>
             
             <div className="mt-8">
@@ -94,8 +95,6 @@ export function Footer() {
               </div>
             </div>
           </div>
-
-
         </div>
         
         {/* Footer Bottom */}
