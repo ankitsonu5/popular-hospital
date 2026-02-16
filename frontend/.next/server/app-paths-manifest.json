@@ -1,14 +1,4 @@
 {
-<<<<<<< HEAD
-  "/specialties/radiology/page": "app/specialties/radiology/page.js",
-  "/about/our-story/page": "app/about/our-story/page.js",
   "/locations/[slug]/page": "app/locations/[slug]/page.js",
-  "/book/page": "app/book/page.js",
-=======
-  "/about/our-story/page": "app/about/our-story/page.js",
-  "/locations/[slug]/page": "app/locations/[slug]/page.js",
-  "/specialties/pathology/page": "app/specialties/pathology/page.js",
-  "/about/leadership/page": "app/about/leadership/page.js",
->>>>>>> 1d6f3ffa9d828730570c244b1617cf4621756119
   "/page": "app/page.js"
 }

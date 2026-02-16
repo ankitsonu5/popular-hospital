@@ -21,104 +21,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-<<<<<<< HEAD
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
-    ],
-    "/services/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/services/page.js"
-    ],
-    "/services/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/services/layout.js"
-    ],
-    "/updates/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/updates/page.js"
-    ],
     "/locations/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/locations/[slug]/page.js"
-    ],
-    "/book/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/book/page.js"
-    ],
-    "/about/our-story/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/our-story/page.js"
-    ],
-    "/about/vision-mission/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/vision-mission/page.js"
-    ],
-    "/about/leadership/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/leadership/page.js"
-    ],
-    "/about/awards/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/awards/page.js"
-    ],
-    "/about/csr/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/csr/page.js"
-=======
-    "/about/our-story/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/our-story/page.js"
-    ],
-    "/locations/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/locations/[slug]/page.js"
-    ],
-    "/doctors/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/doctors/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
->>>>>>> 1d6f3ffa9d828730570c244b1617cf4621756119
-    ],
-    "/about/leadership/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/leadership/page.js"
-    ],
-<<<<<<< HEAD
-    "/feedback/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/feedback/page.js"
-    ],
-    "/specialties/radiology/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/specialties/radiology/page.js"
-=======
-    "/specialties/pathology/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/specialties/pathology/page.js"
->>>>>>> 1d6f3ffa9d828730570c244b1617cf4621756119
     ]
   }
 }
