@@ -74,7 +74,7 @@ export default function OurStoryPage() {
         <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg z-10">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl z-10">
                 <Image
                    src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=1000&auto=format&fit=crop"
                    alt="Popular Hospital Early Days"
@@ -165,7 +165,7 @@ export default function OurStoryPage() {
 
                   {/* Image Side */}
                   <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pl-16' : 'md:pr-16'}`}>
-                     <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-500 transform group-hover:-translate-y-2 border-4 border-white">
+                     <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 transform group-hover:-translate-y-2 border-4 border-white">
                         <Image
                            src={milestone.image}
                            alt={milestone.title}

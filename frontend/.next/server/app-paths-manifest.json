@@ -1,8 +1,7 @@
 {
-  "/feedback/page": "app/feedback/page.js",
-  "/specialties/radiology/page": "app/specialties/radiology/page.js",
   "/page": "app/page.js",
+  "/book/page": "app/book/page.js",
   "/locations/[slug]/page": "app/locations/[slug]/page.js",
-  "/about/our-story/page": "app/about/our-story/page.js",
-  "/services/page": "app/services/page.js"
+  "/specialties/radiology/page": "app/specialties/radiology/page.js",
+  "/about/our-story/page": "app/about/our-story/page.js"
 }
