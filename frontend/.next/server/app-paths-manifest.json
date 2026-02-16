@@ -1,12 +1,7 @@
 {
-<<<<<<< HEAD
+  "/about/our-story/page": "app/about/our-story/page.js",
+  "/locations/[slug]/page": "app/locations/[slug]/page.js",
+  "/specialties/pathology/page": "app/specialties/pathology/page.js",
+  "/about/leadership/page": "app/about/leadership/page.js",
   "/page": "app/page.js"
-=======
-  "/news/[slug]/page": "app/news/[slug]/page.js",
-  "/about/cashless-empanelment/page": "app/about/cashless-empanelment/page.js",
-  "/page": "app/page.js",
-  "/about/csr/page": "app/about/csr/page.js",
-  "/feedback/page": "app/feedback/page.js",
-  "/media/news/page": "app/media/news/page.js"
->>>>>>> e18fcd126dde1d658284d48d9b378f59767a4722
 }

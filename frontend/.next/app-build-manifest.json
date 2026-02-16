@@ -1,14 +1,9 @@
 {
   "pages": {
-    "/services/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/services/page.js"
-    ],
-    "/services/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/services/layout.js"
+      "static/chunks/app/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -26,35 +21,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/page": [
+    "/about/our-story/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/about/our-story/page.js"
     ],
-    "/media/news/page": [
+    "/locations/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/media/news/page.js"
+      "static/chunks/app/locations/[slug]/page.js"
     ],
-    "/news/[slug]/page": [
+    "/doctors/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/news/[slug]/page.js"
+      "static/chunks/app/doctors/page.js"
     ],
-    "/feedback/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/feedback/page.js"
+      "static/chunks/app/_not-found/page.js"
     ],
-    "/about/cashless-empanelment/page": [
+    "/about/leadership/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/about/cashless-empanelment/page.js"
+      "static/chunks/app/about/leadership/page.js"
     ],
-    "/about/csr/page": [
+    "/specialties/pathology/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/about/csr/page.js"
+      "static/chunks/app/specialties/pathology/page.js"
     ]
   }
 }
