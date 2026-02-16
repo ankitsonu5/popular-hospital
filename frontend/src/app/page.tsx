@@ -567,7 +567,7 @@ export default function HomePage() {
         className="py-16 sm:py-20 bg-white"
         aria-labelledby="patients-speak"
       >
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+        <div className="mx-auto w-full max-w-[1666px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 font-heading">
             Patients Speak
           </h2>
@@ -826,7 +826,7 @@ export default function HomePage() {
 
       {/* Our Locations Section - Apple Style */}
       <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
-        <div className="mx-auto max-w-[1366px] px-6 sm:px-8 lg:px-12 relative">
+        <div className="mx-auto max-w-[1666px] px-6 sm:px-8 lg:px-12 relative">
           {/* Section Header */}
           <div className="mb-12 flex items-end justify-between">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1e3a8a] tracking-tight font-heading">
