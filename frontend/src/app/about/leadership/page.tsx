@@ -10,19 +10,19 @@ const leaders = [
   {
     name: "Ms. Sarah Johnson",
     role: "Managing Director",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
+    image: "/images/leadership/dr-ak-kaushik.jpg",
     bio: "Ms. Johnson brings dynamic leadership and strategic insight, steering the hospital towards new heights of operational excellence and patient satisfaction."
   },
   {
     name: "Dr. Robert Chen",
     role: "Medical Director",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop",
+    image: "/images/leadership/dr-ak-kaushik.jpg",
     bio: "Renowned for his clinical acumen, Dr. Chen oversees the medical standards and quality assurance protocols, ensuring every patient receives the best care."
   },
   {
     name: "Mr. David Smith",
     role: "Chief Executive Officer (CEO)",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop",
+    image: "/images/leadership/dr-ak-kaushik.jpg",
     bio: "With a strong background in hospital administration, Mr. Smith focuses on innovation, growth, and building a compassionate organizational culture."
   }
 ];

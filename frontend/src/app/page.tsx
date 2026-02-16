@@ -15,7 +15,7 @@ export default function HomePage() {
     name: "",
     email: "",
     phone: "",
-    website: "",
+    query: "",
     agreeTerms: false,
   });
 
@@ -93,7 +93,7 @@ export default function HomePage() {
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/doctors" title="Find a Doctor" variant="green" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/branches" title="Our Locations" variant="blue" />
+            <SimpleCard href="#our-locations" title="Our Locations" variant="blue" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/contact" title="Connect with Us" isLast={true} variant="green" />
           </div>
@@ -220,7 +220,7 @@ export default function HomePage() {
                    <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
                      Excellence in Care
                    </span>
-                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1d1d1f] font-heading tracking-tight">
+                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight">
                      Specialized Departments.
                    </h2>
                 </div>
@@ -235,48 +235,66 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[
-              { title: "Cardiology", desc: "Comprehensive heart care including diagnostics and surgery.", icon: "heart" },
-              { title: "Neuro Surgery", desc: "Advanced surgical treatments for brain and spine disorders.", icon: "brain" },
-              { title: "Gastroenterology", desc: "Expert care for digestive system and liver heath.", icon: "stomach" },
-              { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", icon: "kidney" },
-              { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan.", icon: "scan" },
-              { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", icon: "ribbon" },
-              { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", icon: "bladder" },
-              { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", icon: "burn" },
-              { title: "Laparoscopic", desc: "Minimally invasive general surgical procedures.", icon: "scalpel" },
-              { title: "Obstetrics", desc: "Care for pregnancy, childbirth, and women's health.", icon: "baby" },
-              { title: "Paediatrics", desc: "Medical care for infants, children, and adolescents.", icon: "child" },
-              { title: "Orthopaedic", desc: "Treatment for bones, joints, ligaments, and nerves.", icon: "bone" },
-              { title: "General Medicine", desc: "Primary care for overall health and wellbeing.", icon: "pill" },
-              { title: "ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", icon: "ear" },
-              { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", icon: "eye" },
-              { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", icon: "tooth" },
-              { title: "Pulmonology", desc: "Respiratory and lung health specialists.", icon: "lungs" },
-              { title: "Pathology", desc: "Advanced diagnostic laboratory services.", icon: "microscope" },
+              { title: "Cardiology", desc: "Comprehensive heart care including diagnostics and surgery.", image: "/images/departments-images/cardiology.jpeg" },
+              { title: "Neuro Surgery", desc: "Advanced surgical treatments for brain and spine disorders.", image: "/images/departments-images/neuro-surgery.jpeg" },
+              { title: "Gastroenterology", desc: "Expert care for digestive system and liver heath.", image: "/images/departments-images/gastroenterology.jpeg" },
+              { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", image: "/images/departments-images/AdobeStock_1010757604.jpeg" },
+              { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan.", image: "/images/departments-images/radiology.jpeg" },
+              { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", image: "/images/departments-images/oncology.jpeg" },
+              { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", image: "/images/departments-images/urology.jpeg" },
+              { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", image: "/images/departments-images/AdobeStock_222372294.jpeg" },
+              { title: "Laparoscopic", desc: "Minimally invasive general surgical procedures.", image: "/images/departments-images/laparoscopic.jpeg" },
+              { title: "Obstetrics", desc: "Care for pregnancy, childbirth, and women's health.", image: "/images/hospital-sample.jpg" },
+              { title: "Paediatrics", desc: "Medical care for infants, children, and adolescents.", image: "/images/departments-images/paediatrics.jpeg" },
+              { title: "Orthopaedic", desc: "Treatment for bones, joints, ligaments, and nerves.", image: "/images/departments-images/orthopaedic.jpeg" },
+              { title: "General Medicine", desc: "Primary care for overall health and wellbeing.", image: "/images/departments-images/general-medicine.jpeg" },
+              { title: "ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", image: "/images/departments-images/ent.jpeg" },
+              { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", image: "/images/departments-images/ophthalmology.jpeg" },
+              { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", image: "/images/departments-images/dental-care.jpeg" },
+              { title: "Pulmonology", desc: "Respiratory and lung health specialists.", image: "/images/departments-images/pulmonology.jpeg" },
+              { title: "Pathology", desc: "Advanced diagnostic laboratory services.", image: "/images/departments-images/pathology.jpeg" },
             ].slice(0, 8).map((service, idx) => (
               <div
                 key={service.title}
-                className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[320px] overflow-hidden"
+                className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden"
               >
-                <div>
-                  <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2 block">Department</span>
-                  <h3 className="text-3xl font-bold text-[#1d1d1f] mb-4 font-heading leading-tight max-w-[80%]">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed max-w-[90%] font-medium">
-                    {service.desc}
-                  </p>
+                {/* Image Section */}
+                <div className="w-full h-48 relative flex-shrink-0 bg-gray-100">
+                  {service.image && (
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  )}
                 </div>
-                
-                <div className="mt-8 flex items-end justify-between">
+
+                {/* Content Section */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="mb-4">
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2 block">
+                      Department
+                    </span>
+                    <h3 className="text-2xl font-bold text-[#1d1d1f] mb-3 font-heading leading-tight">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed font-medium line-clamp-3">
+                      {service.desc}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-auto flex justify-end">
                     <Link
                       href={service.title === 'Pathology' ? '/specialties/pathology' : service.title === 'Radiology' ? '/specialties/radiology' : `/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="ml-auto w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#0066cc]"
+                      className="w-10 h-10 rounded-full bg-[#E85222] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#d14011]"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                         </svg>
                     </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -500,343 +518,203 @@ export default function HomePage() {
             Patients Speak
           </h2>
 
-          {/* Top Division - Left to Right Scroll */}
-          <div className="mb-8 overflow-hidden">
-            <div
-              className="flex gap-6 animate-scroll-left pause-scroll"
-              style={{ width: "max-content" }}
-            >
-              {[
-                {
-                  type: "text",
-                  name: "Shachi",
-                  text: "Dear Dr. Jayanti, I want to thank you for the exceptional care you provided during my lumpectomy. Your precise surgical skills and compassionate approach laid the foundation for my recovery and gave me hope during a challenging time.",
-                  bgColor: "bg-blue-50",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-one.mp4",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-two.mp4",
-                },
-                {
-                  type: "text",
-                  name: "Rajesh Kumar",
-                  text: "The entire team at Popular Hospital was professional and caring. From admission to discharge, every staff member made sure I was comfortable and well-informed about my treatment.",
-                  bgColor: "bg-teal-50",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-three.mp4",
-                },
-              ].map((testimonial, index) => (
-                <div
-                  key={`top-${index}`}
-                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${testimonial.type === "text"
-                      ? "w-[300px] sm:w-[400px] lg:w-[500px]"
-                      : "w-[260px] sm:w-[300px] lg:w-[360px]"
-                    }`}
-                >
-                  {testimonial.type === "text" ? (
-                    <div
-                      className={`${testimonial.bgColor} p-6 h-full flex flex-col`}
-                    >
-                      <p className="text-gray-700 mb-4 flex-1 text-sm leading-relaxed">
-                        {testimonial.text}
-                      </p>
-                      <p className="text-gray-900 font-semibold">
-                        {testimonial.name}
-                      </p>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        setSelectedVideo(testimonial.videoUrl || null)
-                      }
-                      className="relative h-[240px] sm:h-[280px] lg:h-[320px] bg-gray-200 flex items-center justify-center cursor-pointer w-full group"
-                    >
-                      <video
-                        src={testimonial.videoUrl}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        muted
-                        loop
-                        playsInline
-                        autoPlay
-                      />
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
-                      <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                        <div className="w-0 h-0 border-l-[12px] border-l-[#E85222] border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
-                      </div>
-                    </button>
-                  )}
+          
+          {/* Custom 5-Column Video Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
+            
+            {/* Column 1: Far Left (Centered Single Card) */}
+            <div className="flex flex-col justify-center">
+              <button
+                onClick={() => setSelectedVideo("/videos/testimonial-two.mp4")}
+                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5]"
+              >
+                <video
+                  src="/videos/testimonial-two.mp4"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
                 </div>
-              ))}
-              {/* Duplicate for seamless loop */}
-              {[
-                {
-                  type: "text",
-                  name: "Shachi",
-                  text: "Dear Dr. Jayanti, I want to thank you for the exceptional care you provided during my lumpectomy. Your precise surgical skills and compassionate approach laid the foundation for my recovery and gave me hope during a challenging time.",
-                  bgColor: "bg-blue-50",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-one.mp4",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-two.mp4",
-                },
-                {
-                  type: "text",
-                  name: "Rajesh Kumar",
-                  text: "The entire team at Popular Hospital was professional and caring. From admission to discharge, every staff member made sure I was comfortable and well-informed about my treatment.",
-                  bgColor: "bg-teal-50",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-three.mp4",
-                },
-              ].map((testimonial, index) => (
-                <div
-                  key={`top-duplicate-${index}`}
-                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${testimonial.type === "text"
-                      ? "w-[300px] sm:w-[400px] lg:w-[500px]"
-                      : "w-[260px] sm:w-[300px] lg:w-[360px]"
-                    }`}
-                >
-                  {testimonial.type === "text" ? (
-                    <div
-                      className={`${testimonial.bgColor} p-6 h-full flex flex-col`}
-                    >
-                      <p className="text-gray-700 mb-4 flex-1 text-sm leading-relaxed">
-                        {testimonial.text}
-                      </p>
-                      <p className="text-gray-900 font-semibold">
-                        {testimonial.name}
-                      </p>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        setSelectedVideo(testimonial.videoUrl || null)
-                      }
-                      className="relative h-[240px] sm:h-[280px] lg:h-[320px] bg-gray-200 flex items-center justify-center cursor-pointer w-full group"
-                    >
-                      <video
-                        src={testimonial.videoUrl}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        muted
-                        loop
-                        playsInline
-                        autoPlay
-                      />
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
-                      <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                        <div className="w-0 h-0 border-l-[12px] border-l-[#E85222] border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
-                      </div>
-                    </button>
-                  )}
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Mauritian Patient</h3>
+                  <p className="text-gray-300 text-xs">Mr Fazil Hosany</p>
                 </div>
-              ))}
+              </button>
             </div>
+
+            {/* Column 2: Inner Left (Two Stacked Cards) */}
+            <div className="flex flex-col gap-4 lg:gap-6">
+              <button
+                onClick={() => setSelectedVideo("/videos/testimonial-three.mp4")}
+                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
+              >
+                <video
+                  src="/videos/testimonial-three.mp4"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-white text-base font-bold leading-tight mb-0.5">Liver Failure</h3>
+                  <p className="text-gray-300 text-xs">Baby Bhavika</p>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setSelectedVideo("/videos/testimonial-one.mp4")}
+                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
+              >
+                <video
+                  src="/videos/testimonial-one.mp4"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-white text-base font-bold leading-tight mb-0.5">Jaw Cancer</h3>
+                  <p className="text-gray-300 text-xs">Dr. Abhilasha Agarwal</p>
+                </div>
+              </button>
+            </div>
+
+            {/* Column 3: Center (Tall Featured Card) */}
+            <div className="h-[400px] lg:h-full">
+              <button
+                onClick={() => setSelectedVideo("/videos/testimonial-one.mp4")}
+                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-full"
+              >
+                <video
+                  src="/videos/testimonial-one.mp4"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+                
+                {/* Large Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/60 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+                    <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-10 left-0 right-0 p-8 text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-white text-2xl font-bold font-heading mb-2 drop-shadow-md">Pre-term Babies</h3>
+                  <p className="text-gray-200 text-lg font-medium">Ms Sakshi</p>
+                </div>
+              </button>
+            </div>
+
+            {/* Column 4: Inner Right (Two Stacked Cards) */}
+            <div className="flex flex-col gap-4 lg:gap-6">
+              <button
+                onClick={() => setSelectedVideo("/videos/testimonial-three.mp4")}
+                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
+              >
+                <video
+                  src="/videos/testimonial-three.mp4"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-white text-base font-bold leading-tight mb-0.5">Neurosurgical Treatment</h3>
+                  <p className="text-gray-300 text-xs">Mr. Devender Jeet Singh</p>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setSelectedVideo("/videos/testimonial-two.mp4")}
+                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
+              >
+                <video
+                  src="/videos/testimonial-two.mp4"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-100 transition-transform">
+                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-white text-base font-bold leading-tight mb-0.5">Bone Marrow</h3>
+                  <p className="text-gray-300 text-xs">Patient Father Mr Haider</p>
+                </div>
+              </button>
+            </div>
+
+            {/* Column 5: Far Right (Centered Single Card) */}
+            <div className="flex flex-col justify-center">
+              <button
+                onClick={() => setSelectedVideo("/videos/testimonial-three.mp4")}
+                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5]"
+              >
+                <video
+                  src="/videos/testimonial-three.mp4"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Kidney Donor</h3>
+                  <p className="text-gray-300 text-xs">Ms Paluk Sunger</p>
+                </div>
+              </button>
+            </div>
+
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link
+              href="/stories"
+              className="inline-flex items-center gap-2 text-[#E85222] font-semibold text-xl hover:gap-3 transition-all"
+            >
+              View All Patient Stories
+              <span className="w-8 h-8 rounded-full bg-[#E85222] text-white flex items-center justify-center shadow-md">
+                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+              </span>
+            </Link>
           </div>
 
-          {/* Bottom Division - Right to Left Scroll */}
-          <div className="overflow-hidden">
-            <div
-              className="flex gap-6 animate-scroll-right pause-scroll"
-              style={{ width: "max-content" }}
-            >
-              {[
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/heroMain.mp4",
-                },
-                {
-                  type: "text",
-                  name: "Niyati Shah",
-                  text: "Dr. Sridhar is a lifesaver. My father was diagnosed with stage 4 lung cancer and given only six months. Thankfully, we found Dr. Sridhar, and after Cyberknife treatment, my father's condition improved significantly. We are forever grateful.",
-                  bgColor: "bg-teal-100",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-one.mp4",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-two.mp4",
-                },
-                {
-                  type: "text",
-                  name: "Priya Sharma",
-                  text: "The pediatric care at Popular Hospital is outstanding. My daughter received excellent treatment, and the doctors were patient and understanding with both of us. Highly recommended!",
-                  bgColor: "bg-blue-100",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-three.mp4",
-                },
-              ].map((testimonial, index) => (
-                <div
-                  key={`bottom-${index}`}
-                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${testimonial.type === "text"
-                      ? "w-[300px] sm:w-[400px] lg:w-[500px]"
-                      : "w-[260px] sm:w-[300px] lg:w-[360px]"
-                    }`}
-                >
-                  {testimonial.type === "text" ? (
-                    <div
-                      className={`${testimonial.bgColor} p-6 h-full flex flex-col`}
-                    >
-                      <p className="text-gray-700 mb-4 flex-1 text-sm leading-relaxed">
-                        {testimonial.text}
-                      </p>
-                      <p className="text-gray-900 font-semibold">
-                        {testimonial.name}
-                      </p>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        setSelectedVideo(testimonial.videoUrl || null)
-                      }
-                      className="relative h-[240px] sm:h-[280px] lg:h-[320px] bg-gray-200 flex items-center justify-center cursor-pointer w-full group"
-                    >
-                      <video
-                        src={testimonial.videoUrl}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        muted
-                        loop
-                        playsInline
-                        autoPlay
-                      />
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
-                      <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                        <div className="w-0 h-0 border-l-[12px] border-l-[#E85222] border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
-                      </div>
-                    </button>
-                  )}
-                </div>
-              ))}
-              {/* Duplicate for seamless loop */}
-              {[
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/heroMain.mp4",
-                },
-                {
-                  type: "text",
-                  name: "Niyati Shah",
-                  text: "Dr. Sridhar is a lifesaver. My father was diagnosed with stage 4 lung cancer and given only six months. Thankfully, we found Dr. Sridhar, and after Cyberknife treatment, my father's condition improved significantly. We are forever grateful.",
-                  bgColor: "bg-teal-100",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-one.mp4",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-two.mp4",
-                },
-                {
-                  type: "text",
-                  name: "Priya Sharma",
-                  text: "The pediatric care at Popular Hospital is outstanding. My daughter received excellent treatment, and the doctors were patient and understanding with both of us. Highly recommended!",
-                  bgColor: "bg-blue-100",
-                },
-                {
-                  type: "video",
-                  name: "Patient Review",
-                  thumbnail:
-                    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
-                  videoUrl: "/videos/testimonial-three.mp4",
-                },
-              ].map((testimonial, index) => (
-                <div
-                  key={`bottom-duplicate-${index}`}
-                  className={`flex-shrink-0 rounded-xl shadow-md overflow-hidden ${testimonial.type === "text"
-                      ? "w-[300px] sm:w-[400px] lg:w-[500px]"
-                      : "w-[260px] sm:w-[300px] lg:w-[360px]"
-                    }`}
-                >
-                  {testimonial.type === "text" ? (
-                    <div
-                      className={`${testimonial.bgColor} p-6 h-full flex flex-col`}
-                    >
-                      <p className="text-gray-700 mb-4 flex-1 text-sm leading-relaxed">
-                        {testimonial.text}
-                      </p>
-                      <p className="text-gray-900 font-semibold">
-                        {testimonial.name}
-                      </p>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        setSelectedVideo(testimonial.videoUrl || null)
-                      }
-                      className="relative h-[240px] sm:h-[280px] lg:h-[320px] bg-gray-200 flex items-center justify-center cursor-pointer w-full group"
-                    >
-                      <video
-                        src={testimonial.videoUrl}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        muted
-                        loop
-                        playsInline
-                        autoPlay
-                      />
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
-                      <div className="relative z-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                        <div className="w-0 h-0 border-l-[12px] border-l-[#E85222] border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
-                      </div>
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
         {/* Video Modal */}
         {selectedVideo && (
@@ -893,7 +771,7 @@ export default function HomePage() {
       </section>
 
       {/* Our Locations Section - Apple Style */}
-      <section className="py-24 bg-[#f5f5f7] overflow-hidden">
+      <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
         <div className="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12 relative">
           {/* Section Header */}
           <div className="mb-12 flex items-end justify-between">
@@ -932,36 +810,7 @@ export default function HomePage() {
           >
             {[
               {
-                city: "Varanasi",
-                name: "Popular Hospital",
-                address: "N-10 / 60, A-2, B.L.W. Road, Kakarmatta",
-                theme: "dark",
-                bgGradient: "bg-gradient-to-br from-[#1c1c1e] to-[#2c2c2e]",
-                textColor: "text-white",
-                subTextColor: "text-gray-400",
-                image: "/images/branches/One.webp"
-              },
-              {
-                city: "Varanasi",
-                name: "City Hospital",
-                address: "Chandrika Nagar Colony, Sigra",
-                theme: "light",
-                bgGradient: "bg-white",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/two.png"
-              },
-              {
-                city: "Mirzapur",
-                name: "Popular Hospital",
-                address: "Near Narayan Police Chowki, Jangi Road",
-                theme: "dark",
-                bgGradient: "bg-[#000000]",
-                textColor: "text-[#f5f5f7]",
-                subTextColor: "text-gray-400",
-                image: "https://images.unsplash.com/photo-1516549655169-df83a253836f?q=80&w=2070&auto=format&fit=crop"
-              },
-              {
+                slug: "gopiganj-main",
                 city: "Gopiganj",
                 name: "Popular Hospital",
                 address: "G.T. Road, Khagra, Near IndusInd Bank",
@@ -969,21 +818,55 @@ export default function HomePage() {
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2128&auto=format&fit=crop"
+                image: "/images/branches/One.webp"      
               },
               {
-                city: "Bachhaon",
+                slug: "gopiganj-city-centre",
+                city: "Gopiganj",
                 name: "Popular Hospital",
-                address: "Chunar Road, Bachhaon, Varanasi",
-                theme: "dark",
-                bgGradient: "bg-[#161617]",
-                textColor: "text-white",
-                subTextColor: "text-gray-500",
-                image: "https://images.unsplash.com/photo-1596541223806-117580afc848?q=80&w=2028&auto=format&fit=crop"
+                address: "City Centre, Main Market Road",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/two.webp"              
+              },
+              {
+                slug: "bhadohi",
+                city: "Bhadohi",
+                name: "Popular Hospital",
+                address: "Near Bus Stand, Station Road",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/One.webp"      
+              },
+              {
+                slug: "aurai",
+                city: "Aurai",
+                name: "Popular Hospital",
+                address: "Main Road, Near Aurai Chauraha",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/two.webp"
+              },
+              {
+                slug: "jangiganj",
+                city: "Jangiganj",
+                name: "Popular Hospital",
+                address: "GT Road, Near Railway Crossing",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/One.webp"      
               }
             ].map((location, index) => (
               <div
-                key={index}
+                key={location.slug}
                 className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[480px] sm:h-[520px] rounded-[32px] overflow-hidden snap-center group transition-transform duration-500 hover:scale-[1.02] shadow-xl border border-gray-100/10"
               >
                 {/* Content Overlay */}
@@ -1000,13 +883,16 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                    <button className={`px-6 py-3 rounded-full font-medium transition-colors ${location.theme === 'dark'
+                  <div className="flex items-center gap-4 opacity-100 transform translate-y-0 lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-300">
+                    <Link
+                      href={`/locations/${location.slug}`}
+                      className={`px-6 py-3 rounded-full font-medium transition-colors ${location.theme === 'dark'
                         ? 'bg-white text-black hover:bg-gray-100'
                         : 'bg-black text-white hover:bg-gray-800'
-                      }`}>
+                      }`}
+                    >
                       Get Directions
-                    </button>
+                    </Link>
                   </div>
                 </div>
 
@@ -1126,7 +1012,7 @@ export default function HomePage() {
             <article className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
               <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden">
                 <Image
-                  src="/about-section-image.png"
+                  src="/images/latestnews/one.jpg"
                   alt="Medical Network"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -1166,7 +1052,7 @@ export default function HomePage() {
             <article className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
               <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden">
                 <Image
-                  src="/about-section-image.png"
+                  src="/images/latestnews/two.jpg"
                   alt="Regular Checkups"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -1206,7 +1092,7 @@ export default function HomePage() {
             <article className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
               <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden">
                 <Image
-                  src="/about-section-image.png"
+                  src="/images/latestnews/three.jpg"
                   alt="Stress Management"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -1242,6 +1128,29 @@ export default function HomePage() {
                 </Link>
               </div>
             </article>
+          </div>
+
+          {/* View All Link */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/media/news"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
+            >
+              <span>View All News & Articles</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -1511,7 +1420,7 @@ export default function HomePage() {
                     rows={4}
                     value={formData.message}
                     onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
+                      setFormData({ ...formData, message: e.target.value }) 
                     }
                     placeholder="Please write your message here"
                     className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none resize-none"
@@ -1582,22 +1491,23 @@ export default function HomePage() {
                 </div>
 
                 {/* Website Field */}
+                {/* Query Field */}
                 <div>
                   <label
-                    htmlFor="website"
+                    htmlFor="query"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    Website*
+                    Query*
                   </label>
                   <input
-                    id="website"
-                    type="url"
+                    id="query"
+                    type="text"
                     required
-                    value={formData.website}
+                    value={formData.query}
                     onChange={(e) =>
-                      setFormData({ ...formData, website: e.target.value })
+                      setFormData({ ...formData, query: e.target.value })
                     }
-                    placeholder="Please enter website"
+                    placeholder="Please enter your query"
                     className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
                   />
                 </div>
