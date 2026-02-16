@@ -220,7 +220,7 @@ export default function HomePage() {
                    <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
                      Excellence in Care
                    </span>
-                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1d1d1f] font-heading tracking-tight">
+                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight">
                      Specialized Departments.
                    </h2>
                 </div>
@@ -288,7 +288,7 @@ export default function HomePage() {
                   <div className="mt-auto flex justify-end">
                     <Link
                       href={service.title === 'Pathology' ? '/specialties/pathology' : service.title === 'Radiology' ? '/specialties/radiology' : `/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#0066cc]"
+                      className="w-10 h-10 rounded-full bg-[#E85222] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#d14011]"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -706,10 +706,12 @@ export default function HomePage() {
           <div className="mt-12 text-center">
             <Link
               href="/stories"
-              className="inline-flex items-center gap-2 text-[#E85222] font-semibold text-lg hover:gap-3 transition-all"
+              className="inline-flex items-center gap-2 text-[#E85222] font-semibold text-xl hover:gap-3 transition-all"
             >
               View All Patient Stories
-              <span className="w-6 h-6 rounded-full bg-[#E85222] text-white flex items-center justify-center text-sm">›</span>
+              <span className="w-8 h-8 rounded-full bg-[#E85222] text-white flex items-center justify-center shadow-md">
+                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+              </span>
             </Link>
           </div>
 

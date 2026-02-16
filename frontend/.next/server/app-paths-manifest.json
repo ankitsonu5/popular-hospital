@@ -1,8 +1,8 @@
 {
   "/page": "app/page.js",
   "/feedback/page": "app/feedback/page.js",
-  "/news/[slug]/page": "app/news/[slug]/page.js",
-  "/specialties/pathology/page": "app/specialties/pathology/page.js",
-  "/media/news/page": "app/media/news/page.js",
+  "/about/our-story/page": "app/about/our-story/page.js",
+  "/specialties/radiology/page": "app/specialties/radiology/page.js",
+  "/about/csr/page": "app/about/csr/page.js",
   "/services/page": "app/services/page.js"
 }

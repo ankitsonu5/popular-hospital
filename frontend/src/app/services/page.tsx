@@ -34,7 +34,7 @@ export default function ServicesPage() {
                     <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
                         Our Expertise
                     </span>
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1d1d1f] font-heading tracking-tight mb-6">
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1e3a8a] font-heading tracking-tight mb-6">
                         Specialized Departments.
                     </h1>
                     <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">
@@ -83,7 +83,7 @@ export default function ServicesPage() {
                   <div className="mt-auto flex justify-end">
                     <Link
                       href={service.title === 'Pathology' ? '/specialties/pathology' : service.title === 'Radiology' ? '/specialties/radiology' : `/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#0066cc]"
+                      className="w-10 h-10 rounded-full bg-[#E85222] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#d14011]"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
