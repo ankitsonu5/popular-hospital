@@ -1,8 +1,8 @@
 {
   "/page": "app/page.js",
   "/feedback/page": "app/feedback/page.js",
-  "/about/cashless-empanelment/page": "app/about/cashless-empanelment/page.js",
-  "/book/page": "app/book/page.js",
   "/news/[slug]/page": "app/news/[slug]/page.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/specialties/pathology/page": "app/specialties/pathology/page.js",
+  "/media/news/page": "app/media/news/page.js",
+  "/services/page": "app/services/page.js"
 }

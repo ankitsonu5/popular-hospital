@@ -1,9 +1,9 @@
 {
   "pages": {
-    "/page": [
+    "/feedback/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/feedback/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -21,6 +21,21 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/media/news/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/media/news/page.js"
+    ],
+    "/news/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/news/[slug]/page.js"
+    ],
     "/services/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -31,45 +46,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/services/layout.js"
     ],
-    "/specialties/radiology/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/specialties/radiology/page.js"
+      "static/chunks/app/_not-found/page.js"
     ],
     "/specialties/pathology/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/specialties/pathology/page.js"
-    ],
-    "/locations/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/locations/[slug]/page.js"
-    ],
-    "/book/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/book/page.js"
-    ],
-    "/about/cashless-empanelment/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/cashless-empanelment/page.js"
-    ],
-    "/news/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/news/[slug]/page.js"
-    ],
-    "/feedback/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/feedback/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

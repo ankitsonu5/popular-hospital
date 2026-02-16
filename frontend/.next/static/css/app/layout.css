@@ -909,8 +909,24 @@ video {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
+.-mx-8 {
+  margin-left: -2rem;
+  margin-right: -2rem;
+}
+.-mb-10 {
+  margin-bottom: -2.5rem;
+}
+.-ml-10 {
+  margin-left: -2.5rem;
+}
+.-mr-10 {
+  margin-right: -2.5rem;
+}
 .-mt-0\.5 {
   margin-top: -0.125rem;
+}
+.-mt-10 {
+  margin-top: -2.5rem;
 }
 .-mt-16 {
   margin-top: -4rem;
@@ -1017,17 +1033,8 @@ video {
 .mt-auto {
   margin-top: auto;
 }
-.-mb-10 {
-  margin-bottom: -2.5rem;
-}
-.-ml-10 {
-  margin-left: -2.5rem;
-}
-.-mr-10 {
-  margin-right: -2.5rem;
-}
-.-mt-10 {
-  margin-top: -2.5rem;
+.-mt-8 {
+  margin-top: -2rem;
 }
 .line-clamp-1 {
   overflow: hidden;
@@ -1122,6 +1129,9 @@ video {
 .h-4 {
   height: 1rem;
 }
+.h-40 {
+  height: 10rem;
+}
 .h-48 {
   height: 12rem;
 }
@@ -1194,9 +1204,6 @@ video {
 .h-px {
   height: 1px;
 }
-.h-40 {
-  height: 10rem;
-}
 .max-h-0 {
   max-height: 0px;
 }
@@ -1266,6 +1273,9 @@ video {
 .w-4 {
   width: 1rem;
 }
+.w-40 {
+  width: 10rem;
+}
 .w-5 {
   width: 1.25rem;
 }
@@ -1313,9 +1323,6 @@ video {
 }
 .w-px {
   width: 1px;
-}
-.w-40 {
-  width: 10rem;
 }
 .min-w-\[200px\] {
   min-width: 200px;
@@ -1391,6 +1398,9 @@ video {
 }
 .shrink-0 {
   flex-shrink: 0;
+}
+.flex-grow {
+  flex-grow: 1;
 }
 .-translate-x-1\/2 {
   --tw-translate-x: -50%;
@@ -1917,6 +1927,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(240 90 40 / var(--tw-bg-opacity, 1));
 }
+.bg-\[\#FDFBF7\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 251 247 / var(--tw-bg-opacity, 1));
+}
 .bg-\[\#d2d2d7\] {
   --tw-bg-opacity: 1;
   background-color: rgb(210 210 215 / var(--tw-bg-opacity, 1));
@@ -2002,6 +2016,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(13 148 136 / var(--tw-bg-opacity, 1));
 }
+.bg-orange-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 237 213 / var(--tw-bg-opacity, 1));
+}
 .bg-orange-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(255 247 237 / var(--tw-bg-opacity, 1));
@@ -2061,14 +2079,6 @@ video {
 }
 .bg-white\/90 {
   background-color: rgb(255 255 255 / 0.9);
-}
-.bg-\[\#FDFBF7\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(253 251 247 / var(--tw-bg-opacity, 1));
-}
-.bg-orange-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 237 213 / var(--tw-bg-opacity, 1));
 }
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
@@ -2741,6 +2751,9 @@ video {
 .opacity-40 {
   opacity: 0.4;
 }
+.opacity-50 {
+  opacity: 0.5;
+}
 .opacity-60 {
   opacity: 0.6;
 }
@@ -2761,9 +2774,6 @@ video {
 }
 .opacity-\[0\.4\] {
   opacity: 0.4;
-}
-.opacity-50 {
-  opacity: 0.5;
 }
 .mix-blend-multiply {
   mix-blend-mode: multiply;
@@ -3088,6 +3098,10 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
   --tw-text-opacity: 1;
   color: rgb(29 29 31 / var(--tw-text-opacity, 1));
 }
+.hover\:text-\[\#1e3a8a\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(30 58 138 / var(--tw-text-opacity, 1));
+}
 .hover\:text-\[\#d1451a\]:hover {
   --tw-text-opacity: 1;
   color: rgb(209 69 26 / var(--tw-text-opacity, 1));
@@ -3123,10 +3137,6 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-.hover\:text-\[\#1e3a8a\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(30 58 138 / var(--tw-text-opacity, 1));
 }
 .hover\:underline:hover {
   text-decoration-line: underline;
@@ -3179,6 +3189,10 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
 .focus\:rounded:focus {
   border-radius: 0.25rem;
 }
+.focus\:border-\[\#E85222\]:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(232 82 34 / var(--tw-border-opacity, 1));
+}
 .focus\:border-blue-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
@@ -3186,10 +3200,6 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
 .focus\:border-hospital-teal:focus {
   --tw-border-opacity: 1;
   border-color: rgb(13 148 136 / var(--tw-border-opacity, 1));
-}
-.focus\:border-\[\#E85222\]:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(232 82 34 / var(--tw-border-opacity, 1));
 }
 .focus\:bg-hospital-teal:focus {
   --tw-bg-opacity: 1;
@@ -3536,16 +3546,16 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
     margin-bottom: calc(1rem * var(--tw-space-y-reverse));
   }
 
+  .sm\:p-10 {
+    padding: 2.5rem;
+  }
+
   .sm\:p-5 {
     padding: 1.25rem;
   }
 
   .sm\:p-8 {
     padding: 2rem;
-  }
-
-  .sm\:p-10 {
-    padding: 2.5rem;
   }
 
   .sm\:px-10 {
