@@ -1,8 +1,23 @@
+<<<<<<< HEAD
 // File: E:\popular-hospital\frontend\src\app\about\our-story\page.tsx
+=======
+<<<<<<<< HEAD:frontend/.next/types/app/updates/page.ts
+// File: E:\popular-hospital\frontend\src\app\updates\page.tsx
+import * as entry from '../../../../src/app/updates/page.js'
+import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
+
+type TEntry = typeof import('../../../../src/app/updates/page.js')
+========
+// File: /Users/ankitsrivastava/Documents/GitHub/popular-hospital/frontend/src/app/about/our-story/page.tsx
+>>>>>>> 1d6f3ffa9d828730570c244b1617cf4621756119
 import * as entry from '../../../../../src/app/about/our-story/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
 type TEntry = typeof import('../../../../../src/app/about/our-story/page.js')
+<<<<<<< HEAD
+=======
+>>>>>>>> 1d6f3ffa9d828730570c244b1617cf4621756119:frontend/.next/types/app/about/our-story/page.ts
+>>>>>>> 1d6f3ffa9d828730570c244b1617cf4621756119
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

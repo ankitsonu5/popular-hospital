@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // File: E:\popular-hospital\frontend\src\app\about\leadership\page.tsx
+=======
+// File: /Users/ankitsrivastava/Documents/GitHub/popular-hospital/frontend/src/app/about/leadership/page.tsx
+>>>>>>> 1d6f3ffa9d828730570c244b1617cf4621756119
 import * as entry from '../../../../../src/app/about/leadership/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
