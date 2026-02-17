@@ -27,7 +27,7 @@ const stories = [
     title: "Pre-term Baby Care Success Story",
     name: "Ms Sakshi",
     thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/heroMain.mp4",
+    videoUrl: "/videos/testimonial-one.mp4",
     category: "Neonatology",
   },
   {

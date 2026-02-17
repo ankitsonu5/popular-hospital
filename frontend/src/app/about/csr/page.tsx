@@ -27,16 +27,21 @@ export default function CSRPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
+      {/* Hero Section */}
       <div className="relative bg-[#0b1c43] text-white py-16 overflow-hidden">
-        <Image
-            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1600&auto=format&fit=crop"
-            alt="CSR Banner"
-            fill
-            className="object-cover opacity-20"
-        />
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4">
-            <h1 className="text-4xl md:text-5xl font-bold font-heading">Corporate Social Responsibility</h1>
-            <p className="mt-4 text-blue-100 max-w-2xl text-lg">
+        <div className="absolute inset-0 z-0">
+            <Image
+                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1600&auto=format&fit=crop"
+                alt="CSR Banner"
+                fill
+                className="object-cover opacity-20 mix-blend-overlay"
+                priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/80 via-[#0b1c43]/50 to-[#0b1c43]" />
+        </div>
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">Corporate Social Responsibility</h1>
+            <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
                 Healing beyond the hospital walls. Committed to creating a healthier, more equitable world.
             </p>
         </div>

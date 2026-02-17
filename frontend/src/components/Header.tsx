@@ -75,7 +75,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Nephrology", href: "/specialties/nephrology" },
     { label: "Oncology", href: "/specialties/oncology" },
     { label: "Urology", href: "/specialties/urology" },
-    { label: "Burns & Plastic Surgery", href: "/specialties/plastic-surgery" },
+    { label: "Burns & Plastic Surgery", href: "/specialties/burns-plastic-surgery" },
     { label: "Radiology", href: "/specialties/radiology" },
     { label: "Pediatric Surgery", href: "/specialties/pediatric-surgery" }
   ],

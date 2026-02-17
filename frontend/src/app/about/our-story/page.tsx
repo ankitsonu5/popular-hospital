@@ -44,7 +44,7 @@ export default function OurStoryPage() {
     <div className="bg-white min-h-screen font-sans">
       
       {/* ─── Hero Section ─── */}
-      <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-[#0b1c43]">
+      <section className="relative bg-[#0b1c43] text-white py-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2000&auto=format&fit=crop"
@@ -60,7 +60,7 @@ export default function OurStoryPage() {
           <span className="inline-block py-1 px-3 rounded-full bg-[#E85222]/20 text-[#E85222] border border-[#E85222]/30 text-sm font-bold tracking-widest uppercase mb-6 backdrop-blur-sm">
             Est. 2000
           </span>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-heading tracking-tight drop-shadow-lg">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-heading tracking-tight drop-shadow-lg">
             Our Legacy of Care
           </h1>
           <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto font-light">
@@ -70,7 +70,7 @@ export default function OurStoryPage() {
       </section>
 
       {/* ─── Introduction ─── */}
-      <section className="py-20 md:py-28 bg-white" id="introduction">
+      <section className="py-20 md:py-28 bg-white overflow-hidden" id="introduction">
         <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">

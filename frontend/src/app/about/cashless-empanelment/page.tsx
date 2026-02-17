@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Cashless Empanelment | Popular Hospital',
@@ -114,44 +115,21 @@ export default function CashlessEmpanelmentPage() {
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
       <div className="relative bg-[#0b1c43] text-white py-16 overflow-hidden">
-        {/* Decorative pattern background */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                'radial-gradient(circle at 25% 25%, rgba(0,180,216,0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(232,82,34,0.2) 0%, transparent 50%)',
-            }}
-          />
+        <div className="absolute inset-0 z-0">
+            <Image
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2000&auto=format&fit=crop"
+                alt="Cashless Banner"
+                fill
+                className="object-cover opacity-60 mix-blend-overlay"
+                priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/90 via-[#0b1c43]/60 to-[#0b1c43]/90" />
         </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4">
-          <div className="flex items-center gap-3 mb-4">
-            {/* Shield icon */}
-            <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center">
-              <svg
-                className="w-6 h-6 text-[#00B4D8]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                />
-              </svg>
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold font-heading">
-            Cashless Empanelment
-          </h1>
-          <p className="mt-4 text-blue-100 max-w-2xl text-lg">
-            Popular Hospital is proudly empanelled with leading Government bodies,
-            PSUs, Private Corporates, and International TPAs — ensuring hassle-free
-            cashless treatment for you and your family.
-          </p>
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">Cashless Empanelment</h1>
+            <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
+                Popular Hospital is proudly empanelled with leading Government bodies, PSUs, Private Corporates, and International TPAs — ensuring hassle-free cashless treatment for you and your family.
+            </p>
         </div>
       </div>
 

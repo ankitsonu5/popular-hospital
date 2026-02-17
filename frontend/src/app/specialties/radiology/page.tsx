@@ -53,7 +53,7 @@ export default function RadiologyPage() {
       </section>
 
       {/* Floating Cards / Features - Scan Types */}
-      <section className="relative z-20 -mt-16 pb-10 px-4">
+      <section className="relative z-20 mt-8 md:-mt-16 pb-10 px-4">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[

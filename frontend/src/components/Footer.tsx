@@ -79,7 +79,6 @@ export function Footer() {
               <li><Link href="/pay-bills" className="hover:text-white transition-colors">Pay Your Bills</Link></li>
               <li><Link href="/feedback" className="hover:text-white transition-colors">Feedback</Link></li>
             </ul>
-            
             <div className="mt-8">
               <h4 className="text-lg font-semibold text-white mb-2">Social Media:</h4>
               <div className="flex gap-4">

@@ -59,7 +59,7 @@ export default function InterventionalRadiologyPage() {
       </section>
 
       {/* Feature Stats Cards */}
-      <section className="relative z-20 -mt-16 container mx-auto px-4">
+      <section className="relative z-20 mt-8 md:-mt-16 container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { title: 'Patient Safety', desc: 'Lowest radiation dose protocols', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
@@ -115,7 +115,7 @@ export default function InterventionalRadiologyPage() {
             </div>
             <div className="w-full lg:w-1/2 relative">
                <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[400px] lg:h-[500px] group cursor-pointer bg-black" onClick={() => setIsVideoPlaying(true)}>
-                    {!isVideoPlaying ? (
+                    {!isVideoPlaying ? (  
                         <>
                             <Image 
                                 src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=2664&auto=format&fit=crop"

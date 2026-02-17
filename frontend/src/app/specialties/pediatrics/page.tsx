@@ -1,0 +1,209 @@
+
+import Image from "next/image";
+import Link from "next/link";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Pediatrics & Neonatology | Popular Hospital',
+  description: 'Comprehensive pediatric care from newborns to adolescents. Featuring advanced NICU, vaccination center, and expert pediatricians.',
+};
+
+export default function PediatricsPage() {
+  return (
+    <main className="min-h-screen bg-white overflow-x-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-[600px] md:h-[600px] w-full bg-[#0b1c43] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+             <Image
+                src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?auto=format&fit=crop&q=80&w=2000"
+                alt="Pediatrics Banner"
+                fill
+                className="object-cover opacity-30 mix-blend-overlay"
+                priority
+             />
+             <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 sm:px-6 h-full flex flex-col justify-center pt-14 pb-7 md:py-0">
+          <div className="animate-fade-in-up max-w-3xl">
+              <span className="inline-block py-1 px-3 rounded-full bg-sky-400/20 text-sky-200 text-sm font-semibold mb-6 border border-sky-400/30 backdrop-blur-sm">
+                Department of Pediatrics & Neonatology
+              </span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+                Nurturing Future <br/>
+                <span className="text-sky-400">Generations</span>
+              </h1>
+              <p className="text-sky-50/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
+                Compassionate and expert care for your little ones. From advanced neonatal life support to holistic adolescent health, we are your partners in parenting.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/book" className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30 flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  Book Appointment
+                </Link>
+                <Link href="/doctors" className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                  Our Pediatricians
+                </Link>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Floating Cards / Features */}
+      <section className="relative z-20 px-4 mt-10 mb-24">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Advanced NICU", icon: "activity", desc: "Level III Neonatal Intensive Care Unit." },
+              { title: "Vaccination Hub", icon: "shield", desc: "Complete immunization schedule management." },
+              { title: "Growth Clinic", icon: "chart", desc: "Monitoring development milestones." },
+              { title: "24/7 ER", icon: "plus", desc: "Dedicated pediatric emergency wing." },
+            ].map((item, idx) => (
+              <div key={idx} className="p-8 rounded-2xl shadow-xl border-t-4 border-sky-400 bg-white/90 backdrop-blur-md transition-all duration-300 group relative overflow-hidden hover:bg-[#0b1c43]">
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 bg-sky-50 text-[#0b1c43] group-hover:bg-white/10 group-hover:text-sky-400">
+                   <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {item.icon === 'activity' && (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      )}
+                      {item.icon === 'plus' && (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      )}
+                      {item.icon === 'shield' && (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /> 
+                      )}
+                      {item.icon === 'chart' && (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      )}
+                   </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-[#0b1c43] group-hover:text-white transition-colors">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-gray-600 group-hover:text-gray-300 transition-colors">{item.desc}</p>
+                <div className="absolute top-0 right-0 p-4 opacity-10">
+                   <svg className="w-24 h-24 transform rotate-12 text-[#0b1c43] group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content Section */}
+      <section className="py-20 bg-[#fafafa] overflow-hidden">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <div className="order-2 lg:order-1 relative">
+                <div className="absolute -top-10 -left-10 w-40 h-40 bg-sky-200 rounded-full blur-3xl opacity-30"></div>
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-200 rounded-full blur-3xl opacity-30"></div>
+                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
+                    <Image 
+                       src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=1200"
+                       alt="Pediatric Care"
+                       width={800}
+                       height={600}
+                       className="object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8">
+                        <p className="text-white font-medium text-lg">"Tender care for tough little fighters."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+                <span className="text-sky-600 font-bold tracking-widest text-sm uppercase mb-4 block">Holistic Child Healthcare</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0b1c43] mb-6 font-heading leading-tight">
+                    Expert Care for <br/>
+                    <span className="text-sky-500">Every Milestone</span>
+                </h2>
+                <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                    Our Pediatrics & Neonatology department is designed to provide a warm, comfortable, and safe environment for children. We combine medical expertise with a gentle touch to ensure the best possible outcomes for your child's health.
+                </p>
+                
+                <div className="space-y-6">
+                    {[
+                        { title: "Neonatal Intensive Care", desc: "Specialized care for premature and critically ill newborns." },
+                        { title: "Adolescent Medicine", desc: "Addressing physical and emotional changes in teenagers." },
+                        { title: "Pediatric Neurology", desc: "Diagnosis and management of neurological conditions." }
+                    ].map((item, i) => (
+                        <div key={i} className="flex gap-4">
+                            <div className="w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0 text-sky-600">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <div>
+                                <h4 className="text-[#0b1c43] font-bold text-lg">{item.title}</h4>
+                                <p className="text-gray-500 text-sm">{item.desc}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="bg-[#0b1c43] py-24 text-white">
+           <div className="mx-auto w-full max-w-[1366px] px-4">
+               <div className="text-center mb-16 max-w-2xl mx-auto">
+                   <span className="text-sky-400 font-bold tracking-widest text-sm uppercase mb-3 block">Conditions We Treat</span>
+                   <h2 className="text-4xl md:text-5xl font-bold text-white font-heading mb-6">Complete Pediatric Solutions</h2>
+                   <p className="text-sky-100 text-lg opacity-90">Specialized treatment plans for a wide spectrum of childhood conditions.</p>
+               </div>
+
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                   {[
+                       { title: "General Pediatrics", icon: "user", desc: "Checkups, fever, and common illnesses." },
+                       { title: "Neonatal Care", icon: "activity", desc: "Specialized care for newborns." },
+                       { title: "Pediatric Surgery", icon: "scope", desc: "Minimally invasive surgical care." },
+                       { title: "Immunization", icon: "shield", desc: "Protection against infectious diseases." },
+                       { title: "Asthma & Allergy", icon: "wind", desc: "Respiratory health management." },
+                       { title: "Nutrition Counseling", icon: "apple", desc: "Diet plans for healthy growth." },
+                   ].map((service, idx) => (
+                       <div key={idx} className="flex items-start gap-4 border-b border-sky-500/30 pb-6 group cursor-pointer hover:border-sky-400 transition-colors">
+                           <div className="w-12 h-12 rounded-lg bg-sky-900/40 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-400 group-hover:text-[#0b1c43] transition-all shadow-md">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={
+                                         service.icon === 'activity' ? "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" : // Heart for baby
+                                         service.icon === 'user' ? "M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" : 
+                                         service.icon === 'shield' ? "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" :
+                                         service.icon === 'scope' ? "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" :
+                                         service.icon === 'wind' ? "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" : // Lung-ish or air
+                                         service.icon === 'apple' ? "M12 19l9 2-9-18-9 18 9-2zm0 0v-8" :
+                                         "M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                     } />
+                                </svg>
+                           </div>
+                           <div className="flex-1">
+                               <h4 className="text-xl font-bold mb-1 group-hover:translate-x-1 transition-transform text-white">{service.title}</h4>
+                               <p className="text-sky-100 text-sm opacity-70">{service.desc}</p>
+                           </div>
+                           <svg className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" /></svg>
+                       </div>
+                   ))}
+               </div>
+           </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-sky-50 py-16">
+        <div className="mx-auto w-full max-w-[1366px] px-4 text-center">
+            <h2 className="text-3xl font-bold text-[#0b1c43] mb-6">Expert Care for Your Little Ones</h2>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+                Trust our specialists for compassionate and comprehensive pediatric care.
+            </p>
+            <div className="flex justify-center gap-4">
+                <Link href="/book" className="bg-[#0b1c43] text-white px-8 py-3 rounded-full font-bold hover:bg-[#162c6b] transition-colors shadow-lg">
+                    Book Consultation
+                </Link>
+                <a href="tel:1800123456" className="bg-white text-[#0b1c43] px-8 py-3 rounded-full font-bold border-2 border-[#0b1c43] hover:bg-gray-50 transition-colors">
+                    Call 1800-123-456
+                </a>
+            </div>
+        </div>
+      </section>
+
+    </main>
+  );
+}

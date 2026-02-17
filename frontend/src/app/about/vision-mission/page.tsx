@@ -4,27 +4,30 @@ export default function VisionMissionPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Services/Hero Banner (Optional) - Keeping it simple white card style as requested */}
+      {/* Services/Hero Banner (Optional) - Keeping it simple white card style as requested */}
       <div className="relative bg-[#0b1c43] text-white py-16 overflow-hidden">
-        <Image
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
-            alt="Vision Banner"
-            fill
-            className="object-cover opacity-20"
-        />
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4">
-            <h1 className="text-4xl md:text-5xl font-bold font-heading">Our Vision & Mission</h1>
-            <p className="mt-4 text-blue-100 max-w-2xl text-lg">
+        <div className="absolute inset-0 z-0">
+            <Image
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2000&auto=format&fit=crop"
+                alt="Vision Banner"
+                fill
+                className="object-cover opacity-20 mix-blend-overlay"
+                priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/80 via-[#0b1c43]/50 to-[#0b1c43]" />
+        </div>
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white hover:text-white visited:text-white">Our Vision & Mission</h1>
+            <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
                 Guiding principles that drive Popular Hospital towards excellence in healthcare and patient safety.
             </p>
         </div>
       </div>
 
-      {/* Main Content Container */}
-      <div className="mx-auto w-full max-w-[1366px] px-4 py-16 space-y-20">
-        
-        {/* Section 1: Our Vision */}
-        <section className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      {/* Section 1: Our Vision */}
+      <div className="py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 {/* Left: Founder Image */}
                 <div className="lg:col-span-5 relative">
                     <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-2xl">
@@ -66,10 +69,12 @@ export default function VisionMissionPage() {
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+      </div>
 
-        {/* Section 2: Our Mission */}
-        <section className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
+      {/* Section 2: Our Mission */}
+      <div className="py-16 sm:py-20 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
                 {/* Left: Mission Text */}
@@ -87,14 +92,14 @@ export default function VisionMissionPage() {
                             To introduce population health into the narrative, the Total Health Foundation is piloting a unique model of healthcare. It aims to provide "holistic healthcare" for the entire community starting from birth, through one's journey into childhood, adolescence, adulthood and old age.
                         </p>
                         <p>
-                           In a rare honour, the Government has issued a commemorative stamp in recognition of Popular's widespread contributions, the first for a healthcare organization.
+                            In a rare honour, the Government has issued a commemorative stamp in recognition of Popular's widespread contributions, the first for a healthcare organization.
                         </p>
                     </div>
                 </div>
 
                 {/* Right: Teamwork Image */}
                 <div className="lg:col-span-5 relative order-1 lg:order-2">
-                    <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500">
                         <Image
                             src="https://images.unsplash.com/photo-1573497161161-c3e73707e25c?q=80&w=800&auto=format&fit=crop"
                             alt="Teamwork at Popular Hospital"
@@ -106,8 +111,7 @@ export default function VisionMissionPage() {
                 </div>
 
              </div>
-        </section>
-      
+        </div>
       </div>
     </div>
   );

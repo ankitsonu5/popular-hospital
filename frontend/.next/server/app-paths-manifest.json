@@ -1,4 +1,8 @@
 {
+  "/about/cashless-empanelment/page": "app/about/cashless-empanelment/page.js",
+  "/page": "app/page.js",
   "/locations/[slug]/page": "app/locations/[slug]/page.js",
-  "/page": "app/page.js"
+  "/facilities/page": "app/facilities/page.js",
+  "/specialties/cardiology/page": "app/specialties/cardiology/page.js",
+  "/_not-found/page": "app/_not-found/page.js"
 }
