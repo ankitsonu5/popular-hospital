@@ -1,25 +1,484 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+    "/not-found": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/not-found-f412462f097bd953.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/app/_not-found/page-726fc03606df5bf0.js"
     ],
     "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/css/b7f44cb0b7197a39.css",
+      "static/css/0c9defed9884d8dd.css",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/layout-013c9f57466f7cfe.js"
     ],
     "/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/loading.js"
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/app/loading-397855edd201f8de.js"
     ],
-    "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+    "/about/awards/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/about/awards/page-76b3cdf4b2a246f6.js"
+    ],
+    "/about/csr/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/about/csr/page-572897c518dca8ee.js"
+    ],
+    "/about/leadership/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/about/leadership/page-89b90dd3967176c8.js"
+    ],
+    "/about/vision-mission/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/about/vision-mission/page-392d0fdf7f26f3f8.js"
+    ],
+    "/branches/[slug]/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/branches/[slug]/page-01fb96e16675fcd5.js"
+    ],
+    "/doctors/[slug]/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/doctors/[slug]/page-67d1004990685d6c.js"
+    ],
+    "/feedback/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/feedback/page-c4da5a2718fb768f.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/page-9163a399a7613151.js"
+    ],
+    "/specialties/cardiology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/cardiology/page-110109bab3f8021e.js"
+    ],
+    "/specialties/interventional-radiology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/interventional-radiology/page-8d9dfb52b850bc3c.js"
+    ],
+    "/stories/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/stories/page-2ab04a0b99c9f6b2.js"
+    ],
+    "/about/cashless-empanelment/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/about/cashless-empanelment/page-48fbaebfd7688f84.js"
+    ],
+    "/book/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/app/book/page-b73456f8c1c95ef2.js"
+    ],
+    "/about/our-story/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/about/our-story/page-78ad7f78bfe9e174.js"
+    ],
+    "/doctors/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/doctors/page-2bb8bdfb990b50ee.js"
+    ],
+    "/branches/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/branches/page-c073e0452524a81a.js"
+    ],
+    "/facilities/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/facilities/page-1caccbf38216b93e.js"
+    ],
+    "/media/coverage/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/media/coverage/page-4bdb141c095d95e4.js"
+    ],
+    "/media/news/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/media/news/page-5f20b535fa8d7cdf.js"
+    ],
+    "/opd/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/opd/page-68de990fc1fb6b22.js"
+    ],
+    "/locations/[slug]/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/locations/[slug]/page-46e5b8f7cb1e1263.js"
+    ],
+    "/media/coverage/[slug]/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/media/coverage/[slug]/page-ebe3f5c651eebef9.js"
+    ],
+    "/news/[slug]/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/news/[slug]/page-a21d5847c2491f5a.js"
+    ],
+    "/specialties/burns-plastic-surgery/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/burns-plastic-surgery/page-66ee5f9305d8641d.js"
+    ],
+    "/specialties/ctvs/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/ctvs/page-e0bcd8970c8c5c13.js"
+    ],
+    "/specialties/dental/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/dental/page-e85c106bbfdba3ef.js"
+    ],
+    "/specialties/ent/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/ent/page-3ed00c60b8d9a9fb.js"
+    ],
+    "/specialties/gastroenterology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/gastroenterology/page-9cb3834ad1dbc3ac.js"
+    ],
+    "/specialties/general-medicine/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/general-medicine/page-91ce20ce3699c16a.js"
+    ],
+    "/specialties/general-surgery/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/general-surgery/page-39863570bdd70a8c.js"
+    ],
+    "/specialties/gynaecology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/gynaecology/page-a5a0bb52654a4268.js"
+    ],
+    "/specialties/nephrology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/nephrology/page-46c03c2b5ecdd09a.js"
+    ],
+    "/specialties/oncology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/oncology/page-449afa4879b87e3a.js"
+    ],
+    "/specialties/neurosurgery/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/neurosurgery/page-d679e048cfa51aff.js"
+    ],
+    "/specialties/ophthalmology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/ophthalmology/page-29af0b2480e61441.js"
+    ],
+    "/specialties/orthopedics/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/orthopedics/page-0cdde01e5795cb0c.js"
+    ],
+    "/specialties/pediatric-surgery/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/pediatric-surgery/page-0dc64881c7a7d6d1.js"
+    ],
+    "/specialties/pain-management/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/pain-management/page-103ce1ace2b2308f.js"
+    ],
+    "/specialties/psychiatry/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/psychiatry/page-4f1e791e380bf6ec.js"
+    ],
+    "/specialties/pathology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/pathology/page-65cb17e3b656c716.js"
+    ],
+    "/specialties/pediatrics/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/pediatrics/page-a0a8e5673f3c1c9f.js"
+    ],
+    "/specialties/radiology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/radiology/page-29cdf7b60ab042a6.js"
+    ],
+    "/specialties/respiratory/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/respiratory/page-523bcbf2e0a67f47.js"
+    ],
+    "/updates/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/updates/page-5c0800fbbfc21c90.js"
+    ],
+    "/specialties/urology/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/specialties/urology/page-40c0d9c3c0a48e4a.js"
+    ],
+    "/admin/bookings/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/app/admin/bookings/page-10b1c86c0539b0fd.js"
+    ],
+    "/admin/layout": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/admin/layout-789300c056f5429f.js"
+    ],
+    "/admin/branches/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/app/admin/branches/page-88b128beca07df98.js"
+    ],
+    "/admin/content/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/app/admin/content/page-2d7359568ea5bb4a.js"
+    ],
+    "/admin/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/app/admin/page-520b6517d525c91f.js"
+    ],
+    "/admin/doctors/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/app/admin/doctors/page-4dfe8ead8f8c0451.js"
+    ],
+    "/services/page": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/2972-f8b1bb4475d331ba.js",
+      "static/chunks/5878-05ed4938b9e26f43.js",
+      "static/chunks/app/services/page-2e1784a910b97ee0.js"
+    ],
+    "/services/layout": [
+      "static/chunks/webpack-bb69f98bb67342c6.js",
+      "static/chunks/fd9d1056-d5adaef6c6fe74b4.js",
+      "static/chunks/2117-3d54aa82005f32f3.js",
+      "static/chunks/main-app-ec660ad5a3c6d991.js",
+      "static/chunks/app/services/layout-7e6365f051832e0c.js"
     ]
   }
 }

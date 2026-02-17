@@ -162,7 +162,7 @@ export default function HomePage() {
 
 
       {/* About Section */}
-      <section className="mt-8 pt-0 pb-16 sm:pt-0 sm:pb-20 md:py-20 bg-white" aria-labelledby="about-us">
+      <section className="mt-20 pt-0 pb-16 sm:pt-0 sm:pb-20 md:py-20 bg-white" aria-labelledby="about-us">
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-stretch">
             {/* Left Side - Text Content */}
@@ -175,10 +175,7 @@ export default function HomePage() {
                   We Provide Finest Patient's Care & Amenities
                 </h2>
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                  Embrace a world of comprehensive healthcare where your
-                  well-being takes center stage. At Popular Hospital, we're
-                  dedicated to providing you with personalized and compassionate
-                  medical services.
+                  POPULAR HOSPITAL(a Unit of POPULAR MEDICARE LTD), one of Varanasi’s best Super Speciality Institute that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
                 </p>
                 {/* Feature List */}
                 <div className="grid grid-cols-2 gap-3 mb-6">
@@ -213,10 +210,7 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                  Ut wisi enim ad minim veniam, quis laore nostrud exerci tation
-                  ulm hedi corper turet suscipit lobortis nisl ut aliquip erat
-                  volutpat autem vel eum iriure dolor in hendrerit in vulputate 
-                  velit.
+                 POPULAR HOSPITAL is a 450 bedded Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
                 </p>
                 {/* Button */}
                 <Link
