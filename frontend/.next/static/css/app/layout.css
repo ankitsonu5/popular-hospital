@@ -4982,10 +4982,6 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
     margin-bottom: 0.75rem;
   }
 
-  .sm\:mb-6 {
-    margin-bottom: 1.5rem;
-  }
-
   .sm\:mt-3 {
     margin-top: 0.75rem;
   }
@@ -5701,7 +5697,7 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
   }
 
   .lg\:-mt-52 {
-    margin-top: -15rem;
+    margin-top: -13rem;
   }
 
   .lg\:mb-20 {
@@ -5920,22 +5916,6 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
     padding-top: 16rem;
   }
 
-  .lg\:pt-80 {
-    padding-top: 20rem;
-  }
-
-  .lg\:pt-96 {
-    padding-top: 24rem;
-  }
-
-  .lg\:pt-\[30rem\] {
-    padding-top: 30rem;
-  }
-
-  .lg\:pt-72 {
-    padding-top: 18rem;
-  }
-
   .lg\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -6074,26 +6054,6 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
     padding-right: 0.75rem;
   }
 
-  .xl\:pt-96 {
-    padding-top: 24rem;
-  }
-
-  .xl\:pt-\[30rem\] {
-    padding-top: 30rem;
-  }
-
-  .xl\:pt-\[34rem\] {
-    padding-top: 34rem;
-  }
-
-  .xl\:pt-\[38rem\] {
-    padding-top: 38rem;
-  }
-
-  .xl\:pt-\[28rem\] {
-    padding-top: 28rem;
-  }
-
   .xl\:pt-\[22rem\] {
     padding-top: 22rem;
   }
@@ -6126,6 +6086,11 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
     max-width: 1600px;
   }
 
+  .\32xl\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
   .\32xl\:px-24 {
     padding-left: 6rem;
     padding-right: 6rem;
@@ -6134,11 +6099,6 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
   .\32xl\:px-5 {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-  }
-
-  .\32xl\:px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 
   .\32xl\:py-5 {
@@ -6150,14 +6110,14 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
     padding-top: 22rem;
   }
 
-  .\32xl\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
   .\32xl\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .\32xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .\32xl\:text-xl {

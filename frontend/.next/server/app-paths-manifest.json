@@ -1,9 +1,3 @@
 {
-  "/facilities/page": "app/facilities/page.js",
-  "/about/awards/page": "app/about/awards/page.js",
-  "/specialties/cardiology/page": "app/specialties/cardiology/page.js",
-  "/media/news/page": "app/media/news/page.js",
-  "/media/coverage/page": "app/media/coverage/page.js",
-  "/specialties/general-surgery/page": "app/specialties/general-surgery/page.js",
-  "/media/coverage/[slug]/page": "app/media/coverage/[slug]/page.js"
+  "/page": "app/page.js"
 }
