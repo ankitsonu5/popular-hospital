@@ -1,8 +1,1 @@
-{
-  "/about/leadership/page": "app/about/leadership/page.js",
-  "/specialties/pediatrics/page": "app/specialties/pediatrics/page.js",
-  "/page": "app/page.js",
-  "/locations/[slug]/page": "app/locations/[slug]/page.js",
-  "/news/[slug]/page": "app/news/[slug]/page.js",
-  "/about/cashless-empanelment/page": "app/about/cashless-empanelment/page.js"
-}
+{}
