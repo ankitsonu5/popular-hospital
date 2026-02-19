@@ -1368,7 +1368,7 @@ export default function HomePage() {
                         OUR LOCATIONS
                       </h3>
                       <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                        1485 Bayshore Blvd. Ste 154, San Francisco, CA 95124
+                        N-10 / 60, A-2, B.L.W. ROAD, KAKARMATTA, VARANASI 221004,UTTAR PRADESH, INDIA
                       </p>
                     </div>
                   </div>
@@ -1399,8 +1399,9 @@ export default function HomePage() {
                         CONNECT WITH US
                       </h3>
                       <div className="text-gray-700 text-sm sm:text-base space-y-1">
-                        <p>CALL: +011 3253 4567</p>
-                        <p>+011 3253 4569</p>
+                        <p>CALL: +91-7800001896</p>
+                        <p>CALL: +91-7800001895</p>
+                        <p>EMAIL : info@popularhospitals.in</p>
                       </div>
                     </div>
                   </div>
