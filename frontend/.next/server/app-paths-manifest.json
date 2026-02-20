@@ -1,6 +1,8 @@
 {
-  "/terms/page": "app/terms/page.js",
+  "/refund-policy/page": "app/refund-policy/page.js",
   "/payment-policy/page": "app/payment-policy/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/terms/page": "app/terms/page.js",
   "/page": "app/page.js",
-  "/careers/page": "app/careers/page.js"
+  "/locations/[slug]/page": "app/locations/[slug]/page.js"
 }
