@@ -390,13 +390,10 @@ export function Header() {
               <span className="hidden sm:inline">1800-123-4567</span>
             </a>
 
-
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Visible on all screens smaller than XL */}
             <button
               type="button"
-              className={`xl:hidden rounded-lg p-2 transition-colors ${
-                scrolled || !isTransparentPage ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'
-              }`}
+              className="xl:hidden p-2 rounded-lg transition-colors text-gray-600 hover:bg-gray-100"
               aria-expanded={menuOpen}
               aria-label="Toggle menu"
               onClick={() => setMenuOpen(!menuOpen)}
