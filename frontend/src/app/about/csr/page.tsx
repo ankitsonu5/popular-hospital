@@ -4,109 +4,85 @@ const initiatives = [
   {
     title: "Community Health Camps",
     description: "Bringing quality healthcare to the doorstep of the underserved. We organize regular free medical check-up camps in rural areas, offering consultations, screenings, and basic medication.",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800&auto=format&fit=crop"
+    icon: "🏥"
   },
   {
     title: "Education for All",
     description: "We believe education is the foundation of a healthy society. Our scholarship programs and school adoption initiatives support underprivileged children in pursuing their academic dreams.",
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop"
+    icon: "📚"
   },
   {
     title: "Green Hospital Initiative",
     description: "Sustainability is at the core of our operations. From solar power generation to rainwater harvesting and zero-waste protocols, we are committed to reducing our environmental footprint.",
-    image: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop"
+    icon: "🌱"
   },
   {
     title: "Disaster Relief & Support",
     description: "In times of crisis, Popular Hospital stands with the community. Our emergency response teams provide immediate medical aid and relief materials during natural disasters and emergencies.",
-    image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=800&auto=format&fit=crop"
+    icon: "🚑"
   }
 ];
 
 export default function CSRPage() {
   return (
-    <div className="bg-gray-50 min-h-screen pb-20">
-      {/* Hero Section */}
-      {/* Hero Section */}
-      <div className="relative bg-[#0b1c43] text-white py-16 overflow-hidden">
+    <div className="bg-white min-h-screen pb-20">
+      {/* ─── Hero Section ─── */}
+      <div className="relative bg-[#0b1c43] text-white py-16 md:py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
             <Image
                 src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1600&auto=format&fit=crop"
                 alt="CSR Banner"
                 fill
-                className="object-cover opacity-20 mix-blend-overlay"
+                className="object-cover opacity-10 grayscale"
                 priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/80 via-[#0b1c43]/50 to-[#0b1c43]" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">Corporate Social Responsibility</h1>
-            <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
-                Healing beyond the hospital walls. Committed to creating a healthier, more equitable world.
+            <span className="text-hospital-orange font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Our Impact</span>
+            <h1 className="text-3xl md:text-5xl font-black font-heading mb-4 text-white uppercase tracking-tight">Social Responsibility</h1>
+            <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full mb-6"></div>
+            <p className="text-base md:text-lg text-blue-100/70 leading-relaxed max-w-2xl mx-auto font-light">
+                Healing beyond the hospital walls. Committed to creating a healthier, more equitable world through dedicated community outreach.
             </p>
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1366px] px-4 py-16">
+      <div className="mx-auto w-full max-w-[1100px] px-4 py-16">
         
-        {/* Intro Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
-             <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                    src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1000&auto=format&fit=crop"
-                    alt="Community Outreach"
-                    fill
-                    className="object-cover"
-                />
-            </div>
-            <div className="space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading">Our Commitment to Society</h2>
-                <div className="prose prose-lg text-gray-600">
-                    <p>
-                        At Popular Hospital, we recognize that our responsibility extends far beyond medical treatments. accessible healthcare, environmental stewardship, and social upliftment are the pillars of our CSR philosophy.
-                    </p>
-                    <p>
-                        Through dedicated programs and volunteer efforts by our staff, we strive to make a tangible difference in the lives of the communities we serve, ensuring that progress touches everyone.
-                    </p>
-                </div>
+        {/* Simplified Intro Section */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+            <h2 className="text-2xl md:text-3xl font-black text-[#0b1c43] font-heading mb-6 uppercase tracking-tight">Our Commitment to Society</h2>
+            <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
+                <p>
+                    At Popular Hospital, we recognize that our responsibility extends far beyond medical treatments. Accessible healthcare, environmental stewardship, and social upliftment are the pillars of our CSR philosophy.
+                </p>
+                <p>
+                    Through dedicated programs and volunteer efforts by our staff, we strive to make a tangible difference in the lives of the communities we serve.
+                </p>
             </div>
         </div>
 
-        {/* Initiatives Grid (Alternating) */}
-        <div className="space-y-16">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">Key Initiatives</h2>
-                <div className="w-24 h-1 bg-[#00B4D8] mx-auto mt-4 rounded-full"></div>
-            </div>
-
+        {/* Simplified Initiatives Grid - No Images */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {initiatives.map((item, index) => (
-                <div key={index} className={`flex flex-col lg:flex-row gap-8 lg:gap-16 items-center ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
-                    <div className="w-full lg:w-1/2">
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg group">
-                             <Image
-                                src={item.image}
-                                alt={item.title}
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-[#0b1c43]/10 group-hover:bg-transparent transition-colors"></div>
-                        </div>
-                    </div>
-                    <div className="w-full lg:w-1/2 space-y-4">
-                        <h3 className="text-2xl md:text-3xl font-bold text-[#0b1c43] font-heading">{item.title}</h3>
-                        <p className="text-gray-600 text-lg leading-relaxed">
-                            {item.description}
-                        </p>
-                        <button className="text-[#00B4D8] font-semibold hover:text-[#0b1c43] transition-colors flex items-center gap-2 group-hover:gap-3">
-                            Learn More <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                        </button>
-                    </div>
+                <div key={index} className="p-8 bg-gray-50 rounded-3xl border border-gray-100 hover:border-hospital-teal transition-all group">
+                    <div className="text-4xl mb-6">{item.icon}</div>
+                    <h3 className="text-xl font-bold text-[#0b1c43] font-heading mb-3 uppercase tracking-tight transition-colors group-hover:text-hospital-teal">
+                        {item.title}
+                    </h3>
+                    <p className="text-gray-500 text-base leading-relaxed">
+                        {item.description}
+                    </p>
                 </div>
             ))}
         </div>
 
-        {/* Call to Action */}
-
+        {/* Simple Footer Note */}
+        <div className="mt-20 pt-12 border-t border-gray-100 text-center">
+            <p className="text-gray-400 text-sm italic">
+                Touching thousands of lives with compassion, excellence, and modern medical science.
+            </p>
+        </div>
 
       </div>
     </div>

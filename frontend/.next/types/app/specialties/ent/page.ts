@@ -1,4 +1,4 @@
-// File: /Users/ankitsrivastava/Documents/GitHub/popular-hospital/frontend/src/app/specialties/ent/page.tsx
+// File: E:\popular-hospital\frontend\src\app\specialties\ent\page.tsx
 import * as entry from '../../../../../src/app/specialties/ent/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

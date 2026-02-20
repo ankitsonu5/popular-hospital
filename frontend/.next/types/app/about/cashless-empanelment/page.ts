@@ -1,4 +1,4 @@
-// File: /Users/ankitsrivastava/Documents/GitHub/popular-hospital/frontend/src/app/about/cashless-empanelment/page.tsx
+// File: E:\popular-hospital\frontend\src\app\about\cashless-empanelment\page.tsx
 import * as entry from '../../../../../src/app/about/cashless-empanelment/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

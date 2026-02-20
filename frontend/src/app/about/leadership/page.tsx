@@ -8,10 +8,10 @@ const leaders = [
     bio: "A visionary leader with over 40 years of experience in healthcare. Dr. Kaushik established Popular Hospital with the dream of providing world-class medical care to the community."
   },
   {
-    name: "Ms. Sarah Johnson",
+    name: "Dr. Kiran Kaushik",
     role: "Managing Director",
-    image: "/images/leadership/dr-ak-kaushik.jpg",
-    bio: "Ms. Johnson brings dynamic leadership and strategic insight, steering the hospital towards new heights of operational excellence and patient satisfaction."
+    image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=1000&auto=format&fit=crop",
+    bio: "Dr. Kiran Kaushik brings clinical excellence and strategic leadership, focusing on advancing healthcare standards and academic growth."
   },
   {
     name: "Dr. Robert Chen",
@@ -63,7 +63,7 @@ export default function LeadershipPage() {
         {/* Leaders Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {leaders.map((leader, index) => (
-                <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                <div key={index} className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition-all duration-300 group">
                     <div className="relative aspect-[4/5] w-full overflow-hidden">
                         <Image
                             src={leader.image}
@@ -80,8 +80,8 @@ export default function LeadershipPage() {
                     </div>
                     <div className="p-6 text-center relative bg-white">
                         {/* Name & Role */}
-                        <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading group-hover:text-[#00B4D8] transition-colors">{leader.name}</h3>
-                        <p className="text-gray-500 text-sm font-medium uppercase tracking-wide">{leader.role}</p>
+                        <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading group-hover:text-hospital-teal transition-colors uppercase tracking-tight">{leader.name}</h3>
+                        <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">{leader.role}</p>
                     </div>
                 </div>
             ))}

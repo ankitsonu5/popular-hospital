@@ -11,20 +11,36 @@
 
 body {
   @apply bg-hospital-white text-gray-800 antialiased;
-  font-family: var(--font-lato), 'Lato', sans-serif;
+  font-family: var(--font-lato), "Lato", sans-serif;
 }
 
 /* Apply Montserrat to all headings */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 [class*="heading"],
 [class*="title"],
 .font-heading {
-  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
 }
 
 /* Ensure paragraphs use Lato */
-p, span, div, a, li, td, th, label, input, textarea, select, button {
-  font-family: var(--font-lato), 'Lato', sans-serif;
+p,
+span,
+div,
+a,
+li,
+td,
+th,
+label,
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-lato), "Lato", sans-serif;
 }
 
 @layer components {
@@ -39,7 +55,7 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
   }
   .section-heading {
     @apply text-2xl font-bold tracking-tight text-hospital-navy sm:text-3xl;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
   }
 }
 
@@ -81,4 +97,73 @@ p, span, div, a, li, td, th, label, input, textarea, select, button {
 .group\/node-lt:hover ~ .absolute.top-\[25\%\].left-\[5\%\] {
   background-color: #ff4d29 !important;
   border-color: #ff4d29 !important;
+}
+/* Loading Animations */
+@keyframes loading-bar {
+  0% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(0.5);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 1.5s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+/* Negative Filter / High Contrast Mode */
+.negative-filter {
+  filter: invert(1) hue-rotate(180deg);
+  background-color: #000 !important;
+}
+
+/* Re-invert media back to normal */
+.negative-filter img,
+.negative-filter video,
+.negative-filter [style*="background-image"],
+.negative-filter [class*="bg-"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Custom Browser Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #008080; /* hospital-teal */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E85222; /* hospital-orange */
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #008080 transparent;
 }
