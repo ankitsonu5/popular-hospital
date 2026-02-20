@@ -143,3 +143,27 @@ button {
 .negative-filter [class*="bg-"] {
   filter: invert(1) hue-rotate(180deg);
 }
+
+/* Custom Browser Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #008080; /* hospital-teal */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E85222; /* hospital-orange */
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #008080 transparent;
+}

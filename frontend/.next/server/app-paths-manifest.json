@@ -1,8 +1,8 @@
 {
   "/about/md-desk/page": "app/about/md-desk/page.js",
-  "/about/chairman-desk/page": "app/about/chairman-desk/page.js",
-  "/page": "app/page.js",
-  "/about/csr/page": "app/about/csr/page.js",
+  "/about/leadership/page": "app/about/leadership/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/about/leadership/page": "app/about/leadership/page.js"
+  "/page": "app/page.js",
+  "/facilities/page": "app/facilities/page.js",
+  "/about/csr/page": "app/about/csr/page.js"
 }

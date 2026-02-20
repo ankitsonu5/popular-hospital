@@ -939,9 +939,6 @@ video {
 .z-50 {
   z-index: 50;
 }
-.z-\[60\] {
-  z-index: 60;
-}
 .z-\[9999\] {
   z-index: 9999;
 }
@@ -1357,9 +1354,6 @@ video {
 }
 .w-24 {
   width: 6rem;
-}
-.w-28 {
-  width: 7rem;
 }
 .w-3 {
   width: 0.75rem;
@@ -1934,10 +1928,6 @@ video {
 .border-dashed {
   border-style: dashed;
 }
-.\!border-gray-700 {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity, 1)) !important;
-}
 .border-\[\#00B4D8\] {
   --tw-border-opacity: 1;
   border-color: rgb(0 180 216 / var(--tw-border-opacity, 1));
@@ -2173,9 +2163,6 @@ video {
 }
 .border-white\/20 {
   border-color: rgb(255 255 255 / 0.2);
-}
-.border-white\/30 {
-  border-color: rgb(255 255 255 / 0.3);
 }
 .border-white\/40 {
   border-color: rgb(255 255 255 / 0.4);
@@ -3506,10 +3493,6 @@ video {
 .tracking-widest {
   letter-spacing: 0.1em;
 }
-.\!text-white {
-  --tw-text-opacity: 1 !important;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;
-}
 .text-\[\#0066cc\] {
   --tw-text-opacity: 1;
   color: rgb(0 102 204 / var(--tw-text-opacity, 1));
@@ -4439,6 +4422,30 @@ button {
 .negative-filter [style*="background-image"],
 .negative-filter [class*="bg-"] {
   filter: invert(1) hue-rotate(180deg);
+}
+
+/* Custom Browser Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #008080; /* hospital-teal */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E85222; /* hospital-orange */
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #008080 transparent;
 }
 .last\:mb-0:last-child {
   margin-bottom: 0px;
