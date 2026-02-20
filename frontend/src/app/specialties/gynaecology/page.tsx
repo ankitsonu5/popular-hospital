@@ -25,16 +25,16 @@ export default function GynaecologyPage() {
              <div className="absolute inset-0 bg-gradient-to-r from-[#be185d] via-[#be185d]/90 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 md:px-8 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
               <span className="inline-block py-1 px-3 rounded-full bg-pink-500/20 text-pink-100 text-sm font-semibold mb-6 border border-pink-400/30 backdrop-blur-sm">
                 Centre of Excellence for Women
               </span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
                 Nurturing Life, <br/>
                 <span className="text-pink-300">Empowering You</span>
               </h1>
-              <p className="text-pink-50/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
+              <p className="text-pink-50/90 text-base md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
                 From adolescence to motherhood and beyond, we provide holistic care for every stage of a woman's life. Experience world-class maternity and gynaecological services.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -53,7 +53,7 @@ export default function GynaecologyPage() {
 
       {/* Floating Cards / Features - MODERNIZED */}
       <section className="relative z-20 px-4 mt-10 mb-24">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+        <div className="mx-auto w-full max-w-[1366px] px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { title: "Maternity Care", icon: "baby", desc: "Compassionate care for mother & baby." },
@@ -88,7 +88,7 @@ export default function GynaecologyPage() {
 
       {/* Main Content Section - CLEANER & PROFESSIONAL */}
       <section className="py-20 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+        <div className="mx-auto w-full max-w-[1366px] px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             <div className="order-2 lg:order-1 relative">
@@ -154,7 +154,7 @@ export default function GynaecologyPage() {
            {/* Subtle Pattern */}
            <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#be185d 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
            
-           <div className="mx-auto w-full max-w-[1366px] px-4 relative z-10">
+           <div className="mx-auto w-full max-w-[1366px] px-6 md:px-8 relative z-10">
                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                    <div className="max-w-2xl">
                        <span className="text-pink-400 font-bold tracking-widest text-sm uppercase mb-3 block">Specialized Services</span>
@@ -200,7 +200,7 @@ export default function GynaecologyPage() {
 
       {/* CTA Section - Clean & Professional */}
       <section className="bg-white py-20 border-t border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-4 text-center">
+        <div className="mx-auto w-full max-w-[1366px] px-6 md:px-8 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Your Health, Our Priority</h2>
             <p className="text-gray-500 mb-8 max-w-2xl mx-auto text-lg">
                 We are committed to providing the highest standard of care for women. Schedule your consultation today.

@@ -24,8 +24,9 @@ const menuItems: MenuItem[] = [
     dropdown: [
       { label: 'Our Story', href: '/about/our-story' },
       { label: 'Our Vision & Mission', href: '/about/vision-mission' },
+      { label: "From Chairman's Desk", href: '/about/chairman-desk' },
+      { label: "From MD's Desk", href: '/about/md-desk' },
       { label: 'Leadership Team', href: '/about/leadership' },
-      { label: 'Awards & Recognition', href: '/about/awards' },
       { label: 'Corporate Social Responsibility (CSR)', href: '/about/csr', separator: true },
       { label: 'Cashless Empanelment', href: '/about/cashless-empanelment' },
     ],
@@ -389,10 +390,13 @@ export function Header() {
               <span className="hidden sm:inline">1800-123-4567</span>
             </a>
 
+
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="xl:hidden rounded-lg p-2 transition-colors text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+              className={`xl:hidden rounded-lg p-2 transition-colors ${
+                scrolled || !isTransparentPage ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+              }`}
               aria-expanded={menuOpen}
               aria-label="Toggle menu"
               onClick={() => setMenuOpen(!menuOpen)}

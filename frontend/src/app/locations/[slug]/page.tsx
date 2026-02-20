@@ -6,94 +6,124 @@ import { LocationGallery } from "@/components/LocationGallery";
 /* ───────────────── location data ───────────────── */
 const locations = [
   {
-    slug: "gopiganj-main",
-    city: "Gopiganj",
+    slug: "varanasi-main",
+    city: "Varanasi",
     name: "Popular Hospital – Main Branch",
-    heading: "Our Flagship Centre in Gopiganj",
-    title: "Popular Hospital, Gopiganj (Main Branch)",
+    heading: "Our Flagship Centre in Varanasi",
+    title: "Popular Hospital, Varanasi (Main Branch)",
     description:
-      "The main branch of Popular Hospital in Gopiganj is equipped with state-of-the-art medical facilities, offering 24/7 emergency care, advanced diagnostics, surgical suites, and a full range of specialist departments. Located conveniently on G.T. Road near IndusInd Bank, it serves as the primary hub for comprehensive healthcare in the region.",
-    address: "G.T. Road, Khagra, Near IndusInd Bank, Gopiganj, Bhadohi, UP",
-    phone: "+91-9876543210",
+      "The main branch of Popular Hospital in Varanasi is equipped with state-of-the-art medical facilities, offering 24/7 emergency care, advanced diagnostics, surgical suites, and a full range of specialist departments. Located on B.L.W. Road, Kakarmatta, it serves as the primary hub for comprehensive healthcare in the region.",
+    address: "N-10 / 60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh, India",
+    phone: "+91-7800001895",
     email: "info@popularhospital.in",
     timings: "Open 24 × 7 • OPD: 9 AM – 8 PM",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.0!2d82.5123!3d25.5123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDMwJzQ0LjMiTiA4MsKwMzAnNDQuMyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d82.9739!3d25.2677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2e0f0f0f0f0f%3A0x0!2sPopular+Hospital+Kakarmatta!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.5123,82.5123&destination_place_id=popular+hospital+gopiganj",
-    image: "/images/branches/One.webp",
+      "https://www.google.com/maps/dir/?api=1&destination=25.2677,82.9739&destination_place_id=popular+hospital+kakarmatta+varanasi",
+    gallery: [
+      "/images/branches/varanasi-main/1.webp",
+      "/images/branches/varanasi-main/2.webp",
+      "/images/branches/varanasi-main/3.webp",
+      "/images/branches/varanasi-main/4.webp"
+    ],
+    image: "/images/branches/one.webp",
   },
   {
-    slug: "gopiganj-city-centre",
-    city: "Gopiganj",
-    name: "Popular Hospital – City Centre",
-    heading: "Advanced Care at City Centre",
-    title: "Popular Hospital, City Centre Branch",
+    slug: "varanasi-city-centre",
+    city: "Varanasi",
+    name: "City Hospital – Sigra",
+    heading: "Advanced Care at Sigra, Varanasi",
+    title: "City Hospital, Sigra Branch",
     description:
-      "Situated in the heart of Gopiganj at City Centre, this branch provides outpatient consultations, advanced pathology services, ultrasound & X-ray diagnostics, and a modern pharmacy. Our experienced team of doctors ensures fast and compassionate care for every patient.",
-    address: "City Centre, Main Market Road, Gopiganj, Bhadohi, UP",
-    phone: "+91-9876543211",
-    email: "citycentre@popularhospital.in",
+      "Situated in the heart of Varanasi at Chandrika Nagar Colony, Sigra, this branch provides outpatient consultations, advanced pathology services, ultrasound & X-ray diagnostics, and a modern pharmacy. Our experienced team of doctors ensures fast and compassionate care for every patient.",
+    address: "Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh, India",
+    phone: "+91-7800001895",
+    email: "sigra@popularhospital.in",
     timings: "Mon – Sat: 8 AM – 9 PM • Sun: 9 AM – 2 PM",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.0!2d82.5200!3d25.5200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDMxJzEyLjAiTiA4MsKwMzEnMTIuMCJF!5e0!3m2!1sen!2sin!4v1700000000001!5m2!1sen!2sin",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d82.9900!3d25.3100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCity+Hospital+Sigra+Varanasi!5e0!3m2!1sen!2sin!4v1700000000001!5m2!1sen!2sin",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.5200,82.5200&destination_place_id=popular+hospital+gopiganj+city+centre",
+      "https://www.google.com/maps/dir/?api=1&destination=25.3100,82.9900&destination_place_id=city+hospital+sigra+varanasi",
+    gallery: [
+      "/images/branches/varanasi-sigra/1.webp",
+      "/images/branches/varanasi-sigra/2.webp",
+      "/images/branches/varanasi-sigra/3.webp",
+      "/images/branches/varanasi-sigra/4.webp"
+    ],
     image: "/images/branches/two.webp",
   },
   {
-    slug: "bhadohi",
-    city: "Bhadohi",
-    name: "Popular Hospital – Bhadohi",
-    heading: "Trusted Healthcare in Bhadohi",
-    title: "Popular Hospital, Bhadohi Branch",
+    slug: "mirzapur",
+    city: "Mirzapur",
+    name: "Popular Hospital – Mirzapur",
+    heading: "Trusted Healthcare in Mirzapur",
+    title: "Popular Hospital, Mirzapur Branch",
     description:
-      "Bringing quality healthcare closer to Bhadohi, this branch features multi-speciality OPD, a 24-hour pharmacy, and modern ICU facilities. The branch is easily accessible from the main highway and serves patients from surrounding towns and villages with the same high standards of care.",
-    address: "Near Bus Stand, Station Road, Bhadohi, UP 221401",
-    phone: "+91-9876543212",
-    email: "bhadohi@popularhospital.in",
+      "Bringing quality healthcare closer to Mirzapur, this branch features multi-speciality OPD, a 24-hour pharmacy, and modern ICU facilities. Located near Natwan Police Chowki on Jangi Road, the branch serves patients from surrounding towns and villages with the same high standards of care.",
+    address: "Near Natwan Police Chowki, Jangi Road, Mirzapur, Uttar Pradesh, India",
+    phone: "+91-7800001895",
+    email: "mirzapur@popularhospital.in",
     timings: "Open 24 × 7 • OPD: 9 AM – 7 PM",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.0!2d82.5700!3d25.4000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDI0JzAwLjAiTiA4MsKwMzQnMTIuMCJF!5e0!3m2!1sen!2sin!4v1700000000002!5m2!1sen!2sin",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.0!2d82.5700!3d25.1500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Mirzapur!5e0!3m2!1sen!2sin!4v1700000000002!5m2!1sen!2sin",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.4000,82.5700&destination_place_id=popular+hospital+bhadohi",
-    image: "/images/branches/One.webp",
+      "https://www.google.com/maps/dir/?api=1&destination=25.1500,82.5700&destination_place_id=popular+hospital+mirzapur",
+    gallery: [
+      "/images/branches/mirzapur/1.webp",
+      "/images/branches/mirzapur/2.webp",
+      "/images/branches/mirzapur/3.webp",
+      "/images/branches/mirzapur/4.webp"
+    ],
+    image: "/images/branches/one.webp",
   },
   {
-    slug: "aurai",
-    city: "Aurai",
-    name: "Popular Hospital – Aurai",
-    heading: "Community Healthcare at Aurai",
-    title: "Popular Hospital, Aurai Branch",
+    slug: "gopiganj",
+    city: "Gopiganj",
+    name: "Popular Hospital – Gopiganj",
+    heading: "Community Healthcare at Gopiganj",
+    title: "Popular Hospital, Gopiganj Branch",
     description:
-      "The Aurai branch serves as an essential healthcare outpost, providing general medicine, paediatrics, gynaecology, and emergency stabilisation services. With a dedicated team of resident doctors and nurses, we ensure the community receives timely medical attention without having to travel long distances.",
-    address: "Main Road, Near Aurai Chauraha, Aurai, Bhadohi, UP",
-    phone: "+91-9876543213",
-    email: "aurai@popularhospital.in",
-    timings: "Mon – Sat: 8 AM – 8 PM",
+      "The Gopiganj branch serves as an essential healthcare hub, providing general medicine, paediatrics, gynaecology, and emergency stabilisation services. Located on G.T. Road near Indus Ind Bank, our dedicated team of resident doctors and nurses ensures the community receives timely medical attention.",
+    address: "G.T. Road, Parao, Near Indus Ind Bank, Gopiganj, Uttar Pradesh, India",
+    phone: "+91-7800001895",
+    email: "gopiganj@popularhospital.in",
+    timings: "Mon – Sat: 8 AM – 8 PM • Emergencies 24/7",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.0!2d82.5500!3d25.4500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDI3JzAwLjAiTiA4MsKwMzMnMDAuMCJF!5e0!3m2!1sen!2sin!4v1700000000003!5m2!1sen!2sin",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3605.0!2d82.5123!3d25.5123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Gopiganj!5e0!3m2!1sen!2sin!4v1700000000003!5m2!1sen!2sin",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.4500,82.5500&destination_place_id=popular+hospital+aurai",
-    image: "/images/branches/two.webp",
+      "https://www.google.com/maps/dir/?api=1&destination=25.5123,82.5123&destination_place_id=popular+hospital+gopiganj",
+    gallery: [
+      "/images/branches/gopiganj/1.webp",
+      "/images/branches/gopiganj/2.webp",
+      "/images/branches/gopiganj/3.webp",
+      "/images/branches/gopiganj/4.webp"
+    ],
+    image: "/images/branches/populargopiganjfour.png",
   },
   {
-    slug: "jangiganj",
-    city: "Jangiganj",
-    name: "Popular Hospital – Jangiganj",
-    heading: "Reliable Care at Jangiganj",
-    title: "Popular Hospital, Jangiganj Branch",
+    slug: "bachhaon",
+    city: "Bachhaon",
+    name: "Popular Hospital – Bachhaon",
+    heading: "Reliable Care at Bachhaon",
+    title: "Popular Hospital, Bachhaon Branch",
     description:
-      "Our newest branch in Jangiganj brings Popular Hospital's legacy of quality and compassion to the area. Equipped with digital X-ray, pathology lab, and consultations across general medicine, orthopaedics, and ENT, this branch ensures residents can access specialist healthcare conveniently.",
-    address: "GT Road, Near Railway Crossing, Jangiganj, Bhadohi, UP",
-    phone: "+91-9876543214",
-    email: "jangiganj@popularhospital.in",
+      "Our branch in Bachhaon brings Popular Hospital's legacy of quality and compassion to the area. Located on Chunar Road, this branch is equipped with digital X-ray, pathology lab, and consultations across general medicine, orthopaedics, and ENT, ensuring residents can access specialist healthcare conveniently.",
+    address: "Chunar Road, Bachhaon, Varanasi, Uttar Pradesh, India",
+    phone: "+91-7800001895",
+    email: "bachhaon@popularhospital.in",
     timings: "Mon – Sat: 9 AM – 8 PM • Emergencies 24/7",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.0!2d82.4800!3d25.4800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDI4JzQ4LjAiTiA4MsKwMjgnNDguMCJF!5e0!3m2!1sen!2sin!4v1700000000004!5m2!1sen!2sin",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.0!2d82.8500!3d25.3500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Bachhaon!5e0!3m2!1sen!2sin!4v1700000000004!5m2!1sen!2sin",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.4800,82.4800&destination_place_id=popular+hospital+jangiganj",
-    image: "/images/branches/One.webp",
+      "https://www.google.com/maps/dir/?api=1&destination=25.3500,82.8500&destination_place_id=popular+hospital+bachhaon",
+    gallery: [
+      "/images/branches/bachhaon/1.webp",
+      "/images/branches/bachhaon/2.webp",
+      "/images/branches/bachhaon/3.webp",
+      "/images/branches/bachhaon/4.webp"
+    ],
+    image: "/images/branches/one.webp",
   },
 ];
 
@@ -236,7 +266,7 @@ export default async function LocationPage({
             </div>
 
             {/* Right Side: Interactive Gallery */}
-            <LocationGallery image={location.image} name={location.name} />
+            <LocationGallery images={location.gallery || [location.image]} name={location.name} />
           </div>
         </div>
       </section>

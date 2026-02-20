@@ -19,7 +19,24 @@ export default function HomePage() {
     agreeTerms: false,
   });
 
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Robust video loading check
+  useEffect(() => {
+    // Check immediately for cached video
+    if (videoRef.current && videoRef.current.readyState >= 3) {
+      setIsVideoLoaded(true);
+    }
+
+    // Fallback: If video takes too long, just show whatever we have
+    const timer = setTimeout(() => {
+      setIsVideoLoaded(true);
+    }, 5000); // 5 second fallback
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -64,13 +81,26 @@ export default function HomePage() {
     <>
       <section className="relative w-full overflow-hidden bg-gray-900 mt-16 sm:mt-[72px] md:mt-20 lg:mt-0">
         <div className="relative w-full">
+          {/* Video Loading Placeholder */}
+          {!isVideoLoaded && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-900">
+               <div className="w-16 h-16 md:w-24 md:h-24 opacity-60 animate-pulse">
+                  <Image src="/logo.png" alt="Loading" width={100} height={100} className="object-contain" />
+               </div>
+            </div>
+          )}
+
           <video
-            className="w-full h-[650px] md:h-auto object-cover md:object-contain block"
+            ref={videoRef}
+            className={`w-full h-[650px] md:h-auto object-cover md:object-contain block transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
             autoPlay
             muted
             loop
             playsInline
             aria-hidden
+            onLoadedData={() => setIsVideoLoaded(true)}
+            onCanPlay={() => setIsVideoLoaded(true)}
+            onPlaying={() => setIsVideoLoaded(true)}
           >
             <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
@@ -80,12 +110,12 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 flex flex-col items-center justify-end md:justify-start pb-24 md:pb-0 pt-0 md:pt-28 lg:pt-64 xl:pt-[22rem] 2xl:pt-[22rem] min-[1920px]:pt-[42rem] z-20 px-4 text-center">
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-2 drop-shadow-lg tracking-tight leading-tight">
-              आपकी सेहत, <br className="sm:hidden"/> हमारी प्राथमिकता
+              आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
             </h1>
-            
+
             <div className="flex flex-row flex-wrap justify-center gap-2 sm:gap-4 w-full sm:w-auto mt-2 sm:mt-3">
-              <Link 
-                href="/book" 
+              <Link
+                href="/book"
                 className="flex items-center justify-center gap-2 px-6 py-3 md:px-6 md:py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 bg-[#E85222] hover:bg-[#d1451a] text-white rounded-full font-bold text-sm md:text-base lg:text-base 2xl:text-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group flex-1 sm:flex-none whitespace-nowrap"
               >
                 <svg className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,8 +124,8 @@ export default function HomePage() {
                 <span className="md:hidden">Book</span>
                 <span className="hidden md:inline">Book Appointment</span>
               </Link>
-              <Link 
-                href="/services" 
+              <Link
+                href="/services"
                 className="flex items-center justify-center gap-2 px-6 py-3 md:px-6 md:py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white hover:text-[#0b1c43] rounded-full font-bold text-sm md:text-base lg:text-base 2xl:text-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group flex-1 sm:flex-none whitespace-nowrap"
               >
                 <span className="md:hidden">Services</span>
@@ -110,29 +140,29 @@ export default function HomePage() {
           {/* Notification Ticker */}
           <div className="absolute bottom-0 w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-t border-b border-[#1e3a8a]/30 z-20 group cursor-pointer transition-colors hover:bg-[#0e2455]">
             <Link href="/updates" className="absolute inset-0 z-30" aria-label="View all updates"></Link>
-             <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
+            <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
               <div className="flex items-center gap-2 text-[#E85222] font-bold tracking-widest text-xs uppercase font-heading">
                 <span className="w-2 h-2 rounded-full bg-[#E85222] animate-pulse"></span>
-                
+
                 Updates
               </div>
             </div>
             <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-32">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity">
-                   <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                     <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">New</span>
-                     OPD timings for Cardiology have been updated to 9 AM - 5 PM.
-                   </span>
-                   <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                   <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                      Free Heart Health Checkup Camp scheduled for 15th March 2026.
-                   </span>
-                   <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                   <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                      Emergency Trauma Center is now fully operational 24/7.
-                   </span>
-                   <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                  <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">New</span>
+                    OPD timings for Cardiology have been updated to 9 AM - 5 PM.
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                  <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                    Free Heart Health Checkup Camp scheduled for 15th March 2026.
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                  <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                    Emergency Trauma Center is now fully operational 24/7.
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
                 </div>
               ))}
             </div>
@@ -210,7 +240,7 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                 POPULAR HOSPITAL is a 450 bedded Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
+                  POPULAR HOSPITAL is a 450 bedded Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
                 </p>
                 {/* Button */}
                 <Link
@@ -267,24 +297,24 @@ export default function HomePage() {
         aria-labelledby="our-services"
       >
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-                <div>
-                   <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
-                     Excellence in Care
-                   </span>
-                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight">
-                     Specialized Departments.
-                   </h2>
-                </div>
-                 <Link
-                    href="/services"
-                    className="hidden md:flex items-center gap-2 text-[#0066cc] hover:underline font-medium text-lg transition-all"
-                  >
-                    View all departments
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                  </Link>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
+                Excellence in Care
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight">
+                Specialized Departments.
+              </h2>
             </div>
-            
+            <Link
+              href="/services"
+              className="hidden md:flex items-center gap-2 text-[#0066cc] hover:underline font-medium text-lg transition-all"
+            >
+              View all departments
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </Link>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[
               { title: "Cardiology", desc: "Comprehensive heart care including diagnostics and surgery.", image: "/images/departments-images/cardiology.jpeg" },
@@ -336,33 +366,35 @@ export default function HomePage() {
                       {service.desc}
                     </p>
                   </div>
-                  
+
                   <div className="mt-auto flex justify-end">
                     <Link
                       href={service.title === 'Pathology' ? '/specialties/pathology' : service.title === 'Radiology' ? '/specialties/radiology' : `/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
                       className="w-10 h-10 rounded-full bg-[#E85222] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#d14011]"
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                        </svg>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                      </svg>
                     </Link>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          
-           <div className="mt-12 text-center md:hidden">
-                <Link
-                    href="/services"
-                    className="inline-flex items-center gap-2 text-[#0066cc] font-medium text-lg"
-                  >
-                    View all departments
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                  </Link>
-           </div>
+
+          <div className="mt-12 text-center md:hidden">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-[#0066cc] font-medium text-lg"
+            >
+              View all departments
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </Link>
+          </div>
         </div>
       </section>
+
+
 
       {/* Popular Hospital Model of Care Section */}
       <section
@@ -560,6 +592,141 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Why Popular Hospital Section */}
+      <section className="py-24 bg-white" aria-labelledby="why-popular">
+        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
+
+          {/* Header */}
+          <div className="text-center mb-12 max-w-3xl mx-auto">
+            <span className="inline-block bg-[#f3e8ff] text-[#6b21a8] px-5 py-2 rounded-full text-xs sm:text-sm font-bold tracking-widest mb-6 border border-[#e9d5ff]">
+              WHY CHOOSE POPULAR HOSPITAL
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e3a8a] font-heading leading-tight">
+              Leading the Way in <span className="text-[#1d1d1f]">Medical Excellence & Compassionate Care.</span>
+            </h2>
+            <p className="mt-4 text-gray-500 text-lg max-w-2xl mx-auto">
+              Your health is our priority. We provide world-class medical treatment with a personal touch at every step of your journey.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+
+            {/* Left Column - Main Promo Image */}
+            <div className="lg:col-span-5 relative h-full min-h-[500px] lg:min-h-[auto]">
+              <div className="relative h-full w-full bg-[#8b5cf6] rounded-3xl overflow-hidden shadow-2xl group">
+                {/* Main Image - Full Cover */}
+                <Image
+                  src="/images/departments-images/general-medicine.jpeg"
+                  alt="Expert Medical Care"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#4c1d95]/90 via-[#5b21b6]/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent opacity-60"></div>
+
+                {/* Content Overlay */}
+                <div className="absolute inset-0 z-20">
+                  {/* Centered Call Badge */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white backdrop-blur-md bg-white/10 px-6 py-3 rounded-2xl border border-white/20 text-center shadow-2xl hover:scale-105 transition-transform duration-300 group-hover:bg-white/20">
+                    <p className="text-xs font-bold text-purple-100 mb-1 uppercase tracking-wider">Need help? Call now</p>
+                    <p className="text-xl sm:text-2xl font-black flex items-center justify-center gap-2 drop-shadow-md whitespace-nowrap">
+                      <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.49-5.15-3.82-6.62-6.65l1.97-1.57c.26-.26.35-.63.24-1.01a17.9 17.9 0 01-.56-3.53.995.995 0 00-1-1H4.05c-.55 0-1.05.52-1.05 1.15 0 9.05 7.6 16.9 16.9 16.9.55 0 1.15-.5 1.15-1.05v-3.95c0-.55-.52-1.05-1.04-1.05z" /></svg>
+                      +91-7800001895
+                    </p>
+                  </div>
+
+                  {/* Bottom Section - Floating Stats */}
+                  <div className="absolute bottom-6 left-4 right-4 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-xl p-4 sm:p-5 rounded-2xl shadow-xl border border-white/50">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shrink-0">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                          <p className="text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-wider">Experience</p>
+                          <p className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">25+ Years of Excellence</p>
+                        </div>
+                      </div>
+                      <div className="w-px h-8 bg-gray-200"></div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                          <p className="text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-wider">Doctors</p>
+                          <p className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">50+ Expert Doctors</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Feature Grid */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              {[
+                {
+                  title: "Exceptional Healthcare",
+                  desc: "We provide top-notch healthcare services, backed by highly experienced doctors and cutting-edge medical technology.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                  )
+                },
+                {
+                  title: "Multi-Specialty Hospital",
+                  desc: "Our hospital offers a comprehensive range of specialties, including cardiology, neurology, gastroenterology, orthopedics, and more, ensuring that we meet the diverse healthcare needs of our patients.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                  )
+                },
+                {
+                  title: "Compassionate Care",
+                  desc: "We believe that healthcare is not just about treating illnesses, but also about providing compassionate care to our patients. Our staff is trained to provide personalized care, making our patients feel comfortable and cared for during their hospital stay.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                  )
+                },
+                {
+                  title: "State-of-the-Art Facilities",
+                  desc: "Our hospital is equipped with the latest diagnostic tools and equipment, ensuring accurate and timely diagnosis of illnesses. We also have a fully equipped operation theatre, intensive care unit, and emergency department, providing 24/7 medical care to our patients.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  )
+                },
+                {
+                  title: "Patient-Centric Approach",
+                  desc: "We prioritize our patients' needs and comfort, ensuring that they receive the best possible care and treatment throughout their hospital stay.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                  )
+                },
+                {
+                  title: "Trusted Healthcare",
+                  desc: "With over 30 years of experience, we have earned a reputation as a trusted healthcare provider in the community. We are committed to maintaining the highest standards of healthcare and strive to exceed our patients' expectations.",
+                  icon: (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                  )
+                },
+              ].map((feature, idx) => (
+                <div key={idx} className="bg-gray-50/50 hover:bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 group flex flex-col items-start h-full">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 group-hover:border-[#5b21b6]/20 group-hover:text-[#5b21b6] text-gray-600 transition-all duration-300">
+                    {feature.icon}
+                  </div>
+
+                  <h3 className="text-base font-bold text-gray-900 mb-2 font-heading group-hover:text-[#5b21b6] transition-colors">{feature.title}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">{feature.desc}</p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Patients Speak Testimonial Section */}
       <section
         className="py-16 sm:py-20 bg-white"
@@ -570,10 +737,10 @@ export default function HomePage() {
             Patients Speak
           </h2>
 
-          
+
           {/* Custom 5-Column Video Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
-            
+
             {/* Column 1: Far Left (Centered Single Card) */}
             <div className="flex flex-col justify-center">
               <button
@@ -663,7 +830,7 @@ export default function HomePage() {
                   preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-                
+
                 {/* Large Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/60 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
@@ -754,7 +921,7 @@ export default function HomePage() {
             </div>
 
           </div>
-          
+
           <div className="mt-12 text-center">
             <Link
               href="/stories"
@@ -762,7 +929,7 @@ export default function HomePage() {
             >
               View All Patient Stories
               <span className="w-8 h-8 rounded-full bg-[#E85222] text-white flex items-center justify-center shadow-md">
-                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
               </span>
             </Link>
           </div>
@@ -862,59 +1029,59 @@ export default function HomePage() {
           >
             {[
               {
-                slug: "gopiganj-main",
+                slug: "varanasi-main",
+                city: "Varanasi",
+                name: "Popular Hospital",
+                address: "N-10 / 60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh, India",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/varanasi-main/1.webp"
+              },
+              {
+                slug: "varanasi-city-centre",
+                city: "Varanasi",
+                name: "City Hospital",
+                address: "Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh, India",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/varanasi-sigra/1.webp"
+              },
+              {
+                slug: "mirzapur",
+                city: "Mirzapur",
+                name: "Popular Hospital",
+                address: "Near Natwan Police Chowki, Jangi Road, Mirzapur Uttar Pradesh, India",
+                theme: "light",
+                bgGradient: "bg-[#fbfbfd]",
+                textColor: "text-[#1d1d1f]",
+                subTextColor: "text-[#86868b]",
+                image: "/images/branches/mirzapur/1.webp"
+              },
+              {
+                slug: "gopiganj",
                 city: "Gopiganj",
                 name: "Popular Hospital",
-                address: "G.T. Road, Khagra, Near IndusInd Bank",
+                address: "G.T. Road, Parao, Near Indus Ind Bank, Gopiganj, Uttar Pradesh, India",
                 theme: "light",
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                image: "/images/branches/One.webp"      
+                image: "/images/branches/gopiganj/1.webp"
               },
               {
-                slug: "gopiganj-city-centre",
-                city: "Gopiganj",
+                slug: "bachhaon",
+                city: "Bachhaon",
                 name: "Popular Hospital",
-                address: "City Centre, Main Market Road",
+                address: "Chunar Road, Bachhaon, Varanasi, Uttar Pradesh India",
                 theme: "light",
                 bgGradient: "bg-[#fbfbfd]",
                 textColor: "text-[#1d1d1f]",
                 subTextColor: "text-[#86868b]",
-                image: "/images/branches/two.webp"              
-              },
-              {
-                slug: "bhadohi",
-                city: "Bhadohi",
-                name: "Popular Hospital",
-                address: "Near Bus Stand, Station Road",
-                theme: "light",
-                bgGradient: "bg-[#fbfbfd]",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/One.webp"      
-              },
-              {
-                slug: "aurai",
-                city: "Aurai",
-                name: "Popular Hospital",
-                address: "Main Road, Near Aurai Chauraha",
-                theme: "light",
-                bgGradient: "bg-[#fbfbfd]",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/two.webp"
-              },
-              {
-                slug: "jangiganj",
-                city: "Jangiganj",
-                name: "Popular Hospital",
-                address: "GT Road, Near Railway Crossing",
-                theme: "light",
-                bgGradient: "bg-[#fbfbfd]",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/One.webp"      
+                image: "/images/branches/bachhaon/1.webp"
               }
             ].map((location, index) => (
               <div
@@ -924,36 +1091,30 @@ export default function HomePage() {
                 {/* Content Overlay */}
                 <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between">
                   <div>
-                    <span className={`text-base font-semibold tracking-wide uppercase ${location.theme === 'dark' ? 'text-hospital-orange' : 'text-hospital-teal'}`}>
+                    <span className="text-base font-semibold tracking-wide uppercase text-[#00B4D8] drop-shadow-sm">
                       {location.city}
                     </span>
-                    <h3 className={`mt-2 text-3xl font-bold leading-tight font-heading ${location.textColor}`}>
+                    <h3 className="mt-2 text-3xl font-bold leading-tight font-heading text-white drop-shadow-md">
                       {location.name}
                     </h3>
-                    <p className={`mt-3 text-lg leading-relaxed ${location.subTextColor}`}>
+                    <p className="mt-3 text-lg leading-relaxed text-white/80 drop-shadow-sm">
                       {location.address}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-4 opacity-100 transform translate-y-0 lg:opacity-0 lg:translate-y-4 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-300">
+                  <div className="flex items-center gap-4">
                     <Link
                       href={`/locations/${location.slug}`}
-                      className={`px-6 py-3 rounded-full font-medium transition-colors ${location.theme === 'dark'
-                        ? 'bg-white text-black hover:bg-gray-100'
-                        : 'bg-black text-white hover:bg-gray-800'
-                      }`}
+                      className="px-6 py-3 rounded-full font-medium transition-colors bg-white text-black hover:bg-gray-100"
                     >
                       Get Directions
                     </Link>
                   </div>
                 </div>
 
-                {/* Background Image with Gradient Overlay */}
+                {/* Background Image with Dark Gradient Overlay */}
                 <div className="absolute inset-0 z-10">
-                  <div className={`absolute inset-0 bg-gradient-to-b ${location.theme === 'dark'
-                      ? 'from-black/90 via-black/50 to-transparent'
-                      : 'from-white/95 via-white/60 to-transparent'
-                    }`} />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/50" />
                 </div>
 
                 <img
@@ -961,6 +1122,120 @@ export default function HomePage() {
                   alt={location.name}
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 24x7 Services Section */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden" aria-labelledby="24-7-services">
+        {/* Subtle Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-y-1/2 mix-blend-multiply"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl translate-y-1/2 mix-blend-multiply"></div>
+        </div>
+
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col items-center justify-center mb-16 text-center">
+
+            {/* Header Lockup */}
+            <div className="relative inline-block mb-6">
+              <div className="flex items-center justify-center gap-4">
+                <svg className="w-10 h-10 sm:w-12 sm:h-12 text-[#1e3a8a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1e3a8a] font-heading tracking-tight">
+                  24x7 Services
+                </h2>
+              </div>
+            </div>
+
+            {/* Clean Divider */}
+            <div className="w-24 h-1.5 bg-[#E85222] rounded-full mx-auto mb-8 shadow-sm"></div>
+
+            {/* Subtitle */}
+            <p className="text-slate-600 text-lg sm:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
+              We cover a big variety of medical services, ensuring you have access to critical care whenever you need it.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Emergency",
+                desc: "Equipped With the State of the Art facility to manage all types of Trauma, Medical Queries, or Surgical emergencies. Our Emergency Department.",
+                icon: (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                )
+              },
+              {
+                title: "Blood Bank",
+                desc: "The 24hour Blood Bank present within the campus is equipped with an ultramodern collection centre, component lab and single donor plateletpheresis (SDP).",
+                icon: (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                )
+              },
+              {
+                title: "Ambulance",
+                desc: "Popular Hospital has Air Ambulance services. It also provides ground ambulance services to shift patient from one hospital to another hospital.",
+                icon: (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                ),
+                customIcon: (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                ),
+                customIcon2: (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                )
+              },
+              {
+                title: "Diagnostics & Imaging",
+                desc: "The Pathology Laboratory at Popular Hospital is fully licensed. The laboratory supplements its testing capability by using reference laboratories that provide high quality service.",
+                icon: (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                )
+              },
+              {
+                title: "ICU Service",
+                desc: "Intensive care Unit is needed if someone is seriously ill and requires intensive treatment and close monitoring, or surgery intensive care can help them to recover.",
+                icon: (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                )
+              },
+              {
+                title: "Pharmacy",
+                desc: "Hospital Pharmacy is situated in the campus of all the hospitals to facilitate patients fulfilling their emergency needs as well as the medicines as prescribed inside the hospital.",
+                icon: (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                )
+              },
+            ].map((service, idx) => (
+              <div
+                key={service.title}
+                className="bg-white rounded-xl p-8 text-center text-gray-800 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_10px_30px_rgba(232,82,34,0.15)] hover:-translate-y-2 transition-all duration-300 border-t-4 border-[#0b1c43] group relative overflow-hidden flex flex-col h-full"
+              >
+
+                <div className="flex justify-center mb-6">
+                  {/* Icon Circle */}
+                  <div className="w-16 h-16 rounded-full bg-[#E0F2FE] flex items-center justify-center group-hover:bg-[#E85222] transition-colors duration-300">
+                    <svg className="w-8 h-8 text-[#0b1c43] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {service.customIcon2 || service.icon}
+                    </svg>
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold mb-4 font-heading text-[#0b1c43] group-hover:text-[#E85222] transition-colors duration-300">
+                  {service.title}
+                </h3>
+
+                <p className="text-gray-600 text-sm leading-relaxed mb-6 font-medium">
+                  {service.desc}
+                </p>
+
+                <button className="mt-auto px-6 py-2 border-2 border-[#E85222] text-[#E85222] text-sm font-bold rounded-full hover:bg-[#E85222] hover:text-white transition-all duration-300 uppercase tracking-wide mx-auto">
+                  Read more
+                </button>
               </div>
             ))}
           </div>
@@ -986,21 +1261,17 @@ export default function HomePage() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                   >
-                    {/* Calendar base */}
-                    <rect x="3" y="4" width="18" height="18" rx="2" />
-                    <path d="M8 2v4M16 2v4M3 10h18" />
-                    {/* Calendar grid lines */}
-                    <path d="M8 14h8M8 18h8" strokeWidth={1} />
-                    {/* Stethoscope - tube draped over calendar */}
                     <path
-                      d="M6 8c0-1 1-2 2-2h1M18 8c0-1-1-2-2-2h-1"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 16l2 2 4-4"
                       strokeWidth={2}
                     />
-                    <path d="M9 6c0 1 1 2 2 2h2c1 0 2-1 2-2" strokeWidth={2} />
-                    {/* Stethoscope chest piece */}
-                    <circle cx="10" cy="16" r="2" fill="currentColor" />
-                    <circle cx="14" cy="16" r="2" fill="currentColor" />
-                    <path d="M10 16h4" strokeWidth={2} />
                   </svg>
                 </div>
               </div>
@@ -1276,8 +1547,8 @@ export default function HomePage() {
               <div
                 key={index}
                 className={`bg-white rounded-xl border transition-all duration-300 ${openFaqIndex === index
-                    ? "border-[#2a7a8c] shadow-md"
-                    : "border-[#d0e3f0] shadow-sm hover:shadow-md"
+                  ? "border-[#2a7a8c] shadow-md"
+                  : "border-[#d0e3f0] shadow-sm hover:shadow-md"
                   }`}
               >
                 <button
@@ -1292,8 +1563,8 @@ export default function HomePage() {
                   </span>
                   <div
                     className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index
-                        ? "border-[#2a7a8c] bg-[#2a7a8c] rotate-45"
-                        : "border-[#2a7a8c] bg-white"
+                      ? "border-[#2a7a8c] bg-[#2a7a8c] rotate-45"
+                      : "border-[#2a7a8c] bg-white"
                       }`}
                   >
                     <svg
@@ -1314,8 +1585,8 @@ export default function HomePage() {
                 </button>
                 <div
                   className={`overflow-hidden transition-all duration-300 ${openFaqIndex === index
-                      ? "max-h-[500px] opacity-100"
-                      : "max-h-0 opacity-0"
+                    ? "max-h-[500px] opacity-100"
+                    : "max-h-0 opacity-0"
                     }`}
                 >
                   <div className="px-5 sm:px-6 pb-5 pt-0">
@@ -1339,41 +1610,43 @@ export default function HomePage() {
             {/* Left Column - Informational Cards */}
             <div className="flex flex-col gap-6 w-full lg:h-full">
               {/* OUR LOCATIONS Card */}
-              <div className="bg-purple-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm flex-1 flex items-center justify-center">
-                <div className="w-full h-full rounded-2xl border border-purple-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
-                  <div className="flex items-center justify-center gap-4 w-full h-full">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 sm:w-7 sm:h-7 text-gray-700"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 font-heading">
-                        OUR LOCATIONS
-                      </h3>
-                      <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                        N-10 / 60, A-2, B.L.W. ROAD, KAKARMATTA, VARANASI 221004,UTTAR PRADESH, INDIA
-                      </p>
+              <Link href="#our-locations" className="block flex-1 hover:scale-[1.02] transition-transform duration-300">
+                <div className="bg-purple-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm h-full flex items-center justify-center">
+                  <div className="w-full h-full rounded-2xl border border-purple-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
+                    <div className="flex items-center justify-center gap-4 w-full h-full">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+                        <svg
+                          className="w-6 h-6 sm:w-7 sm:h-7 text-gray-700"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 font-heading">
+                          OUR LOCATIONS
+                        </h3>
+                        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                          N-10 / 60, A-2, B.L.W. ROAD, KAKARMATTA, VARANASI 221004,UTTAR PRADESH, INDIA
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
 
               {/* CONNECT WITH US Card */}
               <div className="bg-pink-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm flex-1 flex items-center justify-center">
@@ -1473,7 +1746,7 @@ export default function HomePage() {
                     rows={4}
                     value={formData.message}
                     onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value }) 
+                      setFormData({ ...formData, message: e.target.value })
                     }
                     placeholder="Please write your message here"
                     className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none resize-none"
