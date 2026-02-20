@@ -1,14 +1,9 @@
 {
   "pages": {
-    "/not-found": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -21,30 +16,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/loading.js"
     ],
-    "/careers/page": [
+    "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/careers/page.js"
+      "static/chunks/app/not-found.js"
     ],
-    "/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/_not-found/page.js"
     ],
-    "/terms/page": [
+    "/specialties/pathology/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/terms/page.js"
+      "static/chunks/app/specialties/pathology/page.js"
     ],
-    "/payment-policy/page": [
+    "/updates/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/payment-policy/page.js"
+      "static/chunks/app/updates/page.js"
     ],
-    "/refund-policy/page": [
+    "/services/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/refund-policy/page.js"
+      "static/chunks/app/services/page.js"
+    ],
+    "/services/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/services/layout.js"
     ],
     "/locations/[slug]/page": [
       "static/chunks/webpack.js",

@@ -297,22 +297,13 @@ export default function HomePage() {
         aria-labelledby="our-services"
       >
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
-                Excellence in Care
-              </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight">
-                Specialized Departments.
-              </h2>
-            </div>
-            <Link
-              href="/services"
-              className="hidden md:flex items-center gap-2 text-[#0066cc] hover:underline font-medium text-lg transition-all"
-            >
-              View all departments
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </Link>
+          <div className="mb-16">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
+              Excellence in Care
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight">
+              Specialized Departments.
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -382,13 +373,17 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center md:hidden">
+          <div className="mt-16 text-center">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-[#0066cc] font-medium text-lg"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#0066cc]/10 text-[#0066cc] hover:bg-[#0066cc] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
-              View all departments
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              <span>View all departments</span>
+              <div className="w-8 h-8 rounded-full bg-[#0066cc]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <svg className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </Link>
           </div>
         </div>

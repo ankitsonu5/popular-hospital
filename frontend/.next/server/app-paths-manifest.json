@@ -1,8 +1,7 @@
 {
-  "/refund-policy/page": "app/refund-policy/page.js",
-  "/payment-policy/page": "app/payment-policy/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/terms/page": "app/terms/page.js",
   "/page": "app/page.js",
-  "/locations/[slug]/page": "app/locations/[slug]/page.js"
+  "/locations/[slug]/page": "app/locations/[slug]/page.js",
+  "/specialties/pathology/page": "app/specialties/pathology/page.js",
+  "/updates/page": "app/updates/page.js",
+  "/services/page": "app/services/page.js"
 }
