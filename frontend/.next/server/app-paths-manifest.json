@@ -1,7 +1,6 @@
 {
-  "/page": "app/page.js",
-  "/careers/page": "app/careers/page.js",
   "/terms/page": "app/terms/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/payment-policy/page": "app/payment-policy/page.js"
+  "/payment-policy/page": "app/payment-policy/page.js",
+  "/page": "app/page.js",
+  "/careers/page": "app/careers/page.js"
 }
