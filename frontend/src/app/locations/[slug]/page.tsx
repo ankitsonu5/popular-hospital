@@ -27,7 +27,7 @@ const locations = [
       "/images/branches/varanasi-main/3.webp",
       "/images/branches/varanasi-main/4.webp"
     ],
-    image: "/images/branches/one.webp",
+    image: "/images/branches/varanasi-main/1.webp",
   },
   {
     slug: "varanasi-city-centre",
@@ -51,7 +51,7 @@ const locations = [
       "/images/branches/varanasi-sigra/3.webp",
       "/images/branches/varanasi-sigra/4.webp"
     ],
-    image: "/images/branches/two.webp",
+    image: "/images/branches/varanasi-sigra/1.webp",
   },
   {
     slug: "mirzapur",
@@ -75,7 +75,7 @@ const locations = [
       "/images/branches/mirzapur/3.webp",
       "/images/branches/mirzapur/4.webp"
     ],
-    image: "/images/branches/one.webp",
+    image: "/images/branches/mirzapur/1.webp",
   },
   {
     slug: "gopiganj",
@@ -123,7 +123,7 @@ const locations = [
       "/images/branches/bachhaon/3.webp",
       "/images/branches/bachhaon/4.webp"
     ],
-    image: "/images/branches/one.webp",
+    image: "/images/branches/varanasi-main/2.webp",
   },
 ];
 

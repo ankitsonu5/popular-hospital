@@ -71,10 +71,9 @@ export function Footer() {
             <h3 className="text-xl font-bold font-heading mb-6">About</h3>
             <ul className="space-y-3 text-base text-gray-200">
               <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-              <li><Link href="/education" className="hover:text-white transition-colors">Education</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/services" className="hover:text-white transition-colors">Areas Of Care</Link></li>
-              <li><Link href="/volunteers" className="hover:text-white transition-colors">Volunteers</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/payment-policy" className="hover:text-white transition-colors">Payment Policy</Link></li>
+              <li><Link href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link></li>
             </ul>
           </div>
 
