@@ -43,11 +43,61 @@ const governmentPSU = [
 
 const privateCorporate = [
   'DILIP BUIDCON LTD.',
-  'GRANDHI MALLIKJUNA RAO',
+  'GRANDHI MALLIKARJUNA RAO',
   'HINDALCO INDUSTRIES',
   'LANCO POWER',
   'LARSON & TURBO POWER',
   'SOMA ENTERPRISES',
+];
+
+const insuranceCompanies = [
+  'ADITYA BIRLA HEALTH INSURANCE COMPANY LIMITED',
+  'BAJAJ ALLIANZ GENERAL INSURANCE COMPANY LIMITED',
+  'BHARTI AXA GENERAL INSURANCE COMPANY LIMITED',
+  'CARE HEALTH INSURANCE COMPANY LIMITED',
+  'CHOLAMANDALAM MS GENERAL INSURANCE COMPANY LIMITED',
+  'CIGNA TTK HEALTH INSURANCE COMPANY LIMITED',
+  'DHFL GENERAL INSURANCE LIMITED',
+  'EDELWEISS GENERAL INSURANCE COMPANY LIMITED',
+  'FUTURE GENERALI INDIA INSURANCE COMPANY LIMITED',
+  'HDFC ERGO GENERAL INSURANCE COMPANY LIMITED',
+  'ICICI LOMBARD GENERAL INSURANCE COMPANY LIMITED',
+  'IFFCO TOKIO GENERAL INSURANCE COMPANY LIMITED',
+  'KOTAK MAHINDRA GENERAL INSURANCE COMPANY LIMITED',
+  'LARSON & TOUBRO GENERAL INSURANCE COMPANY LIMITED',
+  'LIBERTY VIDEOCON GENERAL INSURANCE COMPANY LIMITED',
+  'MAX BUPA HEALTH INSURANCE COMPANY LIMITED',
+  'RELIANCE GENERAL INSURANCE COMPANY LIMITED',
+  'SBI GENERAL INSURANCE COMPANY LIMITED',
+  'STAR HEALTH AND ALLIED INSURANCE COMPANY LIMITED',
+  'TATA AIG GENERAL INSURANCE COMPANY LIMITED',
+  'UNIVERSAL SOMPO GENERAL INSURANCE COMPANY LIMITED',
+];
+
+const tpaCompanies = [
+  'ALANKIT HEALTH CARE LIMITED',
+  'EAST WEST ASSIST PVT. LTD.',
+  'ERICSON INSURANCE TPA PRIVATE LIMITED',
+  'FAMILY HEALTH PLAN LTD.',
+  'FOCUS HEALTH INSURANCE (TPA) PRIVATE LIMITED',
+  'GENINS INDIA LTD.',
+  'GOOD HEALTHPLAN LTD.',
+  'GRAND INSURANCE TPA PVT. LTD.',
+  'HEALTH INDIA TPA SERVICES PRIVATE LIMITED',
+  'HEALTH INSURANCE TPA (HITPA)',
+  'HERITAGE HEALTHCARE SERVICES PVT. LTD.',
+  'MD INDIA HEALTHCARE SERVICES PVT. LTD.',
+  'MED SAVE HEALTH CARE',
+  'MEDI ASSIST INDIA PVT. LTD.',
+  'MEDICARE TPA SERVICES PVT. LTD.',
+  'PARAMOUNT HEALTH SERVICES PVT. LTD.',
+  'PARK MEDICLAIM CONSULTANTS PRIVATE LIMITED',
+  'RAKSHA TPA PVT. LTD.',
+  'R-CARE TPA PVT LTD',
+  'UNITED HEALTHCARE PAREKH PVT. LTD.',
+  'VIDAL HEALTH TPA PVT. LTD.',
+  'VIPUL MED CORP TPA. PVT. LTD.',
+  'VISION EMEDISOLUTIONS',
 ];
 
 const internationalTPA = [
@@ -136,13 +186,13 @@ export default function CashlessEmpanelmentPage() {
       {/* Content */}
       <div className="mx-auto w-full max-w-[1366px] px-4 py-16">
         {/* Quick stats bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-16">
           {[
             {
               count: governmentPSU.length + '+',
-              label: 'Government & PSU Partners',
+              label: 'Govt & PSU',
               icon: (
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               ),
@@ -151,9 +201,9 @@ export default function CashlessEmpanelmentPage() {
             },
             {
               count: privateCorporate.length + '+',
-              label: 'Private Corporates',
+              label: 'Private Corporate',
               icon: (
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               ),
@@ -161,27 +211,49 @@ export default function CashlessEmpanelmentPage() {
               bg: 'bg-orange-50',
             },
             {
-              count: internationalTPA.length + '+',
-              label: 'International TPAs',
+              count: insuranceCompanies.length + '+',
+              label: 'Insurance',
               icon: (
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              ),
+              color: 'text-[#2957A4]',
+              bg: 'bg-indigo-50',
+            },
+            {
+              count: tpaCompanies.length + '+',
+              label: 'TPA Partners',
+              icon: (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              ),
+              color: 'text-[#E85222]',
+              bg: 'bg-red-50',
+            },
+            {
+              count: internationalTPA.length + '+',
+              label: 'Intl TPAs',
+              icon: (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               ),
               color: 'text-[#8B0000]',
-              bg: 'bg-red-50',
+              bg: 'bg-rose-50',
             },
           ].map((stat) => (
             <div
               key={stat.label}
-              className={`${stat.bg} rounded-2xl p-6 flex items-center gap-4 border border-white shadow-sm`}
+              className={`${stat.bg} rounded-2xl p-4 flex items-center gap-3 border border-white shadow-sm`}
             >
               <div className={`${stat.color} opacity-80`}>{stat.icon}</div>
               <div>
-                <div className={`text-3xl font-bold font-heading ${stat.color}`}>
+                <div className={`text-2xl font-bold font-heading ${stat.color}`}>
                   {stat.count}
                 </div>
-                <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-xs text-gray-600 font-medium whitespace-nowrap">{stat.label}</div>
               </div>
             </div>
           ))}
@@ -205,6 +277,26 @@ export default function CashlessEmpanelmentPage() {
           borderColor="border-gray-200"
           bgGradientFrom="from-[#8B4513]"
           bgGradientTo="to-[#E85222]"
+        />
+
+        {/* Insurance Companies */}
+        <EmpanelmentSection
+          title="Insurance Companies"
+          items={insuranceCompanies}
+          accentColor="text-[#2957A4]"
+          borderColor="border-gray-200"
+          bgGradientFrom="from-[#2957A4]"
+          bgGradientTo="to-[#00B4D8]"
+        />
+
+        {/* TPA Companies */}
+        <EmpanelmentSection
+          title="TPA Companies"
+          items={tpaCompanies}
+          accentColor="text-[#E85222]"
+          borderColor="border-gray-200"
+          bgGradientFrom="from-[#E85222]"
+          bgGradientTo="to-[#FFB088]"
         />
 
         {/* International TPA */}
