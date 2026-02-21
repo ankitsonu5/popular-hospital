@@ -200,8 +200,8 @@ export default function PsychiatryPage() {
                 <Link href="/book" className="bg-[#2e1065] text-white px-8 py-3 rounded-full font-bold hover:bg-[#4c1d95] transition-colors shadow-lg">
                     Book Consultation
                 </Link>
-                <a href="tel:1800123456" className="bg-white text-[#2e1065] px-8 py-3 rounded-full font-bold border-2 border-[#2e1065] hover:bg-gray-50 transition-colors">
-                    Call 1800-123-456
+                <a href="tel:+917800001895" className="bg-white text-[#2e1065] px-8 py-3 rounded-full font-bold border-2 border-[#2e1065] hover:bg-gray-50 transition-colors">
+                    Call +91-7800001895
                 </a>
             </div>
         </div>

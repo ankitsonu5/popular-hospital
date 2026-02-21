@@ -197,8 +197,8 @@ export default function PediatricsPage() {
                 <Link href="/book" className="bg-[#0b1c43] text-white px-8 py-3 rounded-full font-bold hover:bg-[#162c6b] transition-colors shadow-lg">
                     Book Consultation
                 </Link>
-                <a href="tel:1800123456" className="bg-white text-[#0b1c43] px-8 py-3 rounded-full font-bold border-2 border-[#0b1c43] hover:bg-gray-50 transition-colors">
-                    Call 1800-123-456
+                <a href="tel:+917800001895" className="bg-white text-[#0b1c43] px-8 py-3 rounded-full font-bold border-2 border-[#0b1c43] hover:bg-gray-50 transition-colors">
+                    Call +91-7800001895
                 </a>
             </div>
         </div>

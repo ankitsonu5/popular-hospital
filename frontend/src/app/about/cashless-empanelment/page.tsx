@@ -7,8 +7,6 @@ export const metadata: Metadata = {
     'Popular Hospital is empanelled with leading Government PSUs, Private Corporates, Insurance Companies and International TPAs for cashless treatment.',
 };
 
-/* ─── Data ─── */
-
 const governmentPSU = [
   'AIRPORT AUTHORITY OF INDIA',
   'ANPARA THERMOL POWER CORPORATION',

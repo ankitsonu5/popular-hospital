@@ -204,8 +204,8 @@ export default function OphthalmologyPage() {
                 <Link href="/book" className="bg-[#0f172a] text-white px-8 py-3 rounded-full font-bold hover:bg-[#1e293b] transition-colors shadow-lg">
                     Book Consultation
                 </Link>
-                <a href="tel:1800123456" className="bg-white text-[#0f172a] px-8 py-3 rounded-full font-bold border-2 border-[#0f172a] hover:bg-gray-50 transition-colors">
-                    Call 1800-123-456
+                <a href="tel:+917800001895" className="bg-white text-[#0f172a] px-8 py-3 rounded-full font-bold border-2 border-[#0f172a] hover:bg-gray-50 transition-colors">
+                    Call +91-7800001895
                 </a>
             </div>
         </div>

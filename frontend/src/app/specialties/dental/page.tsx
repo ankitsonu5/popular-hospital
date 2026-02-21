@@ -195,8 +195,8 @@ export default function DentalPage() {
                 <Link href="/book" className="bg-white text-cyan-800 px-8 py-3.5 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-xl">
                     Book Dental Checkup
                 </Link>
-                <a href="tel:1800123456" className="bg-white/10 backdrop-blur-sm text-white px-8 py-3.5 rounded-full font-bold border border-white/20 hover:bg-white/20 transition-all">
-                    Call 1800-123-456
+                <a href="tel:+917800001895" className="bg-white/10 backdrop-blur-sm text-white px-8 py-3.5 rounded-full font-bold border border-white/20 hover:bg-white/20 transition-all">
+                    Call +91-7800001895
                 </a>
             </div>
         </div>

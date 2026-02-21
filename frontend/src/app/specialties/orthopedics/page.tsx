@@ -208,8 +208,8 @@ export default function OrthopedicsPage() {
                 <Link href="/book" className="bg-[#0f766e] text-white px-8 py-3.5 rounded-full font-bold hover:bg-[#0d5f58] transition-colors shadow-xl shadow-teal-900/20">
                     Book Consultation
                 </Link>
-                <a href="tel:1800123456" className="bg-white text-gray-900 px-8 py-3.5 rounded-full font-bold border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all">
-                    Call 1800-123-456
+                <a href="tel:+917800001895" className="bg-white text-gray-900 px-8 py-3.5 rounded-full font-bold border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all">
+                    Call +91-7800001895
                 </a>
             </div>
         </div>

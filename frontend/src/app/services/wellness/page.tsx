@@ -274,8 +274,8 @@ const WellnessPage = () => {
             <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto font-medium">See the difference in your healthcare journey with and without the membership.</p>
           </div>
 
-          <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
-            <div className="min-w-[600px] md:min-w-full rounded-[1.5rem] md:rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden bg-white mx-1">
+          <div className="w-full overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 custom-scrollbar">
+            <div className="min-w-[600px] md:min-w-0 md:w-full rounded-[1.5rem] md:rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden bg-white">
               <table className="w-full table-auto">
                 <thead className="bg-[#0b1c43] text-white">
                   <tr>
