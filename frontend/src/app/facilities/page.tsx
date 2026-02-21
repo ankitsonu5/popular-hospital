@@ -18,7 +18,7 @@ const facilities = [
       {
         title: "NICU & PICU",
         description: "Specialized Neonatal and Pediatric Intensive Care Units designed to provide the highest level of care for newborns and children with critical health conditions.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/7.jpeg"
       },
       {
         title: "Emergency & Trauma Center",
@@ -33,12 +33,12 @@ const facilities = [
       {
         title: "Modular Operation Theatres",
         description: "State-of-the-art modular OTs with HEPA filters and laminar airflow to ensure a sterile environment and minimize infection risks during complex surgeries.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/5.jpeg"
       },
       {
         title: "Robot-Assisted Surgery",
         description: "Cutting-edge robotic surgical systems for minimally invasive procedures, ensuring greater precision, smaller incisions, and faster recovery times.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/6.jpeg"
       }
     ]
   },
@@ -48,12 +48,12 @@ const facilities = [
       {
         title: "Advanced Imaging Center",
         description: "Comprehensive diagnostic services including multiple slice CT Scanners, 1.5 Tesla MRI, Digital X-Ray, and 4D Ultrasound for accurate diagnosis.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/4.jpeg"
       },
       {
         title: "24/7 Pathology Lab",
         description: "A fully automated laboratory providing a wide range of hematological, biochemical, and microbiological tests with quick turnaround times.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/3.jpeg"
       },
       {
         title: "Pharmacy",
@@ -68,7 +68,7 @@ const facilities = [
       {
         title: "In-Patient Rooms",
         description: "A range of accommodation options from General Wards to Private Suites, all designed with patient comfort, hygiene, and safety as the top priority.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/2.jpeg"
       }
     ]
   }

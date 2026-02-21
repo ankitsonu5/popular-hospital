@@ -43,14 +43,14 @@ const WellnessPage = () => {
       <section id="benefits" className="py-24 px-6 bg-slate-50">
         <div className="container mx-auto max-w-[1366px]">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2 relative">
-               <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-lg border-8 border-white">
+            <div className="w-full lg:w-1/2">
+               <div className="relative w-full aspect-[4/3] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-lg border-4 md:border-8 border-white bg-white">
                   <Image 
-                    src="/images/family-health-card.jpg"
-                    alt="Indian Family Health Card"
-                    width={800}
-                    height={600}
-                    className="object-contain bg-white"
+                    src="/images/wellness/1.jpeg"
+                    alt="Wellness Services"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                </div>
             </div>
