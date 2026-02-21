@@ -14,7 +14,7 @@ body {
   font-family: var(--font-lato), "Lato", sans-serif;
 }
 
-/* Apply Montserrat to all headings */
+/* Montserrat for headings and specific font classes */
 h1,
 h2,
 h3,
@@ -24,11 +24,15 @@ h6,
 [class*="heading"],
 [class*="title"],
 .font-heading {
-  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-family: var(--font-lato), "Lato", sans-serif;
 }
 
-/* Ensure paragraphs use Lato */
-p,
+/* Lato for general text elements */
+p {
+  @apply text-[17px] leading-relaxed;
+  font-family: var(--font-lato), "Lato", sans-serif;
+}
+
 span,
 div,
 a,
@@ -159,7 +163,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E85222; /* hospital-orange */
+  background: #e85222; /* hospital-orange */
 }
 
 /* Firefox scrollbar support */

@@ -11,8 +11,9 @@ const montserrat = Montserrat({
   display: 'swap',
   variable: '--font-montserrat',
 });
+
 const lato = Lato({
-  weight: ['300', '400', '700'],
+  weight: ['300', '400', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-lato',

@@ -79,8 +79,8 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative w-full overflow-hidden bg-gray-900 mt-16 sm:mt-[72px] md:mt-20 lg:mt-0">
-        <div className="relative w-full">
+      <section className="relative w-full h-screen overflow-hidden bg-gray-900">
+        <div className="relative w-full h-full">
           {/* Video Loading Placeholder */}
           {!isVideoLoaded && (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-900">
@@ -92,7 +92,7 @@ export default function HomePage() {
 
           <video
             ref={videoRef}
-            className={`w-full h-[650px] md:h-auto object-cover md:object-contain block transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full h-full object-cover block transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
             autoPlay
             muted
             loop
@@ -108,12 +108,12 @@ export default function HomePage() {
             className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#0b1c43]/90 via-[#0b1c43]/50 to-transparent"
             aria-hidden
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-end md:justify-start pb-24 md:pb-0 pt-0 md:pt-28 lg:pt-64 xl:pt-[22rem] 2xl:pt-[22rem] min-[1920px]:pt-[42rem] z-20 px-4 text-center">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-2 drop-shadow-lg tracking-tight leading-tight">
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-24 md:pb-44 lg:pb-48 z-20 px-4 text-center">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-2 md:mb-6 drop-shadow-lg tracking-tight leading-tight">
               आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
             </h1>
 
-            <div className="flex flex-row flex-wrap justify-center gap-2 sm:gap-4 w-full sm:w-auto mt-2 sm:mt-3">
+            <div className="flex flex-row flex-wrap justify-center gap-2 sm:gap-4 w-full sm:w-auto mt-2 sm:mt-3 md:mt-4">
               <Link
                 href="/book"
                 className="flex items-center justify-center gap-2 px-6 py-3 md:px-6 md:py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 bg-[#E85222] hover:bg-[#d1451a] text-white rounded-full font-bold text-sm md:text-base lg:text-base 2xl:text-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group flex-1 sm:flex-none whitespace-nowrap"
@@ -170,7 +170,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative mt-6 md:-mt-32 lg:-mt-52 z-30 pb-12 md:pb-10">
+      <section className="relative mt-12 sm:mt-16 md:-mt-24 lg:-mt-40 z-30 pb-0 md:pb-10">
         <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-6xl 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
@@ -189,10 +189,8 @@ export default function HomePage() {
         </div>
       </section>
 
-
-
       {/* About Section */}
-      <section className="mt-20 pt-0 pb-16 sm:pt-0 sm:pb-20 md:py-20 bg-white" aria-labelledby="about-us">
+      <section className="mt-12 md:mt-20 pt-0 pb-16 sm:pt-0 sm:pb-20 md:py-20 bg-white" aria-labelledby="about-us">
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-stretch">
             {/* Left Side - Text Content */}
@@ -204,7 +202,7 @@ export default function HomePage() {
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 font-heading" style={{ color: '#0b1c43' }}>
                   We Provide Finest Patient's Care & Amenities
                 </h2>
-                <p className="text-gray-600 mb-6 text-base leading-relaxed">
+                <p className="text-gray-600 mb-6 text-[17px] leading-relaxed">
                   POPULAR HOSPITAL(a Unit of POPULAR MEDICARE LTD), one of Varanasi’s best Super Speciality Institute that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
                 </p>
                 {/* Feature List */}
@@ -233,13 +231,13 @@ export default function HomePage() {
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
-                      <span className="text-gray-700 text-sm leading-relaxed">
+                      <span className="text-gray-700 text-base leading-relaxed">
                         {feature}
                       </span>
                     </div>
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 text-base leading-relaxed">
+                <p className="text-gray-600 mb-6 text-[17px] leading-relaxed">
                   POPULAR HOSPITAL is a 450 bedded Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
                 </p>
                 {/* Button */}
@@ -355,7 +353,7 @@ export default function HomePage() {
                     <h3 className="text-2xl font-bold text-[#1d1d1f] mb-3 font-heading leading-tight">
                       {service.title}
                     </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed font-medium line-clamp-3">
+                    <p className="text-gray-500 text-base leading-relaxed font-medium line-clamp-3">
                       {service.desc}
                     </p>
                   </div>
@@ -720,7 +718,7 @@ export default function HomePage() {
                   </div>
 
                   <h3 className="text-base font-bold text-gray-900 mb-2 font-heading group-hover:text-[#5b21b6] transition-colors">{feature.title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed">{feature.desc}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
                 </div>
               ))}
             </div>

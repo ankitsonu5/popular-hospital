@@ -30,7 +30,7 @@ export function Footer() {
               />
             </Link>
             
-            <div className="space-y-6 text-base text-gray-200">
+            <div className="space-y-6 text-[17px] text-gray-200">
               <div>
                 <h4 className="text-lg font-semibold text-white mb-2">Locations:</h4>
                 <p className="leading-relaxed">
@@ -62,7 +62,7 @@ export function Footer() {
           {/* Column 2: Community */}
           <div>
             <h3 className="text-xl font-bold font-heading mb-6">Community</h3>
-            <ul className="space-y-3 text-base text-gray-200">
+            <ul className="space-y-3 text-[17px] text-gray-200">
               <li><Link href="/doctors" className="hover:text-white transition-colors">Doctors</Link></li>
               <li><Link href="/stories" className="hover:text-white transition-colors">Patient Stories</Link></li>
               <li><Link href="/faqs" className="hover:text-white transition-colors">FAQs</Link></li>
@@ -74,7 +74,7 @@ export function Footer() {
           {/* Column 3: About */}
           <div>
             <h3 className="text-xl font-bold font-heading mb-6">Quick Links</h3>
-            <ul className="space-y-3 text-base text-gray-200">
+            <ul className="space-y-3 text-[17px] text-gray-200">
               <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
               <li><Link href="/payment-policy" className="hover:text-white transition-colors">Payment Policy</Link></li>
@@ -87,7 +87,7 @@ export function Footer() {
           {/* Column 4: Support */}
           <div>
             <h3 className="text-xl font-bold font-heading mb-6">Support</h3>
-            <ul className="space-y-3 text-base text-gray-200">
+            <ul className="space-y-3 text-[17px] text-gray-200">
               <li><Link href="/visitor-info" className="hover:text-white transition-colors">Visitor Information</Link></li>
               <li><Link href="/#emergency-services" className="hover:text-white transition-colors">Emergency Care</Link></li>
               <li><Link href="/donate" className="hover:text-white transition-colors">Donate</Link></li>

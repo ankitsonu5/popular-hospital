@@ -220,7 +220,7 @@ const WellnessPage = () => {
             <p className="text-gray-300 text-lg max-w-2xl mx-auto font-medium">Enjoy exclusive perks and savings with your Health Fit Card across all Popular Hospital services.</p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               { title: "15% Discount on OPD", icon: "🎟️" },
               { title: "Coverage of 1 Year", icon: "📅" },
@@ -231,9 +231,9 @@ const WellnessPage = () => {
               { title: "Special Hospital Rates", icon: "💎" },
               { title: "Women's Health Focus", icon: "👩" }
             ].map((benefit, idx) => (
-              <div key={idx} className="bg-white/10 backdrop-blur-md p-8 rounded-[2rem] border border-white/10 hover:bg-white hover:text-[#0b1c43] transition-all duration-500 group flex flex-col items-center text-center">
-                 <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-500">{benefit.icon}</div>
-                 <h4 className="text-lg font-black leading-tight group-hover:text-[#0b1c43] text-white transition-colors">{benefit.title}</h4>
+              <div key={idx} className="bg-white/10 backdrop-blur-md p-5 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border border-white/10 hover:bg-white hover:text-[#0b1c43] transition-all duration-500 group flex flex-col items-center text-center">
+                 <div className="text-3xl md:text-5xl mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500">{benefit.icon}</div>
+                 <h4 className="text-sm md:text-lg font-black leading-tight group-hover:text-[#0b1c43] text-white transition-colors">{benefit.title}</h4>
               </div>
             ))}
           </div>
@@ -267,39 +267,42 @@ const WellnessPage = () => {
 
 
       {/* Comparison Table */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-4 sm:px-6">
         <div className="container mx-auto max-w-[1366px]">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase">Why Health Fit Card?</h2>
-            <p className="text-gray-500 text-lg max-w-2xl mx-auto font-medium">See the difference in your healthcare journey with and without the membership.</p>
+          <div className="text-center mb-16 px-4">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase">Why Health Fit Card?</h2>
+            <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto font-medium">See the difference in your healthcare journey with and without the membership.</p>
           </div>
 
-          <div className="overflow-hidden rounded-[1.5rem] md:rounded-[3rem] shadow-2xl border border-slate-100 -mx-4 md:mx-0">
-            <table className="w-full table-fixed md:table-auto">
-              <thead className="bg-[#0b1c43] text-white">
-                <tr>
-                  <th className="px-2 md:px-8 py-4 md:py-6 text-left text-[11px] md:text-xl font-black font-heading leading-tight w-[35%] md:w-auto">Healthcare Factor</th>
-                  <th className="px-2 md:px-8 py-4 md:py-6 text-center text-[11px] md:text-xl font-black font-heading border-l border-white/10 w-[30%] md:w-auto">Without Card</th>
-                  <th className="px-2 md:px-8 py-4 md:py-6 text-center text-[11px] md:text-xl font-black font-heading bg-[#E85222] border-l border-white/10 w-[35%] md:w-auto">With Health Fit Card</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 bg-white">
-                {[
-                  { factor: "Cost of Services", without: "High / Standard Rates", with: "Massive Discounts" },
-                  { factor: "Doctor Consultation", without: "Wait Times Apply", with: "Priority Access" },
-                  { factor: "Diagnostic Tests", without: "Full Charges", with: "Exclusive Member Rates" },
-                  { factor: "Family Tracking", without: "Complex Paperwork", with: "Digital Management" },
-                  { factor: "Emergency Support", without: "Standard Protocol", with: "24/7 Dedicated Helpline" }
-                ].map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50 transition-colors text-[10px] md:text-base">
-                    <td className="px-2 md:px-8 py-3 md:py-6 font-bold text-gray-700 leading-tight">{row.factor}</td>
-                    <td className="px-2 md:px-8 py-3 md:py-6 text-center text-gray-500 font-medium border-l border-slate-50 leading-tight">{row.without}</td>
-                    <td className="px-2 md:px-8 py-3 md:py-6 text-center text-[#0b1c43] font-black bg-orange-50/30 border-l border-orange-100 leading-tight">{row.with}</td>
+          <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
+            <div className="min-w-[600px] md:min-w-full rounded-[1.5rem] md:rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden bg-white mx-1">
+              <table className="w-full table-auto">
+                <thead className="bg-[#0b1c43] text-white">
+                  <tr>
+                    <th className="px-4 md:px-8 py-4 md:py-6 text-left text-[13px] md:text-xl font-black font-heading leading-tight">Healthcare Factor</th>
+                    <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading border-l border-white/10">Without Card</th>
+                    <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading bg-[#E85222] border-l border-white/10">With Health Fit Card</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[
+                    { factor: "Cost of Services", without: "High / Standard Rates", with: "Massive Discounts" },
+                    { factor: "Doctor Consultation", without: "Wait Times Apply", with: "Priority Access" },
+                    { factor: "Diagnostic Tests", without: "Full Charges", with: "Exclusive Member Rates" },
+                    { factor: "Family Tracking", without: "Complex Paperwork", with: "Digital Management" },
+                    { factor: "Emergency Support", without: "Standard Protocol", with: "24/7 Dedicated Helpline" }
+                  ].map((row, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50 transition-colors text-[12px] md:text-base">
+                      <td className="px-4 md:px-8 py-3 md:py-6 font-bold text-gray-700 leading-tight">{row.factor}</td>
+                      <td className="px-4 md:px-8 py-3 md:py-6 text-center text-gray-500 font-medium border-l border-slate-50 leading-tight">{row.without}</td>
+                      <td className="px-4 md:px-8 py-3 md:py-6 text-center text-[#0b1c43] font-black bg-orange-50/30 border-l border-orange-100 leading-tight">{row.with}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
+          <p className="text-center text-gray-400 text-[10px] md:hidden mt-2">← Swipe to see full comparison →</p>
         </div>
       </section>
 
