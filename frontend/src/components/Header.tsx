@@ -50,10 +50,9 @@ const menuItems: MenuItem[] = [
   {
     label: 'Services We Offer',
     dropdown: [
-      { label: 'Comprehensive Healthcare Services', href: '/services/healthcare' },
-      { label: 'Medical Support Services', href: '/services/support' },
-      { label: 'Home Care & Rehabilitation', href: '/services/home-care' },
       { label: 'Wellness Services', href: '/services/wellness' },
+      { label: 'Home Care & Rehabilitation', href: '/services/home-care' },
+      { label: "Women's Health Special", href: '/services/womens-health-special' },
     ],
   },
   {
@@ -144,7 +143,7 @@ export function Header() {
     setActiveDropdown(null);
   };
 
-  const getIcon = (label: string) => {
+  function getIcon(label: string) {
     const iconClass = 'w-5 h-5 text-gray-600 flex-shrink-0';
     if (label.includes('Story') || label.includes('Vision')) {
       return (
@@ -208,51 +207,49 @@ export function Header() {
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
       </svg>
     );
-  };
+  }
 
   return (
     <>
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm xl:shadow-none ${
-        scrolled || !isTransparentPage ? 'xl:bg-white xl:shadow-sm' : 'xl:bg-transparent'
-      }`}
-    >
-      {/* Desktop Gradient Overlay - Show from lg */}
-      <div 
-        className={`absolute top-0 left-0 right-0 h-48 pointer-events-none transition-opacity duration-300 hidden xl:block ${
-          scrolled || !isTransparentPage ? 'opacity-0' : 'opacity-100'
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm xl:shadow-none ${
+          scrolled || !isTransparentPage ? 'xl:bg-white xl:shadow-sm' : 'xl:bg-transparent'
         }`}
-        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 80%, rgba(0,0,0,0) 100%)' }}
-      />
-      
-      <div className="relative mx-auto w-full max-w-[1366px] px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
-        <div className="flex h-16 sm:h-18 md:h-20 items-center justify-between gap-2 sm:gap-4">
-          {/* Logo */}
-          <Link 
-            href="/" 
-            className={`flex items-center flex-shrink-0 group transition-all duration-300 ${
-              scrolled || !isTransparentPage ? '' : 'bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 shadow-sm'
-            }`}
-          >
-            <Image
-              src="/logo-horizontal.png"
-              alt="Popular Hospital"
-              width={200}
-              height={60}
-              className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-opacity group-hover:opacity-90"
-              priority
-            />
-          </Link>
+      >
+        <div 
+          className={`absolute top-0 left-0 right-0 h-48 pointer-events-none transition-opacity duration-300 hidden xl:block ${
+            scrolled || !isTransparentPage ? 'opacity-0' : 'opacity-100'
+          }`}
+          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 80%, rgba(0,0,0,0) 100%)' }}
+        />
+        
+        <div className="relative mx-auto w-full max-w-[1366px] px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12">
+          <div className="flex h-16 sm:h-18 md:h-20 items-center justify-between gap-2 sm:gap-4">
+            <Link 
+              href="/" 
+              className={`flex items-center flex-shrink-0 group transition-all duration-300 ${
+                scrolled || !isTransparentPage ? '' : 'bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 shadow-sm'
+              }`}
+            >
+              <Image
+                src="/logo-horizontal.png"
+                alt="Popular Hospital"
+                width={200}
+                height={60}
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-opacity group-hover:opacity-90"
+                priority
+                sizes="(max-width: 768px) 150px, 200px"
+              />
+            </Link>
 
-          {/* Desktop Navigation - Show from 1025px */}
-          <nav className="hidden xl:flex xl:items-center xl:justify-center xl:flex-1 xl:gap-0.5" aria-label="Main navigation">
-            {menuItems.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => item.dropdown && handleMouseEnter(item.label)}
-                onMouseLeave={handleMouseLeave}
-              >
+            <nav className="hidden xl:flex xl:items-center xl:justify-center xl:flex-1 xl:gap-0.5" aria-label="Main navigation">
+              {menuItems.map((item) => (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => item.dropdown && handleMouseEnter(item.label)}
+                  onMouseLeave={handleMouseLeave}
+                >
                 {item.dropdown ? (
                   <>
                     <button

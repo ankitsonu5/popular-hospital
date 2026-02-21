@@ -171,7 +171,7 @@ export default function HomePage() {
       </section>
 
       <section className="relative mt-6 md:-mt-32 lg:-mt-52 z-30 pb-12 md:pb-10">
-        <div className="mx-auto max-w-6xl px-2 sm:px-4 md:px-6 lg:px-8 xl:max-w-7xl 2xl:max-w-[1600px]">
+        <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-6xl 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
               href="/visitor-info"
@@ -284,6 +284,8 @@ export default function HomePage() {
                   height={800}
                   className="w-full h-full object-cover"
                   style={{ objectFit: "cover", height: "100%" }}
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
             </div>
@@ -417,10 +419,12 @@ export default function HomePage() {
           {/* Mobile Layout (< lg) */}
           <div className="lg:hidden flex flex-col items-center gap-12">
             <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border-[8px] border-white shadow-xl overflow-hidden shrink-0">
-              <img
+              <Image
                 src="/images/model-of-care-center.jpg"
                 alt="Model of Care"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 280px, 320px"
               />
             </div>
 
@@ -473,10 +477,12 @@ export default function HomePage() {
             {/* Center Image Container */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
               <div className="relative w-[400px] h-[400px] rounded-full overflow-hidden border-[12px] border-white shadow-2xl">
-                <img
+                <Image
                   src="/images/model-of-care-center.jpg"
                   alt="Surgery Team"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="400px"
                 />
               </div>
             </div>
@@ -616,6 +622,7 @@ export default function HomePage() {
                   fill
                   className="object-cover"
                   priority
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                 />
 
                 {/* Gradient Overlays */}
@@ -1107,15 +1114,24 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Background Image with Dark Gradient Overlay */}
-                <div className="absolute inset-0 z-10">
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/50" />
+                {/* Background Image with Focused Gradient Overlay */}
+                <div className="absolute inset-0 z-10 transition-opacity duration-500">
+                  {/* Overall light tint to reduce harshness */}
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
+                  
+                  {/* Subtle top-down gradient for text protection */}
+                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/50 to-transparent" />
+                  
+                  {/* Subtle bottom-up gradient for button protection */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
                 </div>
 
-                <img
+                <Image
                   src={location.image}
                   alt={location.name}
+                  fill
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 768px) 85vw, (max-width: 1280px) 380px, 400px"
                 />
               </div>
             ))}
@@ -1124,7 +1140,7 @@ export default function HomePage() {
       </section>
 
       {/* 24x7 Services Section */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden" aria-labelledby="24-7-services">
+      <section id="emergency-services" className="py-24 bg-slate-50 relative overflow-hidden" aria-labelledby="24-7-services">
         {/* Subtle Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-y-1/2 mix-blend-multiply"></div>
@@ -1228,9 +1244,12 @@ export default function HomePage() {
                   {service.desc}
                 </p>
 
-                <button className="mt-auto px-6 py-2 border-2 border-[#E85222] text-[#E85222] text-sm font-bold rounded-full hover:bg-[#E85222] hover:text-white transition-all duration-300 uppercase tracking-wide mx-auto">
+                <Link 
+                  href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
+                  className="mt-auto px-6 py-2 border-2 border-[#E85222] text-[#E85222] text-sm font-bold rounded-full hover:bg-[#E85222] hover:text-white transition-all duration-300 uppercase tracking-wide mx-auto"
+                >
                   Read more
-                </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -1334,6 +1353,7 @@ export default function HomePage() {
                   alt="Medical Network"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               <div className="p-6">
@@ -1374,6 +1394,7 @@ export default function HomePage() {
                   alt="Regular Checkups"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               <div className="p-6">
@@ -1497,52 +1518,42 @@ export default function HomePage() {
           <div className="space-y-3 sm:space-y-4">
             {[
               {
-                question:
-                  "Why is Popular Hospital recognised as one of the leading multispeciality hospital groups in India?",
-                answer:
-                  "Popular Hospital has earned recognition as one of India's leading multispeciality hospital groups through our commitment to excellence in healthcare delivery, state-of-the-art medical infrastructure, world-class technology, and a team of highly skilled medical professionals. We consistently maintain high standards of patient care, clinical outcomes, and medical innovation across all our specialties.",
+                question: "What medical specialties are available at Popular Hospital?",
+                answer: "Popular Hospital is a multi-specialty facility offering advanced treatment in Cardiology, Neurology, Orthopedics, Nephrology, Urology, Gastroenterology, and General Surgery."
               },
               {
-                question:
-                  "Which regions across India does Popular Hospital serve?",
-                answer:
-                  "Popular Hospital serves patients across multiple regions in India, with a network of hospitals strategically located in key cities and regions. Our presence spans major metropolitan areas and tier-2 cities, ensuring accessible, quality healthcare services to communities nationwide. Please visit our locations page to find the nearest Popular Hospital facility to you.",
+                question: "Does the hospital provide 24/7 emergency services?",
+                answer: "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895)."
               },
               {
-                question:
-                  "What distinguishes Popular Hospital as a top-rated hospital group in India?",
-                answer:
-                  "Popular Hospital stands out as a top-rated hospital group due to our comprehensive multispeciality services, advanced medical technology, internationally trained medical professionals, patient-centric approach, and consistent track record of successful clinical outcomes. We are also recognized for our commitment to medical research, innovation, and maintaining the highest standards of healthcare quality and safety.",
+                question: "How can I schedule an appointment with a specialist?",
+                answer: "Appointments can be booked via the hospital’s official website or by calling our helpline. Physical walk-ins at the reception are also available for OPD consultations."
               },
               {
-                question:
-                  "How does Popular Hospital qualify as a premier multispeciality healthcare network in India?",
-                answer:
-                  "Popular Hospital qualifies as a premier multispeciality healthcare network through our extensive range of medical specialties, cutting-edge diagnostic and treatment facilities, comprehensive patient care services, and our ability to handle complex medical cases across various disciplines. Our integrated approach to healthcare, combined with our experienced medical teams and modern infrastructure, positions us as a leading healthcare provider in India.",
+                question: "Is cashless treatment available for insured patients?",
+                answer: "Yes, the hospital has tie-ups with major Third Party Administrators (TPAs) and private insurance companies, providing cashless hospitalization for eligible policyholders."
               },
               {
-                question:
-                  "What multispeciality healthcare services are offered at Popular Hospital in India?",
-                answer:
-                  "Popular Hospital offers a comprehensive range of multispeciality healthcare services including cardiology, oncology, neurology, orthopedics, gastroenterology, urology, nephrology, pulmonology, endocrinology, gynecology, pediatrics, and many more. We also provide advanced surgical procedures, critical care services, emergency medicine, diagnostic imaging, laboratory services, and preventive healthcare programs.",
+                question: "Does the hospital support the Ayushman Bharat Yojana (PM-JAY)?",
+                answer: "Yes, Popular Hospital is an empanelled provider for the Ayushman Bharat scheme, offering free treatment to eligible cardholders as per government norms."
               },
               {
-                question:
-                  "How can I book an appointment at Popular Hospital in India?",
-                answer:
-                  "You can book an appointment at Popular Hospital through multiple convenient methods: online through our website's appointment booking portal, by calling our patient care helpline, through our mobile app, or by visiting any of our hospital locations in person. Our online booking system allows you to select your preferred doctor, specialty, date, and time slot for your consultation.",
+                question: "What diagnostic facilities are available on-site?",
+                answer: "The hospital features a comprehensive diagnostic wing equipped with MRI, CT Scan, X-ray, Ultrasound, and a fully automated Pathology laboratory for quick and accurate results."
               },
               {
-                question:
-                  "Can I consult a specialist at Popular Hospital without a referral?",
-                answer:
-                  "Yes, you can directly consult a specialist at Popular Hospital without needing a referral. We offer walk-in consultations as well as scheduled appointments with specialists across all departments. Our patient care team can help guide you to the right specialist based on your health concerns.",
+                question: "Are there specialized critical care units?",
+                answer: "Yes, the facility includes state-of-the-art Intensive Care Units (ICU), Neonatal ICUs (NICU), and Pediatric ICUs (PICU) for patients requiring constant monitoring."
+              },
+              {
+                question: "Where is Popular Hospital located in Varanasi?",
+                answer: "The hospital is located at Kakarmatta, near DLW Ground, Varanasi, Uttar Pradesh. It is well-connected and accessible from all major parts of the city."
               },
             ].map((faq, index) => (
               <div
                 key={index}
                 className={`bg-white rounded-xl border transition-all duration-300 ${openFaqIndex === index
-                  ? "border-[#2a7a8c] shadow-md"
+                  ? "border-[#E85222]/40 shadow-md"
                   : "border-[#d0e3f0] shadow-sm hover:shadow-md"
                   }`}
               >
@@ -1553,12 +1564,12 @@ export default function HomePage() {
                   className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4 transition-colors"
                   aria-expanded={openFaqIndex === index}
                 >
-                  <span className="text-sm sm:text-base font-medium text-[#1a3a5c] leading-snug">
+                  <span className={`text-sm sm:text-base font-bold transition-colors ${openFaqIndex === index ? 'text-[#E85222]' : 'text-[#1a3a5c]'}`}>
                     {faq.question}
                   </span>
                   <div
                     className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index
-                      ? "border-[#2a7a8c] bg-[#2a7a8c] rotate-45"
+                      ? "border-[#E85222] bg-[#E85222] rotate-45"
                       : "border-[#2a7a8c] bg-white"
                       }`}
                   >
@@ -1594,6 +1605,19 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* View All FAQs Link */}
+          <div className="mt-10 text-center">
+            <Link 
+              href="/faqs" 
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#1a3a5c] text-white rounded-full font-bold hover:bg-[#2a7a8c] transition-all hover:scale-105 shadow-lg shadow-slate-200"
+            >
+              <span>View All Frequently Asked Questions</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { LocationGallery } from "@/components/LocationGallery";
 
@@ -332,10 +333,12 @@ export default async function LocationPage({
                 href={`/locations/${loc.slug}`}
                 className="group relative rounded-3xl overflow-hidden h-[300px] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
-                <img
+                <Image
                   src={loc.image}
                   alt={loc.name}
+                  fill
                   className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/95 via-[#0b1c43]/40 to-transparent" />
                 <div className="relative z-10 h-full flex flex-col justify-end p-6">
