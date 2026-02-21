@@ -188,8 +188,8 @@ export default function PlasticSurgeryPage() {
                        <Link href="/book" className="bg-white text-pink-600 hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg">
                            Book Appointment
                        </Link>
-                       <a href="tel:18001234567" className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full font-bold text-lg transition-all">
-                           Call 1800-123-4567
+                       <a href="tel:+917800001895" className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full font-bold text-lg transition-all">
+                           Call +91-7800001895
                        </a>
                    </div>
               </div>

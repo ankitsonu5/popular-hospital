@@ -1911,10 +1911,10 @@ export default function HomePage() {
             Need to talk to us? Call our helpline 24/7
           </p>
           <a
-            href="tel:18001234567"
+            href="tel:+917800001895"
             className="text-2xl font-bold text-[#2957A4] underline hover:no-underline"
           >
-            1800-123-4567
+            +91-7800001895
           </a>
         </div>
       </section>

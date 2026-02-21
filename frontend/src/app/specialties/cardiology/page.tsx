@@ -436,10 +436,10 @@ export default function CardiologyPage() {
             Need to talk to us? Call our Cardiology helpline 24/7
           </p>
           <a
-            href="tel:18001234567"
+            href="tel:+917800001895"
             className="text-2xl font-bold text-[#E85222] underline hover:no-underline transition-colors"
           >
-            1800-123-4567
+            +91-7800001895
           </a>
         </div>
       </section>

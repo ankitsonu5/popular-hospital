@@ -81,6 +81,7 @@ export function Footer() {
               <li><Link href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link></li>
               <li><Link href="/services/wellness" className="hover:text-white transition-colors">Wellness Services</Link></li>
               <li><Link href="/updates" className="hover:text-white transition-colors">Updates</Link></li>
+              <li><Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link></li>
             </ul>
           </div>
 

@@ -198,8 +198,8 @@ export default function GastroenterologyPage() {
                        <Link href="/book" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg shadow-emerald-900/20">
                            Book an Appointment
                        </Link>
-                       <a href="tel:18001234567" className="bg-transparent border-2 border-emerald-500/50 text-white hover:bg-emerald-900/30 px-8 py-4 rounded-full font-bold text-lg transition-all">
-                           Call 1800-123-4567
+                       <a href="tel:+917800001895" className="bg-transparent border-2 border-emerald-500/50 text-white hover:bg-emerald-900/30 px-8 py-4 rounded-full font-bold text-lg transition-all">
+                           Call +91-7800001895
                        </a>
                    </div>
               </div>

@@ -69,11 +69,6 @@ const facilities = [
         title: "In-Patient Rooms",
         description: "A range of accommodation options from General Wards to Private Suites, all designed with patient comfort, hygiene, and safety as the top priority.",
         image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
-      },
-      {
-        title: "Cafeteria",
-        description: "Hygienic and nutritious food options tailored to patient diet plans, also serving healthy meals for attendants and visitors.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
       }
     ]
   }
@@ -158,7 +153,7 @@ export default function FacilitiesPage() {
                      Our emergency facilities are open 24/7. Contact us for ambulance services or urgent medical care.
                  </p>
                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                     <a href="tel:18001234567" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E85222] text-white rounded-full font-semibold hover:bg-[#d1451a] transition-colors shadow-lg">
+                     <a href="tel:+917800001895" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E85222] text-white rounded-full font-semibold hover:bg-[#d1451a] transition-colors shadow-lg">
                          Call Emergency
                      </a>
                      <a href="/book" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-[#0b1c43] rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">

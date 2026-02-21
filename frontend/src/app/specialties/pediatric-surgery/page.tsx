@@ -181,7 +181,7 @@ export default function PediatricSurgeryPage() {
                    <Link href="/book" className="bg-yellow-400 hover:bg-yellow-500 text-[#0b1c43] px-10 py-4 rounded-full font-bold text-lg transition-all shadow-xl shadow-yellow-400/20 transform hover:-translate-y-1">
                        Book an Appointment
                    </Link>
-                   <a href="tel:18001234567" className="bg-white border-2 border-[#0b1c43] text-[#0b1c43] px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-all">
+                   <a href="tel:+917800001895" className="bg-white border-2 border-[#0b1c43] text-[#0b1c43] px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-all">
                        Call for Advice
                    </a>
                </div>

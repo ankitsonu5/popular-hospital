@@ -51,7 +51,6 @@ const menuItems: MenuItem[] = [
     label: 'Services We Offer',
     dropdown: [
       { label: 'Wellness Services', href: '/services/wellness' },
-      { label: 'Home Care & Rehabilitation', href: '/services/home-care' },
       { label: "Women's Health Special", href: '/services/womens-health-special' },
     ],
   },

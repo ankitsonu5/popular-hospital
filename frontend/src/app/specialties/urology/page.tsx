@@ -229,8 +229,8 @@ export default function UrologyPage() {
                    Don't let urinary problems affect your quality of life. Our expert urologists are here to help you.
                </p>
                <div className="flex justify-center gap-4">
-                   <a href="tel:18001234567" className="bg-white text-[#0b1c43] px-8 py-3.5 rounded-full font-bold hover:bg-gray-100 transition-colors">
-                       Call 1800-123-4567
+                   <a href="tel:+917800001895" className="bg-white text-[#0b1c43] px-8 py-3.5 rounded-full font-bold hover:bg-gray-100 transition-colors">
+                       Call +91-7800001895
                    </a>
                    <Link href="/book" className="bg-transparent border border-white text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/10 transition-colors">
                        Book Online
