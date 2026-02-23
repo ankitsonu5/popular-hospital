@@ -12,18 +12,6 @@ const leaders = [
     role: "Managing Director",
     image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=1000&auto=format&fit=crop",
     bio: "Dr. Kiran Kaushik brings clinical excellence and strategic leadership, focusing on advancing healthcare standards and academic growth."
-  },
-  {
-    name: "Dr. Robert Chen",
-    role: "Medical Director",
-    image: "/images/leadership/dr-ak-kaushik.jpg",
-    bio: "Renowned for his clinical acumen, Dr. Chen oversees the medical standards and quality assurance protocols, ensuring every patient receives the best care."
-  },
-  {
-    name: "Mr. David Smith",
-    role: "Chief Executive Officer (CEO)",
-    image: "/images/leadership/dr-ak-kaushik.jpg",
-    bio: "With a strong background in hospital administration, Mr. Smith focuses on innovation, growth, and building a compassionate organizational culture."
   }
 ];
 
