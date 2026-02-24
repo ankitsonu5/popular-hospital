@@ -190,101 +190,141 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="mt-12 md:mt-20 pt-0 pb-16 sm:pt-0 sm:pb-20 md:py-20 bg-white" aria-labelledby="about-us">
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-stretch">
+      <section className="relative mt-12 md:mt-20 py-16 sm:py-24 bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] overflow-hidden" aria-labelledby="about-us">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-hospital-teal/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#E85222]/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+
+        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Left Side - Text Content */}
-            <div className="flex flex-col justify-between min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
+            <div className="flex flex-col justify-center space-y-8">
               <div>
-                <span className="text-sm font-semibold uppercase tracking-wide text-hospital-teal mb-2 block">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-hospital-teal/10 border border-hospital-teal/20 text-hospital-teal text-sm font-bold uppercase tracking-widest mb-6 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-hospital-teal animate-pulse"></span>
                   About Popular Hospital
-                </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 font-heading" style={{ color: '#0b1c43' }}>
-                  We Provide Finest Patient's Care & Amenities
-                </h2>
-                <p className="text-gray-600 mb-6 text-[17px] leading-relaxed">
-                  POPULAR HOSPITAL(a Unit of POPULAR MEDICARE LTD), one of Varanasi’s best Super Speciality Institute that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
-                </p>
-                {/* Feature List */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[
-                    "Seamless Care",
-                    "Warm and Welcoming Environment",
-                    "Comprehensive Care",
-                    "Expert Doctors",
-                    "Patient-Centered Care",
-                    "Personalized Approach",
-                    "Cutting-Edge Technology",
-                    "Positive Reviews",
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-2">
-                      <svg
-                        className="w-5 h-5 text-hospital-teal flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span className="text-gray-700 text-base leading-relaxed">
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
                 </div>
-                <p className="text-gray-600 mb-6 text-[17px] leading-relaxed">
-                  POPULAR HOSPITAL is a 450 bedded Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
+                
+                <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black font-heading leading-tight tracking-tight text-[#0b1c43] mb-6 drop-shadow-sm">
+                  We Provide <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#1e3a8a]">Finest Patient's Care</span> & Amenities
+                </h2>
+                
+                <p className="text-gray-600 text-[17px] sm:text-[19px] leading-relaxed font-medium">
+                  <span className="text-[#0b1c43] font-bold">POPULAR HOSPITAL</span> (a Unit of POPULAR MEDICARE LTD), one of Varanasi’s best Super Speciality Institute that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
                 </p>
-                {/* Button */}
+              </div>
+
+              {/* Feature List Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  "Seamless Care",
+                  "Warm & Welcoming",
+                  "Comprehensive Care",
+                  "Expert Doctors",
+                  "Patient-Centered",
+                  "Personalized Approach",
+                  "Cutting-Edge Tech",
+                  "Positive Reviews",
+                ].map((feature, idx) => (
+                  <div key={idx} className="group flex items-center gap-4 p-3.5 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md hover:border-hospital-teal/30 transition-all duration-300 hover:-translate-y-1">
+                    <div className="w-10 h-10 rounded-xl bg-hospital-teal/10 text-hospital-teal flex items-center justify-center group-hover:bg-hospital-teal group-hover:text-white transition-colors duration-300 shadow-inner">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-800 font-bold text-[15px] tracking-wide">
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="relative">
+                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#E85222] to-hospital-teal rounded-full"></div>
+                <p className="text-gray-600 text-[16px] leading-relaxed pl-6 italic bg-white/60 py-4 pr-4 rounded-xl shadow-sm border border-gray-50">
+                  A 450-bedded Super Speciality Hospital in Varanasi providing comprehensive Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years under one roof.
+                </p>
+              </div>
+
+              {/* Action Area */}
+              <div className="flex flex-wrap items-center gap-6 pt-4">
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-3 px-6 py-3 text-white rounded-full font-medium transition-colors font-heading"
-                  style={{ backgroundColor: "#E85222" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#d1451a";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#E85222";
-                  }}
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#E85222] to-[#d1451a] text-white rounded-full font-bold text-[17px] overflow-hidden transition-all shadow-[0_8px_30px_rgb(232,82,34,0.3)] hover:shadow-[0_8px_30px_rgb(232,82,34,0.5)] hover:scale-105"
                 >
-                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
-                  <span>More About Us</span>
+                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                  <span className="relative flex items-center gap-3">
+                    Discover More About Us
+                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-[#E85222] transition-colors shadow-sm">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </span>
                 </Link>
+                
+                {/* Contact Info */}
+                <div className="flex items-center gap-4 bg-white px-6 py-3 rounded-full shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                   <div className="w-10 h-10 rounded-full bg-hospital-teal/10 flex items-center justify-center text-hospital-teal">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                   </div>
+                   <div>
+                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">24/7 Helpline</p>
+                      <p className="text-[17px] font-black text-[#0b1c43]">+91-7800001895</p>
+                   </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Side - Image */}
-            <div className="relative flex items-stretch">
-              <div className="relative rounded-2xl overflow-hidden w-full h-full min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] flex items-center">
-                <Image
-                  src="/about-section-image.png"
-                  alt="Popular Hospital - Expert Care"
-                  width={600}
-                  height={800}
-                  className="w-full h-full object-cover"
-                  style={{ objectFit: "cover", height: "100%" }}
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+            {/* Right Side - Image with Floating Elements */}
+            <div className="relative mt-16 lg:mt-0 lg:ml-12">
+              <div className="relative group">
+                {/* Main Image Frame */}
+                <div className="absolute -inset-4 bg-gradient-to-tr from-hospital-teal/30 to-[#E85222]/30 rounded-[3rem] blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-60"></div>
+                
+                <div className="relative rounded-[2.5rem] overflow-hidden w-full aspect-[4/5] shadow-2xl border-[8px] border-white group-hover:-translate-y-2 transition-transform duration-500 bg-gray-100">
+                  <Image
+                    src="/about-section-image.png"
+                    alt="Popular Hospital - Expert Care"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  
+                  {/* Subtle Light Reflection Inner Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+                  
+                  {/* Inner Overlay Gradient for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                {/* Floating Stats Badge 1 */}
+                <div className="absolute top-12 -left-6 sm:-left-12 bg-white/95 backdrop-blur-xl p-4 sm:p-5 rounded-3xl shadow-2xl border border-white/50 hover:scale-105 transition-transform duration-300 z-10">
+                   <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-hospital-teal/10 text-hospital-teal flex items-center justify-center shrink-0 shadow-inner">
+                         <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                      </div>
+                      <div>
+                         <p className="text-2xl sm:text-3xl font-black text-[#0b1c43]">450+</p>
+                         <p className="text-[10px] sm:text-[11px] font-bold text-gray-500 uppercase tracking-wider">Beds Facility</p>
+                      </div>
+                   </div>
+                </div>
+
+                {/* Floating Stats Badge 2 */}
+                <div className="absolute bottom-12 -right-6 sm:-right-8 bg-white/95 backdrop-blur-xl p-4 sm:p-5 rounded-3xl shadow-2xl border border-white/50 hover:scale-105 transition-transform duration-300 z-10">
+                   <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#E85222]/10 text-[#E85222] flex items-center justify-center shrink-0 shadow-inner">
+                         <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      </div>
+                      <div>
+                         <p className="text-2xl sm:text-3xl font-black text-[#0b1c43]">31+</p>
+                         <p className="text-[10px] sm:text-[11px] font-bold text-gray-500 uppercase tracking-wider">Years Exp.</p>
+                      </div>
+                   </div>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -592,133 +632,122 @@ export default function HomePage() {
       </section>
 
       {/* Why Popular Hospital Section */}
-      <section className="py-24 bg-white" aria-labelledby="why-popular">
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
+      <section className="relative py-24 bg-white overflow-hidden" aria-labelledby="why-popular">
+        {/* Decorative Grid Lines Background */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: "linear-gradient(to right, #0b1c43 1px, transparent 1px), linear-gradient(to bottom, #0b1c43 1px, transparent 1px)", backgroundSize: "60px 60px" }}></div>
 
+        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
+          
           {/* Header */}
-          <div className="text-center mb-12 max-w-3xl mx-auto">
-            <span className="inline-block bg-[#f3e8ff] text-[#6b21a8] px-5 py-2 rounded-full text-xs sm:text-sm font-bold tracking-widest mb-6 border border-[#e9d5ff]">
-              WHY CHOOSE POPULAR HOSPITAL
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e3a8a] font-heading leading-tight">
-              Leading the Way in <span className="text-[#1d1d1f]">Medical Excellence & Compassionate Care.</span>
-            </h2>
-            <p className="mt-4 text-gray-500 text-lg max-w-2xl mx-auto">
-              Your health is our priority. We provide world-class medical treatment with a personal touch at every step of your journey.
-            </p>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8 relative z-10">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-12 h-[3px] bg-gradient-to-r from-[#E85222] to-hospital-teal rounded-full"></span>
+                <span className="text-sm font-bold tracking-widest text-[#0b1c43] uppercase">Why Choose Us</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0b1c43] font-heading leading-[1.15] tracking-tight">
+                Setting the Standard in <br className="hidden md:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">Modern Healthcare</span>
+              </h2>
+            </div>
+            <div className="lg:max-w-md">
+              <p className="text-gray-500 text-[17px] leading-relaxed border-l-4 border-hospital-teal/40 pl-6 py-1">
+                With a legacy of over 3 decades, Popular Hospital remains committed to prioritizing your health through world-class treatments and a deeply personalized touch.
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
 
             {/* Left Column - Main Promo Image */}
-            <div className="lg:col-span-5 relative h-full min-h-[500px] lg:min-h-[auto]">
-              <div className="relative h-full w-full bg-[#8b5cf6] rounded-3xl overflow-hidden shadow-2xl group">
-                {/* Main Image - Full Cover */}
-                <Image
-                  src="/images/departments-images/general-medicine.jpeg"
-                  alt="Expert Medical Care"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
-
-                {/* Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#4c1d95]/90 via-[#5b21b6]/40 to-transparent"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent opacity-60"></div>
-
-                {/* Content Overlay */}
-                <div className="absolute inset-0 z-20">
-                  {/* Centered Call Badge */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white backdrop-blur-md bg-white/10 px-6 py-3 rounded-2xl border border-white/20 text-center shadow-2xl hover:scale-105 transition-transform duration-300 group-hover:bg-white/20">
-                    <p className="text-xs font-bold text-purple-100 mb-1 uppercase tracking-wider">Need help? Call now</p>
-                    <p className="text-xl sm:text-2xl font-black flex items-center justify-center gap-2 drop-shadow-md whitespace-nowrap">
-                      <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.49-5.15-3.82-6.62-6.65l1.97-1.57c.26-.26.35-.63.24-1.01a17.9 17.9 0 01-.56-3.53.995.995 0 00-1-1H4.05c-.55 0-1.05.52-1.05 1.15 0 9.05 7.6 16.9 16.9 16.9.55 0 1.15-.5 1.15-1.05v-3.95c0-.55-.52-1.05-1.04-1.05z" /></svg>
-                      +91-7800001895
+            <div className="lg:col-span-4 relative h-full min-h-[500px] lg:min-h-[auto] rounded-[2.5rem] overflow-hidden group shadow-2xl">
+              <div className="absolute inset-0 bg-[#0b1c43]"></div>
+              {/* Main Image */}
+              <Image
+                src="/images/departments-images/general-medicine.jpeg"
+                alt="Expert Medical Care"
+                fill
+                className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 mix-blend-luminosity"
+                priority
+                sizes="(max-width: 1024px) 100vw, 33vw"
+              />
+              
+              {/* Overlays */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43] via-[#0b1c43]/60 to-transparent"></div>
+              
+              <div className="absolute inset-0 p-4 sm:p-5 md:p-8 flex flex-col justify-end">
+                 {/* Content Inside Image */}
+                 <div className="bg-white/10 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-8 border border-white/20 transform transition-transform duration-500 group-hover:-translate-y-2 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+                    <p className="flex items-center gap-2 text-hospital-teal font-bold tracking-widest text-[10px] sm:text-xs uppercase mb-3">
+                       <span className="w-2 h-2 rounded-full bg-hospital-teal animate-ping"></span>
+                       24/7 Emergency Support
                     </p>
-                  </div>
-
-                  {/* Bottom Section - Floating Stats */}
-                  <div className="absolute bottom-6 left-4 right-4 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-xl p-4 sm:p-5 rounded-2xl shadow-xl border border-white/50">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shrink-0">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                        <div>
-                          <p className="text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-wider">Experience</p>
-                          <p className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">25+ Years of Excellence</p>
-                        </div>
-                      </div>
-                      <div className="w-px h-8 bg-gray-200"></div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                        <div>
-                          <p className="text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-wider">Doctors</p>
-                          <p className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">50+ Expert Doctors</p>
-                        </div>
-                      </div>
+                    <div className="text-white font-black mb-5 sm:mb-6 flex items-center gap-3 sm:gap-4 drop-shadow-lg flex-nowrap whitespace-nowrap">
+                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#E85222] to-[#d1451a] flex items-center justify-center shrink-0 shadow-lg">
+                          <svg className="w-5 h-5 sm:w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                       </div>
+                       <span className="text-[20px] min-[370px]:text-2xl sm:text-3xl tracking-tight">+91-7800001895</span>
                     </div>
-                  </div>
-                </div>
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 mt-1 sm:mt-2 relative">
+                       <div>
+                          <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">31<span className="text-[#E85222]">+</span></p>
+                          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">Years Exp</p>
+                       </div>
+                       <div>
+                          <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">50<span className="text-hospital-teal">+</span></p>
+                          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">Specialists</p>
+                       </div>
+                    </div>
+                 </div>
               </div>
             </div>
-
-            {/* Right Column - Feature Grid */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               {[
                 {
                   title: "Exceptional Healthcare",
-                  desc: "We provide top-notch healthcare services, backed by highly experienced doctors and cutting-edge medical technology.",
-                  icon: (
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
-                  )
+                  desc: "Top-notch healthcare services backed by experienced doctors and cutting-edge technology.",
+                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
                 },
                 {
-                  title: "Multi-Specialty Hospital",
-                  desc: "Our hospital offers a comprehensive range of specialties, including cardiology, neurology, gastroenterology, orthopedics, and more, ensuring that we meet the diverse healthcare needs of our patients.",
-                  icon: (
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                  )
+                  title: "Multi-Specialty Center",
+                  desc: "Comprehensive specialties including cardiology, neurology, orthopedics, and gastroenterology.",
+                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 },
                 {
                   title: "Compassionate Care",
-                  desc: "We believe that healthcare is not just about treating illnesses, but also about providing compassionate care to our patients. Our staff is trained to provide personalized care, making our patients feel comfortable and cared for during their hospital stay.",
-                  icon: (
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                  )
+                  desc: "Personalized attention ensuring that patients feel comfortable and cared for during their stay.",
+                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                 },
                 {
-                  title: "State-of-the-Art Facilities",
-                  desc: "Our hospital is equipped with the latest diagnostic tools and equipment, ensuring accurate and timely diagnosis of illnesses. We also have a fully equipped operation theatre, intensive care unit, and emergency department, providing 24/7 medical care to our patients.",
-                  icon: (
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                  )
+                  title: "State-of-the-Art Tech",
+                  desc: "Equipped with the latest diagnostic tools, modern operation theatres, and intensive care units.",
+                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 },
                 {
-                  title: "Patient-Centric Approach",
-                  desc: "We prioritize our patients' needs and comfort, ensuring that they receive the best possible care and treatment throughout their hospital stay.",
-                  icon: (
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                  )
+                  title: "Patient-Centric",
+                  desc: "We prioritize your needs and comfort, ensuring optimal treatment sequences without stress.",
+                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                 },
                 {
-                  title: "Trusted Healthcare",
-                  desc: "With over 30 years of experience, we have earned a reputation as a trusted healthcare provider in the community. We are committed to maintaining the highest standards of healthcare and strive to exceed our patients' expectations.",
-                  icon: (
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                  )
+                  title: "Trusted For Decades",
+                  desc: "A sprawling legacy of exceeding patient expectations while upholding the highest medical standards.",
+                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                 },
               ].map((feature, idx) => (
-                <div key={idx} className="bg-gray-50/50 hover:bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 group flex flex-col items-start h-full">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 group-hover:border-[#5b21b6]/20 group-hover:text-[#5b21b6] text-gray-600 transition-all duration-300">
-                    {feature.icon}
-                  </div>
-
-                  <h3 className="text-base font-bold text-gray-900 mb-2 font-heading group-hover:text-[#5b21b6] transition-colors">{feature.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
+                <div key={idx} className="group relative bg-[#f8fafc] p-6 sm:p-8 rounded-[2rem] border-2 border-transparent hover:border-hospital-teal/20 hover:bg-white transition-all duration-300 pointer-events-auto cursor-default overflow-hidden">
+                   {/* Decorative gradient blob inside card */}
+                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-hospital-teal/10 to-transparent rounded-full blur-2xl group-hover:bg-hospital-teal/20 transition-colors duration-500"></div>
+                   
+                   <div className="relative z-10 flex flex-col h-full">
+                     <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center shrink-0 text-[#0b1c43] group-hover:bg-gradient-to-br group-hover:from-hospital-teal group-hover:to-[#1e40af] group-hover:text-white transition-all duration-300 mb-6">
+                       {feature.icon}
+                     </div>
+                     <div>
+                       <h3 className="text-[19px] font-bold text-[#0b1c43] mb-3 font-heading leading-tight group-hover:text-hospital-teal transition-colors duration-300">{feature.title}</h3>
+                       <p className="text-gray-500 text-[15px] leading-relaxed font-medium">{feature.desc}</p>
+                     </div>
+                   </div>
                 </div>
               ))}
             </div>

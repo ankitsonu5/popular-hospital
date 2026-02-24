@@ -51,24 +51,18 @@ export default function LeadershipPage() {
         {/* Leaders Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {leaders.map((leader, index) => (
-                <div key={index} className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition-all duration-300 group">
+                <div key={index} className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
                     <div className="relative aspect-[4/5] w-full overflow-hidden">
                         <Image
                             src={leader.image}
                             alt={leader.name}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="object-cover"
                         />
-                        {/* Overlay Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                            <p className="text-white text-sm line-clamp-3">
-                                {leader.bio}
-                            </p>
-                        </div>
                     </div>
                     <div className="p-6 text-center relative bg-white">
                         {/* Name & Role */}
-                        <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading group-hover:text-hospital-teal transition-colors uppercase tracking-tight">{leader.name}</h3>
+                        <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading uppercase tracking-tight">{leader.name}</h3>
                         <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">{leader.role}</p>
                     </div>
                 </div>

@@ -32,53 +32,62 @@ export default function ChairmanDeskPage() {
       </div>
 
       <div className="mx-auto w-full max-w-[1200px] px-4 py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="bg-white relative">
           
-          {/* Left: Chairman Info */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
-                <Image
-                  src={chairmanData.image}
-                  alt={chairmanData.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-            </div>
-            <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
-                <h2 className="text-2xl font-black text-[#0b1c43] font-heading mb-1 uppercase tracking-tight">
-                  {chairmanData.name}
-                </h2>
-                <p className="text-hospital-orange font-bold text-xs tracking-widest uppercase mb-6">{chairmanData.role}</p>
-
+          {/* Floated Left: Chairman Info & Photo */}
+          <div className="lg:float-left lg:w-[42%] lg:mr-12 mb-10 lg:mb-8">
+            <div className="space-y-6">
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
+                  <Image
+                    src={chairmanData.image}
+                    alt={chairmanData.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+              </div>
+              <div className="bg-gray-50 p-6 md:p-8 rounded-3xl border border-gray-100">
+                  <h2 className="text-2xl font-black text-[#0b1c43] font-heading mb-1 uppercase tracking-tight">
+                    {chairmanData.name}
+                  </h2>
+                  <p className="text-hospital-orange font-bold text-xs tracking-widest uppercase mb-0">{chairmanData.role}</p>
+              </div>
             </div>
           </div>
 
-          {/* Right: Message Area */}
-          <div className="lg:col-span-7 flex flex-col pt-4">
-             <div className="bg-white p-2 md:p-4 relative">
-                <div className="absolute top-0 left-0 w-16 h-1 bg-hospital-teal rounded-full"></div>
-                <div className="mt-8 space-y-8">
-                  {chairmanData.message.map((para, i) => (
-                    <p key={i} className="text-lg md:text-xl text-gray-600 leading-relaxed font-normal">
-                      {para}
-                    </p>
-                  ))}
-                </div>
+          {/* Text Content Area (Flows around the floated element) */}
+          <div className="relative pt-2">
+            <div className="w-16 h-1 bg-hospital-teal rounded-full mb-8"></div>
+            <div className="mb-8">
+              <h3 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading leading-tight">
+                A Vision for Excellence <br className="hidden xl:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">in Modern Healthcare</span>
+              </h3>
+            </div>
+            
+            <div className="space-y-6">
+              {chairmanData.message.map((para, i) => (
+                <p key={i} className="text-[17px] md:text-lg text-gray-600 leading-relaxed font-normal text-justify">
+                  {para}
+                </p>
+              ))}
+            </div>
 
-                <div className="mt-16 pt-12 border-t border-gray-100 italic text-gray-400 text-lg">
-                    Touching thousands of lives with compassion, excellence, and modern medical science.
-                </div>
+            {/* Clear both prevents elements from overlapping the float if text is shorter than photo */}
+            <div className="clear-both"></div>
+            
+            <div className="mt-12 pt-10 border-t border-gray-100 italic text-gray-400 text-lg">
+                Touching thousands of lives with compassion, excellence, and modern medical science.
+            </div>
 
-                <div className="mt-12 group">
-                   <span className="text-hospital-teal font-signature text-3xl mb-2 italic block">A.K. Kaushik</span>
-                   <div className="w-20 h-0.5 bg-gray-100 group-hover:bg-hospital-teal transition-all duration-500 mb-2"></div>
-                   <p className="text-sm font-black text-[#0b1c43] uppercase tracking-widest">{chairmanData.name}</p>
-                   <p className="text-[10px] font-bold text-gray-400 uppercase mt-0.5 tracking-wider">Founder & Chairman</p>
-                </div>
-             </div>
+            <div className="mt-10 group">
+               <span className="text-hospital-teal font-signature text-3xl mb-2 italic block">A.K. Kaushik</span>
+               <div className="w-20 h-0.5 bg-gray-100 group-hover:bg-hospital-teal transition-all duration-500 mb-2"></div>
+               <p className="text-sm font-black text-[#0b1c43] uppercase tracking-widest">{chairmanData.name}</p>
+               <p className="text-[10px] font-bold text-gray-400 uppercase mt-0.5 tracking-wider">Founder & Chairman</p>
+            </div>
           </div>
-
+          
         </div>
       </div>
     </div>

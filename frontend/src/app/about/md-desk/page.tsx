@@ -58,7 +58,13 @@ export default function MDDeskPage() {
           <div className="lg:col-span-7 flex flex-col pt-4">
              <div className="bg-white p-2 md:p-4 relative">
                 <div className="absolute top-0 left-0 w-16 h-1 bg-hospital-teal rounded-full"></div>
-                <div className="mt-8 space-y-8">
+                <div className="mt-8 mb-6">
+                  <h3 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading leading-tight">
+                    A Commitment to <br className="hidden md:block" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">Clinical Excellence</span>
+                  </h3>
+                </div>
+                <div className="space-y-8">
                   {mdData.message.map((para, i) => (
                     <p key={i} className="text-lg md:text-xl text-gray-600 leading-relaxed font-normal">
                       {para}

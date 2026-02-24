@@ -24,7 +24,7 @@ const servicesData: Record<string, ServiceContent> = {
       'Immediate access to diagnostic services',
       'Specialized care for Cardiac & Neurological emergencies'
     ],
-    image: '/images/departments-images/general-medicine.jpeg',
+    image: '/images/facilities/08.jpeg',
     icon: (
       <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -115,7 +115,7 @@ const servicesData: Record<string, ServiceContent> = {
       'Expert Pharmacists for guidance',
       'Genuine & High-quality Stock'
     ],
-    image: '/images/departments-images/general-medicine.jpeg',
+    image: '/images/facilities/09.jpeg',
     icon: (
       <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

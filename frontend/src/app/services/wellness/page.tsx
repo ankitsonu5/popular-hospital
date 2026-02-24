@@ -20,7 +20,7 @@ const WellnessPage = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/80 to-transparent z-0"></div>
         
         <div className="container mx-auto max-w-[1366px] relative z-10">
-          <div className="max-w-3xl">
+
             <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight font-heading leading-tight animate-fade-in-up">
               Welcome to the world of <span className="text-[#E85222]">Affordable Healthcare</span> with Health Fit Card!
             </h1>
