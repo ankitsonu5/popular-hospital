@@ -175,7 +175,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 -mt-10 lg:-mt-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Main Content */}

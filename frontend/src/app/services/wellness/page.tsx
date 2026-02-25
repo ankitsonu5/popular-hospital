@@ -36,7 +36,6 @@ const WellnessPage = () => {
               </Link>
             </div>
           </div>
-        </div>
       </section>
 
       {/* Intro Section with Image */}
