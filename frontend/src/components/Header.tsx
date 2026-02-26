@@ -40,16 +40,16 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    label: 'Specialties & Departments',
+    label: 'Specialities and Departments',
     dropdown: [
-      { label: 'Super Specialties', href: '/specialties/super' },
-      { label: 'Core Specialties', href: '/specialties/core' },
-      { label: 'Our Expertise', href: '/specialties/expertise' },
+      { label: 'Super Specialties', href: '/departments/super' },
+      { label: 'Core Specialties', href: '/departments/core' },
     ],
   },
   {
     label: 'Services We Offer',
     dropdown: [
+      { label: 'Our Services', href: '#' },
       { label: 'Wellness Services', href: '/services/wellness' },
       { label: "Women's Health Special", href: '/services/womens-health-special' },
     ],
@@ -60,6 +60,7 @@ const menuItems: MenuItem[] = [
       { label: 'Latest News & Updates', href: '/media/news' },
       { label: 'Upcoming Events', href: '/media/events' },
       { label: 'Media Coverage', href: '/media/coverage' },
+      { label: 'Blog', href: '/blog' },
     ],
   },
 
@@ -67,36 +68,43 @@ const menuItems: MenuItem[] = [
 
 const specialtiesContent: Record<string, { label: string; href: string }[]> = {
   "Super Specialties": [
-    { label: "Cardiology", href: "/specialties/cardiology" },
-    { label: "Cardiothoracic & Vascular Surgery (CTVS)", href: "/specialties/ctvs" },
-    { label: "Neurosurgery", href: "/specialties/neurosurgery" },
-    { label: "Gastroenterology", href: "/specialties/gastroenterology" },
-    { label: "Nephrology", href: "/specialties/nephrology" },
-    { label: "Oncology", href: "/specialties/oncology" },
-    { label: "Urology", href: "/specialties/urology" },
-    { label: "Burns & Plastic Surgery", href: "/specialties/burns-plastic-surgery" },
-    { label: "Radiology", href: "/specialties/radiology" },
-    { label: "Pediatric Surgery", href: "/specialties/pediatric-surgery" }
+    { label: "Cardiology", href: "/departments/cardiology" },
+    { label: "Cardiothoracic & Vascular Surgery (CTVS)", href: "/departments/ctvs" },
+    { label: "Neurosurgery", href: "/departments/neurosurgery" },
+    { label: "Gastroenterology", href: "/departments/gastroenterology" },
+    { label: "Nephrology", href: "/departments/nephrology" },
+    { label: "Oncology", href: "/departments/oncology" },
+    { label: "Urology", href: "/departments/urology" },
+    { label: "Burns & Plastic Surgery", href: "/departments/burns-plastic-surgery" },
+    { label: "Radiology", href: "/departments/radiology" },
+    { label: "Pediatric Surgery", href: "/departments/pediatric-surgery" }
   ],
   "Core Specialties": [
-    { label: "Laparoscopy & General Surgery", href: "/specialties/general-surgery" },
-    { label: "Obstetrics & Gynaecology", href: "/specialties/gynaecology" },
-    { label: "Pediatrics And Neonatology", href: "/specialties/pediatrics" },
-    { label: "Orthopedics & Joint Replacement", href: "/specialties/orthopedics" },
-    { label: "General Medicine", href: "/specialties/general-medicine" },
-    { label: "ENT", href: "/specialties/ent" },
-    { label: "Ophthalmology", href: "/specialties/ophthalmology" },
-    { label: "Dental", href: "/specialties/dental" },
-    { label: "Department Of Respiratory Medicine", href: "/specialties/respiratory" },
-    { label: "Pain Management Clinic", href: "/specialties/pain-management" },
-    { label: "Psychiatry Department", href: "/specialties/psychiatry" },
-    { label: "Pathology", href: "/specialties/pathology" }
-  ],
-  "Our Expertise": [
-    { label: "Robot-Assisted Surgery", href: "/expertise/robot-assisted" },
-    { label: "Transplant Program", href: "/expertise/transplant" },
-    { label: "Emergency & Trauma", href: "/expertise/emergency" },
-    { label: "Critical Care", href: "/expertise/critical-care" }
+    { label: "Laparoscopy & General Surgery", href: "/departments/general-surgery" },
+    { label: "Obstetrics & Gynaecology", href: "/departments/gynaecology" },
+    { label: "Pediatrics And Neonatology", href: "/departments/pediatrics" },
+    { label: "Orthopedics & Joint Replacement", href: "/departments/orthopedics" },
+    { label: "General Medicine", href: "/departments/general-medicine" },
+    { label: "ENT", href: "/departments/ent" },
+    { label: "Ophthalmology", href: "/departments/ophthalmology" },
+    { label: "Dental", href: "/departments/dental" },
+    { label: "Department Of Respiratory Medicine", href: "/departments/respiratory" },
+    { label: "Pain Management Clinic", href: "/departments/pain-management" },
+    { label: "Psychiatry Department", href: "/departments/psychiatry" },
+    { label: "Pathology", href: "/departments/pathology" }
+  ]
+};
+
+const servicesContent: Record<string, { label: string; href: string }[]> = {
+  "Our Services": [
+    { label: "Emergency And Trauma Care", href: "/services/emergency" },
+    { label: "Blood Bank", href: "/services/blood-bank" },
+    { label: "Ambulance", href: "/services/ambulance" },
+    { label: "Preventive Health Check Up", href: "/services/preventive-health" },
+    { label: "Pharmacy", href: "/services/pharmacy" },
+    { label: "Pathological Services", href: "/services/pathology" },
+    { label: "Radiological Services", href: "/services/radiology" },
+    { label: "Home Care Services", href: "/services/home-care" }
   ]
 };
 
@@ -136,6 +144,11 @@ export function Header() {
 
   const handleMouseEnter = (label: string) => {
     setActiveDropdown(label);
+    if (label === 'Services & Specialties') {
+      setSelectedSpecialty('Super Specialties');
+    } else if (label === 'Services We Offer') {
+      setSelectedSpecialty('Our Services');
+    }
   };
 
   const handleMouseLeave = () => {
@@ -267,48 +280,74 @@ export function Header() {
                     {activeDropdown === item.label && (
                       <div
                         ref={(el) => { dropdownRefs.current[item.label] = el; }}
-                        className={`absolute left-0 top-full pt-2 z-50 ${item.label === 'Specialties & Departments' ? '-left-20' : ''}`}
+                        className={`absolute left-0 top-full pt-2 z-50 ${(item.label === 'Services & Specialties' || item.label === 'Services We Offer') ? '-left-20' : ''}`}
                       >
-                        {item.label === 'Specialties & Departments' ? (
+                        {(item.label === 'Services & Specialties' || item.label === 'Services We Offer') ? (
                           <div className="flex w-[800px] rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
                             {/* Sidebar */}
                             <div className="w-1/3 bg-white py-2">
-                                {Object.keys(specialtiesContent).map((cat) => (
-                                    <button
-                                        key={cat}
-                                        onMouseEnter={() => setSelectedSpecialty(cat)}
-                                        className={`w-full text-left px-5 py-3.5 text-sm font-medium transition-colors flex items-center justify-between group ${
-                                            selectedSpecialty === cat ? 'text-hospital-teal bg-teal-50' : 'text-gray-700 hover:text-hospital-teal hover:bg-gray-50'
-                                        }`}
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <span className={`${selectedSpecialty === cat ? 'text-hospital-teal' : 'text-gray-400 group-hover:text-hospital-teal'} transition-colors`}>
-                                                {getIcon(cat)}
-                                            </span>
-                                            <span>{cat}</span>
-                                        </div>
-                                        <svg className={`w-4 h-4 transition-transform ${selectedSpecialty === cat ? 'text-hospital-teal translate-x-1' : 'text-gray-400 opacity-0 group-hover:opacity-100'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </button>
-                                ))}
+                                {item.dropdown?.map((dropdownItem) => {
+                                    const contentMap = item.label === 'Services & Specialties' ? specialtiesContent : servicesContent;
+                                    const isCategory = contentMap.hasOwnProperty(dropdownItem.label);
+                                    
+                                    if (isCategory) {
+                                        return (
+                                            <button
+                                                key={dropdownItem.label}
+                                                onMouseEnter={() => setSelectedSpecialty(dropdownItem.label)}
+                                                className={`w-full text-left px-5 py-3.5 text-sm font-medium transition-colors flex items-center justify-between group ${
+                                                    selectedSpecialty === dropdownItem.label ? 'text-hospital-teal bg-teal-50' : 'text-gray-700 hover:text-hospital-teal hover:bg-gray-50'
+                                                }`}
+                                            >
+                                                <div className="flex items-center gap-3">
+                                                    <span className={`${selectedSpecialty === dropdownItem.label ? 'text-hospital-teal' : 'text-gray-400 group-hover:text-hospital-teal'} transition-colors`}>
+                                                        {getIcon(dropdownItem.label)}
+                                                    </span>
+                                                    <span>{dropdownItem.label}</span>
+                                                </div>
+                                                <svg className={`w-4 h-4 transition-transform ${selectedSpecialty === dropdownItem.label ? 'text-hospital-teal translate-x-1' : 'text-gray-400 opacity-0 group-hover:opacity-100'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        );
+                                    } else {
+                                        return (
+                                            <Link
+                                                key={dropdownItem.label}
+                                                href={dropdownItem.href}
+                                                className="w-full text-left px-5 py-3.5 text-sm font-medium text-gray-700 hover:text-hospital-teal hover:bg-gray-50 transition-colors flex items-center gap-3 group"
+                                                onMouseEnter={() => setSelectedSpecialty('')}
+                                                onClick={() => setActiveDropdown(null)}
+                                            >
+                                                <span className="text-gray-400 group-hover:text-hospital-teal transition-colors">
+                                                    {getIcon(dropdownItem.label)}
+                                                </span>
+                                                <span>{dropdownItem.label}</span>
+                                            </Link>
+                                        );
+                                    }
+                                })}
                             </div>
                             
                             {/* Content Area */}
                             <div className="w-2/3 bg-gray-50/50 p-6 min-h-[300px]">
-                                <h3 className="text-hospital-teal font-heading font-semibold mb-3 text-sm uppercase tracking-wider">{selectedSpecialty}</h3>
-                                <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                                    {specialtiesContent[selectedSpecialty]?.map((subItem) => (
-                                        <Link 
-                                        href={subItem.href} 
-                                        key={subItem.label} 
-                                        className="text-sm text-gray-600 hover:text-hospital-teal transition-colors block py-1"
-                                        onClick={() => setActiveDropdown(null)}
-                                        >
-                                            {subItem.label}
-                                        </Link>
-                                    ))}
-                                </div>
+                                {((item.label === 'Services & Specialties' ? specialtiesContent : servicesContent)[selectedSpecialty]) ? (
+                                    <>
+                                        <h3 className="text-hospital-teal font-heading font-semibold mb-3 text-sm uppercase tracking-wider">{selectedSpecialty}</h3>
+                                        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                                            {(item.label === 'Services & Specialties' ? specialtiesContent : servicesContent)[selectedSpecialty]?.map((subItem) => (
+                                                <Link 
+                                                href={subItem.href} 
+                                                key={subItem.label} 
+                                                className="text-sm text-gray-600 hover:text-hospital-teal transition-colors block py-1"
+                                                onClick={() => setActiveDropdown(null)}
+                                                >
+                                                    {subItem.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </>
+                                ) : null}
                             </div>
                           </div>
                         ) : (
@@ -435,48 +474,69 @@ export function Header() {
                       
                       {activeMobileDropdown === item.label && (
                         <div className="ml-4 flex flex-col gap-0.5 mt-1 border-l-2 border-gray-100 pl-2">
-                          {item.label === 'Specialties & Departments' ? (
+                          {(item.label === 'Services & Specialties' || item.label === 'Services We Offer') ? (
                             // Mobile View for Specialties (Nested)
-                            Object.keys(specialtiesContent).map((category) => (
-                                <div key={category} className="flex flex-col">
-                                    <button
-                                        type="button"
-                                        className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-                                        onClick={() => setActiveMobileSubCategory(activeMobileSubCategory === category ? null : category)}
-                                    >
-                                        <div className="flex items-center gap-2">
-                                            <span className={`${activeMobileSubCategory === category ? 'text-hospital-teal' : 'text-gray-400'}`}>
-                                                {getIcon(category)}
-                                            </span>
-                                            <span>{category}</span>
-                                        </div>
-                                        <svg
-                                            className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-200 ${
-                                                activeMobileSubCategory === category ? 'rotate-180' : ''
-                                            }`}
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </button>
-                                    {activeMobileSubCategory === category && (
-                                        <div className="ml-4 border-l border-gray-100 pl-2 mt-1 mb-2 flex flex-col gap-1">
-                                            {specialtiesContent[category].map((subItem) => (
-                                                <Link
-                                                    key={subItem.label}
-                                                    href={subItem.href}
-                                                    className="block px-3 py-1.5 text-sm text-gray-600 hover:text-hospital-teal transition-colors"
-                                                    onClick={() => setMenuOpen(false)}
+                            item.dropdown?.map((dropdownItem) => {
+                                const contentMap = item.label === 'Services & Specialties' ? specialtiesContent : servicesContent;
+                                const isCategory = contentMap.hasOwnProperty(dropdownItem.label);
+                                
+                                if (isCategory) {
+                                    return (
+                                        <div key={dropdownItem.label} className="flex flex-col">
+                                            <button
+                                                type="button"
+                                                className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                                                onClick={() => setActiveMobileSubCategory(activeMobileSubCategory === dropdownItem.label ? null : dropdownItem.label)}
+                                            >
+                                                <div className="flex items-center gap-2">
+                                                    <span className={`${activeMobileSubCategory === dropdownItem.label ? 'text-hospital-teal' : 'text-gray-400'}`}>
+                                                        {getIcon(dropdownItem.label)}
+                                                    </span>
+                                                    <span>{dropdownItem.label}</span>
+                                                </div>
+                                                <svg
+                                                    className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-200 ${
+                                                        activeMobileSubCategory === dropdownItem.label ? 'rotate-180' : ' -rotate-90'
+                                                    }`}
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
                                                 >
-                                                    {subItem.label}
-                                                </Link>
-                                            ))}
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </button>
+                                            {activeMobileSubCategory === dropdownItem.label && (
+                                                <div className="ml-4 border-l border-gray-100 pl-2 mt-1 mb-2 flex flex-col gap-1">
+                                                    {(item.label === 'Services & Specialties' ? specialtiesContent : servicesContent)[dropdownItem.label].map((subItem) => (
+                                                        <Link
+                                                            key={subItem.label}
+                                                            href={subItem.href}
+                                                            className="block px-3 py-1.5 text-sm text-gray-600 hover:text-hospital-teal transition-colors"
+                                                            onClick={() => setMenuOpen(false)}
+                                                        >
+                                                            {subItem.label}
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
-                                    )}
-                                </div>
-                            ))
+                                    );
+                                } else {
+                                    return (
+                                        <Link
+                                            key={dropdownItem.label}
+                                            href={dropdownItem.href}
+                                            className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-hospital-teal rounded-lg transition-colors"
+                                            onClick={() => setMenuOpen(false)}
+                                        >
+                                            <span className="text-hospital-teal opacity-60">
+                                                {getIcon(dropdownItem.label)}
+                                            </span>
+                                            <span>{dropdownItem.label}</span>
+                                        </Link>
+                                    );
+                                }
+                            })
                           ) : (
                              // Standard Mobile View
                              item.dropdown.map((dropdownItem) => (

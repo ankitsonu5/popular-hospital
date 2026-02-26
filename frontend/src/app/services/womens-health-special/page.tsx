@@ -1,8 +1,12 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Women\'s Health Special | Popular Hospital',
+  description: 'Specialized Women\'s Health care at Popular Hospital. Comprehensive treatments prioritizing the health of women at every stage of life.',
+};
 
 const WomensHealthPage = () => {
   return (

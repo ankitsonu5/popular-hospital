@@ -1,6 +1,10 @@
-'use client';
-
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Payment Policy | Popular Hospital',
+  description: 'Review the accepted payment methods and financial policies for medical services at Popular Hospital.',
+};
 
 export default function PaymentPolicyPage() {
   return (

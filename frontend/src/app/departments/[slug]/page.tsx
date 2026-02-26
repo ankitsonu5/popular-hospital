@@ -244,7 +244,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   return (
                     <Link 
                       key={sSlug} 
-                      href={`/services/${sSlug}`}
+                      href={`/departments/${sSlug}`}
                       className={`flex items-center gap-4 p-4 rounded-2xl transition-all border-2 group ${
                         isActive 
                           ? 'border-[#E85222]/40 bg-white shadow-sm ring-4 ring-[#E85222]/5' 

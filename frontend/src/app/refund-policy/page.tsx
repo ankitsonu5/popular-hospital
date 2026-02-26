@@ -1,6 +1,10 @@
-'use client';
-
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Refund Policy | Popular Hospital',
+  description: 'Understand the refund and cancellation policies for appointments, admissions, and services at Popular Hospital.',
+};
 
 export default function RefundPolicyPage() {
   return (

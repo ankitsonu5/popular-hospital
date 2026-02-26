@@ -9,82 +9,122 @@ export const metadata: Metadata = {
 
 const sitemapData = [
   {
-    category: "Main Navigation",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-    ),
-    links: [
-      { name: "Home", href: "/" },
-      { name: "Our Story", href: "/about/our-story" },
-      { name: "Chairman's Message", href: "/about/chairman-desk" },
-      { name: "Our Vision & Mission", href: "/about/vision-mission" },
-      { name: "Leadership Team", href: "/about/leadership" },
-      { name: "Our Locations", href: "/locations" },
-    ]
-  },
-  {
-    category: "Specialties & Departments",
+    category: "About Popular Hospital",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
       </svg>
     ),
     links: [
-      { name: "Cardiology", href: "/specialties/cardiology" },
-      { name: "Neurology", href: "/specialties/neurology" },
-      { name: "Orthopedics", href: "/specialties/orthopedics" },
-      { name: "Gastroenterology", href: "/specialties/gastroenterology" },
-      { name: "Oncology", href: "/specialties/oncosurgery" },
-      { name: "Urology", href: "/specialties/urology" },
-      { name: "View All Specialties", href: "/specialties" },
+      { name: "Our Story", href: "/about/our-story" },
+      { name: "Chairman's Desk", href: "/about/chairman-desk" },
+      { name: "MD's Desk", href: "/about/md-desk" },
+      { name: "Vision & Mission", href: "/about/vision-mission" },
+      { name: "Leadership Team", href: "/about/leadership" },
+      { name: "CSR Initiatives", href: "/about/csr" },
+      { name: "Cashless Empanelment", href: "/about/cashless-empanelment" },
+      { name: "Our Locations", href: "/#our-locations" },
     ]
   },
   {
-    category: "Patient Services",
+    category: "Specialities & Departments",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
       </svg>
     ),
     links: [
-      { name: "Book an Appointment", href: "/book" },
-      { name: "Find a Doctor", href: "/doctors" },
-      { name: "Facilities", href: "/facilities" },
-      { name: "Latest Updates", href: "/updates" },
-      { name: "FAQs", href: "/faqs" },
-      { name: "Give Feedback", href: "/feedback" },
+      { name: "Cardiology", href: "/departments/cardiology" },
+      { name: "Neurosurgery", href: "/departments/neurosurgery" },
+      { name: "Oncology", href: "/departments/oncology" },
+      { name: "Nephrology", href: "/departments/nephrology" },
+      { name: "Gastroenterology", href: "/departments/gastroenterology" },
+      { name: "Urology", href: "/departments/urology" },
+      { name: "CTVS", href: "/departments/ctvs" },
+      { name: "Plastic Surgery", href: "/departments/burns-plastic-surgery" },
+      { name: "Orthopedics", href: "/departments/orthopedics" },
+      { name: "Obstetrics & Gynaecology", href: "/departments/gynaecology" },
+      { name: "Pediatrics & Neonatology", href: "/departments/pediatrics" },
+      { name: "General Medicine", href: "/departments/general-medicine" },
+      { name: "General Surgery", href: "/departments/general-surgery" },
+      { name: "Dental", href: "/departments/dental" },
+      { name: "ENT", href: "/departments/ent" },
+      { name: "Ophthalmology", href: "/departments/ophthalmology" },
+      { name: "Psychiatry", href: "/departments/psychiatry" },
+      { name: "Respiratory Medicine", href: "/departments/respiratory" },
     ]
   },
   {
-    category: "Media & Resources",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-      </svg>
-    ),
-    links: [
-      { name: "Hospital Blog", href: "/blog" },
-      { name: "Media Highlights", href: "/media/highlights" },
-      { name: "News Coverage", href: "/media/coverage" },
-      { name: "Patient Stories", href: "/stories" },
-      { name: "Video Gallery", href: "/media/videos" },
-      { name: "Careers", href: "/careers" },
-    ]
-  },
-  {
-    category: "Policies & Legal",
+    category: "Support Services",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
     links: [
-      { name: "Privacy Policy", href: "/privacy-policy" },
-      { name: "Terms & Conditions", href: "/terms" },
+      { name: "Emergency & Trauma", href: "/services/emergency" },
+      { name: "Blood Bank", href: "/services/blood-bank" },
+      { name: "Ambulance", href: "/services/ambulance" },
+      { name: "Pathology", href: "/services/pathology" },
+      { name: "Radiology", href: "/services/radiology" },
+      { name: "Pharmacy", href: "/services/pharmacy" },
+      { name: "Home Care Services", href: "/services/home-care" },
+      { name: "Diagnostic Facilities", href: "/facilities" },
+    ]
+  },
+  {
+    category: "Wellness & Health Check",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    ),
+    links: [
+      { name: "Preventive Health Check Up", href: "/services/preventive-health" },
+      { name: "Wellness Packages", href: "/services/wellness" },
+      { name: "Women's Health Special", href: "/services/womens-health-special" },
+      { name: "Bronze Packages", href: "/services/preventive-health/bronze-package-men" },
+      { name: "Silver Packages", href: "/services/preventive-health/silver-package-men" },
+      { name: "Gold Packages", href: "/services/preventive-health/gold-package-men" },
+      { name: "Diamond Packages", href: "/services/preventive-health/diamond-package-men" },
+      { name: "Cardiac Care Package", href: "/services/preventive-health/cardiac-health-package" },
+      { name: "Diabetic Care Package", href: "/services/preventive-health/diabetic-check" },
+    ]
+  },
+  {
+    category: "Patient Quick Links",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+    links: [
+      { name: "Book Appointment", href: "/book" },
+      { name: "Find a Doctor", href: "/doctors" },
+      { name: "Online Payment", href: "/online-payment" },
+      { name: "OPD Schedule", href: "/opd" },
+      { name: "Health Updates", href: "/updates" },
+      { name: "Feedback", href: "/feedback" },
+      { name: "FAQs", href: "/faqs" },
+    ]
+  },
+  {
+    category: "News, Media & Legal",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+      </svg>
+    ),
+    links: [
+      { name: "Latest News", href: "/news" },
+      { name: "Video Gallery", href: "/media/videos" },
+      { name: "Media Highlights", href: "/media/coverage" },
+      { name: "Patient Stories", href: "/stories" },
+      { name: "Careers", href: "/careers" },
+      { name: "Payment Policy", href: "/payment-policy" },
       { name: "Refund Policy", href: "/refund-policy" },
-      { name: "OPD Timings", href: "/opd" },
+      { name: "Terms of Use", href: "/terms" },
+      { name: "Blog", href: "/blog" },
     ]
   },
 ];
@@ -119,14 +159,14 @@ export default function SitemapPage() {
               </div>
 
               {/* Links List */}
-              <ul className="space-y-4">
+              <ul className="grid grid-cols-1 gap-4">
                 {section.links.map((link, lIdx) => (
                   <li key={lIdx}>
                     <Link 
                       href={link.href}
-                      className="inline-flex items-center gap-3 text-slate-600 font-bold hover:text-[#E85222] transition-colors group/link"
+                      className="inline-flex items-center gap-3 text-slate-600 font-bold hover:text-[#E85222] transition-colors group/link text-sm md:text-base"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-200 group-hover/link:bg-[#E85222] group-hover/link:scale-150 transition-all"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-200 group-hover/link:bg-[#E85222] group-hover/link:scale-150 transition-all flex-shrink-0"></span>
                       {link.name}
                     </Link>
                   </li>

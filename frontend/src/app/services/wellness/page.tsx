@@ -1,8 +1,12 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Health Fit Card & Wellness | Popular Hospital',
+  description: 'Apply for the Popular Hospital Health Fit Card to get priority services, free checkups, and massive discounts on healthcare.',
+};
 
 const WellnessPage = () => {
   return (
@@ -28,11 +32,14 @@ const WellnessPage = () => {
               Popular Hospital's Health Fit Card is your personal medical assistant, designed to manage your family's health needs with ease and priority.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="#apply" className="px-8 py-4 bg-[#E85222] text-white rounded-full font-black hover:bg-[#d1451a] transition-all shadow-lg hover:shadow-orange-900/40 uppercase tracking-widest text-sm">
+              <Link href="#apply" className="px-8 py-4 bg-[#E85222] text-white rounded-full font-black hover:bg-[#d1451a] transition-all shadow-lg hover:shadow-orange-900/40 uppercase tracking-widest text-sm text-center">
                 Apply for Card
               </Link>
-              <Link href="#benefits" className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full font-black hover:bg-white/20 transition-all uppercase tracking-widest text-sm">
+              <Link href="#benefits" className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full font-black hover:bg-white/20 transition-all uppercase tracking-widest text-sm text-center">
                 View Benefits
+              </Link>
+              <Link href="/services/womens-health-special" className="px-8 py-4 bg-pink-500/80 backdrop-blur-md text-white border border-pink-400/30 rounded-full font-black hover:bg-pink-600 transition-all shadow-lg hover:shadow-pink-900/20 uppercase tracking-widest text-sm text-center">
+                Women's Health Special
               </Link>
             </div>
           </div>
