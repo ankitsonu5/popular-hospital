@@ -100,7 +100,7 @@ const locations = [
       "/images/branches/gopiganj/3.webp",
       "/images/branches/gopiganj/4.webp"
     ],
-    image: "/images/branches/populargopiganjfour.png",
+    image: "/images/branches/gopiganj/1.webp",
   },
   {
     slug: "bachhaon",
@@ -124,7 +124,7 @@ const locations = [
       "/images/branches/bachhaon/3.webp",
       "/images/branches/bachhaon/4.webp"
     ],
-    image: "/images/branches/varanasi-main/2.webp",
+    image: "/images/branches/bachhaon/1.webp",
   },
 ];
 
