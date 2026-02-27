@@ -144,7 +144,7 @@ export function Header() {
 
   const handleMouseEnter = (label: string) => {
     setActiveDropdown(label);
-    if (label === 'Services & Specialties') {
+    if (label === 'Specialities and Departments') {
       setSelectedSpecialty('Super Specialties');
     } else if (label === 'Services We Offer') {
       setSelectedSpecialty('Our Services');
@@ -280,14 +280,14 @@ export function Header() {
                     {activeDropdown === item.label && (
                       <div
                         ref={(el) => { dropdownRefs.current[item.label] = el; }}
-                        className={`absolute left-0 top-full pt-2 z-50 ${(item.label === 'Services & Specialties' || item.label === 'Services We Offer') ? '-left-20' : ''}`}
+                        className={`absolute left-0 top-full pt-2 z-50 ${(item.label === 'Specialities and Departments' || item.label === 'Services We Offer') ? '-left-20' : ''}`}
                       >
-                        {(item.label === 'Services & Specialties' || item.label === 'Services We Offer') ? (
+                        {(item.label === 'Specialities and Departments' || item.label === 'Services We Offer') ? (
                           <div className="flex w-[800px] rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
                             {/* Sidebar */}
                             <div className="w-1/3 bg-white py-2">
                                 {item.dropdown?.map((dropdownItem) => {
-                                    const contentMap = item.label === 'Services & Specialties' ? specialtiesContent : servicesContent;
+                                    const contentMap = item.label === 'Specialities and Departments' ? specialtiesContent : servicesContent;
                                     const isCategory = contentMap.hasOwnProperty(dropdownItem.label);
                                     
                                     if (isCategory) {
@@ -331,11 +331,11 @@ export function Header() {
                             
                             {/* Content Area */}
                             <div className="w-2/3 bg-gray-50/50 p-6 min-h-[300px]">
-                                {((item.label === 'Services & Specialties' ? specialtiesContent : servicesContent)[selectedSpecialty]) ? (
+                                {((item.label === 'Specialities and Departments' ? specialtiesContent : servicesContent)[selectedSpecialty]) ? (
                                     <>
                                         <h3 className="text-hospital-teal font-heading font-semibold mb-3 text-sm uppercase tracking-wider">{selectedSpecialty}</h3>
                                         <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                                            {(item.label === 'Services & Specialties' ? specialtiesContent : servicesContent)[selectedSpecialty]?.map((subItem) => (
+                                            {(item.label === 'Specialities and Departments' ? specialtiesContent : servicesContent)[selectedSpecialty]?.map((subItem) => (
                                                 <Link 
                                                 href={subItem.href} 
                                                 key={subItem.label} 
@@ -474,10 +474,10 @@ export function Header() {
                       
                       {activeMobileDropdown === item.label && (
                         <div className="ml-4 flex flex-col gap-0.5 mt-1 border-l-2 border-gray-100 pl-2">
-                          {(item.label === 'Services & Specialties' || item.label === 'Services We Offer') ? (
+                           {(item.label === 'Specialities and Departments' || item.label === 'Services We Offer') ? (
                             // Mobile View for Specialties (Nested)
                             item.dropdown?.map((dropdownItem) => {
-                                const contentMap = item.label === 'Services & Specialties' ? specialtiesContent : servicesContent;
+                                const contentMap = item.label === 'Specialities and Departments' ? specialtiesContent : servicesContent;
                                 const isCategory = contentMap.hasOwnProperty(dropdownItem.label);
                                 
                                 if (isCategory) {
@@ -507,7 +507,7 @@ export function Header() {
                                             </button>
                                             {activeMobileSubCategory === dropdownItem.label && (
                                                 <div className="ml-4 border-l border-gray-100 pl-2 mt-1 mb-2 flex flex-col gap-1">
-                                                    {(item.label === 'Services & Specialties' ? specialtiesContent : servicesContent)[dropdownItem.label].map((subItem) => (
+                                                    {(item.label === 'Specialities and Departments' ? specialtiesContent : servicesContent)[dropdownItem.label].map((subItem) => (
                                                         <Link
                                                             key={subItem.label}
                                                             href={subItem.href}

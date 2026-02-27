@@ -34,6 +34,10 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://popularhospital.com' },
+  icons: {
+    icon: '/images/favicon/favppl.png',
+    apple: '/images/favicon/favppl.png',
+  },
 };
 
 export default function RootLayout({

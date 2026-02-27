@@ -242,7 +242,7 @@ export default function HomePage() {
               <div className="relative">
                 <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#E85222] to-hospital-teal rounded-full"></div>
                 <p className="text-gray-600 text-[16px] leading-relaxed pl-6 italic bg-white/60 py-4 pr-4 rounded-xl shadow-sm border border-gray-50">
-                  A 450-bedded MultiSuper Speciality Hospital in Varanasi providing comprehensive Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years under one roof.
+                  A 450-Bedded Multi-Super Speciality Hospital in Varanasi providing comprehensive Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years under one roof.
                 </p>
               </div>
 
@@ -279,15 +279,15 @@ export default function HomePage() {
             {/* Right Side - Image with Floating Elements */}
             <div className="relative mt-16 lg:mt-0 lg:ml-12">
               <div className="relative group">
-                {/* Main Image Frame */}
-                <div className="absolute -inset-4 bg-gradient-to-tr from-hospital-teal/30 to-[#E85222]/30 rounded-[3rem] blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-60"></div>
+                {/* Main Image Frame (Reduced hover glow expansion) */}
+                <div className="absolute -inset-4 bg-gradient-to-tr from-hospital-teal/30 to-[#E85222]/30 rounded-[3rem] blur-2xl transition-all duration-500 opacity-40"></div>
                 
-                <div className="relative rounded-[2.5rem] overflow-hidden w-full aspect-[4/5] shadow-2xl border-[8px] border-white group-hover:-translate-y-2 transition-transform duration-500 bg-gray-100">
+                <div className="relative rounded-[2.5rem] overflow-hidden w-full aspect-[4/5] border-[8px] border-white group-hover:-translate-y-0.5 transition-transform duration-500 bg-gray-100">
                   <Image
                     src="/about-section-image.png"
                     alt="Popular Hospital - Expert Care"
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
@@ -295,8 +295,8 @@ export default function HomePage() {
                   {/* Subtle Light Reflection Inner Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
                   
-                  {/* Inner Overlay Gradient for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  {/* Inner Overlay Gradient for depth (More subtle) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 
                 {/* Floating Stats Badge 1 */}
@@ -2052,3 +2052,4 @@ function QuickCard({
     </Link>
   );
 }
+  

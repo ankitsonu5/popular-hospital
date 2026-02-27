@@ -31,11 +31,11 @@ export default function NeurosurgeryPage() {
                 Department of Neurosurgery
               </span>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Advanced Brain & <br/>
-                Spine Care
+                Precision Brain & <br/>
+                Spine Surgery
               </h1>
               <p className="text-blue-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
-                Pioneering neurosurgical interventions with state-of-the-art technology. We specialize in complex brain and spine surgeries, ensuring the best possible neurological outcomes.
+                Pioneering advanced neurosurgical treatments including brain tumor surgery, complex spine deformity correction, and stroke management with sub-millimeter precision.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/book" className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30 flex items-center gap-2">
@@ -56,10 +56,10 @@ export default function NeurosurgeryPage() {
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Brain Tumors", icon: "brain", desc: "Minimally invasive removal of complex tumors." },
-              { title: "Spine Surgery", icon: "spine", desc: "Treatment for disc herniation and spinal injuries." },
-              { title: "Stroke Care", icon: "activity", desc: "Rapid intervention for ischemic and hemorrhagic strokes." },
-              { title: "Epilepsy Surgery", icon: "zap", desc: "Advanced surgical options for seizure control." },
+              { title: "Brain Tumor Surgery", icon: "brain", desc: "Expert excision of gliomas, meningiomas, and pituitary tumors." },
+              { title: "Minimally Invasive Spine", icon: "spine", desc: "Laser and endoscopic procedures for rapid recovery." },
+              { title: "Neuro-Trauma Care", icon: "activity", desc: "24/7 emergency care for head and spinal cord injuries." },
+              { title: "Pediatric Neurosurgery", icon: "zap", desc: "Specialized care for congenital brain and spine defects." },
             ].map((item, idx) => (
               <div key={idx} className="bg-white p-6 rounded-xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group">
                 <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#0b1c43] transition-colors">
@@ -110,10 +110,10 @@ export default function NeurosurgeryPage() {
 
                 <div className="space-y-4 mb-4 w-full">
                     {[
-                        "Minimally Invasive Spine Surgery",
-                        "Endoscopic Brain Surgery",
-                        "Deep Brain Stimulation",
-                        "Awake Craniotomy"
+                        "Minimally Invasive Keyhole Surgery",
+                        "Microscopic Brain Tumor Removal",
+                        "Complex Spine Instrumentation",
+                        "Neuro-Endoscopic Procedures"
                     ].map((item, i) => (
                         <div key={i} className="flex items-center gap-3">
                              <div className="w-5 h-5 rounded-full border-2 border-[#E85222] flex items-center justify-center text-[#E85222]">
@@ -207,12 +207,12 @@ export default function NeurosurgeryPage() {
 
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
                    {[
-                       { title: "Traumatic Brain Injury", icon: "activity" },
-                       { title: "Spinal Cord Injury", icon: "spine" },
-                       { title: "Cerebrovascular Disorders", icon: "brain" },
-                       { title: "Pediatric Neurosurgery", icon: "user" },
-                       { title: "Peripheral Nerve Surgery", icon: "zap" },
-                       { title: "Pituitary Tumors", icon: "scan" },
+                        { title: "Skull Base Surgery", icon: "activity" },
+                        { title: "Spine Deformity Correction", icon: "spine" },
+                        { title: "Cerebrovascular Aneurysms", icon: "brain" },
+                        { title: "Functional Neurosurgery", icon: "user" },
+                        { title: "Neuro-Oncology", icon: "zap" },
+                        { title: "Hydrocephalus Management", icon: "scan" },
                    ].map((service, idx) => (
                        <div key={idx} className="flex items-start gap-4 border-b border-blue-400/30 pb-6 group cursor-pointer hover:border-white transition-colors">
                            <div className="w-12 h-12 rounded-lg bg-blue-800/40 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:text-[#0b1c43] transition-all shadow-md">
