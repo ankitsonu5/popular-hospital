@@ -7,11 +7,13 @@
   --color-primary-dark: #0f766e;
   --color-navy: #1e3a5f;
   --color-bg: #fafafa;
+  --font-lato: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-montserrat: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
   @apply bg-hospital-white text-gray-800 antialiased;
-  font-family: var(--font-lato), "Lato", sans-serif;
+  font-family: var(--font-lato);
 }
 
 /* Montserrat for headings and specific font classes */
@@ -24,13 +26,13 @@ h6,
 [class*="heading"],
 [class*="title"],
 .font-heading {
-  font-family: var(--font-lato), "Lato", sans-serif;
+  font-family: var(--font-lato);
 }
 
 /* Lato for general text elements */
 p {
   @apply text-[17px] leading-relaxed;
-  font-family: var(--font-lato), "Lato", sans-serif;
+  font-family: var(--font-lato);
 }
 
 span,
@@ -44,7 +46,7 @@ input,
 textarea,
 select,
 button {
-  font-family: var(--font-lato), "Lato", sans-serif;
+  font-family: var(--font-lato);
 }
 
 @layer components {
@@ -59,7 +61,7 @@ button {
   }
   .section-heading {
     @apply text-2xl font-bold tracking-tight text-hospital-navy sm:text-3xl;
-    font-family: "Montserrat", sans-serif;
+    font-family: var(--font-montserrat);
   }
 }
 
