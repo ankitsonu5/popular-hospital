@@ -9,26 +9,6 @@ export const metadata: Metadata = {
 
 const facilities = [
   {
-    category: "Critical Care",
-    items: [
-      {
-        title: "Emergency & Trauma Center",
-        description: "A 24/7 operational unit with rapid response teams, advanced life support ambulances, and immediate access to operation theatres and diagnostics.",
-        image: "/images/facilities/08.jpeg"
-      },
-      {
-        title: "Advanced ICUs",
-        description: "Our Intensive Care Units are equipped with the latest ventilatory support, cardiac monitoring systems, and dedicated 1:1 nursing care for critical patients.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
-      },
-      {
-        title: "NICU & PICU",
-        description: "Specialized Neonatal and Pediatric Intensive Care Units designed to provide the highest level of care for newborns and children with critical health conditions.",
-        image: "/images/facilities/7.jpeg"
-      }
-    ]
-  },
-  {
     category: "Surgical Excellence",
     items: [
       {
@@ -53,6 +33,27 @@ const facilities = [
       }
     ]
   },
+  {
+    category: "Critical Care",
+    items: [
+      {
+        title: "Emergency & Trauma Center",
+        description: "A 24/7 operational unit with rapid response teams, advanced life support ambulances, and immediate access to operation theatres and diagnostics.",
+        image: "/images/facilities/08.jpeg"
+      },
+      {
+        title: "Advanced ICUs",
+        description: "Our Intensive Care Units are equipped with the latest ventilatory support, cardiac monitoring systems, and dedicated 1:1 nursing care for critical patients.",
+        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        title: "NICU & PICU",
+        description: "Specialized Neonatal and Pediatric Intensive Care Units designed to provide the highest level of care for newborns and children with critical health conditions.",
+        image: "/images/facilities/7.jpeg"
+      }
+    ]
+  },
+  
   {
     category: "Infra",
     items: [
