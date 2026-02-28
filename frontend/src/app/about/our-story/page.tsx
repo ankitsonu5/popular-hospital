@@ -32,7 +32,7 @@ export default function OurStoryPage() {
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <span className="inline-block py-1 px-3 rounded-full bg-[#E85222]/20 text-[#E85222] border border-[#E85222]/30 text-sm font-bold tracking-widest uppercase mb-6 backdrop-blur-sm">
-            Est. 2000
+            Est. 1994
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-heading tracking-tight drop-shadow-lg">
             Our Legacy of Care
