@@ -435,12 +435,21 @@ export default function CardiologyPage() {
           <p className="text-center text-lg font-medium sm:text-left text-[#1a3a5c]">
             Need to talk to us? Call our Cardiology helpline 24/7
           </p>
-          <a
-            href="tel:+917800001895"
-            className="text-2xl font-bold text-[#E85222] underline hover:no-underline transition-colors"
-          >
-            +91-7800001895
-          </a>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href="tel:+917800001895"
+              className="text-2xl font-bold text-[#E85222] underline hover:no-underline transition-colors"
+            >
+              +91-7800001895
+            </a>
+            <span className="text-2xl font-bold text-[#1a3a5c] font-heading">/</span>
+            <a
+              href="tel:+917800001896"
+              className="text-2xl font-bold text-[#E85222] underline hover:no-underline transition-colors"
+            >
+              96
+            </a>
+          </div>
         </div>
       </section>
     </main>

@@ -23,7 +23,7 @@ const sitemapData = [
       { name: "Leadership Team", href: "/about/leadership" },
       { name: "CSR Initiatives", href: "/about/csr" },
       { name: "Cashless Empanelment", href: "/about/cashless-empanelment" },
-      { name: "Our Locations", href: "/#our-locations" },
+      { name: "Our Locations", href: "/our-locations" },
     ]
   },
   {

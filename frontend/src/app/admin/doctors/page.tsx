@@ -133,7 +133,7 @@ export default function AdminDoctorsPage() {
             <div className="sm:col-span-2">
               <label className="block text-sm font-medium text-gray-700">Branch IDs (comma-separated)</label>
               <input value={form.branch_ids || ''} onChange={(e) => setForm({ ...form, branch_ids: e.target.value })} className="mt-1 w-full rounded border border-gray-300 px-3 py-2 text-sm" placeholder="1, 2, 3" />
-              <p className="mt-1 text-xs text-gray-500">Branches: {branches.map((b) => `${b.id}: ${b.name}`).join(', ')}</p>
+              <p className="mt-1 text-xs text-gray-500">Branches: {branches.map((b) => `${b._id}: ${b.name}`).join(', ')}</p>
             </div>
             <div className="sm:col-span-2">
               <label className="block text-sm font-medium text-gray-700">Bio</label>

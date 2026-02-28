@@ -61,7 +61,7 @@ export default async function BranchPage({ params }: Props) {
         )}
       </div>
       <div className="mt-8 flex flex-wrap gap-4">
-        <Link href={`/book?branch=${branch.id}`} className="btn-primary">
+        <Link href={`/book?branch=${branch._id}`} className="btn-primary">
           Book Appointment at this Branch
         </Link>
         <Link href="/branches" className="btn-secondary">

@@ -3,10 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { fetchBranches, type Branch } from "@/lib/api";
+import { fetchBranches, fetchNews, type Branch, type NewsItem } from "@/lib/api";
 
 export default function HomePage() {
   const [branches, setBranches] = useState<Branch[]>([]);
+  const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
@@ -57,6 +58,10 @@ export default function HomePage() {
     fetchBranches()
       .then(setBranches)
       .catch(() => setBranches([]));
+      
+    fetchNews()
+      .then((data) => setLatestNews(data.slice(0, 3)))
+      .catch(() => setLatestNews([]));
   }, []);
 
   useEffect(() => {
@@ -182,7 +187,7 @@ export default function HomePage() {
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/doctors" title="Find a Doctor" variant="green" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="#our-locations" title="Our Locations" variant="blue" />
+            <SimpleCard href="/our-locations" title="Our Locations" variant="blue" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/services/wellness" title="Wellness Packages" isLast={true} variant="green" />
           </div>
@@ -242,7 +247,7 @@ export default function HomePage() {
               <div className="relative">
                 <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#E85222] to-hospital-teal rounded-full"></div>
                 <p className="text-gray-600 text-[16px] leading-relaxed pl-6 italic bg-white/60 py-4 pr-4 rounded-xl shadow-sm border border-gray-50">
-                  A 450-Bedded Multi-Super Speciality Hospital in Varanasi providing comprehensive Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years under one roof.
+                  A 450-Bedded Multi-Super Speciality Hospital in Varanasi providing comprehensive Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32 years under one roof.
                 </p>
               </div>
 
@@ -264,13 +269,17 @@ export default function HomePage() {
                 </Link>
                 
                 {/* Contact Info */}
-                <div className="flex items-center gap-4 bg-white px-6 py-3 rounded-full shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                   <div className="w-10 h-10 rounded-full bg-hospital-teal/10 flex items-center justify-center text-hospital-teal">
+                <div className="flex items-center gap-4 bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                   <div className="w-10 h-10 rounded-full bg-hospital-teal/10 flex items-center justify-center text-hospital-teal shrink-0">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                    </div>
-                   <div>
-                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">24/7 Helpline</p>
-                      <p className="text-[17px] font-black text-[#0b1c43]">+91-7800001895</p>
+                   <div className="flex flex-col justify-center">
+                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">24/7 Helpline</p>
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                         <a href="tel:+917800001895" className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] hover:text-hospital-teal transition-colors tracking-tight">+91-7800001895</a>
+                         <span className="text-gray-300 font-bold">/</span>
+                         <a href="tel:+917800001896" className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] hover:text-hospital-teal transition-colors tracking-tight">96</a>
+                      </div>
                    </div>
                 </div>
               </div>
@@ -319,7 +328,7 @@ export default function HomePage() {
                          <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                       </div>
                       <div>
-                         <p className="text-2xl sm:text-3xl font-black text-[#0b1c43]">31+</p>
+                         <p className="text-2xl sm:text-3xl font-black text-[#0b1c43]">32+</p>
                          <p className="text-[10px] sm:text-[11px] font-bold text-gray-500 uppercase tracking-wider">Years Exp.</p>
                       </div>
                    </div>
@@ -342,7 +351,7 @@ export default function HomePage() {
               Excellence in Care
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight">
-              Specialized Departments.
+              Our Departments.
             </h2>
           </div>
 
@@ -686,11 +695,14 @@ export default function HomePage() {
                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#E85222] to-[#d1451a] flex items-center justify-center shrink-0 shadow-lg">
                           <svg className="w-5 h-5 sm:w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                        </div>
-                       <span className="text-[20px] min-[370px]:text-2xl sm:text-3xl tracking-tight">+91-7800001895</span>
+                       <div className="flex flex-col justify-center gap-0.5">
+                          <a href="tel:+917800001895" className="text-[18px] min-[370px]:text-[20px] sm:text-[22px] tracking-tight hover:text-[#E85222] transition-colors leading-none">+91-7800001895</a>
+                          <a href="tel:+917800001896" className="text-[18px] min-[370px]:text-[20px] sm:text-[22px] tracking-tight hover:text-[#E85222] transition-colors leading-none">+91-7800001896</a>
+                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 mt-1 sm:mt-2 relative">
                        <div>
-                          <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">31<span className="text-[#E85222]">+</span></p>
+                          <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">32<span className="text-[#E85222]">+</span></p>
                           <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">Years Exp</p>
                        </div>
                        <div>
@@ -710,7 +722,7 @@ export default function HomePage() {
                   icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
                 },
                 {
-                  title: "Multi-Specialty Center",
+                  title: "Multi-Super Specialty Center",
                   desc: "Comprehensive specialties including cardiology, neurology, orthopedics, and gastroenterology.",
                   icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 },
@@ -779,9 +791,10 @@ export default function HomePage() {
                 <video
                   src="/videos/testimonial-two.mp4"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  autoPlay
+                  loop
                   muted
                   playsInline
-                  preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -805,9 +818,10 @@ export default function HomePage() {
                 <video
                   src="/videos/testimonial-three.mp4"
                   className="absolute inset-0 w-full h-full object-cover"
+                  autoPlay
+                  loop
                   muted
                   playsInline
-                  preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -828,9 +842,10 @@ export default function HomePage() {
                 <video
                   src="/videos/testimonial-one.mp4"
                   className="absolute inset-0 w-full h-full object-cover"
+                  autoPlay
+                  loop
                   muted
                   playsInline
-                  preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -854,9 +869,10 @@ export default function HomePage() {
                 <video
                   src="/videos/testimonial-one.mp4"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  autoPlay
+                  loop
                   muted
                   playsInline
-                  preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
 
@@ -883,9 +899,10 @@ export default function HomePage() {
                 <video
                   src="/videos/testimonial-three.mp4"
                   className="absolute inset-0 w-full h-full object-cover"
+                  autoPlay
+                  loop
                   muted
                   playsInline
-                  preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -906,9 +923,10 @@ export default function HomePage() {
                 <video
                   src="/videos/testimonial-two.mp4"
                   className="absolute inset-0 w-full h-full object-cover"
+                  autoPlay
+                  loop
                   muted
                   playsInline
-                  preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -932,9 +950,10 @@ export default function HomePage() {
                 <video
                   src="/videos/testimonial-three.mp4"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  autoPlay
+                  loop
                   muted
                   playsInline
-                  preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -1056,63 +1075,7 @@ export default function HomePage() {
             className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {[
-              {
-                slug: "varanasi-main",
-                city: "Varanasi",
-                name: "Popular Hospital",
-                address: "N-10 / 60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh, India",
-                theme: "light",
-                bgGradient: "bg-[#fbfbfd]",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/varanasi-main/1.webp"
-              },
-              {
-                slug: "varanasi-city-centre",
-                city: "Varanasi",
-                name: "City Hospital",
-                address: "Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh, India",
-                theme: "light",
-                bgGradient: "bg-[#fbfbfd]",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/varanasi-sigra/1.webp"
-              },
-              {
-                slug: "mirzapur",
-                city: "Mirzapur",
-                name: "Popular Hospital",
-                address: "Near Natwan Police Chowki, Jangi Road, Mirzapur Uttar Pradesh, India",
-                theme: "light",
-                bgGradient: "bg-[#fbfbfd]",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/mirzapur/1.webp"
-              },
-              {
-                slug: "gopiganj",
-                city: "Gopiganj",
-                name: "Popular Hospital",
-                address: "G.T. Road, Parao, Near Indus Ind Bank, Gopiganj, Uttar Pradesh, India",
-                theme: "light",
-                bgGradient: "bg-[#fbfbfd]",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/gopiganj/1.webp"
-              },
-              {
-                slug: "bachhaon",
-                city: "Bachhaon",
-                name: "Popular Hospital",
-                address: "Chunar Road, Bachhaon, Varanasi, Uttar Pradesh India",
-                theme: "light",
-                bgGradient: "bg-[#fbfbfd]",
-                textColor: "text-[#1d1d1f]",
-                subTextColor: "text-[#86868b]",
-                image: "/images/branches/bachhaon/1.webp"
-              }
-            ].map((location, index) => (
+            {branches.map((location, index) => (
               <div
                 key={location.slug}
                 className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[480px] sm:h-[520px] rounded-[32px] overflow-hidden snap-center group transition-transform duration-500 hover:scale-[1.02] shadow-xl border border-gray-100/10"
@@ -1154,7 +1117,7 @@ export default function HomePage() {
                 </div>
 
                 <Image
-                  src={location.image}
+                  src={location.image_one || '/about-section-image.png'}
                   alt={location.name}
                   fill
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
@@ -1251,32 +1214,62 @@ export default function HomePage() {
             ].map((service, idx) => (
               <div
                 key={service.title}
-                className="bg-white rounded-xl p-8 text-center text-gray-800 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_10px_30px_rgba(232,82,34,0.15)] hover:-translate-y-2 transition-all duration-300 border-t-4 border-[#0b1c43] group relative overflow-hidden flex flex-col h-full"
+                className="group [perspective:1000px] w-full h-full"
               >
+                <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+                  
+                  {/* FRONT SIDE */}
+                  <div className="w-full h-full min-h-[340px] [backface-visibility:hidden] bg-white rounded-xl p-8 text-center flex flex-col border-t-4 border-[#0b1c43]">
+                    
+                    <div className="flex justify-center mb-6">
+                      <div className="w-16 h-16 rounded-full bg-[#E0F2FE] flex items-center justify-center">
+                        <svg className="w-8 h-8 text-[#0b1c43]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          {service.customIcon2 || service.icon}
+                        </svg>
+                      </div>
+                    </div>
 
-                <div className="flex justify-center mb-6">
-                  {/* Icon Circle */}
-                  <div className="w-16 h-16 rounded-full bg-[#E0F2FE] flex items-center justify-center group-hover:bg-[#E85222] transition-colors duration-300">
-                    <svg className="w-8 h-8 text-[#0b1c43] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      {service.customIcon2 || service.icon}
-                    </svg>
+                    <h3 className="text-xl font-bold mb-4 font-heading text-[#0b1c43]">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-gray-600 text-sm leading-relaxed mb-6 font-medium flex-grow">
+                      {service.desc}
+                    </p>
+
+                    {/* Mobile-only Read More */}
+                    <div className="md:hidden mt-auto">
+                      <Link 
+                        href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
+                        className="inline-block px-6 py-2 border-2 border-[#E85222] text-[#E85222] text-sm font-bold rounded-full uppercase tracking-wide"
+                      >
+                        Read more
+                      </Link>
+                    </div>
+
                   </div>
+
+                  {/* BACK SIDE (Desktop/Tablet only) */}
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden hidden md:flex border-t-4 border-[#E85222]">
+                     <Image 
+                        src="https://images.unsplash.com/photo-1551076805-e18690c5e561?q=80&w=500&auto=format&fit=crop" 
+                        alt={service.title} 
+                        fill 
+                        className="object-cover" 
+                     />
+                     <div className="absolute inset-0 bg-[#0b1c43]/85" />
+                     <div className="relative z-10 flex flex-col items-center justify-center p-8 w-full h-full text-center">
+                        <h3 className="text-white text-2xl font-bold mb-8 font-heading px-4">{service.title}</h3>
+                        <Link 
+                          href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
+                          className="px-8 py-3 bg-[#E85222] text-white text-sm font-bold rounded-full hover:bg-white hover:text-[#E85222] transition-colors duration-300 uppercase tracking-wide"
+                        >
+                          Read more
+                        </Link>
+                     </div>
+                  </div>
+
                 </div>
-
-                <h3 className="text-xl font-bold mb-4 font-heading text-[#0b1c43] group-hover:text-[#E85222] transition-colors duration-300">
-                  {service.title}
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed mb-6 font-medium">
-                  {service.desc}
-                </p>
-
-                <Link 
-                  href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                  className="mt-auto px-6 py-2 border-2 border-[#E85222] text-[#E85222] text-sm font-bold rounded-full hover:bg-[#E85222] hover:text-white transition-all duration-300 uppercase tracking-wide mx-auto"
-                >
-                  Read more
-                </Link>
               </div>
             ))}
           </div>
@@ -1323,7 +1316,7 @@ export default function HomePage() {
                   id="appointment-banner"
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 font-heading"
                 >
-                  Open For Appointments
+                  Book for an Appointments
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl">
                   We are delighted to announce that our doors are open, and we
@@ -1372,128 +1365,46 @@ export default function HomePage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {/* Article Card 1 */}
-            <article className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
-              <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden">
-                <Image
-                  src="/images/latestnews/one.jpg"
-                  alt="Medical Network"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-heading leading-tight">
-                  Best Medical Network Directory For Physicians & Clients
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2">
-                  Tips for Maintaining a Healthy Heart Hypertension, commonly
-                  known as high blood...
-                </p>
-                <Link
-                  href="/news/best-medical-network-directory"
-                  className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base"
-                >
-                  <span>Read More</span>
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+            {latestNews.map((article) => (
+              <article key={article.slug} className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col">
+                <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden shrink-0">
+                  <Image
+                    src={article.image ? (article.image.startsWith('/uploads') ? `http://localhost:5100${article.image}` : article.image) : "/about-section-image.png"}
+                    alt={article.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-heading leading-tight line-clamp-2">
+                    {article.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2 flex-1">
+                    {article.excerpt || "Read more about this article inside..."}
+                  </p>
+                  <Link
+                    href={`/news/${article.slug}`}
+                    className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base mt-auto w-max"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </article>
-
-            {/* Article Card 2 */}
-            <article className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
-              <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden">
-                <Image
-                  src="/images/latestnews/two.jpg"
-                  alt="Regular Checkups"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-heading leading-tight">
-                  The Importance of Regular Health Checkups
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2">
-                  Tips for Maintaining a Healthy Heart Hypertension, commonly
-                  known as high blood...
-                </p>
-                <Link
-                  href="/news/importance-of-regular-health-checkups"
-                  className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base"
-                >
-                  <span>Read More</span>
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </article>
-
-            {/* Article Card 3 */}
-            <article className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
-              <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden">
-                <Image
-                  src="/images/latestnews/three.jpg"
-                  alt="Stress Management"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-heading leading-tight">
-                  Managing Better Stress for Better Mental Health
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2">
-                  Tips for Maintaining a Healthy Heart Hypertension, commonly
-                  known as high blood...
-                </p>
-                <Link
-                  href="/news/managing-stress-for-better-mental-health"
-                  className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base"
-                >
-                  <span>Read More</span>
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </article>
+                    <span>Read More</span>
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+              </article>
+            ))}
           </div>
 
           {/* View All Link */}
@@ -1656,7 +1567,7 @@ export default function HomePage() {
             {/* Left Column - Informational Cards */}
             <div className="flex flex-col gap-6 w-full lg:h-full">
               {/* OUR LOCATIONS Card */}
-              <Link href="#our-locations" className="block flex-1 hover:scale-[1.02] transition-transform duration-300">
+              <Link href="/our-locations" className="block flex-1 hover:scale-[1.02] transition-transform duration-300">
                 <div className="bg-purple-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm h-full flex items-center justify-center">
                   <div className="w-full h-full rounded-2xl border border-purple-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
                     <div className="flex items-center justify-center gap-4 w-full h-full">
@@ -1939,12 +1850,21 @@ export default function HomePage() {
           <p className="text-center text-lg font-medium sm:text-left text-[#1a3a5c]">
             Need to talk to us? Call our helpline 24/7
           </p>
-          <a
-            href="tel:+917800001895"
-            className="text-2xl font-bold text-[#2957A4] underline hover:no-underline"
-          >
-            +91-7800001895
-          </a>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href="tel:+917800001895"
+              className="text-2xl font-bold text-[#2957A4] underline hover:no-underline"
+            >
+              +91-7800001895
+            </a>
+            <span className="text-2xl font-bold text-[#1a3a5c] font-heading">/</span>
+            <a
+              href="tel:+917800001896"
+              className="text-2xl font-bold text-[#2957A4] underline hover:no-underline"
+            >
+              96
+            </a>
+          </div>
         </div>
       </section>
     </>

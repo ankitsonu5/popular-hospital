@@ -158,6 +158,18 @@ function EmpanelmentSection({
 
 /* ─── Page ─── */
 
+const featuredLogos = [
+  { src: "https://logo.clearbit.com/iocl.com", alt: "IndianOil", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" },
+  { src: "https://logo.clearbit.com/bhel.com", alt: "BHEL", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" },
+  { src: "https://logo.clearbit.com/nclcil.in", alt: "NCL", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" },
+  { src: "https://logo.clearbit.com/sbigeneral.in", alt: "SBI General", className: "h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300" },
+  { src: "https://logo.clearbit.com/iffcotokio.co.in", alt: "IFFCO-TOKIO", className: "h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300" },
+  { src: "https://logo.clearbit.com/hindalco.com", alt: "Hindalco", className: "h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300" },
+  { src: "https://logo.clearbit.com/paramounttpa.com", alt: "Paramount Health", className: "h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300" },
+  { src: "https://logo.clearbit.com/vidalhealthtpa.com", alt: "Vidal Health", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" },
+  { src: "https://logo.clearbit.com/aai.aero", alt: "AAI", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" }
+];
+
 export default function CashlessEmpanelmentPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
@@ -178,6 +190,23 @@ export default function CashlessEmpanelmentPage() {
             <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
                 Popular Hospital is proudly empanelled with leading Government bodies, PSUs, Private Corporates, and International TPAs — ensuring hassle-free cashless treatment for you and your family.
             </p>
+        </div>
+      </div>
+
+      {/* ─── Featured Logos Theme ─── */}
+      <div className="bg-white w-full border-b border-gray-100 py-12 overflow-hidden">
+        <div className="mx-auto w-full max-w-[1200px] px-4">
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-14 lg:gap-20 opacity-90 transition-all duration-500">
+            {/* Real Logos loaded via Clearbit */}
+            {featuredLogos.map((logo, index) => (
+              <img
+                key={index}
+                src={logo.src}
+                alt={logo.alt}
+                className={logo.className}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

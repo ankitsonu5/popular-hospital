@@ -8,66 +8,12 @@ export const metadata: Metadata = {
     "Stay updated with the latest news, health articles, medical breakthroughs, and updates from Popular Hospital. Read expert health tips and hospital announcements.",
 };
 
-/* ───────────────── news data ───────────────── */
-const newsArticles = [
-  {
-    slug: "best-medical-network-directory",
-    title: "Best Medical Network Directory For Physicians & Clients",
-    excerpt:
-      "Tips for Maintaining a Healthy Heart Hypertension, commonly known as high blood pressure, is one of the most prevalent chronic conditions worldwide. It affects millions of people and is a leading risk factor for heart disease, stroke, and kidney disease.",
-    image: "/images/latestnews/one.jpg",
-    date: "February 10, 2026",
-    category: "Healthcare",
-  },
-  {
-    slug: "importance-of-regular-health-checkups",
-    title: "The Importance of Regular Health Checkups",
-    excerpt:
-      "Tips for Maintaining a Healthy Heart Hypertension, commonly known as high blood pressure, is a silent killer that can go unnoticed for years. Regular health checkups help in early detection and prevention of serious conditions.",
-    image: "/images/latestnews/two.jpg",
-    date: "February 8, 2026",
-    category: "Wellness",
-  },
-  {
-    slug: "managing-stress-for-better-mental-health",
-    title: "Managing Better Stress for Better Mental Health",
-    excerpt:
-      "Tips for Maintaining a Healthy Heart Hypertension, commonly known as high blood pressure, can be managed through stress reduction techniques. Mental health is equally important as physical health for overall wellbeing.",
-    image: "/images/latestnews/three.jpg",
-    date: "February 5, 2026",
-    category: "Mental Health",
-  },
-  {
-    slug: "advances-in-cardiac-surgery",
-    title: "Advances in Cardiac Surgery at Popular Hospital",
-    excerpt:
-      "Popular Hospital continues to lead the way in cardiac surgery with the latest minimally invasive techniques, robotic-assisted procedures, and state-of-the-art catheterization labs that ensure faster recovery for patients.",
-    image: "/about-section-image.png",
-    date: "January 28, 2026",
-    category: "Cardiology",
-  },
-  {
-    slug: "understanding-diabetes-management",
-    title: "Understanding Diabetes Management: A Complete Guide",
-    excerpt:
-      "Diabetes is a growing health concern in India. Learn about effective management strategies including diet control, exercise routines, medication adherence, and regular monitoring to keep your blood sugar levels in check.",
-    image: "/about-section-image.png",
-    date: "January 22, 2026",
-    category: "Wellness",
-  },
-  {
-    slug: "pediatric-care-excellence",
-    title: "Excellence in Pediatric Care: Caring for Your Little Ones",
-    excerpt:
-      "Our pediatric department is committed to providing comprehensive healthcare for children from infancy through adolescence. Discover our specialized services including neonatal care, vaccinations, and child development programs.",
-    image: "/about-section-image.png",
-    date: "January 15, 2026",
-    category: "Pediatrics",
-  },
-];
+import { fetchNews } from "@/lib/api";
 
 /* ───────────────── page component ───────────────── */
-export default function NewsPage() {
+export default async function NewsPage() {
+  const newsArticles = await fetchNews();
+
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* ─── Hero Section ─── */}
@@ -111,18 +57,14 @@ export default function NewsPage() {
               {/* Image */}
               <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden">
                 <Image
-                  src={article.image}
+                  src={article.image ? (article.image.startsWith('/uploads') ? `http://localhost:5100${article.image}` : article.image) : "/about-section-image.png"}
                   alt={article.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="inline-block px-3 py-1 rounded-full bg-[#1e3a8a]/90 text-white text-xs font-semibold backdrop-blur-sm">
-                    {article.category}
-                  </span>
-                </div>
+                {/* Category Badge removed */}
+
               </div>
 
               {/* Content */}

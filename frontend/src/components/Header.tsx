@@ -27,14 +27,14 @@ const menuItems: MenuItem[] = [
       { label: "From Chairman's Desk", href: '/about/chairman-desk' },
       { label: "From MD's Desk", href: '/about/md-desk' },
       { label: 'Leadership Team', href: '/about/leadership' },
-      { label: 'Corporate Social Responsibility (CSR)', href: '/about/csr', separator: true },
+      { label: 'Social Responsibility (SR)', href: '/about/csr', separator: true },
       { label: 'Cashless Empanelment', href: '/about/cashless-empanelment' },
     ],
   },
   {
     label: 'Find a Hospital',
     dropdown: [
-      { label: 'Our Locations', href: '/#our-locations' },
+      { label: 'Our Locations', href: '/our-locations' },
       { label: 'Explore Our Facilities', href: '/facilities' },
       { label: 'Specialized Care Locations', href: '/specialized-care' },
     ],
@@ -55,7 +55,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    label: 'Media Center',
+    label: 'Media & Blog',
     dropdown: [
       { label: 'Latest News & Updates', href: '/media/news' },
       { label: 'Upcoming Events', href: '/media/events' },
