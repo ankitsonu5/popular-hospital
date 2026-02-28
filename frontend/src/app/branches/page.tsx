@@ -34,7 +34,7 @@ export default async function BranchesPage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {list.map((branch) => (
                 <Link
-                  key={branch.id}
+                  key={branch._id}
                   href={`/branches/${branch.slug}`}
                   className="block rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-hospital-teal hover:shadow-md"
                 >

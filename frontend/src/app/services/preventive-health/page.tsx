@@ -77,51 +77,55 @@ export default function PreventiveHealthPage() {
             <p className="mt-4 text-gray-500 max-w-2xl mx-auto">Explore carefully curated medical test packages offering huge discounts over individual test prices. Take control of your well-being today!</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-6 justify-items-center max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-[1366px] mx-auto">
             {packages.map((pkg, idx) => (
               <div 
                 key={idx} 
-                className="w-full bg-[#fbfbfd] rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 overflow-hidden border border-gray-100 flex flex-col sm:flex-row group"
+                className="bg-white rounded-[32px] p-6 lg:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col group relative w-full overflow-hidden"
               >
-                {/* Image Section (Left/Top) */}
-                <div className="w-full sm:w-[220px] h-[160px] sm:h-auto relative bg-gray-100 flex-shrink-0 sm:m-2 sm:rounded-2xl overflow-hidden rounded-t-3xl sm:rounded-tl-2xl sm:rounded-tr-none">
+                {/* Image */}
+                <div className="w-full aspect-[4/3] sm:aspect-square relative mb-8 rounded-2xl overflow-hidden bg-gray-100 flex-shrink-0">
                     <Image
                         src={pkg.image}
                         alt={pkg.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                     />
+                    
+                    {/* Hover Overlay with Book Now button */}
+                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 flex items-center justify-center">
+                        <span className="bg-white/90 backdrop-blur-sm text-[#1d1d1f] px-6 py-2.5 rounded-full font-bold text-[14px] shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Book Now
+                        </span>
+                    </div>
                 </div>
                 
-                {/* Content Section (Right/Bottom) */}
-                <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 space-y-4">
-                  <div>
-                    <h3 className="text-[#1d1d1f] font-semibold text-[17px] sm:text-[19px] tracking-tight leading-snug mb-1">
-                      {pkg.title}
-                    </h3>
-                    <p className="text-[#86868b] text-[13px] font-medium tracking-tight mb-4">
-                      Recommended for age group {pkg.age}
-                    </p>
+                {/* Content */}
+                <div className="flex flex-col flex-1 text-left">
+                  <span className="text-[#bf4800] text-[12px] font-bold tracking-tight mb-2 uppercase">
+                    Recommended: {pkg.age}
+                  </span>
+                  
+                  <h3 className="text-[#1d1d1f] font-semibold text-[17px] sm:text-[19px] tracking-tight leading-snug mb-6">
+                    {pkg.title}
+                  </h3>
 
-                    <div className="flex flex-col gap-0.5">
-                        <div className="text-[#86868b] text-[12px] font-medium tracking-tight">
-                            Package Price <span className="line-through decoration-gray-300">₹ {parseInt(pkg.originalPrice).toFixed(2)}</span>
-                        </div>
-                        <div className="text-[#1d1d1f] text-[17px] sm:text-[19px] font-bold tracking-tight mt-0.5">
-                            After Discount Price ₹ {parseInt(pkg.discountPrice).toFixed(2)}
-                        </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-2 flex justify-start sm:justify-end w-full">
-                      <Link 
-                         href={`/services/preventive-health/${pkg.title.toLowerCase().replace(/\s*-\s*/g, '-').replace(/\s+/g, '-')}`}
-                         className="px-5 py-2.5 sm:py-2 bg-[#f35525] hover:bg-[#d4431a] text-white text-[13px] font-medium transition-colors rounded-full shadow-sm w-full sm:w-max text-center block"
-                      >
-                        View Details
-                      </Link>
+                  <div className="mt-auto border-t border-gray-50 pt-4">
+                      <div className="text-[#1d1d1f] text-[15px] sm:text-[16px] font-medium tracking-tight mb-1">
+                          After Discount: ₹ {parseInt(pkg.discountPrice).toFixed(2)}
+                      </div>
+                      <div className="text-[#86868b] text-[13px] font-medium tracking-tight">
+                          Package Price: <span className="line-through">₹ {parseInt(pkg.originalPrice).toFixed(2)}</span>
+                      </div>
                   </div>
                 </div>
+
+                {/* Make entire card clickable */}
+                <Link 
+                  href={`/services/preventive-health/${pkg.title.toLowerCase().replace(/\s*-\s*/g, '-').replace(/\s+/g, '-')}`}
+                  className="absolute inset-0 z-10"
+                  aria-label={`View details for ${pkg.title}`}
+                />
               </div>
             ))}
           </div>

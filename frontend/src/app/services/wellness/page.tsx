@@ -35,7 +35,7 @@ const WellnessPage = () => {
               <Link href="#apply" className="px-8 py-4 bg-[#E85222] text-white rounded-full font-black hover:bg-[#d1451a] transition-all shadow-lg hover:shadow-orange-900/40 uppercase tracking-widest text-sm text-center">
                 Apply for Card
               </Link>
-              <Link href="#benefits" className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full font-black hover:bg-white/20 transition-all uppercase tracking-widest text-sm text-center">
+              <Link href="/services/preventive-health" className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full font-black hover:bg-white/20 transition-all uppercase tracking-widest text-sm text-center">
                 View Benefits
               </Link>
               <Link href="/services/womens-health-special" className="px-8 py-4 bg-pink-500/80 backdrop-blur-md text-white border border-pink-400/30 rounded-full font-black hover:bg-pink-600 transition-all shadow-lg hover:shadow-pink-900/20 uppercase tracking-widest text-sm text-center">

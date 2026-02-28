@@ -12,6 +12,11 @@ const facilities = [
     category: "Critical Care",
     items: [
       {
+        title: "Emergency & Trauma Center",
+        description: "A 24/7 operational unit with rapid response teams, advanced life support ambulances, and immediate access to operation theatres and diagnostics.",
+        image: "/images/facilities/08.jpeg"
+      },
+      {
         title: "Advanced ICUs",
         description: "Our Intensive Care Units are equipped with the latest ventilatory support, cardiac monitoring systems, and dedicated 1:1 nursing care for critical patients.",
         image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
@@ -20,11 +25,6 @@ const facilities = [
         title: "NICU & PICU",
         description: "Specialized Neonatal and Pediatric Intensive Care Units designed to provide the highest level of care for newborns and children with critical health conditions.",
         image: "/images/facilities/7.jpeg"
-      },
-      {
-        title: "Emergency & Trauma Center",
-        description: "A 24/7 operational unit with rapid response teams, advanced life support ambulances, and immediate access to operation theatres and diagnostics.",
-        image: "/images/facilities/08.jpeg"
       }
     ]
   },
@@ -32,19 +32,29 @@ const facilities = [
     category: "Surgical Excellence",
     items: [
       {
-        title: "Modular Operation Theatres",
-        description: "State-of-the-art modular OTs with HEPA filters and laminar airflow to ensure a sterile environment and minimize infection risks during complex surgeries.",
-        image: "/images/facilities/5.jpeg"
-      },
-      {
-        title: "Robot-Assisted Surgery",
+        title: "Robotic Surgery (Ortho)",
         description: "Cutting-edge robotic surgical systems for minimally invasive procedures, ensuring greater precision, smaller incisions, and faster recovery times.",
         image: "/images/facilities/6.jpeg"
+      },
+      {
+        title: "Microwave Surgery",
+        description: "Advanced microwave ablation techniques providing minimally invasive treatment options with remarkable precision and faster recovery.",
+        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        title: "IR Surgery (Radiology)",
+        description: "Interventional Radiology procedures utilizing advanced real-time image guidance for targeted, minimally invasive surgical interventions.",
+        image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        title: "Cosmetic Gynecology Surgery",
+        description: "Specialized aesthetic and functional procedures performed by expert surgeons using the latest medical technologies in a safe environment.",
+        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop"
       }
     ]
   },
   {
-    category: "Diagnostics & Support",
+    category: "Infra",
     items: [
       {
         title: "Advanced Imaging Center",
@@ -60,16 +70,36 @@ const facilities = [
         title: "Pharmacy",
         description: "Well-stocked 24/7 in-house pharmacy ensuring easy availability of all prescribed medicines and surgical consumables.",
         image: "/images/facilities/09.jpeg"
-      }
-    ]
-  },
-  {
-    category: "Patient Comfort",
-    items: [
+      },
       {
-        title: "In-Patient Rooms",
-        description: "A range of accommodation options from General Wards to Private Suites, all designed with patient comfort, hygiene, and safety as the top priority.",
+        title: "Modular OT",
+        description: "State-of-the-art modular operation theatres with HEPA filters and laminar airflow to ensure a sterile environment.",
+        image: "/images/facilities/5.jpeg"
+      },
+      {
+        title: "Lounge",
+        description: "Comfortable and relaxing lounge areas designed for the comfort of patients and their families.",
+        image: "https://images.unsplash.com/photo-1519494086427-04663e26f1fa?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        title: "Canteen",
+        description: "Hygienic and nutritious food options available round the clock for patients, attendants, and staff.",
+        image: "https://images.unsplash.com/photo-1543353071-873f17a7a088?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        title: "Reception",
+        description: "A welcoming reception area with streamlined admission and query handling processes.",
+        image: "https://images.unsplash.com/photo-1538100958184-4869502ab3ad?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        title: "Rooms",
+        description: "A range of accommodation options from General Wards to Private Suites with patient-centric amenities.",
         image: "/images/facilities/2.jpeg"
+      },
+      {
+        title: "Waiting Area",
+        description: "Spacious and comfortable waiting zones equipped with essential amenities for a pleasant experience.",
+        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
       }
     ]
   }

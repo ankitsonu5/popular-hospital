@@ -1,144 +1,42 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { LocationGallery } from "@/components/LocationGallery";
 
-/* ───────────────── location data ───────────────── */
-const locations = [
-  {
-    slug: "varanasi-main",
-    city: "Varanasi",
-    name: "Popular Hospital – Main Branch",
-    heading: "Our Flagship Centre in Varanasi",
-    title: "Popular Hospital, Varanasi (Main Branch)",
-    description:
-      "The main branch of Popular Hospital in Varanasi is equipped with state-of-the-art medical facilities, offering 24/7 emergency care, advanced diagnostics, surgical suites, and a full range of specialist departments. Located on B.L.W. Road, Kakarmatta, it serves as the primary hub for comprehensive healthcare in the region.",
-    address: "N-10 / 60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh, India",
-    phone: "+91-7800001895",
-    email: "info@popularhospital.in",
-    timings: "Open 24 × 7 • OPD: 9 AM – 8 PM",
-    mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d82.9739!3d25.2677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2e0f0f0f0f0f%3A0x0!2sPopular+Hospital+Kakarmatta!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-    mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.2677,82.9739&destination_place_id=popular+hospital+kakarmatta+varanasi",
-    gallery: [
-      "/images/branches/varanasi-main/1.webp",
-      "/images/branches/varanasi-main/2.webp",
-      "/images/branches/varanasi-main/3.webp",
-      "/images/branches/varanasi-main/4.webp"
-    ],
-    image: "/images/branches/varanasi-main/1.webp",
-  },
-  {
-    slug: "varanasi-city-centre",
-    city: "Varanasi",
-    name: "City Hospital – Sigra",
-    heading: "Advanced Care at Sigra, Varanasi",
-    title: "City Hospital, Sigra Branch",
-    description:
-      "Situated in the heart of Varanasi at Chandrika Nagar Colony, Sigra, this branch provides outpatient consultations, advanced pathology services, ultrasound & X-ray diagnostics, and a modern pharmacy. Our experienced team of doctors ensures fast and compassionate care for every patient.",
-    address: "Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh, India",
-    phone: "+91-7800001895",
-    email: "sigra@popularhospital.in",
-    timings: "Mon – Sat: 8 AM – 9 PM • Sun: 9 AM – 2 PM",
-    mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d82.9900!3d25.3100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCity+Hospital+Sigra+Varanasi!5e0!3m2!1sen!2sin!4v1700000000001!5m2!1sen!2sin",
-    mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.3100,82.9900&destination_place_id=city+hospital+sigra+varanasi",
-    gallery: [
-      "/images/branches/varanasi-sigra/1.webp",
-      "/images/branches/varanasi-sigra/2.webp",
-      "/images/branches/varanasi-sigra/3.webp",
-      "/images/branches/varanasi-sigra/4.webp"
-    ],
-    image: "/images/branches/varanasi-sigra/1.webp",
-  },
-  {
-    slug: "mirzapur",
-    city: "Mirzapur",
-    name: "Popular Hospital – Mirzapur",
-    heading: "Trusted Healthcare in Mirzapur",
-    title: "Popular Hospital, Mirzapur Branch",
-    description:
-      "Bringing quality healthcare closer to Mirzapur, this branch features multi-speciality OPD, a 24-hour pharmacy, and modern ICU facilities. Located near Natwan Police Chowki on Jangi Road, the branch serves patients from surrounding towns and villages with the same high standards of care.",
-    address: "Near Natwan Police Chowki, Jangi Road, Mirzapur, Uttar Pradesh, India",
-    phone: "+91-7800001895",
-    email: "mirzapur@popularhospital.in",
-    timings: "Open 24 × 7 • OPD: 9 AM – 7 PM",
-    mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.0!2d82.5700!3d25.1500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Mirzapur!5e0!3m2!1sen!2sin!4v1700000000002!5m2!1sen!2sin",
-    mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.1500,82.5700&destination_place_id=popular+hospital+mirzapur",
-    gallery: [
-      "/images/branches/mirzapur/1.webp",
-      "/images/branches/mirzapur/2.webp",
-      "/images/branches/mirzapur/3.webp",
-      "/images/branches/mirzapur/4.webp"
-    ],
-    image: "/images/branches/mirzapur/1.webp",
-  },
-  {
-    slug: "gopiganj",
-    city: "Gopiganj",
-    name: "Popular Hospital – Gopiganj",
-    heading: "Community Healthcare at Gopiganj",
-    title: "Popular Hospital, Gopiganj Branch",
-    description:
-      "The Gopiganj branch serves as an essential healthcare hub, providing general medicine, paediatrics, gynaecology, and emergency stabilisation services. Located on G.T. Road near Indus Ind Bank, our dedicated team of resident doctors and nurses ensures the community receives timely medical attention.",
-    address: "G.T. Road, Parao, Near Indus Ind Bank, Gopiganj, Uttar Pradesh, India",
-    phone: "+91-7800001895",
-    email: "gopiganj@popularhospital.in",
-    timings: "Mon – Sat: 8 AM – 8 PM • Emergencies 24/7",
-    mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3605.0!2d82.5123!3d25.5123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Gopiganj!5e0!3m2!1sen!2sin!4v1700000000003!5m2!1sen!2sin",
-    mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.5123,82.5123&destination_place_id=popular+hospital+gopiganj",
-    gallery: [
-      "/images/branches/gopiganj/1.webp",
-      "/images/branches/gopiganj/2.webp",
-      "/images/branches/gopiganj/3.webp",
-      "/images/branches/gopiganj/4.webp"
-    ],
-    image: "/images/branches/gopiganj/1.webp",
-  },
-  {
-    slug: "bachhaon",
-    city: "Bachhaon",
-    name: "Popular Hospital – Bachhaon",
-    heading: "Reliable Care at Bachhaon",
-    title: "Popular Hospital, Bachhaon Branch",
-    description:
-      "Our branch in Bachhaon brings Popular Hospital's legacy of quality and compassion to the area. Located on Chunar Road, this branch is equipped with digital X-ray, pathology lab, and consultations across general medicine, orthopaedics, and ENT, ensuring residents can access specialist healthcare conveniently.",
-    address: "Chunar Road, Bachhaon, Varanasi, Uttar Pradesh, India",
-    phone: "+91-7800001895",
-    email: "bachhaon@popularhospital.in",
-    timings: "Mon – Sat: 9 AM – 8 PM • Emergencies 24/7",
-    mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.0!2d82.8500!3d25.3500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Bachhaon!5e0!3m2!1sen!2sin!4v1700000000004!5m2!1sen!2sin",
-    mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.3500,82.8500&destination_place_id=popular+hospital+bachhaon",
-    gallery: [
-      "/images/branches/bachhaon/1.webp",
-      "/images/branches/bachhaon/2.webp",
-      "/images/branches/bachhaon/3.webp",
-      "/images/branches/bachhaon/4.webp"
-    ],
-    image: "/images/branches/bachhaon/1.webp",
-  },
-];
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
 
-export function generateStaticParams() {
-  return locations.map((loc) => ({ slug: loc.slug }));
+/* ───────────────── fetch branches from API ───────────────── */
+async function getBranches() {
+  try {
+    const res = await fetch(`${API_URL}/api/branches`, {
+      next: { revalidate: 60 }, // re-fetch every 60 seconds
+    });
+    if (!res.ok) return [];
+    return await res.json();
+  } catch {
+    return [];
+  }
+}
+
+async function getBranch(slug: string) {
+  try {
+    const res = await fetch(`${API_URL}/api/branches/${slug}`, {
+      next: { revalidate: 60 },
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
 }
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+}) {
   const { slug } = await params;
-  const loc = locations.find((l) => l.slug === slug);
+  const loc = await getBranch(slug);
   if (!loc) return { title: "Location Not Found" };
   return {
     title: `${loc.name} | Directions & Map – Popular Hospital`,
@@ -153,8 +51,14 @@ export default async function LocationPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const location = locations.find((l) => l.slug === slug);
+  const location = await getBranch(slug);
   if (!location) notFound();
+
+  const allBranches = await getBranches();
+
+  // Build gallery array from image_one...image_four
+  const gallery = [location.image_one, location.image_two, location.image_three, location.image_four].filter(Boolean);
+  const mainImage = gallery[0] || '/about-section-image.png';
 
   return (
     <main className="bg-[#f5f5f7] min-h-screen">
@@ -169,7 +73,7 @@ export default async function LocationPage({
                   Home
                 </Link>
                 <span className="text-gray-300">/</span>
-                <Link href="/#our-locations" className="hover:text-[#1e3a8a] transition-colors">
+                <Link href="/our-locations" className="hover:text-[#1e3a8a] transition-colors">
                   Locations
                 </Link>
                 <span className="text-gray-300">/</span>
@@ -183,7 +87,7 @@ export default async function LocationPage({
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1d1d1f] tracking-tight leading-tight mb-6 font-heading">
-                {location.heading}
+                {location.heading || location.name}
               </h1>
 
               <div className="w-20 h-1.5 rounded-full bg-[#E85222] mb-8" />
@@ -228,17 +132,19 @@ export default async function LocationPage({
                     </div>
 
                     {/* Timings */}
-                    <div className="flex items-start gap-4 flex-1">
-                      <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 text-orange-500 border border-gray-100">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                    {location.timings && (
+                      <div className="flex items-start gap-4 flex-1">
+                        <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 text-orange-500 border border-gray-100">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-[#1d1d1f] text-sm mb-1 uppercase tracking-wide">TIMINGS</h3>
+                          <p className="text-gray-600 text-sm">{location.timings}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-bold text-[#1d1d1f] text-sm mb-1 uppercase tracking-wide">TIMINGS</h3>
-                        <p className="text-gray-600 text-sm">{location.timings}</p>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -267,53 +173,46 @@ export default async function LocationPage({
             </div>
 
             {/* Right Side: Interactive Gallery */}
-            <LocationGallery images={location.gallery || [location.image]} name={location.name} />
+            <LocationGallery images={gallery.length > 0 ? gallery : [mainImage]} name={location.name} />
           </div>
         </div>
       </section>
 
       {/* ─── Map Section Below ─── */}
-      <section className="bg-white py-12">
-        <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="sr-only">Location Map</h2>
-            <div className="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-lg border border-gray-100">
-                <iframe
-                src={location.mapEmbedUrl}
-                className="w-full h-full grayscale-[20%] hover:grayscale-0 transition-all duration-700"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={`Map of ${location.name}`}
-                />
-                {/* Floating Direction Button on Map */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 w-[90%] sm:w-auto">
-                <a
-                    href={location.mapDirectionsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 px-6 py-3 bg-[#1e3a8a] text-white rounded-full font-bold shadow-2xl hover:scale-105 transition-transform border border-white/20 backdrop-blur-md"
-                >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    </svg>
-                    Open In Google Maps
-                </a>
-                </div>
-            </div>
-        </div>
-      </section>
+      {location.mapEmbedUrl && (
+        <section className="bg-white py-12">
+          <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="sr-only">Location Map</h2>
+              <div className="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+                  <iframe
+                  src={location.mapEmbedUrl}
+                  className="w-full h-full grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Map of ${location.name}`}
+                  />
+                  {location.mapDirectionsUrl && (
+                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 w-[90%] sm:w-auto">
+                    <a
+                        href={location.mapDirectionsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-[#1e3a8a] text-white rounded-full font-bold shadow-2xl hover:scale-105 transition-transform border border-white/20 backdrop-blur-md"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Open In Google Maps
+                    </a>
+                    </div>
+                  )}
+              </div>
+          </div>
+        </section>
+      )}
 
       {/* ─── Other Locations ─── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-[1366px] mx-auto">
@@ -325,16 +224,16 @@ export default async function LocationPage({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {locations
-            .filter((l) => l.slug !== location.slug)
-            .map((loc) => (
+          {allBranches
+            .filter((l: any) => l.slug !== location.slug)
+            .map((loc: any) => (
               <Link
                 key={loc.slug}
                 href={`/locations/${loc.slug}`}
                 className="group relative rounded-3xl overflow-hidden h-[300px] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
                 <Image
-                  src={loc.image}
+                  src={loc.image_one || '/about-section-image.png'}
                   alt={loc.name}
                   fill
                   className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"

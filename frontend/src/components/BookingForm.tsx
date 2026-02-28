@@ -120,7 +120,7 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
           >
             <option value="">Select branch</option>
             {branches.map((b) => (
-              <option key={b.id} value={b.id}>{b.name}</option>
+              <option key={b._id} value={b._id}>{b.name}</option>
             ))}
           </select>
         </div>

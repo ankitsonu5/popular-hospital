@@ -6,7 +6,7 @@ const mdData = {
   qualifications: "POPULAR GROUP OF HOSPITALS & ACADEMICS",
   subtitle: "MBBS, MD (OBS & GYNAE), MS-BHU",
   extra: "SR. OBS., GYNAE. & FERTILITY EXPERT",
-  image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=1000&auto=format&fit=crop",
+  image: "/images/leadership/kiran.png",
   message: [
     "As the Managing Director, I am committed to fostering an environment where clinical excellence meets compassionate care. Our focus is on advancing women's health and fertility services by integrating the latest medical breakthroughs with a personalized touch.",
     "We believe in the power of education and research to transform healthcare delivery. Popular Group's academic wings are designed to nurture the next generation of medical professionals who value integrity and patient well-being above all.",
@@ -43,6 +43,7 @@ export default function MDDeskPage() {
                   fill
                   className="object-cover"
                   priority
+                  unoptimized
                 />
             </div>
             <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">

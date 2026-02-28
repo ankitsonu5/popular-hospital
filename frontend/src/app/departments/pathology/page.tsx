@@ -264,12 +264,21 @@ export default function PathologyPage() {
           <p className="text-center text-lg font-medium sm:text-left text-[#1a3a5c]">
             Need to talk to us? Call our helpline 24/7
           </p>
-          <a
-            href="tel:+917800001895"
-            className="text-2xl font-bold text-[#2957A4] underline hover:no-underline"
-          >
-            +91-7800001895
-          </a>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href="tel:+917800001895"
+              className="text-2xl font-bold text-[#2957A4] underline hover:no-underline"
+            >
+              +91-7800001895
+            </a>
+            <span className="text-2xl font-bold text-[#1a3a5c] font-heading">/</span>
+            <a
+              href="tel:+917800001896"
+              className="text-2xl font-bold text-[#2957A4] underline hover:no-underline"
+            >
+              96
+            </a>
+          </div>
         </div>
       </section>
     </main>

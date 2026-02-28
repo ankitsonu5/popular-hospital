@@ -1,0 +1,28 @@
+export const blogPostsData: any[] = [];
+
+export const allCategories = [
+  "Best Cancer Specialist Hospital",
+  "best cancer specialist hospital in India",
+  "best cardiology hospital",
+  "Best Cardiology Hospital in India",
+  "best dental hospital in India",
+  "Best Eye Specialist Doctors in India",
+  "Best Gynaecologist in Varanasi",
+  "best Gynecologist in Varanasi",
+  "Best Heart Hospital in Uttar Pradesh",
+  "Best Joint Replacement Surgery Hospital",
+  "Best Medicine Doctor in Varanasi",
+  "best microbiology lab in India",
+  "Best Neuro Department in India",
+  "Best Neurological Hospital in India",
+  "best neurology hospital in India",
+  "Best Neurology Hospital in Varanasi",
+  "best ortho hospital in India",
+  "Best Plastic Surgeons in Uttar Pradesh",
+  "Best Plastic Surgery Hospital in India",
+  "Best Plastic Surgery Hospital in Uttar Pradesh",
+  "Best Urologist Hospital",
+  "Gastroenterology",
+  "Orthopaedic in Varanasi",
+  "Cardiology", "Neurology", "Orthopedics", "ENT Care", "Pediatrics", "Emergency Care"
+];

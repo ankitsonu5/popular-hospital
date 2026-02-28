@@ -1,6 +1,6 @@
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') return ''; // browser: use Next.js rewrite /api-backend -> backend
-  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
 };
 
 const api = (path: string) => {
@@ -63,8 +63,74 @@ export async function createBooking(data: BookingInput): Promise<{ id: number; m
   return res.json();
 }
 
+export async function fetchNews(): Promise<NewsItem[]> {
+  try {
+    const res = await fetch(api('/news'), { cache: 'no-store' });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch news:', e);
+    return [];
+  }
+}
+
+export async function fetchNewsItem(slug: string): Promise<NewsItem | null> {
+  try {
+    const res = await fetch(api(`/news/${slug}`), { cache: 'no-store' });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch news item:', e);
+    return null;
+  }
+}
+
+export async function fetchBlogs(): Promise<BlogItem[]> {
+  try {
+    const res = await fetch(api('/blogs'), { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch blogs:', e);
+    return [];
+  }
+}
+
+export async function fetchBlogItem(slug: string): Promise<BlogItem | null> {
+  try {
+    const res = await fetch(api(`/blogs/${slug}`), { next: { revalidate: 60 } });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch blog item:', e);
+    return null;
+  }
+}
+
+export async function fetchBlogCategoriesMetrics(): Promise<{_id: string, count: number, latestTitle: string}[]> {
+  try {
+    const res = await fetch(api('/blogs/metrics'), { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch blog categories metrics:', e);
+    return [];
+  }
+}
+
+export async function fetchBlogSearch(query: string): Promise<BlogItem[]> {
+  try {
+    const res = await fetch(api(`/blogs/search?q=${encodeURIComponent(query)}`));
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to search blogs:', e);
+    return [];
+  }
+}
+
 export interface Branch {
-  id: number;
+  _id: string;
   name: string;
   slug: string;
   address: string;
@@ -74,7 +140,15 @@ export interface Branch {
   phone?: string;
   email?: string;
   description?: string;
-  image_url?: string;
+  heading?: string;
+  title?: string;
+  timings?: string;
+  image_one?: string;
+  image_two?: string;
+  image_three?: string;
+  image_four?: string;
+  mapEmbedUrl?: string;
+  mapDirectionsUrl?: string;
   facilities?: string;
 }
 
@@ -109,4 +183,44 @@ export interface BookingInput {
   slot_date: string;
   slot_time: string;
   notes?: string;
+}
+
+export interface NewsItem {
+  _id: string;
+  title: string;
+  slug: string;
+  date: string;
+  excerpt: string;
+  content: string[];
+  image: string;
+  author?: string;
+}
+
+export interface CommentItem {
+  _id?: string;
+  name: string;
+  email: string;
+  website?: string;
+  comment: string;
+  date: string;
+  replies?: {
+    _id?: string;
+    admin: boolean;
+    text: string;
+    date: string;
+  }[];
+}
+
+export interface BlogItem {
+  _id: string;
+  title: string;
+  slug: string;
+  date: string;
+  excerpt: string;
+  content: string[];
+  image: string;
+  author?: string;
+  category?: string;
+  isUncategorized?: boolean;
+  comments?: CommentItem[];
 }

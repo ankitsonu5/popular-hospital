@@ -1,26 +1,48 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
 import branchesRouter from './routes/branches.js';
 import doctorsRouter from './routes/doctors.js';
 import bookingsRouter from './routes/bookings.js';
 import opdRouter from './routes/opd.js';
 import cmsRouter from './routes/cms.js';
+import authRouter from './routes/auth.js';
+import newsRouter from './routes/news.js';
+import blogRouter from './routes/blog.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables
+dotenv.config();
+
+// Connect to MongoDB
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5100;
 
+// Middleware
 app.use(cors({ origin: true }));
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// Public API
+// Public API Routes
 app.use('/api/branches', branchesRouter);
 app.use('/api/doctors', doctorsRouter);
 app.use('/api/bookings', bookingsRouter);
 app.use('/api/opd', opdRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/news', newsRouter);
+app.use('/api/blogs', blogRouter);
+
+// Serve uploads
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+// CMS / Admin Routes
 app.use('/api/cms', cmsRouter);
 
 // Health check
@@ -29,5 +51,5 @@ app.get('/api/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Popular Hospital API running at http://localhost:${PORT}`);
+  console.log(`🏥 Popular Hospital API running at http://localhost:${PORT}`);
 });

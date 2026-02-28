@@ -33,7 +33,7 @@ export default function ServicesPage() {
               Our Expertise
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1e3a8a] font-heading tracking-tight mb-6">
-              Specialized Departments.
+              Our Departments.
             </h1>
             <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">
               At Popular Hospital, we provide world-class healthcare across a wide range of specialties. Our dedicated teams of doctors and specialists ensure the best possible care for every patient.
