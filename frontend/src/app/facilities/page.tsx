@@ -19,12 +19,12 @@ const facilities = [
       {
         title: "Microwave Surgery",
         description: "Advanced microwave ablation techniques providing minimally invasive treatment options with remarkable precision and faster recovery.",
-        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/microwave_surgery.png"
       },
       {
         title: "IR Surgery (Radiology)",
         description: "Interventional Radiology procedures utilizing advanced real-time image guidance for targeted, minimally invasive surgical interventions.",
-        image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/ir_surgery_(radiology).png"
       },
       {
         title: "Cosmetic Gynecology Surgery",
@@ -77,31 +77,32 @@ const facilities = [
         description: "State-of-the-art modular operation theatres with HEPA filters and laminar airflow to ensure a sterile environment.",
         image: "/images/facilities/5.jpeg"
       },
+            {
+        title: "Waiting Area",
+        description: "Spacious and comfortable waiting zones equipped with essential amenities for a pleasant experience.",
+        image: "/images/facilities/waiting_area.png"
+      },
       {
         title: "Lounge",
         description: "Comfortable and relaxing lounge areas designed for the comfort of patients and their families.",
-        image: "https://images.unsplash.com/photo-1519494086427-04663e26f1fa?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/lounge.png"
       },
       {
         title: "Canteen",
         description: "Hygienic and nutritious food options available round the clock for patients, attendants, and staff.",
-        image: "https://images.unsplash.com/photo-1543353071-873f17a7a088?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/canteen.png"
       },
       {
         title: "Reception",
         description: "A welcoming reception area with streamlined admission and query handling processes.",
-        image: "https://images.unsplash.com/photo-1538100958184-4869502ab3ad?q=80&w=800&auto=format&fit=crop"
+        image: "/images/facilities/reception.png"
       },
       {
         title: "Rooms",
         description: "A range of accommodation options from General Wards to Private Suites with patient-centric amenities.",
         image: "/images/facilities/2.jpeg"
       },
-      {
-        title: "Waiting Area",
-        description: "Spacious and comfortable waiting zones equipped with essential amenities for a pleasant experience.",
-        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
-      }
+
     ]
   }
 ];
@@ -111,19 +112,21 @@ export default function FacilitiesPage() {
     <div className="bg-gray-50 min-h-screen pb-20">
 
       {/* ─── Hero Section ─── */}
-      <div className="relative bg-[#0b1c43] text-white py-16 overflow-hidden">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2000&auto=format&fit=crop"
+            src="/images/facilities/banner_facility.png"
             alt="Facilities Banner"
             fill
-            className="object-cover opacity-60 mix-blend-overlay"
+            className="object-cover opacity-85"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/90 via-[#0b1c43]/60 to-[#0b1c43]/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">Explore Our Facilities</h1>
+          <span className="text-hospital-orange font-bold text-xs uppercase tracking-[0.3em] mb-3 block">Perspective</span>
+          <h1 className="text-3xl md:text-5xl font-black font-heading mb-4 text-white uppercase tracking-tight">Explore Our Facilities</h1>
+          <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full mb-6"></div>
           <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
             Experience world-class healthcare infrastructure designed for safety, precision, and patient comfort.
           </p>
@@ -152,12 +155,13 @@ export default function FacilitiesPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {section.items.map((item, itemIdx) => (
                   <div key={itemIdx} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 group flex flex-col h-full">
-                    <div className="relative aspect-video w-full overflow-hidden">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-gray-100">
                       <Image
                         src={item.image}
                         alt={item.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        unoptimized
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
