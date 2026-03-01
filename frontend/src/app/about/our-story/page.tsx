@@ -39,89 +39,54 @@ export default function OurStoryPage() {
         </div>
       </section>
 
-
-      
-      {/* ─── Legacy Timeline (Horizontal) ─── */}
+      {/* ─── Timeline & Narrative Combined Section ─── */}
       <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0b1c43] font-heading tracking-tight mb-6">
-              Our Milestones
-            </h2>
-            <div className="w-24 md:w-32 h-1.5 md:h-2 bg-[#E85222] rounded-full mx-auto mb-6"></div>
-          </div>
+        <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Side: Transformation History Image */}
+            <div className="lg:col-span-7 xl:col-span-8 relative">
+               <div className="w-full relative rounded-2xl shadow-sm border border-gray-100 bg-white group">
+                  <div className="relative w-full h-full overflow-hidden p-6 md:p-10">
+                    <Image 
+                      src="/images/about_popular/transformation-history.jpg?v=1.1" 
+                      alt="The Transformation-History of Popular Hospital" 
+                      width={1200} 
+                      height={800} 
+                      className="w-full h-auto object-contain transform transition-transform duration-700"
+                      priority
+                    />
+                  </div>
+                  {/* Subtle Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+               </div>
+               
+            </div>
 
-          <div className="relative mt-8">
-             {/* Main Horizontal Line (Desktop only) */}
-             <div className="hidden md:block absolute top-[210px] left-[10%] right-[10%] h-[3px] bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 z-0"></div>
-             
-             {/* Mobile Vertical Line */}
-             <div className="md:hidden absolute top-10 bottom-10 left-1/2 -translate-x-1/2 w-1 bg-gray-100 z-0"></div>
+            {/* Right Side: Narrative */}
+            <div className="lg:col-span-5 xl:col-span-4 text-center lg:text-left relative mt-10 lg:mt-0">
+               {/* Decorative Quote Mark */}
+               <div className="hidden lg:block absolute -top-16 -left-12 text-[150px] text-[#E85222] opacity-[0.07] font-serif leading-none select-none z-0">
+                  "
+               </div>
+               
+               {/* Content Card */}
+               <div className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 relative z-10 transition-all duration-500">
+                 
+                 {/* Top Accent Line */}
+                 <div className="w-12 h-1.5 bg-gradient-to-r from-[#E85222] to-[#fd7e56] rounded-full mb-8 mx-auto lg:mx-0"></div>
+                 
+                 <div className="space-y-6 text-[#4a5568] text-[16px] md:text-[17px] xl:text-[18px] leading-[1.8] font-medium">
+                   <p>
+                     Popular Hospital's journey began with a simple but powerful vision by our Founder, Dr. A.K. Kaushik. What started as a focused single-specialty clinic has today blossomed into a comprehensive multispecialty ecosystem that stands as a beacon of hope in Varanasi.
+                   </p>
+                   <p>
+                     For over three decades, we have remained steadfast in our commitment to <strong className="text-[#0b1c43] font-black">ethical medical practices</strong> and <strong className="text-[#0b1c43] font-black">patient-first care</strong>. We believe that true healing happens when advanced technology meets the <span className="text-[#E85222] font-semibold">warmth of human touch</span>.
+                   </p>
+                 </div>
+               </div>
+            </div>
 
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 relative z-10 w-full max-w-5xl mx-auto px-4 md:px-0">
-                
-                {/* 1994 */}
-                <div className="relative flex flex-col items-center group">
-                   {/* Image Top */}
-                   <div className="w-full max-w-[260px] h-[180px] relative mb-6 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow duration-300 border border-gray-100 bg-[#f8fafc] flex items-center justify-center p-3">
-                      <Image src="/legacy/legacy-one.png" alt="1994 Timeline" fill className="object-contain p-4 transform group-hover:scale-105 transition-transform duration-500" unoptimized />
-                      <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded shadow-sm">
-                         <p className="text-[#E85222] text-[10px] font-bold uppercase tracking-widest">Early Foundation</p>
-                      </div>
-                   </div>
-
-                   {/* Center Node & Year */}
-                   <div className="flex flex-col items-center relative">
-                      {/* Orange Dot */}
-                      <div className="w-4 h-4 bg-[#E85222] rounded-full ring-[8px] ring-white shadow-sm z-20 group-hover:scale-150 transition-transform duration-300 relative"></div>
-                      {/* Year */}
-                      <h3 className="mt-4 text-2xl md:text-3xl font-black text-[#0b1c43] tracking-tighter bg-white px-2">1994</h3>
-                   </div>
-
-                   {/* Content Bottom */}
-                   <div className="mt-5 bg-gray-50 p-6 rounded-2xl border border-gray-100/60 shadow-sm transition-all duration-300 w-full text-left min-h-[120px] flex flex-col justify-center gap-3">
-                      <div className="flex items-start gap-2">
-                          <span className="text-[#E85222] font-black text-sm">01.</span>
-                          <span className="text-gray-700 text-sm font-medium leading-relaxed">Early Foundation: Safe childbirth & ethical surgery</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                          <span className="text-[#E85222] font-black text-sm">02.</span>
-                          <span className="text-gray-700 text-sm font-medium leading-relaxed">Rise of NICU, ICU, advanced gynecology</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                          <span className="text-[#E85222] font-black text-sm">03.</span>
-                          <span className="text-gray-700 text-sm font-medium leading-relaxed">2010s – Robotics, IVF, Ortho, Cosmetic</span>
-                      </div>
-                   </div>
-                </div>
-
-                {/* Today */}
-                <div className="relative flex flex-col items-center group">
-                   {/* Image Top */}
-                   <div className="w-full max-w-[260px] h-[180px] relative mb-6 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow duration-300 border border-gray-100 bg-[#f8fafc] flex items-center justify-center p-3">
-                      <Image src="/legacy/legacy-three.jpg" alt="Today Timeline" fill className="object-contain p-4 transform group-hover:scale-105 transition-transform duration-500" unoptimized />
-                      <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded shadow-sm">
-                         <p className="text-[#E85222] text-[10px] font-bold uppercase tracking-widest">Modern Healthcare</p>
-                      </div>
-                   </div>
-
-                   {/* Center Node & Year */}
-                   <div className="flex flex-col items-center relative">
-                      {/* Orange Dot */}
-                      <div className="w-4 h-4 bg-[#E85222] rounded-full ring-[8px] ring-white shadow-sm z-20 group-hover:scale-150 transition-transform duration-300 relative"></div>
-                      {/* Year */}
-                      <h3 className="mt-4 text-2xl md:text-3xl font-black text-[#0b1c43] tracking-tighter bg-white px-2">Today</h3>
-                   </div>
-
-                   {/* Content Bottom */}
-                   <div className="mt-5 bg-gray-50 p-5 rounded-2xl border border-gray-100/60 shadow-sm transition-all duration-300 w-full text-center min-h-[100px] flex items-center justify-center">
-                      <p className="text-gray-700 text-sm md:text-base font-medium leading-relaxed">
-                         A trusted healing destination for thousands
-                      </p>
-                   </div>
-                </div>
-
-             </div>
           </div>
         </div>
       </section>
@@ -213,13 +178,48 @@ function StatCounter({ stat }: { stat: { label: string; value: number; suffix: s
     requestAnimationFrame(animateCount);
   }, [isVisible, stat.value]);
 
+  const progress = stat.value > 0 ? count / stat.value : 0;
+  const radius = 52;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - progress * circumference;
+
   return (
-    <div ref={countRef} className="text-center group">
-      <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#E85222] mb-2 group-hover:scale-110 transition-transform duration-300 font-heading">
-        {count}
-        {stat.suffix}
+    <div ref={countRef} className="flex flex-col items-center group">
+      <div className="relative w-36 h-36 md:w-44 md:h-44 flex items-center justify-center mb-6 transition-all duration-700">
+        {/* SVG Progress Circle */}
+        <svg className="absolute w-full h-full -rotate-90 transform" viewBox="0 0 120 120">
+          {/* Track Circle */}
+          <circle
+            cx="60"
+            cy="60"
+            r={radius}
+            stroke="currentColor"
+            strokeWidth="3"
+            fill="transparent"
+            className="text-white/10"
+          />
+          {/* Progress Circle */}
+          <circle
+            cx="60"
+            cy="60"
+            r={radius}
+            stroke="#E85222"
+            strokeWidth="5"
+            fill="transparent"
+            strokeDasharray={circumference}
+            style={{ 
+              strokeDashoffset,
+              transition: 'stroke-dashoffset 150ms cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+            strokeLinecap="round"
+          />
+        </svg>
+
+        <div className="text-4xl md:text-5xl lg:text-5xl font-bold font-heading z-10 text-[#E85222] transition-transform duration-300">
+          {count}{stat.suffix}
+        </div>
       </div>
-      <div className="text-sm md:text-base text-gray-300 font-medium tracking-wider uppercase">
+      <div className="text-xs md:text-sm text-gray-300 font-bold tracking-wider uppercase text-center max-w-[160px] leading-tight group-hover:text-white transition-colors duration-300">
         {stat.label}
       </div>
     </div>

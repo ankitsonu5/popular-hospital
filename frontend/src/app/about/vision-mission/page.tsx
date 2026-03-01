@@ -60,7 +60,7 @@ export default function VisionMissionPage() {
             <div>
               <span className="text-[#00B4D8] font-bold text-sm uppercase tracking-widest">Our Vision</span>
               <h2 className="mt-3 text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-                Touch Thousands of Lives
+                Touch millions of Lives
               </h2>
               <div className="mt-2 w-16 h-1 bg-[#E85222] rounded-full"></div>
 
