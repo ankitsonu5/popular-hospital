@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getImageUrl } from '@/lib/api';
 import BlogSidebar, { BlogSearchWidget } from './BlogSidebar';
 import { allCategories } from './data';
 
@@ -98,7 +99,7 @@ export default function BlogClientLayout({
                 {/* Image Container */}
                 <div className="md:w-2/5 relative h-[250px] md:h-auto overflow-hidden">
                   <Image 
-                    src={post.image || '/about-section-image.png'} 
+                    src={getImageUrl(post.image) || '/about-section-image.png'} 
                     alt={post.title} 
                     fill 
                     className="object-cover transition-transform duration-700 group-hover:scale-110"

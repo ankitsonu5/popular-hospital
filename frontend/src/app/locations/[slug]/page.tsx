@@ -2,33 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { LocationGallery } from "@/components/LocationGallery";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
-
-/* ───────────────── fetch branches from API ───────────────── */
-async function getBranches() {
-  try {
-    const res = await fetch(`${API_URL}/api/branches`, {
-      next: { revalidate: 60 }, // re-fetch every 60 seconds
-    });
-    if (!res.ok) return [];
-    return await res.json();
-  } catch {
-    return [];
-  }
-}
-
-async function getBranch(slug: string) {
-  try {
-    const res = await fetch(`${API_URL}/api/branches/${slug}`, {
-      next: { revalidate: 60 },
-    });
-    if (!res.ok) return null;
-    return await res.json();
-  } catch {
-    return null;
-  }
-}
+import { fetchBranches, fetchBranch, getImageUrl } from "@/lib/api";
 
 export async function generateMetadata({
   params,
@@ -36,7 +10,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const loc = await getBranch(slug);
+  const loc = await fetchBranch(slug);
   if (!loc) return { title: "Location Not Found" };
   return {
     title: `${loc.name} | Directions & Map – Popular Hospital`,
@@ -51,13 +25,16 @@ export default async function LocationPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const location = await getBranch(slug);
+  const location = await fetchBranch(slug);
   if (!location) notFound();
 
-  const allBranches = await getBranches();
+  const allBranches = await fetchBranches();
 
-  // Build gallery array from image_one...image_four
-  const gallery = [location.image_one, location.image_two, location.image_three, location.image_four].filter(Boolean);
+  // Build gallery array from image_one...image_four using helper
+  const gallery = [location.image_one, location.image_two, location.image_three, location.image_four]
+    .filter(Boolean)
+    .map(img => getImageUrl(img!));
+  
   const mainImage = gallery[0] || '/about-section-image.png';
 
   return (
@@ -233,7 +210,7 @@ export default async function LocationPage({
                 className="group relative rounded-3xl overflow-hidden h-[300px] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
                 <Image
-                  src={loc.image_one || '/about-section-image.png'}
+                  src={getImageUrl(loc.image_one) || '/about-section-image.png'}
                   alt={loc.name}
                   fill
                   className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"

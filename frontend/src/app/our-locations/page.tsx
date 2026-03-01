@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { fetchBranches, type Branch } from "@/lib/api";
+import { fetchBranches, type Branch, getImageUrl } from "@/lib/api";
 
 export default function OurLocationsPage() {
   const [branches, setBranches] = useState<Branch[]>([]);
@@ -125,7 +125,7 @@ export default function OurLocationsPage() {
                 </div>
 
                 <Image
-                  src={location.image_one || '/about-section-image.png'}
+                  src={getImageUrl(location.image_one || '') || '/about-section-image.png'}
                   alt={location.name}
                   fill
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"

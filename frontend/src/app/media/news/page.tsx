@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Stay updated with the latest news, health articles, medical breakthroughs, and updates from Popular Hospital. Read expert health tips and hospital announcements.",
 };
 
-import { fetchNews } from "@/lib/api";
+import { fetchNews, getImageUrl } from "@/lib/api";
 
 /* ───────────────── page component ───────────────── */
 export default async function NewsPage() {
@@ -57,7 +57,7 @@ export default async function NewsPage() {
               {/* Image */}
               <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden">
                 <Image
-                  src={article.image ? (article.image.startsWith('/uploads') ? `http://localhost:5100${article.image}` : article.image) : "/about-section-image.png"}
+                  src={getImageUrl(article.image) || "/about-section-image.png"}
                   alt={article.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
