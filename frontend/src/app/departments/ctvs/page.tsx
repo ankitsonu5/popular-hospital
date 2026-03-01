@@ -51,42 +51,7 @@ export default function CTVSPage() {
         </div>
       </section>
 
-      {/* Floating Cards / Features */}
-      <section className="relative z-20 mt-8 md:-mt-16 pb-20 px-4">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "Bypass Surgery", icon: "heart-pulse", desc: "Total Arterial & Beating Heart CABG." },
-              { title: "Valve Repair", icon: "valve", desc: "Mitral & Aortic Valve replacement/repair." },
-              { title: "Vascular Surgery", icon: "flow", desc: "Treatment for varicose veins & DVT." },
-              { title: "Thoracic Surgery", icon: "lung", desc: "Complex lung and chest wall procedures." },
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group">
-                <div className="w-12 h-12 bg-rose-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#0b1c43] transition-colors">
-                   <svg className="w-6 h-6 text-[#0b1c43] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      {item.icon === 'heart-pulse' && (
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                      )}
-                      {item.icon === 'valve' && (
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /> 
-                      )}
-                      {item.icon === 'flow' && (
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      )}
-                      {item.icon === 'lung' && (
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                      )}
-                   </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Section: Technology */}
+         {/* Feature Section: Technology */}
       <section className="py-20 bg-[#fafafa]">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -168,6 +133,43 @@ export default function CTVSPage() {
           </div>
         </div>
       </section>
+
+      {/* Floating Cards / Features */}
+      <section className="relative z-20 mt-8 md:-mt-16 pb-20 px-4">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Bypass Surgery", icon: "heart-pulse", desc: "Total Arterial & Beating Heart CABG." },
+              { title: "Valve Repair", icon: "valve", desc: "Mitral & Aortic Valve replacement/repair." },
+              { title: "Vascular Surgery", icon: "flow", desc: "Treatment for varicose veins & DVT." },
+              { title: "Thoracic Surgery", icon: "lung", desc: "Complex lung and chest wall procedures." },
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group">
+                <div className="w-12 h-12 bg-rose-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#0b1c43] transition-colors">
+                   <svg className="w-6 h-6 text-[#0b1c43] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {item.icon === 'heart-pulse' && (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      )}
+                      {item.icon === 'valve' && (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /> 
+                      )}
+                      {item.icon === 'flow' && (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      )}
+                      {item.icon === 'lung' && (
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                      )}
+                   </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+   
 
       {/* Feature Strip: Patient Focus */}
       <section className="py-10 px-4">

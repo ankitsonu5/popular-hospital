@@ -28,9 +28,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-lato)', 'Lato', 'sans-serif'],
-        heading: ['var(--font-lato)', 'Lato', 'sans-serif'],
-        display: ['var(--font-lato)', 'Lato', 'sans-serif'],
+        sans: ['var(--font-lato)'],
+        heading: ['var(--font-montserrat)'],
+        display: ['var(--font-montserrat)'],
       },
     },
   },

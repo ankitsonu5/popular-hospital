@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const facilities = [
-    {
+  {
     category: "Surgical Excellence",
     items: [
       {
@@ -19,12 +19,12 @@ const facilities = [
       {
         title: "Microwave Surgery",
         description: "Advanced microwave ablation techniques providing minimally invasive treatment options with remarkable precision and faster recovery.",
-        image: "/images/facilities/microwave_surgery.png"
+        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop"
       },
       {
         title: "IR Surgery (Radiology)",
         description: "Interventional Radiology procedures utilizing advanced real-time image guidance for targeted, minimally invasive surgical interventions.",
-        image: "/images/facilities/ir_surgery_(radiology).png"
+        image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop"
       },
       {
         title: "Cosmetic Gynecology Surgery",
@@ -53,7 +53,7 @@ const facilities = [
       }
     ]
   },
-
+  
   {
     category: "Infra",
     items: [
@@ -77,31 +77,31 @@ const facilities = [
         description: "State-of-the-art modular operation theatres with HEPA filters and laminar airflow to ensure a sterile environment.",
         image: "/images/facilities/5.jpeg"
       },
-                  {
-        title: "Waiting Area",
-        description: "Spacious and comfortable waiting zones equipped with essential amenities for a pleasant experience.",
-        image: "/images/facilities/waiting_area.png"
-      },
       {
         title: "Lounge",
         description: "Comfortable and relaxing lounge areas designed for the comfort of patients and their families.",
-        image: "/images/facilities/lounge.png"
+        image: "https://images.unsplash.com/photo-1519494086427-04663e26f1fa?q=80&w=800&auto=format&fit=crop"
       },
       {
         title: "Canteen",
         description: "Hygienic and nutritious food options available round the clock for patients, attendants, and staff.",
-        image: "/images/facilities/canteen.png"
+        image: "https://images.unsplash.com/photo-1543353071-873f17a7a088?q=80&w=800&auto=format&fit=crop"
       },
       {
         title: "Reception",
         description: "A welcoming reception area with streamlined admission and query handling processes.",
-        image: "/images/facilities/reception.png"
+        image: "https://images.unsplash.com/photo-1538100958184-4869502ab3ad?q=80&w=800&auto=format&fit=crop"
       },
       {
         title: "Rooms",
         description: "A range of accommodation options from General Wards to Private Suites with patient-centric amenities.",
         image: "/images/facilities/2.jpeg"
       },
+      {
+        title: "Waiting Area",
+        description: "Spacious and comfortable waiting zones equipped with essential amenities for a pleasant experience.",
+        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
+      }
     ]
   }
 ];

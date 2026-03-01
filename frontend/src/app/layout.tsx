@@ -1,20 +1,6 @@
 import type { Metadata } from 'next';
-import { Montserrat, Lato } from 'next/font/google';
 import './globals.css';
 import LayoutShell from '@/components/LayoutShell';
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-montserrat',
-});
-
-const lato = Lato({
-  weight: ['300', '400', '700', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-lato',
-});
 
 export const metadata: Metadata = {
   title: {
@@ -43,12 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${lato.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-      </head>
+    <html lang="en">
       <body className="min-h-screen flex flex-col">
         <LayoutShell>{children}</LayoutShell>
       </body>
