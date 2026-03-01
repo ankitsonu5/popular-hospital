@@ -19,10 +19,10 @@ export default function LeadershipPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="relative bg-[#0b1c43] text-white py-16 overflow-hidden">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12">
         <div className="absolute inset-0 z-0">
             <Image
-                src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1600&auto=format&fit=crop"
+                src="/images/about_popular/leadership.png"
                 alt="Leadership Banner"
                 fill
                 className="object-cover opacity-50"

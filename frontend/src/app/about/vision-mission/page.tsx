@@ -10,10 +10,10 @@ export default function VisionMissionPage() {
     <div className="bg-white min-h-screen">
 
       {/* ─── Clean Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] py-20 md:py-24 overflow-hidden">
+      <section className="relative bg-[#0b1c43] overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2000&auto=format&fit=crop"
+            src="/images/about_popular/vision_mission.webp"
             alt="Vision Banner"
             fill
             className="object-cover opacity-15"

@@ -51,7 +51,26 @@ const LoadingScreen = () => {
       `}</style>
       
       <div className="w-full relative flex items-center justify-center h-48">
-        <div className="absolute animate-drive w-40 h-40 md:w-56 md:h-56">
+        {/* Central Logo with Pulsing Rings (Background) */}
+        <div className="absolute flex items-center justify-center opacity-40 z-0">
+          {/* Pulsing Ring Effect */}
+          <div className="absolute inset-x-0 inset-y-0 -m-4 rounded-full border-4 border-hospital-teal opacity-30 animate-ping"></div>
+          <div className="absolute inset-x-0 inset-y-0 -m-8 rounded-full border-4 border-hospital-orange opacity-20 animate-pulse delay-700"></div>
+          
+          {/* Central Logo */}
+          <div className="relative w-28 h-28 md:w-36 md:h-36 animate-fade-in">
+            <Image
+              src="/logo.png"
+              alt="Popular Hospital"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Ambulance driving animation (Foreground) */}
+        <div className="absolute animate-drive w-40 h-40 md:w-56 md:h-56 z-10">
           <Image
             src="/images/ambulance.png"
             alt="Ambulance"

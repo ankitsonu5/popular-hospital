@@ -158,32 +158,22 @@ function EmpanelmentSection({
 
 /* ─── Page ─── */
 
-const featuredLogos = [
-  { src: "https://logo.clearbit.com/iocl.com", alt: "IndianOil", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" },
-  { src: "https://logo.clearbit.com/bhel.com", alt: "BHEL", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" },
-  { src: "https://logo.clearbit.com/nclcil.in", alt: "NCL", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" },
-  { src: "https://logo.clearbit.com/sbigeneral.in", alt: "SBI General", className: "h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300" },
-  { src: "https://logo.clearbit.com/iffcotokio.co.in", alt: "IFFCO-TOKIO", className: "h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300" },
-  { src: "https://logo.clearbit.com/hindalco.com", alt: "Hindalco", className: "h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300" },
-  { src: "https://logo.clearbit.com/paramounttpa.com", alt: "Paramount Health", className: "h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain transition-all duration-300" },
-  { src: "https://logo.clearbit.com/vidalhealthtpa.com", alt: "Vidal Health", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" },
-  { src: "https://logo.clearbit.com/aai.aero", alt: "AAI", className: "h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" }
-];
+
 
 export default function CashlessEmpanelmentPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="relative bg-[#0b1c43] text-white py-16 overflow-hidden">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12">
         <div className="absolute inset-0 z-0">
             <Image
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2000&auto=format&fit=crop"
+                src="/images/about_popular/cashless_empanelment.png"
                 alt="Cashless Banner"
                 fill
-                className="object-cover opacity-60 mix-blend-overlay"
+                className="object-cover opacity-85"
                 priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/90 via-[#0b1c43]/60 to-[#0b1c43]/90" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">Cashless Empanelment</h1>
@@ -193,19 +183,17 @@ export default function CashlessEmpanelmentPage() {
         </div>
       </div>
 
-      {/* ─── Featured Logos Theme ─── */}
-      <div className="bg-white w-full border-b border-gray-100 py-12 overflow-hidden">
-        <div className="mx-auto w-full max-w-[1200px] px-4">
-          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-14 lg:gap-20 opacity-90 transition-all duration-500">
-            {/* Real Logos loaded via Clearbit */}
-            {featuredLogos.map((logo, index) => (
-              <img
-                key={index}
-                src={logo.src}
-                alt={logo.alt}
-                className={logo.className}
-              />
-            ))}
+      {/* ─── Banner Section ─── */}
+      <div className="w-full bg-white py-8">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+          <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9]">
+            <Image
+              src="/images/cashless_empanelment/cashless_empanelment.png"
+              alt="Cashless Empanelment Banner"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
         </div>
       </div>
