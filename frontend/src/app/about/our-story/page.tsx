@@ -40,7 +40,7 @@ export default function OurStoryPage() {
       </section>
 
 
-
+      
       {/* ─── Legacy Timeline (Horizontal) ─── */}
       <section className="py-16 md:py-24 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -58,7 +58,7 @@ export default function OurStoryPage() {
              {/* Mobile Vertical Line */}
              <div className="md:hidden absolute top-10 bottom-10 left-1/2 -translate-x-1/2 w-1 bg-gray-100 z-0"></div>
 
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10 w-full px-4 md:px-0">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 relative z-10 w-full max-w-5xl mx-auto px-4 md:px-0">
                 
                 {/* 1994 */}
                 <div className="relative flex flex-col items-center group">
@@ -79,39 +79,17 @@ export default function OurStoryPage() {
                    </div>
 
                    {/* Content Bottom */}
-                   <div className="mt-5 bg-gray-50 p-5 rounded-2xl border border-gray-100/60 shadow-sm transition-all duration-300 w-full text-center min-h-[100px] flex items-center justify-center">
-                      <p className="text-gray-700 text-sm md:text-base font-medium leading-relaxed">
-                         A small dream: safe childbirth & ethical surgery
-                      </p>
-                   </div>
-                </div>
-
-                {/* 2000s */}
-                <div className="relative flex flex-col items-center group">
-                   {/* Image Top */}
-                   <div className="w-full max-w-[260px] h-[180px] relative mb-6 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow duration-300 border border-gray-100 bg-[#f8fafc] flex items-center justify-center p-3">
-                      <Image src="/legacy/legacy-two.png" alt="2000s Timeline" fill className="object-contain p-4 transform group-hover:scale-105 transition-transform duration-500" unoptimized />
-                      <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded shadow-sm">
-                         <p className="text-[#E85222] text-[10px] font-bold uppercase tracking-widest">Growth & Expansion</p>
-                      </div>
-                   </div>
-
-                   {/* Center Node & Year */}
-                   <div className="flex flex-col items-center relative">
-                      {/* Orange Dot */}
-                      <div className="w-4 h-4 bg-[#E85222] rounded-full ring-[8px] ring-white shadow-sm z-20 group-hover:scale-150 transition-transform duration-300 relative"></div>
-                      {/* Year */}
-                      <h3 className="mt-4 text-2xl md:text-3xl font-black text-[#0b1c43] tracking-tighter bg-white px-2">2000s</h3>
-                   </div>
-
-                   {/* Content Bottom */}
-                   <div className="mt-5 bg-gray-50 p-5 rounded-2xl border border-gray-100/60 shadow-sm transition-all duration-300 w-full text-left min-h-[100px] flex flex-col justify-center gap-3">
+                   <div className="mt-5 bg-gray-50 p-6 rounded-2xl border border-gray-100/60 shadow-sm transition-all duration-300 w-full text-left min-h-[120px] flex flex-col justify-center gap-3">
                       <div className="flex items-start gap-2">
-                          <span className="text-hospital-teal font-black text-sm">01.</span>
+                          <span className="text-[#E85222] font-black text-sm">01.</span>
+                          <span className="text-gray-700 text-sm font-medium leading-relaxed">Early Foundation: Safe childbirth & ethical surgery</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                          <span className="text-[#E85222] font-black text-sm">02.</span>
                           <span className="text-gray-700 text-sm font-medium leading-relaxed">Rise of NICU, ICU, advanced gynecology</span>
                       </div>
                       <div className="flex items-start gap-2">
-                          <span className="text-hospital-teal font-black text-sm">02.</span>
+                          <span className="text-[#E85222] font-black text-sm">03.</span>
                           <span className="text-gray-700 text-sm font-medium leading-relaxed">2010s – Robotics, IVF, Ortho, Cosmetic</span>
                       </div>
                    </div>
@@ -195,13 +173,14 @@ function StatCounter({ stat }: { stat: { label: string; value: number; suffix: s
       { threshold: 0.1 } // Trigger when 10% of the element is visible
     );
 
-    if (countRef.current) {
-      observer.observe(countRef.current);
+    const currentRef = countRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (countRef.current) {
-        observer.unobserve(countRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

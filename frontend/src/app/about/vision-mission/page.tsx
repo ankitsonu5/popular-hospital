@@ -43,7 +43,7 @@ export default function VisionMissionPage() {
             <div className="relative">
               <div className="relative aspect-[3/4] w-full max-w-[420px] mx-auto rounded-3xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/leadership/dr-ak-kaushik.jpg"
+                  src=""
                   alt="Dr. A.K. Kaushik - Founder of Popular Hospital"
                   fill
                   className="object-cover"
@@ -116,7 +116,7 @@ export default function VisionMissionPage() {
             <div className="relative order-1 lg:order-2">
               <div className="relative aspect-[4/5] w-full max-w-[420px] mx-auto rounded-3xl overflow-hidden shadow-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=1000&auto=format&fit=crop"
+                  src=""
                   alt="Our Mission - Healthcare Excellence"
                   fill
                   className="object-cover"

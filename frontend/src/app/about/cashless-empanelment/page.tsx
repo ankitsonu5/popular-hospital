@@ -183,25 +183,96 @@ export default function CashlessEmpanelmentPage() {
         </div>
       </div>
 
-      {/* ─── Banner Section ─── */}
-      <div className="w-full bg-white py-8">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9]">
-            <Image
-              src="/images/cashless_empanelment/cashless_empanelment.png"
-              alt="Cashless Empanelment Banner"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
+      {/* ─── Logo Marquee Slider ─── */}
+      <div className="w-full bg-white py-12 overflow-hidden relative border-y border-gray-100">
+        <div className="flex animate-scroll-left whitespace-nowrap pause-scroll">
+          {[
+            'AAI.png',
+            'BHEL.png',
+            'Indian_oil.png',
+            'NCL.png',
+            'SBI_general.png',
+            'hindalco.png',
+            'iffco-tokio.png',
+            'pmjay.png',
+            'vidal_health.png',
+            // Doubling for infinite effect
+            'AAI.png',
+            'BHEL.png',
+            'Indian_oil.png',
+            'NCL.png',
+            'SBI_general.png',
+            'hindalco.png',
+            'iffco-tokio.png',
+            'pmjay.png',
+            'vidal_health.png',
+          ].map((logo, index) => (
+            <div key={index} className="flex-shrink-0 mx-8 md:mx-16 w-32 md:w-48 h-16 md:h-24 relative flex items-center justify-center">
+              <Image
+                src={`/images/cashless_empanelment/${logo}`}
+                alt={`Partner Logo - ${logo}`}
+                fill
+                className="object-contain filter transition-all duration-300 hover:scale-110"
+              />
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Content */}
       <div className="mx-auto w-full max-w-[1366px] px-4 py-16">
+        {/* Government & PSU Houses */}
+        <EmpanelmentSection
+          title="Government & PSU Houses"
+          items={governmentPSU}
+          accentColor="text-[#0b1c43]"
+          borderColor="border-gray-200"
+          bgGradientFrom="from-[#0b1c43]"
+          bgGradientTo="to-[#00B4D8]"
+        />
+
+        {/* Private Corporate */}
+        <EmpanelmentSection
+          title="Private Corporate"
+          items={privateCorporate}
+          accentColor="text-[#8B4513]"
+          borderColor="border-gray-200"
+          bgGradientFrom="from-[#8B4513]"
+          bgGradientTo="to-[#E85222]"
+        />
+
+        {/* Insurance Companies */}
+        <EmpanelmentSection
+          title="Insurance Companies"
+          items={insuranceCompanies}
+          accentColor="text-[#2957A4]"
+          borderColor="border-gray-200"
+          bgGradientFrom="from-[#2957A4]"
+          bgGradientTo="to-[#00B4D8]"
+        />
+
+        {/* TPA Companies */}
+        <EmpanelmentSection
+          title="TPA Companies"
+          items={tpaCompanies}
+          accentColor="text-[#E85222]"
+          borderColor="border-gray-200"
+          bgGradientFrom="from-[#E85222]"
+          bgGradientTo="to-[#FFB088]"
+        />
+
+        {/* International TPA */}
+        <EmpanelmentSection
+          title="International TPA"
+          items={internationalTPA}
+          accentColor="text-[#8B0000]"
+          borderColor="border-gray-200"
+          bgGradientFrom="from-[#8B0000]"
+          bgGradientTo="to-[#E85222]"
+        />
+
         {/* Quick stats bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-16">
           {[
             {
               count: governmentPSU.length + '+',
@@ -273,56 +344,6 @@ export default function CashlessEmpanelmentPage() {
             </div>
           ))}
         </div>
-
-        {/* Government & PSU Houses */}
-        <EmpanelmentSection
-          title="Government & PSU Houses"
-          items={governmentPSU}
-          accentColor="text-[#0b1c43]"
-          borderColor="border-gray-200"
-          bgGradientFrom="from-[#0b1c43]"
-          bgGradientTo="to-[#00B4D8]"
-        />
-
-        {/* Private Corporate */}
-        <EmpanelmentSection
-          title="Private Corporate"
-          items={privateCorporate}
-          accentColor="text-[#8B4513]"
-          borderColor="border-gray-200"
-          bgGradientFrom="from-[#8B4513]"
-          bgGradientTo="to-[#E85222]"
-        />
-
-        {/* Insurance Companies */}
-        <EmpanelmentSection
-          title="Insurance Companies"
-          items={insuranceCompanies}
-          accentColor="text-[#2957A4]"
-          borderColor="border-gray-200"
-          bgGradientFrom="from-[#2957A4]"
-          bgGradientTo="to-[#00B4D8]"
-        />
-
-        {/* TPA Companies */}
-        <EmpanelmentSection
-          title="TPA Companies"
-          items={tpaCompanies}
-          accentColor="text-[#E85222]"
-          borderColor="border-gray-200"
-          bgGradientFrom="from-[#E85222]"
-          bgGradientTo="to-[#FFB088]"
-        />
-
-        {/* International TPA */}
-        <EmpanelmentSection
-          title="International TPA"
-          items={internationalTPA}
-          accentColor="text-[#8B0000]"
-          borderColor="border-gray-200"
-          bgGradientFrom="from-[#8B0000]"
-          bgGradientTo="to-[#E85222]"
-        />
 
         {/* CTA Section */}
         <div className="mt-16 bg-gradient-to-r from-[#0b1c43] to-[#1a3a6b] rounded-2xl p-8 md:p-12 text-white text-center">
