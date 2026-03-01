@@ -60,13 +60,13 @@ export default function VisionMissionPage() {
             <div>
               <span className="text-[#00B4D8] font-bold text-sm uppercase tracking-widest">Our Vision</span>
               <h2 className="mt-3 text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-                Touch millions of Lives
+                Touch Millions of Lives
               </h2>
               <div className="mt-2 w-16 h-1 bg-[#E85222] rounded-full"></div>
 
               <div className="mt-8 space-y-5 text-gray-600 text-base leading-relaxed">
                 <p className="text-lg text-[#0b1c43] font-medium border-l-4 border-[#00B4D8] pl-5 italic">
-                  Popular Hospital's vision for the next phase of development is to 'Touch Thousands of Lives'.
+                  Popular Hospital's vision for the next phase of development is to 'Touch Millions of Lives'.
                 </p>
                 <p>
                   Popular Hospital was established in 2000 by Dr. A.K. Kaushik, renowned as the architect of modern healthcare in the region. As the region's pioneering super-specialty hospital, Popular Hospital is acclaimed for leading the healthcare revolution.
