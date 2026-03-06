@@ -27,7 +27,7 @@ export default function SilverPackageWomenPage() {
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#578191]">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1584343160248-185dcbcc54c5?auto=format&fit=crop&q=80&w=2000"
+            src="/images/health-packages-hero-v2.png"
             alt="Health Packages Background"
             fill
             className="object-cover opacity-20 mix-blend-overlay"
@@ -59,7 +59,7 @@ export default function SilverPackageWomenPage() {
             <div className="w-full md:w-2/3 bg-[#f8f9fa] rounded-lg shadow-md border border-gray-100 flex overflow-hidden">
                 <div className="w-[180px] sm:w-[220px] relative bg-[#e7e7e7] flex-shrink-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=60"
+                        src="/images/health-packages/silver_package_women.jpg"
                         alt="Silver Package Women"
                         fill
                         className="object-cover object-top"

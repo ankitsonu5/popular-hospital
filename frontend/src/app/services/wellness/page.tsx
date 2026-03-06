@@ -13,47 +13,44 @@ const WellnessPage = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#0b1c43] text-white pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <Image
-            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2000"
-            alt="Healthcare background"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/80 to-transparent z-0"></div>
-
-        <div className="container mx-auto max-w-[1366px] relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight font-heading leading-tight animate-fade-in-up">
-            Welcome to the world of{" "}
-            <span className="text-[#E85222]">Affordable Healthcare</span> with
-            Health Fit Card!
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed font-medium">
-            Popular Hospital's Health Fit Card is your personal medical
-            assistant, designed to manage your family's health needs with ease
-            and priority.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="#apply"
-              className="px-8 py-4 bg-[#E85222] text-white rounded-full font-black hover:bg-[#d1451a] transition-all shadow-lg hover:shadow-orange-900/40 uppercase tracking-widest text-sm text-center"
-            >
-              Apply for Card
-            </Link>
-            <Link
-              href="/services/preventive-health"
-              className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full font-black hover:bg-white/20 transition-all uppercase tracking-widest text-sm text-center"
-            >
-              Check-up Packages
-            </Link>
-            <Link
-              href="/services/womens-health-special"
-              className="px-8 py-4 bg-pink-500/80 backdrop-blur-md text-white border border-pink-400/30 rounded-full font-black hover:bg-pink-600 transition-all shadow-lg hover:shadow-pink-900/20 uppercase tracking-widest text-sm text-center"
-            >
-              Women's Health Special
-            </Link>
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-br from-[#0b1c43] to-[#122e66]">
+        <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/clean-texturing.png')] mix-blend-overlay pointer-events-none"></div>
+        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10 flex flex-col md:flex-row items-center gap-10">
+          <div className="flex-1 w-full text-center md:text-left">
+            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight font-heading leading-tight animate-fade-in-up">
+              Welcome to the{" "}
+              <span className="text-[#E85222]">Affordable Healthcare</span> with
+              Health Fit Cards
+            </h1>
+            <p className="text-xl md:text-2xl text-blue-100 mb-10 leading-relaxed font-medium">
+              Popular Hospital's Health Fit Cards is your personal medical
+              assistant, designed to manage your family's health needs with ease
+              and priority.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              <Link
+                href="#apply"
+                className="px-8 py-4 bg-[#E85222] text-white rounded-full font-black hover:bg-[#d1451a] transition-all shadow-lg hover:shadow-orange-900/40 uppercase tracking-widest text-sm text-center"
+              >
+                Apply for Card
+              </Link>
+              <Link
+                href="/services/preventive-health"
+                className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full font-black hover:bg-white/20 transition-all uppercase tracking-widest text-sm text-center"
+              >
+                Health Packages
+              </Link>
+            </div>
+          </div>
+          <div className="flex-1 hidden md:flex items-center justify-center relative">
+            <div className="relative w-80 h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden border-8 border-white/10 shadow-2xl">
+                <Image
+                    src="/images/health-packages-hero-v2.png"
+                    alt="Wellness"
+                    fill
+                    className="object-cover"
+                />
+            </div>
           </div>
         </div>
       </section>
@@ -496,7 +493,7 @@ const WellnessPage = () => {
                     <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs">
                       Call Helpline
                     </span>
-                    <span className="text-xl font-bold">+91 7800001895</span>
+                    <span className="text-xl font-bold">+91 7800001895 / 96</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-6 group">
@@ -508,7 +505,7 @@ const WellnessPage = () => {
                       Email Us
                     </span>
                     <span className="text-lg md:text-xl font-bold break-all leading-tight">
-                      wellness@popularhospitals.in
+                      info@popularhospitals.in
                     </span>
                   </div>
                 </div>
@@ -540,12 +537,13 @@ const WellnessPage = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                    Preferred Card
+                    email
                   </label>
-                  <select className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium appearance-none">
-                    <option>Health Fit Gold Card</option>
-                    <option>Health Fit Platinum Card</option>
-                  </select>
+                  <input
+                      type="email"
+                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
+                      placeholder="Enter Your Email"
+                    />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
@@ -659,3 +657,5 @@ const WellnessPage = () => {
 };
 
 export default WellnessPage;
+
+

@@ -33,8 +33,8 @@ export default function OurStoryPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-heading tracking-tight drop-shadow-lg">
             Our Legacy of Care
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto font-light">
-            From a small clinic to a healthcare ecosystem. A journey defined by compassion, innovation, and an unwavering commitment to the community.
+          <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-4xl mx-auto font-light">
+            POPULAR HOSPITAL is a 450 bedded Multi Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32+ years.
           </p>
         </div>
       </section>
@@ -76,14 +76,14 @@ export default function OurStoryPage() {
                  {/* Top Accent Line */}
                  <div className="w-12 h-1.5 bg-gradient-to-r from-[#E85222] to-[#fd7e56] rounded-full mb-8 mx-auto lg:mx-0"></div>
                  
-                 <div className="space-y-6 text-[#4a5568] text-[16px] md:text-[17px] xl:text-[18px] leading-[1.8] font-medium">
-                   <p>
-                     Popular Hospital's journey began with a simple but powerful vision by our Founder, Dr. A.K. Kaushik. What started as a focused single-specialty clinic has today blossomed into a comprehensive multispecialty ecosystem that stands as a beacon of hope in Varanasi.
-                   </p>
-                   <p>
-                     For over three decades, we have remained steadfast in our commitment to <strong className="text-[#0b1c43] font-black">ethical medical practices</strong> and <strong className="text-[#0b1c43] font-black">patient-first care</strong>. We believe that true healing happens when advanced technology meets the <span className="text-[#E85222] font-semibold">warmth of human touch</span>.
-                   </p>
-                 </div>
+                  <div className="space-y-6 text-[#4a5568] text-[16px] md:text-[17px] xl:text-[18px] leading-[1.8] font-medium text-justify">
+                    <p>
+                      POPULAR HOSPITAL is a 450 bedded Multi Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32+ years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
+                    </p>
+                    <p>
+                      We are having ultramodern facilities of Cath Lab, ICU, CCU, MICU, SICU, NICU, PICU, Deluxe Room, Private Room, and General Ward etc. In Diagnostics we have well equipped Pathology lab, CT-Scan, MRI, Mammography Machine, Digital X-ray, USG, TMT, Colour Doppler, 2D Echo, DSC, STRESS ECHO, PFT, ECG and EEG.
+                    </p>
+                  </div>
                </div>
             </div>
 
@@ -110,7 +110,7 @@ export default function OurStoryPage() {
                The Journey Continues
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed mb-10">
-               While we are proud of our history, our eyes are firmly set on the future. We continue to invest in the latest technology, recruit the best minds, and expand our reach, because for us, healthcare is not a business—it’s a calling.
+               POPULAR HOSPITAL(a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
             </p>
             <div className="w-24 h-1 bg-[#E85222] mx-auto rounded-full"></div>
          </div>
