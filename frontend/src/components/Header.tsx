@@ -36,7 +36,6 @@ const menuItems: MenuItem[] = [
     dropdown: [
       { label: 'Our Locations', href: '/our-locations' },
       { label: 'Explore Our Facilities', href: '/facilities' },
-      { label: 'Specialized Care Locations', href: '/specialized-care' },
     ],
   },
   {
@@ -49,9 +48,14 @@ const menuItems: MenuItem[] = [
   {
     label: 'Services',
     dropdown: [
-      { label: 'Our Services', href: '#' },
-      { label: 'Wellness Services', href: '/services/wellness' },
-      { label: "Women's Health Special", href: '/services/womens-health-special' },
+      { label: "Emergency And Trauma Care", href: "/services/emergency" },
+      { label: "Blood Bank", href: "/services/blood-bank" },
+      { label: "Ambulance", href: "/services/ambulance" },
+      { label: "Preventive Health Check Up", href: "/services/preventive-health" },
+      { label: "Pharmacy", href: "/services/pharmacy" },
+      { label: "Pathological Services", href: "/services/pathology" },
+      { label: "Radiological Services", href: "/services/radiology" },
+      { label: "Home Care Services", href: "/services/home-care" }
     ],
   },
   {
@@ -234,21 +238,20 @@ export function Header() {
             scrolled || !isTransparentPage ? 'opacity-0' : 'opacity-100'
           }`} 
         />
-        {/* Top Bar */}
-        <div className="bg-[#2E59A8] text-white py-2.5 relative z-50">
-          <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-wrap items-center justify-between text-[13px] sm:text-[14.5px] font-medium">
-            <div className="flex items-center gap-3 sm:gap-6">
-              <Link href="/online-payment" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
-                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-[#2E59A8] text-white py-2 sm:py-2.5 relative z-50">
+          <div className="max-w-[1366px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[11px] min-[400px]:text-[12px] sm:text-[13.5px] md:text-[14.5px] font-medium">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
+              <Link href="/online-payment" className="flex items-center gap-1.5 hover:text-white/80 transition-colors whitespace-nowrap">
+                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                 </svg>
-                Online Payment
+                <span className="leading-none">Online Payment</span>
               </Link>
-              <Link href="/second-opinion" className="hover:text-white/80 transition-colors hidden sm:inline">Second opinion</Link>
-              <Link href="/services/preventive-health" className="hover:text-white/80 transition-colors">Health Packages</Link>
-              <Link href="/services/wellness" className="hover:text-white/80 transition-colors">Wellness Packages</Link>
+              <Link href="/second-opinion" className="hover:text-white/80 transition-colors whitespace-nowrap leading-none">Second opinion</Link>
+              <Link href="/services/preventive-health" className="hover:text-white/80 transition-colors whitespace-nowrap leading-none">Health Packages</Link>
+              <Link href="/services/wellness" className="hover:text-white/80 transition-colors whitespace-nowrap leading-none">Wellness Packages</Link>
             </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 sm:mt-0">
+            <div className="flex items-center justify-center sm:justify-end gap-x-4 gap-y-1 w-full sm:w-auto">
               <div className="flex items-center gap-1.5 min-w-max">
                 <a href="https://wa.me/917800001895" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform text-[#25D366]">
                   <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -314,157 +317,76 @@ export function Header() {
                     {activeDropdown === item.label && (
                       <div
                         ref={(el) => { dropdownRefs.current[item.label] = el; }}
-                        className={`absolute left-0 top-full z-50 ${(item.label === 'Departments' || item.label === 'Services') ? '-left-64 min-[1366px]:-left-80' : ''}`}
+                        className={`absolute left-0 top-full z-50 ${item.label === 'Departments' ? '-left-48 min-[1366px]:-left-64' : item.label === 'Services' ? '-left-64 min-[1366px]:-left-80' : ''}`}
                       >
                         <div className="pt-2"> {/* Invisible bridge and top padding */}
-                        {(item.label === 'Departments' || item.label === 'Services') ? (
-                          <div className="flex w-[800px] min-[1366px]:w-[900px] rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
-                            {/* Sidebar */}
-                            <div className="w-1/3 bg-white py-2 border-r border-gray-50">
-                                {item.dropdown?.map((dropdownItem) => {
-                                    const contentMap = item.label === 'Departments' ? specialtiesContent : servicesContent;
-                                    const isCategory = contentMap.hasOwnProperty(dropdownItem.label);
-                                    
-                                    if (isCategory) {
-                                        return (
-                                            <button
-                                                key={dropdownItem.label}
-                                                onMouseEnter={() => setSelectedSpecialty(dropdownItem.label)}
-                                                className={`w-full text-left px-5 py-3.5 text-sm font-medium transition-colors flex items-center justify-between group ${
-                                                    selectedSpecialty === dropdownItem.label ? 'text-hospital-teal bg-teal-50' : 'text-gray-700 hover:text-hospital-teal hover:bg-gray-50'
-                                                }`}
-                                            >
-                                                <div className="flex items-center gap-3">
-                                                    <span className={`${selectedSpecialty === dropdownItem.label ? 'text-hospital-teal' : 'text-gray-400 group-hover:text-hospital-teal'} transition-colors`}>
-                                                        {getIcon(dropdownItem.label)}
-                                                    </span>
-                                                    <span>{dropdownItem.label}</span>
-                                                </div>
-                                                <svg className={`w-4 h-4 transition-transform ${selectedSpecialty === dropdownItem.label ? 'text-hospital-teal translate-x-1' : 'text-gray-400 opacity-0 group-hover:opacity-100'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-                                        );
-                                    } else {
-                                        return (
-                                            <Link
-                                                key={dropdownItem.label}
-                                                href={dropdownItem.href}
-                                                className="w-full text-left px-5 py-3.5 text-sm font-medium text-gray-700 hover:text-hospital-teal hover:bg-gray-50 transition-colors flex items-center gap-3 group"
-                                                onMouseEnter={() => setSelectedSpecialty('')}
-                                                onClick={() => setActiveDropdown(null)}
-                                            >
-                                                <span className="text-gray-400 group-hover:text-hospital-teal transition-colors">
-                                                    {getIcon(dropdownItem.label)}
-                                                </span>
-                                                <span>{dropdownItem.label}</span>
-                                            </Link>
-                                        );
-                                    }
-                                })}
-                            </div>
-                            
-                            {/* Content Area */}
-                            <div className="w-2/3 bg-gray-50/50 p-6 min-h-[400px]">
-                                {((item.label === 'Departments' ? specialtiesContent : servicesContent)[selectedSpecialty]) ? (
-                                    <>
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <span className="text-hospital-teal">
-                                                {getIcon(selectedSpecialty)}
-                                            </span>
-                                            <h3 className="text-hospital-teal font-heading font-semibold text-sm uppercase tracking-wider">{selectedSpecialty}</h3>
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                                            {(item.label === 'Departments' ? specialtiesContent : servicesContent)[selectedSpecialty]?.map((subItem) => (
-                                                <Link 
-                                                href={subItem.href} 
-                                                key={subItem.label} 
-                                                className="text-sm text-gray-600 hover:text-hospital-teal transition-colors block py-1.5"
-                                                onClick={() => setActiveDropdown(null)}
-                                                >
-                                                    {subItem.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </>
-                                ) : (
-                                    <div className="flex items-center justify-center h-full text-gray-400">
-                                        Select a category to view details
-                                    </div>
-                                )}
+                        {item.label === 'Departments' ? (
+                          <div className="w-[820px] min-[1366px]:w-[960px] rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
+                            <div className="flex">
+
+                              {/* Left — Super Specialties */}
+                              <div className="flex-1 p-6 pr-5">
+                                <div className="flex items-center gap-2 mb-4 pb-2.5 border-b-2 border-hospital-teal/30">
+                                  <span className="text-hospital-teal">{getIcon('Super Specialties')}</span>
+                                  <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest">Super Specialties</h3>
+                                </div>
+                                <div className="flex flex-col gap-0.5">
+                                  {specialtiesContent['Super Specialties'].map((subItem) => (
+                                    <Link
+                                      href={subItem.href}
+                                      key={subItem.label}
+                                      className="text-[13px] text-gray-600 hover:text-hospital-teal hover:bg-teal-50 transition-all block py-1.5 px-2 rounded-lg hover:translate-x-1 duration-150"
+                                      onClick={() => setActiveDropdown(null)}
+                                    >
+                                      {subItem.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Vertical Divider */}
+                              <div className="w-px bg-gray-100 my-4" />
+
+                              {/* Right — Specialties */}
+                              <div className="flex-1 p-6 pl-5">
+                                <div className="flex items-center gap-2 mb-4 pb-2.5 border-b-2 border-hospital-teal/30">
+                                  <span className="text-hospital-teal">{getIcon('Specialties')}</span>
+                                  <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest">Specialties</h3>
+                                </div>
+                                <div className="flex flex-col gap-0.5">
+                                  {specialtiesContent['Specialties'].map((subItem) => (
+                                    <Link
+                                      href={subItem.href}
+                                      key={subItem.label}
+                                      className="text-[13px] text-gray-600 hover:text-hospital-teal hover:bg-teal-50 transition-all block py-1.5 px-2 rounded-lg hover:translate-x-1 duration-150"
+                                      onClick={() => setActiveDropdown(null)}
+                                    >
+                                      {subItem.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+
                             </div>
                           </div>
                         ) : item.label === 'Services' ? (
-                          <div className="flex w-[800px] min-[1366px]:w-[900px] rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
-                            {/* Sidebar */}
-                            <div className="w-1/3 bg-white py-2 border-r border-gray-50">
-                                {item.dropdown?.map((dropdownItem) => {
-                                    const contentMap = servicesContent;
-                                    const isCategory = contentMap.hasOwnProperty(dropdownItem.label);
-                                    
-                                    if (isCategory) {
-                                        return (
-                                            <button
-                                                key={dropdownItem.label}
-                                                onMouseEnter={() => setSelectedSpecialty(dropdownItem.label)}
-                                                className={`w-full text-left px-5 py-3.5 text-sm font-medium transition-colors flex items-center justify-between group ${
-                                                    selectedSpecialty === dropdownItem.label ? 'text-hospital-teal bg-teal-50' : 'text-gray-700 hover:text-hospital-teal hover:bg-gray-50'
-                                                }`}
-                                            >
-                                                <div className="flex items-center gap-3">
-                                                    <span className={`${selectedSpecialty === dropdownItem.label ? 'text-hospital-teal' : 'text-gray-400 group-hover:text-hospital-teal'} transition-colors`}>
-                                                        {getIcon(dropdownItem.label)}
-                                                    </span>
-                                                    <span>{dropdownItem.label}</span>
-                                                </div>
-                                                <svg className={`w-4 h-4 transition-transform ${selectedSpecialty === dropdownItem.label ? 'text-hospital-teal translate-x-1' : 'text-gray-400 opacity-0 group-hover:opacity-100'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-                                        );
-                                    } else {
-                                        return (
-                                            <Link
-                                                key={dropdownItem.label}
-                                                href={dropdownItem.href}
-                                                className="w-full text-left px-5 py-3.5 text-sm font-medium text-gray-700 hover:text-hospital-teal hover:bg-gray-50 transition-colors flex items-center gap-3 group"
-                                                onMouseEnter={() => setSelectedSpecialty('')}
-                                                onClick={() => setActiveDropdown(null)}
-                                            >
-                                                <span className="text-gray-400 group-hover:text-hospital-teal transition-colors">
-                                                    {getIcon(dropdownItem.label)}
-                                                </span>
-                                                <span>{dropdownItem.label}</span>
-                                            </Link>
-                                        );
-                                    }
-                                })}
-                            </div>
-                            
-                            {/* Content Area */}
-                            <div className="w-2/3 bg-gray-50/50 p-6 min-h-[400px]">
-                                {(servicesContent[selectedSpecialty]) ? (
-                                    <>
-                                        <h3 className="text-hospital-teal font-heading font-semibold mb-3 text-sm uppercase tracking-wider">{selectedSpecialty}</h3>
-                                        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                                            {servicesContent[selectedSpecialty]?.map((subItem) => (
-                                                <Link 
-                                                href={subItem.href} 
-                                                key={subItem.label} 
-                                                className="text-sm text-gray-600 hover:text-hospital-teal transition-colors block py-1"
-                                                onClick={() => setActiveDropdown(null)}
-                                                >
-                                                    {subItem.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </>
-                                ) : (
-                                    <div className="flex items-center justify-center h-full text-gray-400">
-                                        Select a category to view details
-                                    </div>
-                                )}
-                            </div>
+                          <div className="w-[600px] p-6 rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
+                             <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest mb-4 pb-2 border-b border-gray-100">Our Services</h3>
+                             <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                               {item.dropdown?.map((dropdownItem) => (
+                                 <Link
+                                   key={dropdownItem.label}
+                                   href={dropdownItem.href}
+                                   className="flex items-center gap-3 py-2 text-sm text-gray-700 hover:text-hospital-teal transition-colors group"
+                                   onClick={() => setActiveDropdown(null)}
+                                 >
+                                   <span className="text-hospital-teal opacity-60 group-hover:opacity-100 transition-opacity">
+                                     {getIcon(dropdownItem.label)}
+                                   </span>
+                                   <span>{dropdownItem.label}</span>
+                                 </Link>
+                               ))}
+                             </div>
                           </div>
                         ) : (
                           <div className="w-72 rounded-xl bg-white py-2.5 shadow-xl border border-gray-100">
@@ -741,7 +663,7 @@ export function Header() {
         </div>
       )}
     </header>
-    {pathname !== '/' && <div className="h-[120px] sm:h-[130px] md:h-[140px]" />}
+    {pathname !== '/' && <div className="h-[104px] sm:h-[112px] md:h-[122px]" />}
     </>
   );
 }

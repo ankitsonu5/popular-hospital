@@ -796,11 +796,11 @@ export default function HomePage() {
             {/* Column 1: Far Left (Centered Single Card) */}
             <div className="flex flex-col justify-center">
               <button
-                onClick={() => setSelectedVideo("/videos/testimonial-two.mp4")}
+                onClick={() => setSelectedVideo("/videos/testimonial-one.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5]"
               >
                 <video
-                  src="/videos/testimonial-two.mp4"
+                  src="/videos/testimonial-one.mp4"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   autoPlay
                   loop
@@ -823,11 +823,11 @@ export default function HomePage() {
             {/* Column 2: Inner Left (Two Stacked Cards) */}
             <div className="flex flex-col gap-4 lg:gap-6">
               <button
-                onClick={() => setSelectedVideo("/videos/testimonial-three.mp4")}
+                onClick={() => setSelectedVideo("/videos/testimonial-two.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
               >
                 <video
-                  src="/videos/testimonial-three.mp4"
+                  src="/videos/testimonial-two.mp4"
                   className="absolute inset-0 w-full h-full object-cover"
                   autoPlay
                   loop
@@ -847,11 +847,11 @@ export default function HomePage() {
               </button>
 
               <button
-                onClick={() => setSelectedVideo("/videos/testimonial-one.mp4")}
+                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_one.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
               >
                 <video
-                  src="/videos/testimonial-one.mp4"
+                  src="/videos/popular_hospital_happy_pateint_one.mp4"
                   className="absolute inset-0 w-full h-full object-cover"
                   autoPlay
                   loop
@@ -874,11 +874,11 @@ export default function HomePage() {
             {/* Column 3: Center (Tall Featured Card) */}
             <div className="h-[400px] lg:h-full">
               <button
-                onClick={() => setSelectedVideo("/videos/testimonial-one.mp4")}
+                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_three.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-full"
               >
                 <video
-                  src="/videos/testimonial-one.mp4"
+                  src="/videos/popular_hospital_happy_pateint_three.mp4"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   autoPlay
                   loop
@@ -904,11 +904,11 @@ export default function HomePage() {
             {/* Column 4: Inner Right (Two Stacked Cards) */}
             <div className="flex flex-col gap-4 lg:gap-6">
               <button
-                onClick={() => setSelectedVideo("/videos/testimonial-three.mp4")}
+                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_four.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
               >
                 <video
-                  src="/videos/testimonial-three.mp4"
+                  src="/videos/popular_hospital_happy_pateint_four.mp4"
                   className="absolute inset-0 w-full h-full object-cover"
                   autoPlay
                   loop
@@ -928,11 +928,11 @@ export default function HomePage() {
               </button>
 
               <button
-                onClick={() => setSelectedVideo("/videos/testimonial-two.mp4")}
+                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_five.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
               >
                 <video
-                  src="/videos/testimonial-two.mp4"
+                  src="/videos/popular_hospital_happy_pateint_five.mp4"
                   className="absolute inset-0 w-full h-full object-cover"
                   autoPlay
                   loop
@@ -955,11 +955,11 @@ export default function HomePage() {
             {/* Column 5: Far Right (Centered Single Card) */}
             <div className="flex flex-col justify-center">
               <button
-                onClick={() => setSelectedVideo("/videos/testimonial-three.mp4")}
+                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_two.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5]"
               >
                 <video
-                  src="/videos/testimonial-three.mp4"
+                  src="/videos/popular_hospital_happy_pateint_two.mp4"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   autoPlay
                   loop
@@ -1443,7 +1443,67 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Frequently Asked Questions Section */}
+      {/* Cashless Empanelment Section */}
+      <section className="py-14 sm:py-16 bg-white border-t border-gray-100">
+        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+
+          {/* Heading */}
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0b1c43] font-heading tracking-tight">
+              Cashless <span className="text-hospital-teal">Empanelment</span>
+            </h2>
+            <div className="w-16 h-1 bg-[#E85222] mx-auto mt-4 rounded-full" />
+            <p className="text-gray-500 mt-4 text-base max-w-2xl mx-auto">
+              We are empanelled with leading insurance companies and government schemes to offer you seamless cashless treatment.
+            </p>
+          </div>
+
+          {/* Logos Grid */}
+          <div className="flex flex-wrap justify-center gap-6 mb-10">
+            {[
+              { src: "/images/cashless_empanelment/AAI.png", alt: "AAI" },
+              { src: "/images/cashless_empanelment/NCL.png", alt: "NCL" },
+              { src: "/images/cashless_empanelment/Indian_oil.png", alt: "Indian Oil" },
+              { src: "/images/cashless_empanelment/SBI_general.png", alt: "SBI General Insurance" },
+              { src: "/images/cashless_empanelment/pmjay.png", alt: "PM-JAY Ayushman Bharat" },
+              { src: "/images/cashless_empanelment/BHEL.png", alt: "BHEL" },
+              { src: "/images/cashless_empanelment/hindalco.png", alt: "Hindalco" },
+              { src: "/images/cashless_empanelment/iffco-tokio.png", alt: "IFFCO-Tokio" },
+              { src: "/images/cashless_empanelment/vidal_health.png", alt: "Vidal Health" },
+            ].map((logo) => (
+              <div
+                key={logo.alt}
+                className="group flex items-center justify-center bg-white border border-gray-100 rounded-2xl p-5 w-[210px] h-[135px] shadow-sm hover:shadow-md hover:border-hospital-teal/30 transition-all duration-300"
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    className="object-contain group-hover:scale-105 transition-transform duration-300"
+                    sizes="170px"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* View All Button */}
+          <div className="text-center">
+            <Link
+              href="/about/cashless-empanelment"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
+            >
+              <span>View All Partners</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
       <section
         className="py-16 sm:py-20 bg-[#EFF6FF]"
         aria-labelledby="faq-section"

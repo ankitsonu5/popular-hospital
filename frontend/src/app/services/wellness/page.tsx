@@ -13,21 +13,32 @@ const WellnessPage = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-br from-[#0b1c43] to-[#122e66]">
-        <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/clean-texturing.png')] mix-blend-overlay pointer-events-none"></div>
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10 flex flex-col md:flex-row items-center gap-10">
-          <div className="flex-1 w-full text-center md:text-left">
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight font-heading leading-tight animate-fade-in-up">
-              Welcome to the{" "}
-              <span className="text-[#E85222]">Affordable Healthcare</span> with
-              Health Fit Cards
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#0b1c43]">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/health_cards_packages.png"
+            alt="Wellness Banner"
+            fill
+            className="object-cover opacity-70"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/30"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
+          <div className="max-w-2xl">
+            <nav className="flex mb-4 text-sm text-white/80 font-medium tracking-wide" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="mx-2 text-white/60">/</span>
+              <span className="text-white">Wellness Packages</span>
+            </nav>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 font-heading tracking-tight leading-tight">
+              Wellness Packages
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-10 leading-relaxed font-medium">
-              Popular Hospital's Health Fit Cards is your personal medical
-              assistant, designed to manage your family's health needs with ease
-              and priority.
+            <p className="text-lg text-blue-50 max-w-xl mb-10 font-light leading-relaxed">
+              Popular Hospital's Health Fit Cards is your personal medical assistant, designed to manage your family's health needs with ease and priority.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+            <div className="flex flex-wrap gap-4">
               <Link
                 href="#apply"
                 className="px-8 py-4 bg-[#E85222] text-white rounded-full font-black hover:bg-[#d1451a] transition-all shadow-lg hover:shadow-orange-900/40 uppercase tracking-widest text-sm text-center"
@@ -35,21 +46,11 @@ const WellnessPage = () => {
                 Apply for Card
               </Link>
               <Link
-                href="/services/preventive-health"
-                className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full font-black hover:bg-white/20 transition-all uppercase tracking-widest text-sm text-center"
+                href="/services/womens-health-special"
+                className="px-8 py-4 bg-pink-500 text-white rounded-full font-black hover:bg-pink-600 transition-all shadow-lg hover:shadow-pink-900/40 uppercase tracking-widest text-sm text-center"
               >
-                Health Packages
+                Women's Health Special
               </Link>
-            </div>
-          </div>
-          <div className="flex-1 hidden md:flex items-center justify-center relative">
-            <div className="relative w-80 h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden border-8 border-white/10 shadow-2xl">
-                <Image
-                    src="/images/health-packages-hero-v2.png"
-                    alt="Wellness"
-                    fill
-                    className="object-cover"
-                />
             </div>
           </div>
         </div>

@@ -8,88 +8,64 @@ import Link from "next/link";
 const stories = [
   {
     id: 1,
-    title: "Mauritian Patient Treated For Esophageal Cancer",
+    title: "Success Story: Cancer Care Journey",
     name: "Mr Fazil Hosany",
     thumbnail: "https://images.unsplash.com/photo-1544257662-8e100808cf51?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-two.mp4",
+    videoUrl: "/videos/testimonial-one.mp4",
     category: "Cancer Care",
   },
   {
     id: 2,
-    title: "Successful Liver Failure Treatment",
+    title: "A New Life: Recovery from Critical Condition",
     name: "Baby Bhavika",
     thumbnail: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-three.mp4",
+    videoUrl: "/videos/testimonial-two.mp4",
     category: "Pediatrics",
   },
   {
     id: 3,
-    title: "Pre-term Baby Care Success Story",
-    name: "Ms Sakshi",
+    title: "Advanced Medical Care Experience",
+    name: "Patient Story 1",
     thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-one.mp4",
-    category: "Neonatology",
+    videoUrl: "/videos/popular_hospital_happy_pateint_one.mp4",
+    category: "General Medicine",
   },
   {
     id: 4,
-    title: "Advanced Neurosurgical Treatment",
-    name: "Mr. Devender Jeet Singh",
+    title: "Excellence in Specialised Treatment",
+    name: "Patient Story 2",
     thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-one.mp4",
-    category: "Neurology",
+    videoUrl: "/videos/popular_hospital_happy_pateint_two.mp4",
+    category: "Specialized Care",
   },
   {
     id: 5,
-    title: "Mother Saves Daughter By Donating A Kidney",
-    name: "Ms Paluk Sunger",
+    title: "Compassionate Care & Fast Recovery",
+    name: "Patient Story 3",
     thumbnail: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-three.mp4",
-    category: "Transplant",
+    videoUrl: "/videos/popular_hospital_happy_pateint_three.mp4",
+    category: "Patient Care",
   },
   {
     id: 6,
-    title: "Life-Saving Bone Marrow Transplant",
-    name: "Patient Father Mr Haider",
+    title: "Advanced Technology for Better Health",
+    name: "Patient Story 4",
     thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-two.mp4",
-    category: "Oncology",
+    videoUrl: "/videos/popular_hospital_happy_pateint_four.mp4",
+    category: "Health Tech",
   },
   {
     id: 7,
-    title: "Complex Jaw Cancer Surgery",
-    name: "Dr. Abhilasha Agarwal",
+    title: "Transforming Lives Through Surgery",
+    name: "Patient Story 5",
     thumbnail: "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-one.mp4",
-    category: "Oncology",
-  },
-  // Duplicates for grid demo
-  {
-    id: 8,
-    title: "Recovery from Heart Surgery",
-    name: "Mr. Sharma",
-    thumbnail: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-two.mp4",
-    category: "Cardiology",
-  },
-   {
-    id: 9,
-    title: "Successful Knee Replacement",
-    name: "Mrs. Gupta",
-    thumbnail: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop",
-    videoUrl: "/videos/testimonial-three.mp4",
-    category: "Orthopedics",
-  },
+    videoUrl: "/videos/popular_hospital_happy_pateint_five.mp4",
+    category: "Surgery",
+  }
 ];
 
 export default function StoriesPage() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("All");
-
-  const categories = ["All", ...Array.from(new Set(stories.map((s) => s.category)))];
-
-  const filteredStories = activeCategory === "All" 
-    ? stories 
-    : stories.filter((s) => s.category === activeCategory);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
@@ -107,29 +83,10 @@ export default function StoriesPage() {
         </div>
       </section>
 
-      {/* Filter Tabs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8 overflow-x-auto">
-        <div className="flex space-x-2 pb-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-colors whitespace-nowrap ${
-                activeCategory === cat
-                  ? "bg-[#E85222] text-white shadow-md"
-                  : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Video Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filteredStories.map((story) => (
+          {stories.map((story) => (
             <button
               key={story.id}
               onClick={() => setSelectedVideo(story.videoUrl)}

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Detailed information and items covered under the Bronze Package for Women.',
 };
 
-export default function BronzePackageWomenPage() {
+export default function BronzePackageWomenPage() {  
   const consultations = [
     'GENERAL PHYSICIAN',
     'GENERAL SURGEON'
@@ -18,22 +18,22 @@ export default function BronzePackageWomenPage() {
     'MER', 'CBC', 'BLOOD GROUPING & Rh TYPING', 'BLOOD SUGAR FASTING',
     'BLOOD SUGAR PP', 'TSH', 'LIPID PROFILE', 'SGOT',
     'SGPT', 'SERUM BILIRUBIN', 'SERUM CREATININE', 'BLOOD UREA',
-    'URINE ANALYSIS', 'PAP SMEAR', 'USG WHOLE ABDOMEN', 'X-RAY CHEST PA VIEW'
+    'URINE ANALYSIS', 'PAP SMEAR', 'USG WHOLE ABDOMEN', 'X-RAY CHEST PA VIEW', 'ECG'
   ];
 
   return (
     <div className="bg-white min-h-screen">
       {/* Header Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#578191]">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#0b1c43]">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/health-packages-hero-v2.png"
+            src="/images/health_packages.png"
             alt="Health Packages Background"
             fill
-            className="object-cover opacity-20 mix-blend-overlay"
+            className="object-cover opacity-70"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#578191]/90 to-[#578191]/60"></div>
+          <div className="absolute inset-0 bg-black/30"></div>  
         </div>
         
         <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
@@ -49,63 +49,56 @@ export default function BronzePackageWomenPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-12 bg-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto max-w-5xl px-4 lg:px-8">
           
           {/* Top Card Area */}
-          <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6 mb-12">
+          <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-10 mb-20">
             
             {/* Package Summary Card */}
-            <div className="w-full md:w-2/3 bg-white rounded-lg shadow-md border border-gray-100 flex overflow-hidden">
-                <div className="w-[180px] sm:w-[220px] relative bg-[#cbab99] flex-shrink-0">
+            <div className="w-full md:w-[70%] bg-white rounded-[32px] shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-gray-100 flex overflow-hidden group">
+                <div className="w-[160px] sm:w-[220px] relative bg-[#f5f5f7] flex-shrink-0">
                     <Image
                         src="/images/health-packages/bronze_package_women.jpg"
                         alt="Bronze Package Women"
                         fill
-                        className="object-cover object-top"
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
                     />
                 </div>
-                <div className="p-6 flex flex-col justify-center bg-[#f8f9fa] flex-1">
-                    <h2 className="text-[#1a3a6b] font-bold text-lg uppercase tracking-wide mb-1">
-                      BRONZE PACKAGE WOMEN
-                    </h2>
-                    <p className="text-gray-600 text-[13px] mb-3">
-                      Recommended for age group 18-65 Yrs.
-                    </p>
-                    <div className="text-gray-800 text-[15px] font-bold">
-                        Package Price ₹ 8180.00
-                    </div>
-                    <div className="text-[#1a3a6b] text-[15px] font-bold mt-1">
-                        Discount Price ₹ 4499.00
+                <div className="p-10 flex flex-col justify-center flex-1">
+                    <span className='text-[#bf4800] text-[12px] font-bold tracking-widest uppercase mb-3'>Recommended: 18-65 Yrs.</span>
+                    <h2 className='text-[#1d1d1f] font-bold text-2xl sm:text-3xl tracking-tight mb-6'>BRONZE PACKAGE WOMEN</h2>
+                    <div className="space-y-1.5">
+                      <div className="text-[#86868b] text-[15px] font-medium">
+                        Package Price <span className="line-through">₹ 8180.00</span>
+                      </div>
+                      <div className="text-[#1d1d1f] text-xl font-bold">
+                        Offer Price ₹ 4499.00
+                      </div>
                     </div>
                 </div>
             </div>
 
             {/* Booking Button */}
-            <div className="w-full md:w-1/3 flex justify-end">
-               <a href="/book" className="w-full md:w-auto px-10 py-3 bg-[#3361a8] text-white text-sm font-bold tracking-wider hover:bg-[#204684] transition-colors rounded uppercase text-center focus:ring-4 focus:ring-blue-300">
-                  Booking Now
-               </a>
+            <div className="w-full md:w-[25%] flex justify-center md:justify-end">
+               <Link href="/book" className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#0066cc] text-white rounded-full text-[15px] font-bold shadow-md hover:bg-[#0077ed] hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.02] active:scale-95 z-20 relative"><span>Buy Now</span><svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg></Link>
             </div>
           </div>
 
           {/* Details Section */}
-          <div className="bg-[#f5f5f5] p-6 sm:p-10 rounded-lg">
-             <h2 className="text-[#1e293b] text-xl font-bold uppercase mb-4 tracking-wide">
-                BRONZE PACKAGE-WOMEN
-             </h2>
-             <h3 className="text-[#3361a8] font-bold uppercase mb-6 tracking-wide text-[15px]">
-                ITEM NAME
-             </h3>
+          <div className="bg-[#fbfbfd] p-10 sm:p-14 rounded-[40px] border border-gray-100/50 shadow-sm">
+             <div className="mb-12">
+               <h2 className='text-[#1d1d1f] text-3xl font-bold tracking-tight mb-3'>BRONZE PACKAGE WOMEN</h2>
+               <div className="w-16 h-1.5 bg-[#0066cc] rounded-full"></div>
+             </div>
 
              {/* Consultations */}
-             <div className="mb-8">
-                <h4 className="text-gray-800 text-[13px] font-extrabold uppercase mb-3">
-                   CONSULTATIONS
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gray-200 border border-gray-200">
+             <div className="mb-12">
+                <h4 className="text-[#86868b] text-[14px] font-bold tracking-widest uppercase mb-6 px-2">CONSULTATIONS</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {consultations.map((item, id) => (
-                        <div key={id} className="bg-[#f9fafb] p-3 text-center text-xs md:text-[13px] text-gray-700 font-medium uppercase hover:bg-white transition-colors">
+                        <div key={id} className="bg-white border border-gray-100/80 p-5 rounded-2xl text-[14px] text-[#1d1d1f] font-medium uppercase shadow-sm flex items-center gap-4 group/item hover:border-blue-100 transition-colors">
+                           <div className="w-2.5 h-2.5 rounded-full bg-blue-500/40 group-hover/item:bg-blue-600 shadow-sm transition-colors"></div>
                            {item}
                         </div>
                     ))}
@@ -114,23 +107,14 @@ export default function BronzePackageWomenPage() {
 
              {/* Investigations */}
              <div>
-                <h4 className="text-gray-800 text-[13px] font-extrabold uppercase mb-3">
-                   INVESTIGATION
-                </h4>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200">
+                <h4 className="text-[#86868b] text-[14px] font-bold tracking-widest uppercase mb-6 px-2">INVESTIGATIONS</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {investigations.map((item, id) => (
-                        <div key={id} className="bg-[#f9fafb] flex items-center justify-center p-3 text-center text-[11px] md:text-xs text-gray-700 font-medium uppercase hover:bg-white transition-colors h-14">
+                        <div key={id} className="bg-white border border-gray-100/80 p-5 rounded-2xl text-[14px] text-[#1d1d1f] font-medium uppercase shadow-sm flex items-center gap-4 group/item hover:border-blue-100 transition-colors">
+                           <div className="w-2.5 h-2.5 rounded-full bg-blue-400/40 group-hover/item:bg-blue-500 transition-colors"></div>
                            {item}
                         </div>
                     ))}
-                </div>
-                {/* Last odd item - ECG - center aligned within the grid if necessary, or full width */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-gray-200 border-x border-b border-gray-200">
-                     <div className="hidden lg:block bg-transparent"></div>
-                     <div className="bg-[#f9fafb] flex items-center justify-center p-3 text-center text-[11px] md:text-xs text-gray-700 font-medium uppercase hover:bg-white transition-colors h-14 col-span-1 border-x border-gray-200">
-                        ECG
-                     </div>
-                     <div className="hidden lg:block bg-transparent"></div>
                 </div>
              </div>
              
@@ -141,3 +125,6 @@ export default function BronzePackageWomenPage() {
     </div>
   );
 }
+
+
+

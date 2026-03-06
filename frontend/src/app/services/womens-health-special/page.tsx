@@ -13,16 +13,17 @@ const WomensHealthPage = () => {
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-pink-500 text-white pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
-        <div className="absolute inset-0 z-0 opacity-20">
+        <div className="absolute inset-0 z-0 opacity-85">
           <Image
-            src="https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?auto=format&fit=crop&q=80&w=2000"
+            src="/images/womens-health-special.png"
             alt="Women's Health background"
             fill
             className="object-cover"
+            priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-pink-600/80 to-transparent z-0"></div>
-        
+        <div className="absolute inset-0 bg-black/30 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-600/60 via-pink-600/30 to-transparent z-0"></div>
         <div className="container mx-auto max-w-[1366px] relative z-10">
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-1 bg-white/20 backdrop-blur-md rounded-full text-sm font-black uppercase tracking-widest mb-6">Exclusive Women's Care</span>

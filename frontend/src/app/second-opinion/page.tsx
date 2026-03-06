@@ -12,13 +12,14 @@ export default function SecondOpinionPage() {
                 <div className="absolute inset-0">
                     <div className="absolute inset-0 bg-[#0b1c43] z-0" />
                     <Image
-                        src="/second-opinion-hero.png"
+                        src="/images/second_opinion.jpg"
                         alt="Second Opinion"
                         fill
-                        className="object-cover opacity-40 mix-blend-overlay"
+                        className="object-cover opacity-90"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/90 via-[#0b1c43]/60 to-transparent z-10" />
+                    <div className="absolute inset-0 bg-black/50 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/80 via-transparent to-transparent z-10" />
                 </div>
                 
                 <div className="relative z-20 max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-12 w-full py-16">

@@ -210,7 +210,7 @@ export default function GynaecologyPage() {
                     Book Consultation
                 </Link>
                 <a href="tel:+917800001895" className="bg-white text-gray-900 px-8 py-3.5 rounded-full font-bold border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all">
-                    Call +91-7800001895
+                    Call +91-7800001895 / 96
                 </a>
             </div>
         </div>

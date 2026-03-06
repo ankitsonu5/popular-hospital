@@ -10,14 +10,14 @@ const LoadingScreen = () => {
     let pageLoaded = document.readyState === 'complete';
     let minTimePassed = false;
     
-    // Set a timeout to ensure minimum display time of 2.75s (half of the 5.5s animation)
+    // Set a timeout to ensure minimum display time of 4s (half of the 8s animation)
     const minTimer = setTimeout(() => {
       minTimePassed = true;
       if (pageLoaded) {
         // Small delay for smooth fade out
         setIsVisible(false);
       }
-    }, 2750);
+    }, 4000);
 
     const handleLoad = () => {
       pageLoaded = true;
@@ -46,7 +46,7 @@ const LoadingScreen = () => {
           100% { transform: translateX(100vw); }
         }
         .animate-drive {
-          animation: driveRight 5.5s linear infinite;
+          animation: driveRight 8s linear infinite;
         }
       `}</style>
       

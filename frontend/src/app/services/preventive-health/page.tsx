@@ -31,38 +31,36 @@ export default function PreventiveHealthPage() {
   return (
     <div className="bg-gray-50/50 min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-br from-[#0b1c43] to-[#122e66]">
-        <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/clean-texturing.png')] mix-blend-overlay pointer-events-none"></div>
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10 flex flex-col md:flex-row items-center gap-10">
-          <div className="flex-1 w-full text-center md:text-left">
-            <nav className="flex mb-4 text-sm text-blue-200 font-medium tracking-wide justify-center md:justify-start" aria-label="Breadcrumb">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#0b1c43]">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/health_packages.png"
+            alt="Health Packages"
+            fill
+            className="object-cover opacity-70"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/30 text-white"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
+          <div className="max-w-2xl">
+            <nav className="flex mb-4 text-sm text-white/80 font-medium tracking-wide" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span className="mx-2 text-blue-400">/</span>
-              <span className="hover:text-white transition-colors">Services</span>
-              <span className="mx-2 text-blue-400">/</span>
-              <span className="text-teal-400">Health Packages</span>
+              <span className="mx-2 text-white/60">/</span>
+              <span className="text-white">Health Packages</span>
             </nav>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 font-heading tracking-tight leading-tight">
               Health Packages
             </h1>
-            <p className="text-lg text-blue-100 max-w-xl mx-auto md:mx-0 mb-8 font-light">
+            <p className="text-lg text-blue-50 max-w-xl mb-8 font-light leading-relaxed">
               Prioritize your health with our comprehensive and affordable health screening packages tailored for individuals of all ages. Prevention is better than cure.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+            <div className="flex flex-wrap gap-4">
               <a href="tel:+917800001895" className="px-8 py-3.5 bg-white text-[#0b1c43] rounded-full font-bold hover:bg-teal-50 hover:text-teal-700 transition-all shadow-lg flex items-center gap-2">
                 <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                 Book Appointment
               </a>
-            </div>
-          </div>
-          <div className="flex-1 hidden md:flex items-center justify-center relative">
-            <div className="relative w-80 h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden border-8 border-white/10 shadow-2xl">
-                <Image
-                    src="/images/health-packages-hero-v2.png"
-                    alt="Health Packages"
-                    fill
-                    className="object-cover"
-                />
             </div>
           </div>
         </div>
@@ -77,55 +75,53 @@ export default function PreventiveHealthPage() {
             <p className="mt-4 text-gray-500 max-w-2xl mx-auto">Explore carefully curated medical test packages offering huge discounts over individual test prices. Take control of your well-being today!</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-[1366px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1366px] mx-auto">
             {packages.map((pkg, idx) => (
-              <div 
-                key={idx} 
-                className="bg-white rounded-[32px] p-6 lg:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col group relative w-full overflow-hidden"
+              <div
+                key={idx}
+                className="bg-white rounded-[32px] border border-gray-100/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-500 flex overflow-hidden group relative"
               >
-                {/* Image */}
-                <div className="w-full aspect-[4/3] sm:aspect-square relative mb-8 rounded-2xl overflow-hidden bg-gray-100 flex-shrink-0">
-                    <Image
-                        src={pkg.image}
-                        alt={pkg.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                    />
-                    
-                    {/* Hover Overlay with Book Now button */}
-                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 flex items-center justify-center">
-                        <span className="bg-white/90 backdrop-blur-sm text-[#1d1d1f] px-6 py-2.5 rounded-full font-bold text-[14px] shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                            Book Now
-                        </span>
-                    </div>
+                {/* Left: Image Container */}
+                <div className="w-[160px] sm:w-[220px] flex-shrink-0 relative bg-[#f5f5f7] overflow-hidden">
+                  <Image
+                    src={pkg.image}
+                    alt={pkg.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                
-                {/* Content */}
-                <div className="flex flex-col flex-1 text-left">
-                  <span className="text-[#bf4800] text-[12px] font-bold tracking-tight mb-2 uppercase">
-                    Recommended: {pkg.age}
+
+                {/* Right: Content */}
+                <div className="flex flex-col justify-center p-6 sm:p-8 flex-1 min-w-0">
+                  <span className="text-[#bf4800] text-[11px] font-bold tracking-widest uppercase mb-2">
+                    {pkg.age} Age Group
                   </span>
-                  
-                  <h3 className="text-[#1d1d1f] font-semibold text-[17px] sm:text-[19px] tracking-tight leading-snug mb-6">
+                  <h3 className="text-[#1d1d1f] font-bold text-[18px] sm:text-[20px] tracking-tight mb-2 leading-tight">
                     {pkg.title}
                   </h3>
+                  
+                  <div className="space-y-0.5 mb-6">
+                    <div className="text-[#86868b] text-[14px] font-medium">
+                      MRP <span className="line-through">₹ {parseFloat(pkg.originalPrice).toLocaleString("en-IN")}</span>
+                    </div>
+                    <div className="text-[#1d1d1f] text-[16px] font-bold">
+                      Offer Price ₹ {parseFloat(pkg.discountPrice).toLocaleString("en-IN")}
+                    </div>
+                  </div>
 
-                  <div className="mt-auto border-t border-gray-50 pt-4">
-                      <div className="text-[#1d1d1f] text-[15px] sm:text-[16px] font-medium tracking-tight mb-1">
-                          After Discount: ₹ {parseInt(pkg.discountPrice).toFixed(2)}
-                      </div>
-                      <div className="text-[#86868b] text-[13px] font-medium tracking-tight">
-                          Package Price: <span className="line-through">₹ {parseInt(pkg.originalPrice).toFixed(2)}</span>
-                      </div>
+                  <div className="mt-2">
+                    <Link
+                      href={`/services/preventive-health/${pkg.title.toLowerCase().replace(/\s*-\s*/g, '-').replace(/\s+/g, '-')}`}
+                      className="inline-flex items-center gap-2 px-7 py-3 bg-[#0066cc] text-white rounded-full text-sm font-bold shadow-md hover:bg-[#0077ed] hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform group-hover:scale-[1.02] active:scale-95 z-20 relative"
+                    >
+                      <span>View Details</span>
+                      <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
-
-                {/* Make entire card clickable */}
-                <Link 
-                  href={`/services/preventive-health/${pkg.title.toLowerCase().replace(/\s*-\s*/g, '-').replace(/\s+/g, '-')}`}
-                  className="absolute inset-0 z-10"
-                  aria-label={`View details for ${pkg.title}`}
-                />
               </div>
             ))}
           </div>

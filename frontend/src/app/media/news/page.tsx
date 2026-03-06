@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Latest News & Updates – Popular Hospital",
+  title: "Latest News & Updates - Popular Hospital",
   description:
     "Stay updated with the latest news, health articles, medical breakthroughs, and updates from Popular Hospital. Read expert health tips and hospital announcements.",
 };
@@ -18,15 +18,19 @@ export default async function NewsPage() {
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* ─── Hero Section ─── */}
       <section className="relative bg-[#0b1c43] py-20 sm:py-24 lg:py-28 overflow-hidden">
-        {/* Background Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "radial-gradient(#ffffff 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-          }}
-        />
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/news-sm-inner.jpg"
+            alt="Latest News"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/90 via-[#0b1c43]/40 to-transparent z-10" />
+        </div>
+        
         <div className="relative z-10 max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <nav className="mb-6 text-sm text-white/60" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white transition-colors">
