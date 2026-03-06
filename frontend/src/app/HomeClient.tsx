@@ -6,7 +6,6 @@ import { useEffect, useState, useRef } from "react";
 import { fetchBranches, fetchNews, type Branch, type NewsItem } from "@/lib/api";
 
 export default function HomePage() {
-  const [branches, setBranches] = useState<Branch[]>([]);
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -54,11 +53,45 @@ export default function HomePage() {
     }
   };
 
+  const branches = [
+    {
+      name: 'Popular Hospital – Main Branch',
+      slug: 'varanasi-main',
+      city: 'Varanasi',
+      address: 'N-10 / 60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh, India',
+      image_one: '/images/branches/varanasi-main/1.webp',
+    },
+    {
+      name: 'City Hospital – Sigra',
+      slug: 'varanasi-city-centre',
+      city: 'Varanasi',
+      address: 'Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh, India',
+      image_one: '/images/branches/varanasi-sigra/1.webp',
+    },
+    {
+      name: 'Popular Hospital – Mirzapur',
+      slug: 'mirzapur',
+      city: 'Mirzapur',
+      address: 'Near Natwan Police Chowki, Jangi Road, Mirzapur, Uttar Pradesh, India',
+      image_one: '/images/branches/mirzapur/1.webp',
+    },
+    {
+      name: 'Popular Hospital – Bachhaon',
+      slug: 'bachhaon',
+      city: 'Bachhaon',
+      address: 'Chunar Road, Bachhaon, Varanasi, Uttar Pradesh, India',
+      image_one: '/images/branches/bachhaon/1.webp',
+    },
+    {
+      name: 'Popular Hospital – Gopiganj',
+      slug: 'gopiganj',
+      city: 'Gopiganj',
+      address: 'G.T. Road, Parao, Near Indus Ind Bank, Gopiganj, Uttar Pradesh, India',
+      image_one: '/images/branches/gopiganj/1.webp',
+    },
+  ];
+
   useEffect(() => {
-    fetchBranches()
-      .then(setBranches)
-      .catch(() => setBranches([]));
-      
     fetchNews()
       .then((data) => setLatestNews(data.slice(0, 3)))
       .catch(() => setLatestNews([]));
@@ -114,32 +147,10 @@ export default function HomePage() {
             aria-hidden
           />
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-24 md:pb-44 lg:pb-48 z-20 px-4 text-center">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-2 md:mb-6 drop-shadow-lg tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-4 md:mb-8 drop-shadow-2xl tracking-tight leading-[1.2]">
               आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
             </h1>
 
-            <div className="flex flex-row flex-wrap justify-center gap-2 sm:gap-4 w-full sm:w-auto mt-2 sm:mt-3 md:mt-4">
-              <Link
-                href="/book"
-                className="flex items-center justify-center gap-2 px-6 py-3 md:px-6 md:py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 bg-[#E85222] hover:bg-[#d1451a] text-white rounded-full font-bold text-sm md:text-base lg:text-base 2xl:text-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group flex-1 sm:flex-none whitespace-nowrap"
-              >
-                <svg className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <span className="md:hidden">Book</span>
-                <span className="hidden md:inline">Book Appointment</span>
-              </Link>
-              <Link
-                href="/departments"
-                className="flex items-center justify-center gap-2 px-6 py-3 md:px-6 md:py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white hover:text-[#0b1c43] rounded-full font-bold text-sm md:text-base lg:text-base 2xl:text-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group flex-1 sm:flex-none whitespace-nowrap"
-              >
-                <span className="md:hidden">Specialities</span>
-                <span className="hidden md:inline">Explore Specialities</span>
-                <svg className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 flex-shrink-0 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
           </div>
 
           {/* Notification Ticker */}
@@ -179,17 +190,17 @@ export default function HomePage() {
         <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-6xl 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
-              href="/online-payment"
-              title="Online Payment"
+              href="/admin-login"
+              title="Doctors Login"
               isFirst={true}
               variant="blue"
             />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/doctors" title="Find a Doctor" variant="green" />
+            <SimpleCard href="/book" title="Book an Appointment" variant="green" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/our-locations" title="Our Locations" variant="blue" />
+            <SimpleCard href="/patient-reports" title="Patient Report" variant="blue" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/services/wellness" title="Wellness Packages" isLast={true} variant="green" />
+            <SimpleCard href="/departments" title="Explore Departments" isLast={true} variant="green" />
           </div>
         </div>
       </section>
@@ -200,7 +211,7 @@ export default function HomePage() {
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-hospital-teal/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#E85222]/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
-        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">   
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Left Side - Text Content */}
             <div className="flex flex-col justify-center space-y-8">
@@ -215,7 +226,7 @@ export default function HomePage() {
                 </h2>
                 
                 <p className="text-gray-600 text-[17px] sm:text-[19px] leading-relaxed font-medium">
-                  <span className="text-[#0b1c43] font-bold">POPULAR HOSPITAL</span> (a Unit of POPULAR MEDICARE LTD), one of Varanasi’s best Super Speciality Institute that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
+                  <span className="text-[#0b1c43] font-bold">POPULAR HOSPITAL</span> (a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
                 </p>
               </div>
 
@@ -722,7 +733,7 @@ export default function HomePage() {
                   icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
                 },
                 {
-                  title: "Multi-Super Specialty Center",
+                  title: "Multi-Super Specialty Hospital",
                   desc: "Comprehensive specialties including cardiology, neurology, orthopedics, and gastroenterology.",
                   icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 },
@@ -1902,16 +1913,16 @@ function SimpleCard({
       <div className="flex flex-col items-start gap-2 md:hidden">
         <div className={`p-2 rounded-full ${isBlue ? 'bg-white/50' : 'bg-white/50'} text-gray-800`}>
           {/* Icons based on title for mobile */}
-          {title.includes('Payment') ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
-          ) : title.includes('Doctor') ? (
+          {title.includes('Login') ? (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" /></svg>
+          ) : title.includes('Appointment') ? (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+          ) : title.includes('Report') ? (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-          ) : title.includes('Location') ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-          ) : title.includes('Wellness') ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+          ) : title.includes('Departments') ? (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           ) : (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
           )}
         </div>
         <span className="text-sm font-bold font-heading uppercase tracking-wider text-gray-900">

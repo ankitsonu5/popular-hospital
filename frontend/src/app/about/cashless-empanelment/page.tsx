@@ -177,7 +177,7 @@ export default function CashlessEmpanelmentPage() {
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">Cashless Empanelment</h1>
-            <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
+         <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
                 Popular Hospital is proudly empanelled with leading Government bodies, PSUs, Private Corporates, and International TPAs — ensuring hassle-free cashless treatment for you and your family.
             </p>
         </div>
