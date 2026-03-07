@@ -255,13 +255,6 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <div className="relative">
-                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#E85222] to-hospital-teal rounded-full"></div>
-                <p className="text-gray-600 text-[16px] leading-relaxed pl-6 italic bg-white/60 py-4 pr-4 rounded-xl shadow-sm border border-gray-50">
-                  A 450-Bedded Multi-Super Speciality Hospital in Varanasi providing comprehensive Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32 years under one roof.
-                </p>
-              </div>
-
               {/* Action Area */}
               <div className="flex flex-wrap items-center gap-6 pt-4">
                 <Link
@@ -663,7 +656,7 @@ export default function HomePage() {
             <div className="max-w-3xl">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-12 h-[3px] bg-gradient-to-r from-[#E85222] to-hospital-teal rounded-full"></span>
-                <span className="text-sm font-bold tracking-widest text-[#0b1c43] uppercase">Why Choose Us</span>
+                <span className="text-sm font-bold tracking-widest text-[#0b1c43] uppercase">Why Popular Hospital</span>
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0b1c43] font-heading leading-[1.15] tracking-tight">
                 Setting the Standard in <br className="hidden md:block" />
@@ -1536,7 +1529,7 @@ export default function HomePage() {
               },
               {
                 question: "How can I schedule an appointment with a specialist?",
-                answer: "Appointments can be booked via the hospital’s official website or by calling our helpline. Physical walk-ins at the reception are also available for OPD consultations."
+                answer: "Appointments can be booked via the hospital's official website or by calling our helpline. Physical walk-ins at the reception are also available for OPD consultations."
               },
               {
                 question: "Is cashless treatment available for insured patients?",

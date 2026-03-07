@@ -35,7 +35,7 @@ export default function RadiologyPage() {
                 Advanced <br/>
                 Diagnostic Imaging
               </h1>
-              <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
+              <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
                 State-of-the-art imaging technology provided by expert radiologists. We ensure accurate diagnosis for effective treatment planning.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -119,7 +119,7 @@ export default function RadiologyPage() {
                         <span className="text-teal-600">Radiology Care</span> for Patients
                      </h2>
                 </div>
-              <p className="text-gray-600 leading-relaxed mb-6 text-lg">
+              <p className="text-gray-800 leading-relaxed mb-10 text-base md:text-lg font-medium text-justify">
                 Our Department combines personalized care with cutting-edge technology. Whether you need a routine X-ray or a complex MRI, our team ensures a comfortable, safe, and precise imaging experience.
               </p>
               <ul className="space-y-4 mb-8">
@@ -129,7 +129,7 @@ export default function RadiologyPage() {
                   'Low-dose CT technology for patient safety',
                   'Same-day appointments for urgent cases'
                 ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
+                    <li key={i} className="flex items-center gap-3 text-gray-800 font-medium text-base md:text-lg">
                         <span className="w-6 h-6 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 flex-shrink-0">
                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                         </span>
@@ -167,7 +167,7 @@ export default function RadiologyPage() {
                  <div className="w-full md:w-1/2 order-1 md:order-2">
                      <span className="text-teal-600 font-bold tracking-wider text-sm uppercase mb-2 block">Innovation</span>
                      <h3 className="text-3xl font-bold font-heading text-gray-900 mb-4">Advanced Technology</h3>
-                     <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                     <p className="text-gray-800 mb-6 text-base md:text-lg font-medium text-justify leading-relaxed">
                          We utilize the absolute latest in diagnostic imaging technology. Our 3T MRI machines provide clearer images in less time, while our advanced PET-CT scanners allow for early detection of critical conditions with minimal radiation exposure.
                      </p>
                  </div>
@@ -178,7 +178,7 @@ export default function RadiologyPage() {
                  <div className="w-full md:w-1/2">
                      <span className="text-teal-600 font-bold tracking-wider text-sm uppercase mb-2 block">Precision</span>
                      <h3 className="text-3xl font-bold font-heading text-gray-900 mb-4">Accurate Radiology Reporting</h3>
-                     <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                     <p className="text-gray-800 mb-6 text-base md:text-lg font-medium text-justify leading-relaxed">
                          Our radiologists are sub-specialty trained, meaning your neuro-scan is read by a neuro-radiologist, and your cardiac scan by a cardiac specialist. This expert review ensures the highest accuracy for your diagnosis.
                      </p>
                  </div>

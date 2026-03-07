@@ -6,64 +6,78 @@ import { useState } from 'react';
 
 /* ─── Data ─── */
 
-const uspItems = [
+const procedureList = [
+  'Coronary Artery Bypass Graft (CABG)',
+  'Hypertrophic Cardiomyopathy surgery',
+  'Pacemaker Implantation',
+  'Beating Heart Bypass Surgery',
+  'Minimally Invasive Bypass Surgery / Key Hole Bypass Surgery',
+  'Valve Replacement, Single or Double',
+  'Combined CABG and Valve Replacements',
+  'Repair of Congenital Heart Defects',
+  'Conventional Bypass Heart Surgery On Pump',
+  'Pericardiectomy',
+  'Peripheral Vascular Surgery',
+  'Surgery of Aortic Aneurysm and Dissection',
+  'Heart Transplant',
+  'LVAD Implantation'
+];
+
+const technologyList = [
+  'Cath Lab',
+  'Rotablator',
+  'Intravascular Ultrasound Imaging (IVUS)',
+  'Fractional Flow Reserve (FFR) measurement Echocardiography (ECG)',
+  'Treadmill Machine (TMT) Holter Machines'
+];
+
+const services = [
   {
-    title: 'Hi-Tech Cath Lab:-',
-    content: 'Cardiac department of Popular Hospital have a Cath lab equipped with hi-tech equipment where we carry out tests and procedures including ablation, angiogram, angioplasty, IVUS, Rotablation and implantation of pacemakers/icds etc.'
+    title: 'Diagnosis and Evaluation:',
+    content: 'Our experienced team utilizes state-of-the-art diagnostic tools and techniques to accurately assess and diagnose various cardiovascular and thoracic conditions. We employ advanced imaging technologies, such as CT scans, MRIs, and echocardiography, to obtain detailed information about the patient’s condition, enabling us to make informed decisions about the most appropriate treatment strategies.'
   },
   {
-    title: 'IVUS Facility:-',
-    content: 'Only center of eastern U.P. having HD-IVUS facility where we can detect exact amount of plaque its size, Degree of narrowing, restenosis & accurate stent placement.'
+    title: 'Surgical Procedures:',
+    content: 'Our CTVS Department offers a wide range of surgical procedures to address cardiovascular and thoracic disorders. Our skilled surgeons are trained in advanced techniques and utilize the latest surgical technologies to perform procedures such as coronary artery bypass grafting (CABG), heart valve repair/replacement, lung cancer resection, vascular reconstructions, and more. We prioritize minimally invasive approaches whenever possible to minimize discomfort, speed up recovery, and optimize patient outcomes.'
   },
   {
-    title: 'Dedicated Cardiac Team:-',
-    content: 'Our cardiac department have a team of expert and experienced Consultants with trained nursing staff especially for the cardiac services who are available 24x7 in cardiac care unit.'
+    title: 'Multidisciplinary Care:',
+    content: 'Collaboration is a cornerstone of our CTVS Department. Our surgeons work closely with a multidisciplinary team of specialists, including cardiologists, anesthesiologists, intensivists, and other healthcare professionals. This collaborative approach ensures that patients receive comprehensive, well-rounded care throughout their treatment journey.'
   },
   {
-    title: 'Non-Invasive cardiology program:-',
-    content: 'Popular hospital believes in saving life as its vision is to "Caring for Your Every Breath", the cardiac department performs all kind of non-invasive Procedure to save patient and give them a healthy and worry free life.'
+    title: 'Postoperative Care and Rehabilitation:',
+    content: 'Our commitment to our patients extends beyond the operating room. We provide attentive postoperative care and support to ensure a smooth recovery. Our dedicated nursing staff and rehabilitation specialists work closely with patients to facilitate their healing process and optimize their long-term outcomes.'
   },
   {
-    title: 'Round the clock support:-',
-    content: 'Popular Hospital provides 24x7 availability of doctors to support emergency cardiac services.'
+    title: 'Patient Education and Support:',
+    content: 'We believe that informed patients are empowered patients. That’s why we prioritize patient education and provide resources to help individuals understand their conditions, treatment options, and the recovery process. Our team is always available to answer questions and address concerns, ensuring that patients and their families feel supported and well-informed at every step.'
   }
 ];
 
-const treatmentList = [
-  'Coronary angiography',
-  'Coronary angioplasty',
-  'Peripheral interventions',
-  'Pacemaker implantation (Single chamber, Dual chamber, CRT, AICD, LBBB Pacing).',
-  'Balloon valvuloplasty',
-  'HD IVUS',
-  'ROTABLATION',
-  'EP study and Radiofrequency ablation',
-  'Acute MI interventions'
-];
-
-const preventiveList = [
-  'ECG',
-  'Echocardiography with Doppler',
-  'TMT',
-  'ABPM',
-  '24 hour Holter Monitoring',
-  'CT Coronary Angiography'
+const whyChooseUs = [
+  'Highly skilled surgeons with expertise in complex cardiovascular and thoracic procedures.',
+  'Access to cutting-edge diagnostic and surgical technologies.',
+  'Personalized and patient-centered approach to care.',
+  'Collaborative and multidisciplinary team for comprehensive treatment.',
+  'Emphasis on minimally invasive techniques to optimize patient outcomes.',
+  'Comprehensive postoperative care and rehabilitation services.',
+  'Commitment to patient education and support.'
 ];
 
 const doctors = [
   {
-    name: 'Dr. Manoj Sharma',
-    qualifications: 'MBBS, MD- Physiology, PGDCC',
-    designation: 'Consultant',
-    slug: 'dr-manoj-sharma',
-    image: '/images/departments_doctor/dr-Manoj-Sharma.jpg'
+    name: 'Dr. Rahul Dev',
+    qualifications: 'MS, MCh (CTVS)',
+    designation: 'Senior Consultant',
+    slug: 'dr-rahul-dev',
+    image: '/images/departments-images/'
   },
   {
-    name: 'Dr. Hari Krishan Srivastava',
-    qualifications: 'DM - Cardiology',
+    name: 'Dr. Shalini Singh',
+    qualifications: 'MS, MCh (Thoracic Surgery)',
     designation: 'Consultant',
-    slug: 'dr-hari-krishan-srivastava',
-    image: '/images/departments_doctor/dr-Hari-Krishan-Srivastava.jpg'
+    slug: 'dr-shalini-singh',
+    image: '/images/departments-images/'
   }
 ];
 
@@ -90,46 +104,46 @@ const ListItem = ({ text }: { text: string }) => (
 
 /* ─── Page ─── */
 
-export default function CardiologyPage() {
+export default function CTVSClient() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <main className="min-h-screen bg-white">
 
-      {/* ═══════ HERO SECTION (Banner kept as requested) ═══════ */}
-      <section className="relative h-[600px] w-full bg-[#004d61] overflow-hidden">
+      {/* ═══════ HERO SECTION ═══════ */}
+      <section className="relative h-[600px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=2000&auto=format&fit=crop"
-            alt="Cardiac Care"
+            src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=2000"
+            alt="Heart and Vascular Care"
             fill
-            className="object-cover opacity-40 mix-blend-overlay"
+            className="object-cover opacity-30 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#003B4A] via-[#003B4A]/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-teal-500/20 text-teal-200 text-sm font-semibold mb-6 border border-teal-400/30 backdrop-blur-sm">
-              Department of Cardiology
+            <span className="inline-block py-1 px-3 rounded-full bg-rose-500/20 text-rose-200 text-sm font-semibold mb-6 border border-rose-400/30 backdrop-blur-sm">
+              Department of CTVS
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-              World-Class <br />
-              Cardiac Care
+             Cardiothoracic & <br />
+              Vascular Surgery
             </h1>
-            <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
-              Comprehensive evaluation of heart conditions with India&apos;s premier cardiac care team. Advanced diagnostics, minimally invasive procedures, and personalized rehabilitation programs.
+            <p className="text-rose-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
+              Pioneering complex cardiac and vascular procedures. From Beating Heart Bypass (CABG) to advanced aortic interventions, we ensure the highest standards of surgical care.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-teal-500/30 flex items-center gap-2"
+                className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                Book an Appointment
+                Book An Appointment
               </Link>
               <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,30 +163,35 @@ export default function CardiologyPage() {
             
             {/* Left Content (8 cols) */}
             <div className="lg:col-span-8">
-              <SectionHeader title="Department of" highlight="Cardiology" />
+              <SectionHeader title="Department of" highlight="Cardiothoracic & Vascular Surgery (CTVS)" />
               <div className="prose prose-blue max-w-none text-gray-800 space-y-4 mb-10 leading-relaxed text-base md:text-lg font-medium text-justify">
                 <p>
-                  Popular Hospital is a Top cardiac hospital of eastern Uttar Pradesh ensuring best treatment for Heart Diseases. The entire cardiology department is the only center in this region to perform all coronary procedures via transradial route. The center is well equipped with state-of-the-art equipment using cutting-edge technology. From high end 2D Echocardiography to the latest Catheterisation laboratory where complex coronary, peripheral and structural interventions are being carried out on a day to day basis using the most modern tools such as Fractional flow Reserve (FFR)/ Rotatory Atherectomy (Roatablation), Intravascular Ultrasound (IVUS)/Electrophysiology.
+                  Welcome to the Cardiothoracic and Vascular Surgery (CTVS) Department at Popular Hospital. We are proud to offer exceptional care in the field of cardiovascular and thoracic surgery. Our department comprises a team of highly skilled surgeons, dedicated nurses, and specialized support staff who work together to provide comprehensive and cutting-edge treatment options for patients with heart, lung, chest, and vascular conditions.
                 </p>
                 <p>
-                  The cardiac department at Popular is an integrated healthcare center with a highly experienced, qualified, and dedicated team of cardiologists who work in complete coordination to provide comprehensive and multidisciplinary care to the patients suffering from heart ailments. At Popular we have pioneered the &apos;Heart Team&apos; approach where all cardiovascular problems are comprehensively evaluated, jointly discussed and individually planned for appropriate indicated therapies.
+                  Cardiothoracic and Vascular Surgery (CTVS) is a specialized branch of surgery that focuses on the surgical treatment of diseases and conditions affecting the heart, lungs, chest, and blood vessels. It encompasses a wide range of procedures designed to address cardiovascular and thoracic disorders, including coronary artery bypass grafting, heart valve repair/replacement, lung cancer resection, and vascular reconstructions, among others.
+                </p>
+                <p>
+                  At Popular Hospital, we understand that cardiovascular and thoracic disorders can have a significant impact on the lives of our patients. That’s why our CTVS Department is committed to delivering the highest quality of care with a patient-centered approach. We strive to provide personalized treatment plans that are tailored to each individual’s unique needs, ensuring the best possible outcomes.
                 </p>
               </div>
 
-              <SectionHeader title="USP Of Cardiac" highlight="Departments" />
-              <ul className="space-y-4 mb-12">
-                {uspItems.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-blue-600 mt-1 font-bold">›</span>
-                    <p className="text-gray-800 leading-relaxed text-base md:text-lg font-medium">
-                      <span className="font-bold text-[#0b1c43]">{item.title}</span> {item.content}
-                    </p>
-                  </li>
+              <SectionHeader title="Procedures" highlight="" />
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mb-12">
+                {procedureList.map((item, idx) => (
+                  <ListItem key={idx} text={item} />
+                ))}
+              </ul>
+
+              <SectionHeader title="Advanced Diagnostics & Technology -" highlight="Our Tools for Treatment" />
+              <ul className="space-y-3 mb-12">
+                {technologyList.map((item, idx) => (
+                   <ListItem key={idx} text={item} />
                 ))}
               </ul>
             </div>
 
-            {/* Right Sidebar - Doctor Card (4 cols) with Slider */}
+            {/* Right Sidebar - Doctor Card with Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
                 <div className="relative pt-6">
@@ -223,7 +242,6 @@ export default function CardiologyPage() {
                     <button 
                       onClick={() => setCurrentSlide((prev) => (prev === 0 ? doctors.length - 1 : prev - 1))}
                       className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
-                      aria-label="Previous doctor"
                     >
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
@@ -232,7 +250,6 @@ export default function CardiologyPage() {
                     <button 
                       onClick={() => setCurrentSlide((prev) => (prev === doctors.length - 1 ? 0 : prev + 1))}
                       className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
-                      aria-label="Next doctor"
                     >
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
@@ -247,10 +264,9 @@ export default function CardiologyPage() {
                           onClick={() => setCurrentSlide(idx)}
                           className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border ${
                             currentSlide === idx 
-                              ? 'bg-blue-600 border-blue-600 scale-125' 
+                              ? 'bg-[#3b82f6] border-[#3b82f6] scale-125' 
                               : 'bg-transparent border-gray-400'
                           }`}
-                          aria-label={`Go to slide ${idx + 1}`}
                         />
                       ))}
                     </div>
@@ -263,27 +279,32 @@ export default function CardiologyPage() {
         </div>
       </section>
 
-      {/* ═══════ WHAT WE TREAT SECTION ═══════ */}
+      {/* ═══════ OUR SERVICES SECTION ═══════ */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
             
             <div className="order-2 lg:order-1">
-              <SectionHeader title="What we" highlight="treat:" />
-              <ul className="grid grid-cols-1 md:grid-cols-1 gap-x-8 mt-6">
-                {treatmentList.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
+              <SectionHeader title="Our" highlight="Services:" />
+              <div className="space-y-6 mt-6">
+                {services.map((service, idx) => (
+                  <div key={idx} className="flex items-start gap-2">
+                    <span className="text-blue-600 mt-1 font-bold">›</span>
+                    <p className="text-gray-800 leading-relaxed text-base md:text-lg font-medium">
+                      <span className="font-bold text-[#0b1c43]">{service.title}</span> {service.content}
+                    </p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
             <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
+                <div className="absolute inset-0 bg-rose-50 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
                   <Image
-                    src="/images/departments-images/cardiology-treat.png"
-                    alt="Cardiac Treatment"
+                    src="/images/departments-images/ctvs-procedures.png"
+                    alt="CTVS Procedures"
                     fill
                     className="object-cover"
                   />
@@ -295,7 +316,7 @@ export default function CardiologyPage() {
         </div>
       </section>
 
-      {/* ═══════ NON-INVASIVE SECTION ═══════ */}
+      {/* ═══════ WHY CHOOSE US SECTION ═══════ */}
       <section className="py-20 bg-gray-50 overflow-hidden">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
@@ -305,8 +326,8 @@ export default function CardiologyPage() {
                 <div className="absolute inset-0 bg-blue-100 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
                   <Image
-                    src="/images/departments-images/cardiology-preventive.png"
-                    alt="Preventive Cardiology"
+                    src="/images/departments-images/ctvs-services.png"
+                    alt="CTVS Technology"
                     fill
                     className="object-cover"
                   />
@@ -315,15 +336,30 @@ export default function CardiologyPage() {
             </div>
 
             <div>
-              <SectionHeader title="Non-invasive and" highlight="preventive Cardiology:" />
-              <ul className="grid grid-cols-1 md:grid-cols-1 gap-x-8 mt-6">
-                {preventiveList.map((item, idx) => (
+              <SectionHeader title="Why" highlight="Choose us:" />
+              <ul className="grid grid-cols-1 gap-x-8 mt-6">
+                {whyChooseUs.map((item, idx) => (
                   <ListItem key={idx} text={item} />
                 ))}
               </ul>
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* ═══════ SURGEONS SECTION ═══════ */}
+      <section className="py-20 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+           <SectionHeader title="CTVS" highlight="Surgeons at Popular Hospital" />
+           <div className="prose prose-blue max-w-none text-gray-800 space-y-4 leading-relaxed text-base md:text-lg font-medium text-justify">
+                <p>
+                  CTVS surgeons are highly trained specialists who possess extensive knowledge of cardiovascular and thoracic anatomy and are skilled in performing complex surgical procedures. They work closely with a multidisciplinary team, including cardiologists, anesthesiologists, intensivists, and other healthcare professionals, to provide comprehensive care to patients with cardiovascular and thoracic conditions.
+                </p>
+                <p>
+                  We are dedicated to providing compassionate and exceptional care to our patients, and we strive to be at the forefront of advancements in cardiovascular and thoracic surgery. If you or a loved one is in need of specialized care for a heart, lung, chest, or vascular condition, we invite you to contact our Cardiothoracic and Vascular Surgery Department at Popular Hospital. Our team is ready to guide you through your treatment journey and help you achieve the best possible outcomes.
+                </p>
+           </div>
         </div>
       </section>
 

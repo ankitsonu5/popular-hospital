@@ -80,7 +80,6 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Oncology", href: "/departments/oncology" },
     { label: "Urology", href: "/departments/urology" },
     { label: "Burns & Plastic Surgery", href: "/departments/burns-plastic-surgery" },
-    { label: "Radiology", href: "/departments/radiology" },
     { label: "Pediatric Surgery", href: "/departments/pediatric-surgery" }
   ],
   "Specialties": [
@@ -94,8 +93,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Dental", href: "/departments/dental" },
     { label: "Department Of Respiratory Medicine", href: "/departments/respiratory" },
     { label: "Pain Management Clinic", href: "/departments/pain-management" },
-    { label: "Psychiatry Department", href: "/departments/psychiatry" },
-    { label: "Pathology", href: "/departments/pathology" }
+    { label: "Psychiatry Department", href: "/departments/psychiatry" }
   ]
 };
 
