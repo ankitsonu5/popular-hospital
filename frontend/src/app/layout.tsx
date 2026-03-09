@@ -35,6 +35,12 @@ export default function RootLayout({
         {/* Official Google Translate Configuration */}
         <Script id="google-translate-config" strategy="beforeInteractive">
           {`
+            // Ensure website starts in English by default if no preference is saved
+            if (!localStorage.getItem('user-language')) {
+              document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
+            }
+
             window.googleTranslateElementInit = function() {
               new google.translate.TranslateElement({
                 pageLanguage: 'en',

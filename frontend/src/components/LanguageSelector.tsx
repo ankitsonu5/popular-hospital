@@ -16,13 +16,20 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Definining official translation helper
+    // 1. Sync UI state with saved preference OR default to English
+    const savedLang = localStorage.getItem('user-language');
+    if (savedLang === 'hi') {
+      setCurrentLang('Hindi');
+    } else {
+      setCurrentLang('English');
+    }
+
+    // 2. Defining official translation helper
     if (!(window as any).doGTranslate) {
       (window as any).doGTranslate = (lang: string) => {
         if (!lang) return;
         
         const trigger = () => {
-          // Official Google Translate combo element
           const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement;
           if (combo && combo.options && combo.options.length > 0) {
             combo.value = lang;
@@ -33,7 +40,6 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
         };
 
         if (!trigger()) {
-          // Retry logic (since component loads fast, but script takes time)
           let attempts = 0;
           const interval = setInterval(() => {
             if (trigger() || attempts > 20) clearInterval(interval);
@@ -55,6 +61,9 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
   const handleLanguageChange = (langLabel: string, code: string) => {
     setCurrentLang(langLabel);
     setIsOpen(false);
+    
+    // Save preference to localStorage so we don't clear the cookie next time
+    localStorage.setItem('user-language', code);
     
     // Trigger official Google Translate
     if ((window as any).doGTranslate) {

@@ -147,7 +147,7 @@ export default function HomePage() {
             aria-hidden
           />
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-24 md:pb-44 lg:pb-48 z-20 px-4 text-center">
-            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-4 md:mb-8 drop-shadow-2xl tracking-tight leading-[1.2]">
+            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-4 md:mb-8 drop-shadow-2xl tracking-tight leading-[1.2] notranslate">
               आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
             </h1>
 
