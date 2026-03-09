@@ -34,7 +34,7 @@ export default function OurStoryPage() {
             Our Legacy of Care
           </h1>
           <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-4xl mx-auto font-light">
-            POPULAR HOSPITAL is a 450 bedded Multi Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32+ years.
+            POPULAR HOSPITAL(a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
           </p>
         </div>
       </section>
@@ -110,8 +110,9 @@ export default function OurStoryPage() {
                The Journey Continues
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed mb-10">
-               POPULAR HOSPITAL(a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
+               POPULAR HOSPITAL (a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
             </p>
+
             <div className="w-24 h-1 bg-[#E85222] mx-auto rounded-full"></div>
          </div>
       </section>

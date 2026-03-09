@@ -327,7 +327,7 @@ export default function NephrologyClient() {
                 href="tel:+917800001895"
                 className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-blue-900/30 px-8 py-4 rounded-full font-bold text-base transition-all"
               >
-                Call +91-7800001895
+                Call +91-7800001895 / 96
               </a>
             </div>
           </div>

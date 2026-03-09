@@ -96,40 +96,39 @@ export default function CardiologyPage() {
   return (
     <main className="min-h-screen bg-white">
 
-      {/* ═══════ HERO SECTION (Banner kept as requested) ═══════ */}
-      <section className="relative h-[600px] w-full bg-[#004d61] overflow-hidden">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[600px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=2000&auto=format&fit=crop"
             alt="Cardiac Care"
             fill
-            className="object-cover opacity-40 mix-blend-overlay"
+            className="object-cover opacity-30 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#003B4A] via-[#003B4A]/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-
+        
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-teal-500/20 text-teal-200 text-sm font-semibold mb-6 border border-teal-400/30 backdrop-blur-sm">
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
               Department of Cardiology
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-              World-Class <br />
-              Cardiac Care
+              Cardiology
             </h1>
-            <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
-              Comprehensive evaluation of heart conditions with India&apos;s premier cardiac care team. Advanced diagnostics, minimally invasive procedures, and personalized rehabilitation programs.
+            <p className="text-blue-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
+              Popular Hospital is a Top cardiac hospital of eastern Uttar Pradesh ensuring best treatment for Heart Diseases, offering state-of-the-art non-invasive and interventional cardiac care.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-teal-500/30 flex items-center gap-2"
+                className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                Book an Appointment
+                Book An Appointment
               </Link>
               <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,6 +140,7 @@ export default function CardiologyPage() {
           </div>
         </div>
       </section>
+
 
       {/* ═══════ CONTENT SECTION ═══════ */}
       <section className="py-16 bg-gray-50/50">

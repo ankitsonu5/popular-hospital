@@ -91,41 +91,31 @@ const sections = [
 export default function AmbulancePage() {
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#0b1c43]">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1587556930799-8daca6a1bb5d?auto=format&fit=crop&q=80&w=2000"
             alt="Ambulance Services"
             fill
-            className="object-cover opacity-25 mix-blend-overlay"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent"></div>
+          <div className="absolute inset-0 bg-slate-900/60" />
         </div>
         
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
-          <div className="max-w-3xl">
-            <nav className="flex mb-6 text-sm text-gray-300 font-medium tracking-wide" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span className="mx-3 text-gray-500">/</span>
-              <span className="hover:text-white transition-colors">Services</span>
-              <span className="mx-3 text-gray-500">/</span>
-              <span className="text-blue-400">Ambulance</span>
-            </nav>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 font-heading tracking-tight leading-[1.1]">
-              <span className="text-white">Department of</span> <br />
-              <span className="text-blue-500 bg-clip-text">Ambulance</span>
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              Department of Ambulance
             </h1>
-            <p className="text-lg md:text-xl xl:text-2xl text-blue-100/90 mb-12 font-medium leading-relaxed max-w-2xl">
-              24 hrs Ambulance pickup service available all the way from anywhere in Varanasi ensuring fast and prompt transport.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="tel:+919519999280" className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-3 w-full sm:w-auto text-sm sm:text-base uppercase tracking-wider">
-                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                Call +91-9519999280
-              </a>
-            </div>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Ambulance</span>
+            </nav>
           </div>
         </div>
       </section>
@@ -133,53 +123,48 @@ export default function AmbulancePage() {
       {/* Main Content (Zig-Zag Layout) */}
       <section className="py-24">
         <div className="container mx-auto max-w-[1366px] px-6 lg:px-12">
-          {/* Top Section Banner (Mobile only) */}
-           <div className="bg-[#1a3a6b] text-white text-center text-sm font-semibold px-4 py-3 rounded-lg shadow-sm mb-12 lg:hidden">
-                For Ambulance Service in Varanasi, Call at +91-9519999280
-            </div>
-
           <div className="flex flex-col gap-24 lg:gap-32">
             {sections.map((section, idx) => {
+              const showImage = section.id !== 'department';
               const isEven = idx % 2 === 0;
               return (
-                <div key={section.id} className={`flex flex-col relative ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-10 lg:gap-20 items-center`}>
+                <div key={section.id} className={`flex flex-col ${showImage ? (isEven ? 'lg:flex-row' : 'lg:flex-row-reverse') : 'items-start text-left'} gap-12 lg:gap-20`}>
                   
                   {/* Content */}
-                  <div className={`w-full ${idx === 0 ? 'lg:w-[100%]' : 'lg:w-[55%]'}`}>
-                    {section.title && (
-                        <h2 className="text-lg lg:text-xl font-bold text-blue-800 mb-1 lg:mb-2 font-heading tracking-wide">
+                  <div className={`w-full ${showImage ? 'lg:w-[55%]' : 'w-full'}`}>
+                    {section.subtitle ? (
+                      <>
+                        <h2 className="text-lg lg:text-xl font-bold text-blue-600 mb-1 lg:mb-2 font-heading tracking-wide uppercase">
                           {section.title}
                         </h2>
-                    )}
-                    
-                    {section.subtitle ? (
                         <div className="flex items-center gap-4 mb-6">
-                           <h3 className="text-2xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-snug">
+                           <h3 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight capitalize">
                              {section.subtitle} <span className="text-blue-800">{section.subtitleColorHighlight}</span>
                            </h3>
                            <div className="flex-1 h-px bg-gray-200 mt-2"></div>
                         </div>
+                      </>
                     ) : (
-                      idx === 0 && ( /* Custom styling for the first block based on image */
-                          <div className="flex items-center gap-4 mb-6 relative w-fit">
-                             <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight capitalize">
-                               Department of <span className="text-blue-800">Ambulance</span>
-                             </h2>
-                             <div className="absolute -bottom-3 left-10 w-32 h-1 bg-blue-800 rounded-full flex items-center justify-center">
-                                 <div className="w-2 h-2 rounded-full bg-white border-2 border-blue-800"></div>
-                             </div>
-                             <div className="flex-1 h-px bg-transparent mt-2"></div>
-                          </div>
-                      )
+                      <>
+                        <div className="mb-8">
+                           <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight capitalize">
+                             Department of <span className="text-blue-800">Ambulance</span>
+                           </h2>
+                           <div className="flex items-center gap-2 mt-4">
+                              <div className="w-2 h-2 rounded-full bg-blue-600" />
+                              <div className="h-[2px] w-24 bg-gradient-to-r from-blue-600 to-transparent" />
+                           </div>
+                        </div>
+                      </>
                     )}
                     
-                    <div className={`prose prose-lg max-w-none text-gray-700 ${idx === 0 ? 'bg-gray-50/50 p-6 sm:p-10 rounded-2xl relative pt-12 lg:pt-8' : ''}`}>
+                    <div className="prose prose-lg max-w-none text-gray-700">
                       {section.content}
                     </div>
                   </div>
 
                   {/* Image with Pill Masking */}
-                  {idx !== 0 && (
+                  {showImage && (
                   <div className="w-full lg:w-[45%] flex justify-center">
                     <div className="relative w-full max-w-[500px]">
                       {/* Decorative Element */}

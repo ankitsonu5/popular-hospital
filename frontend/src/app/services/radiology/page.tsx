@@ -11,45 +11,31 @@ export const metadata: Metadata = {
 export default function RadiologyPage() {
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#0b1c43]">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1559403162-4309ba2c1404?auto=format&fit=crop&q=80&w=2000"
-            alt="Radiology and Imaging"
+            alt="Radiological Services"
             fill
-            className="object-cover opacity-20 mix-blend-overlay"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent"></div>
+          <div className="absolute inset-0 bg-slate-900/60" />
         </div>
         
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
-          <div className="max-w-4xl flex flex-col md:flex-row gap-10 items-start justify-between">
-            <div>
-              <nav className="flex mb-6 text-sm text-gray-300 font-medium tracking-wide" aria-label="Breadcrumb">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span className="mx-3 text-gray-500">/</span>
-                <span className="hover:text-white transition-colors">Services</span>
-                <span className="mx-3 text-gray-500">/</span>
-                <span className="text-blue-400">Radiology</span>
-              </nav>
-              
-              <div className="mb-6">
-                 <p className="text-gray-300 text-sm md:text-base italic border-l-4 border-blue-500 pl-4 mb-4 font-light">
-                   Department of Radiology was a major achieved when first CT scanner was installed in the hospital by SNS group. It was first of its kind in northern India and second in whole India.
-                 </p>
-                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white font-heading tracking-tight leading-[1.1]">
-                   Department of <span className="text-blue-500 bg-clip-text">Radiology <br/> and Imaging</span>
-                 </h1>
-              </div>
-            </div>
-
-            <div className="flex-shrink-0 md:mt-20">
-               <a href="/book" className="px-8 py-4 bg-blue-600 text-white rounded font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30 uppercase tracking-widest text-xs inline-block">
-                 Schedule an Appointment
-               </a>
-            </div>
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              Radiological Services
+            </h1>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Radiology</span>
+            </nav>
           </div>
         </div>
       </section>
@@ -60,15 +46,30 @@ export default function RadiologyPage() {
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#0b1c43 1px, transparent 1px), linear-gradient(90deg, #0b1c43 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         
         <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
+           <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-6 w-full">
+               <p className="text-[#0b1c43] leading-loose text-left text-[1.05rem] max-w-3xl font-medium">
+                  Department of Radiology was a major achieved when first CT scanner was installed in the hospital by SNS group. It was first of its kind in northern India and second in whole India.
+               </p>
+               <Link href="/doctors" className="hidden md:flex bg-[#2563eb] hover:bg-blue-700 text-white px-6 py-2.5 rounded-sm font-semibold tracking-wide shadow-md transition-colors text-sm uppercase text-center shrink-0">
+                  SCHEDULE AN<br />APPOINTMENT
+               </Link>
+           </div>
+
            <div className="max-w-4xl">
+
+              <div className="mb-4">
+                 <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight border-l-4 border-blue-600 pl-4 mb-6">
+                     Department of <span className="text-blue-600">Radiology and Imaging</span>
+                  </h2>
+              </div>
               
-              <p className="text-gray-600 leading-loose text-justify text-[1.05rem] mb-16">
-                 Ultrasound department was started in 4 Tesla MRI was installed in the hospital in 9 which is upgraded by 3 Tesla in 2009. Department of mammography was started in 1999. State of art vascular cath lab. Especially designed for vascular procedure started in 2010. Popular houses a vast imaging department with its unique subdivisions which include conventional radiology, General Ultrasound, Fetal Medicine, CT, MRI and Interventional radiology. All the subdivisions are highly coordinated, equipped with latest technology and managed effectively by number of expert consultants mastered in their respective areas and providing high quality reporting and quality care of patients. Each department is also staffed with highly trained and experienced technical personnel.
+              <p className="text-gray-600 leading-loose text-justify text-[1.05rem] mb-12">
+                 Ultrasound department was started in 4, 1 Tesla MRI was installed in the hospital in 9 which is upgraded by 3 Tesla in 2009. Department of mammography was started in 1999.State of art vascular cath lab. Especially designed for vascular procedure started in 2010. Popular houses a vast imaging department with its unique subdivisions which include conventional radiology, General Ultrasound, Fetal Medicine, CT, MRI and interventional radiology. All the subdivisions are highly coordinated, equipped with latest technology and managed effectively by number of expert consultants mastered in their respective areas and providing high quality reporting and quality care of patients. Each department is also staffed with highly trained and experienced technical personnel.
               </p>
 
               <div className="mb-4">
-                 <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight flex items-center gap-4">
-                     Conventional <span className="text-blue-600">Radiology</span>
+                 <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight">
+                     Conventional <span className="text-gray-800">Radiology</span>
                   </h2>
                   <div className="flex items-center gap-2 mt-4">
                       <div className="w-2 h-2 rounded-full bg-blue-600"></div>
@@ -77,7 +78,7 @@ export default function RadiologyPage() {
               </div>
 
               <p className="text-gray-600 leading-loose text-justify text-[1.05rem]">
-                 The department of conventional radiology is equipped with two digital x-ray machines, one fluoroscopy unit, two high frequency conventional x-ray machine, one mammography machine and one OPG x-ray machine. The work load on an average is 400 patients per day. The procedures done under fluoroscopy control include barium investigations for the gastrointestinal tract, hysterosalpingograms for the female genital tract and a number of procedures for diagnostic and therapeutic intervention for hepatobiliary system. The department also does urological investigations such as intravenous urogram and micturating and cystourethrogram. Special investigations like dacryocystogram, sialogram, myelogram are also done. Procedures like defeolography are also done which is available in very few centers in India. Portable radiography units are kept on each floor of the hospital ward block for patients who are too sick to come to the main department. Digital portable radiographs are being carried out in the ICU patients. The department also has a state-of-the-art mammography machine with stereotactic biopsy attachment for diagnostic interventional procedures. On an average 175-200 mammograms are done every month with interventional procedures including hook wire placements and breast biopsies.
+                 The department of conventional radiology is equipped with two digital x ray machines, one fluoroscopy unit, two high frequency conventional x-ray machine, one mammography machine and one OPG x-ray machine. The work load on an average is 400 patients per day. The procedures done under fluoroscopy control include barium investigations for the gastrointestinal tract, hysterosalpingograms for the female genital tract and a number of procedures for diagnostic and therapeutic intervention for hepatobiliary system. The department also does urological investigations such as intravenous urogram and micturating and cystourethrogram. Special investigations like dacryocystogram, sialogram, myelogram are also done. Procedures like defaecography are also done which is available in very few centers in India. Portable radiography units are kept on each floor of the hospital ward block for patients who are too sick to come to the main department. Digital portable radiographs are being carried out in the ICU patients. The department also has a state-of-the-art mammography machine with stereotactic biopsy attachment for diagnostic interventional procedures. On an average 175-200 mammograms are done every month with interventional procedures including hook wire placements and breast biopsies.
               </p>
            </div>
         </div>
@@ -100,12 +101,12 @@ export default function RadiologyPage() {
                       </div>
                   </div>
                   <p className="text-gray-600 leading-loose text-justify text-[1.05rem] mb-16">
-                     Department of interventional radiology is equipped with latest Philips digital fluoroscopy angiography unit. Each subdivision (hepatobiliary, cardiac, peripheral vascular, and neurointervention) is run by highly experienced and trained senior consultants. A number of interventional procedures including hepatobiliary, renal, gynaecological, neurological and cardiac interventions are carried out. Students are also given sufficient hands on experience in these procedures. Hepatobiliary interventions like transarterial chemoembolization for tumors (TACE), transarterial radiotherapy (TARE), radiofrequency ablation (RFA), Transjugular Intrahepatic Portosystemic shunts (TIPPS) and embolization for GI bleeds are done extensively in the department. Others procedures like uterine artery embolization are also carried out.
+                     Department of interventional radiology is equipped with latest Philips digital fluoroscopy angiography unit. Each subdivision (hepatobiliary, cardiac peripheral vascular, and neurointervention) is run by highly experienced and trained senior consultants. A number of interventional procedures including hepatobiliary, renal, gynaecological, neurological and cardiac interventions are carried out. Students are also given sufficient hands on experience in these procedures. Hepatobiliary interventions like transarterial chemoembolization for tumors (TACE), transarterial radiotherapy (TARE), radiofrequency ablation (RFA). Transjugular intrahepatic Portosystemic shunts (TIPPS) and embolization for GI bleeds are done extensively in the department.Others procedures like uterine artery embolization are also carried out.
                   </p>
 
                   <div className="mb-4">
                      <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight">
-                         Ultrasound
+                         <span className="text-gray-800">Ultrasound</span>
                       </h2>
                       <div className="flex items-center gap-2 mt-4">
                           <div className="w-2 h-2 rounded-full bg-gray-400"></div>

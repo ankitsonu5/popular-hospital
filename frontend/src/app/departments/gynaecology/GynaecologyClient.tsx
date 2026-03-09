@@ -58,7 +58,7 @@ const doctors = [
     qualifications: 'MBBS (RIMCH Ranchi-1991), MD-Obs & Gynae (IMS BHU Varanasi-1996)',
     designation: 'Managing Director & HOD',
     slug: 'dr-kiran-kaushik',
-    image: '/images/departments_doctor/dr-kiran-kaushik.png',
+    image: '/images/leadership/kiran.png',
   },
 ];
 
@@ -333,7 +333,7 @@ export default function GynaecologyClient() {
             
             <div className="relative z-10">
               <span className="inline-block bg-pink-500/20 text-pink-100 text-xs font-bold px-4 py-1.5 rounded-full mb-8 border border-pink-400/20 uppercase tracking-widest">
-                Expert Care Since 1996
+                Expert Care Since 1994
               </span>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
                 Empowering Women&apos;s <br className="hidden md:block" /> Health Every Day

@@ -34,116 +34,102 @@ export default function VisionMissionPage() {
         </div>
       </section>
 
-      {/* ─── Vision Section ─── */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      {/* ─── Mission & Vision Section (Themed) ─── */}
+      <section className="relative py-24 md:py-32 bg-[#f8fafc] overflow-hidden">
+        {/* Subtle Grid Background */}
+        <div 
+          className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+          style={{ 
+            backgroundImage: `linear-gradient(#0b1c43 1px, transparent 1px), linear-gradient(90deg, #0b1c43 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }} 
+        />
+        
+        {/* Bottom Right Decorative Swoosh */}
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-[#005696]/10 to-transparent rounded-tl-[100%] pointer-events-none translate-x-1/4 translate-y-1/4" />
 
-            {/* Image */}
-            <div className="relative">
-              <div className="relative aspect-[3/4] w-full max-w-[420px] mx-auto rounded-3xl overflow-hidden shadow-lg">
-                <Image
-                  src=""
-                  alt="Dr. A.K. Kaushik - Founder of Popular Hospital"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white font-bold text-lg">Dr. A.K. Kaushik</p>
-                  <p className="text-white/80 text-sm">Founder Chairman</p>
+        <div className="max-w-[1366px] mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+            
+            {/* Mission Card */}
+            <div className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#056b46]/10 flex items-center justify-center text-[#056b46] group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                    <circle cx="12" cy="12" r="6" strokeWidth="2" />
+                    <circle cx="12" cy="12" r="2" fill="currentColor" />
+                  </svg>
                 </div>
+                <h2 className="text-3xl md:text-4xl font-black font-heading text-[#056b46] tracking-tight uppercase">
+                  MISSION
+                </h2>
               </div>
+              <p className="text-2xl md:text-3xl font-bold text-gray-800 leading-[1.3] font-heading">
+                "To be the Preferred Destination for all patients for Quality Health Care Services."
+              </p>
             </div>
 
-            {/* Content */}
-            <div>
-              <span className="text-[#00B4D8] font-bold text-sm uppercase tracking-widest">Our Vision</span>
-              <h2 className="mt-3 text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-                Touch Millions of Lives
-              </h2>
-              <div className="mt-2 w-16 h-1 bg-[#E85222] rounded-full"></div>
-
-              <div className="mt-8 space-y-5 text-gray-600 text-base leading-relaxed">
-                <p className="text-lg text-[#0b1c43] font-medium border-l-4 border-[#00B4D8] pl-5 italic">
-                  Popular Hospital's vision for the next phase of development is to 'Touch Millions of Lives'.
-                </p>
-                <p>
-                  Popular Hospital was established in 2000 by Dr. A.K. Kaushik, renowned as the architect of modern healthcare in the region. As the region's pioneering super-specialty hospital, Popular Hospital is acclaimed for leading the healthcare revolution.
-                </p>
-                <p>
-                  Popular Hospital has emerged as the foremost integrated healthcare services provider with a robust presence across the healthcare ecosystem, including Hospitals, Pharmacies, Primary Care & Diagnostic Clinics.
-                </p>
-                <p>
-                  The cornerstones of Popular's legacy are its focus on clinical excellence, affordable costs, modern technology and forward-looking research & academics.
-                </p>
+            {/* Vision Card */}
+            <div className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#005696]/10 flex items-center justify-center text-[#005696] group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-black font-heading text-[#005696] tracking-tight uppercase">
+                  VISION
+                </h2>
               </div>
+              <p className="text-2xl md:text-3xl font-bold text-gray-800 leading-[1.3] font-heading">
+                "To Provide Quality Health Care Services to Every Patient at Affordable Cost."
+              </p>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* ─── Mission Section ─── */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-            {/* Content */}
-            <div className="order-2 lg:order-1">
-              <span className="text-[#E85222] font-bold text-sm uppercase tracking-widest">Our Mission</span>
-              <h2 className="mt-3 text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-                Healthcare Within Everyone's Reach
-              </h2>
-              <div className="mt-2 w-16 h-1 bg-[#00B4D8] rounded-full"></div>
-
-              <div className="mt-8 space-y-5 text-gray-600 text-base leading-relaxed">
-                <p className="text-lg text-[#0b1c43] font-medium border-l-4 border-[#E85222] pl-5 italic">
-                  "Our mission is to bring healthcare of International standards within the reach of every individual."
-                </p>
-                <p>
-                  We are committed to the achievement and maintenance of excellence in education, research and healthcare for the benefit of humanity.
-                </p>
-                <p>
-                  Popular Hospital has championed numerous social initiatives to assist the community. Our foundation endeavours to keep citizens healthy through preventive care, early screening, and accessible treatment programs.
-                </p>
-                <p>
-                  We aim to provide holistic healthcare for the entire community — starting from birth, through childhood, adolescence, adulthood and old age — ensuring quality care at every stage of life.
-                </p>
-              </div>
-            </div>
-
-            {/* Image */}
-            <div className="relative order-1 lg:order-2">
-              <div className="relative aspect-[4/5] w-full max-w-[420px] mx-auto rounded-3xl overflow-hidden shadow-lg">
-                <Image
-                  src=""
-                  alt="Our Mission - Healthcare Excellence"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
+      {/* ─── Contact Section ─── */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="max-w-[1366px] mx-auto px-6 relative z-10 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-hospital-orange/10 border border-hospital-orange/20 mb-8">
+            <span className="text-sm font-bold text-hospital-orange tracking-widest uppercase">Immediate Assistance</span>
           </div>
-        </div>
-      </section>
-
-      {/* ─── Values Strip ─── */}
-      <section className="py-20 bg-white border-t border-gray-100">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-center text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading mb-16">Our Core Values</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: "Compassion", desc: "Treating every patient with empathy, dignity, and genuine care.", icon: "❤️" },
-              { title: "Excellence", desc: "Maintaining the highest standards in clinical quality and safety.", icon: "⭐" },
-              { title: "Integrity", desc: "Upholding ethical practices and transparency in all we do.", icon: "🤝" },
-              { title: "Innovation", desc: "Embracing modern technology to deliver better patient outcomes.", icon: "💡" },
-            ].map((value, i) => (
-              <div key={i} className="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
-                <div className="text-4xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{value.icon}</div>
-                <h4 className="text-[#0b1c43] font-bold text-xl mb-3">{value.title}</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">{value.desc}</p>
+          <h2 className="text-3xl md:text-5xl font-black font-heading text-[#0b1c43] mb-12">
+            Reach Out to Us <br className="hidden md:block" /> Anytime
+          </h2>
+          
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
+            <a 
+              href="tel:+917800001895" 
+              className="flex flex-col items-center group"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-[#0b1c43] text-white flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-hospital-orange transition-all duration-300 shadow-lg">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
               </div>
-            ))}
+              <span className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-1">Reception</span>
+              <span className="text-2xl md:text-3xl font-black text-[#0b1c43]">+91-7800001895</span>
+            </a>
+
+            <div className="hidden md:block w-px h-24 bg-gray-200" />
+
+            <a 
+              href="tel:+917800001896" 
+              className="flex flex-col items-center group"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-[#0b1c43] text-white flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-hospital-orange transition-all duration-300 shadow-lg">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <span className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-1">Emergency</span>
+              <span className="text-2xl md:text-3xl font-black text-[#0b1c43]">+91-7800001896</span>
+            </a>
           </div>
         </div>
       </section>

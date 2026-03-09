@@ -11,39 +11,31 @@ export const metadata: Metadata = {
 export default function HomeCarePage() {
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#0b1c43]">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=2000"
-            alt="Elderly Care at Home"
+            alt="Home Care"
             fill
-            className="object-cover opacity-20 mix-blend-overlay"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent"></div>
+          <div className="absolute inset-0 bg-slate-900/60" />
         </div>
         
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
-          <div className="max-w-3xl">
-            <nav className="flex mb-6 text-sm text-gray-300 font-medium tracking-wide justify-start" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span className="mx-3 text-gray-500">/</span>
-              <span className="hover:text-white transition-colors">Services</span>
-              <span className="mx-3 text-gray-500">/</span>
-              <span className="text-blue-400">Home Care</span>
-            </nav>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-6 font-heading tracking-tight leading-[1.1]">
-              <span className="text-blue-500 bg-clip-text">Home Care</span> <br/> Services
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              Home Care Services
             </h1>
-            <p className="text-lg md:text-xl text-blue-100/90 mb-10 font-medium leading-relaxed max-w-2xl">
-              Quality care at the comfort of your doorsteps aiming to make healthcare affordable and convenient.
-            </p>
-            <div className="flex flex-wrap gap-4">
-               <a href="/book" className="px-8 py-3.5 bg-blue-600 text-white rounded font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30 tracking-wide text-sm flex items-center gap-2">
-                 Book Home Assessment
-               </a>
-            </div>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Home Care</span>
+            </nav>
           </div>
         </div>
       </section>
@@ -57,19 +49,18 @@ export default function HomeCarePage() {
                 {/* Content Side */}
                 <div className="w-full lg:w-[60%] lg:pr-10">
                     <p className="text-gray-600 leading-relaxed text-justify text-[1.05rem] mb-6">
-                       With the introduction of Home Care Services. Popular Hospital has focused on providing quality care at the comfort of your doorsteps with an aim to making healthcare more affordable as well as convenient to the consumer. Since it is known that many patients struggle to get to the hospitals, this initiative will make sure that the crucial medical services can be offered to as many individuals as possible, and they do not have to undergo the hassle of traveling regularly.
+                       With the introduction of Home Care Services, Popular Hospital has focused on providing quality care at the comfort of your doorsteps with an aim to making healthcare more affordable as well as convenient to the consumer. Since it is known that many patients struggle to get to the hospitals, this initiative will make sure that the crucial medical services can be offered to as many individuals as possible, and they do not have to undergo the hassle of traveling regularly.
                     </p>
                     <p className="text-gray-600 leading-relaxed text-justify text-[1.05rem] mb-6">
                        Our services include doctor consultations for expert medical advice, 24/7 nursing care for continuous monitoring, physiotherapy sessions to aid recovery and mobility, and blood sample collection at home for timely diagnosis. Additionally, our focus is to ensure a holistic approach to care.
                     </p>
-                    <p className="text-gray-600 leading-relaxed text-justify text-[1.05rem] mb-6 font-medium text-[#1a3a6b]">
-                       This is not merely a service but rather a genuine of Popular Hospital to offer caring health care beyond the four walls of a hospital. We expect to reduce the discomfort due to travelling, save time and provide a patient and family peace of mind by making professional medical support available at home.
+                    <p className="text-gray-600 leading-relaxed text-justify text-[1.05rem] mb-6">
+                       This is not merely a service but rather, a genuine of Popular Hospital to offer caring health care beyond the four walls of a hospital. We expect to reduce the discomfort due to travelling, save time and provide a patient and family peace of mind by making professional medical support available at home.
                     </p>
                     <p className="text-gray-600 leading-relaxed text-justify text-[1.05rem] mb-12">
                        When you seek the services of Home Care Services in Popular Hospital, you could rest assured that you will get high quality services, top notch medical assistance and even the feeling of personal care and attention, but where you feel most comfortable.
                     </p>
 
-                    {/* Service Lists Nested */}
                     <div className="space-y-12">
                        {/* 1 */}
                        <div>
@@ -98,7 +89,7 @@ export default function HomeCarePage() {
                               {[
                                   'Elderly Care at Home', 'Wound Care', 'Urinary Catheterisation', 
                                   'Suture Removal', 'Basic IV Procedure', 'Vaccinations-Injection Services', 
-                                  'Bed Sore Asst. & Management', 'Regular monitoring of vitals', 'Ryle\'s Tube insertion and Feeding'
+                                  'Bed Sore Asst. & Management', 'Regular monitoring of vitals', 'Ryle\'s Tube Insertion and Feeding'
                               ].map((item, id) => (
                                 <li key={id} className="flex gap-3 text-gray-700 items-start">
                                     <span className="text-blue-500 font-bold mt-0.5">›</span> <span className="text-[1.05rem] leading-snug">{item}</span>

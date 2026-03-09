@@ -78,7 +78,7 @@ export default function NeurosurgeryClient() {
   return (
     <main className="min-h-screen bg-white">
 
-      {/* ═══════ HERO SECTION ═══════ */}
+      {/* ═══════ HERO ═══════ */}
       <section className="relative h-[600px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
@@ -97,20 +97,20 @@ export default function NeurosurgeryClient() {
               Department of Neurosurgery
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-               Neurosurgery
+              Neurosurgery
             </h1>
             <p className="text-blue-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
-              Advanced neurosurgical care for complex brain, spine, and nerve disorders. Delivering excellence through microsurgery and minimally invasive techniques.
+              Advanced surgical treatments for disorders of the brain, spinal cord, and peripheral nerves using microsurgery and endoscopic technologies for superior outcomes.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30 flex items-center gap-2"
+                className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                Book Appointment
+                Book An Appointment
               </Link>
               <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

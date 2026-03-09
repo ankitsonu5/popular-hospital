@@ -80,6 +80,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Oncology", href: "/departments/oncology" },
     { label: "Urology", href: "/departments/urology" },
     { label: "Burns & Plastic Surgery", href: "/departments/burns-plastic-surgery" },
+    { label: "Interventional Radiology", href: "/departments/interventional-radiology" },
     { label: "Pediatric Surgery", href: "/departments/pediatric-surgery" }
   ],
   "Specialties": [
@@ -333,7 +334,7 @@ export function Header() {
                                     <Link
                                       href={subItem.href}
                                       key={subItem.label}
-                                      className="text-[13px] text-gray-600 hover:text-hospital-teal hover:bg-teal-50 transition-all block py-1.5 px-2 rounded-lg hover:translate-x-1 duration-150"
+                                      className="text-[14.5px] text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 transition-all block py-2 px-3 rounded-lg hover:translate-x-1 duration-150 font-medium"
                                       onClick={() => setActiveDropdown(null)}
                                     >
                                       {subItem.label}
@@ -356,7 +357,7 @@ export function Header() {
                                     <Link
                                       href={subItem.href}
                                       key={subItem.label}
-                                      className="text-[13px] text-gray-600 hover:text-hospital-teal hover:bg-teal-50 transition-all block py-1.5 px-2 rounded-lg hover:translate-x-1 duration-150"
+                                      className="text-[14.5px] text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 transition-all block py-2 px-3 rounded-lg hover:translate-x-1 duration-150 font-medium"
                                       onClick={() => setActiveDropdown(null)}
                                     >
                                       {subItem.label}
@@ -372,17 +373,17 @@ export function Header() {
                              <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest mb-4 pb-2 border-b border-gray-100">Our Services</h3>
                              <div className="grid grid-cols-2 gap-x-6 gap-y-2">
                                {item.dropdown?.map((dropdownItem) => (
-                                 <Link
-                                   key={dropdownItem.label}
-                                   href={dropdownItem.href}
-                                   className="flex items-center gap-3 py-2 text-sm text-gray-700 hover:text-hospital-teal transition-colors group"
-                                   onClick={() => setActiveDropdown(null)}
-                                 >
-                                   <span className="text-hospital-teal opacity-60 group-hover:opacity-100 transition-opacity">
-                                     {getIcon(dropdownItem.label)}
-                                   </span>
-                                   <span>{dropdownItem.label}</span>
-                                 </Link>
+                                  <Link
+                                    key={dropdownItem.label}
+                                    href={dropdownItem.href}
+                                    className="flex items-center gap-3.5 py-2.5 px-3 text-[15px] font-medium text-gray-700 hover:text-hospital-teal hover:bg-gray-50/80 rounded-xl transition-all group"
+                                    onClick={() => setActiveDropdown(null)}
+                                  >
+                                    <span className="text-hospital-teal opacity-70 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                                      {getIcon(dropdownItem.label)}
+                                    </span>
+                                    <span>{dropdownItem.label}</span>
+                                  </Link>
                                ))}
                              </div>
                           </div>
@@ -395,10 +396,10 @@ export function Header() {
                                 )}
                                 <Link
                                   href={dropdownItem.href}
-                                  className="flex items-center gap-3 px-5 py-2.5 text-sm text-gray-700 transition-colors hover:bg-gray-50 hover:text-hospital-teal group"
+                                  className="flex items-center gap-4 px-6 py-3 text-[15px] font-medium text-gray-700 transition-all hover:bg-gray-50/80 hover:text-hospital-teal group"
                                   onClick={() => setActiveDropdown(null)}
                                 >
-                                  <span className="text-hospital-teal opacity-60 group-hover:opacity-100 transition-opacity">
+                                  <span className="text-hospital-teal opacity-70 group-hover:opacity-100 transition-opacity flex-shrink-0">
                                     {getIcon(dropdownItem.label)}
                                   </span>
                                   <span className="flex-1">{dropdownItem.label}</span>

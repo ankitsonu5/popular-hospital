@@ -40,44 +40,74 @@ export const getImageUrl = (path: string) => {
 };
 
 export async function fetchBranches(): Promise<Branch[]> {
-  const res = await fetch(api('/branches'), { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error('Failed to fetch branches');
-  return res.json();
+  try {
+    const res = await fetch(api('/branches'), { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch branches:', e);
+    return [];
+  }
 }
 
 export async function fetchBranch(idOrSlug: string): Promise<Branch | null> {
-  const res = await fetch(api(`/branches/${idOrSlug}`), { next: { revalidate: 60 } });
-  if (!res.ok) return null;
-  return res.json();
+  try {
+    const res = await fetch(api(`/branches/${idOrSlug}`), { next: { revalidate: 60 } });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch branch:', e);
+    return null;
+  }
 }
 
 export async function fetchDoctors(params?: { speciality?: string; branch?: string; search?: string }): Promise<Doctor[]> {
-  const sp = new URLSearchParams();
-  if (params?.speciality) sp.set('speciality', params.speciality);
-  if (params?.branch) sp.set('branch', params.branch);
-  if (params?.search) sp.set('search', params.search);
-  const q = sp.toString();
-  const res = await fetch(api(`/doctors${q ? `?${q}` : ''}`), { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error('Failed to fetch doctors');
-  return res.json();
+  try {
+    const sp = new URLSearchParams();
+    if (params?.speciality) sp.set('speciality', params.speciality);
+    if (params?.branch) sp.set('branch', params.branch);
+    if (params?.search) sp.set('search', params.search);
+    const q = sp.toString();
+    const res = await fetch(api(`/doctors${q ? `?${q}` : ''}`), { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch doctors:', e);
+    return [];
+  }
 }
 
 export async function fetchDoctor(idOrSlug: string): Promise<Doctor | null> {
-  const res = await fetch(api(`/doctors/${idOrSlug}`), { next: { revalidate: 60 } });
-  if (!res.ok) return null;
-  return res.json();
+  try {
+    const res = await fetch(api(`/doctors/${idOrSlug}`), { next: { revalidate: 60 } });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch doctor:', e);
+    return null;
+  }
 }
 
 export async function fetchSpecialities(): Promise<Speciality[]> {
-  const res = await fetch(api('/doctors/specialities'), { next: { revalidate: 300 } });
-  if (!res.ok) throw new Error('Failed to fetch specialities');
-  return res.json();
+  try {
+    const res = await fetch(api('/doctors/specialities'), { next: { revalidate: 300 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch specialities:', e);
+    return [];
+  }
 }
 
 export async function fetchOpdSlots(doctorId: number, branchId: number, date: string): Promise<{ date: string; slots: string[] }> {
-  const res = await fetch(api(`/opd/slots?doctor_id=${doctorId}&branch_id=${branchId}&date=${date}`));
-  if (!res.ok) throw new Error('Failed to fetch slots');
-  return res.json();
+  try {
+    const res = await fetch(api(`/opd/slots?doctor_id=${doctorId}&branch_id=${branchId}&date=${date}`));
+    if (!res.ok) return { date, slots: [] };
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch slots:', e);
+    return { date, slots: [] };
+  }
 }
 
 export async function createBooking(data: BookingInput): Promise<{ id: number; message: string }> {

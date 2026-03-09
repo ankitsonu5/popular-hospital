@@ -12,46 +12,31 @@ export const metadata: Metadata = {
 const WellnessPage = () => {
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#0b1c43]">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/health_cards_packages.png"
-            alt="Wellness Banner"
+            src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=2000"
+            alt="Wellness Services"
             fill
-            className="object-cover opacity-70"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-slate-900/60" />
         </div>
         
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
-          <div className="max-w-2xl">
-            <nav className="flex mb-4 text-sm text-white/80 font-medium tracking-wide" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span className="mx-2 text-white/60">/</span>
-              <span className="text-white">Wellness Packages</span>
-            </nav>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 font-heading tracking-tight leading-tight">
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
               Wellness Packages
             </h1>
-            <p className="text-lg text-blue-50 max-w-xl mb-10 font-light leading-relaxed">
-              Popular Hospital's Health Fit Cards is your personal medical assistant, designed to manage your family's health needs with ease and priority.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="#apply"
-                className="px-8 py-4 bg-[#E85222] text-white rounded-full font-black hover:bg-[#d1451a] transition-all shadow-lg hover:shadow-orange-900/40 uppercase tracking-widest text-sm text-center"
-              >
-                Apply for Card
-              </Link>
-              <Link
-                href="/services/womens-health-special"
-                className="px-8 py-4 bg-pink-500 text-white rounded-full font-black hover:bg-pink-600 transition-all shadow-lg hover:shadow-pink-900/40 uppercase tracking-widest text-sm text-center"
-              >
-                Women's Health Special
-              </Link>
-            </div>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Wellness</span>
+            </nav>
           </div>
         </div>
       </section>

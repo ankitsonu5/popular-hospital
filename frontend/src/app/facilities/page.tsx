@@ -138,7 +138,7 @@ export default function FacilitiesPage() {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-3xl font-bold text-[#0b1c43] mb-4 font-heading">Infrastructure for Excellence</h2>
           <p className="text-gray-600 leading-relaxed text-lg">
-            At Popular Hospital, we believe that advanced technology and modern infrastructure are the backbones of superior healthcare. Our 300+ bedded facility is designed to support complex medical procedures and ensure the highest standards of safety and hygiene.
+            At Popular Hospital, we believe that advanced technology and modern infrastructure are the backbones of superior healthcare. Our 450+ bedded facility is designed to support complex medical procedures and ensure the highest standards of safety and hygiene.
           </p>
         </div>
 

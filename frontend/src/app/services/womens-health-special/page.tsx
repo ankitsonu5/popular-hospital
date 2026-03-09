@@ -11,33 +11,31 @@ export const metadata: Metadata = {
 const WomensHealthPage = () => {
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-pink-500 text-white pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
-        <div className="absolute inset-0 z-0 opacity-85">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+        <div className="absolute inset-0 z-0">
           <Image
-            src="/images/womens-health-special.png"
-            alt="Women's Health background"
+            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2000"
+            alt="Women's Health Special"
             fill
-            className="object-cover"
+            className="object-cover opacity-30"
             priority
           />
+          <div className="absolute inset-0 bg-slate-900/60" />
         </div>
-        <div className="absolute inset-0 bg-black/30 z-0"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-600/60 via-pink-600/30 to-transparent z-0"></div>
-        <div className="container mx-auto max-w-[1366px] relative z-10">
-          <div className="max-w-3xl">
-            <span className="inline-block px-4 py-1 bg-white/20 backdrop-blur-md rounded-full text-sm font-black uppercase tracking-widest mb-6">Exclusive Women's Care</span>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight font-heading leading-tight italic animate-fade-in-up">
-              Women's <span className="text-pink-200 text-outline">Health</span> Special
+        
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              Women's Health Special
             </h1>
-            <p className="text-xl md:text-2xl text-pink-50 mb-10 leading-relaxed font-medium">
-              A dedicated healthcare initiative by Popular Hospital, focusing on the specialized needs of women at every stage of life.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="#apply" className="px-8 py-4 bg-white text-pink-600 rounded-full font-black hover:bg-pink-50 transition-all shadow-xl uppercase tracking-widest text-sm">
-                Apply for Membership
-              </Link>
-            </div>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Women's Health</span>
+            </nav>
           </div>
         </div>
       </section>

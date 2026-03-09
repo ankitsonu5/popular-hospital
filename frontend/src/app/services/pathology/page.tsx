@@ -11,52 +11,31 @@ export const metadata: Metadata = {
 export default function PathologyPage() {
   return (
     <div className="bg-gray-50/50 min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#0b1c43]">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=2000"
-            alt="Pathology Laboratory"
+            alt="Pathology Services"
             fill
-            className="object-cover opacity-20 mix-blend-overlay"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent"></div>
+          <div className="absolute inset-0 bg-slate-900/60" />
         </div>
         
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10 flex flex-col md:flex-row items-center gap-10">
-          <div className="flex-1 w-full text-center md:text-left">
-            <nav className="flex mb-6 text-sm text-gray-300 font-medium tracking-wide justify-center md:justify-start" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span className="mx-3 text-gray-500">/</span>
-              <span className="hover:text-white transition-colors">Services</span>
-              <span className="mx-3 text-gray-500">/</span>
-              <span className="text-blue-400">Pathology</span>
-            </nav>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 font-heading tracking-tight leading-[1.1]">
-              <span className="text-white">Department of</span> <br />
-              <span className="text-blue-500 bg-clip-text">Pathology</span>
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              Pathological Services
             </h1>
-            <p className="text-lg md:text-xl text-blue-100/90 mb-12 font-medium leading-relaxed max-w-2xl mx-auto md:mx-0">
-              Popular Hospitals has its in-house state-of-the-art laboratory services, catering to all the needs of the patients, with the utmost integrity.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-               <a href="/book" className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30 uppercase tracking-wider text-sm flex items-center gap-2">
-                 Schedule an Appointment
-               </a>
-            </div>
-          </div>
-
-          <div className="hidden md:flex flex-col items-center justify-center p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl">
-              <div className="w-32 h-32 relative bg-white rounded-full p-4 mb-4 flex items-center justify-center shadow-inner">
-                  <Image 
-                     src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/National_Accreditation_Board_forTesting_and_Calibration_Laboratories_Logo.svg/1200px-National_Accreditation_Board_forTesting_and_Calibration_Laboratories_Logo.svg.png" 
-                     alt="NABL Accredited" 
-                     width={80} height={80} 
-                     className="object-contain filter grayscale opacity-90 contrast-125 hover:grayscale-0 hover:opacity-100 transition-all"
-                  />
-              </div>
-              <h3 className="text-white font-bold text-center tracking-widest text-lg">NABL ACCREDITED</h3>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Pathology</span>
+            </nav>
           </div>
         </div>
       </section>
@@ -66,30 +45,42 @@ export default function PathologyPage() {
         <div className="container mx-auto max-w-[1366px] px-6 lg:px-12">
             <div className="flex flex-col lg:flex-row gap-16 items-start">
                 <div className="w-full lg:w-[60%] lg:pr-10">
+                    <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] mb-4 font-heading leading-tight">
+                        Department of <span className="text-blue-600">Pathology</span>
+                    </h2>
+                    
+                    <p className="text-gray-600 leading-loose text-justify text-[1.05rem] mb-10">
+                        Popular Hospitals has its in-house state-of-the-art laboratory services, catering to all the needs of the patients, with the utmost integrity. Popular Clinical Laboratory offers 24x7 operational supports to the medical teams in the hospital.
+                    </p>
+
                     <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] mb-6 font-heading leading-tight">
-                        Best Pathology & Microbiology <br className="hidden md:block"/> <span className="text-blue-600">Testing Laboratory</span>
+                        Best Pathology & Microbiology <span className="text-blue-600">Testing Laboratory</span>
                     </h2>
                     <div className="w-20 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-8"></div>
                     
-                    <p className="text-gray-600 leading-relaxed text-justify mb-5 font-semibold italic text-lg text-[#1a3a6b]">
-                        "At Popular we believe, quality is never an accident; it is always the result of high intention, sincere effort, intelligent direction and skillful execution."
+                    <p className="text-gray-600 leading-relaxed text-justify mb-5 text-[1.05rem]">
+                        At Popular we believe, quality is never an accident; it is always the result of high intention, sincere effort, intelligent direction and skilful execution.
                     </p>
                     
-                    <p className="text-gray-600 leading-loose text-justify text-[1.05rem] mb-6">
-                        Popular Pathology Laboratory is committed to providing quality with care even in emergency situations. It is said that emergencies may arise without a warning and at any time. Handling critical cases instantly and catching the right 'Pulse' by beating the 'Deadline' is the key to recovery. Popular hospitals unique and hi-tech laboratory, which has got world-class instruments and well-trained, and efficient staff.
-                    </p>
                     <p className="text-gray-600 leading-loose text-justify text-[1.05rem] mb-8">
-                        Popular Pathology Laboratory is accredited by the NABL (National Accreditation Board of Calibration, Testing Laboratory). It is the proof that Popular not only gets into the 'Heart' of the tests/ research conducted in the most authentic way but provides round-the-clock services considering its Best blood testing laboratory the fact that time and tide wait for none!
+                        Popular Pathology Laboratory is committed to providing quality with care even in emergency situations. It is said that emergencies may arise without a warning and at any time. Handling critical cases instantly and catching the right 'Pulse' by beating the 'Deadline' is the key to recovery. Popular hospitals unique and hi-tech laboratory which has got world-class instruments and well-trained, and efficient staff. Popular Pathology Laboratory is accredited by the NABL (National Accreditation Board of Calibration, Testing Laboratory). It is the proof that Popular not only gets into the 'Heart' of the tests/ research conducted in the most authentic way but provides round-the-clock services considering its Best blood testing laboratory the fact that time and tide wait for none!
                     </p>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-3 gap-x-6">
-                        {['Immunology', 'Biochemistry', 'Hematology', 'Clinical Pathology', 'Serology', 'Microbiology'].map((item, idx) => (
+                    <div className="flex flex-col gap-3 mb-10">
+                        {['Hematology', 'Clinical Pathology', 'Serology', 'Microbiology'].map((item, idx) => (
                            <div key={idx} className="flex items-center gap-2 text-[#1a3a6b] font-medium">
                                <span className="text-blue-500 font-bold">›</span>
                                {item}
                            </div>
                         ))}
                     </div>
+
+                    <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] mb-4 font-heading leading-tight">
+                        Equipment:
+                    </h2>
+                    <p className="text-gray-600 leading-loose text-justify text-[1.05rem]">
+                        Popular Laboratories are equipped with a wide range of automated analysers
+                    </p>
                 </div>
 
                 <div className="w-full lg:w-[40%] flex justify-center lg:justify-end mt-10 lg:mt-0">
@@ -138,9 +129,9 @@ export default function PathologyPage() {
                     
                     <ul className="space-y-4 text-gray-600">
                         {[
-                            'VITROS ECi Immuno diagnostic analyser (Johnson & Johnson)',
+                            'VITROSECi Immuno-diagnostic analyser (Johnson & Johnson)',
                             'VITROS 250 Biochemistry analyser (Johnson & Johnson)',
-                            'CELL-DYN 3700 Hematology analyser',
+                            'CELL DYN 3700 Hematology analyser',
                             'TURBOX PLUS Nephlometery analyser',
                             'COASU 411 Urine analyser',
                             'MICRO SHED ESR SYSTEM'

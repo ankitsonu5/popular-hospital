@@ -11,32 +11,33 @@ export const metadata: Metadata = {
 export default function PharmacyPage() {
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-br from-[#0b1c43] to-[#122e66]">
-         <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
-           <Image
-             src="https://images.unsplash.com/photo-1587854692152-cbe668df971c?auto=format&fit=crop&q=80&w=2000"
-             alt="Pharmacy Background"
-             fill
-             className="object-cover"
-             priority
-           />
-         </div>
-         <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
-            <div className="max-w-3xl text-center md:text-left">
-              <nav className="flex mb-6 text-sm text-blue-200 font-medium tracking-wide justify-center md:justify-start" aria-label="Breadcrumb">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span className="mx-2 text-blue-400">|</span>
-                <span className="text-teal-400 font-semibold tracking-wider uppercase">Pharmacy</span>
-              </nav>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 font-heading tracking-tight leading-tight">
-                Pharmacy
-              </h1>
-              <p className="text-lg md:text-xl text-blue-100/90 font-light max-w-2xl mx-auto md:mx-0 leading-relaxed border-l-4 border-teal-400 pl-4">
-                Delivering 100% genuine products with excellent standards of pharmaceutical care right within our hospital premises.
-              </p>
-            </div>
-         </div>
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1587854692152-cbe668df971c?auto=format&fit=crop&q=80&w=2000"
+            alt="Pharmacy"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+          <div className="absolute inset-0 bg-slate-900/60" />
+        </div>
+        
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              Pharmacy
+            </h1>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Pharmacy</span>
+            </nav>
+          </div>
+        </div>
       </section>
 
       {/* Main Content Area */}
@@ -53,15 +54,15 @@ export default function PharmacyPage() {
                  </div>
                  
                  <p className="text-gray-600 leading-loose text-justify text-[1.05rem]">
-                   <strong>Popular Hospital Pharmacy</strong> is situated in the campus of all the hospitals to facilitate patients fulfilling their emergency needs as well as the medicines as prescribed inside the hospital premises.
+                   Popular Hospital Pharmacy is situated in the campus of all the hospitals to facilitate patients fulfilling their emergency needs as well as the medicines as prescribed inside the hospital premises.
                  </p>
                  
                  <p className="text-gray-600 leading-loose text-justify text-[1.05rem]">
-                   In line with rules and regulations and under the strict supervision of authorities and the Drug Controller. We are committed to achieve and maintain excellent standards of pharmaceutical care to deliver the right medicines with best price. We continually seek ways to improve our offering and services, what we deliver to our clients. We believe in providing <strong>high quality, authentic and 100% genuine products</strong> to our customers. We have highly skilled and qualified employees who regularly perform the quality check.
+                   In line with rules and regulations and under the strict supervision of authorities and the Drug Controller. We are committed to achieve and maintain excellent standards of pharmaceutical care to deliver the right medicines with best price. We continually seek ways to improve our offering and services, what we deliver to our clients. We believe in providing high quality, authentic and 100% genuine products to our customers. We have highly skilled and qualified employees who regularly perform the quality check.
                  </p>
                  
                  <p className="text-gray-600 leading-loose text-justify text-[1.05rem]">
-                   Our entire inventory is centrally managed by highly skilled workers. These skilled and qualified workers are dedicated to maintain sufficient stock, dispose of any damaged/expired medicines and other inventory control processes. All the medicines and other health care products being sold at <strong>Popular Medical Stores</strong> are purchased from their authorized companies and its distributors. This rules out spurious, duplicate, and expired drugs completely for safe-guarding the interest and health of customers.
+                   Our entire inventory is centrally managed by highly skilled workers. These skilled and qualified workers are dedicated to maintain sufficient stock, dispose of any damaged/expired medicines and other inventory control processes. All the medicines and other health care products being sold at Popular Medical Stores are purchased from their authorized companies and its distributors. This rules out spurious, duplicate, and expired drugs completely for safe-guarding the interest and health of customers.
                  </p>
               </div>
 

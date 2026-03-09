@@ -25,19 +25,29 @@ const services = [
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
-      {/* Header Section */}
-      <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
-        <div className="mx-auto w-full max-w-[1440px]">
-          <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
-              Our Expertise
-            </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1e3a8a] font-heading tracking-tight mb-6">
-              Specialized Departments.
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000"
+            alt="Our Services"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+          <div className="absolute inset-0 bg-slate-900/60" />
+        </div>
+        
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              Our Services
             </h1>
-            <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">
-              At Popular Hospital, we provide world-class healthcare across a wide range of specialties. Our dedicated teams of doctors and specialists ensure the best possible care for every patient.
-            </p>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Services</span>
+            </nav>
           </div>
         </div>
       </section>

@@ -144,36 +144,34 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="bg-[#f8fafc] min-h-screen">
-      {/* Hero Header */}
-      <div className="bg-[#0b1c43] text-white py-16 lg:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <Image 
-            src={service.image} 
-            alt="background" 
-            fill 
-            className="object-cover"
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+        <div className="absolute inset-0 z-0 text-white">
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            className="object-cover opacity-30"
+            priority
           />
+          <div className="absolute inset-0 bg-slate-900/60" />
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <nav className="flex mb-8 text-sm text-gray-400 font-medium overflow-x-auto whitespace-nowrap scrollbar-hide" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-3">/</span>
-            <span className="text-hospital-orange">24x7 Services</span>
-            <span className="mx-3">/</span>
-            <span className="text-white">{service.title}</span>
-          </nav>
-          
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-hospital-orange border border-white/20">
-              {service.icon}
-            </div>
-            <div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight mb-4">{service.title}</h1>
-              <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">{service.description}</p>
-            </div>
+        
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              {service.title}
+            </h1>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">{service.title}</span>
+            </nav>
           </div>
         </div>
-      </div>
+      </section>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">

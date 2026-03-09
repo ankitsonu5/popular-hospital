@@ -23,28 +23,32 @@ export default function SilverPackageWomenPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Header Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#0b1c43]">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/health_packages.png"
-            alt="Health Packages Background"
+            alt="Silver Package Women"
             fill
-            className="object-cover opacity-70"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-slate-900/60" />
         </div>
         
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12 relative z-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white font-heading tracking-tight mb-2">
-            Health Packages
-          </h1>
-          <nav className="flex text-sm text-white/80 font-medium tracking-wide" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2 text-white/60">|</span>
-            <Link href="/services/preventive-health" className="hover:text-white transition-colors">Health Packages</Link>
-          </nav>
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+              Silver Package Women
+            </h1>
+            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <Link href="/services/preventive-health" className="hover:text-blue-300 transition-colors">Health Packages</Link>
+              <span className="mx-2 text-red-600 font-bold">|</span>
+              <span className="text-white">Silver Package Women</span>
+            </nav>
+          </div>
         </div>
       </section>
 
@@ -99,9 +103,8 @@ export default function SilverPackageWomenPage() {
                     ))}
                 </div>
                 {/* Centered Pain Specialist */}
-                
+                <div className="mt-4">
                      <div className="bg-white border border-gray-100/80 p-5 rounded-2xl text-[14px] text-[#1d1d1f] font-medium uppercase shadow-sm flex items-center gap-4 group/item hover:border-blue-100 transition-colors"><div className="w-2.5 h-2.5 rounded-full bg-blue-400/40 group-hover/item:bg-blue-500 transition-colors"></div>PAIN SPECIALIST</div>
-                     <div className="hidden lg:block bg-transparent"></div>
                 </div>
              </div>
 
@@ -115,7 +118,6 @@ export default function SilverPackageWomenPage() {
                         </div>
                     ))}
                 </div>
-                {/* Last row has ECG and TMT so it is mapped fully above */}
              </div>
              
           </div>
@@ -125,13 +127,3 @@ export default function SilverPackageWomenPage() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
