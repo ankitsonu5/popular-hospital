@@ -83,21 +83,68 @@ export default async function BlogDetailPage({
 
             {/* Content Body */}
             <div className="text-gray-800 text-base sm:text-lg leading-[1.8] text-justify space-y-6">
-              {(article.content || []).map((paragraph: string, index: number) => {
-                const isHeading = paragraph.length < 80 && !paragraph.endsWith('.') && !paragraph.includes(',');
-                if (isHeading) {
-                  return (
-                    <h3 key={index} className="text-2xl font-serif font-bold text-[#1e3a8a] mt-8 mb-4">
-                      {paragraph}
-                    </h3>
+              {(() => {
+                const elements: JSX.Element[] = [];
+                let currentList: string[] = [];
+                let isListMode = false;
+
+                (article.content || []).forEach((paragraph: string, index: number, arr: string[]) => {
+                  const prev = index > 0 ? arr[index - 1] : '';
+                  
+                  const isNumberedHeading = /^\d+\.\s/.test(paragraph);
+                  const isListItemCondition = !isNumberedHeading && paragraph.length < 150 && !paragraph.endsWith('.') && !paragraph.endsWith('?') && !paragraph.endsWith(':');
+                  const isListItem = isListItemCondition && (prev.endsWith(':') || isListMode);
+
+                  if (isListItem) {
+                    isListMode = true;
+                    currentList.push(paragraph);
+                  } else {
+                    if (currentList.length > 0) {
+                      elements.push(
+                        <ul key={`list-${index}`} className="list-disc pl-6 sm:pl-8 space-y-2 mb-6">
+                          {currentList.map((item, i) => (
+                            <li key={i} className="text-base text-gray-700">
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      );
+                      currentList = [];
+                    }
+                    isListMode = false;
+
+                    const isHeading = isNumberedHeading || (paragraph.length < 100 && !paragraph.endsWith('.') && !paragraph.endsWith('?') && !paragraph.endsWith(':') && !paragraph.includes(','));
+                    
+                    if (isHeading) {
+                      elements.push(
+                        <h3 key={index} className="text-xl sm:text-2xl font-serif font-bold text-[#1e3a8a] mt-8 mb-4">
+                          {paragraph}
+                        </h3>
+                      );
+                    } else {
+                      elements.push(
+                        <p key={index} className="mb-6">
+                          {paragraph}
+                        </p>
+                      );
+                    }
+                  }
+                });
+
+                if (currentList.length > 0) {
+                  elements.push(
+                    <ul key={`list-end`} className="list-disc pl-6 sm:pl-8 space-y-2 mb-6">
+                      {currentList.map((item, i) => (
+                        <li key={i} className="text-base text-gray-700">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   );
                 }
-                return (
-                  <p key={index} className="mb-6">
-                    {paragraph}
-                  </p>
-                );
-              })}
+
+                return elements;
+              })()}
             </div>
           </article>
 
