@@ -125,9 +125,6 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
               {currentLang === 'Hindi' && <Check className="w-3.5 h-3.5 stroke-[3]" />}
             </button>
           </div>
-          <div className="px-4 py-2 bg-gray-50/50 border-t border-gray-50 text-center">
-            {/* <p className="text-[9px] text-gray-400 font-medium tracking-tight notranslate">Standard Google Translate</p> */}
-          </div>
         </div>
       )}
 
@@ -152,5 +149,3 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
 };
 
 export default LanguageSelector;
-
-
