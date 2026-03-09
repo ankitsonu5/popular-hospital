@@ -339,7 +339,7 @@ export default function GynaecologyClient() {
                 Empowering Women&apos;s <br className="hidden md:block" /> Health Every Day
               </h2>
               <p className="text-pink-100 text-base md:text-xl max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
-                Comprehensive obstetric and gynaecological care delivered with compassion and clinical excellence. Join thousands of happy mothers who trusted us.
+                Comprehensive obstetric and gynaecological care delivered with compassion and clinical excellence. Join thousands of happy mothers who trusted us.  
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-6">
                 <Link

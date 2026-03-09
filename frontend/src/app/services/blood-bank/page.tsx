@@ -246,7 +246,7 @@ export default function BloodBankPage() {
              </div>
              <div className="text-center sm:text-left">
                 <p className="text-sm text-gray-500 font-bold uppercase tracking-[0.1em] mb-1">Blood Bank Team</p>
-                <a href="tel:+917800001895" className="text-2xl md:text-3xl font-black text-red-600 group-hover:text-red-700 transition-colors">
+                <a href="tel:+917800001895" className="text-xl md:text-2xl font-black text-red-600 group-hover:text-red-700 transition-colors">
                   +91-7800001895 / 96
                 </a>
              </div>
