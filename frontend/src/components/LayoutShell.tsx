@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import SocialSidebar from '@/components/SocialSidebar';
 import LoadingScreen from '@/components/LoadingScreen';
+import BackToTop from '@/components/BackToTop';
 
 export default function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -14,6 +15,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
     return (
       <main className="flex-1">
         {children}
+        <BackToTop />
       </main>
     );
   }
@@ -29,6 +31,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
       <main id="main-content" className="flex-1" tabIndex={-1}>
         {children}
       </main>
+      <BackToTop />
       <Footer />
     </>
   );

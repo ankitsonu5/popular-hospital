@@ -1,0 +1,156 @@
+'use client';
+
+import { useEffect, useState, useRef } from 'react';
+import { ChevronDown, Globe, Check } from 'lucide-react';
+
+declare global {
+  interface Window {
+    gtranslate_settings: any;
+    doGTranslate: (lang_pair: string) => void;
+  }
+}
+
+const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; isTransparentPage: boolean }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState('English');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Definining official translation helper
+    if (!(window as any).doGTranslate) {
+      (window as any).doGTranslate = (lang: string) => {
+        if (!lang) return;
+        
+        const trigger = () => {
+          // Official Google Translate combo element
+          const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement;
+          if (combo && combo.options && combo.options.length > 0) {
+            combo.value = lang;
+            combo.dispatchEvent(new Event('change', { bubbles: true }));
+            return true;
+          }
+          return false;
+        };
+
+        if (!trigger()) {
+          // Retry logic (since component loads fast, but script takes time)
+          let attempts = 0;
+          const interval = setInterval(() => {
+            if (trigger() || attempts > 20) clearInterval(interval);
+            attempts++;
+          }, 300);
+        }
+      };
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleLanguageChange = (langLabel: string, code: string) => {
+    setCurrentLang(langLabel);
+    setIsOpen(false);
+    
+    // Trigger official Google Translate
+    if ((window as any).doGTranslate) {
+      (window as any).doGTranslate(code);
+    }
+  };
+
+  const isDark = scrolled || !isTransparentPage;
+  const textColor = isDark ? 'text-gray-700' : 'text-white';
+  const bgColor = isDark ? 'bg-white/90' : 'bg-white/10';
+  const hoverBgColor = isDark ? 'hover:bg-gray-100' : 'hover:bg-white/20';
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full border transition-all duration-300 group focus:outline-none ${
+          isDark 
+            ? 'border-gray-200 shadow-sm hover:border-hospital-teal/30 hover:shadow-md' 
+            : 'border-white/20 hover:border-white/40 shadow-none'
+        } ${bgColor} ${hoverBgColor}`}
+      >
+        <div className={`p-1 rounded-full transition-colors duration-300 ${
+          isDark ? 'bg-hospital-teal/10 text-hospital-teal' : 'bg-white/20 text-white'
+        }`}>
+          <Globe className="w-3.5 h-3.5" />
+        </div>
+        <span className={`text-[13px] font-bold tracking-tight uppercase ${textColor} notranslate`}>
+          {currentLang === 'English' ? 'En' : 'Hi'}
+        </span>
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-500 ${isOpen ? 'rotate-180' : ''} ${textColor} opacity-60`} />
+      </button>
+
+      {/* Language Selection List */}
+      {isOpen && (
+        <div className="absolute right-0 mt-3 w-44 bg-white/95 backdrop-blur-md border border-gray-100 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] z-[100] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="px-4 py-2.5 border-b border-gray-50 flex items-center justify-between">
+            <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-[0.1em] notranslate">Translate</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal animate-pulse" />
+          </div>
+          <div className="p-1.5">
+            <button
+              onClick={() => handleLanguageChange('English', 'en')}
+              className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 ${
+                currentLang === 'English' 
+                  ? 'bg-hospital-teal text-white shadow-lg shadow-hospital-teal/20' 
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'
+              }`}
+            >
+              <span className="flex items-center gap-2 notranslate">
+                <span className="w-5 text-center">🇺🇸</span>
+                English
+              </span>
+              {currentLang === 'English' && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+            </button>
+            <button
+              onClick={() => handleLanguageChange('Hindi', 'hi')}
+              className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-[13px] font-semibold mt-1 transition-all duration-200 ${
+                currentLang === 'Hindi' 
+                  ? 'bg-hospital-teal text-white shadow-lg shadow-hospital-teal/20' 
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'
+              }`}
+            >
+              <span className="flex items-center gap-2 notranslate">
+                <span className="w-5 text-center">🇮🇳</span>
+                हिन्दी
+              </span>
+              {currentLang === 'Hindi' && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+            </button>
+          </div>
+          <div className="px-4 py-2 bg-gray-50/50 border-t border-gray-50 text-center">
+            {/* <p className="text-[9px] text-gray-400 font-medium tracking-tight notranslate">Standard Google Translate</p> */}
+          </div>
+        </div>
+      )}
+
+      <style jsx global>{`
+        #google_translate_element, .skiptranslate, iframe[id=":1.container"] {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+          height: 0 !important;
+          width: 0 !important;
+        }
+        body {
+          top: 0 !important;
+        }
+        .goog-te-banner-frame {
+          display: none !important;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default LanguageSelector;
+
+

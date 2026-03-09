@@ -115,39 +115,30 @@ export function Footer() {
 
           {/* Column 4: Mobile App Card */}
           <div className="lg:col-span-1">
-            <div className="bg-gradient-to-b from-white/10 to-white/5 border border-white/10 rounded-3xl p-6 shadow-xl relative overflow-hidden group">
+            <div className="bg-gradient-to-b from-white/10 to-white/5 border border-white/10 rounded-3xl py-8 px-6 sm:px-7 shadow-xl relative overflow-hidden group">
                {/* Decorative Glow */}
-               <div className="absolute -top-10 -right-10 w-32 h-32 bg-hospital-orange/20 rounded-full blur-2xl transition-colors" />
+               <div className="absolute -top-10 -right-10 w-40 h-40 bg-hospital-orange/20 rounded-full blur-3xl transition-colors group-hover:bg-hospital-orange/30" />
                
-               <h3 className="text-2xl font-bold font-heading mb-4 text-white">Download App</h3>
-               <p className="text-base text-gray-300 mb-8 leading-relaxed">
+               <h3 className="text-3xl lg:text-4xl font-bold font-heading mb-4 text-white">Download App</h3>
+               <p className="text-lg text-gray-300 leading-relaxed">
                  Access healthcare facilities at your fingertips.
                </p> 
 
-               <div className="space-y-5">
+               <div className="mt-6">
                  <a 
                    href="#" 
-                   className="flex items-center gap-4 bg-white text-[#0b1c43] px-6 py-4 rounded-2xl shadow-md w-full"
+                   className="flex items-center justify-center gap-3 bg-black border border-gray-700 hover:bg-gray-900 text-white px-6 py-2 sm:py-2.5 rounded-xl shadow-xl transition-all group/btn w-full"
                  >
-                   <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-                     <path d="M17.523 15.3414L20.355 18.1734C20.655 18.4734 20.655 18.9614 20.355 19.2614L19.261 20.3554C18.961 20.6554 18.473 20.6554 18.173 20.3554L15.341 17.5234L17.523 15.3414ZM8.636 10.455C8.636 10.2014 8.7369 9.95764 8.91612 9.77843C9.09533 9.59921 9.33913 9.49833 9.59273 9.49833H14.406C14.6596 9.49833 14.9034 9.59921 15.0826 9.77843C15.2618 9.95764 15.3627 10.2014 15.3627 10.455V13.0645H8.636V10.455ZM8.636 13.9182H15.3627V15.2327C15.3627 15.4863 15.2618 15.7301 15.0826 15.9093C14.9034 16.0885 14.6596 16.1894 14.406 16.1894H9.59273C9.33913 16.1894 9.09533 16.0885 8.91612 15.9093C8.7369 15.7301 8.636 15.4863 8.636 15.2327V13.9182ZM11.999 4C7.581 4 4 7.581 4 12C4 16.419 7.581 20 11.999 20C16.417 20 19.998 16.419 19.998 12C19.998 7.581 16.417 4 11.999 4Z" />
-                   </svg>
-                   <div className="flex flex-col leading-none">
-                     <span className="text-[10px] uppercase font-bold text-gray-400">Get it on</span>
-                     <span className="text-lg font-black">Google Play</span>
-                   </div>
-                 </a>
-
-                 <a 
-                   href="#" 
-                   className="flex items-center gap-4 bg-white text-[#0b1c43] px-6 py-4 rounded-2xl shadow-md w-full"
-                 >
-                   <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .76-3.27.82-1.31.05-2.31-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.36 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                   </svg>
-                   <div className="flex flex-col leading-none">
-                     <span className="text-[10px] uppercase font-bold text-gray-400">Download on the</span>
-                     <span className="text-lg font-black">App Store</span>
+                   <Image
+                     src="/images/android_app.png"
+                     alt="Google Play"
+                     width={36}
+                     height={36}
+                     className="w-7 h-7 sm:w-9 sm:h-9 transition-transform group-hover/btn:scale-110 object-contain"
+                   />
+                   <div className="flex flex-col leading-none text-left">
+                     <span className="text-[9px] sm:text-[10px] uppercase font-bold text-gray-300 mb-0.5 tracking-wider">GET IT ON</span>
+                     <span className="text-lg sm:text-xl font-semibold tracking-tight">Google Play</span>
                    </div>
                  </a>
                </div>

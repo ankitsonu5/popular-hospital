@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
+import LanguageSelector from '@/components/LanguageSelector';
 
 interface DropdownItem {
   label: string;
@@ -451,6 +452,9 @@ export function Header() {
               <span className="hidden xl:inline">Request Call Back</span>
               <span className="xl:hidden">Call Back</span>
             </Link>
+
+            {/* Language Selector */}
+            <LanguageSelector scrolled={scrolled} isTransparentPage={isTransparentPage} />
 
             {/* Phone Number - Medium screens */}
             <a

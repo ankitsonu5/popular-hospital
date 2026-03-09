@@ -365,7 +365,6 @@ export default function HomePage() {
               { title: "Neuro Surgery", desc: "Advanced surgical treatments for brain and spine disorders.", image: "/images/departments-images/neuro-surgery.jpeg", href: "/departments/neurosurgery" },
               { title: "Gastroenterology", desc: "Expert care for digestive system and liver heath.", image: "/images/departments-images/gastroenterology.jpeg", href: "/departments/gastroenterology" },
               { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", image: "/images/departments-images/AdobeStock_1010757604.jpeg", href: "/departments/nephrology" },
-              { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan.", image: "/images/departments-images/radiology.jpeg", href: "/departments/radiology" },
               { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", image: "/images/departments-images/oncology.jpeg", href: "/departments/oncology" },
               { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", image: "/images/departments-images/urology.jpeg", href: "/departments/urology" },
               { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", image: "/images/departments-images/AdobeStock_222372294.jpeg", href: "/departments/burns-plastic-surgery" },
@@ -378,7 +377,6 @@ export default function HomePage() {
               { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", image: "/images/departments-images/ophthalmology.jpeg", href: "/departments/ophthalmology" },
               { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", image: "/images/departments-images/dental-care.jpeg", href: "/departments/dental" },
               { title: "Pulmonology", desc: "Respiratory and lung health specialists.", image: "/images/departments-images/pulmonology.jpeg", href: "/departments/respiratory" },
-              { title: "Pathology", desc: "Advanced diagnostic laboratory services.", image: "/images/departments-images/pathology.jpeg", href: "/departments/pathology" },
             ].slice(0, 8).map((service, idx) => (
               <div
                 key={service.title}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 import LayoutShell from '@/components/LayoutShell';
 
@@ -31,6 +32,30 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
+        {/* Official Google Translate Configuration */}
+        <Script id="google-translate-config" strategy="beforeInteractive">
+          {`
+            window.googleTranslateElementInit = function() {
+              new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi',
+                autoDisplay: false,
+                multilanguagePage: true
+              }, 'google_translate_element');
+            }
+          `}
+        </Script>
+        
+        {/* Official Google Translate Element Script */}
+        <Script 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" 
+          strategy="afterInteractive" 
+          id="google-translate-script"
+        />
+
+        {/* Hidden Container for Google Translate Element */}
+        <div id="google_translate_element" style={{ display: 'none' }}></div>
+
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>
