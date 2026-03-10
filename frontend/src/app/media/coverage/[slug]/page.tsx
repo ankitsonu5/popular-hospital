@@ -191,7 +191,7 @@ export default async function MediaCoverageDetailPage({
   return (
     <main className="min-h-screen bg-white">
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] pt-32 pb-12 sm:pt-36 sm:pb-16 lg:py-16 overflow-hidden">
+      <section className="relative bg-[#0b1c43] py-16 overflow-hidden">
         {/* Subtle Background Image Style matching other media pages */}
         <div className="absolute inset-0">
           <Image

@@ -131,7 +131,7 @@ const sitemapData = [
 
 export default function SitemapPage() {
   return (
-    <div className="bg-[#f0f7ff] min-h-screen pt-24 pb-20">
+    <div className="bg-[#f0f7ff] min-h-screen pt-12 pb-20">
       <div className="mx-auto max-w-[1366px] px-6 lg:px-12">
         {/* Page Header */}
         <div className="mb-16">

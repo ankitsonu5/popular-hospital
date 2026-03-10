@@ -241,29 +241,32 @@ export function Header() {
         />
         
         {/* Top Bar */}
-        <div className="bg-[#2E59A8] text-white py-2 sm:py-2.5 relative z-50">
-          <div className="max-w-[1366px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[11px] sm:text-[13.5px] font-medium">
+        <div className="bg-[#2E59A8] text-white py-3 sm:py-4 relative z-50">
+          <div className="max-w-[1366px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[14px] sm:text-[17px] font-medium">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
-              <Link href="/online-payment" className="flex items-center gap-1.5 hover:text-white/80 transition-colors whitespace-nowrap">
-                <svg className="w-3.5 h-3.5 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <Link href="/online-payment" className="flex items-center gap-2 hover:text-white/80 transition-colors whitespace-nowrap">
+                <svg className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                 </svg>
                 <span>Online Payment</span>
               </Link>
+              <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/second-opinion" className="hover:text-white/80 transition-colors whitespace-nowrap">Second opinion</Link>
+              <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/services/preventive-health" className="hover:text-white/80 transition-colors whitespace-nowrap">Health Packages</Link>
+              <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/services/wellness" className="hover:text-white/80 transition-colors whitespace-nowrap">Wellness Packages</Link>
             </div>
             <div className="flex items-center justify-center sm:justify-end gap-x-4 w-full sm:w-auto mt-1 sm:mt-0">
                <div className="flex items-center gap-1.5">
                 <a href="https://wa.me/917800001895" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
-                  <Image className="w-4" src="/images/whatsapp_icon.png" alt="whatsapp" width={16} height={16} />
+                  <Image className="w-5 h-5 sm:w-[22px] sm:h-[22px]" src="/images/whatsapp_icon.png" alt="whatsapp" width={22} height={22} />
                 </a>
                 <a href="tel:+917800001895" className="hover:text-white/80 transition-colors">+91-7800001895</a>
                </div>
                <div className="flex items-center gap-1.5">
                 <a href="https://wa.me/917800001896" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
-                  <Image className="w-4" src="/images/whatsapp_icon.png" alt="whatsapp" width={16} height={16} />
+                  <Image className="w-5 h-5 sm:w-[22px] sm:h-[22px]" src="/images/whatsapp_icon.png" alt="whatsapp" width={22} height={22} />
                 </a>
                 <a href="tel:+917800001896" className="hover:text-white/80 transition-colors">+91-7800001896</a>
                </div>
@@ -302,15 +305,15 @@ export function Header() {
                     <>
                       <button
                         type="button"
-                        className={`flex items-center gap-1 px-3 py-2.5 text-sm min-[1366px]:text-[14px] font-medium transition-colors font-heading whitespace-nowrap ${
+                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[14.5px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
                           scrolled || !isTransparentPage
                             ? (activeDropdown === item.label ? 'text-hospital-teal' : 'text-gray-700 hover:text-hospital-teal')
                             : 'text-white hover:text-gray-200'
                         }`}
                       >
                         {item.label}
-                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <svg className="h-3.5 w-3.5 min-[1440px]:w-4 min-[1440px]:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                         </svg>
                       </button>
                       <div
@@ -399,7 +402,7 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href || '#'}
-                      className={`px-3 py-2.5 text-sm min-[1366px]:text-[14px] font-medium transition-colors font-heading ${
+                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[14.5px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
                         scrolled || !isTransparentPage
                           ? (pathname === item.href ? 'text-hospital-teal' : 'text-gray-700 hover:text-hospital-teal')
                           : 'text-white hover:text-gray-200'
@@ -415,10 +418,10 @@ export function Header() {
             <div className="flex items-center gap-3">
               <Link
                 href="/book"
-                className="hidden lg:flex items-center gap-2 px-5 py-2.5 text-white rounded-full text-sm font-medium transition-all shadow-sm hover:shadow-md"
+                className="hidden lg:flex items-center justify-center gap-1.5 px-4 lg:px-5 py-2 lg:py-2.5 text-white rounded-full text-[13px] font-bold transition-all shadow-sm hover:shadow-md whitespace-nowrap"
                 style={{ backgroundColor: '#E85222' }}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 <span>Request Call Back</span>

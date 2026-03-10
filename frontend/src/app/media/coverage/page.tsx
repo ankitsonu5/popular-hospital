@@ -14,7 +14,7 @@ export default function MediaCoveragePage() {
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] pt-32 pb-12 sm:pt-36 sm:pb-16 lg:py-16 overflow-hidden">
+      <section className="relative bg-[#0b1c43] py-16 overflow-hidden">
         {/* Background Image Style matching News/Blog */}
         <div className="absolute inset-0">
           <Image

@@ -87,7 +87,7 @@ export default function CareerPage() {
   const currentOpenings = activeTab === 'Medico' ? medicoOpenings : nonMedicoOpenings;
 
   return (
-    <div className="bg-[#f0f7ff] min-h-screen pt-24 pb-20">
+    <div className="bg-[#f0f7ff] min-h-screen pt-12 pb-20">
       <div className="max-w-[1366px] mx-auto px-6 lg:px-12">
         {/* Hero Section */}
         <div className="mb-16">

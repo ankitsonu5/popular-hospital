@@ -10,19 +10,34 @@ declare global {
   }
 }
 
+const languages = [
+  { code: 'en', label: 'English', native: 'English', flag: 'US' },
+  { code: 'hi', label: 'Hindi', native: 'हिन्दी', flag: 'IN' },
+  { code: 'bn', label: 'Bengali', native: 'বাংলা', flag: 'IN' },
+  { code: 'mr', label: 'Marathi', native: 'मराठी', flag: 'IN' },
+  { code: 'te', label: 'Telugu', native: 'తెలుగు', flag: 'IN' },
+  { code: 'ta', label: 'Tamil', native: 'தமிழ்', flag: 'IN' },
+  { code: 'gu', label: 'Gujarati', native: 'ગુજરાતી', flag: 'IN' },
+  { code: 'ur', label: 'Urdu', native: 'اردو', flag: 'IN' },
+  { code: 'kn', label: 'Kannada', native: 'ಕನ್ನಡ', flag: 'IN' },
+  { code: 'or', label: 'Odia', native: 'ଓଡ଼ିଆ', flag: 'IN' },
+  { code: 'ml', label: 'Malayalam', native: 'മലയാളം', flag: 'IN' },
+  { code: 'pa', label: 'Punjabi', native: 'ਪੰਜਾਬੀ', flag: 'IN' }
+];
+
 const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; isTransparentPage: boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('English');
+  const [currentLang, setCurrentLang] = useState('en');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // 1. Sync UI state with saved preference OR default to English
     const savedLang = localStorage.getItem('user-language');
-    if (savedLang === 'hi') {
-      setCurrentLang('Hindi');
+    if (savedLang && savedLang !== 'en') {
+      setCurrentLang(savedLang);
       loadGoogleTranslate();
     } else {
-      setCurrentLang('English');
+      setCurrentLang('en');
       // Ensure no google cookie exists which might force a translation on English
       document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
@@ -76,7 +91,7 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
     (window as any).googleTranslateElementInit = function() {
       new (window as any).google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'en,hi',
+        includedLanguages: languages.map(l => l.code).join(','),
         autoDisplay: false,
         multilanguagePage: true
       }, 'google_translate_element');
@@ -88,8 +103,8 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
     document.body.appendChild(script);
   };
 
-  const handleLanguageChange = (langLabel: string, code: string) => {
-    setCurrentLang(langLabel);
+  const handleLanguageChange = (code: string) => {
+    setCurrentLang(code);
     setIsOpen(false);
     
     // Save preference to localStorage so we don't clear the cookie next time
@@ -114,6 +129,8 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
   const textColor = isDark ? 'text-gray-700' : 'text-white';
   const bgColor = isDark ? 'bg-white/90' : 'bg-white/10';
   const hoverBgColor = isDark ? 'hover:bg-gray-100' : 'hover:bg-white/20';
+  
+  const currentLanguageDetails = languages.find(l => l.code === currentLang) || languages[0];
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -131,47 +148,36 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
           <Globe className="w-3.5 h-3.5" />
         </div>
         <span className={`text-[13px] font-bold tracking-tight uppercase ${textColor} notranslate`}>
-          {currentLang === 'English' ? 'En' : 'Hi'}
+          {currentLanguageDetails.code}
         </span>
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-500 ${isOpen ? 'rotate-180' : ''} ${textColor} opacity-60`} />
       </button>
 
       {/* Language Selection List */}
       {isOpen && (
-        <div className="absolute right-0 mt-3 w-44 bg-white/95 backdrop-blur-md border border-gray-100 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] z-[100] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="px-4 py-2.5 border-b border-gray-50 flex items-center justify-between">
+        <div className="absolute right-0 mt-3 w-48 max-h-[400px] overflow-y-auto bg-white/95 backdrop-blur-md border border-gray-100 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] z-[100] animate-in fade-in slide-in-from-top-2 duration-200 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+          <div className="sticky top-0 bg-white/95 backdrop-blur-md px-4 py-2.5 border-b border-gray-50 flex items-center justify-between z-10">
             <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-[0.1em] notranslate">Translate</span>
             <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal animate-pulse" />
           </div>
-          <div className="p-1.5">
-            <button
-              onClick={() => handleLanguageChange('English', 'en')}
-              className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 ${
-                currentLang === 'English' 
-                  ? 'bg-hospital-teal text-white shadow-lg shadow-hospital-teal/20' 
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'
-              }`}
-            >
-              <span className="flex items-center gap-2 notranslate">
-                <span className="w-5 text-center">🇺🇸</span>
-                English
-              </span>
-              {currentLang === 'English' && <Check className="w-3.5 h-3.5 stroke-[3]" />}
-            </button>
-            <button
-              onClick={() => handleLanguageChange('Hindi', 'hi')}
-              className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-[13px] font-semibold mt-1 transition-all duration-200 ${
-                currentLang === 'Hindi' 
-                  ? 'bg-hospital-teal text-white shadow-lg shadow-hospital-teal/20' 
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'
-              }`}
-            >
-              <span className="flex items-center gap-2 notranslate">
-                <span className="w-5 text-center">🇮🇳</span>
-                हिन्दी
-              </span>
-              {currentLang === 'Hindi' && <Check className="w-3.5 h-3.5 stroke-[3]" />}
-            </button>
+          <div className="p-1.5 flex flex-col gap-0.5">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang.code)}
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 ${
+                  currentLang === lang.code 
+                    ? 'bg-hospital-teal text-white shadow-lg shadow-hospital-teal/20' 
+                    : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'
+                }`}
+              >
+                <span className="flex items-center gap-2 notranslate">
+                  <span className="w-6 text-[10px] font-bold tracking-wider opacity-60 uppercase flex-shrink-0">{lang.flag}</span>
+                  {lang.native}
+                </span>
+                {currentLang === lang.code && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+              </button>
+            ))}
           </div>
         </div>
       )}

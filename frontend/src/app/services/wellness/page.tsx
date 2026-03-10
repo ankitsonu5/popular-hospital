@@ -65,16 +65,7 @@ const WellnessPage = () => {
               </h2>
               <div className="prose prose-lg text-gray-600 space-y-4">
                 <p className="text-lg leading-relaxed">
-                  Health Fit Card is a personal medical assistant and health
-                  manager who assists the family for their medical services with
-                  easy, convenient, and economic benefits through its 24x7
-                  helpline. It acts as an inseparable assistant for families,
-                  taking care of all health-related needs.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  With the card, families get Priority Services, massive
-                  discounts on diagnostics, pharmacy, and hospital charges,
-                  making healthcare affordable and high-quality.
+                  Health-fit Card is the perfect solution for all your hospital care needs. Get access to hospital services with just a swipe of your card. Benefit from discounts on diagnostics and medicines. Enjoy hassle-free hospitalization with the help of this card. Get fit and stay healthy with the Health-fit Card. Get unlimited access to doctor's consultations (OPD) and get free health checkups and screenings. Enjoy the benefits of staying healthy with the Health-fit Card.
                 </p>
               </div>
 

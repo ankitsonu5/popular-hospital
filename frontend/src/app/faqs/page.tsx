@@ -86,7 +86,7 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <div className="bg-[#f0f7ff] min-h-screen pt-24 pb-20">
+    <div className="bg-[#f0f7ff] min-h-screen pt-12 pb-20">
       <div className="mx-auto max-w-[1366px] px-6 lg:px-12">
         {/* Header Section */}
         <div className="mb-12">
