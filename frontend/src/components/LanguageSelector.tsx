@@ -20,8 +20,12 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
     const savedLang = localStorage.getItem('user-language');
     if (savedLang === 'hi') {
       setCurrentLang('Hindi');
+      loadGoogleTranslate();
     } else {
       setCurrentLang('English');
+      // Ensure no google cookie exists which might force a translation on English
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
     }
 
     // 2. Defining official translation helper
@@ -58,6 +62,32 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const loadGoogleTranslate = () => {
+    if (document.getElementById('google-translate-script')) return;
+
+    // Create the hidden element if it doesn't exist
+    if (!document.getElementById('google_translate_element')) {
+      const el = document.createElement('div');
+      el.id = 'google_translate_element';
+      el.style.display = 'none';
+      document.body.appendChild(el);
+    }
+
+    (window as any).googleTranslateElementInit = function() {
+      new (window as any).google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi',
+        autoDisplay: false,
+        multilanguagePage: true
+      }, 'google_translate_element');
+    };
+
+    const script = document.createElement('script');
+    script.id = 'google-translate-script';
+    script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    document.body.appendChild(script);
+  };
+
   const handleLanguageChange = (langLabel: string, code: string) => {
     setCurrentLang(langLabel);
     setIsOpen(false);
@@ -65,6 +95,15 @@ const LanguageSelector = ({ scrolled, isTransparentPage }: { scrolled: boolean; 
     // Save preference to localStorage so we don't clear the cookie next time
     localStorage.setItem('user-language', code);
     
+    if (code !== 'en') {
+      loadGoogleTranslate();
+    } else {
+      // If switching back to English
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
+      // Also trigger official translation to clear existing translation if script is loaded
+    }
+
     // Trigger official Google Translate
     if ((window as any).doGTranslate) {
       (window as any).doGTranslate(code);

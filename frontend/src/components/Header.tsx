@@ -259,13 +259,13 @@ export function Header() {
                 <a href="https://wa.me/917800001895" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
                   <Image className="w-4" src="/images/whatsapp_icon.png" alt="whatsapp" width={16} height={16} />
                 </a>
-                <a href="tel:+917800001895" className="hover:text-white/80 transition-colors">7800001895</a>
+                <a href="tel:+917800001895" className="hover:text-white/80 transition-colors">+91-7800001895</a>
                </div>
                <div className="flex items-center gap-1.5">
                 <a href="https://wa.me/917800001896" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
                   <Image className="w-4" src="/images/whatsapp_icon.png" alt="whatsapp" width={16} height={16} />
                 </a>
-                <a href="tel:+917800001896" className="hover:text-white/80 transition-colors">7800001896</a>
+                <a href="tel:+917800001896" className="hover:text-white/80 transition-colors">+91-7800001896</a>
                </div>
             </div>
           </div>

@@ -32,35 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        {/* Official Google Translate Configuration */}
-        <Script id="google-translate-config" strategy="beforeInteractive">
-          {`
-            // Ensure website starts in English by default if no preference is saved
-            if (!localStorage.getItem('user-language')) {
-              document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
-            }
-
-            window.googleTranslateElementInit = function() {
-              new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,hi',
-                autoDisplay: false,
-                multilanguagePage: true
-              }, 'google_translate_element');
-            }
-          `}
-        </Script>
-        
-        {/* Official Google Translate Element Script */}
-        <Script 
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" 
-          strategy="afterInteractive" 
-          id="google-translate-script"
-        />
-
-        {/* Hidden Container for Google Translate Element */}
-        <div id="google_translate_element" style={{ display: 'none' }}></div>
+        {/* Google Translate Element will be dynamically injected by LanguageSelector */}
 
         <LayoutShell>{children}</LayoutShell>
       </body>

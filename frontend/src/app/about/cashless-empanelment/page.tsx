@@ -164,7 +164,7 @@ export default function CashlessEmpanelmentPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center pt-32 pb-12 sm:pt-36 sm:pb-16">
         <div className="absolute inset-0 z-0">
             <Image
                 src="/images/about_popular/cashless_empanelment.png"
@@ -175,9 +175,9 @@ export default function CashlessEmpanelmentPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
         </div>
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">Cashless Empanelment</h1>
-         <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
+        <div className="relative z-10 text-center px-6 sm:px-4 max-w-4xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading mb-4 text-white">Cashless Empanelment</h1>
+            <p className="text-sm sm:text-base md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
                 Popular Hospital is proudly empanelled with leading Government bodies, PSUs, Private Corporates, and International TPAs — ensuring hassle-free cashless treatment for you and your family.
             </p>
         </div>

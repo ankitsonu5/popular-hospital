@@ -194,20 +194,20 @@ export default function AmbulancePage() {
       </section>
 
       {/* Footer / CTA Banner */}
-      <section className="bg-[#1a3a6b] py-20 px-6 border-t border-blue-900 relative overflow-hidden">
+      <section className="bg-[#1a3a6b] py-12 px-6 border-t border-blue-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="container mx-auto max-w-[1366px] text-center relative z-10">
-          <h2 className="text-2xl lg:text-4xl font-black text-white mb-5 font-heading drop-shadow-md">Need an Ambulance Now?</h2>
-          <p className="text-blue-100 mb-10 text-lg max-w-2xl mx-auto">We guarantee the shortest possible response time in Varanasi. Call our 24/7 emergency dispatch line directly.</p>
-          <div className="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-[2rem] shadow-2xl inline-flex flex-col sm:flex-row items-center gap-6 border border-white/20">
-             <div className="w-20 h-20 bg-white text-blue-800 rounded-full flex items-center justify-center flex-shrink-0 animate-[pulse_2s_infinite] shadow-lg">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <h2 className="text-xl lg:text-3xl font-black text-white mb-3 font-heading drop-shadow-md">Need an Ambulance Now?</h2>
+          <p className="text-blue-100 mb-6 text-sm lg:text-base max-w-2xl mx-auto">We guarantee the shortest possible response time in Varanasi. Call our 24/7 emergency dispatch line directly.</p>
+          <div className="bg-white/10 backdrop-blur-md p-4 md:p-6 rounded-2xl md:rounded-3xl shadow-2xl inline-flex flex-col sm:flex-row items-center gap-4 border border-white/20">
+             <div className="w-14 h-14 md:w-16 md:h-16 bg-white text-blue-800 rounded-full flex items-center justify-center flex-shrink-0 animate-[pulse_2s_infinite] shadow-lg">
+                <svg className="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
              </div>
              <div className="text-center sm:text-left">
-                <p className="text-sm text-blue-200 font-bold uppercase tracking-[0.1em] mb-1">24/7 Ambulance Dispatch</p>
-                <a href="tel:+919519999280" className="text-3xl md:text-5xl font-black text-white hover:text-blue-100 transition-colors drop-shadow-sm">
+                <p className="text-xs md:text-sm text-blue-200 font-bold uppercase tracking-[0.1em] mb-1">24/7 Ambulance Dispatch</p>
+                <a href="tel:+919519999280" className="text-2xl md:text-4xl font-black text-white hover:text-blue-100 transition-colors drop-shadow-sm">
                   +91-9519999280
                 </a>
              </div>
