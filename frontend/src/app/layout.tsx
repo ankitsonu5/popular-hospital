@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import NextTopLoader from 'nextjs-toploader';
 import './globals.css';
 import LayoutShell from '@/components/LayoutShell';
 
@@ -63,7 +62,6 @@ export default function RootLayout({
         {/* Hidden Container for Google Translate Element */}
         <div id="google_translate_element" style={{ display: 'none' }}></div>
 
-        <NextTopLoader color="#E85222" height={4} showSpinner={false} shadow="0 0 10px #E85222,0 0 5px #E85222" />
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>
