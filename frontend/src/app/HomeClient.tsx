@@ -830,8 +830,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Mauritian Patient</h3>
-                  <p className="text-gray-300 text-xs">Mr Fazil Hosany</p>
+                  {/* <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Mauritian Patient</h3>
+                  <p className="text-gray-300 text-xs">Mr Fazil Hosany</p> */}
                 </div>
               </button>
             </div>
@@ -857,8 +857,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-base font-bold leading-tight mb-0.5">Liver Failure</h3>
-                  <p className="text-gray-300 text-xs">Baby Bhavika</p>
+                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Liver Failure</h3>
+                  <p className="text-gray-300 text-xs">Baby Bhavika</p> */}
                 </div>
               </button>
 
@@ -881,8 +881,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-base font-bold leading-tight mb-0.5">Jaw Cancer</h3>
-                  <p className="text-gray-300 text-xs">Dr. Abhilasha Agarwal</p>
+                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Cancer</h3>
+                  <p className="text-gray-300 text-xs">Dr. Abhilasha Agarwal</p> */}
                 </div>
               </button>
             </div>
@@ -911,8 +911,8 @@ export default function HomePage() {
                 </div>
 
                 <div className="absolute bottom-10 left-0 right-0 p-8 text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-2xl font-bold font-heading mb-2 drop-shadow-md">Pre-term Babies</h3>
-                  <p className="text-gray-200 text-lg font-medium">Ms Sakshi</p>
+                  {/* <h3 className="text-white text-2xl font-bold font-heading mb-2 drop-shadow-md">Pre-term Babies</h3>
+                  <p className="text-gray-200 text-lg font-medium">Ms Sakshi</p> */}
                 </div>
               </button>
             </div>
@@ -938,8 +938,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-base font-bold leading-tight mb-0.5">Neurosurgical Treatment</h3>
-                  <p className="text-gray-300 text-xs">Mr. Devender Jeet Singh</p>
+                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Neurosurgical Treatment</h3>
+                  <p className="text-gray-300 text-xs">Mr. Devender Jeet Singh</p> */}
                 </div>
               </button>
 
@@ -962,8 +962,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-base font-bold leading-tight mb-0.5">Bone Marrow</h3>
-                  <p className="text-gray-300 text-xs">Patient Father Mr Haider</p>
+                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Bone Marrow</h3>
+                  <p className="text-gray-300 text-xs">Patient Father Mr Haider</p> */}
                 </div>
               </button>
             </div>
@@ -989,8 +989,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Kidney Donor</h3>
-                  <p className="text-gray-300 text-xs">Ms Paluk Sunger</p>
+                  {/* <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Kidney Donor</h3>
+                  <p className="text-gray-300 text-xs">Ms Paluk Sunger</p> */}
                 </div>
               </button>
             </div>
