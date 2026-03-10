@@ -213,8 +213,8 @@ export default function HomePage() {
         <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-6xl 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
-              href="/admin-login"
-              title="Doctors Login"
+              href="/doctors"
+              title="Find Doctors"
               isFirst={true}
               variant="blue"
             />

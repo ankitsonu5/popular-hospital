@@ -53,15 +53,15 @@ const preventiveList = [
 const doctors = [
   {
     name: 'Dr. Manoj Sharma',
-    qualifications: 'MBBS, MD- Physiology, PGDCC',
-    designation: 'Consultant',
+    qualifications: 'M.B.B.S., MD, PGDCC (Cardiology)',
+    designation: 'Department of Cardiology',
     slug: 'dr-manoj-sharma',
     image: '/images/departments_doctor/dr-Manoj-Sharma.jpg'
   },
   {
     name: 'Dr. Hari Krishan Srivastava',
-    qualifications: 'DM - Cardiology',
-    designation: 'Consultant',
+    qualifications: 'M.B.B.S., M.D., DM (Cardiology)',
+    designation: 'Head, Department of Cardiology',
     slug: 'dr-hari-krishan-srivastava',
     image: '/images/departments_doctor/dr-Hari-Krishan-Srivastava.jpg'
   }
