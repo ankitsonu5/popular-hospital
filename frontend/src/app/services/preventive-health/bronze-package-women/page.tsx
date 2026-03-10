@@ -70,14 +70,14 @@ export default function BronzePackageWomenPage() {
                     />
                 </div>
                 <div className="p-10 flex flex-col justify-center flex-1">
-                    <span className='text-[#bf4800] text-[12px] font-bold tracking-widest uppercase mb-3'>Recommended: 18-65 Yrs.</span>
+                    <span className='text-[#bf4800] text-[12px] font-bold tracking-widest uppercase mb-3'>Recommended: 18-25 Yrs.</span>
                     <h2 className='text-[#1d1d1f] font-bold text-2xl sm:text-3xl tracking-tight mb-6'>BRONZE PACKAGE WOMEN</h2>
                     <div className="space-y-1.5">
                       <div className="text-[#86868b] text-[15px] font-medium">
                         Package Price <span className="line-through">₹ 8180.00</span>
                       </div>
                       <div className="text-[#1d1d1f] text-xl font-bold">
-                        Offer Price ₹ 4499.00
+                        Discount Price ₹ 4499.00
                       </div>
                     </div>
                 </div>

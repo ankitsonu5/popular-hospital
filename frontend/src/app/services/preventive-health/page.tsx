@@ -9,22 +9,22 @@ export const metadata: Metadata = {
 };
 
 const packages = [
-  { title: "BRONZE PACKAGE - MEN", age: "18-65 Yrs.", originalPrice: "7270.00", discountPrice: "3999.00", image: "/images/health-packages/bronze_package_men.jpg" },
-  { title: "BRONZE PACKAGE - WOMEN", age: "18-65 Yrs.", originalPrice: "8180.00", discountPrice: "4499.00", image: "/images/health-packages/bronze_package_women.jpg" },
-  { title: "SILVER PACKAGE - MEN", age: "18-65 Yrs.", originalPrice: "12725.00", discountPrice: "6999.00", image: "/images/health-packages/silver_package_men.jpg" },
-  { title: "SILVER PACKAGE - WOMEN", age: "18-65 Yrs.", originalPrice: "13640.00", discountPrice: "7499.00", image: "/images/health-packages/silver_package_women.jpg" },
-  { title: "GOLD PACKAGE - MEN", age: "18-65 Yrs.", originalPrice: "19090.00", discountPrice: "10499.00", image: "/images/health-packages/gold_package_men.jpg" },
-  { title: "GOLD PACKAGE - WOMEN", age: "18-65 Yrs.", originalPrice: "20900.00", discountPrice: "11499.00", image: "/images/health-packages/gold_package_women.jpg" },
-  { title: "DIAMOND PACKAGE - MEN", age: "18-65 Yrs.", originalPrice: "29090.00", discountPrice: "15999.00", image: "/images/health-packages/diamond_package_men.jpg" },
-  { title: "DIAMOND PACKAGE - WOMEN", age: "18-65 Yrs.", originalPrice: "30900.00", discountPrice: "16999.00", image: "/images/health-packages/diamond_package_women.jpg" },
-  { title: "HEALTHY YOUNG ONES", age: "5-18 Yrs.", originalPrice: "5450.00", discountPrice: "2999.00", image: "/images/health-packages/healthy_young_ones.jpg" },
-  { title: "HEALTHY LUNGS HEALTH CHECK-UP", age: "18-65 Yrs.", originalPrice: "5270.00", discountPrice: "2799.00", image: "/images/health-packages/healthy_lungs_health_check-up.jpg" },
-  { title: "OBESITY CHECK-UP", age: "18-65 Yrs.", originalPrice: "12500.00", discountPrice: "7499.00", image: "/images/health-packages/obesity_check_up.jpg" },
-  { title: "CARDIAC HEALTH PACKAGE", age: "18-65 Yrs.", originalPrice: "10050.00", discountPrice: "5499.00", image: "/images/health-packages/cardiac_health_package.jpg" },
-  { title: "BASIC CARDIAC SCREENING PACKAGE", age: "18-65 Yrs.", originalPrice: "6350.00", discountPrice: "3499.00", image: "/images/health-packages/basic_cardiac_screening_package.jpg" },
-  { title: "CARDIAC ADVANCED CARE PACKAGE", age: "18-65 Yrs.", originalPrice: "18180.00", discountPrice: "8999.00", image: "/images/health-packages/cardiac_advance_care_package.jpg" },
-  { title: "DIABETIC CHECK", age: "18-65 Yrs.", originalPrice: "9090.00", discountPrice: "4999.00", image: "/images/health-packages/diabetic_check.jpg" },
-  { title: "DIABETIC CHECK-EXTENDED", age: "18-65 Yrs.", originalPrice: "13650.00", discountPrice: "7499.00", image: "/images/health-packages/diabetic_check_extended.jpg" }
+  { title: "BRONZE PACKAGE - MEN", age: "Recommended for 18-25 Years", originalPrice: "7270.00", discountPrice: "3999.00", image: "/images/health-packages/bronze_package_men.jpg" },
+  { title: "BRONZE PACKAGE - WOMEN", age: "Recommended for 18-25 Years", originalPrice: "8180.00", discountPrice: "4499.00", image: "/images/health-packages/bronze_package_women.jpg" },
+  { title: "SILVER PACKAGE - MEN", age: "Recommended for 18-25 Years", originalPrice: "12725.00", discountPrice: "6999.00", image: "/images/health-packages/silver_package_men.jpg" },
+  { title: "SILVER PACKAGE - WOMEN", age: "Recommended for 18-25 Years", originalPrice: "13640.00", discountPrice: "7499.00", image: "/images/health-packages/silver_package_women.jpg" },
+  { title: "GOLD PACKAGE - MEN", age: "Recommended for 18-25 Years", originalPrice: "19090.00", discountPrice: "10499.00", image: "/images/health-packages/gold_package_men.jpg" },
+  { title: "GOLD PACKAGE - WOMEN", age: "Recommended for 18-25 Years", originalPrice: "20900.00", discountPrice: "11499.00", image: "/images/health-packages/gold_package_women.jpg" },
+  { title: "DIAMOND PACKAGE - MEN", age: "Recommended for 18-25 Years", originalPrice: "29090.00", discountPrice: "15999.00", image: "/images/health-packages/diamond_package_men.jpg" },
+  { title: "DIAMOND PACKAGE - WOMEN", age: "Recommended for 18-25 Years", originalPrice: "30900.00", discountPrice: "16999.00", image: "/images/health-packages/diamond_package_women.jpg" },
+  { title: "HEALTHY YOUNG ONES", age: "Recommended for 18-25 Years", originalPrice: "5450.00", discountPrice: "2999.00", image: "/images/health-packages/healthy_young_ones.jpg" },
+  { title: "HEALTHY LUNGS HEALTH CHECK-UP", age: "Recommended for 18-25 Years", originalPrice: "5270.00", discountPrice: "2799.00", image: "/images/health-packages/healthy_lungs_health_check-up.jpg" },
+  { title: "OBESITY CHECK-UP", age: "Recommended for 18-25 Years", originalPrice: "12500.00", discountPrice: "7499.00", image: "/images/health-packages/obesity_check_up.jpg" },
+  { title: "CARDIAC HEALTH PACKAGE", age: "Recommended for 18-25 Years", originalPrice: "10050.00", discountPrice: "5499.00", image: "/images/health-packages/cardiac_health_package.jpg" },
+  { title: "BASIC CARDIAC SCREENING PACKAGE", age: "Recommended for 18-25 Years", originalPrice: "6350.00", discountPrice: "3499.00", image: "/images/health-packages/basic_cardiac_screening_package.jpg" },
+  { title: "CARDIAC ADVANCED CARE PACKAGE", age: "Recommended for 18-25 Years", originalPrice: "18180.00", discountPrice: "8999.00", image: "/images/health-packages/cardiac_advance_care_package.jpg" },
+  { title: "DIABETIC CHECK", age: "Recommended for 18-25 Years", originalPrice: "9090.00", discountPrice: "4999.00", image: "/images/health-packages/diabetic_check.jpg" },
+  { title: "DIABETIC CHECK-EXTENDED", age: "Recommended for 18-25 Years", originalPrice: "13650.00", discountPrice: "7499.00", image: "/images/health-packages/diabetic_check_extended.jpg" }
 ];
 
 export default function PreventiveHealthPage() {
@@ -96,10 +96,10 @@ export default function PreventiveHealthPage() {
                   
                   <div className="space-y-0.5 mb-6">
                     <div className="text-[#86868b] text-[14px] font-medium">
-                      MRP <span className="line-through">₹ {parseFloat(pkg.originalPrice).toLocaleString("en-IN")}</span>
+                      Package Price <span className="line-through">₹ {parseFloat(pkg.originalPrice).toLocaleString("en-IN")}</span>
                     </div>
                     <div className="text-[#1d1d1f] text-[16px] font-bold">
-                      Offer Price ₹ {parseFloat(pkg.discountPrice).toLocaleString("en-IN")}
+                      Discount Price ₹ {parseFloat(pkg.discountPrice).toLocaleString("en-IN")}
                     </div>
                   </div>
 

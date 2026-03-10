@@ -67,15 +67,12 @@ export default function BasicCardiacScreeningPackagePage() {
                     />
                 </div>
                 <div className="p-10 flex flex-col justify-center flex-1">
-                    <span className='text-[#bf4800] text-[11px] font-bold tracking-widest uppercase mb-2'>Recommended: 18-65 Yrs.</span><h2 className='text-[#1d1d1f] font-bold text-xl sm:text-2xl tracking-tight mb-4'>BASIC CARDIAC SCREENING PACKAGE</h2>
-                    <p className="text-gray-600 text-[13px] mb-3">
-                      Recommended for age group 18-25 Yrs.
-                    </p>
-                    <div className="text-gray-800 text-[15px] font-bold">
+                    <span className='text-[#bf4800] text-[12px] font-bold tracking-widest uppercase mb-3'>Recommended: 18-25 Yrs.</span><h2 className='text-[#1d1d1f] font-bold text-xl sm:text-2xl tracking-tight mb-4'>BASIC CARDIAC SCREENING PACKAGE</h2>
+                    <div className="text-gray-800 text-[15px] font-bold line-through">
                         Package Price ₹ 6350.00
                     </div>
                     <div className="text-[#1a3a6b] text-[15px] font-bold mt-1">
-                        After Discount Price ₹ 3499.00
+                        Discount Price ₹ 3499.00
                     </div>
                 </div>
             </div>

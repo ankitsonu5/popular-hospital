@@ -70,9 +70,10 @@ export default function BronzePackageMenPage() {
                     />
                 </div>
                 <div className="p-10 flex flex-col justify-center flex-1">
-                    <span className="text-[#bf4800] text-[11px] font-bold tracking-widest uppercase mb-2">Recommended: 18-65 Yrs.</span><span className='text-[#bf4800] text-[12px] font-bold tracking-widest uppercase mb-3'>Recommended: 18-65 Yrs.</span><h2 className='text-[#1d1d1f] font-bold text-2xl sm:text-3xl tracking-tight mb-6'>BRONZE PACKAGE MEN</h2>
+                    <span className="text-[#bf4800] text-[12px] font-bold tracking-widest uppercase mb-3">Recommended: 18-25 Yrs.</span>
+                    <h2 className='text-[#1d1d1f] font-bold text-2xl sm:text-3xl tracking-tight mb-6'>BRONZE PACKAGE MEN</h2>
                     
-                    <div className="text-gray-800 text-[15px] font-bold">
+                    <div className="text-gray-800 text-[15px] font-bold line-through">
                         Package Price ₹ 7270.00
                     </div>
                     <div className="text-[#1a3a6b] text-[15px] font-bold mt-1">
@@ -89,7 +90,11 @@ export default function BronzePackageMenPage() {
 
           {/* Details Section */}
           <div className="bg-[#fbfbfd] p-10 sm:p-14 rounded-[40px] border border-gray-100/50 shadow-sm">
-             <div className="mb-10"><span className='text-[#bf4800] text-[12px] font-bold tracking-widest uppercase mb-3'>Recommended: 18-65 Yrs.</span><h2 className='text-[#1d1d1f] font-bold text-2xl sm:text-3xl tracking-tight mb-6'>BRONZE PACKAGE MEN</h2><div className="w-12 h-1 bg-[#0066cc] rounded-full"></div></div>
+             <div className="mb-10">
+                <span className='text-[#bf4800] text-[12px] font-bold tracking-widest uppercase mb-3'>Recommended: 18-25 Yrs.</span>
+                <h2 className='text-[#1d1d1f] font-bold text-2xl sm:text-3xl tracking-tight mb-6'>BRONZE PACKAGE MEN</h2>
+                <div className="w-12 h-1 bg-[#0066cc] rounded-full"></div>
+             </div>
              
 
              {/* Consultations */}
