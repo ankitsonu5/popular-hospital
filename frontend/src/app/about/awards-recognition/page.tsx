@@ -26,10 +26,10 @@ export default function AwardsRecognitionPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ─── Simple & Clean Hero Section ─── */}
-      <div className="bg-[#0b1c43] text-white pt-24 pb-16 md:py-24">
+      <div className="bg-[#0b1c43] text-white py-16 md:py-24">
         <div className="mx-auto max-w-[1366px] px-6 sm:px-12">
             <h1 className="text-2xl sm:text-3xl md:text-5xl font-black font-heading tracking-tight leading-tight mb-4 text-[#4285f4]">
-              The Face: Dr. A.K. Kaushik – A Healthcare ICON
+              The Face: Dr. A.K. Kaushik - A Healthcare ICON
             </h1>
             <div className="w-16 h-1 bg-hospital-orange rounded-full"></div>
         </div>

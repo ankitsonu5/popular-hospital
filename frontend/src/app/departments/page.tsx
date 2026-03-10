@@ -8,34 +8,32 @@ const services = [
   { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", image: "/images/departments-images/AdobeStock_1010757604.jpeg", href: "/departments/nephrology" },
   { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", image: "/images/departments-images/oncology.jpeg", href: "/departments/oncology" },
   { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", image: "/images/departments-images/urology.jpeg", href: "/departments/urology" },
-  { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", image: "/images/departments-images/AdobeStock_222372294.jpeg", href: "/departments/burns-plastic-surgery" },
-  { title: "Laparoscopic", desc: "Minimally invasive general surgical procedures.", image: "/images/departments-images/laparoscopic.jpeg", href: "/departments/general-surgery" },
-  { title: "Obstetrics", desc: "Care for pregnancy, childbirth, and women's health.", image: "/images/hospital-sample.jpg", href: "/departments/gynaecology" },
-  { title: "Paediatrics", desc: "Medical care for infants, children, and adolescents.", image: "/images/departments-images/paediatrics.jpeg", href: "/departments/pediatrics" },
-  { title: "Orthopaedic", desc: "Treatment for bones, joints, ligaments, and nerves.", image: "/images/departments-images/orthopaedic.jpeg", href: "/departments/orthopedics" },
+  { title: "Burns & Plastic Surgery", desc: "Reconstructive and cosmetic surgery services.", image: "/images/departments-images/AdobeStock_222372294.jpeg", href: "/departments/burns-plastic-surgery" },
+  { title: "Laparoscopic Surgery", desc: "Minimally invasive general surgical procedures.", image: "/images/departments-images/laparoscopic.jpeg", href: "/departments/general-surgery" },
+  { title: "Obstetrics and Gynecology", desc: "Care for pregnancy, childbirth, and women's health.", image: "/images/hospital-sample.jpg", href: "/departments/gynaecology" },
+  { title: "Paediatrics and Neonatology", desc: "Medical care for infants, children, and adolescents.", image: "/images/departments-images/paediatrics.jpeg", href: "/departments/pediatrics" },
+  { title: "Orthopaedic & Joint Replacement", desc: "Treatment for bones, joints, ligaments, and nerves.", image: "/images/departments-images/orthopaedic.jpeg", href: "/departments/orthopedics" },
   { title: "General Medicine", desc: "Primary care for overall health and wellbeing.", image: "/images/departments-images/general-medicine.jpeg", href: "/departments/general-medicine" },
-  { title: "ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", image: "/images/departments-images/ent.jpeg", href: "/departments/ent" },
+  { title: "Department of ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", image: "/images/departments-images/ent.jpeg", href: "/departments/ent" },
   { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", image: "/images/departments-images/ophthalmology.jpeg", href: "/departments/ophthalmology" },
   { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", image: "/images/departments-images/dental-care.jpeg", href: "/departments/dental" },
-  { title: "Pulmonology", desc: "Respiratory and lung health specialists.", image: "/images/departments-images/pulmonology.jpeg", href: "/departments/respiratory" },
-  { title: "Pathology", desc: "Advanced diagnostic laboratory services.", image: "/images/departments-images/pathology.jpeg", href: "/departments/pathology" },
-  { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan.", image: "/images/departments-images/radiology.jpeg", href: "/departments/radiology" },
+  { title: "Pulmonology & Chest/Respiratory Medicine", desc: "Respiratory and lung health specialists.", image: "/images/departments-images/pulmonology.jpeg", href: "/departments/respiratory" },
 ];
 
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+      <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000"
+            src="/images/department_banner.jpg"
             alt="Our Departments"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-80"
             priority
           />
-          <div className="absolute inset-0 bg-slate-900/60" />
+          <div className="absolute inset-0 bg-slate-900/40" />
         </div>
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">

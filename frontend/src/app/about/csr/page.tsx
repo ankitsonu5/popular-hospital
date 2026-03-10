@@ -27,7 +27,7 @@ export default function CSRPage() {
   return (
     <div className="bg-white min-h-screen pb-20">
       {/* ─── Hero Section ─── */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center pt-32 pb-12 sm:pt-36 sm:pb-16">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12 sm:py-16">
         <div className="absolute inset-0 z-0">
             <Image
                 src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1600&auto=format&fit=crop"

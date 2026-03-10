@@ -45,15 +45,34 @@ const sections = [
         <p className="mb-4 text-blue-700 leading-relaxed text-sm lg:text-base font-bold italic text-center py-4 border-y border-blue-50">
           Best 24x7 Emergency Doctor in Varanasi | Best Critical Care Hospital in Varanasi | Best Emergency Care Hospital in Varanasi
         </p>
-        <h3 className="text-xl font-bold mb-3 text-[#0b1c43] mt-8 pt-6 border-t border-gray-100 italic">24/7 facilities available at Popular</h3>
-        <ul className="list-disc pl-5 text-gray-700 space-y-2 mb-4 text-sm lg:text-base font-bold">
-          <li>State-of-the-art Infrastructure</li>
-          <li>Highly trained and Experienced medical staff</li>
-          <li>Advanced life support ambulances</li>
-          <li>24/7 availability of specialized doctors</li>
-          <li>Comprehensive range of diagnostic and therapeutic services</li>
-          <li>Prompt and efficient patient care and management</li>
-        </ul>
+        <div className="mt-8 pt-6 border-t border-gray-200">
+          <h3 className="text-2xl font-black text-[#0b1c43] mb-1">
+            24X7 Facilities available at <span className="text-blue-600">Popular</span>
+          </h3>
+          <div className="w-12 h-1 bg-gray-500 mb-6 rounded-full relative">
+            <div className="absolute top-1/2 left-0 w-2 h-2 bg-gray-500 rounded-full -translate-y-1/2 -ml-1"></div>
+          </div>
+
+          <h4 className="text-lg font-bold text-blue-700 mb-4">24X7 Fast Ambulance Services</h4>
+          <ul className="space-y-3 text-sm lg:text-base text-gray-700 mb-6 text-left">
+            {[
+              'Dedicated OT for emergency surgery procedures',
+              'Pediatrics and Gynecology emergencies',
+              'Specialized trained Trauma team of doctors, nurses, para-medical staff, ward boys, etc., equipped to handle any medical and surgical emergency.',
+              'Cardiac monitors that track blood pressure, heart rate, and cardiac health',
+              'Cath lab, Ultrasound, CT scan, and laboratory services',
+              'Wheelchairs, crash carts, mechanical ventilators, multiple-channel monitors, and separate recovery beds.'
+            ].map((item, idx) => (
+              <li key={idx} className="flex gap-3">
+                <span className="text-purple-700 font-bold flex-shrink-0">&gt;</span>
+                <span className="font-medium text-left">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-gray-700 text-sm lg:text-base font-medium text-left">
+            If you are searching for the Best 24/7 Emergency Hospital near me, then Popular Hospital is the smartest decision that you could ever take.
+          </p>
+        </div>
       </>
     ),
     image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1964&auto=format&fit=crop',

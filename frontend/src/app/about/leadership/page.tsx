@@ -4,7 +4,7 @@ const leaders = [
   {
     name: "Dr. A.K. Kaushik",
     role: "Founder & Chairman",
-    image: "/images/leadership/dr-ak-kaushik.jpg",
+    image: "/images/dr_ak_kaushik.png",
     bio: "A visionary leader with over 40 years of experience in healthcare. Dr. Kaushik established Popular Hospital with the dream of providing world-class medical care to the community."
   },
   {

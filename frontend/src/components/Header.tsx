@@ -229,7 +229,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm xl:shadow-none ${
+        className={`${pathname === '/' ? 'fixed' : 'sticky'} top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm xl:shadow-none ${
           scrolled || !isTransparentPage ? 'xl:bg-white xl:shadow-sm' : 'xl:bg-transparent'
         }`}
       >
@@ -540,7 +540,6 @@ export function Header() {
           </div>
         </div>
       </header>
-      {pathname !== '/' && <div className="h-24 sm:h-28 md:h-32" />}
     </>
   );
 }

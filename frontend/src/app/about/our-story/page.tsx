@@ -11,10 +11,10 @@ export default function OurStoryPage() {
     { label: "Specialties", value: 30, suffix: "+" },
   ];
   return (
-    <div className="bg-white min-h-screen font-sans">
+    <div className="bg-slate-50 min-h-screen font-sans">
       
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center pt-32 pb-16 md:py-24">
+      <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-16 md:py-24">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/banner-our-legacy.webp"
@@ -69,10 +69,10 @@ export default function OurStoryPage() {
                  <div className="w-16 h-1 bg-gradient-to-r from-[#E85222] to-[#fd7e56] rounded-full mb-8"></div>
                  
                   <div className="space-y-6 text-[#4a5568] text-[16px] md:text-[18px] leading-relaxed font-medium">
-                    <p className="text-justify md:text-left">
+                    <p className="text-justify">
                       <span className="text-[#0b1c43] font-bold">POPULAR HOSPITAL</span> is a 450 bedded Multi Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32+ years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
                     </p>
-                    <p className="text-justify md:text-left">
+                    <p className="text-justify">
                       We are having ultramodern facilities of Cath Lab, ICU, CCU, MICU, SICU, NICU, PICU, Deluxe Room, Private Room, and General Ward etc. In Diagnostics we have well equipped Pathology lab, CT-Scan, MRI, Mammography Machine, Digital X-ray, USG, TMT, Colour Doppler, 2D Echo, DSC, STRESS ECHO, PFT, ECG and EEG.
                     </p>
                   </div>
@@ -84,8 +84,16 @@ export default function OurStoryPage() {
       </section>
 
       {/* ─── Stats Section (Animated on Scroll) ─── */}
-      <section className="py-16 bg-[#0b1c43] text-white">
-        <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-gradient-to-r from-[#1a2e5a] to-[#25407d] text-white relative overflow-hidden">
+        {/* Subtle Line/Grid Pattern Overlay */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
+        </div>
+        <div className="absolute inset-0 opacity-5 pointer-events-none"
+             style={{ backgroundImage: 'linear-gradient(45deg, #ffffff 1px, transparent 1px), linear-gradient(-45deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+        </div>
+        
+        <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => (
               <StatCounter key={index} stat={stat} />
@@ -95,19 +103,7 @@ export default function OurStoryPage() {
       </section>
 
 
-      {/* ─── Philosophy/CTA ─── */}
-      <section className="py-24 bg-white">
-         <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] mb-8 font-heading">
-               The Journey Continues
-            </h2>
-            <p className="text-xl text-gray-600 leading-relaxed mb-10">
-               POPULAR HOSPITAL (a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
-            </p>
 
-            <div className="w-24 h-1 bg-[#E85222] mx-auto rounded-full"></div>
-         </div>
-      </section>
 
     </div>
   );
@@ -208,7 +204,7 @@ function StatCounter({ stat }: { stat: { label: string; value: number; suffix: s
           />
         </svg>
 
-        <div className="text-4xl md:text-5xl lg:text-5xl font-bold font-heading z-10 text-[#E85222] transition-transform duration-300">
+        <div className="text-4xl md:text-5xl lg:text-5xl font-black font-heading z-10 text-white transition-transform duration-300">
           {count}{stat.suffix}
         </div>
       </div>
