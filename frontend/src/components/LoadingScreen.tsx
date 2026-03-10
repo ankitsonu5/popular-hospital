@@ -7,32 +7,13 @@ const LoadingScreen = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    let pageLoaded = document.readyState === 'complete';
-    let minTimePassed = false;
-    
-    // Set a timeout to ensure minimum display time of 4s (half of the 8s animation)
-    const minTimer = setTimeout(() => {
-      minTimePassed = true;
-      if (pageLoaded) {
-        // Small delay for smooth fade out
-        setIsVisible(false);
-      }
-    }, 4000);
-
-    const handleLoad = () => {
-      pageLoaded = true;
-      if (minTimePassed) {
-        setIsVisible(false);
-      }
-    };
-
-    if (!pageLoaded) {
-      window.addEventListener('load', handleLoad);
-    }
+    // Hide the loading screen after exactly 5 seconds (one full ambulance pass)
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 5000);
 
     return () => {
-      window.removeEventListener('load', handleLoad);
-      clearTimeout(minTimer);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -46,7 +27,7 @@ const LoadingScreen = () => {
           100% { transform: translateX(100vw); }
         }
         .animate-drive {
-          animation: driveRight 8s linear infinite;
+          animation: driveRight 5s linear infinite;
         }
       `}</style>
       

@@ -83,10 +83,7 @@ export function Footer() {
               <li><Link href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link></li>
               <li><Link href="/services/wellness" className="hover:text-white transition-colors">Wellness Services</Link></li>
               <li><Link href="/updates" className="hover:text-white transition-colors">Updates</Link></li>
-              <li><Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link></li>
               <li><Link href="/feedback" className="hover:text-white transition-colors">Feedback</Link></li>
-              <li><Link href="/pay-bills" className="hover:text-white transition-colors">Pay Your Bills</Link></li>
-              <li><Link href="/#emergency-services" className="hover:text-white transition-colors">Emergency Care</Link></li>
             </ul>
             <div className="mt-8">
               <h4 className="text-lg font-semibold text-white mb-2">Social Media:</h4>
@@ -126,7 +123,7 @@ export function Footer() {
 
                <div className="mt-6">
                  <a 
-                   href="#" 
+                   href="https://play.google.com/store/apps/details?id=com.tenwek&pcampaignid=web_share" 
                    className="flex items-center justify-center gap-3 bg-black border border-gray-700 hover:bg-gray-900 text-white px-6 py-2 sm:py-2.5 rounded-xl shadow-xl transition-all group/btn w-full"
                  >
                    <Image

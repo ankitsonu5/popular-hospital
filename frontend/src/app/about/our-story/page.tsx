@@ -14,7 +14,7 @@ export default function OurStoryPage() {
     <div className="bg-white min-h-screen font-sans">
       
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12">
+      <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center pt-32 pb-16 md:py-24">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/banner-our-legacy.webp"
@@ -26,61 +26,53 @@ export default function OurStoryPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/60 via-[#0b1c43]/40 to-[#0b1c43]" />
         </div>
         
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="inline-block py-1 px-3 rounded-full bg-[#E85222]/20 text-[#E85222] border border-[#E85222]/30 text-sm font-bold tracking-widest uppercase mb-6 backdrop-blur-sm">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <span className="inline-block py-1 px-3 rounded-full bg-[#E85222]/20 text-[#E85222] border border-[#E85222]/30 text-[10px] md:text-sm font-bold tracking-widest uppercase mb-4 md:mb-6 backdrop-blur-sm">
             Est. 1994
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-heading tracking-tight drop-shadow-lg">
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 font-heading tracking-tight drop-shadow-lg">
             Our Legacy of Care
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-4xl mx-auto font-light">
-            POPULAR HOSPITAL(a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
+          <p className="text-sm md:text-xl text-gray-200 leading-relaxed max-w-4xl mx-auto font-light">
+            POPULAR HOSPITAL(a Unit of POPULAR MEDICARE LTD), one of Varanasi&apos;s best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
           </p>
         </div>
       </section>
 
-      {/* ─── Timeline & Narrative Combined Section ─── */}
+      {/* ─── Timeline & Narrative Combined Section (50-50 Split) ─── */}
       <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="max-w-[1366px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             
-            {/* Left Side: Transformation History Image */}
-            <div className="lg:col-span-7 xl:col-span-8 relative">
-               <div className="w-full relative rounded-2xl shadow-sm border border-gray-100 bg-white group">
-                  <div className="relative w-full h-full overflow-hidden p-6 md:p-10">
+            {/* Left Side: Transformation History Image (50%) */}
+            <div className="relative order-2 lg:order-1">
+               <div className="w-full relative rounded-2xl shadow-sm border border-gray-100 bg-white group overflow-hidden">
+                  <div className="relative w-full h-full p-4 md:p-8">
                     <Image 
-                      src="/images/about_popular/transformation-history.jpg?v=1.1" 
+                      src="/images/about_popular/transformation-history.jpg" 
                       alt="The Transformation-History of Popular Hospital" 
-                      width={1200} 
-                      height={800} 
+                      width={1000} 
+                      height={700} 
                       className="w-full h-auto object-contain transform transition-transform duration-700"
                       priority
                     />
                   </div>
-                  {/* Subtle Overlay on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                </div>
-               
             </div>
 
-            {/* Right Side: Narrative */}
-            <div className="lg:col-span-5 xl:col-span-4 text-center lg:text-left relative mt-10 lg:mt-0">
-               {/* Decorative Quote Mark */}
-               <div className="hidden lg:block absolute -top-16 -left-12 text-[150px] text-[#E85222] opacity-[0.07] font-serif leading-none select-none z-0">
-                  "
-               </div>
-               
+            {/* Right Side: Narrative (50%) */}
+            <div className="relative order-1 lg:order-2">
                {/* Content Card */}
-               <div className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 relative z-10 transition-all duration-500">
+               <div className="bg-white p-6 md:p-10 rounded-2xl relative z-10">
                  
                  {/* Top Accent Line */}
-                 <div className="w-12 h-1.5 bg-gradient-to-r from-[#E85222] to-[#fd7e56] rounded-full mb-8 mx-auto lg:mx-0"></div>
+                 <div className="w-16 h-1 bg-gradient-to-r from-[#E85222] to-[#fd7e56] rounded-full mb-8"></div>
                  
-                  <div className="space-y-6 text-[#4a5568] text-[16px] md:text-[17px] xl:text-[18px] leading-[1.8] font-medium text-justify">
-                    <p>
-                      POPULAR HOSPITAL is a 450 bedded Multi Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32+ years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
+                  <div className="space-y-6 text-[#4a5568] text-[16px] md:text-[18px] leading-relaxed font-medium">
+                    <p className="text-justify md:text-left">
+                      <span className="text-[#0b1c43] font-bold">POPULAR HOSPITAL</span> is a 450 bedded Multi Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32+ years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
                     </p>
-                    <p>
+                    <p className="text-justify md:text-left">
                       We are having ultramodern facilities of Cath Lab, ICU, CCU, MICU, SICU, NICU, PICU, Deluxe Room, Private Room, and General Ward etc. In Diagnostics we have well equipped Pathology lab, CT-Scan, MRI, Mammography Machine, Digital X-ray, USG, TMT, Colour Doppler, 2D Echo, DSC, STRESS ECHO, PFT, ECG and EEG.
                     </p>
                   </div>

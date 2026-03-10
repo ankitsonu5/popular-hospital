@@ -72,7 +72,6 @@ export default function MDDeskPage() {
 
           {/* Text area — wraps around image and continues below */}
           <div className="relative pt-2">
-            <div className="absolute top-0 left-0 w-16 h-1 bg-hospital-teal rounded-full"></div>
             <div className="mt-8 mb-6">
               <h3 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading leading-tight">
                 A Commitment to <br className="hidden md:block" />

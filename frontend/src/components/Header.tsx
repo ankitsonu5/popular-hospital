@@ -28,6 +28,7 @@ const menuItems: MenuItem[] = [
       { label: "From Chairman's Desk", href: '/about/chairman-desk' },
       { label: "From MD's Desk", href: '/about/md-desk' },
       { label: 'Leadership Team', href: '/about/leadership' },
+      { label: 'Awards & Recognition', href: '/about/awards-recognition' },
       { label: 'Social Responsibility (SR)', href: '/about/csr', separator: true },
       { label: 'Cashless Empanelment', href: '/about/cashless-empanelment' },
     ],
@@ -190,6 +191,13 @@ export function Header() {
         </svg>
       );
     }
+    if (label.includes('Award') || label.includes('Recognition')) {
+      return (
+        <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      );
+    }
     if (label.includes('Appointment') || label.includes('Book')) {
       return (
         <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -248,9 +256,15 @@ export function Header() {
             </div>
             <div className="flex items-center justify-center sm:justify-end gap-x-4 w-full sm:w-auto mt-1 sm:mt-0">
                <div className="flex items-center gap-1.5">
+                <a href="https://wa.me/917800001895" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
+                  <Image className="w-4" src="/images/whatsapp_icon.png" alt="whatsapp" width={16} height={16} />
+                </a>
                 <a href="tel:+917800001895" className="hover:text-white/80 transition-colors">7800001895</a>
                </div>
                <div className="flex items-center gap-1.5">
+                <a href="https://wa.me/917800001896" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
+                  <Image className="w-4" src="/images/whatsapp_icon.png" alt="whatsapp" width={16} height={16} />
+                </a>
                 <a href="tel:+917800001896" className="hover:text-white/80 transition-colors">7800001896</a>
                </div>
             </div>

@@ -71,17 +71,25 @@ export default function BlogClientLayout({
   };
 
   return (
-    <div className="bg-[#f0f7ff] min-h-screen pt-24 pb-20">
-      <div className="mx-auto max-w-[1366px] px-6 lg:px-12">
-        {/* Header */}
-        <div className="mb-16">
-          <h1 className="text-4xl md:text-5xl font-black text-[#1a3a5c] mb-6 font-heading tracking-tight leading-tight">
-            Popular Hospital <span className="text-[#E85222]">Health Blog</span>
+    <div className="bg-[#f0f7ff] min-h-screen">
+      {/* ─── Compact Hero Section ─── */}
+      <div className="bg-[#0b1c43] text-white py-8 sm:py-10 lg:py-12 mb-10">
+        <div className="mx-auto max-w-[1366px] px-6 lg:px-12">
+          <nav className="mb-4 text-xs sm:text-sm text-white/60" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span className="mx-2">/</span>
+            <span className="text-white">Blog</span>
+          </nav>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-2 font-heading tracking-tight leading-tight">
+            Popular Hospital <span className="text-[#00B4D8]">Health Blog</span>
           </h1>
-          <p className="text-gray-500 text-lg sm:text-xl leading-relaxed max-w-4xl">
+          <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-4xl">
             Insightful articles, health maintenance tips, and latest medical breakthroughs delivered by our expert medical team.
           </p>
         </div>
+      </div>
+
+      <div className="mx-auto w-full max-w-[1366px] px-6 lg:px-12 pb-20">
 
         {/* Mobile Search Widget - Only shown on mobile at the top */}
         <div className="lg:hidden w-full mb-8">

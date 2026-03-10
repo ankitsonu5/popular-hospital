@@ -6,7 +6,7 @@ const chairmanData = {
   qualifications: "POPULAR GROUP OF HOSPITALS",
   subtitle: "MBBS, MS (GEN. SURGERY)",
   extra: "INSTITUTE OF MEDICAL SCIENCES, BHU, VARANASI",
-  image: "",
+  image: "/images/dr_ak_kaushik.png",
   message: [
     "With ever changing trends in medical care Popular Hospital has also evolved in the last four decades. Popular Hospital today is a comprehensive superspecialty hospital with tertiary care services. We aim to provide excellent nursing care which is the backbone of good health care. We have a team of dedicated and highly skilled doctors who are committed towards their services to mankind. A good service can only be rendered when ample individual attention is given to cater to the health concerns. On this Popular Hospital built on, which was sound, and however tough the going got, we never compromised on this. Popular Hospital is a hospital of experienced and ethical physicians with a clear vision and with their sincere effort it has been possible for us to mountain standards comparable with those of renowned hospitals in the city.",
     "The task before me is a daunting and demanding task to ensure that the accreditation status of all our training programmes is regained and maintained. In the recent past the Hospital has given priority to improving the quality and standard of service In the coming year, the Popular Hospital will focus on two initiatives to improve patient care services: Making the hospital more patient-friendly (through SMS reminders to patients, walk ins for those patients who need to be seen urgently, courtesy and better rapport with patients and their relatives). Maximizing effective use of resources (through higher turnover and decreased waiting time for consultations / procedures / surgery, utilization management, shorter length of hospital stay and day care).",
@@ -67,7 +67,6 @@ export default function ChairmanDeskPage() {
 
           {/* Text Content Area (Flows around the floated element) */}
           <div className="relative pt-2">
-            <div className="w-16 h-1 bg-hospital-teal rounded-full mb-8"></div>
             <div className="mb-8">
               <h3 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading leading-tight">
                 A Vision for Excellence <br className="hidden xl:block" />

@@ -191,28 +191,23 @@ export default async function MediaCoverageDetailPage({
   return (
     <main className="min-h-screen bg-white">
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] py-20 sm:py-24 lg:py-28 overflow-hidden">
-        {/* Subtle Background Image */}
-        <Image
-          src={item.heroImage}
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover opacity-20"
-          priority
-        />
-        <div className="absolute inset-0 bg-[#0b1c43]/70" />
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "radial-gradient(#ffffff 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-          }}
-        />
-        <div className="relative z-10 max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+      <section className="relative bg-[#0b1c43] pt-32 pb-12 sm:pt-36 sm:pb-16 lg:py-16 overflow-hidden">
+        {/* Subtle Background Image Style matching other media pages */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/news-sm-inner.jpg"
+            alt=""
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/90 via-[#0b1c43]/40 to-transparent z-10" />
+        </div>
+        
+        <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-8 lg:px-12">
           {/* Breadcrumb */}
-          <nav className="mb-6 text-sm text-white/60" aria-label="Breadcrumb">
+          <nav className="mb-4 text-[10px] sm:text-xs text-white/60 uppercase tracking-widest" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
@@ -223,35 +218,23 @@ export default async function MediaCoverageDetailPage({
             >
               Media Coverage
             </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white/80">{item.title}</span>
           </nav>
 
-          {/* Source + Date */}
-          <div className="flex flex-wrap items-center gap-3 mb-5">
-            <span className="inline-block px-3.5 py-1 rounded-full bg-[#00B4D8] text-white text-xs font-bold uppercase tracking-wider">
+          {/* Source + Date Row matching News/Blog style */}
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            <span className="inline-block px-2.5 py-1 rounded-full bg-[#00B4D8] text-white text-[10px] font-bold uppercase tracking-wider">
               {item.source}
             </span>
-            <span className="flex items-center gap-1.5 text-white/70 text-sm">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
+            <span className="flex items-center gap-1.5 text-white/70 text-xs">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               {item.date}
             </span>
           </div>
 
-          {/* Title */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl">
+          {/* Title - Compact size */}
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-4xl">
             {item.title}
           </h1>
         </div>

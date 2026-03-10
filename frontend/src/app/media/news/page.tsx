@@ -17,7 +17,7 @@ export default async function NewsPage() {
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] py-20 sm:py-24 lg:py-28 overflow-hidden">
+      <section className="relative bg-[#0b1c43] py-8 sm:py-10 lg:py-12 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -32,18 +32,18 @@ export default async function NewsPage() {
         </div>
         
         <div className="relative z-10 max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <nav className="mb-6 text-sm text-white/60" aria-label="Breadcrumb">
+          <nav className="mb-4 text-xs sm:text-sm text-white/60" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
             <span className="mx-2">/</span>
             <span className="text-white">Latest News & Updates</span>
           </nav>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
             Latest News{" "}
             <span className="text-[#00B4D8]">& Updates</span>
           </h1>
-          <p className="mt-4 text-lg text-white/70 max-w-2xl leading-relaxed">
+          <p className="mt-2 text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed">
             Stay informed with the latest health news, articles, expert tips,
             and announcements from Popular Hospital.
           </p>

@@ -14,39 +14,34 @@ export default function MediaCoveragePage() {
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] py-20 sm:py-24 lg:py-28 overflow-hidden">
-        {/* Subtle Background Image */}
-        <Image
-          src="/about-section-image.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover opacity-15"
-        />
-        <div className="absolute inset-0 bg-[#0b1c43]/75" />
-        {/* Background Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "radial-gradient(#ffffff 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-          }}
-        />
-        <div className="relative z-10 max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <nav className="mb-6 text-sm text-white/60" aria-label="Breadcrumb">
+      <section className="relative bg-[#0b1c43] pt-32 pb-12 sm:pt-36 sm:pb-16 lg:py-16 overflow-hidden">
+        {/* Background Image Style matching News/Blog */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/news-sm-inner.jpg"
+            alt="Media Coverage"
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/90 via-[#0b1c43]/40 to-transparent z-10" />
+        </div>
+        
+        <div className="relative z-10 max-w-[1366px] mx-auto px-6 sm:px-8 lg:px-12">
+          <nav className="mb-4 text-[10px] sm:text-xs text-white/60 uppercase tracking-widest" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
             <span className="mx-2">/</span>
             <span className="text-white">Media Coverage</span>
           </nav>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
             Media{" "}
             <span className="text-[#00B4D8]">Coverage</span>
           </h1>
-          <p className="mt-4 text-lg text-white/70 max-w-2xl leading-relaxed">
-            Explore our presence in newspapers, media, and press — highlighting milestones, achievements, and healthcare excellence at Popular Hospital.
+          <p className="mt-3 text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed">
+            Explore our presence in newspapers, media, and press — highlighting milestones and healthcare excellence at Popular Hospital.
           </p>
         </div>
       </section>
