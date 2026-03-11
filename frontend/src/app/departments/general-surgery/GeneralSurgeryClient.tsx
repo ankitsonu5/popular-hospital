@@ -93,7 +93,7 @@ export default function GeneralSurgeryClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[600px] w-full bg-[#0b1c43] overflow-hidden">
+      <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=2000"
@@ -107,15 +107,11 @@ export default function GeneralSurgeryClient() {
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Department of General Surgery
+              Department of
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-              Advanced Laparoscopy &amp;<br />
-              Minimal Access Surgery
+              Laparoscopy & General Surgery
             </h1>
-            <p className="text-blue-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
-              Pioneering minimally invasive surgical techniques for faster recovery, less pain, and minimal scarring. From routine procedures to complex abdominal surgeries.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"

@@ -75,7 +75,7 @@ export default function OrthopedicsClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[600px] w-full bg-[#0f766e] overflow-hidden">
+      <section className="relative h-[450px] w-full bg-[#0f766e] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=2000"
@@ -95,9 +95,6 @@ export default function OrthopedicsClient() {
               Restoring Mobility, <br />
               <span className="text-teal-300">Rebuilding Lives</span>
             </h1>
-            <p className="text-teal-50/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
-                From joint replacements to sports injuries, our expert orthopedic surgeons use advanced techniques to help you move freely and live pain-free.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"

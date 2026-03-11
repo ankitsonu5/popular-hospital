@@ -253,7 +253,7 @@ export function Header() {
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/second-opinion" className="hover:text-white/80 transition-colors whitespace-nowrap">Second opinion</Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
-              <Link href="/services/preventive-health" className="hover:text-white/80 transition-colors whitespace-nowrap">Health fit cards</Link>
+              <Link href="/services/preventive-health" className="hover:text-white/80 transition-colors whitespace-nowrap">Health Packages</Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/services/wellness" className="hover:text-white/80 transition-colors whitespace-nowrap">Wellness Packages</Link>
             </div>

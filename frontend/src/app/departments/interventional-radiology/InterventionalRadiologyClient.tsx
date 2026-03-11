@@ -130,7 +130,7 @@ export default function InterventionalRadiologyClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[550px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center">
+      <section className="relative h-[450px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop"
@@ -148,11 +148,8 @@ export default function InterventionalRadiologyClient() {
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
                 Interventional <br />
-              <span className="text-blue-400">Radiology</span>
+              <span className="text-blue-400">Radiology</span>  
             </h1>
-            <p className="text-blue-50 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-bold text-justify">
-                Minimally invasive, image-guided procedures for reliable diagnosis and precise treatment.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"

@@ -101,7 +101,7 @@ export default function GynaecologyClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[600px] w-full bg-[#831843] overflow-hidden">
+      <section className="relative h-[450px] w-full bg-[#831843] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=60&w=1400"
@@ -121,9 +121,6 @@ export default function GynaecologyClient() {
               Nurturing Life,<br />
               <span className="text-pink-300">Empowering You</span>
             </h1>
-            <p className="text-pink-50/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
-              From adolescence to motherhood and beyond, provide world-level healthcare services involving unborn children and pregnant women.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
