@@ -268,7 +268,7 @@ export default function PediatricsClient() {
                     </div>
                     <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '480px' }}>
                         <Image
-                        src=""
+                        src="/images/departments-images/neonatology.jpeg"
                         alt="Neonatal Care Center"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -283,7 +283,7 @@ export default function PediatricsClient() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
                         <Image
-                            src=""
+                            src="/images/departments-images/neonatology.jpeg"
                             alt="Pediatrics OPD"
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -316,7 +316,7 @@ export default function PediatricsClient() {
              {/* Left: Image Side */}
              <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
                 <Image
-                    src=""
+                    src="/images/departments-images/neonatology.jpeg"
                     alt="Pediatric Emergency"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -365,7 +365,7 @@ export default function PediatricsClient() {
                 </div>
                 <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '480px' }}>
                     <Image
-                    src=""
+                    src="/images/departments-images/neonatology.jpeg"
                     alt="Child Healthcare"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

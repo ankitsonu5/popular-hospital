@@ -247,7 +247,6 @@ export default function NeurosurgeryClient() {
       <section className="py-20 bg-white overflow-hidden">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
-            
             <div className="order-2 lg:order-1">
               <SectionHeader title="Brain" highlight="Surgery:" />
               <ul className="grid grid-cols-1 gap-x-8 mt-6">
@@ -262,7 +261,7 @@ export default function NeurosurgeryClient() {
                 <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
                   <Image
-                    src="/images/departments-images/brain-surgery.png"
+                    src="/images/departments-images/brain_surgery.jpeg"
                     alt="Brain Surgery Technology"
                     fill
                     className="object-cover"

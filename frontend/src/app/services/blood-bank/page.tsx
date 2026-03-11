@@ -135,7 +135,7 @@ export default function BloodBankPage() {
       <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1536856136534-bb679c52a9aa?auto=format&fit=crop&q=80&w=2000"
+            src="/images/blood_bank.png"
             alt="Blood Bank"
             fill
             className="object-cover opacity-30"

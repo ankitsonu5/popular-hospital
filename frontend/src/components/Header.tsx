@@ -253,7 +253,7 @@ export function Header() {
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/second-opinion" className="hover:text-white/80 transition-colors whitespace-nowrap">Second opinion</Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
-              <Link href="/services/preventive-health" className="hover:text-white/80 transition-colors whitespace-nowrap">Health Packages</Link>
+              <Link href="/services/preventive-health" className="hover:text-white/80 transition-colors whitespace-nowrap">Health fit cards</Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/services/wellness" className="hover:text-white/80 transition-colors whitespace-nowrap">Wellness Packages</Link>
             </div>
@@ -336,7 +336,7 @@ export function Header() {
                                       <Link
                                         key={subItem.label}
                                         href={subItem.href}
-                                        className="text-[14.5px] text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 rounded-lg transition-all"
+                                        className="text-[14.5px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 rounded-lg transition-all"
                                         onClick={() => setActiveDropdown(null)}
                                       >
                                         {subItem.label}
@@ -352,7 +352,7 @@ export function Header() {
                                       <Link
                                         key={subItem.label}
                                         href={subItem.href}
-                                        className="text-[14.5px] text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 rounded-lg transition-all"
+                                        className="text-[14.5px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 rounded-lg transition-all"
                                         onClick={() => setActiveDropdown(null)}
                                       >
                                         {subItem.label}
@@ -370,7 +370,7 @@ export function Header() {
                                   <Link
                                     key={dropdownItem.label}
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-3 p-2.5 text-[15px] font-medium text-gray-700 hover:text-hospital-teal hover:bg-gray-50 rounded-xl transition-all"
+                                    className="flex items-center gap-3 p-2.5 text-[15px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-gray-50 rounded-xl transition-all"
                                     onClick={() => setActiveDropdown(null)}
                                   >
                                     <span className="opacity-70">{getIcon(dropdownItem.label)}</span>
@@ -386,7 +386,7 @@ export function Header() {
                                   {dropdownItem.separator && idx > 0 && <div className="my-1.5 mx-4 border-t border-gray-100" />}
                                   <Link
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-4 px-6 py-3 text-[15px] font-medium text-gray-700 hover:bg-gray-50 hover:text-hospital-teal transition-all"
+                                    className="flex items-center gap-4 px-6 py-3 text-[15px] font-bold text-gray-700 hover:bg-gray-50 hover:text-hospital-teal transition-all"
                                     onClick={() => setActiveDropdown(null)}
                                   >
                                     <span className="opacity-70">{getIcon(dropdownItem.label)}</span>
@@ -481,7 +481,7 @@ export function Header() {
                                <div key={dropdownItem.label} className="mt-1">
                                  <button
                                    type="button"
-                                   className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 hover:text-hospital-teal"
+                                   className="flex items-center justify-between w-full px-4 py-2 text-sm font-bold text-gray-700 hover:text-hospital-teal"
                                    onClick={() => setActiveMobileSubCategory(activeMobileSubCategory === dropdownItem.label ? null : dropdownItem.label)}
                                  >
                                    <span>{dropdownItem.label}</span>
@@ -494,7 +494,7 @@ export function Header() {
                                      <Link
                                        key={subItem.label}
                                        href={subItem.href}
-                                       className="block px-4 py-2 text-sm text-gray-600 hover:text-hospital-teal"
+                                       className="block px-4 py-2 text-sm font-bold text-gray-600 hover:text-hospital-teal"
                                        onClick={() => setMenuOpen(false)}
                                      >
                                        {subItem.label}
@@ -508,7 +508,7 @@ export function Header() {
                             <Link
                               key={dropdownItem.label}
                               href={dropdownItem.href}
-                              className="block px-4 py-2.5 text-sm text-gray-600 hover:text-hospital-teal"
+                              className="block px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-hospital-teal"
                               onClick={() => setMenuOpen(false)}
                             >
                               {dropdownItem.label}
@@ -520,7 +520,7 @@ export function Header() {
                           <Link
                             key={dropdownItem.label}
                             href={dropdownItem.href}
-                            className="block px-4 py-2.5 text-sm text-gray-600 hover:text-hospital-teal"
+                            className="block px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-hospital-teal"
                             onClick={() => setMenuOpen(false)}
                           >
                             {dropdownItem.label}

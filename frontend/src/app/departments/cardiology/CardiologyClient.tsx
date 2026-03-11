@@ -100,7 +100,7 @@ export default function CardiologyPage() {
       <section className="relative h-[600px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=2000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=2000&"
             alt="Cardiac Care"
             fill
             className="object-cover opacity-30 mix-blend-overlay"
@@ -282,7 +282,7 @@ export default function CardiologyPage() {
                 <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
                   <Image
-                    src="/images/departments-images/cardiology-treat.png"
+                    src="/images/departments-images/cardiac_treatment.jpeg"
                     alt="Cardiac Treatment"
                     fill
                     className="object-cover"
@@ -305,7 +305,7 @@ export default function CardiologyPage() {
                 <div className="absolute inset-0 bg-blue-100 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
                   <Image
-                    src="/images/departments-images/cardiology-preventive.png"
+                    src="/images/departments-images/preventive_cardiology.jpeg"
                     alt="Preventive Cardiology"
                     fill
                     className="object-cover"

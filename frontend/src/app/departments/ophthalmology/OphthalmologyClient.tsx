@@ -204,7 +204,7 @@ export default function OphthalmologyClient() {
                   <div className="lg:w-5/12 w-full">
                     <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[500px] border-[12px] border-white group">
                       <Image 
-                        src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800"
+                        src="/images/departments-images/ophthalmology_advance.jpg"
                         alt="Specialised Eye Care"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"

@@ -412,7 +412,7 @@ export default function EmergencyTraumaClient() {
       <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-             src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000"
+             src="/images/emergency.png"
             alt="Emergency & Trauma Care"
             fill
             className="object-cover opacity-30"

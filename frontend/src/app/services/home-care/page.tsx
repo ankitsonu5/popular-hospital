@@ -15,7 +15,7 @@ export default function HomeCarePage() {
       <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=2000"
+            src="/images/home_care_services.png"
             alt="Home Care"
             fill
             className="object-cover opacity-30"
@@ -171,7 +171,7 @@ export default function HomeCarePage() {
                       <div className="absolute inset-0 bg-blue-100 rounded-[5rem] translate-x-3 translate-y-3 -z-10 shadow-lg"></div>
                       <div className="relative w-full h-full overflow-hidden shadow-2xl rounded-[5rem] rounded-tr-none border-8 border-white">
                           <Image
-                             src="https://images.unsplash.com/photo-1583947581924-860bda6a45df?auto=format&fit=crop&q=80&w=800"
+                             src="/images/home_care_nurse_patient.png"
                              alt="Nurse helping elderly patient"
                              fill
                              className="object-cover"

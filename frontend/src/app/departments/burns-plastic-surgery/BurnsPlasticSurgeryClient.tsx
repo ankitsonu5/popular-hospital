@@ -163,7 +163,7 @@ export default function BurnsPlasticSurgeryClient() {
                 </div>
                 <div className="relative h-60 md:h-72 rounded-2xl overflow-hidden shadow-md">
                   <Image
-                    src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=800"
+                    src="/images/departments-images/AdobeStock_222372294.jpeg"
                     alt="Burns Classification"
                     fill
                     className="object-cover"

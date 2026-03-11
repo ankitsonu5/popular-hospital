@@ -303,7 +303,7 @@ export default function CTVSClient() {
                 <div className="absolute inset-0 bg-rose-50 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
                   <Image
-                    src="/images/departments-images/ctvs-procedures.png"
+                    src="/images/departments-images/cardiothoracic_vascular_surgery.jpeg"
                     alt="CTVS Procedures"
                     fill
                     className="object-cover"
@@ -326,7 +326,7 @@ export default function CTVSClient() {
                 <div className="absolute inset-0 bg-blue-100 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
                   <Image
-                    src="/images/departments-images/ctvs-services.png"
+                    src="/images/departments-images/ctvs_technology.jpeg"
                     alt="CTVS Technology"
                     fill
                     className="object-cover"

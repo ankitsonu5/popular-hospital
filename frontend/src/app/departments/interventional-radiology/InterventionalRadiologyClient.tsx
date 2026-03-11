@@ -219,7 +219,7 @@ export default function InterventionalRadiologyClient() {
                     </div>
                     <div className="w-full md:w-1/3 relative aspect-square rounded-2xl overflow-hidden shadow-xl border border-gray-100">
                         <Image 
-                            src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=2664&auto=format&fit=crop"
+                            src="/images/departments-images/radiology.jpeg"
                             alt="Radiologist at work"
                             fill
                             className="object-cover"

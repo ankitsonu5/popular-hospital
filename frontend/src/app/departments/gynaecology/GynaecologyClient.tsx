@@ -185,30 +185,6 @@ export default function GynaecologyClient() {
                   The Dept. of Obs. & Gynae offers a comprehensive range of inpatient and outpatient services span the need of women from their teen years, through pregnancy to menopause and beyond. Routine screening and check-ups including screening for various cancers as well as diagnostic workups for specialized problems are available.
                 </p>
               </div>
-
-               {/* Section: Facilities (General Surgery USP Style - Side Image + List) */}
-               <div className="mb-20">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    <div>
-                        <span className="text-pink-600 font-bold tracking-widest text-xs uppercase mb-3 block">What We Offer</span>
-                        <SectionHeader title="Department" highlight="Facilities" />
-                        <ul className="mt-2">
-                        {facilitiesList.map((item, idx) => (
-                            <ListItem key={idx} text={item} />
-                        ))}
-                        </ul>
-                    </div>
-                    <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '400px' }}>
-                        <Image
-                        src="https://images.unsplash.com/photo-1603513360415-4ba3d5262705?auto=format&fit=crop&q=80&w=800"
-                        alt="Hospital Facility"
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#831843]/40 via-transparent to-transparent" />
-                    </div>
-                </div>
-              </div>
             </div>
 
             {/* ── Right Doctor Card (General Surgery Style) ── */}
@@ -221,7 +197,6 @@ export default function GynaecologyClient() {
                   >
                     SCHEDULE AN APPOINTMENT
                   </Link>
-
                   <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
                     <div className="w-full relative overflow-hidden h-[480px]">
                       <div className="w-full h-full p-6 pt-12 flex flex-col items-center">
@@ -257,6 +232,36 @@ export default function GynaecologyClient() {
         </div>
       </section>
 
+      {/* ═══════ FACILITIES SECTION (Broad Full Width Layout) ═══════ */}
+      <section className="py-24 bg-white border-b border-gray-50">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                {/* Text Section (Left) - Increased space for readability */}
+                <div className="lg:col-span-5 order-2 lg:order-1">
+                    <span className="text-pink-600 font-bold tracking-widest text-xs uppercase mb-3 block">What We Offer</span>
+                    <SectionHeader title="Department" highlight="Facilities" />
+                    <ul className="mt-4 space-y-3">
+                    {facilitiesList.map((item, idx) => (
+                        <ListItem key={idx} text={item} />
+                    ))}
+                    </ul>
+                </div>
+                {/* Image Section (Right) - Adjusted width for balance */}
+                <div className="lg:col-span-7 order-1 lg:order-2 relative rounded-3xl overflow-hidden shadow-2xl group bg-pink-50/10" style={{ minHeight: '600px' }}>
+                    <Image
+                    src="/images/departments-images/obstetrics_and_gynaecology.jpeg"
+                    alt="Hospital Facility"
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#831843]/30 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-6 border border-white/30 rounded-[2.5rem] pointer-events-none" />
+                </div>
+           </div>
+        </div>
+      </section>
+
+
       {/* ═══════ OBSTETRICS SECTION (General Surgery USP Style - Side List + Image) ═══════ */}
       <section className="py-20 bg-gray-50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
@@ -265,7 +270,7 @@ export default function GynaecologyClient() {
              {/* Left: Image (General Surgery Style) */}
              <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
                 <Image
-                    src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=800"
+                    src="/images/departments-images/obstetrics_care.jpeg"
                     alt="Obstetrics Care"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

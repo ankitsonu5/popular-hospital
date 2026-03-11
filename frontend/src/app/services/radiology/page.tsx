@@ -15,7 +15,7 @@ export default function RadiologyPage() {
       <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1559403162-4309ba2c1404?auto=format&fit=crop&q=80&w=2000"
+            src="/images/radiological_services.png"
             alt="Radiological Services"
             fill
             className="object-cover opacity-30"

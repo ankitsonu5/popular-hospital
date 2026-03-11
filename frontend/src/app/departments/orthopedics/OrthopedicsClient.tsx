@@ -228,7 +228,7 @@ export default function OrthopedicsClient() {
                       </div>
                       <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '480px' }}>
                           <Image
-                            src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800"
+                            src="/images/departments-images/orthopedics.jpg"
                             alt="Orthopedic Care Center"
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -243,7 +243,7 @@ export default function OrthopedicsClient() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
                         <Image
-                          src="https://images.unsplash.com/photo-1579389083395-4507e9f4c171?auto=format&fit=crop&q=80&w=800"
+                          src="/images/departments-images/advance_orthopedics.jpg"
                           alt="Advanced Orthopedics"
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-105"

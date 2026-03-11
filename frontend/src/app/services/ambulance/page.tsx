@@ -95,7 +95,7 @@ export default function AmbulancePage() {
       <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1587556930799-8daca6a1bb5d?auto=format&fit=crop&q=80&w=2000"
+            src="/images/ambulance_banner.png"
             alt="Ambulance Services"
             fill
             className="object-cover opacity-30"

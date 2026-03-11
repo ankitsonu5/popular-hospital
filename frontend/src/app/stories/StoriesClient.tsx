@@ -9,58 +9,51 @@ const stories = [
   {
     id: 1,
     title: "Success Story: Cancer Care Journey",
-    name: "Mr Fazil Hosany",
+    name: "Patient Story 1",
     thumbnail: "https://images.unsplash.com/photo-1544257662-8e100808cf51?q=80&w=800&auto=format&fit=crop",
     videoUrl: "/videos/testimonial-one.mp4",
-    category: "Cancer Care",
   },
   {
     id: 2,
     title: "A New Life: Recovery from Critical Condition",
-    name: "Baby Bhavika",
+    name: "Patient Story 2",
     thumbnail: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
     videoUrl: "/videos/testimonial-two.mp4",
-    category: "Pediatrics",
   },
   {
     id: 3,
     title: "Advanced Medical Care Experience",
-    name: "Patient Story 1",
+    name: "Patient Story 3",
     thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
     videoUrl: "/videos/popular_hospital_happy_pateint_one.mp4",
-    category: "General Medicine",
   },
   {
     id: 4,
     title: "Excellence in Specialised Treatment",
-    name: "Patient Story 2",
+    name: "Patient Story 4",
     thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
     videoUrl: "/videos/popular_hospital_happy_pateint_two.mp4",
-    category: "Specialized Care",
   },
   {
     id: 5,
     title: "Compassionate Care & Fast Recovery",
-    name: "Patient Story 3",
+    name: "Patient Story 5",
     thumbnail: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
     videoUrl: "/videos/popular_hospital_happy_pateint_three.mp4",
-    category: "Patient Care",
   },
   {
     id: 6,
     title: "Advanced Technology for Better Health",
-    name: "Patient Story 4",
+    name: "Patient Story 6",
     thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
     videoUrl: "/videos/popular_hospital_happy_pateint_four.mp4",
-    category: "Health Tech",
   },
   {
     id: 7,
     title: "Transforming Lives Through Surgery",
-    name: "Patient Story 5",
+    name: "Patient Story 7",
     thumbnail: "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?q=80&w=800&auto=format&fit=crop",
     videoUrl: "/videos/popular_hospital_happy_pateint_five.mp4",
-    category: "Surgery",
   }
 ];
 
@@ -110,18 +103,10 @@ export default function StoriesPage() {
                     </svg>
                   </div>
                 </div>
-
-                <div className="absolute top-4 left-4">
-                    <span className="bg-[#0b1c43]/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full font-medium">
-                        {story.category}
-                    </span>
-                </div>
               </div>
 
               <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-gray-900 mb-2 font-heading leading-tight group-hover:text-[#E85222] transition-colors">
-                  {story.title}
-                </h3>
+
                 <p className="text-gray-500 text-sm font-medium mt-auto">
                   {story.name}
                 </p>
