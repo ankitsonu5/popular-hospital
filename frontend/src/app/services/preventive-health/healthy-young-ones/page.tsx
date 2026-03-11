@@ -27,10 +27,10 @@ export default function HealthyYoungOnesPage() {
             src="/images/health_packages.png"
             alt="Healthy Young Ones"
             fill
-            className="object-cover opacity-70"
+            className="object-cover opacity-90"
             priority
           />
-          <div className="absolute inset-0 bg-slate-900/30" />
+          <div className="absolute inset-0 bg-slate-900/15" />
         </div>
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">

@@ -138,10 +138,10 @@ export default function BloodBankPage() {
             src="/images/blood_bank.png"
             alt="Blood Bank"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-slate-900/60" />
+          <div className="absolute inset-0 bg-slate-900/30" />
         </div>
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">

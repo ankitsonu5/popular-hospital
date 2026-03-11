@@ -151,10 +151,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             src={service.image}
             alt={service.title}
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-slate-900/60" />
+          <div className="absolute inset-0 bg-slate-900/30" />
         </div>
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
