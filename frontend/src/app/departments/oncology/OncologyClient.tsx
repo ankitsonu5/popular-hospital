@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-/* ─── Data (exactly as in original) ─── */
+/* ─── Data ─── */
 
 const surgicalOncologyServices = [
   'Head and neck',
@@ -110,112 +110,52 @@ export default function OncologyClient() {
         </div>
       </section>
 
-      {/* ═══════ CONTENT + DOCTOR SIDEBAR ═══════ */}
+      {/* ═══════ INTRO + DOCTOR SECTION ═══════ */}
       <section className="py-16 bg-gray-50/50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
-            {/* ── Left Main Content ── */}
+            
+            {/* Left Content */}
             <div className="lg:col-span-8">
               <SectionHeader title="Department of" highlight="Oncology" />
-
-              <div className="text-gray-700 space-y-4 mb-10 leading-relaxed text-base">
+              <div className="text-gray-700 space-y-6 mb-10 leading-relaxed text-[1.05rem] text-justify font-medium">
                 <p>Oncology: Clinical oncology consists of three primary disciplines:</p>
-
-                {/* Medical Oncology */}
-                <div>
-                  <h3 className="text-lg font-bold text-blue-600 mb-1">Medical Oncology</h3>
-                  <p>Medical Oncology consists of treatment of cancer with medicine including chemotherapy. We offer diagnosis and treatment for solid tumours haematological malignancies found in adult and children.</p>
-                </div>
-
-                {/* Surgical Oncology */}
-                <div>
-                  <h3 className="text-lg font-bold text-blue-600 mb-1">Surgical Oncology</h3>
-                  <p>The surgical aspect of cancer including biopsy, staging and surgical resection of tumours. Surgical Oncology Right from reconstructive/advanced surgery to minimal access surgery, our highly trained surgical oncologists skilfully perform complex tumour removals.</p>
-                </div>
-
-                {/* Radiation Oncology */}
-                <div>
-                  <h3 className="text-lg font-bold text-blue-600 mb-1">Radiation Oncology</h3>
-                  <p>Radiation Oncology is an advanced branch of modern cancer treatment, which is painless, incision-less and preventive.</p>
-                </div>
-              </div>
-
-              {/* Surgical Oncology Services + Image */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 items-center">
-                <div>
-                  <p className="text-sm text-gray-500 font-semibold mb-1">Services offered:</p>
-                  <SectionHeader title="Surgical" highlight="Oncology" />
-                  <ul className="mt-2">
-                    {surgicalOncologyServices.map((item, idx) => (
-                      <ListItem key={idx} text={item} />
-                    ))}
-                  </ul>
-                </div>
-                <div className="relative h-56 md:h-64 rounded-2xl overflow-hidden shadow-md">
-                  <Image
-                    src="/images/departments-images/oncology.jpeg"
-                    alt="Surgical Oncology"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Diagnostic Oncology + Image */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div className="relative h-56 md:h-64 rounded-2xl overflow-hidden shadow-md order-2 md:order-1">
-                  <Image
-                    src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=800"
-                    alt="Diagnostic Oncology"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="order-1 md:order-2">
-                  <SectionHeader title="Diagnostic" highlight="Oncology" />
-                  <ul className="mt-2">
-                    {diagnosticOncologyServices.map((item, idx) => (
-                      <ListItem key={idx} text={item} />
-                    ))}
-                  </ul>
+                <div className="space-y-4">
+                  <div className="bg-white p-6 rounded-xl border-l-4 border-blue-600 shadow-sm transition-all hover:shadow-md">
+                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading">Medical Oncology</h3>
+                    <p className="text-gray-600">Medical Oncology consists of treatment of cancer with medicine including chemotherapy. We offer diagnosis and treatment for solid tumours haematological malignancies found in adult and children.</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl border-l-4 border-blue-600 shadow-sm transition-all hover:shadow-md">
+                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading">Surgical Oncology</h3>
+                    <p className="text-gray-600">The surgical aspect of cancer including biopsy, staging and surgical resection of tumours. Right from reconstructive/advanced surgery to minimal access surgery, our highly trained surgical oncologists skilfully perform complex tumour removals.</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl border-l-4 border-blue-600 shadow-sm transition-all hover:shadow-md">
+                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading">Radiation Oncology</h3>
+                    <p className="text-gray-600">Radiation Oncology is an advanced branch of modern cancer treatment, which is painless, incision-less and preventive.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* ── Right Doctor Card ── */}
+            {/* Right Doctor Card (Sticky) */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
                 <div className="relative pt-6">
-                  <Link
-                    href="/doctors"
+                  <Link 
+                    href="/doctors" 
                     className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
                   >
                     SCHEDULE AN APPOINTMENT
                   </Link>
-
                   <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
                     <div className="w-full relative overflow-hidden">
-                      <div
-                        className="flex transition-transform duration-500 ease-in-out"
-                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                      >
+                      <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
                         {doctors.map((doc, idx) => (
                           <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
                             <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                              <Image
-                                src={doc.image}
-                                alt={doc.name}
-                                fill
-                                className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                              />
-                              <Link
-                                href={`/doctors/${doc.slug}`}
-                                className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                              >
-                                <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors">
-                                  View More Info
-                                </span>
+                              <Image src={doc.image} alt={doc.name} fill className="object-cover transition-transform duration-500 group-hover/img:scale-105" />
+                              <Link href={`/doctors/${doc.slug}`} className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                                <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors">View More Info</span>
                               </Link>
                             </div>
                             <div className="text-center">
@@ -227,38 +167,6 @@ export default function OncologyClient() {
                         ))}
                       </div>
                     </div>
-
-                    {doctors.length > 1 && (
-                      <>
-                        <button
-                          onClick={() => setCurrentSlide(p => (p === 0 ? doctors.length - 1 : p - 1))}
-                          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all hover:scale-110"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => setCurrentSlide(p => (p === doctors.length - 1 ? 0 : p + 1))}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all hover:scale-110"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                        <div className="flex gap-3 mb-8">
-                          {doctors.map((_, idx) => (
-                            <button
-                              key={idx}
-                              onClick={() => setCurrentSlide(idx)}
-                              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border ${
-                                currentSlide === idx ? 'bg-[#3b82f6] border-[#3b82f6] scale-125' : 'bg-transparent border-gray-400'
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
                     <div className="h-8" />
                   </div>
                 </div>
@@ -269,8 +177,65 @@ export default function OncologyClient() {
         </div>
       </section>
 
+      {/* ═══════ FULL-WIDTH SERVICES SECTION ═══════ */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+          <div className="space-y-32">
+            
+            {/* Surgical Oncology Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
+              <div className="order-2 lg:order-1">
+                <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">Specialized Procedures</span>
+                <SectionHeader title="Surgical" highlight="Oncology" />
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 mt-8">
+                  {surgicalOncologyServices.map((item, idx) => (
+                    <ListItem key={idx} text={item} />
+                  ))}
+                </ul>
+              </div>
+              <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
+                <div className="relative w-full aspect-video max-w-2xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50 hover:border-blue-50 transition-colors duration-500 group">
+                  <Image
+                    src="/images/departments-images/cancer_cells_visualization.png"
+                    alt="Surgical Oncology Visualization"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
+              </div>
+            </div>
+
+            {/* Diagnostic Oncology Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
+              <div className="mb-12 lg:mb-0 relative">
+                <div className="relative w-full aspect-video max-w-2xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50 hover:border-blue-50 transition-colors duration-500 group">
+                  <Image
+                    src="/images/departments-images/oncology_diagnostics_realistic.png"
+                    alt="Diagnostic Oncology Technology"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
+              </div>
+              <div>
+                <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">Advanced Diagnostics</span>
+                <SectionHeader title="Diagnostic" highlight="Oncology" />
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 mt-8">
+                  {diagnosticOncologyServices.map((item, idx) => (
+                    <ListItem key={idx} text={item} />
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="bg-[#0b1c43] rounded-2xl md:rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
@@ -279,7 +244,6 @@ export default function OncologyClient() {
               </svg>
             </div>
             <div className="absolute right-0 top-0 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
-
             <span className="inline-block bg-blue-500/20 text-blue-200 text-sm font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-400/20">
               Hope Starts Here
             </span>

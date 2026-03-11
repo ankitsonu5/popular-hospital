@@ -291,8 +291,8 @@ export default function GeneralSurgeryClient() {
             {/* Left: Image */}
             <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '440px' }}>
               <Image
-                src="https://images.unsplash.com/photo-1551884170-09fb70a3a2ed?auto=format&fit=crop&q=80&w=900"
-                alt="Procedures"
+                src="/images/departments-images/general_surgery_procedures_realistic.png"
+                alt="General Surgery Procedures"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />

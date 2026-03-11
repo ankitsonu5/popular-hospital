@@ -284,7 +284,7 @@ export default function NeurosurgeryClient() {
                 <div className="absolute inset-0 bg-blue-100 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white animate-soft-bounce">
                   <Image
-                    src="/images/departments-images/spinal-surgery.png"
+                    src="/images/departments-images/spinal_surgery_realistic.png"
                     alt="Spinal Surgery Model"
                     fill
                     className="object-cover"

@@ -67,7 +67,7 @@ export default function HomeCarePage() {
                           <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] font-heading mb-4 leading-tight">Doctor Consultation</h2>
                           <div className="flex items-center gap-2 mb-6">
                               <div className="w-2 h-2 rounded-full bg-blue-600"></div>
-                              <div className="w-12 h-[2px] bg-blue-600"></div>
+                              <div className="w-12 h-[2px] bg-blue-600"></div>  
                           </div>
                           <ul className="space-y-3">
                               {['Doctor visit at home on Appointment', 'Doctor Video Call Consultation', 'Dietitian services on Video Call'].map((item, id) => (

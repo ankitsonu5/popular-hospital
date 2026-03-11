@@ -283,7 +283,7 @@ export default function PediatricsClient() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
                         <Image
-                            src="/images/departments-images/neonatology.jpeg"
+                            src="/images/departments-images/pediatric_opd_realistic.png"
                             alt="Pediatrics OPD"
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -316,8 +316,8 @@ export default function PediatricsClient() {
              {/* Left: Image Side */}
              <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
                 <Image
-                    src="/images/departments-images/neonatology.jpeg"
-                    alt="Pediatric Emergency"
+                    src="/images/departments-images/pediatric_emergency_icu_realistic.png"
+                    alt="Pediatric Emergency & ICU"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -365,8 +365,8 @@ export default function PediatricsClient() {
                 </div>
                 <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '480px' }}>
                     <Image
-                    src="/images/departments-images/neonatology.jpeg"
-                    alt="Child Healthcare"
+                    src="/images/departments-images/pediatric_surgery_wellness_realistic.png"
+                    alt="Pediatric Surgery & Adolescent Health"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
