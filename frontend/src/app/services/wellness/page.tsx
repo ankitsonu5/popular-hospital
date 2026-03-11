@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import { CreditCard, Clock, CheckCircle } from "lucide-react";
+
 
 export const metadata: Metadata = {
   title: "Health Fit Card & Wellness | Popular Hospital",
@@ -69,26 +71,53 @@ const WellnessPage = () => {
                 </p>
               </div>
 
-              {/* Three Icons Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
-                {[
-                  { title: "Cashless sudden service", icon: "🏥" },
-                  { title: "Easy access in cash", icon: "💰" },
-                  { title: "On time-Anytime Services", icon: "🕒" },
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center group hover:border-hospital-teal transition-all"
-                  >
-                    <div className="text-4xl mb-3 transform group-hover:scale-110 transition-transform">
-                      {item.icon}
+              {/* Health-fit Card benefits */}
+              <div className="mt-16">
+                <h3 className="text-xl md:text-2xl font-black text-[#0b1c43] mb-8 font-heading text-center sm:text-left">
+                  Health-fit Card benefits
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  {[
+                    { 
+                      title: "Cash-to-cashless services", 
+                      icon: <CreditCard className="w-8 h-8 text-slate-600" strokeWidth={1.5} /> 
+                    },
+                    { 
+                      title: "24X7 available in-need", 
+                      icon: (
+                        <div className="relative flex items-center justify-center">
+                          <span className="text-[12px] font-black text-slate-600">24/7</span>
+                          <svg className="absolute w-12 h-12 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                            <circle cx="12" cy="12" r="11" />
+                          </svg>
+                        </div>
+                      )
+                    },
+                    { 
+                      title: "On-time, Anytime Services", 
+                      icon: (
+                        <div className="relative flex items-center justify-center">
+                          <Clock className="w-8 h-8 text-slate-600" strokeWidth={1.5} />
+                          <CheckCircle className="absolute -bottom-1 -right-1 w-4 h-4 text-[#0b1c43] fill-white" strokeWidth={2.5} />
+                        </div>
+                      ) 
+                    },
+                  ].map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-white p-8 rounded-[1.5rem] shadow-sm border border-slate-100 flex flex-col items-center text-center group hover:border-[#0b1c43] hover:shadow-md transition-all duration-300"
+                    >
+                      <div className="w-16 h-16 rounded-full border border-slate-100 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                        {item.icon}
+                      </div>
+                      <span className="text-[15px] font-bold text-[#0b1c43] leading-snug">
+                        {item.title}
+                      </span>
                     </div>
-                    <span className="text-sm font-bold text-[#0b1c43]">
-                      {item.title}
-                    </span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -99,7 +128,7 @@ const WellnessPage = () => {
         <div className="container mx-auto max-w-[1366px]">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase">
-              Our Exclusive Card Tiers
+              Health Cards
             </h2>
             <div className="w-24 h-1.5 bg-[#E85222] mx-auto rounded-full"></div>
           </div>
@@ -120,7 +149,7 @@ const WellnessPage = () => {
                     <span className="text-3xl font-black text-[#0b1c43]">
                       ₹799
                     </span>
-                    <span className="text-sm text-gray-400 line-through">
+                    <span className="text-xl text-gray-400 line-through">
                       ₹1299
                     </span>
                   </div>
@@ -160,7 +189,7 @@ const WellnessPage = () => {
                     <span className="text-3xl font-black text-[#0b1c43]">
                       ₹1249
                     </span>
-                    <span className="text-sm text-gray-400 line-through">
+                    <span className="text-xl text-gray-400 line-through">
                       ₹2598
                     </span>
                   </div>
@@ -199,7 +228,7 @@ const WellnessPage = () => {
                   </span>
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl font-black text-white">₹999</span>
-                    <span className="text-sm text-gray-400 line-through">
+                    <span className="text-xl text-gray-400 line-through">
                       ₹1899
                     </span>
                   </div>
@@ -216,7 +245,7 @@ const WellnessPage = () => {
                   <div className="w-6 h-6 rounded-full bg-hospital-teal/20 text-hospital-teal flex items-center justify-center text-xs">
                     ✓
                   </div>
-                  Concierge Support
+                  Dedicated Priority Desk
                 </li>
               </ul>
               <button className="w-full py-4 bg-hospital-teal text-white rounded-2xl font-black hover:bg-white hover:text-hospital-teal transition-all shadow-lg shadow-teal-900/40 uppercase tracking-widest text-xs">
@@ -240,7 +269,7 @@ const WellnessPage = () => {
                     <span className="text-3xl font-black text-white">
                       ₹1799
                     </span>
-                    <span className="text-sm text-gray-400 line-through">
+                    <span className="text-xl text-gray-400 line-through">
                       ₹3798
                     </span>
                   </div>
@@ -257,7 +286,7 @@ const WellnessPage = () => {
                   <div className="w-6 h-6 rounded-full bg-hospital-teal/20 text-hospital-teal flex items-center justify-center text-xs">
                     ✓
                   </div>
-                  Full Priority Access
+                  Elite Priority Access
                 </li>
               </ul>
               <button className="w-full py-4 bg-hospital-teal text-white rounded-2xl font-black hover:bg-white hover:text-hospital-teal transition-all shadow-lg shadow-teal-900/40 uppercase tracking-widest text-xs">
@@ -278,31 +307,30 @@ const WellnessPage = () => {
         <div className="container mx-auto max-w-[1366px] relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-white mb-4 font-heading tracking-tight uppercase">
-              Benefit & Features
+              Card Benefits
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto font-medium">
-              Enjoy exclusive perks and savings with your Health Fit Card across
-              all Popular Hospital services.
-            </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
-              { title: "15% Discount on OPD", icon: "🎟️" },
-              { title: "Coverage of 1 Year", icon: "📅" },
-              { title: "Free Basic Checkup", icon: "🩺" },
-              { title: "24x7 Professional Care", icon: "👨‍⚕️" },
-              { title: "Ambulance Support", icon: "🚑" },
-              { title: "Diagnostic Savings", icon: "🔬" },
-              { title: "Special Hospital Rates", icon: "💎" },
-              { title: "Women's Health Focus", icon: "👩" },
+              { title: "100% Discount on OPD", icon: "/images/wellness_packages/discount-icon.png" },
+              { title: "Priority Access in case of Trauma or Emergency", icon: "/images/wellness_packages/emergency-case-icon.png" },
+              { title: "20% Discount in-house Pathology", icon: "/images/wellness_packages/house-pathology-icon.png" },
+              { title: "20% Discount on in-house Radiological Test", icon: "/images/wellness_packages/radiological-test-icon.png" },
+              { title: "10% Discount on in-house Medicine", icon: "/images/wellness_packages/medicine-discount-icon.png" },
+              { title: "Free Home Delivery of Medicine (on Min Order Value 799)", icon: "/images/wellness_packages/free-delivery-medicine-icon.png" },
+              { title: "Free Video Consultation", icon: "/images/wellness_packages/video-consultation-icon.png" },
+              { title: "20% Discount on hospital charges in case of admission (IPD).", icon: "/images/wellness_packages/admission-discount-icon.png" },
+              { title: "Free Pickup Ambulance Services within 10km of radius in Varanasi city", icon: "/images/wellness_packages/ambulance-services-icon.png" },
+              { title: "Free Eye sight checkup twice in a year (once in 6 month)", icon: "/images/wellness_packages/eye-checkup-icon.png" },
+              { title: "Free Dental Checkup Twice in a year (once in 6 month)", icon: "/images/wellness_packages/dental-checkup-icon.png" },
             ].map((benefit, idx) => (
               <div
                 key={idx}
                 className="bg-white/10 backdrop-blur-md p-5 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border border-white/10 hover:bg-white hover:text-[#0b1c43] transition-all duration-500 group flex flex-col items-center text-center"
               >
-                <div className="text-3xl md:text-5xl mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500">
-                  {benefit.icon}
+                <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 flex-shrink-0">
+                  <Image src={benefit.icon} alt={benefit.title} fill className="object-contain drop-shadow-lg" />
                 </div>
                 <h4 className="text-sm md:text-lg font-black leading-tight group-hover:text-[#0b1c43] text-white transition-colors">
                   {benefit.title}
@@ -327,40 +355,120 @@ const WellnessPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 test: "Random Blood Sugar",
-                desc: "Diabetes Screening",
-                icon: "🩸",
+                icon: "/images/wellness_packages/sugar-test-icon.png",
               },
               {
                 test: "Total Cholesterol",
-                desc: "Heart Health Check",
-                icon: "💓",
+                icon: "/images/wellness_packages/cholesterol-icon.png",
               },
-              { test: "ECG", desc: "Heart Activity Tracking", icon: "📈" },
+              { 
+                test: "ECG", 
+                icon: "/images/wellness_packages/ecg-icon.png", 
+              },
               {
                 test: "Complete Blood Count",
-                desc: "Overall Health Analysis",
-                icon: "🧪",
+                icon: "/images/wellness_packages/blood-count-icon.png",
+              },
+              {
+                test: "Free Vaccination administration (Vaccine excluded)",
+                icon: "/images/wellness_packages/free-vaccination-icon.png",
+              },
+              {
+                test: "Growth Development Checkup of Kids (1 Month to 18 Years) and advise - once in a year.",
+                icon: "/images/wellness_packages/growth-checkup-icon.png",
               },
             ].map((test, idx) => (
               <div
                 key={idx}
-                className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-500 text-center border border-slate-100 group"
+                className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-500 text-center border border-slate-100 group flex flex-col items-center justify-center"
               >
-                <div className="text-4xl mb-6 group-hover:animate-bounce">
-                  {test.icon}
+                <div className="relative w-24 h-24 mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Image src={test.icon} alt={test.test} fill className="object-contain drop-shadow-sm" />
                 </div>
-                <h3 className="text-xl font-black text-[#0b1c43] mb-2 font-heading">
+                <h3 className="text-lg md:text-xl font-black text-[#0b1c43] font-heading leading-snug">
                   {test.test}
                 </h3>
-                <p className="text-gray-500 font-bold text-sm uppercase tracking-wide">
-                  {test.desc}
-                </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Women's Health Theme Section (Imported from separate page) */}
+      <section className="py-24 px-6 bg-white relative overflow-hidden">
+        <div className="container mx-auto max-w-[1366px] relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase">Women's Health <span className="text-pink-500 underline decoration-pink-200 underline-offset-8">Care</span></h2>
+            <p className="text-gray-500 text-lg max-w-3xl mx-auto font-medium">With the Health Fit Card, we ensure that every woman receives the priority attention and medical support she deserves.</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* For Pregnant Women */}
+            <div className="group h-full">
+                <div className="bg-white rounded-[4rem] p-12 shadow-[0_30px_60px_-15px_rgba(236,72,153,0.1)] border border-pink-50 hover:border-pink-300 transition-all duration-700 relative overflow-hidden h-full">
+                    <div className="absolute -top-10 -right-10 w-64 h-64 bg-pink-50 rounded-full group-hover:scale-110 transition-transform duration-700"></div>
+                    <div className="relative z-10">
+                        <div className="w-24 h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-[2.5rem] flex items-center justify-center text-white text-5xl mb-10 shadow-2xl shadow-pink-200 transform group-hover:rotate-6 transition-transform">🤰</div>
+                        <h3 className="text-3xl font-black text-[#0b1c43] mb-8 font-heading italic">For Pregnant Women</h3>
+                        <div className="space-y-8">
+                            <div className="flex items-start gap-6 bg-pink-50/30 p-6 rounded-3xl border border-pink-100/50">
+                                <span className="w-10 h-10 rounded-2xl bg-pink-500 text-white flex items-center justify-center flex-shrink-0 font-black shadow-lg">01</span>
+                                <p className="text-gray-700 font-bold text-lg leading-relaxed">Free first Antenatal Checkup for pregnant women during nine month of pregnancy</p>
+                            </div>
+                            <div className="bg-white p-8 rounded-[3rem] border border-pink-100 shadow-inner">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <span className="w-10 h-10 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center flex-shrink-0 font-black">02</span>
+                                    <h4 className="text-xl font-black text-[#0b1c43] leading-snug">Free Blood test of pregnant women once during pregnancy</h4>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {['(a) Blood Group,', '(b) TSH,', '(c) Random Blood Sugar'].map((item) => (
+                                        <div key={item} className="flex items-center gap-3 text-gray-600 font-bold bg-slate-50 px-5 py-4 rounded-2xl border border-slate-100 group-hover:border-pink-200 transition-colors">
+                                            <div className="w-2 h-2 bg-pink-500 rounded-full flex-shrink-0"></div>
+                                            {item}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* For Non-Pregnant Women */}
+            <div className="group h-full">
+                <div className="bg-white rounded-[4rem] p-12 shadow-[0_30px_60px_-15px_rgba(20,184,166,0.1)] border border-teal-50 hover:border-hospital-teal/30 transition-all duration-700 relative overflow-hidden h-full">
+                    <div className="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full group-hover:scale-110 transition-transform duration-700"></div>
+                    <div className="relative z-10">
+                        <div className="w-24 h-24 bg-gradient-to-br from-hospital-teal to-blue-500 rounded-[2.5rem] flex items-center justify-center text-white text-5xl mb-10 shadow-2xl shadow-teal-100 transform group-hover:-rotate-6 transition-transform">👩‍💼</div>
+                        <h3 className="text-3xl font-black text-[#0b1c43] mb-2 font-heading italic">For Non-Pregnant Women</h3>
+                        <p className="text-hospital-teal text-sm font-black uppercase tracking-[0.2em] mb-10 opacity-80">(Recommended for 35+ Years of Age)</p>
+                        <div className="space-y-4">
+                            {[
+                                { title: "Pap Smear once in a Year", icon: "🔬" },
+                                { title: "Colposcopy once in year", icon: "🩺" },
+                                { title: "Urine RM Analysis", icon: "🧪" },
+                                { title: "Random Blood Sugar", icon: "🩸" }
+                            ].map((item, idx) => (
+                                <div key={idx} className="flex items-center justify-between p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:bg-teal-50/50 hover:border-teal-100 transition-all group/item">
+                                    <div className="flex items-center gap-5">
+                                        <span className="text-2xl">{item.icon}</span>
+                                        <span className="text-lg font-bold text-gray-700">{item.title}</span>
+                                    </div>
+                                    <div className="w-8 h-8 rounded-full bg-hospital-teal text-white flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
           </div>
         </div>
       </section>
@@ -370,70 +478,65 @@ const WellnessPage = () => {
         <div className="container mx-auto max-w-[1366px]">
           <div className="text-center mb-16 px-4">
             <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase">
-              Why Health Fit Card?
+              Why Health Fit Card
             </h2>
             <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto font-medium">
-              See the difference in your healthcare journey with and without the
-              membership.
+              Health Insurance Vs Health-fit Card
             </p>
           </div>
 
           <div className="w-full overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 custom-scrollbar">
-            <div className="min-w-[600px] md:min-w-0 md:w-full rounded-[1.5rem] md:rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden bg-white">
-              <table className="w-full table-auto">
+            <div className="min-w-[500px] md:min-w-0 md:w-full rounded-[1.5rem] md:rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden bg-white">
+              <table className="w-full table-fixed">
                 <thead className="bg-[#0b1c43] text-white">
                   <tr>
-                    <th className="px-4 md:px-8 py-4 md:py-6 text-left text-[13px] md:text-xl font-black font-heading leading-tight">
-                      Healthcare Factor
+                    <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading leading-tight w-1/2">
+                      Health Insurance
                     </th>
-                    <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading border-l border-white/10">
-                      Without Card
-                    </th>
-                    <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading bg-[#E85222] border-l border-white/10">
-                      With Health Fit Card
+                    <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading bg-[#E85222] border-l border-white/10 w-1/2">
+                      Health-fit Card
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {[
                     {
-                      factor: "Cost of Services",
-                      without: "High / Standard Rates",
-                      with: "Massive Discounts",
+                      insurance: "Restriction on Existing Disease",
+                      card: "No Restriction",
+                      icon: "✔️"
                     },
                     {
-                      factor: "Doctor Consultation",
-                      without: "Wait Times Apply",
-                      with: "Priority Access",
+                      insurance: "Limited Disease covers",
+                      card: "All disease covers",
+                      icon: "✔️"
                     },
                     {
-                      factor: "Diagnostic Tests",
-                      without: "Full Charges",
-                      with: "Exclusive Member Rates",
+                      insurance: "Pre medical Checkup to avail insurance",
+                      card: "No Medical Checkup required",
+                      icon: "✔️"
                     },
                     {
-                      factor: "Family Tracking",
-                      without: "Complex Paperwork",
-                      with: "Digital Management",
+                      insurance: "Age Limit",
+                      card: "No Age Limit",
+                      icon: "✔️"
                     },
                     {
-                      factor: "Emergency Support",
-                      without: "Standard Protocol",
-                      with: "24/7 Dedicated Helpline",
+                      insurance: "Locking Period",
+                      card: "No Locking Period",
+                      icon: "✔️"
                     },
                   ].map((row, idx) => (
                     <tr
                       key={idx}
-                      className="hover:bg-slate-50 transition-colors text-[12px] md:text-base"
+                      className="hover:bg-slate-50 transition-colors text-[12px] md:text-base text-center"
                     >
-                      <td className="px-4 md:px-8 py-3 md:py-6 font-bold text-gray-700 leading-tight">
-                        {row.factor}
+                      <td className="px-4 md:px-8 py-4 md:py-6 font-bold text-gray-700 leading-tight">
+                        {row.insurance}
                       </td>
-                      <td className="px-4 md:px-8 py-3 md:py-6 text-center text-gray-500 font-medium border-l border-slate-50 leading-tight">
-                        {row.without}
-                      </td>
-                      <td className="px-4 md:px-8 py-3 md:py-6 text-center text-[#0b1c43] font-black bg-orange-50/30 border-l border-orange-100 leading-tight">
-                        {row.with}
+                      <td className="px-4 md:px-8 py-4 md:py-6 text-[#0b1c43] font-black bg-orange-50/30 border-l border-orange-100 leading-tight">
+                        <div className="flex items-center justify-center gap-2">
+                          {row.card} <span className="text-green-500 text-base md:text-xl">{row.icon}</span>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -458,7 +561,7 @@ const WellnessPage = () => {
               </h2>
               <p className="text-xl text-gray-300 mb-10 leading-relaxed font-medium">
                 Fill out the form and our Wellness Representative will contact
-                you within 24 hours to explain all benefits and help you get
+                you to explain all benefits and help you get
                 started.
               </p>
               <div className="space-y-6">
@@ -622,10 +725,7 @@ const WellnessPage = () => {
       <section className="py-12 px-6 bg-white border-t border-slate-100">
         <div className="container mx-auto max-w-[1366px]">
           <p className="text-gray-400 text-sm leading-relaxed text-center max-w-4xl mx-auto italic">
-            * Popular Health Fit Card is a proprietary program by Popular
-            Hospital. Terms and conditions apply for all benefits and discounts.
-            The card acts as a membership program for priority healthcare
-            services within the Popular Hospital network.
+           Our Health Fit Card is not just limited to Popular Hospital, but also applicable to all Popular Group Hospital branches, including exclusive access to Niraamaya Diagnostics in Lanka, Varanasi. The best part? We offer 24/7 support and no charges for including a new member in the existing card (up to the card limit). Existing diseases do not restrict you from getting the Health Fit Card, and it is available for the whole family, including parents, in-laws, dependents below 25 years, widow, widower, divorced members, and their dependents. With Popular Hospital's Health Fit Card, you can prioritise your health and wellness without worrying about the expenses. Get yours today and take the first step towards a healthier and happier life!
           </p>
         </div>
       </section>

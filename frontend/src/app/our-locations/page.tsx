@@ -71,7 +71,7 @@ export default function OurLocationsPage() {
               Discover Our Network
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1e3a8a] font-heading tracking-tight mb-6">
-              Our Locations.
+              Our Branches.
             </h1>
             <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">
               Find a Popular Hospital branch near you. We are always within reach, providing world-class healthcare, expert doctors, and modern infrastructure across multiple locations.

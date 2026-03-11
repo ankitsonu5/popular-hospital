@@ -9,7 +9,7 @@ const services = [
   { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", image: "/images/departments-images/oncology.jpeg", href: "/departments/oncology" },
   { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", image: "/images/departments-images/urology.jpeg", href: "/departments/urology" },
   { title: "Burns & Plastic Surgery", desc: "Reconstructive and cosmetic surgery services.", image: "/images/departments-images/AdobeStock_222372294.jpeg", href: "/departments/burns-plastic-surgery" },
-  { title: "Laparoscopic Surgery", desc: "Minimally invasive general surgical procedures.", image: "/images/departments-images/laparoscopic.jpeg", href: "/departments/general-surgery" },
+  { title: "Laparoscopic & General Surgery", desc: "Department of Laparoscopic & General Surgery", image: "/images/departments-images/laparoscopic.jpeg", href: "/departments/general-surgery" },
   { title: "Obstetrics and Gynecology", desc: "Care for pregnancy, childbirth, and women's health.", image: "/images/hospital-sample.jpg", href: "/departments/gynaecology" },
   { title: "Paediatrics and Neonatology", desc: "Medical care for infants, children, and adolescents.", image: "/images/departments-images/paediatrics.jpeg", href: "/departments/pediatrics" },
   { title: "Orthopaedic & Joint Replacement", desc: "Treatment for bones, joints, ligaments, and nerves.", image: "/images/departments-images/orthopaedic.jpeg", href: "/departments/orthopedics" },

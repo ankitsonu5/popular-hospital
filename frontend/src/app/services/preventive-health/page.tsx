@@ -34,13 +34,13 @@ export default function PreventiveHealthPage() {
       <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2000"
+            src="/images/health-packages/health_packages.jpg"
             alt="Preventive Health"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-70"
             priority
           />
-          <div className="absolute inset-0 bg-slate-900/60" />
+          <div className="absolute inset-0 bg-slate-900/30" />
         </div>
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
@@ -65,7 +65,6 @@ export default function PreventiveHealthPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading mb-4">Choose Your <span className="text-teal-600">Health Package</span></h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-teal-400 to-blue-500 mx-auto rounded-full"></div>
-            <p className="mt-4 text-gray-500 max-w-2xl mx-auto">Explore carefully curated medical test packages offering huge discounts over individual test prices. Take control of your well-being today!</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1366px] mx-auto">
@@ -102,7 +101,6 @@ export default function PreventiveHealthPage() {
                       Discount Price ₹ {parseFloat(pkg.discountPrice).toLocaleString("en-IN")}
                     </div>
                   </div>
-
                   <div className="mt-2">
                     <Link
                       href={`/services/preventive-health/${pkg.title.toLowerCase().replace(/\s*-\s*/g, '-').replace(/\s+/g, '-')}`}
@@ -134,3 +132,4 @@ export default function PreventiveHealthPage() {
     </div>
   );
 }
+

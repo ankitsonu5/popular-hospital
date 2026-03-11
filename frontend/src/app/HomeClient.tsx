@@ -238,14 +238,9 @@ export default function HomePage() {
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Left Side - Text Content */}
             <div className="flex flex-col justify-center space-y-8">
-              <div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-hospital-teal/10 border border-hospital-teal/20 text-hospital-teal text-sm font-bold uppercase tracking-widest mb-6 shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-hospital-teal animate-pulse"></span>
-                  About Popular Hospital
-                </div>
-                
+              <div>                
                 <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black font-heading leading-tight tracking-tight text-[#0b1c43] mb-6 drop-shadow-sm">
-                  We Provide <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#1e3a8a]">Finest Patient's Care</span> & Amenities
+                 About <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#1e3a8a]">Popular Hospital</span>
                 </h2>
                 
                 <p className="text-gray-600 text-[17px] sm:text-[19px] leading-relaxed font-medium">
@@ -393,7 +388,7 @@ export default function HomePage() {
               { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", image: "/images/departments-images/oncology.jpeg", href: "/departments/oncology" },
               { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", image: "/images/departments-images/urology.jpeg", href: "/departments/urology" },
               { title: "Burns & Plastic", desc: "Reconstructive and cosmetic surgery services.", image: "/images/departments-images/AdobeStock_222372294.jpeg", href: "/departments/burns-plastic-surgery" },
-              { title: "Laparoscopic", desc: "Minimally invasive general surgical procedures.", image: "/images/departments-images/laparoscopic.jpeg", href: "/departments/general-surgery" },
+              { title: "Laparoscopic Surgery", desc: "Department of Laparoscopic & General Surgery", image: "/images/departments-images/laparoscopic.jpeg", href: "/departments/general-surgery" },
               { title: "Obstetrics", desc: "Care for pregnancy, childbirth, and women's health.", image: "/images/hospital-sample.jpg", href: "/departments/gynaecology" },
               { title: "Paediatrics", desc: "Medical care for infants, children, and adolescents.", image: "/images/departments-images/paediatrics.jpeg", href: "/departments/pediatrics" },
               { title: "Orthopaedic", desc: "Treatment for bones, joints, ligaments, and nerves.", image: "/images/departments-images/orthopaedic.jpeg", href: "/departments/orthopedics" },
@@ -1070,7 +1065,7 @@ export default function HomePage() {
           {/* Section Header */}
           <div className="mb-12 flex items-end justify-between">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1e3a8a] tracking-tight font-heading">
-              Our Locations. <span className="text-[#6e6e73]">Always within reach.</span>
+              Our Branches. <span className="text-[#6e6e73]">Always within reach.</span>
             </h2>
 
             {/* Navigation Buttons */}

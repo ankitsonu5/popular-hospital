@@ -36,7 +36,7 @@ const menuItems: MenuItem[] = [
   {
     label: 'Find a Hospital',
     dropdown: [
-      { label: 'Our Locations', href: '/our-locations' },
+      { label: 'Our Branches', href: '/our-locations' },
       { label: 'Explore Our Facilities', href: '/facilities' },
     ],
   },

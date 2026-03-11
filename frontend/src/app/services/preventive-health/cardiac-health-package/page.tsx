@@ -28,10 +28,10 @@ export default function CardiacHealthPackagePage() {
             src="/images/health_packages.png"
             alt="Cardiac Health Package"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-70"
             priority
           />
-          <div className="absolute inset-0 bg-slate-900/60" />
+          <div className="absolute inset-0 bg-slate-900/30" />
         </div>
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
@@ -120,6 +120,7 @@ export default function CardiacHealthPackagePage() {
     </div>
   );
 }
+
 
 
 
