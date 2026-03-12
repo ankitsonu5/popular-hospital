@@ -18,7 +18,7 @@ export default function PathologyPage() {
             src="/images/pathological_service.png"
             alt="Pathology Services"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-slate-900/30" />

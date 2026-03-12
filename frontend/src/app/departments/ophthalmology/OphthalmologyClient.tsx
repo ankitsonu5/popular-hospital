@@ -82,7 +82,7 @@ export default function OphthalmologyClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[500px] w-full bg-[#0f172a] overflow-hidden">
+      <section className="relative h-[450px] w-full bg-[#0f172a] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2000"
@@ -102,9 +102,6 @@ export default function OphthalmologyClient() {
               Dedicated to <br />
               <span className="text-blue-400">Your Vision Health</span>
             </h1>
-            <p className="text-blue-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
-              Comprehensive eye care services ranging from basic screening to complex surgical procedures.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
@@ -202,7 +199,7 @@ export default function OphthalmologyClient() {
                     </div>
                   </div>
                   <div className="lg:w-5/12 w-full">
-                    <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[500px] border-[12px] border-white group">
+                    <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px] border-[12px] border-white group">
                       <Image 
                         src="/images/departments-images/ophthalmology_advance.jpg"
                         alt="Specialised Eye Care"
@@ -293,3 +290,5 @@ export default function OphthalmologyClient() {
     </main>
   );
 }
+
+

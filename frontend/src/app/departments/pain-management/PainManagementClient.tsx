@@ -184,7 +184,7 @@ export default function PainManagementClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[600px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center">
+      <section className="relative h-[450px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(249,115,22,0.1),transparent)]" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
@@ -192,15 +192,12 @@ export default function PainManagementClient() {
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-orange-500/20 text-orange-200 text-sm font-semibold mb-6 border border-orange-400/30 backdrop-blur-sm">
-                Pain Management & Palliative Care Center
+                Department of
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Pain Management <br />
-              <span className="text-orange-400">Clinic</span>
+                Anesthesiology,<br />
+              <span className="text-orange-400"> Critical Care & Pain Medicine</span>
             </h1>
-            <p className="text-slate-200 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-bold">
-                Advanced interventions for chronic pain management. Regain your quality of life with precision-guided treatments.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
@@ -212,25 +209,6 @@ export default function PainManagementClient() {
                 Get a Call Back
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════ FEATURE CARDS (4-col) ═══════ */}
-      <section className="py-12 bg-gray-50 border-b border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featureCards.map((item, idx) => (
-              <div key={idx} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md border-t-4 border-orange-500 hover:border-[#1e293b] transition-all duration-300 group flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0 text-orange-700 group-hover:bg-orange-500 group-hover:text-white transition-all">
-                  <FeatureIcon icon={item.icon} />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-[#1e293b] mb-1">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-snug">{item.desc}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -340,3 +318,5 @@ export default function PainManagementClient() {
     </main>
   );
 }
+
+

@@ -26,7 +26,7 @@ const sections = [
         </h3>
         <ul className="space-y-2 text-sm lg:text-base text-gray-700 font-medium">
           {[
-            'are 18 – 60 years old',
+            'are 18 - 60 years old',
             'weight at least 45 kgs',
             'are in good health',
             'Donations of whole blood and platelets are needed every day — red blood cells can be stored for 42 days and platelets for 5 days.'
@@ -138,7 +138,7 @@ export default function BloodBankPage() {
             src="/images/blood_bank.png"
             alt="Blood Bank"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-slate-900/30" />
@@ -147,7 +147,7 @@ export default function BloodBankPage() {
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="max-w-4xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
-              Department of Blood Bank
+              Blood Bank
             </h1>
             <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
@@ -167,8 +167,21 @@ export default function BloodBankPage() {
             {sections.map((section, idx) => {
               const showImage = section.id !== 'department';
               const isEven = idx % 2 === 0;
+              
+              // Map realistic generated images to sections
+              const imageMap: { [key: string]: string } = {
+                'health-benefits': '/images/departments-images/blood_donation_heart_health.png',
+                'enhance-production': '/images/departments-images/blood_regeneration_cells.png',
+                'components': '/images/departments-images/blood_components_separation.png',
+                'component-therapy': '/images/departments-images/blood_transfusion_therapy.png'
+              };
+
+              if (imageMap[section.id]) {
+                section.image = imageMap[section.id];
+              }
+
               return (
-                <div key={section.id} className={`flex flex-col ${showImage ? (isEven ? 'lg:flex-row' : 'lg:flex-row-reverse') : 'items-start text-left'} gap-12 lg:gap-20`}>
+                <div key={section.id} className={`flex flex-col ${showImage ? (isEven ? 'lg:flex-row-reverse' : 'lg:flex-row') : 'items-start text-left'} gap-12 lg:gap-20`}>
                   
                   {/* Content */}
                   <div className={`w-full ${showImage ? 'lg:w-[55%]' : 'w-full'}`}>

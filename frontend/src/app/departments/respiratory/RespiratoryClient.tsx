@@ -130,22 +130,18 @@ export default function RespiratoryClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[600px] w-full bg-gradient-to-br from-[#164e63] to-[#083344] overflow-hidden">
+      <section className="relative h-[450px] w-full bg-gradient-to-br from-[#164e63] to-[#083344] overflow-hidden">
         <div className="absolute inset-0 z-0 text-white/5 pointer-events-none overflow-hidden">
             <svg className="absolute top-0 right-0 w-[800px] h-[800px] blur-[150px]" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="cyan" /></svg>
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-cyan-500/20 text-cyan-100 text-sm font-semibold mb-6 border border-cyan-400/30 backdrop-blur-sm">
-                Department of Pulmonology & Chest/Respiratory Medicine Department
+                Department of
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Comprehensive <br />
-              <span className="text-cyan-300">Respiratory Care</span>
+                T.B & Respiratory Medicine
             </h1>
-            <p className="text-cyan-50/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
-                Dedicated to providing exceptional care of chest, lungs, and Sleep Disorders. We are committed to helping you breathe easier and live a fulfilling life.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
@@ -331,3 +327,5 @@ export default function RespiratoryClient() {
     </main>
   );
 }
+
+

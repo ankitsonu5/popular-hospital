@@ -27,11 +27,18 @@ const diagnosticOncologyServices = [
 
 const doctors = [
   {
-    name: 'Dr. Oncologist',
-    qualifications: 'MBBS, MD, DM (Oncology)',
-    designation: 'Consultant Oncologist',
-    slug: 'dr-oncologist',
-    image: '/images/departments-images/dr-oncologist.png',
+    name: 'Dr Ajay Kumar Prajapati',
+    qualifications: 'MBBS, MS, MCh (Surgical Oncology)',
+    designation: 'Consultant Surgical Oncology',
+    slug: 'dr-ajay-kumar-prajapati',
+    image: '',
+  },
+  {
+    name: 'Dr Neha Gupta',
+    qualifications: 'MBBS, MD (Radiotherapy)',
+    designation: 'Consultant Radiation Oncology',
+    slug: 'dr-neha-gupta',
+    image: '/images/departments_doctor/dr_neha_gupta.png',
   },
 ];
 
@@ -163,6 +170,45 @@ export default function OncologyClient() {
                         ))}
                       </div>
                     </div>
+                    
+                    {/* Navigation Arrows — only if > 1 doctor */}
+                    {doctors.length > 1 && (
+                      <>
+                        <button
+                          onClick={() => setCurrentSlide(prev => (prev === 0 ? doctors.length - 1 : prev - 1))}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
+                        >
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => setCurrentSlide(prev => (prev === doctors.length - 1 ? 0 : prev + 1))}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
+                        >
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </>
+                    )}
+
+                    {/* Pagination Dots */}
+                    {doctors.length > 1 && (
+                      <div className="flex gap-3 mb-8">
+                        {doctors.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setCurrentSlide(idx)}
+                            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border ${
+                              currentSlide === idx
+                                ? 'bg-[#3b82f6] border-[#3b82f6] scale-125'
+                                : 'bg-transparent border-gray-400'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    )}
                     <div className="h-8" />
                   </div>
                 </div>
@@ -270,3 +316,5 @@ export default function OncologyClient() {
     </main>
   );
 }
+
+

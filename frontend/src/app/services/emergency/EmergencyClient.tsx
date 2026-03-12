@@ -120,7 +120,7 @@ const sections = [
         <p className="text-gray-700 mt-4 text-sm lg:text-base font-medium italic">Our specialist emergency team is available round-the-clock to handle all such conditions.</p>
       </>
     ),
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200',
     shape: 'rounded-[80px_20px_80px_20px]'
   },
   {
@@ -175,7 +175,7 @@ const sections = [
         </ul>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
     shape: 'rounded-[40px_100px_40px_100px]'
   },
   {
@@ -285,7 +285,7 @@ const sections = [
         </p>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
     shape: 'rounded-[100px_100px_40px_100px]'
   },
   {
@@ -415,7 +415,7 @@ export default function EmergencyTraumaClient() {
              src="/images/emergency.png"
             alt="Emergency & Trauma Care"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-slate-900/30" />

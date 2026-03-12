@@ -29,11 +29,32 @@ const journeySteps = [
 
 const doctors = [
   {
-    name: 'Dr. Pediatric Surgeon',
-    qualifications: 'MS, MCh (Pediatric Surgery)',
-    designation: 'Sr. Consultant',
-    slug: 'dr-pediatric-surgeon',
-    image: '/images/departments-images/dr-pediatric-surgeon.png',
+    name: 'Dr Alok C Bhardwaj',
+    qualifications: 'MBBS, MD (Pediatrics) IMS, BHU',
+    designation: 'Head, Department of Pediatrics',
+    slug: 'dr-alok-c-bhardwaj',
+    image: '',
+  },
+  {
+    name: 'Dr Prabhat Kumar',
+    qualifications: 'MBBS, DCH, DNB (Pediatrics)',
+    designation: 'Consultant Senior Pediatrician',
+    slug: 'dr-prabhat-kumar',
+    image: '/images/departments_doctor/dr_prabhat_kumar.png',
+  },
+  {
+    name: 'Dr Rajesh Kumar Singh',
+    qualifications: 'MBBS, MD, IAP Fellowship in Neonatology',
+    designation: 'Consultant Pediatric Cardiologist',
+    slug: 'dr-rajesh-kumar-singh',
+    image: '',
+  },
+  {
+    name: 'Dr Greeshma Suresh',
+    qualifications: 'MBBS, MS, MCh (Pediatric Surgery) IMS, BHU',
+    designation: 'Consultant Pediatric Surgeon',
+    slug: 'dr-greeshma-suresh',
+    image: '',
   },
 ];
 
@@ -201,6 +222,24 @@ export default function PediatricSurgeryClient() {
                         </button>
                       </>
                     )}
+
+                    {/* Pagination Dots */}
+                    {doctors.length > 1 && (
+                      <div className="flex gap-2.5 mb-8">
+                        {doctors.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setCurrentSlide(idx)}
+                            className={`w-2 h-2 rounded-full transition-all duration-300 border ${
+                              currentSlide === idx 
+                                ? 'bg-blue-600 border-blue-600 scale-125' 
+                                : 'bg-transparent border-gray-400'
+                            }`}
+                            aria-label={`Go to slide ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
+                    )}
                     <div className="h-8" />
                   </div>
                 </div>
@@ -250,3 +289,5 @@ export default function PediatricSurgeryClient() {
     </main>
   );
 }
+
+

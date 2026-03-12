@@ -28,11 +28,18 @@ const procedures = [
 
 const doctors = [
   {
-    name: 'Dr. Dinesh Singh',
-    qualifications: 'M.B.B.S, MS, MCh',
-    designation: 'Sr. Consultant',
+    name: 'Dr Dinesh Singh',
+    qualifications: 'MBBS, MS, MCh (Urology)',
+    designation: 'Consultant Urologist',
     slug: 'dr-dinesh-singh',
-    image: '/images/departments_doctor/dr-dinesh-singh.png',
+    image: '',
+  },
+  {
+    name: 'Dr Piyush Saini',
+    qualifications: 'MBBS, MS, MCh (Urology)',
+    designation: 'Consultant Urologist',
+    slug: 'dr-piyush-saini',
+    image: '/images/departments_doctor/dr_piyush_saini.png',
   },
 ];
 
@@ -327,3 +334,5 @@ export default function UrologyClient() {
     </main>
   );
 }
+
+

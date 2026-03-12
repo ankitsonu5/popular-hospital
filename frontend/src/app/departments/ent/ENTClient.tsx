@@ -89,7 +89,7 @@ export default function ENTClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[500px] w-full bg-[#1e1b4b] overflow-hidden">
+      <section className="relative h-[450px] w-full bg-[#1e1b4b] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1559170624-946772719586?auto=format&fit=crop&q=80&w=2000"
@@ -109,9 +109,6 @@ export default function ENTClient() {
               Precision Care for <br />
               <span className="text-amber-400">Ear, Nose & Throat</span>
             </h1>
-            <p className="text-amber-50/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
-              Equipped with latest diagnostic technologies and expert surgical skills for total ENT wellness.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
@@ -274,3 +271,5 @@ export default function ENTClient() {
     </main>
   );
 }
+
+

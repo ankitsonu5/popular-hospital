@@ -41,11 +41,25 @@ const procedures = [
 
 const doctors = [
   {
-    name: 'Dr. Plastic Surgeon',
-    qualifications: 'MS, MCh (Plastic Surgery)',
-    designation: 'Sr. Consultant',
-    slug: 'dr-plastic-surgeon',
-    image: '/images/departments-images/dr-plastic-surgeon.png',
+    name: 'Dr A.K Pradhan',
+    qualifications: 'MBBS, MS, MCh (Plastic Surgery)',
+    designation: 'Consultant Plastic Surgeon',
+    slug: 'dr-ak-pradhan',
+    image: '',
+  },
+  {
+    name: 'Dr Sudhir Singh',
+    qualifications: 'MBBS, MS, MCh (Plastic Surgery)',
+    designation: 'Consultant Plastic Surgeon',
+    slug: 'dr-sudhir-singh',
+    image: '',
+  },
+  {
+    name: 'Dr Deepak Agrahari',
+    qualifications: 'MBBS, MS, MCh (Plastic Surgery)',
+    designation: 'Consultant Plastic Surgeon',
+    slug: 'dr-deepak-agrahari',
+    image: '',
   },
 ];
 
@@ -341,3 +355,5 @@ export default function BurnsPlasticSurgeryClient() {
     </main>
   );
 }
+
+

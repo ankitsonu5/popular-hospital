@@ -18,7 +18,7 @@ export default function HomeCarePage() {
             src="/images/home_care_services.png"
             alt="Home Care"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-slate-900/30" />

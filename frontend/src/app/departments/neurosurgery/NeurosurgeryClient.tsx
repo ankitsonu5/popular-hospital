@@ -43,8 +43,8 @@ const spinalSurgeryList = [
 const doctors = [
   {
     name: 'Dr. Kamlesh Kumar Singh',
-    qualifications: 'MBBS (Gandhi Medical College, Bhopal), MS - General Surgery (Government Medical College, Patiala - 2016), M Ch - Neurosurgery (Kasturba Medical College, Manipal - 2020',
-    designation: 'Consultant',
+    qualifications: 'MBBS, MS, M.Ch (Neurosurgery)',
+    designation: 'Head, Department of Neurosurgery',
     slug: 'dr-kamlesh-kumar-singh',
     image: '/images/departments_doctor/dr._kamlesh_kumar_Singh.jpg'
   }
@@ -306,3 +306,5 @@ export default function NeurosurgeryClient() {
     </main>
   );
 }
+
+

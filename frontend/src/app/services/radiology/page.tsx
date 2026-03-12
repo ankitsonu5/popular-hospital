@@ -18,7 +18,7 @@ export default function RadiologyPage() {
             src="/images/radiological_services.png"
             alt="Radiological Services"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-slate-900/30" />

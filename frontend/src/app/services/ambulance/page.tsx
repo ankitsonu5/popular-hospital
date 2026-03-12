@@ -98,7 +98,7 @@ export default function AmbulancePage() {
             src="/images/ambulance_banner.png"
             alt="Ambulance Services"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-slate-900/30" />
@@ -107,7 +107,7 @@ export default function AmbulancePage() {
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="max-w-4xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
-              Department of Ambulance
+              Ambulance
             </h1>
             <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>

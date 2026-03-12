@@ -53,7 +53,7 @@ const menuItems: MenuItem[] = [
       { label: "Emergency And Trauma Care", href: "/services/emergency" },
       { label: "Blood Bank", href: "/services/blood-bank" },
       { label: "Ambulance", href: "/services/ambulance" },
-      { label: "Preventive Health Check Up", href: "/services/preventive-health" },
+      { label: "Wellness Packages", href: "/services/wellness-packages" },
       { label: "Pharmacy", href: "/services/pharmacy" },
       { label: "Pathological Services", href: "/services/pathology" },
       { label: "Radiological Services", href: "/services/radiology" },
@@ -80,7 +80,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Nephrology", href: "/departments/nephrology" },
     { label: "Oncology", href: "/departments/oncology" },
     { label: "Urology", href: "/departments/urology" },
-    { label: "Burns & Plastic Surgery", href: "/departments/burns-plastic-surgery" },
+    { label: "Plastic & Reconstructive Surgery", href: "/departments/burns-plastic-surgery" },
     { label: "Interventional Radiology", href: "/departments/interventional-radiology" },
     { label: "Pediatric Surgery", href: "/departments/pediatric-surgery" }
   ],
@@ -91,11 +91,12 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Orthopedics & Joint Replacement", href: "/departments/orthopedics" },
     { label: "General Medicine", href: "/departments/general-medicine" },
     { label: "ENT", href: "/departments/ent" },
+    { label: "Laboratory Medicine", href: "/departments/laboratory-medicine" },
     { label: "Ophthalmology", href: "/departments/ophthalmology" },
     { label: "Dental", href: "/departments/dental" },
-    { label: "Department Of Respiratory Medicine", href: "/departments/respiratory" },
-    { label: "Pain Management Clinic", href: "/departments/pain-management" },
-    { label: "Psychiatry Department", href: "/departments/psychiatry" }
+    { label: "T.B & Respiratory Medicine", href: "/departments/respiratory" },
+    { label: "Anesthesiology, Critical Care & Pain Medicine", href: "/departments/pain-management" },
+    { label: "Psychiatry Department", href: "/departments/psychiatry" },
   ]
 };
 
@@ -104,7 +105,7 @@ const servicesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Emergency And Trauma Care", href: "/services/emergency" },
     { label: "Blood Bank", href: "/services/blood-bank" },
     { label: "Ambulance", href: "/services/ambulance" },
-    { label: "Preventive Health Check Up", href: "/services/preventive-health" },
+    { label: "Wellness Packages", href: "/services/wellness-packages" },
     { label: "Pharmacy", href: "/services/pharmacy" },
     { label: "Pathological Services", href: "/services/pathology" },
     { label: "Radiological Services", href: "/services/radiology" },
@@ -253,9 +254,9 @@ export function Header() {
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/second-opinion" className="hover:text-white/80 transition-colors whitespace-nowrap">Second opinion</Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
-              <Link href="/services/preventive-health" className="hover:text-white/80 transition-colors whitespace-nowrap">Health Packages</Link>
+              <Link href="/services/wellness-packages" className="hover:text-white/80 transition-colors whitespace-nowrap">Wellness Packages</Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
-              <Link href="/services/wellness" className="hover:text-white/80 transition-colors whitespace-nowrap">Wellness Packages</Link>
+              <Link href="/services/health-packages" className="hover:text-white/80 transition-colors whitespace-nowrap">Health Packages</Link>
             </div>
             <div className="flex items-center justify-center sm:justify-end gap-x-4 w-full sm:w-auto mt-1 sm:mt-0">
                <div className="flex items-center gap-1.5">

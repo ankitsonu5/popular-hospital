@@ -38,11 +38,25 @@ const conditions = [
 
 const doctors = [
   {
-    name: 'Dr. R.K. Singh',
-    qualifications: 'M.B.B.S, MS (Gastro Surgery)',
-    designation: 'Consultant',
-    slug: 'dr-rk-singh',
-    image: '/images/departments-images/dr-rk-singh-gastro.png',
+    name: 'Dr Anirban De',
+    qualifications: 'MBBS, MD, DM (Gastroenterology)',
+    designation: 'Consultant Gastroenterologist',
+    slug: 'dr-anirban-de',
+    image: '/images/departments_doctor/dr_anirban_de.png',
+  },
+  {
+    name: 'Dr R.K Singh',
+    qualifications: 'MBBS, MS, FIAGES, FSG',
+    designation: 'Consultant Gastrosurgeon',
+    slug: 'dr-r-k-singh',
+    image: '',
+  },
+  {
+    name: 'Dr Mahesh Tiwari',
+    qualifications: 'MBBS, MS, MCh (Gastrosurgery)',
+    designation: 'Consultant GI and HPB Surgeon',
+    slug: 'dr-mahesh-tiwari',
+    image: '/images/departments_doctor/dr_mahesh_tiwari.png',
   },
 ];
 
@@ -94,8 +108,7 @@ export default function GastroenterologyClient() {
               Department of
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-              Digestive Health &<br />
-              Liver Sciences
+              Gastroenterology
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -177,7 +190,7 @@ export default function GastroenterologyClient() {
                                 </span>
                               </Link>
                             </div>
-                            <div className="text-center">
+                             <div className="text-center">
                               <h3 className="text-xl font-bold text-[#3b82f6] mb-1">{doc.name}</h3>
                               <p className="text-gray-600 text-sm font-medium">{doc.qualifications}</p>
                               <p className="text-gray-500 text-sm mt-1 uppercase tracking-wider">{doc.designation}</p>
@@ -301,3 +314,5 @@ export default function GastroenterologyClient() {
     </main>
   );
 }
+
+

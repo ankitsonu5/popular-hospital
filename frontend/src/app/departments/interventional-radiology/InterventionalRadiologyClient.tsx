@@ -6,13 +6,6 @@ import { useState } from 'react';
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
-const featureCards = [
-  { title: "Daycare Support", icon: "home", desc: "Most procedures completed without hospital admission." },
-  { title: "Minimal Scars", icon: "shield", desc: "Minimally invasive approach with no noticeable scars." },
-  { title: "Faster Recovery", icon: "bolt", desc: "Quick recovery and minimal hospital stay for patients." },
-  { title: "Cost Effective", icon: "plus", desc: "More affordable than traditional surgical procedures." },
-];
-
 const departmentOverview = [
   {
     text: "Interventional Radiology (IR) involves radiology and constitutes a super-speciality, which provides minimally invasive, image guided procedures and services, with reliable diagnosis and treatment. These are some of the least invasive techniques in medical practice, offering conclusive diagnostic / or treatment opportunities to the patients."
@@ -67,18 +60,18 @@ const proceduresSection = {
 /* ─── Doctors Data ─── */
 const doctors = [
   {
-    name: 'Dr. Manoj Sharma',
-    qualifications: 'MBBS, MD- Physiology, PGDCC',
-    designation: 'Consultant',
-    slug: 'dr-manoj-sharma',
-    image: '/images/departments_doctor/dr-Manoj-Sharma.jpg'
+    name: 'Dr Rohan Kumar Singh',
+    qualifications: 'MBBS, MD (Radiodiagnosis), FIVIR',
+    designation: 'Consultant Interventional Radiologist',
+    slug: 'dr-rohan-kumar-singh',
+    image: ''
   },
   {
-    name: 'Dr. Hari Krishan Srivastava',
-    qualifications: 'DM - Cardiology',
-    designation: 'Consultant',
-    slug: 'dr-hari-krishan-srivastava',
-    image: '/images/departments_doctor/dr-Hari-Krishan-Srivastava.jpg'
+    name: 'Dr Omkareshwar Pratap Singh',
+    qualifications: 'MBBS, DNB (Radiodiagnosis)',
+    designation: 'Consultant Radiologist',
+    slug: 'dr-omkareshwar-pratap-singh',
+    image: ''
   }
 ];
 
@@ -165,24 +158,6 @@ export default function InterventionalRadiologyClient() {
         </div>
       </section>
 
-      {/* ═══════ FEATURE CARDS ═══════ */}
-      <section className="py-12 bg-gray-50 border-b border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featureCards.map((item, idx) => (
-              <div key={idx} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md border-t-4 border-blue-600 hover:border-[#0b1c43] transition-all duration-300 group flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 text-blue-700 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                  <FeatureIcon icon={item.icon} />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-[#0b1c43] mb-1">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-snug">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ═══════ MAIN CONTENT AREA ═══════ */}
       <section className="py-20 bg-white">
@@ -376,3 +351,4 @@ export default function InterventionalRadiologyClient() {
     </main>
   );
 }
+

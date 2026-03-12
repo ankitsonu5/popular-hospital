@@ -80,15 +80,17 @@ const sitemapData = [
       </svg>
     ),
     links: [
-      { name: "Preventive Health Check Up", href: "/services/preventive-health" },
-      { name: "Wellness Packages", href: "/services/wellness" },
+      { name: "Wellness Packages", href: "/services/wellness-packages" },
+      { name: "Health Packages", href: "/services/health-packages" },
       { name: "Women's Health Special", href: "/services/womens-health-special" },
-      { name: "Bronze Packages", href: "/services/preventive-health/bronze-package-men" },
-      { name: "Silver Packages", href: "/services/preventive-health/silver-package-men" },
-      { name: "Gold Packages", href: "/services/preventive-health/gold-package-men" },
-      { name: "Diamond Packages", href: "/services/preventive-health/diamond-package-men" },
-      { name: "Cardiac Care Package", href: "/services/preventive-health/cardiac-health-package" },
-      { name: "Diabetic Care Package", href: "/services/preventive-health/diabetic-check" },
+      { name: "Primary Health Check Up", href: "/services/wellness-packages/primary-health-check-up-male" },
+      { name: "Executive Health Check Up", href: "/services/wellness-packages/executive-health-check-up-male" },
+      { name: "Advance Health Check Up", href: "/services/wellness-packages/advance-health-check-up-male" },
+      { name: "Annual Health Check Up", href: "/services/wellness-packages/annual-health-check-up-male" },
+      { name: "Comprehensive Health Check Up", href: "/services/wellness-packages/comprehensive-health-check-up-male-female" },
+      { name: "Cardiac Screening", href: "/services/wellness-packages/cardiac-screening-1" },
+      { name: "Child Health Check Up", href: "/services/wellness-packages/child-health-check-up" },
+      { name: "Well Woman Checkup", href: "/services/wellness-packages/well-woman-executive-health-checkup" },
     ]
   },
   {

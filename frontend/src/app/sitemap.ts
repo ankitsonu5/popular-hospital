@@ -34,9 +34,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/departments/orthopedics`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     
     // Services
-    { url: `${BASE}/services/wellness`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/services/health-packages`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/services/womens-health-special`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE}/services/preventive-health`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/services/wellness-packages`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/services/emergency`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
   ];
 

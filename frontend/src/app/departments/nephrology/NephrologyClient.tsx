@@ -45,11 +45,11 @@ const conditions = [
 
 const doctors = [
   {
-    name: 'Dr. Nephrologist',
+    name: 'Dr Harendra Pratap Singh',
     qualifications: 'MBBS, MD, DM (Nephrology)',
     designation: 'Consultant Nephrologist',
-    slug: 'dr-nephrology-specialist',
-    image: '/images/departments-images/dr-nephrology.png',
+    slug: 'dr-harendra-pratap-singh',
+    image: '/images/departments_doctor/dr_harendra_pratap_singh.png',
   },
 ];
 
@@ -333,3 +333,5 @@ export default function NephrologyClient() {
     </main>
   );
 }
+
+
