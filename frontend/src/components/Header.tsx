@@ -139,6 +139,17 @@ export function Header() {
   }, [activeDropdown]);
 
   useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -454,8 +465,8 @@ export function Header() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`border-t border-gray-100 bg-white xl:hidden transition-all duration-300 overflow-hidden ${
-          menuOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+        <div className={`border-t border-gray-100 bg-white xl:hidden transition-all duration-500 ease-in-out ${
+          menuOpen ? 'max-h-[calc(100vh-120px)] opacity-100 overflow-y-auto overscroll-contain pb-20' : 'max-h-0 opacity-0 pointer-events-none overflow-hidden'
         }`}>
           <div className="px-4 py-4 space-y-1">
             {menuItems.map((item) => (
