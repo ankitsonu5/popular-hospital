@@ -157,25 +157,6 @@ export default function RespiratoryClient() {
         </div>
       </section>
 
-      {/* ═══════ FEATURE CARDS (4-col) ═══════ */}
-      <section className="py-12 bg-gray-50 border-b border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {features.map((item, idx) => (
-              <div key={idx} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md border-t-4 border-cyan-500 hover:border-[#0f172a] transition-all duration-300 group flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-cyan-50 flex items-center justify-center flex-shrink-0 text-cyan-700 group-hover:bg-cyan-500 group-hover:text-white transition-all">
-                  <FeatureIcon icon={item.icon} />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-[#0f172a] mb-1">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-snug">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ═══════ DEPARTMENT INFO SECTION ═══════ */}
       <section className="py-16 bg-white min-h-screen">
         <div className="mx-auto w-full max-w-[1366px] px-4">

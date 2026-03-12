@@ -110,7 +110,7 @@ export default function PreventiveHealthPage() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2.5">
                     <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0"></div>
-                    <span className="text-gray-700 text-[14px] font-semibold leading-snug">{item}</span>
+                    <span className="text-gray-700 text-[16px] font-semibold leading-snug">{item}</span>
                   </div>
                 ))}
               </div>
@@ -166,10 +166,10 @@ export default function PreventiveHealthPage() {
 
                     <Link
                       href={`/services/wellness-packages/${pkg.slug}`}
-                      className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-[#0066cc] text-white rounded-xl text-[14px] font-bold shadow-md shadow-blue-600/10 hover:bg-[#0055aa] hover:shadow-blue-600/20 transition-all duration-300 active:scale-95 whitespace-nowrap"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0066cc] text-white rounded-xl text-[13px] font-bold shadow-md shadow-blue-600/10 hover:bg-[#0055aa] hover:shadow-blue-600/20 transition-all duration-300 active:scale-95 whitespace-nowrap"
                     >
                       <span>View Details</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                       </svg>
                     </Link>

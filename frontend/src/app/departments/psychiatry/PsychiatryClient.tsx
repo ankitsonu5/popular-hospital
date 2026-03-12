@@ -73,31 +73,28 @@ export default function PsychiatryClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[450px] w-full bg-gradient-to-br from-[#2e1065] to-[#4c1d95] overflow-hidden flex items-center">
+      <section className="relative min-h-[500px] md:h-[450px] w-full bg-gradient-to-br from-[#2e1065] to-[#4c1d95] overflow-hidden flex items-center py-12 md:py-0">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(139,92,246,0.15),transparent)]" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-violet-500/20 text-violet-200 text-sm font-semibold mb-6 border border-violet-400/30 backdrop-blur-sm">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-violet-500/20 text-violet-200 text-xs md:text-sm font-bold mb-6 border border-violet-400/30 backdrop-blur-sm uppercase tracking-wider">
                 Compassionate Mental Healthcare
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Psychiatry <br />
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] font-heading">
+                Psychiatry <br className="hidden md:block" />
               <span className="text-violet-300">Department</span>
             </h1>
-            <p className="text-violet-50 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
-                Devoted to providing comprehensive care for people of all ages. Achieving emotional well-being and living a fulfilling life together.
-            </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-orange-950/20 flex items-center justify-center gap-2 text-center"
               >
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+              <button className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2">
                 Get a Call Back
               </button>
             </div>

@@ -92,6 +92,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "General Medicine", href: "/departments/general-medicine" },
     { label: "ENT", href: "/departments/ent" },
     { label: "Laboratory Medicine", href: "/departments/laboratory-medicine" },
+    { label: "Dietetics & Nutrition", href: "/departments/dietetics-nutrition" },
     { label: "Ophthalmology", href: "/departments/ophthalmology" },
     { label: "Dental", href: "/departments/dental" },
     { label: "T.B & Respiratory Medicine", href: "/departments/respiratory" },

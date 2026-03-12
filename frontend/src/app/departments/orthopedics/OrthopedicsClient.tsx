@@ -116,24 +116,6 @@ export default function OrthopedicsClient() {
         </div>
       </section>
 
-      {/* ═══════ FEATURE CARDS (4-col) ═══════ */}
-      <section className="py-12 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {features.map((item, idx) => (
-              <div key={idx} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md border-t-4 border-[#0f766e] hover:border-[#0b1c43] transition-all duration-300 group flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center flex-shrink-0 text-[#0f766e] group-hover:bg-[#0f766e] group-hover:text-white transition-all">
-                  <FeatureIcon icon={item.icon} />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-[#0b1c43] mb-1">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-snug">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ═══════ DEPARTMENT INFO + DOCTOR SIDEBAR ═══════ */}
       <section className="py-16 bg-white">
@@ -202,7 +184,7 @@ export default function OrthopedicsClient() {
       </section>
 
       {/* ═══════ SPECIALIZED TREATMENTS (Full Width 1366px) ═══════ */}
-      <section className="py-24 md:py-32 bg-white border-t border-gray-100 mt-16">
+      <section className="py-12 md:py-20 bg-white border-t border-gray-100 mt-4">
         <div className="mx-auto w-full max-w-[1366px] px-4">
              {/* Section: Service Offered */}
              <div className="mb-32">
