@@ -464,9 +464,9 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div className={`border-t border-gray-100 bg-white xl:hidden transition-all duration-500 ease-in-out ${
-          menuOpen ? 'max-h-[calc(100vh-120px)] opacity-100 overflow-y-auto overscroll-contain pb-20' : 'max-h-0 opacity-0 pointer-events-none overflow-hidden'
+        {/* Mobile Menu Overlay */}
+        <div className={`absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden transition-all duration-300 ease-in-out z-[100] shadow-2xl ${
+          menuOpen ? 'max-h-[calc(100dvh-120px)] opacity-100 overflow-y-auto overscroll-contain pb-10' : 'max-h-0 opacity-0 pointer-events-none overflow-hidden'
         }`}>
           <div className="px-4 py-4 space-y-1">
             {menuItems.map((item) => (
