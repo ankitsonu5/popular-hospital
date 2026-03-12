@@ -117,7 +117,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative w-full h-screen overflow-hidden bg-gray-900">
+      <section className="relative w-full aspect-video md:aspect-auto md:h-screen overflow-hidden bg-gray-900">
         <div className="relative w-full h-full">
           {/* Video Loading Placeholder - Static Section */}
           {!isVideoLoaded && (
@@ -169,7 +169,7 @@ export default function HomePage() {
             className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#0b1c43]/90 via-[#0b1c43]/50 to-transparent"
             aria-hidden
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-end pb-24 md:pb-44 lg:pb-48 z-20 px-4 text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 sm:pb-24 md:pb-44 lg:pb-48 z-20 px-4 text-center">
             <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-4 md:mb-8 drop-shadow-2xl tracking-tight leading-[1.2] notranslate">
               आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
             </h1>

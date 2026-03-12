@@ -12,29 +12,29 @@ export default function PathologyPage() {
   return (
     <div className="bg-gray-50/50 min-h-screen">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[350px] md:h-[400px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+      <section className="relative min-h-[400px] md:h-[400px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/pathological_service.png"
             alt="Pathology Services"
             fill
-            className="object-cover opacity-80"
+            className="object-cover opacity-40 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-slate-900/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/80 to-transparent" />
         </div>
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+          <div className="animate-fade-in-up max-w-4xl">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 font-heading tracking-tight leading-[1.1]">
               Pathological Services
             </h1>
-            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
-              <span className="mx-2 text-red-600 font-bold">|</span>
-              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
-              <span className="mx-2 text-red-600 font-bold">|</span>
-              <span className="text-white">Pathology</span>
+            <nav className="flex items-center text-sm md:text-lg text-white/90 font-bold" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-300 transition-colors uppercase tracking-wider">Home</Link>
+              <span className="mx-3 text-red-500 font-black">/</span>
+              <Link href="/services" className="hover:text-blue-300 transition-colors uppercase tracking-wider">Services</Link>
+              <span className="mx-3 text-red-500 font-black">/</span>
+              <span className="text-white uppercase tracking-wider">Pathology</span>
             </nav>
           </div>
         </div>

@@ -130,26 +130,35 @@ export default function RespiratoryClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[450px] w-full bg-gradient-to-br from-[#164e63] to-[#083344] overflow-hidden">
-        <div className="absolute inset-0 z-0 text-white/5 pointer-events-none overflow-hidden">
-            <svg className="absolute top-0 right-0 w-[800px] h-[800px] blur-[150px]" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="cyan" /></svg>
+      <section className="relative min-h-[500px] md:h-[450px] w-full bg-[#164e63] overflow-hidden flex items-center py-12 md:py-0">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=2000"
+            alt="Respiratory Care"
+            fill
+            className="object-cover opacity-20 mix-blend-overlay"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#164e63] via-[#164e63]/90 to-transparent" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-cyan-500/20 text-cyan-100 text-sm font-semibold mb-6 border border-cyan-400/30 backdrop-blur-sm">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-cyan-500/20 text-cyan-100 text-xs md:text-sm font-bold mb-6 border border-cyan-400/30 backdrop-blur-sm uppercase tracking-wider">
                 Department of
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                T.B & Respiratory Medicine
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] font-heading">
+                T.B & <br className="hidden md:block" />
+                Respiratory Medicine
             </h1>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-orange-950/20 flex items-center justify-center gap-2 text-center"
               >
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+              <button className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2">
                 Get a Call Back
               </button>
             </div>
