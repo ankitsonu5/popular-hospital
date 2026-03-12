@@ -121,7 +121,7 @@ export default function NeurosurgeryClient() {
       </section>
 
       {/* ═══════ CONTENT SECTION ═══════ */}
-      <section className="py-16 bg-gray-50/50">
+      <section className="pt-16 pb-6 bg-gray-50/50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
@@ -138,7 +138,7 @@ export default function NeurosurgeryClient() {
               <p className="text-gray-800 mb-6 text-base md:text-lg font-medium px-4 border-l-4 border-blue-600">We at Popular Hospital successfully provide all Neurosurgical solutions under one roof.</p>
               
               <SectionHeader title="Peripheral Nerve" highlight="Surgery:" />
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mb-12">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mb-4">
                 {peripheralNerveList.map((item, idx) => (
                   <ListItem key={idx} text={item} />
                 ))}
@@ -241,7 +241,7 @@ export default function NeurosurgeryClient() {
       </section>
 
       {/* ═══════ BRAIN SURGERY SECTION ═══════ */}
-      <section className="py-20 bg-white overflow-hidden">
+      <section className="pt-8 pb-20 bg-white overflow-hidden">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
             <div className="order-2 lg:order-1">

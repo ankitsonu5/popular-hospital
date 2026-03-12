@@ -98,6 +98,13 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVideoLoaded(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setSelectedVideo(null);
@@ -117,97 +124,76 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative w-full aspect-video md:aspect-auto md:h-screen overflow-hidden bg-gray-900">
-        <div className="relative w-full h-full">
-          {/* Video Loading Placeholder - Static Section */}
-          {!isVideoLoaded && (
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-[#0b1c43]">
-              {/* Static Background Image */}
-              <div className="absolute inset-0 z-0">
-                <Image 
-                  src="/images/hospital-sample.jpg" 
-                  alt="Popular Hospital" 
-                  fill 
-                  className="object-cover opacity-30 grayscale-[20%]" 
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43] via-transparent to-[#0b1c43]/40" />
-              </div>
-              
-              <div className="relative z-10 flex flex-col items-center gap-6">
-                 <div className="w-20 h-20 md:w-32 md:h-32 opacity-80 animate-pulse bg-white/10 backdrop-blur-sm rounded-full p-6 border border-white/20">
-                    <Image src="/logo.png" alt="Popular Hospital Loading" width={128} height={128} className="object-contain" priority />
-                 </div>
-                 <div className="space-y-1 text-center">
-                    <p className="text-white/40 text-xs font-bold uppercase tracking-[0.3em] font-heading">Popular Hospital</p>
-                    <div className="flex items-center justify-center gap-1.5 pt-1">
-                       <span className="w-1.5 h-1.5 rounded-full bg-hospital-teal animate-bounce [animation-delay:-0.3s]"></span>
-                       <span className="w-1.5 h-1.5 rounded-full bg-hospital-teal animate-bounce [animation-delay:-0.15s]"></span>
-                       <span className="w-1.5 h-1.5 rounded-full bg-hospital-teal animate-bounce"></span>
-                    </div>
-                 </div>
-              </div>
-            </div>
-          )}
+      <section className="relative w-full h-screen h-[100dvh] overflow-hidden bg-[#0b1c43]">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          {/* Static Background Image (behind video) */}
+          <div className="absolute inset-0 bg-[#0b1c43]">
+            <Image 
+              src="/images/hospital-sample.jpg" 
+              alt="Popular Hospital" 
+              fill 
+              className={`object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-40'}`}
+              priority
+            />
+          </div>
 
           <video
             ref={videoRef}
-            className={`w-full h-full object-cover block transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className="absolute inset-0 w-full h-full object-cover block"
             autoPlay
             muted
             loop
             playsInline
-            aria-hidden
+            preload="auto"
             poster="/images/hospital-sample.jpg"
             onLoadedData={() => setIsVideoLoaded(true)}
-            onCanPlay={() => setIsVideoLoaded(true)}
             onPlaying={() => setIsVideoLoaded(true)}
           >
             <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
-          <div
-            className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#0b1c43]/90 via-[#0b1c43]/50 to-transparent"
-            aria-hidden
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 sm:pb-24 md:pb-44 lg:pb-48 z-20 px-4 text-center">
-            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading mb-4 md:mb-8 drop-shadow-2xl tracking-tight leading-[1.2] notranslate">
-              आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
-            </h1>
+          
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43] via-transparent to-transparent z-10" aria-hidden />
+        </div>
 
+        {/* Content Overlay */}
+        <div className="relative z-20 h-full flex flex-col items-center justify-end pb-16 sm:pb-24 md:pb-44 lg:pb-48 px-4 text-center">
+          <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading drop-shadow-2xl tracking-tight leading-[1.2] notranslate animate-fade-in-up">
+            आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
+          </h1>
+        </div>
+
+        {/* Notification Ticker */}
+        <div className="absolute bottom-0 w-full bg-[#0b1c43]/90 backdrop-blur-md text-white py-2.5 sm:py-3 overflow-hidden border-t border-[#1e3a8a]/30 z-30 group cursor-pointer transition-colors hover:bg-[#0e2455]">
+          <Link href="/updates" className="absolute inset-0 z-40" aria-label="View all updates"></Link>
+          <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-3 sm:px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-[#E85222] font-bold tracking-widest text-[10px] sm:text-xs uppercase font-heading">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E85222] animate-pulse"></span>
+              Updates
+            </div>
           </div>
-
-          {/* Notification Ticker */}
-          <div className="absolute bottom-0 w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-t border-b border-[#1e3a8a]/30 z-20 group cursor-pointer transition-colors hover:bg-[#0e2455]">
-            <Link href="/updates" className="absolute inset-0 z-30" aria-label="View all updates"></Link>
-            <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
-              <div className="flex items-center gap-2 text-[#E85222] font-bold tracking-widest text-xs uppercase font-heading">
-                <span className="w-2 h-2 rounded-full bg-[#E85222] animate-pulse"></span>
-
-                Updates
+          <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-24 sm:pl-32">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <span className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                  <span className="px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">New</span>
+                  OPD timings for Cardiology have been updated to 9 AM - 5 PM.
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                <span className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                  Free Heart Health Checkup Camp scheduled for 15th March 2026.
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                <span className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                  Emergency Trauma Center is now fully operational 24/7.
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
               </div>
-            </div>
-            <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-32">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity">
-                  <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">New</span>
-                    OPD timings for Cardiology have been updated to 9 AM - 5 PM.
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                  <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                    Free Heart Health Checkup Camp scheduled for 15th March 2026.
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                  <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                    Emergency Trauma Center is now fully operational 24/7.
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
 
       <section className="relative mt-12 sm:mt-16 md:-mt-24 lg:-mt-40 z-30 pb-0 md:pb-10">
         <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-6xl 2xl:max-w-[1600px]">
