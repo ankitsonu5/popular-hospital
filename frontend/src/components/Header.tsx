@@ -242,7 +242,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`${pathname === '/' ? 'fixed' : 'sticky'} top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm xl:shadow-none ${
+        className={`sticky xl:${pathname === '/' ? 'fixed' : 'sticky'} top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm xl:shadow-none ${
           scrolled || !isTransparentPage ? 'xl:bg-white xl:shadow-sm' : 'xl:bg-transparent'
         }`}
       >
