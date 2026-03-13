@@ -242,8 +242,10 @@ export function Header() {
   return (
     <>
       <header
-        className={`sticky xl:${pathname === '/' ? 'fixed' : 'sticky'} top-0 left-0 w-full z-50 transition-all duration-300 bg-white shadow-sm xl:shadow-none ${
-          scrolled || !isTransparentPage ? 'xl:bg-white xl:shadow-sm' : 'xl:bg-transparent'
+        className={`${pathname === '/' ? 'fixed' : 'sticky'} top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled || !isTransparentPage 
+            ? 'bg-white shadow-sm' 
+            : 'bg-transparent shadow-none'
         }`}
       >
         {/* Gradient Overlay */}
@@ -448,7 +450,11 @@ export function Header() {
                 <LanguageSelector scrolled={true} isTransparentPage={false} />
                 <button
                   type="button"
-                  className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+                  className={`p-2 rounded-lg transition-all duration-300 ${
+                    scrolled || !isTransparentPage 
+                      ? 'text-gray-600 hover:bg-gray-100' 
+                      : 'bg-white/90 backdrop-blur-sm text-gray-600 shadow-sm'
+                  }`}
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -458,7 +464,7 @@ export function Header() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     )}
                   </svg>
-                </button>
+                </button>             
               </div>
             </div>
           </div>
