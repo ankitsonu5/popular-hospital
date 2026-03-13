@@ -9,22 +9,22 @@ export const metadata: Metadata = {
 };
 
 const packages = [
-  { title: "Primary Health Check Up (Male)", price: "999", originalPrice: "1570", slug: "primary-health-check-up-male" },
-  { title: "Primary Health Check Up (Female)", price: "999", originalPrice: "1570", slug: "primary-health-check-up-female" },
-  { title: "Executive Health Check Up (Male)", price: "1999", originalPrice: "3090", slug: "executive-health-check-up-male" },
-  { title: "Executive Health Check Up (Female)", price: "1999", originalPrice: "3090", slug: "executive-health-check-up-female" },
-  { title: "Advance Health Check Up (Male)", price: "2499", originalPrice: "4700", slug: "advance-health-check-up-male" },
-  { title: "Advance Health Check Up (Female)", price: "2499", originalPrice: "5000", slug: "advance-health-check-up-female" },
-  { title: "Child Health Check UP (10-18 Yrs)", price: "2499", originalPrice: "4790", slug: "child-health-check-up" },
-  { title: "Well Woman Executive Health Checkup", price: "2999", originalPrice: "7870", slug: "well-woman-executive-health-checkup" },
-  { title: "Healthy Heart Checkup", price: "4999", originalPrice: "9160", slug: "healthy-heart-checkup" },
-  { title: "Annual Health Check Up (Male)", price: "5999", originalPrice: "10930", slug: "annual-health-check-up-male" },
-  { title: "Annual Health Check Up (Female)", price: "5999", originalPrice: "10930", slug: "annual-health-check-up-female" },
-  { title: "Comprehensive Health Check Up (Male & Female)", price: "9999", originalPrice: "17320", slug: "comprehensive-health-check-up-male-female" },
-  { title: "Comprehensive Health Check Up (Female)", price: "10999", originalPrice: "18820", slug: "comprehensive-health-check-up-female" },
-  { title: "Cardiac Screening 1", price: "499", originalPrice: "1700", slug: "cardiac-screening-1" },
-  { title: "Cardiac Screening 2", price: "999", originalPrice: "3399", slug: "cardiac-screening-2" },
-  { title: "Cardiac Active Package", price: "1999", originalPrice: "5999", slug: "cardiac-active-package" }
+  { title: "Primary Health Check Up (Male)", price: "999", originalPrice: "1570", slug: "primary-health-check-up-male", image: "/images/wellness_packages/bronze-men.jpg" },
+  { title: "Primary Health Check Up (Female)", price: "999", originalPrice: "1570", slug: "primary-health-check-up-female", image: "/images/wellness_packages/bronze-women.jpg" },
+  { title: "Executive Health Check Up (Male)", price: "1999", originalPrice: "3090", slug: "executive-health-check-up-male", image: "/images/wellness_packages/diamond-men.jpg" },
+  { title: "Executive Health Check Up (Female)", price: "1999", originalPrice: "3090", slug: "executive-health-check-up-female", image: "/images/wellness_packages/diamond-women.jpg" },
+  { title: "Advance Health Check Up (Male)", price: "2499", originalPrice: "4700", slug: "advance-health-check-up-male", image: "/images/wellness_packages/silver-men.jpg" },
+  { title: "Advance Health Check Up (Female)", price: "2499", originalPrice: "5000", slug: "advance-health-check-up-female", image: "/images/wellness_packages/silver-women.jpg" },
+  { title: "Child Health Check UP (10-18 Yrs)", price: "2499", originalPrice: "4790", slug: "child-health-check-up", image: "/images/wellness_packages/healthy-young-one.jpg" },
+  { title: "Well Woman Executive Health Checkup", price: "2999", originalPrice: "7870", slug: "well-woman-executive-health-checkup", image: "/images/wellness_packages/gold-women.jpg" },
+  { title: "Healthy Heart Checkup", price: "4999", originalPrice: "9160", slug: "healthy-heart-checkup", image: "/images/wellness_packages/healthy-lungs-checkup.jpg" },
+  { title: "Annual Health Check Up (Male)", price: "5999", originalPrice: "10930", slug: "annual-health-check-up-male", image: "/images/wellness_packages/cardiac-health.jpg" },
+  { title: "Annual Health Check Up (Female)", price: "5999", originalPrice: "10930", slug: "annual-health-check-up-female", image: "/images/wellness_packages/check_up.jpeg" },
+  { title: "Comprehensive Health Check Up (Male & Female)", price: "9999", originalPrice: "17320", slug: "comprehensive-health-check-up-male-female", image: "/images/wellness_packages/comprehensive_health.jpg" },
+  { title: "Comprehensive Health Check Up (Female)", price: "10999", originalPrice: "18820", slug: "comprehensive-health-check-up-female", image: "/images/wellness_packages/cardiac-advanced-care.jpg" },
+  { title: "Cardiac Screening 1", price: "499", originalPrice: "1700", slug: "cardiac-screening-1", image: "/images/wellness_packages/cardiac-health-scanning.jpg" },
+  { title: "Cardiac Screening 2", price: "999", originalPrice: "3399", slug: "cardiac-screening-2", image: "/images/wellness_packages/cardiac_screening.jpg" },
+  { title: "Cardiac Active Package", price: "1999", originalPrice: "5999", slug: "cardiac-active-package", image: "/images/wellness_packages/cardian_screening_two.jpg" }
 ];
 
 export default function PreventiveHealthPage() {
@@ -134,11 +134,22 @@ export default function PreventiveHealthPage() {
                 key={idx}
                 className="group relative bg-white rounded-[32px] p-1.5 border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.06)] transition-all duration-500 h-full flex"
               >
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-5 bg-white p-6 sm:p-7 rounded-[26px] w-full min-h-[190px]">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-5 bg-white p-6 sm:p-7 rounded-[26px] w-full min-h-[230px]">
+                  
+                  {/* Left-most: Image Area */}
+                  <div className="hidden sm:block flex-shrink-0 relative w-40 h-40 rounded-2xl overflow-hidden shadow-sm">
+                    <Image 
+                      src={pkg.image} 
+                      alt={pkg.title} 
+                      fill 
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+
                   {/* Left: Content Area */}
                   <div className="flex flex-col items-start gap-3 flex-1">
-                    <div className="w-12 h-12 bg-[#0E948B] rounded-[18px] flex items-center justify-center text-white mb-1 shadow-md shadow-teal-600/10">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-10 h-10 bg-[#0E948B] rounded-[14px] flex items-center justify-center text-white mb-1 shadow-md shadow-teal-600/10 sm:hidden">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>

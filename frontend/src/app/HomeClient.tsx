@@ -199,17 +199,17 @@ export default function HomePage() {
         <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-6xl 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
-              href="/doctors"
-              title="Find Your Doctor"  
+              href="/our-locations"
+              title="Our Branches"  
               isFirst={true}
               variant="blue"
             />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/book" title="Book an Appointment" variant="green" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/patient-reports" title="Patient Report" variant="blue" />
+            <SimpleCard href="/doctors" title="Find Your Doctor" variant="blue" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/departments" title="Explore Departments" isLast={true} variant="green" />
+            <SimpleCard href="/patient-reports" title="Patient Report" isLast={true} variant="green" />
           </div>
         </div>
       </section>

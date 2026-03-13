@@ -21,7 +21,7 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   {
-    label: 'About Popular',
+    label: 'About Us',
     dropdown: [
       { label: 'Our Story', href: '/about/our-story' },
       { label: 'Our Vision & Mission', href: '/about/vision-mission' },
@@ -34,11 +34,8 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    label: 'Find a Hospital',
-    dropdown: [
-      { label: 'Our Branches', href: '/our-locations' },
-      { label: 'Explore Our Facilities', href: '/facilities' },
-    ],
+    label: 'Find Your Doctor',
+    href: '/doctors',
   },
   {
     label: 'Departments',

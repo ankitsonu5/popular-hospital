@@ -1,104 +1,205 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { fetchDoctors, fetchSpecialities, fetchBranches } from '@/lib/api';
+import Image from 'next/image';
+import { fetchDoctors, fetchSpecialities, fetchBranches, getImageUrl } from '@/lib/api';
 import type { Doctor, Speciality, Branch } from '@/lib/api';
+
+const allDepartments = [
+  // Super Specialties
+  { id: 101, name: "Cardiology", slug: "cardiology" },
+  { id: 102, name: "Cardiothoracic & Vascular Surgery (CTVS)", slug: "ctvs" },
+  { id: 103, name: "Neurosurgery", slug: "neurosurgery" },
+  { id: 104, name: "Gastroenterology", slug: "gastroenterology" },
+  { id: 105, name: "Nephrology", slug: "nephrology" },
+  { id: 106, name: "Oncology", slug: "oncology" },
+  { id: 107, name: "Urology", slug: "urology" },
+  { id: 108, name: "Plastic & Reconstructive Surgery", slug: "burns-plastic-surgery" },
+  { id: 109, name: "Interventional Radiology", slug: "interventional-radiology" },
+  { id: 110, name: "Pediatric Surgery", slug: "pediatric-surgery" },
+  // Specialties
+  { id: 201, name: "Laparoscopy & General Surgery", slug: "general-surgery" },
+  { id: 202, name: "Obstetrics & Gynaecology", slug: "gynaecology" },
+  { id: 203, name: "Pediatrics And Neonatology", slug: "pediatrics" },
+  { id: 204, name: "Orthopedics & Joint Replacement", slug: "orthopedics" },
+  { id: 205, name: "General Medicine", slug: "general-medicine" },
+  { id: 206, name: "ENT", slug: "ent" },
+  { id: 207, name: "Laboratory Medicine", slug: "laboratory-medicine" },
+  { id: 208, name: "Dietetics & Nutrition", slug: "dietetics-nutrition" },
+  { id: 209, name: "Ophthalmology", slug: "ophthalmology" },
+  { id: 210, name: "Dental", slug: "dental" },
+  { id: 211, name: "T.B & Respiratory Medicine", slug: "respiratory" },
+  { id: 212, name: "Anesthesiology & Pain Medicine", slug: "pain-management" },
+  { id: 213, name: "Psychiatry", slug: "psychiatry" },
+  { id: 214, name: "Dermatology", slug: "dermatology" },
+].sort((a, b) => a.name.localeCompare(b.name));
 
 export function DoctorsSearch() {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
-  const [specialities, setSpecialities] = useState<Speciality[]>([]);
-  const [branches, setBranches] = useState<Branch[]>([]);
   const [speciality, setSpeciality] = useState('');
-  const [branch, setBranch] = useState('');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    Promise.all([fetchSpecialities(), fetchBranches()]).then(([spec, br]) => {
-      setSpecialities(spec);
-      setBranches(br);
-    });
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   useEffect(() => {
     setLoading(true);
     const params = new URLSearchParams();
     if (speciality) params.set('speciality', speciality);
-    if (branch) params.set('branch', branch);
     if (search) params.set('search', search);
     fetch(`/api-backend/doctors?${params}`)
       .then((r) => r.json())
       .then(setDoctors)
       .finally(() => setLoading(false));
-  }, [speciality, branch, search]);
+  }, [speciality, search]);
 
   return (
     <div className="mt-8">
-      <div className="mb-8 flex flex-wrap gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
-        <div className="min-w-[200px] flex-1">
-          <label htmlFor="search" className="mb-1 block text-sm font-medium text-gray-700">Name / Qualification</label>
-          <input
-            id="search"
-            type="search"
-            placeholder="Search doctors..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
-          />
+      {/* Refined Filter Section */}
+      <div className="mb-16 flex flex-col md:flex-row items-stretch gap-6 bg-white p-6 sm:p-10 rounded-[2.5rem] border border-gray-100 shadow-[0_20px_60px_-15px_rgba(30,58,95,0.08)]">
+        <div className="w-full md:flex-1 flex flex-col justify-center">
+          <label htmlFor="search" className="mb-3 block text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">Name / Qualification</label>
+          <div className="relative">
+            <input
+              id="search"
+              type="search"
+              placeholder="Ex: Cardiology or Dr. Sharma..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-4.5 text-base font-medium focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] placeholder:text-gray-400"
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="speciality" className="mb-1 block text-sm font-medium text-gray-700">Speciality</label>
-          <select
-            id="speciality"
-            value={speciality}
-            onChange={(e) => setSpeciality(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal sm:w-48"
-          >
-            <option value="">All</option>
-            {specialities.map((s) => (
-              <option key={s.id} value={s.slug}>{s.name}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="branch" className="mb-1 block text-sm font-medium text-gray-700">Branch</label>
-          <select
-            id="branch"
-            value={branch}
-            onChange={(e) => setBranch(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal sm:w-48"
-          >
-            <option value="">All</option>
-            {branches.map((b) => (
-              <option key={b._id} value={b._id}>{b.name}</option>
-            ))}
-          </select>
+        
+        <div className="w-full md:w-80 flex flex-col justify-center relative" ref={dropdownRef}>
+          <label className="mb-3 block text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">Departments</label>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-4.5 text-left text-base font-bold text-hospital-navy focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] flex items-center justify-between"
+            >
+              <span className="truncate">
+                {speciality ? allDepartments.find(d => d.slug === speciality)?.name : 'All Departments'}
+              </span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-300 text-gray-400 ${isDropdownOpen ? 'rotate-180 text-hospital-teal' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {/* Custom Dropdown Menu */}
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 mt-3 w-full bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-50 z-[100] overflow-hidden animate-fade-in py-3">
+                <div className="max-h-72 overflow-y-auto scrollbar-fancy custom-scrollbar-minimal">
+                  <div 
+                    onClick={() => { setSpeciality(''); setIsDropdownOpen(false); }}
+                    className={`px-6 py-3.5 text-sm font-bold cursor-pointer transition-all flex items-center justify-between ${!speciality ? 'bg-teal-50 text-hospital-teal' : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'}`}
+                  >
+                    All Departments
+                    {!speciality && <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal"></div>}
+                  </div>
+                  {allDepartments.map((s) => (
+                    <div
+                      key={s.id}
+                      onClick={() => { setSpeciality(s.slug); setIsDropdownOpen(false); }}
+                      className={`px-6 py-3.5 text-sm font-bold cursor-pointer transition-all flex items-center justify-between ${speciality === s.slug ? 'bg-teal-50 text-hospital-teal' : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'}`}
+                    >
+                      {s.name}
+                      {speciality === s.slug && <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal"></div>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       {loading ? (
-        <p className="text-gray-500">Loading doctors...</p>
+        <div className="flex justify-center py-20">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-hospital-teal"></div>
+        </div>
       ) : doctors.length === 0 ? (
-        <p className="text-gray-500">No doctors found. Try changing filters.</p>
+        <div className="text-center py-24 bg-white rounded-[40px] border-2 border-dashed border-gray-100">
+          <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <p className="text-gray-500 font-bold text-lg">No doctors found matching your criteria.</p>
+          <p className="text-gray-400 text-sm mt-1">Try adjusting the department filter.</p>
+        </div>
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {doctors.map((doc) => (
-            <li key={doc.id}>
+            <li key={doc.id} className="h-full">
               <Link
                 href={`/doctors/${doc.slug}`}
-                className="block rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition hover:border-hospital-teal hover:shadow-md"
+                className="group relative block h-full rounded-[2.5rem] bg-white p-4 border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-1"
               >
-                <div className="font-semibold text-hospital-navy">{doc.name}</div>
-                <div className="mt-1 text-sm text-hospital-teal">{doc.speciality_name}</div>
-                {doc.qualification && <p className="mt-2 text-sm text-gray-600">{doc.qualification}</p>}
-                {doc.experience_years != null && (
-                  <p className="mt-1 text-sm text-gray-500">{doc.experience_years} years experience</p>
-                )}
-                {doc.consultation_fee != null && (
-                  <p className="mt-2 text-sm font-medium text-gray-700">₹{doc.consultation_fee} consultation</p>
-                )}
-                <span className="mt-3 inline-block text-sm font-medium text-hospital-teal">Book appointment →</span>
+                {/* Image Container with balanced rounding */}
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] bg-[#f1f5f9] mb-6">
+                  {doc.image_url ? (
+                    <Image
+                      src={getImageUrl(doc.image_url)}
+                      alt={doc.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-teal-50/30 text-teal-200">
+                      <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+
+                {/* Content Section */}
+                <div className="px-3 pb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="text-2xl font-black text-gray-900 tracking-tight">
+                      {doc.name}
+                    </h3>
+                    {/* Verified Badge */}
+                    <div className="bg-[#22c55e] rounded-full p-1 text-white">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                  {/* Footer with stats and button */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-gray-900">
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span className="text-lg font-bold">{doc.experience_years || '10'}
+                        <span className="text-sm text-gray-400 font-medium">Years Exp.</span></span>
+                    </div>
+
+                    <div className="bg-[#f1f5f9] px-5 py-3 rounded-2xl font-bold text-gray-900 flex items-center gap-1 hover:bg-[#e2e8f0] transition-colors">
+                      View <span className="text-xl leading-none">+</span>
+                    </div>
+                  </div>
+                </div>
               </Link>
             </li>
           ))}
