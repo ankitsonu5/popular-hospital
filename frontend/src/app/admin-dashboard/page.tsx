@@ -13,11 +13,11 @@ interface Stats {
   doctors: number;
   branches: number;
   bookings: number;
-  specialities: number;
+  departments: number;
 }
 
 export default function AdminDashboardPage() {
-  const [stats, setStats] = useState<Stats>({ doctors: 0, branches: 0, bookings: 0, specialities: 0 });
+  const [stats, setStats] = useState<Stats>({ doctors: 0, branches: 0, bookings: 0, departments: 0 });
   const [recentBookings, setRecentBookings] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,11 +35,11 @@ export default function AdminDashboardPage() {
       fetch(`${API_URL}/api/doctors`, { headers }).then(r => r.json()),
       fetch(`${API_URL}/api/doctors/specialities`, { headers }).then(r => r.json()),
       fetch(`${API_URL}/api/cms/bookings`, { headers }).then(r => r.json()).catch(() => []),
-    ]).then(([branches, doctors, specialities, bookings]) => {
+    ]).then(([branches, doctors, departments, bookings]) => {
       setStats({
         branches: Array.isArray(branches) ? branches.length : 0,
         doctors: Array.isArray(doctors) ? doctors.length : 0,
-        specialities: Array.isArray(specialities) ? specialities.length : 0,
+        departments: Array.isArray(departments) ? departments.length : 0,
         bookings: Array.isArray(bookings) ? bookings.length : 0,
       });
       if (Array.isArray(bookings)) setRecentBookings(bookings.slice(0, 5));
@@ -51,7 +51,7 @@ export default function AdminDashboardPage() {
     { label: 'Total Doctors', value: stats.doctors, icon: Stethoscope, color: 'from-blue-500 to-blue-600', bg: 'bg-blue-50', text: 'text-blue-600', href: '/admin-dashboard/doctors' },
     { label: 'Branches', value: stats.branches, icon: Building2, color: 'from-emerald-500 to-emerald-600', bg: 'bg-emerald-50', text: 'text-emerald-600', href: '/admin-dashboard/branches' },
     { label: 'Bookings', value: stats.bookings, icon: CalendarCheck, color: 'from-orange-500 to-orange-600', bg: 'bg-orange-50', text: 'text-orange-600', href: '/admin-dashboard/bookings' },
-    { label: 'Specialities', value: stats.specialities, icon: Users, color: 'from-purple-500 to-purple-600', bg: 'bg-purple-50', text: 'text-purple-600', href: '/admin-dashboard/specialities' },
+    { label: 'Departments', value: stats.departments, icon: Users, color: 'from-purple-500 to-purple-600', bg: 'bg-purple-50', text: 'text-purple-600', href: '/admin-dashboard/departments' },
   ];
 
   if (isLoading) {

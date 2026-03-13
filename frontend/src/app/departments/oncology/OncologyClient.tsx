@@ -253,7 +253,7 @@ export default function OncologyClient() {
               <div className="mb-12 lg:mb-0 relative">
                 <div className="relative w-full aspect-video max-w-2xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50 hover:border-blue-50 transition-colors duration-500 group">
                   <Image
-                    src="/images/departments-images/oncology_diagnostics_realistic.png"
+                    src="/images/departments-images/oncology_diagnostics_realistic.jpeg"
                     alt="Diagnostic Oncology Technology"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

@@ -1,4 +1,23 @@
 import Branch from '../models/Branch.js';
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
+
+// Setup Multer Storage for Branches
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = 'uploads/branches';
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
+export const uploadBranch = multer({ storage });
 
 // GET /api/branches
 export const getAllBranches = async (req, res) => {
@@ -36,11 +55,18 @@ export const getBranchByIdOrSlug = async (req, res) => {
 // POST /api/cms/branches
 export const createBranch = async (req, res) => {
   try {
-    const { name, slug, address, city, state, pincode, phone, email, description, image_url, facilities } = req.body;
-    if (!name || !slug || !address || !city) {
+    const body = { ...req.body };
+    if (!body.name || !body.slug || !body.address || !body.city) {
       return res.status(400).json({ error: 'name, slug, address, city required' });
     }
-    const branch = await Branch.create({ name, slug, address, city, state, pincode, phone, email, description, image_url, facilities });
+
+    // Handle multiple uploaded images
+    if (req.files) {
+      if (req.files.image_one) body.image_one = `/uploads/branches/${req.files.image_one[0].filename}`;
+      if (req.files.image_two) body.image_two = `/uploads/branches/${req.files.image_two[0].filename}`;
+    }
+
+    const branch = await Branch.create(body);
     res.status(201).json(branch);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -50,7 +76,15 @@ export const createBranch = async (req, res) => {
 // PUT /api/cms/branches/:id
 export const updateBranch = async (req, res) => {
   try {
-    const branch = await Branch.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const body = { ...req.body };
+    
+    // Handle multiple uploaded images
+    if (req.files) {
+      if (req.files.image_one) body.image_one = `/uploads/branches/${req.files.image_one[0].filename}`;
+      if (req.files.image_two) body.image_two = `/uploads/branches/${req.files.image_two[0].filename}`;
+    }
+
+    const branch = await Branch.findByIdAndUpdate(req.params.id, body, { new: true, runValidators: true });
     if (!branch) return res.status(404).json({ error: 'Branch not found' });
     res.json(branch);
   } catch (error) {

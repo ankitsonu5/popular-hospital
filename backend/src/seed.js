@@ -12,22 +12,40 @@ import bcrypt from 'bcryptjs';
 dotenv.config();
 await connectDB();
 
-// ──────────── Specialities ────────────
+// ──────────── Specialities (Departments/Categories) ────────────
 const specialities = [
-  { name: 'General Physician', slug: 'general-physician' },
+  // Super Specialties
   { name: 'Cardiology', slug: 'cardiology' },
-  { name: 'Orthopedics', slug: 'orthopedics' },
-  { name: 'Pediatrics', slug: 'pediatrics' },
-  { name: 'Dermatology', slug: 'dermatology' },
+  { name: 'Cardiothoracic & Vascular Surgery (CTVS)', slug: 'ctvs' },
+  { name: 'Neurosurgery', slug: 'neurosurgery' },
+  { name: 'Gastroenterology', slug: 'gastroenterology' },
+  { name: 'Nephrology', slug: 'nephrology' },
+  { name: 'Oncology', slug: 'oncology' },
+  { name: 'Urology', slug: 'urology' },
+  { name: 'Plastic & Reconstructive Surgery', slug: 'plastic-surgery' },
+  { name: 'Interventional Radiology', slug: 'interventional-radiology' },
+  { name: 'Pediatric Surgery', slug: 'pediatric-surgery' },
+
+  // Specialties
+  { name: 'Laparoscopy & General Surgery', slug: 'general-surgery' },
+  { name: 'Obstetrics & Gynaecology', slug: 'gynaecology' },
+  { name: 'Pediatrics And Neonatology', slug: 'pediatrics' },
+  { name: 'Orthopedics & Joint Replacement', slug: 'orthopedics' },
+  { name: 'General Medicine', slug: 'general-medicine' },
   { name: 'ENT', slug: 'ent' },
-  { name: 'Gynecology', slug: 'gynecology' },
-  { name: 'Neurology', slug: 'neurology' },
+  { name: 'Laboratory Medicine', slug: 'laboratory-medicine' },
+  { name: 'Dietetics & Nutrition', slug: 'nutrition' },
+  { name: 'Ophthalmology', slug: 'ophthalmology' },
+  { name: 'Dental', slug: 'dental' },
+  { name: 'T.B & Respiratory Medicine', slug: 'respiratory-medicine' },
+  { name: 'Anesthesiology, Critical Care & Pain Medicine', slug: 'anesthesiology' },
+  { name: 'Psychiatry Department', slug: 'psychiatry' },
 ];
 
 for (const s of specialities) {
   await Speciality.findOneAndUpdate({ slug: s.slug }, s, { upsert: true });
 }
-console.log('✅ Specialities seeded');
+console.log(`✅ Seeded ${specialities.length} departments exactly as per image`);
 
 // ──────────── Branches (all 5 locations) ────────────
 // First delete old branches that no longer exist
@@ -35,7 +53,7 @@ await Branch.deleteMany({ slug: { $in: ['main', 'chetganj'] } });
 
 const branches = [
   {
-    name: 'Popular Hospital – Main Branch',
+    name: 'Popular Hospital - Main Branch',
     slug: 'varanasi-main',
     city: 'Varanasi',
     state: 'Uttar Pradesh',
@@ -46,7 +64,7 @@ const branches = [
     address: 'N-10 / 60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh, India',
     phone: '+91-7800001895',
     email: 'info@popularhospital.in',
-    timings: 'Open 24 × 7 • OPD: 9 AM – 8 PM',
+    timings: 'Open 24 × 7 • OPD: 9 AM - 8 PM',
     image_one: '/images/branches/varanasi-main/1.webp',
     image_two: '/images/branches/varanasi-main/2.webp',
     image_three: '/images/branches/varanasi-main/3.webp',
@@ -156,6 +174,7 @@ const doctors = [
   { name: 'Dr. Amit Patel', slug: 'dr-amit-patel', speciality: 'orthopedics', qualification: 'MBBS, MS (Orthopedics)', experience_years: 10, consultation_fee: 700 },
   { name: 'Dr. Sneha Reddy', slug: 'dr-sneha-reddy', speciality: 'pediatrics', qualification: 'MBBS, DCH, MD (Pediatrics)', experience_years: 8, consultation_fee: 600 },
   { name: 'Dr. Vikram Singh', slug: 'dr-vikram-singh', speciality: 'dermatology', qualification: 'MBBS, MD (Dermatology)', experience_years: 14, consultation_fee: 550 },
+  { name: 'Raveendra', slug: 'raveendra', speciality: 'dermatology', qualification: 'MBBS, MD (Dermatology)', experience_years: 14, consultation_fee: 550 },
 ];
 
 for (const d of doctors) {

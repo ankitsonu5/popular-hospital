@@ -321,26 +321,42 @@ export default function InterventionalRadiologyClient() {
         </div>
       </section>
 
-      {/* ═══════ MAJOR PROCEDURES (Full 1366px Width) ═══════ */}
-      <section className="py-20 bg-gray-50">
+      {/* ═══════ MAJOR PROCEDURES ═══════ */}
+      <section className="py-24 bg-white relative">
         <div className="mx-auto w-full max-w-[1366px] px-6">
-          <SectionHeader title="Major" highlight="Procedures" />
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            <div className="w-full lg:w-1/3 relative aspect-video lg:aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white flex-shrink-0">
-              <Image
-                src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1964&auto=format&fit=crop"
-                alt="Procedures"
-                fill
-                className="object-cover"
-              />
+          <div className="mb-12">
+             <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
+                MAJOR <span className="text-blue-600 font-bold">PROCEDURES</span>
+              </h2>
+              <div className="flex items-center gap-2 mt-2">
+                <div className="w-2 h-2 rounded-full bg-blue-600" />
+                <div className="h-[2px] w-12 bg-gray-200" />
+              </div>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            {/* Image with custom transparent blob feel */}
+            <div className="w-full lg:w-[50%] relative aspect-[4/3] group flex justify-center">
+              <div className="relative w-full h-full transform transition-transform duration-700 group-hover:scale-105">
+                <Image
+                  src="/images/departments-images/radiology_scan.png"
+                  alt="Procedures"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </div>
+            
             <div className="flex-1">
-              <p className="text-gray-800 text-lg md:text-xl mb-8 font-bold text-justify leading-relaxed">
+              <p className="text-gray-800 text-base md:text-lg mb-10 font-semibold text-justify leading-relaxed">
                 {proceduresSection.intro}
               </p>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                 {proceduresSection.items.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
+                  <li key={idx} className="flex items-start gap-3 group">
+                    <span className="text-blue-600 font-bold mt-1.5 transition-transform group-hover:translate-x-1">›</span>
+                    <span className="text-gray-700 text-base leading-relaxed font-medium">{item}</span>
+                  </li>
                 ))}
               </ul>
             </div>

@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dbDoctor = await fetchDoctor(slug);
   const local = localDoctors[slug];
   const name = dbDoctor?.name ?? local?.name ?? slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-  const speciality = dbDoctor?.speciality_name ?? local?.speciality ?? 'Specialist';
+  const speciality = dbDoctor?.speciality?.name ?? dbDoctor?.speciality_name ?? local?.speciality ?? 'Specialist';
   return {
     title: `${name} - ${speciality} | Popular Hospital`,
     description: dbDoctor?.bio ?? local?.bio ?? `View the profile and OPD timings for ${name} at Popular Hospital.`,
@@ -32,7 +32,7 @@ export default async function DoctorPage({ params }: Props) {
 
   // Merge: DB takes priority, local is the fallback
   const displayName = dbDoctor?.name ?? local?.name ?? slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-  const displaySpeciality = dbDoctor?.speciality_name ?? local?.speciality ?? 'Specialist';
+  const displaySpeciality = dbDoctor?.speciality?.name ?? dbDoctor?.speciality_name ?? local?.speciality ?? 'Specialist';
   const displayQualification = dbDoctor?.qualification ?? local?.qualifications ?? '';
   const displayDesignation = local?.designation ?? '';
   const displayExperience = local?.experience ?? (dbDoctor?.experience_years ? `${dbDoctor.experience_years}+ Years` : null);
@@ -43,17 +43,27 @@ export default async function DoctorPage({ params }: Props) {
     ? getImageUrl(dbDoctor.image_url)
     : (local?.image && local.image !== '/images/departments-images/' ? local.image : null);
 
-  // OPD schedule from local if available, else build from DB available_days, else use default
+  // OPD schedule: use DB opd_timings if available
   const opdBranches = local?.opdTimings ?? [{
     branch: 'Varanasi',
-    schedule: dbDoctor?.available_days
-      ? OPD_DAYS.map(day => ({
-          day,
-          timing: dbDoctor.available_days!.split(',').map(d => d.trim().toLowerCase()).includes(day.toLowerCase())
-            ? '9am-12pm & 4pm-8pm'
-            : '-',
-        }))
-      : DEFAULT_SCHEDULE,
+    schedule: dbDoctor?.opd_timings
+      ? [
+          { day: 'Monday', timing: dbDoctor.opd_timings.monday },
+          { day: 'Tuesday', timing: dbDoctor.opd_timings.tuesday },
+          { day: 'Wednesday', timing: dbDoctor.opd_timings.wednesday },
+          { day: 'Thursday', timing: dbDoctor.opd_timings.thursday },
+          { day: 'Friday', timing: dbDoctor.opd_timings.friday },
+          { day: 'Saturday', timing: dbDoctor.opd_timings.saturday },
+          { day: 'Sunday', timing: dbDoctor.opd_timings.sunday },
+        ]
+      : dbDoctor?.available_days
+        ? OPD_DAYS.map(day => ({
+            day,
+            timing: dbDoctor.available_days!.split(',').map(d => d.trim().toLowerCase()).includes(day.toLowerCase())
+              ? '9am-12pm & 4pm-8pm'
+              : '-',
+          }))
+        : DEFAULT_SCHEDULE,
   }];
 
   return (
@@ -153,14 +163,20 @@ export default async function DoctorPage({ params }: Props) {
                 </div>
 
                 {/* Experience */}
-                {(displayExperience || displayPastHospitals.length > 0) && (
-                  <div className="mb-6 pb-5 border-b border-gray-100">
+                {(displayExperience || dbDoctor?.experience_location || displayPastHospitals.length > 0) && (
+                  <div className="mb-8 pb-6 border-b border-gray-100">
                     <h4 className="text-lg font-bold text-[#3b82f6] mb-2">Experience</h4>
+                    
                     {displayExperience && (
-                      <p className="text-gray-600 text-sm mb-3">{displayExperience}</p>
+                      <p className="text-gray-600 text-sm mb-1">{displayExperience}</p>
                     )}
+
+                    {dbDoctor?.experience_location && (
+                      <p className="text-gray-500 text-sm mb-3">{dbDoctor.experience_location}</p>
+                    )}
+
                     {displayPastHospitals.length > 0 && (
-                      <ul className="space-y-1">
+                      <ul className="space-y-1 mt-2">
                         {displayPastHospitals.map((hospital, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
                             <span className="text-blue-600 mt-0.5 font-bold">›</span>

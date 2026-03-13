@@ -12,7 +12,6 @@ const symptoms = [
   'Decreased haemoglobin',
   'Reduced urine output',
   'Nausea & Vomiting',
-  'Fatigue and weakness',
 ];
 
 const renalDiseases = [
@@ -140,7 +139,11 @@ export default function NephrologyClient() {
                   Nephrology department is a state-of-the-art setup geared to manage any form of Nephrological Emergency. It has facilities to treat cases with Acute Kidney Failure, Chronic Kidney Failure, Renal Hypertension, General Nephrology & Dialysis. For Critical Care Nephrology, we have facilities of "Slow Low-Efficiency Dialysis (SLED)", "Continuous Renal Replacement Therapy" (CRRT) and "Plasmapheresis". Dialysis centre is ultramodern with 08 Dialysis Stations with separate set up for Hepatitis C. The Dialysis Centre is functional round the clock and is manned by very experienced dialysis staff.
                 </p>
                 <p>
-                  Popular hospital is the only Hospital in the eastern up to have facility of "Continuous Renal Replacement Therapy" (CRRT) for children & adult, dialysis. Peritoneal dialysis (Acute PD & CAPD). The Centre has excellent backup support of Urology, Pathology, Radiology and Intensivists. It runs daily OPD's with lot of focus on Preventive Nephrology.
+                  Popular hospital is the only Hospital in the eastern up to have facility of “Continuous Renal Replacement Therapy" (CRRT) for children & adult dialysis. Peritoneal dialysis (Acute PD &CAPD)
+
+The Centre has excellent backup support of Urology, Pathology, Radiology and Intensivits. It runs daily OPD's with lot of focus on Preventive Nephrology. The Nephrology Department follows International guidelines.
+
+Our nephrologists strive to deliver the best possible care to patients suffering from acute or chronic kidney diseases.
                 </p>
               </div>
 
@@ -165,7 +168,7 @@ export default function NephrologyClient() {
               </div>
 
               {/* Renal Diseases */}
-              <SectionHeader title="Renal Diseases We" highlight="Manage:" />
+              <SectionHeader title="The Department Professionals Are Capable Of Diligently Evaluating And Managing All Types Of" highlight="Renal Diseases Like" />
               <ul className="grid grid-cols-1 gap-x-8 mt-2 mb-8">
                 {renalDiseases.map((item, idx) => (
                   <ListItem key={idx} text={item} />
@@ -266,31 +269,6 @@ export default function NephrologyClient() {
         </div>
       </section>
 
-      {/* ═══════ CONDITIONS WE TREAT ═══════ */}
-      <section className="bg-gray-100 py-14">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="text-center mb-10">
-            <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">What We Treat</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading">
-              Common Conditions We <span className="text-blue-600">Treat</span>
-            </h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
-              <div className="w-2 h-2 rounded-full bg-blue-600" />
-              <div className="h-[2px] w-12 bg-gray-300" />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {conditions.map((item, i) => (
-              <span
-                key={i}
-                className="text-sm md:text-base font-semibold text-[#0b1c43] px-5 md:px-6 py-3 bg-white rounded-full shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 hover:text-blue-600 transition-all cursor-default"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ═══════ CALL TO ACTION ═══════ */}
       <section className="py-20 bg-white">

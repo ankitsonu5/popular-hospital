@@ -238,7 +238,6 @@ export default function UrologyClient() {
       <section className="py-14 bg-white">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="text-center mb-10">
-            <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">What We Offer</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading">
               Options at <span className="text-blue-600">Popular Hospital</span>
             </h2>
@@ -266,28 +265,30 @@ export default function UrologyClient() {
       </section>
 
       {/* ═══════ PROCEDURES ═══════ */}
-      <section className="py-14 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="text-center mb-10">
-            <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">Advanced Treatments</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading">
-              Our <span className="text-blue-600">Procedures</span>
+      <section className="py-20 bg-[#f8fafc]">
+        <div className="mx-auto w-full max-w-[1366px] px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-blue-600 font-heading mb-4">
+              Our Procedures
             </h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
+            <div className="flex items-center justify-center gap-1">
               <div className="w-2 h-2 rounded-full bg-blue-600" />
-              <div className="h-[2px] w-12 bg-gray-300" />
+              <div className="h-[2px] w-16 bg-gray-200" />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
             {procedures.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex items-start gap-4 group"
+                className="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-50 flex items-start gap-6 hover:shadow-lg transition-all duration-300 group"
               >
-                <div className="w-9 h-9 rounded-lg bg-[#0b1c43] flex items-center justify-center flex-shrink-0 text-white font-bold text-sm group-hover:bg-blue-600 transition-colors">
+                <div className="w-10 h-10 rounded-md bg-[#0b1c43] flex items-center justify-center flex-shrink-0 text-white font-bold text-lg">
                   {idx + 1}
                 </div>
-                <p className="text-gray-700 text-sm leading-relaxed pt-1">{item}</p>
+                <p className="text-gray-700 text-[15px] leading-relaxed font-normal pt-1">
+                  {item}
+                </p>
               </div>
             ))}
           </div>

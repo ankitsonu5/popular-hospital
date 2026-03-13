@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Plus, Pencil, Trash2, Search, X, Loader2, Stethoscope } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
+const API_URL = '/api-backend';
 
 export default function DoctorsPage() {
   const [doctors, setDoctors] = useState<any[]>([]);
@@ -15,9 +15,20 @@ export default function DoctorsPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '', slug: '', speciality: '', qualification: '',
-    experience_years: '', bio: '', image_url: '',
+    experience_years: '', experience_location: '', bio: '', image_url: '',
     consultation_fee: '', available_days: '', branches: [] as string[], is_active: true,
+    opd_timings: {
+      monday: '9am-12pm & 4pm-8pm',
+      tuesday: '9am-12pm & 4pm-8pm',
+      wednesday: '9am-12pm & 4pm-8pm',
+      thursday: '9am-12pm & 4pm-8pm',
+      friday: '9am-12pm & 4pm-8pm',
+      saturday: '9am-12pm & 4pm-8pm',
+      sunday: '-',
+    }
   });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
   const getHeaders = () => ({
@@ -29,9 +40,9 @@ export default function DoctorsPage() {
     setIsLoading(true);
     try {
       const [docsRes, specsRes, branchesRes] = await Promise.all([
-        fetch(`${API_URL}/api/cms/doctors`, { headers: getHeaders() }),
-        fetch(`${API_URL}/api/doctors/specialities`),
-        fetch(`${API_URL}/api/branches`),
+        fetch(`${API_URL}/cms/doctors`, { headers: getHeaders() }),
+        fetch(`${API_URL}/doctors/specialities`),
+        fetch(`${API_URL}/branches`),
       ]);
       setDoctors(await docsRes.json());
       setSpecialities(await specsRes.json());
@@ -49,38 +60,56 @@ export default function DoctorsPage() {
       speciality: doc.speciality?._id || doc.speciality || '',
       qualification: doc.qualification || '',
       experience_years: doc.experience_years?.toString() || '',
+      experience_location: doc.experience_location || '',
       bio: doc.bio || '', image_url: doc.image_url || '',
       consultation_fee: doc.consultation_fee?.toString() || '',
       available_days: doc.available_days || '',
       branches: doc.branches?.map((b: any) => b._id || b) || [],
       is_active: doc.is_active !== false,
+      opd_timings: doc.opd_timings || {
+        monday: '9am-12pm & 4pm-8pm', tuesday: '9am-12pm & 4pm-8pm', wednesday: '9am-12pm & 4pm-8pm',
+        thursday: '9am-12pm & 4pm-8pm', friday: '9am-12pm & 4pm-8pm', saturday: '9am-12pm & 4pm-8pm',
+        sunday: '-',
+      }
     });
+    setSelectedFile(null);
+    setImagePreview(doc.image_url ? (doc.image_url.startsWith('http') ? doc.image_url : doc.image_url) : null);
     setShowForm(true);
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this doctor?')) return;
-    await fetch(`${API_URL}/api/cms/doctors/${id}`, { method: 'DELETE', headers: getHeaders() });
+    await fetch(`${API_URL}/cms/doctors/${id}`, { method: 'DELETE', headers: getHeaders() });
     fetchData();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
-    const body = {
-      ...formData,
-      experience_years: formData.experience_years ? parseInt(formData.experience_years) : null,
-      consultation_fee: formData.consultation_fee ? parseInt(formData.consultation_fee) : null,
-    };
+    
+    const data = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (key === 'branches') {
+        (value as string[]).forEach((b: string) => data.append('branches[]', b));
+      } else if (key === 'opd_timings') {
+        data.append(key, JSON.stringify(value));
+      } else {
+        data.append(key, value?.toString() || '');
+      }
+    });
+    if (selectedFile) {
+      data.append('image', selectedFile);
+    }
 
     try {
+      const headers = { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` };
       if (editingId) {
-        await fetch(`${API_URL}/api/cms/doctors/${editingId}`, {
-          method: 'PUT', headers: getHeaders(), body: JSON.stringify(body),
+        await fetch(`${API_URL}/cms/doctors/${editingId}`, {
+          method: 'PUT', headers, body: data,
         });
       } else {
-        await fetch(`${API_URL}/api/cms/doctors`, {
-          method: 'POST', headers: getHeaders(), body: JSON.stringify(body),
+        await fetch(`${API_URL}/cms/doctors`, {
+          method: 'POST', headers, body: data,
         });
       }
       setShowForm(false);
@@ -92,7 +121,18 @@ export default function DoctorsPage() {
   };
 
   const resetForm = () => {
-    setFormData({ name: '', slug: '', speciality: '', qualification: '', experience_years: '', bio: '', image_url: '', consultation_fee: '', available_days: '', branches: [], is_active: true });
+    setFormData({ 
+      name: '', slug: '', speciality: '', qualification: '', 
+      experience_years: '', experience_location: '', bio: '', image_url: '', 
+      consultation_fee: '', available_days: '', branches: [], is_active: true,
+      opd_timings: {
+        monday: '9am-12pm & 4pm-8pm', tuesday: '9am-12pm & 4pm-8pm', wednesday: '9am-12pm & 4pm-8pm',
+        thursday: '9am-12pm & 4pm-8pm', friday: '9am-12pm & 4pm-8pm', saturday: '9am-12pm & 4pm-8pm',
+        sunday: '-',
+      }
+    });
+    setSelectedFile(null);
+    setImagePreview(null);
   };
 
   const filteredDoctors = doctors.filter((d) =>
@@ -140,7 +180,7 @@ export default function DoctorsPage() {
               <thead className="bg-gray-50/80">
                 <tr>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Doctor</th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">Speciality</th>
+                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">Department</th>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">Experience</th>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Status</th>
                   <th className="text-right py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
@@ -151,12 +191,19 @@ export default function DoctorsPage() {
                   <tr key={doc._id} className="hover:bg-gray-50/50 transition-colors">
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs shrink-0">
-                          {doc.name?.charAt(0)}
+                        <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 font-bold text-xs shrink-0 overflow-hidden border border-gray-100">
+                          {doc.image_url ? (
+                            <img src={doc.image_url.startsWith('http') ? doc.image_url : doc.image_url} alt={doc.name} className="w-full h-full object-cover" />
+                          ) : (
+                            doc.name?.charAt(0)
+                          )}
                         </div>
                         <div>
-                          <p className="font-semibold text-gray-900">{doc.name}</p>
-                          <p className="text-xs text-gray-400">{doc.qualification || '-'}</p>
+                          <p className="font-bold text-gray-900 leading-tight">{doc.name}</p>
+                          <p className="text-[11px] text-gray-400 mt-0.5">{doc.qualification || '-'}</p>
+                          {doc.experience_location && (
+                            <p className="text-[10px] text-[#0d9488] font-bold uppercase mt-0.5">@ {doc.experience_location}</p>
+                          )}
                         </div>
                       </div>
                     </td>
@@ -214,7 +261,7 @@ export default function DoctorsPage() {
                     className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Speciality *</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Department *</label>
                   <select required value={formData.speciality} onChange={(e) => setFormData({ ...formData, speciality: e.target.value })}
                     className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all">
                     <option value="">Select</option>
@@ -236,16 +283,78 @@ export default function DoctorsPage() {
                   <input type="number" value={formData.consultation_fee} onChange={(e) => setFormData({ ...formData, consultation_fee: e.target.value })}
                     className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
                 </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Experience From (Hospital/Clinic)</label>
+                  <input value={formData.experience_location} onChange={(e) => setFormData({ ...formData, experience_location: e.target.value })}
+                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
+                </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">Bio</label>
+                <div className="flex justify-between items-center mb-1">
+                  <label className="block text-sm font-semibold text-gray-700">Bio</label>
+                  <span className="text-[10px] text-red-500 font-bold uppercase tracking-wider">Max 250 words only</span>
+                </div>
                 <textarea rows={3} value={formData.bio} onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                  placeholder="Tell us about the doctor's background..."
                   className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all resize-none" />
               </div>
+              
+              {/* OPD Timings Section */}
+              <div className="space-y-3">
+                <label className="block text-sm font-bold text-gray-900 border-b pb-2">OPD Timings</label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {Object.entries(formData.opd_timings).map(([day, timing]) => (
+                    <div key={day}>
+                      <label className="block text-[10px] font-bold text-gray-500 uppercase mb-1">{day}</label>
+                      <input 
+                        value={timing} 
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          opd_timings: { ...formData.opd_timings, [day]: e.target.value }
+                        })}
+                        className="w-full px-2 py-1.5 rounded-lg border-2 border-gray-100 text-[11px] focus:border-[#0d9488] outline-none"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">Image URL</label>
-                <input value={formData.image_url} onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Doctor's Photo</label>
+                <div className="flex items-center gap-4">
+                  {imagePreview && (
+                    <div className="relative w-20 h-20 rounded-xl overflow-hidden border border-gray-100 shrink-0">
+                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                      <button type="button" onClick={() => { setSelectedFile(null); setImagePreview(null); setFormData({...formData, image_url: ''}); }} 
+                        className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-bl-lg hover:bg-red-600 transition-colors">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          setSelectedFile(file);
+                          setImagePreview(URL.createObjectURL(file));
+                        }
+                      }}
+                      className="hidden" 
+                      id="doctor-image" 
+                    />
+                    <label 
+                      htmlFor="doctor-image" 
+                      className="flex flex-col items-center justify-center w-full h-20 px-4 transition bg-white border-2 border-gray-200 border-dashed rounded-xl appearance-none cursor-pointer hover:border-[#0d9488] focus:outline-none"
+                    >
+                      <span className="flex items-center space-x-2">
+                        <Plus className="w-5 h-5 text-gray-400" />
+                        <span className="text-sm font-medium text-gray-600">Choose Image</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <input type="checkbox" id="is_active" checked={formData.is_active} onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })} className="rounded" />

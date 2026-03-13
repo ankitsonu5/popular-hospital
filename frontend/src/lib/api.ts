@@ -219,18 +219,29 @@ export interface Speciality {
 }
 
 export interface Doctor {
-  id: number;
+  id: string;
   name: string;
   slug: string;
-  speciality_id: number;
+  speciality_id?: string;
   speciality_name?: string;
   speciality_slug?: string;
+  speciality?: { _id: string; name: string; slug: string };
   qualification?: string;
   experience_years?: number;
+  experience_location?: string;
   bio?: string;
   image_url?: string;
   consultation_fee?: number;
   available_days?: string;
+  opd_timings?: {
+    monday: string;
+    tuesday: string;
+    wednesday: string;
+    thursday: string;
+    friday: string;
+    saturday: string;
+    sunday: string;
+  };
   branch_ids?: string;
 }
 

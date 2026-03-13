@@ -279,7 +279,7 @@ export default function CardiologyPage() {
                 <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
                 <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
                   <Image
-                    src="/images/departments-images/cardiac_treatment_realistic.png"
+                    src="/images/departments-images/coronary_angiography.jpeg"
                     alt="Cardiac Treatment"
                     fill
                     className="object-cover"

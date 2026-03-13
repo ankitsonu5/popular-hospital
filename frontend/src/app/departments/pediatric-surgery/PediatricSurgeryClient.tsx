@@ -4,34 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-/* ─── Data (exact from original page) ─── */
-
-const journeySteps = [
-  {
-    number: '1',
-    color: 'bg-sky-500',
-    title: 'Consultation',
-    desc: 'Meet our gentle surgeons. We explain the procedure in simple terms and answer all your worries.',
-  },
-  {
-    number: '2',
-    color: 'bg-yellow-500',
-    title: 'The Surgery',
-    desc: 'Performed in child-friendly OTs with specialized pediatric anesthesia for painless sleep.',
-  },
-  {
-    number: '3',
-    color: 'bg-green-500',
-    title: 'Happy Recovery',
-    desc: 'Our nursing staff helps with feeding and pain management until you are ready to go home safely.',
-  },
-];
-
 const doctors = [
   {
     name: 'Dr Alok C Bhardwaj',
     qualifications: 'MBBS, MD (Pediatrics) IMS, BHU',
-    designation: 'Head, Department of Pediatrics',
+    designation: 'HEAD, DEPARTMENT OF PEDIATRICS',
     slug: 'dr-alok-c-bhardwaj',
     image: '',
   },
@@ -43,13 +20,6 @@ const doctors = [
     image: '/images/departments_doctor/dr_prabhat_kumar.png',
   },
   {
-    name: 'Dr Rajesh Kumar Singh',
-    qualifications: 'MBBS, MD, IAP Fellowship in Neonatology',
-    designation: 'Consultant Pediatric Cardiologist',
-    slug: 'dr-rajesh-kumar-singh',
-    image: '',
-  },
-  {
     name: 'Dr Greeshma Suresh',
     qualifications: 'MBBS, MS, MCh (Pediatric Surgery) IMS, BHU',
     designation: 'Consultant Pediatric Surgeon',
@@ -57,8 +27,6 @@ const doctors = [
     image: '',
   },
 ];
-
-/* ─── Sub-Components ─── */
 
 const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
   <div className="mb-6">
@@ -72,93 +40,48 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
   </div>
 );
 
-/* ─── Page ─── */
-
 export default function PediatricSurgeryClient() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <main className="min-h-screen bg-white">
-
-      {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?auto=format&fit=crop&q=80&w=2000"
-            alt="Pediatric Surgery Banner"
-            fill
-            className="object-cover opacity-30 mix-blend-overlay"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
-          <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Department of
-            </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-              Pediatric Surgery
-            </h1>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/doctors"
-                className="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30 flex items-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Book Appointment
-              </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                Get a Call Back
-              </button>
-            </div>
-          </div>
+      {/* ─── Banner ─── */}
+      <section className="relative py-14 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a4a6b 0%, #2d7a9a 60%, #3aaccc 100%)' }}>
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
+        <div className="relative z-10 mx-auto max-w-[1366px] px-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 font-heading">Pediatric Surgery</h1>
+          <nav className="flex items-center gap-2 text-white/80 text-sm flex-wrap">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>|</span>
+            <Link href="/departments" className="hover:text-white transition-colors">Departments</Link>
+            <span>|</span>
+            <span className="text-white font-semibold">Pediatric Surgery</span>
+          </nav>
         </div>
       </section>
 
-      {/* ═══════ DEPARTMENT INFO + DOCTOR SIDEBAR ═══════ */}
-      <section className="py-16 bg-gray-50/50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      {/* ─── Intro + Doctor Cards Section ─── */}
+      <section className="py-16">
+        <div className="mx-auto w-full max-w-[1366px] px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
-            {/* ── Left Content ── */}
+            
+            {/* Intro Left */}
             <div className="lg:col-span-8">
               <SectionHeader title="Department of" highlight="Pediatric Surgery" />
-              <div className="text-gray-800 space-y-4 text-base md:text-lg font-medium leading-relaxed mb-10 text-justify">
+              <div className="space-y-4 text-gray-700 text-base leading-relaxed text-justify">
                 <p>
-                  The Pediatric Surgery Department at Popular Hospital provides comprehensive surgical care for children from newborns to adolescents. Our team of highly skilled pediatric surgeons specializes in a wide range of surgical procedures, ensuring the safest and most effective outcomes for your child.
+                  Pediatric Surgery is a specialization in medicine dealing with surgery of infants, children, and adolescents. It covers a large number of health issues that demand surgical operations with treatments being suitably adjusted to the overall anatomy and needs of the young patients. The Pediatric Surgery Department at Popular Hospital is a unit that blends technological superiority, an exceptional aptitude to perform surgery, and a sensitive treatment to provide ample treatment with effective and secure end-results, child-friendly.
                 </p>
-                <div className="bg-sky-50/50 p-6 rounded-xl border-l-4 border-sky-500">
-                  <p>
-                    Children are not just small adults; their medical needs are different. Our team specializes in minimally invasive laparoscopic surgeries for children, which means smaller scars, less pain, and faster return to playing.
-                  </p>
-                </div>
-              </div>
-
-              {/* Journey Steps - original content as cards */}
-              <SectionHeader title="Your Journey" highlight="With Us" />
-              <p className="text-gray-600 mb-8">We make the surgical process simple and stress-free for parents.</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                {journeySteps.map((step, idx) => (
-                  <div key={idx} className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 relative group">
-                    <div className={`${step.color} text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-md`}>
-                      {step.number}
-                    </div>
-                    <h3 className="text-lg font-bold text-[#0b1c43] mb-2">{step.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
-                    <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full bg-blue-600 rounded-b-xl transition-all duration-500" />
-                  </div>
-                ))}
+                <p>
+                  The Pediatric surgical care involves several disciplines such as Neuro, Cardiac, Urologic, Orthopedics, and General surgical care. Our experts focus on lowering the level of discomfort, minimising risk and accelerating patient recovery utilising both low invasive and conventional surgical procedures.
+                </p>
+                <p>
+                  A large number of procedures are being carried out on daycare or short-stay basis providing children with quicker entry to home and continuation with normal activities. Such a strategy can alleviate stress on both the family and the child, and high standard of surgical treatment is achieved.
+                </p>
               </div>
             </div>
 
-            {/* ── Right Doctor Card ── */}
+            {/* Right Doctor Card Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
                 <div className="relative pt-6">
@@ -178,12 +101,20 @@ export default function PediatricSurgeryClient() {
                         {doctors.map((doc, idx) => (
                           <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
                             <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                              <Image
-                                src={doc.image}
-                                alt={doc.name}
-                                fill
-                                className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                              />
+                              {doc.image ? (
+                                <Image
+                                  src={doc.image}
+                                  alt={doc.name}
+                                  fill
+                                  className="object-cover transition-transform duration-500 group-hover/img:scale-105"
+                                />
+                              ) : (
+                                <div className="flex items-center justify-center h-full bg-blue-50">
+                                  <svg className="w-24 h-24 text-blue-100" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                                  </svg>
+                                </div>
+                              )}
                               <Link
                                 href={`/doctors/${doc.slug}`}
                                 className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
@@ -194,7 +125,7 @@ export default function PediatricSurgeryClient() {
                               </Link>
                             </div>
                             <div className="text-center">
-                              <h3 className="text-xl font-bold text-[#3b82f6] mb-1">{doc.name}</h3>
+                              <h3 className="text-xl font-bold text-[#3d7cc9] mb-1">{doc.name}</h3>
                               <p className="text-gray-600 text-sm font-medium">{doc.qualifications}</p>
                               <p className="text-gray-500 text-sm mt-1 uppercase tracking-wider">{doc.designation}</p>
                             </div>
@@ -202,6 +133,7 @@ export default function PediatricSurgeryClient() {
                         ))}
                       </div>
                     </div>
+
                     {doctors.length > 1 && (
                       <>
                         <button
@@ -223,7 +155,6 @@ export default function PediatricSurgeryClient() {
                       </>
                     )}
 
-                    {/* Pagination Dots */}
                     {doctors.length > 1 && (
                       <div className="flex gap-2.5 mb-8">
                         {doctors.map((_, idx) => (
@@ -235,59 +166,99 @@ export default function PediatricSurgeryClient() {
                                 ? 'bg-blue-600 border-blue-600 scale-125' 
                                 : 'bg-transparent border-gray-400'
                             }`}
-                            aria-label={`Go to slide ${idx + 1}`}
                           />
                         ))}
                       </div>
                     )}
-                    <div className="h-8" />
+                    <div className="h-4" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-20 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="bg-[#0b1c43] rounded-2xl md:rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-              </svg>
+          {/* ── Moved Sections Below ── */}
+          <div className="mt-20 space-y-24">
+            
+            {/* Knowing Section */}
+            <div className="max-w-4xl">
+              <SectionHeader title="Knowing a" highlight="Pediatric Surgeon?" />
+              <p className="text-gray-700 text-base leading-relaxed text-justify">
+                A pediatric surgeon is a uniquely qualified provider whose expertise consists of conducting surgeries that are specific to children. Those caregivers learn the physical or emotional requirements of small patients and collaborate with pediatric anesthesiologists, neurologists, cardiologists, orthopedic surgeons, and urologists to maintain the safest and efficacy procedures.
+              </p>
             </div>
-            <div className="absolute right-0 top-0 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
-            <span className="inline-block bg-blue-500/20 text-blue-200 text-sm font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-400/20">
-              For Your Child&apos;s Health
-            </span>
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 relative z-10 font-heading">
-              Ready to help your child smile again?
-            </h2>
-            <p className="text-blue-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 relative z-10 font-medium leading-relaxed">
-              Our pediatric specialists are available for consultations and emergencies. Don&apos;t delay your child&apos;s care.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-              <Link
-                href="/doctors"
-                className="bg-[#3b82f6] hover:bg-blue-500 text-white px-8 py-4 rounded-full font-bold text-base transition-all shadow-lg"
-              >
-                Book an Appointment
-              </Link>
-              <a
-                href="tel:+917800001895"
-                className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-blue-900/30 px-8 py-4 rounded-full font-bold text-base transition-all"
-              >
-                Call +91-7800001895 / 96
-              </a>
+
+            {/* Benefits Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1">
+                <SectionHeader title="Pediatric Surgery at" highlight="Popular Hospital" />
+                <p className="text-gray-700 text-base mb-4 leading-relaxed font-semibold">At Popular Hospital, pediatric surgery offers several benefits, including:</p>
+                <ul className="space-y-3">
+                  {[
+                    { title: 'Daycare / No admission', desc: 'Many procedures can be completed without hospital admission' },
+                    { title: 'Daycare / Minimal Admission', desc: 'Many surgeries allow for same-day discharge' },
+                    { title: 'Child-Friendly Environment', desc: 'Care is provided in a setting designed to make children feel safe and comfortable' },
+                    { title: 'Minimally Invasive Surgical Methods', desc: 'Since the surgical incisions are small, it reduces pain significantly during and after surgery. This also aids in faster healing' },
+                    { title: 'Specialized Pediatric Anesthesia', desc: 'Pediatric Anesthesia is administered carefully with respect to a child\'s age, size, and condition' },
+                    { title: 'Reduced Risk and Complications', desc: 'With advanced techniques available at Popular Hospital, the risks are greatly reduced and expert surgeons ensure safer outcomes' },
+                    { title: 'Cost-Effective Care', desc: 'Popular Hospital aims at offering top of the notch pediatric healthcare keeping all its services accessible without compromising quality' },
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-blue-600 font-bold mt-1">›</span>
+                      <p className="text-gray-700 text-base leading-relaxed text-justify">
+                        <span className="font-bold text-blue-600 uppercase tracking-tight">{item.title}:</span> {item.desc}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="order-1 md:order-2 relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)' }}>
+                <Image
+                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800"
+                  alt="Pediatric Surgery"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Specialized Areas */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(0% 0, 90% 0%, 100% 100%, 10% 100%)' }}>
+                <Image
+                  src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=800"
+                  alt="Specialized Areas"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <SectionHeader title="Specialized Areas of Pediatric Surgery at" highlight="Popular Hospital" />
+                <ul className="space-y-4">
+                  {[
+                    { title: 'Pediatric Neurological Surgery', desc: 'Procedures for congenital brain and spine conditions, hydrocephalus, and other neurological disorders.' },
+                    { title: 'Pediatric Urological Surgery', desc: 'Treatment for urinary tract anomalies, undescended testes, and other urological issues.' },
+                    { title: 'Pediatric General Surgery', desc: 'Management of abdominal conditions, hernias, tumours, and gastrointestinal issues.' },
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-blue-600 font-bold mt-1">›</span>
+                      <p className="text-gray-700 text-base leading-relaxed text-justify">
+                        <span className="font-bold text-blue-600">{item.title}:</span> {item.desc}
+                      </p>
+                    </li>
+                  ))}
+                  <li className="flex items-start gap-2 pt-6 border-t border-gray-100">
+                    <span className="text-blue-600 font-bold mt-1">›</span>
+                    <p className="text-gray-700 text-base leading-relaxed text-justify">
+                      <span className="font-bold text-[#0b1c43]">Conclusion:</span> At Popular Hospital, we understand that surgery of a child is not only a medical condition needing highest amount of medical care but also an emotional one to the entire family. Our Pediatric Surgery Department provides high-quality medical treatment in various fields, and its experienced staff treats each of the patients with care, understanding, and respect. As these parameters are our key offerings, our parents can be assured of the best surgical care to their children.
+                    </p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
     </main>
   );
 }
-
-

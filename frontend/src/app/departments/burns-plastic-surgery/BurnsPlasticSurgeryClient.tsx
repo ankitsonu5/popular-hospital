@@ -161,47 +161,8 @@ export default function BurnsPlasticSurgeryClient() {
                 </ul>
               </div>
 
-              {/* Classifications + Image */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 items-start">
-                <div>
-                  <SectionHeader title="Classifications of" highlight="burns" />
-                  <ul className="mt-2">
-                    {burnsClassifications.map((item, idx) => (
-                      <ListItem key={idx} text={item} />
-                    ))}
-                  </ul>
-                </div>
-                <div className="relative h-60 md:h-72 rounded-2xl overflow-hidden shadow-md">
-                  <Image
-                    src="/images/departments-images/AdobeStock_222372294.jpeg"
-                    alt="Burns Classification"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Plastic Surgery */}
-              <div className="mb-6">
-                <SectionHeader title="Plastic" highlight="Surgery:" />
-                <div className="space-y-4 text-gray-800 text-base md:text-lg font-medium leading-relaxed text-justify">
-                  <p>
-                    Plastic surgery is a surgical speciality which involves reconstruction, restoration, or alteration of the human body. Plastic Surgery is the art of treating with aims to improve the appearance of the human body or improve the functioning of a part of the body.
-                  </p>
-                  <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
-                    <p>
-                      At Popular Hospital we have a team of highly qualified and dedicated plastic surgeons to deliver the best care at an affordable price with the proverbial best in latest technology. We have come up with effective yet minimally invasive cosmetic reconstruction methods.
-                    </p>
-                  </div>
-                  <p>
-                    We thereby strive for the perfect balance of restoring health and wellbeing in a safe and caring environment. Some of their more well-known and successful procedures include Facelift, Rhinoplasty, Eyelid surgery, Breast Reduction, Breast Augmentation, Breast Lift, Reconstructive Surgeries and Hand Surgery.
-                  </p>
-                  <p>
-                    We work both independently and in Conjunction with many other Surgical Services including: ENT, General Surgery, Surgical Oncology, Orthopedics, Urology, Gynecology and Neurosurgery for giving comprehensive care to all the patients who require our input.
-                  </p>
-                </div>
-              </div>
             </div>
+
 
             {/* ── Right Doctor Card ── */}
             <div className="lg:col-span-4 flex justify-center">
@@ -283,7 +244,57 @@ export default function BurnsPlasticSurgeryClient() {
                 </div>
               </div>
             </div>
+          </div>
 
+          <div className="mt-20 space-y-24">
+            
+            {/* Classifications Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <SectionHeader title="Classifications of" highlight="Burns" />
+                <ul className="space-y-3">
+                  {burnsClassifications.map((item, idx) => (
+                    <ListItem key={idx} text={item} />
+                  ))}
+                </ul>
+              </div>
+              <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)' }}>
+                <Image
+                  src="/images/departments-images/AdobeStock_222372294.jpeg"
+                  alt="Burns Classification"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Plastic Surgery Detailed Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1 relative h-[450px] rounded-[3rem] overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(0% 0, 90% 0%, 100% 100%, 10% 100%)' }}>
+                <Image
+                  src="/images/departments-images/plastic_surgery.png"
+                  alt="Plastic Surgery"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="order-1 md:order-2">
+                <SectionHeader title="Plastic" highlight="Surgery" />
+                <div className="space-y-4 text-gray-700 text-base leading-relaxed text-justify">
+                  <p>
+                    Plastic surgery is a surgical speciality which involves reconstruction, restoration, or alteration of the human body. Plastic Surgery is the art of treating with aims to improve the appearance of the human body or improve the functioning of a part of the body.
+                  </p>
+                  <div className="bg-blue-50/50 p-6 rounded-2xl border-l-4 border-blue-600">
+                    <p className="font-semibold text-blue-900 italic text-base">
+                      At Popular Hospital we have a team of highly qualified and dedicated plastic surgeons to deliver the best care at an affordable price with the proverbial best in latest technology.
+                    </p>
+                  </div>
+                  <p className="text-base">
+                    We work both independently and in Conjunction with many other Surgical Services including: ENT, General Surgery, Surgical Oncology, Orthopedics, Urology, Gynecology and Neurosurgery for giving comprehensive care to all the patients.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getAllBranches, createBranch, updateBranch, deleteBranch } from '../controllers/branchController.js';
-import { getAllDoctors, createDoctor, updateDoctor, deleteDoctor } from '../controllers/doctorController.js';
+import { getAllBranches, createBranch, updateBranch, deleteBranch, uploadBranch } from '../controllers/branchController.js';
+import { getAllDoctors, createDoctor, updateDoctor, deleteDoctor, uploadDoctor, createSpeciality, updateSpeciality, deleteSpeciality } from '../controllers/doctorController.js';
 import { getAllBookings } from '../controllers/bookingController.js';
 import { getSiteContent, setSiteContent } from '../controllers/cmsController.js';
 import { getAllNews, createNews, updateNews, deleteNews, getAdminNews, uploadNews } from '../controllers/newsController.js';
@@ -23,8 +23,8 @@ router.use(cmsAuth);
 
 // Branches CRUD
 router.get('/branches', getAllBranches);
-router.post('/branches', createBranch);
-router.put('/branches/:id', updateBranch);
+router.post('/branches', uploadBranch.fields([{ name: 'image_one', maxCount: 1 }, { name: 'image_two', maxCount: 1 }]), createBranch);
+router.put('/branches/:id', uploadBranch.fields([{ name: 'image_one', maxCount: 1 }, { name: 'image_two', maxCount: 1 }]), updateBranch);
 router.delete('/branches/:id', deleteBranch);
 
 // Doctors CRUD
@@ -41,9 +41,14 @@ router.get('/doctors', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-router.post('/doctors', createDoctor);
-router.put('/doctors/:id', updateDoctor);
+router.post('/doctors', uploadDoctor.single('image'), createDoctor);
+router.put('/doctors/:id', uploadDoctor.single('image'), updateDoctor);
 router.delete('/doctors/:id', deleteDoctor);
+
+// Specialities (Departments) CRUD
+router.post('/specialities', createSpeciality);
+router.put('/specialities/:id', updateSpeciality);
+router.delete('/specialities/:id', deleteSpeciality);
 
 // Bookings (read-only for CMS)
 router.get('/bookings', getAllBookings);

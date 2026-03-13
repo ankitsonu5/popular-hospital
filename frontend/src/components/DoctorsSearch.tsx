@@ -173,18 +173,18 @@ export function DoctorsSearch() {
                 </div>
 
                 {/* Content Section */}
-                <div className="px-3 pb-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="text-2xl font-black text-gray-900 tracking-tight">
-                      {doc.name}
-                    </h3>
-                    {/* Verified Badge */}
-                    <div className="bg-[#22c55e] rounded-full p-1 text-white">
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
+                <div className="px-3 pb-6">
+                  <h3 className="text-[22px] font-black text-[#4285f4] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis mb-1">
+                    {doc.name}
+                  </h3>
+
+                  <p className="text-[14px] font-bold text-gray-600 leading-tight mb-1 line-clamp-1">
+                    {doc.qualification || 'Highly Qualified Physician'}
+                  </p>
+
+                  <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-6">
+                    DEPARTMENT OF {doc.speciality?.name || 'Medical Science'}
+                  </p>
                   {/* Footer with stats and button */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-gray-900">

@@ -17,7 +17,7 @@ const sidebarItems = [
   { label: 'Doctors', href: '/admin-dashboard/doctors', icon: Stethoscope },
   { label: 'Branches', href: '/admin-dashboard/branches', icon: Building2 },
   { label: 'Bookings', href: '/admin-dashboard/bookings', icon: CalendarCheck },
-  { label: 'Specialities', href: '/admin-dashboard/specialities', icon: Users },
+  { label: 'Departments', href: '/admin-dashboard/departments', icon: Users },
   { label: 'Site Content', href: '/admin-dashboard/content', icon: FileText },
   { 
     label: 'Media & Blog', 

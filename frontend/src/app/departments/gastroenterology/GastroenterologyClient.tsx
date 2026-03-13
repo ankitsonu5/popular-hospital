@@ -10,15 +10,9 @@ const facilities = [
   'Upper & Lower GI Endoscopy',
   'Colonoscopy',
   'Gastroscopy',
-  'B.D.Stone(FRCP)',
-  'Oesophagea & Rectal Dilation',
+  'B.D Stone(ERCP)',
+  'Oesophageal & Rectal Dilation',
   'Biliary Stenting, Oesophageal Stenting',
-  'ERCP (Endoscopic Retrograde Cholangiopancreatography)',
-  'Interventional Endoscopy',
-  'Liver Biopsy & Management',
-  'Portal Hypertension Management',
-  'GI Cancer Diagnosis & Treatment',
-  'Pancreatic Disease Management'
 ];
 
 const conditions = [
@@ -248,30 +242,6 @@ export default function GastroenterologyClient() {
         </div>
       </section>
 
-      {/* ═══════ CONDITIONS WE TREAT ═══════ */}
-      <section className="bg-gray-100 py-14">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="text-center mb-10">
-            <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">What We Treat</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading">Common Conditions We <span className="text-blue-600">Treat</span></h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
-              <div className="w-2 h-2 rounded-full bg-blue-600" />
-              <div className="h-[2px] w-12 bg-gray-300" />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {conditions.map((item, i) => (
-              <span
-                key={i}
-                className="text-sm md:text-base font-semibold text-[#0b1c43] px-5 md:px-6 py-3 bg-white rounded-full shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-300 hover:text-blue-600 transition-all cursor-default"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ═══════ CALL TO ACTION ═══════ */}
       <section className="py-20 bg-white">
         <div className="mx-auto w-full max-w-[1366px] px-4">
@@ -304,7 +274,7 @@ export default function GastroenterologyClient() {
                 href="tel:+917800001895"
                 className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-blue-900/30 px-8 py-4 rounded-full font-bold text-base transition-all"
               >
-                Call +91-7800001895
+                Call +91-7800001895 / 96
               </a>
             </div>
           </div>

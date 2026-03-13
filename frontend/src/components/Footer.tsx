@@ -84,7 +84,7 @@ export function Footer() {
               <li><Link href="/services/health-packages" className="hover:text-white transition-colors">Health Packages</Link></li>
               <li><Link href="/updates" className="hover:text-white transition-colors">Updates</Link></li>
               <li><Link href="/feedback" className="hover:text-white transition-colors">Feedback</Link></li>
-              <li><Link href="/facilities" className="hover:text-white transition-colors text-hospital-teal font-bold">Our Facilities</Link></li>
+              <li><Link href="/facilities" className="hover:text-white transition-colors">Facilities</Link></li>
             </ul>
             <div className="mt-8">
               <h4 className="text-lg font-semibold text-white mb-2">Social Media:</h4>
