@@ -66,13 +66,26 @@ export default function PathologyPage() {
                         Popular Pathology Laboratory is committed to providing quality with care even in emergency situations. It is said that emergencies may arise without a warning and at any time. Handling critical cases instantly and catching the right 'Pulse' by beating the 'Deadline' is the key to recovery. Popular hospitals unique and hi-tech laboratory which has got world-class instruments and well-trained, and efficient staff. Popular Pathology Laboratory is accredited by the NABL (National Accreditation Board of Calibration, Testing Laboratory). It is the proof that Popular not only gets into the 'Heart' of the tests/ research conducted in the most authentic way but provides round-the-clock services considering its Best blood testing laboratory the fact that time and tide wait for none!
                     </p>
 
-                    <div className="flex flex-col gap-3 mb-10">
-                        {['Hematology', 'Clinical Pathology', 'Serology', 'Microbiology'].map((item, idx) => (
-                           <div key={idx} className="flex items-center gap-2 text-[#1a3a6b] font-medium">
-                               <span className="text-blue-500 font-bold">›</span>
-                               {item}
-                           </div>
-                        ))}
+                    <div className="mb-10">
+                        <h3 className="text-2xl lg:text-3xl font-black text-[#0b1c43] mb-2 font-heading leading-tight flex items-center gap-2">
+                            Scope of <span className="text-blue-600">Services:</span>
+                        </h3>
+                        {/* Decorative Line with Dot */}
+                        <div className="flex items-center mb-8">
+                            <div className="h-[3px] bg-gray-800 w-16 rounded-full relative">
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-gray-800 rounded-full border-2 border-white"></div>
+                            </div>
+                            <div className="h-[1px] bg-gray-200 w-24"></div>
+                        </div>
+
+                        <div className="flex flex-col gap-4">
+                            {['Immunology', 'Biochemistry', 'Hematology', 'Clinical Pathology', 'Serology', 'Microbiology'].map((item, idx) => (
+                               <div key={idx} className="flex items-center gap-3 text-[#1e3a5f] font-bold text-lg lg:text-xl">
+                                   <span className="text-blue-600 font-black text-2xl">›</span>
+                                   {item}
+                               </div>
+                            ))}
+                        </div>
                     </div>
 
                     <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] mb-4 font-heading leading-tight">
@@ -89,7 +102,7 @@ export default function PathologyPage() {
                         <div className="absolute inset-0 bg-blue-100 rounded-bl-[10rem] rounded-tr-[5rem] translate-x-4 translate-y-4"></div>
                         <div className="relative w-full h-full rounded-bl-[10rem] rounded-tr-[5rem] overflow-hidden shadow-2xl border-white border-8">
                             <Image
-                                src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=800"
+                                src="/images/departments-images/radiology_popular.jpg"
                                 alt="Laboratory Work"
                                 fill
                                 className="object-cover"

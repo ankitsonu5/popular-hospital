@@ -124,7 +124,7 @@ export default function RadiologyPage() {
                      <div className="absolute inset-0 bg-blue-50 rounded-tl-[10rem] rounded-br-[15rem] translate-x-4 translate-y-4"></div>
                      <div className="relative w-full h-full overflow-hidden shadow-2xl rounded-tl-[10rem] rounded-br-[15rem] border-white border-8">
                          <Image
-                            src="https://images.unsplash.com/photo-1555513511-2eb2f43a5323?auto=format&fit=crop&q=80&w=800"
+                            src="/images/departments-images/radiology_popular.jpg"
                             alt="Doctor analyzing radiology scans"
                             fill
                             className="object-cover"

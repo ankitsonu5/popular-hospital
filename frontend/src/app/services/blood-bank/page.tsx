@@ -168,18 +168,6 @@ export default function BloodBankPage() {
               const showImage = section.id !== 'department';
               const isEven = idx % 2 === 0;
               
-              // Map realistic generated images to sections
-              const imageMap: { [key: string]: string } = {
-                'health-benefits': '/images/departments-images/blood_donation_heart_health.png',
-                'enhance-production': '/images/departments-images/blood_regeneration_cells.png',
-                'components': '/images/departments-images/blood_components_separation.png',
-                'component-therapy': '/images/departments-images/blood_transfusion_therapy.png'
-              };
-
-              if (imageMap[section.id]) {
-                section.image = imageMap[section.id];
-              }
-
               return (
                 <div key={section.id} className={`flex flex-col ${showImage ? (isEven ? 'lg:flex-row-reverse' : 'lg:flex-row') : 'items-start text-left'} gap-12 lg:gap-20`}>
                   

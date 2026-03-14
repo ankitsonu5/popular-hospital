@@ -51,7 +51,7 @@ const sections = [
         </li>
       </ul>
     ),
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/emergency_services.webp',
     imgAlt: 'Medical team treating patient inside ambulance',
   },
   {
@@ -67,7 +67,7 @@ const sections = [
         </li>
       </ul>
     ),
-    image: 'https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/safest_hospital.jpg',
     imgAlt: 'Medical staff helping patient to ambulance',
   },
   {
@@ -83,7 +83,7 @@ const sections = [
         </li>
       </ul>
     ),
-    image: 'https://images.unsplash.com/photo-1596541223130-5d31a73fb6c6?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/ambulance_doctor.png',
     imgAlt: 'Doctor standing in front of ambulance',
   }
 ];
