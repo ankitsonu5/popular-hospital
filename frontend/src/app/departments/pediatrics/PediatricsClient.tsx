@@ -6,70 +6,56 @@ import { useState } from 'react';
 
 /* ─── Data (Transcribed from previous turn + General Surgery Theme) ─── */
 
-const features = [
-  { title: "Advanced NICU", icon: "baby", desc: "Level III Neonatal Intensive Care Unit." },
-  { title: "Vaccination Hub", icon: "shield", desc: "Complete immunization schedule management." },
-  { title: "Growth Clinic", icon: "chart", desc: "Monitoring development milestones." },
-  { title: "24/7 ER", icon: "plus", desc: "Dedicated pediatric emergency wing." },
+const introParagraphs = [
+  "The Department of Pediatrics and Neonatology promotes the health of children and adolescents with a balanced approach, delivers high quality comprehensive clinical care.",
+  "The department has a dedicated team of highly qualified Pediatricians and Neonatologists that take care of all babies' right from their first breath.",
+  "We take care of all newborns including very fragile preterm at our state-of-the-art Neonatal Intensive Care unit with utmost commitment. Our NICU is equipped with Ultra-modern warmers, Ventilators, CPAP, LED phototherapies, open care system which is manned by highly trained nursing staff.",
+  "Our PICU is also suitably equipped to take care of all Pediatric Intensive Care needs. The hospital is equipped with CT, MRI, etc. facilities for all Imaging needs and is also having excellent Pathology and Microbiology services, excellent support from other specialties like Neurology, Cardiology, Urology, Orthopedics, Surgery etc. which are available round the clock.",
 ];
 
-const neonatologyServices = [
-  'Level III NICU',
-  'Advanced Neonatal Life Support',
-  'Total Parenteral Nutrition',
-  'Surfactant Replacement Therapy',
-  'Management of Prematurity',
-  'Neonatal Jaundice Management',
+const servicesOffered = [
+  "Outpatient Services including general check-up, well baby clinic, high risk baby clinic and vaccinations",
+  "Emergency Management of all pediatric and neonatal problems, round-the-clock",
+  "PICU Services including assisted ventilation, management of severe asthma, seizures, shock, etc.",
+  "Neonatal resuscitation in LR and OT",
+  "Neonatal/Pediatrics ventilation, CPAP & oz supplementation",
+  "Phototherapy",
+  "Exchange Blood Transfusion",
+  "Surfactant administration-including modern LISA technique",
+  "Neonatal metabolic & thyroid screening",
+  "Neonatal ROP Screening (by Ophthalmologist on call)",
+  "Bedside 2D Echo X-Ray & USG",
+  "Neonatal surgery (pediatric surgeon on call)",
+  "Peritoneal dialysis",
 ];
 
-const pediatricServices = [
-  'General Pediatrics OPD',
-  'Growth & Development Monitoring',
-  'Nutritional Assessment',
-  'Childhood Immunization Center',
-  'Management of Chronic Allergies',
-  'Pediatric Asthma Clinic',
+const indoorServices = [
+  "Round-the-clock availability of qualified pediatrician on call",
+  "Pediatric surgery (pediatric surgeon on call)",
+  "Chemotherapy for pediatric cancer patients",
+  "Asthma treatment facility",
+  "Blood transfusion and chelation facility for thalassemia patients",
+  "All common invasive procedures like bone marrow and liver biopsy, thoracocentesis, renal biopsy etc.",
+  "Only hospital of eastern Uttar Pradesh having CRRT facility for Pediatric Patients",
+  "GI endoscopy for children (in association with department of Gastroenterology)",
+  "Bronchoscopy for children (in association with Pulmonologist & Pediatric Surgeon)",
 ];
 
-const pediatricEmergency = [
-  '24/7 Pediatric ER',
-  'Pediatric ICU (PICU)',
-  'Trauma Management',
-  'Acute Respiratory Distress',
-  'Sepsis Management',
-  'Accidental Poisoning Care',
-];
-
-const specializedTreatments = [
-  'Pediatric Cardiology',
-  'Pediatric Neurology',
-  'Pediatric Gastroenterology',
-  'Pediatric Nephrology',
-  'Childhood Obesity Management',
-];
-
-const surgeryCare = [
-  'Pediatric Surgery Consultation',
-  'Minimal Access Surgery',
-  'Congenital Defect Correction',
-  'Day Care Surgical Procedures',
-];
-
-const adolescentHealth = [
-  'Adolescent Wellness Clinic',
-  'Puberty Related Concerns',
-  'Mental Health Support',
-  'Nutritional & Lifestyle Counseling',
-  'Menstrual Disorder Management',
+const highlights = [
+  "Supported by latest technology & experienced specialists",
+  "Direct supervision of Senior Neonatologists and Pediatricians",
+  "Clear communication with parents, with complete transparency & accountability",
+  "24x7 access to newborns for mothers",
+  "Antenatal clinic for parents to deal with fetal abnormalities detected on USG",
 ];
 
 const doctors = [
   {
-    name: 'Dr. Pediatrics Specialist',
-    qualifications: 'MBBS, MD (Pediatrics), DCH',
-    designation: 'Sr. Consultant',
-    slug: 'dr-pediatrics-specialist',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800',
+    name: 'Dr. Alok C Bhardwaj',
+    qualifications: 'MBBS (IMS, BHU, Varanasi - 1987), MD - Paediatrician (IMS, BHU, Varanasi - 1991)',
+    designation: 'Medical Director',
+    slug: 'dr-alok-c-bhardwaj',
+    image: '', // Image path if available later
   },
 ];
 
@@ -109,109 +95,115 @@ export default function PediatricsClient() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
+    <main className="min-h-screen bg-white overflow-x-hidden pt-12">
 
-      {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?auto=format&fit=crop&q=80&w=2000"
-            alt="Pediatrics Banner"
-            fill
-            className="object-cover opacity-30 mix-blend-overlay"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
-        </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
-          <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Department of
-            </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-             Pediatrics & Neonatology
-            </h1>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/doctors"
-                className="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30 flex items-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Book Appointment
-              </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                Get a Call Back
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════ DEPARTMENT INFO + DOCTOR SIDEBAR ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      {/* ═══════ TOP SECTION: INTRO + DOCTOR ═══════ */}
+      <section className="py-12 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
-              <SectionHeader title="Department of" highlight="Pediatrics & Neonatology" />
-              <div className="space-y-4 text-gray-800 text-base md:text-lg leading-relaxed mb-12 font-medium text-justify">
-                <p>
-                  The Pediatrics & Neonatology department provides comprehensive care for infants, children, and adolescents through a team of experienced and highly skilled pediatricians backed by advanced medical technology.
-                </p>
-                <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
-                  <p>
-                    Our Neonatal Intensive Care Unit (NICU) is equipped with state-of-the-art ventilators, incubators, and monitoring systems to provide high-quality functional recovery for critically ill newborns. We prioritize safe and gentle care for the most vulnerable.
-                  </p>
-                </div>
-                <p>
-                  From routine vaccinations to specialized treatments for childhood diseases, our team is dedicated to restoring health and providing speedy recovery. Our doctors are supported by expert teams of pediatric nurses and therapists to bring the child to a healthy life.
-                </p>
+              <SectionHeader title="Department of" highlight="Pediatrics And Neonatology" />
+              <div className="space-y-6 text-gray-700 text-base md:text-lg leading-relaxed mb-12 text-justify">
+                {introParagraphs.map((para, idx) => (
+                  <p key={idx}>{para}</p>
+                ))}
               </div>
             </div>
 
-            {/* ── Right Doctor Card (General Surgery Style) ── */}
+            {/* ── Right Doctor Card ── */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit">
+              <div className="w-full h-fit">
                 <div className="relative pt-6">
                   <Link
                     href="/doctors"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
+                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-sm font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap uppercase"
                   >
                     SCHEDULE AN APPOINTMENT
                   </Link>
 
-                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
-                    <div className="w-full relative overflow-hidden h-[480px]">
-                      <div className="w-full h-full p-6 pt-12 flex flex-col items-center">
-                        <div className="relative w-full h-[320px] rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                            <Image
-                              src={doctors[0].image}
-                              alt={doctors[0].name}
-                              fill
-                              className="object-cover transition-transform duration-500 group-hover/img:scale-110"
-                            />
-                             <Link
-                              href={`/doctors/${doctors[0].slug}`}
-                              className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                            >
-                              <span className="px-5 py-2.5 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-all uppercase text-sm">
-                                View Full Profile
-                              </span>
-                            </Link>
-                        </div>
-                        <div className="text-center">
-                            <h3 className="text-xl font-bold text-[#3b82f6] mb-1 font-heading">{doctors[0].name}</h3>
-                            <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">{doctors[0].qualifications}</p>
-                            <p className="text-gray-500 text-xs mt-2 uppercase tracking-widest font-bold">{doctors[0].designation}</p>
-                        </div>
+                  <div className="bg-white rounded-xl shadow border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
+                    <div className="w-full relative overflow-hidden">
+                      <div 
+                        className="flex transition-transform duration-500 ease-in-out" 
+                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                      >
+                        {doctors.map((doc, idx) => (
+                          <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
+                            <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
+                                {doc.image ? (
+                                  <Image
+                                    src={doc.image}
+                                    alt={doc.name}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover/img:scale-105"
+                                  />
+                                ) : (
+                                  <div className="flex items-center justify-center h-full bg-blue-50 text-blue-200">
+                                    <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                                    </svg>
+                                  </div>
+                                )}
+                                 <Link
+                                  href={`/doctors/${doc.slug}`}
+                                  className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
+                                >
+                                  <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors uppercase text-sm">
+                                    View More Info
+                                  </span>
+                                </Link>
+                            </div>
+                            <div className="text-center">
+                                <h3 className="text-xl font-bold text-[#3b82f6] mb-1 font-heading">{doc.name}</h3>
+                                <p className="text-gray-600 text-sm font-medium">{doc.qualifications}</p>
+                                <p className="text-gray-500 text-sm mt-1 uppercase tracking-wider font-bold">{doc.designation}</p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
+
+                    {/* Navigation Arrows — only if > 1 doctor */}
+                    {doctors.length > 1 && (
+                      <>
+                        <button
+                          onClick={() => setCurrentSlide(prev => (prev === 0 ? doctors.length - 1 : prev - 1))}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
+                        >
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => setCurrentSlide(prev => (prev === doctors.length - 1 ? 0 : prev + 1))}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
+                        >
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </>
+                    )}
+
+                    {/* Pagination Dots */}
+                    {doctors.length > 1 && (
+                      <div className="flex gap-3 mb-8">
+                        {doctors.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setCurrentSlide(idx)}
+                            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border ${
+                              currentSlide === idx
+                                ? 'bg-blue-600 border-blue-600 scale-125'
+                                : 'bg-transparent border-gray-400'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    )}
+                    <div className="h-4" />
                   </div>
                 </div>
               </div>
@@ -221,173 +213,88 @@ export default function PediatricsClient() {
         </div>
       </section>
 
-      {/* ═══════ NEONATOLOGY & OPD (Full Width Sections) (1366px) ═══════ */}
-      <section className="py-40 bg-white border-t border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-            {/* Section: Neonatology (Split Layout) */}
-            <div className="mb-32">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    <div>
-                        <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">Specialized Care</span>
-                        <SectionHeader title="Neonatology" highlight="Services" />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                        {neonatologyServices.map((item, idx) => (
-                            <div key={idx} className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 flex items-start gap-4 group">
-                            <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-[#0b1c43] transition-colors">
-                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <p className="text-gray-700 font-medium text-sm leading-snug pt-1">{item}</p>
-                            </div>
-                        ))}
-                        </div>
-                    </div>
-                    <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '480px' }}>
-                        <Image
-                        src="/images/departments-images/neonatology.jpeg"
-                        alt="Neonatal Care Center"
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/40 via-transparent to-transparent" />
-                    </div>
-                </div>
+      {/* ═══════ SERVICE OFFERED SECTION ═══════ */}
+      <section className="py-16 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* List Left */}
+            <div className="lg:col-span-7">
+              <SectionHeader title="Service" highlight="Offered:" />
+              <ul className="space-y-2 mt-4">
+                {servicesOffered.map((item, idx) => (
+                  <ListItem key={idx} text={item} />
+                ))}
+              </ul>
             </div>
-
-            {/* Section: Pediatric OPD (Split Layout) */}
-            <div className="mb-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
-                        <Image
-                            src="/images/departments-images/pediatric_opd_realistic.png"
-                            alt="Pediatrics OPD"
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/40 via-transparent to-transparent" />
-                    </div>
-                    <div className="order-1 lg:order-2">
-                        <SectionHeader title="Pediatric" highlight="Care & OPD" />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                            {pediatricServices.map((item, idx) => (
-                            <div key={idx} className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex items-start gap-4 group">
-                                <div className="w-9 h-9 rounded-lg bg-[#0b1c43] flex items-center justify-center flex-shrink-0 text-white font-bold text-sm group-hover:bg-blue-600 transition-colors">
-                                {idx + 1}
-                                </div>
-                                <p className="text-gray-700 text-sm leading-relaxed pt-1">{item}</p>
-                            </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </section>
-
-      {/* ═══════ EMERGENCY & SPECIALIZED (General Surgery USP Style - Side List + Image) ═══════ */}
-      <section className="py-20 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-             
-             {/* Left: Image Side */}
-             <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
-                <Image
-                    src="/images/departments-images/pediatric_emergency_icu_realistic.png"
-                    alt="Pediatric Emergency & ICU"
+            {/* Image Right (Blob Shape) */}
+            <div className="lg:col-span-5 h-[500px] relative">
+               <div className="absolute inset-0 bg-blue-50  opacity-50" />
+               <div className="w-full h-full relative overflow-hidden border-4 border-white shadow rounded-xl">
+                  <Image 
+                    src="/images/departments-images/Pediatrics Service.jpg"
+                    alt="Pediatrics Service"
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
-             </div>
-
-             {/* Right: List Side */}
-             <div className="order-1 lg:order-2">
-                <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">Conditions We Treat</span>
-                <SectionHeader title="Our" highlight="Pediatric Emergency & ICU" />
-                <p className="text-gray-500 text-sm mb-6">
-                  Dedicated 24/7 pediatric emergency care with multidisciplinary support.
-                </p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
-                    {pediatricEmergency.map((item, idx) => (
-                        <ListItem key={idx} text={item} />
-                    ))}
-                </ul>
-             </div>
-
-           </div>
-        </div>
-      </section>
-
-      {/* ═══════ SURGERY & ADOLESCENT (Split Layout) ═══════ */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <div>
-                   <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">Specialized Care</span>
-                    <SectionHeader title="Pediatric" highlight="Surgery & Adolescent Health" />
-                    <p className="text-gray-500 text-sm mb-6">Expert surgical care and holistic wellness for growing children.</p>
-                    <h4 className="font-bold text-[#0b1c43] mb-4 text-sm uppercase">Surgical Care:</h4>
-                    <ul className="mb-6">
-                        {surgeryCare.map((item, idx) => (
-                            <ListItem key={idx} text={item} />
-                        ))}
-                    </ul>
-                    <h4 className="font-bold text-[#0b1c43] mb-4 text-sm uppercase">Adolescent Wellness:</h4>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
-                        {adolescentHealth.map((item, idx) => (
-                            <ListItem key={idx} text={item} />
-                        ))}
-                    </ul>
-                </div>
-                <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '480px' }}>
-                    <Image
-                    src="/images/departments-images/pediatric_surgery_wellness_realistic.png"
-                    alt="Pediatric Surgery & Adolescent Health"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
-                </div>
-           </div>
-        </div>
-      </section>
-
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="bg-[#0b1c43] rounded-2xl md:rounded-[2.5rem] p-10 md:p-24 text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-                </svg>
+                    className="object-cover"
+                  />
+               </div>
             </div>
-            
-            <div className="relative z-10">
-              <span className="inline-block bg-blue-500/20 text-blue-100 text-xs font-bold px-4 py-1.5 rounded-full mb-8 border border-blue-400/20 uppercase tracking-widest">
-                Comprehensive Child Care
-              </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
-                Nurturing Future <br className="hidden md:block" /> Generations Today
-              </h2>
-              <p className="text-blue-100 text-lg md:text-xl max-w-3xl mx-auto mb-14 leading-relaxed font-medium text-justify md:text-center">
-                Compassionate and expert care for your little ones. Join thousands of happy families who trust us.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-6">
-                <Link
-                  href="/doctors"
-                  className="bg-[#3b82f6] text-white hover:bg-blue-500 px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1"
-                >
-                  Book Appointment
-                </Link>
-                <a
-                  href="tel:+917800001895"
-                  className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                  +91-7800001895 / 96
-                </a>
-              </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ PEDIATRIC INDOOR SERVICES ═══════ */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Image Left (Blob Shape) */}
+            <div className="lg:col-span-6 h-[550px] relative order-2 lg:order-1">
+               <div className="absolute inset-0 bg-blue-50 rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] opacity-50" />
+               <div className="w-full h-full relative overflow-hidden rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] border-4 border-white shadow-2xl">
+                  <Image 
+                    src="/images/departments-images/pediatric_opd_realistic.png"
+                    alt="Indoor Services"
+                    fill
+                    className="object-cover"
+                  />
+               </div>
+            </div>
+            {/* List Right */}
+            <div className="lg:col-span-6 order-1 lg:order-2">
+              <SectionHeader title="Pediatric Indoor" highlight="Services" />
+              <ul className="space-y-3 mt-4">
+                {indoorServices.map((item, idx) => (
+                  <ListItem key={idx} text={item} />
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ HIGHLIGHTS SECTION ═══════ */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* List Left */}
+            <div className="lg:col-span-6">
+              <h2 className="text-3xl font-bold text-[#3b82f6] font-heading mb-6">Highlights</h2>
+              <ul className="space-y-4">
+                {highlights.map((item, idx) => (
+                  <ListItem key={idx} text={item} />
+                ))}
+              </ul>
+            </div>
+            {/* Image Right (Blob Shape) */}
+            <div className="lg:col-span-6 h-[400px] relative">
+               <div className="absolute inset-0 bg-blue-50 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] opacity-50" />
+               <div className="w-full h-full relative overflow-hidden rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] border-4 border-white shadow-2xl">
+                  <Image 
+                    src="/images/departments-images/neonatology.jpeg"
+                    alt="Pediatrics Highlights"
+                    fill
+                    className="object-cover"
+                  />
+               </div>
             </div>
           </div>
         </div>

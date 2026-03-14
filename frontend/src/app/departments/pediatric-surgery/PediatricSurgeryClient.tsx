@@ -212,9 +212,9 @@ export default function PediatricSurgeryClient() {
                   ))}
                 </ul>
               </div>
-              <div className="order-1 md:order-2 relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)' }}>
+              <div className="order-1 md:order-2 relative h-[400px] rounded-[3rem]">
                 <Image
-                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800"
+                  src="/images/departments-images/pediatric_surgery.png"
                   alt="Pediatric Surgery"
                   fill
                   className="object-cover"
@@ -226,7 +226,7 @@ export default function PediatricSurgeryClient() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(0% 0, 90% 0%, 100% 100%, 10% 100%)' }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=800"
+                  src="/images/departments-images/pediatric_surgery.avif"
                   alt="Specialized Areas"
                   fill
                   className="object-cover"

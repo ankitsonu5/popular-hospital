@@ -18,7 +18,7 @@ const introList = [
   "Problems related to the throat including sore throat, throat tumors, gastroesophageal reflux disease (GERD), hoarseness, infections, and vocal cord and airway disorders.",
   "Defects at the time of birth, ear infection, developmental delays, airway problems, tonsil and adenoid infection.",
   "Facial plastic surgeries such as cleft palates, ear deformities trauma reconstruction.",
-  "Full time team of doctors providing Routine OPD, Emergency services, and ENT surgeries supported by latest modular OTs."
+  "The department has a full time team of doctors who provide all services like Routine OPD, Emergency services,ENT surgeries and is supported by the latest modular operation theatres and diagnostic facilities to ensure that patients get the appropriate and quality treatment."
 ];
 
 const commonDiseases = [
@@ -144,24 +144,6 @@ export default function ENTClient() {
                         ))}
                     </ul>
                 </div>
-
-                <div className="mt-16 animate-fade-in">
-                    <SectionHeader title="Common Diseases and" highlight="Conditions:" />
-                    <div className="flex flex-col gap-1 mt-8">
-                        {commonDiseases.map((item, idx) => (
-                            <ListItem key={idx} text={item} />
-                        ))}
-                    </div>
-                </div>
-
-                <div className="mt-16 animate-fade-in">
-                    <SectionHeader title="What we" highlight="offer:" />
-                    <div className="flex flex-col gap-1 mt-8">
-                        {whatWeOffer.map((item, idx) => (
-                            <ListItem key={idx} text={item} />
-                        ))}
-                    </div>
-                </div>
             </div>
 
             {/* ── Right Doctor Sidebar ── */}
@@ -207,6 +189,60 @@ export default function ENTClient() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* ═══════ COMMON DISEASES SECTION (Full 1366px width) ═══════ */}
+      <section className="py-16 bg-white">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+            <div className="animate-fade-in grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div className="md:col-span-7">
+                    <SectionHeader title="Common Diseases and" highlight="Conditions:" />
+                    <div className="flex flex-col gap-1 mt-8">
+                        {commonDiseases.map((item, idx) => (
+                            <ListItem key={idx} text={item} />
+                        ))}
+                    </div>
+                </div>
+                <div className="md:col-span-5 relative h-[450px] w-full group">
+                    <div className="absolute inset-0 bg-amber-50 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] opacity-50 transition-transform group-hover:scale-105 duration-700" />
+                    <div className="relative h-full w-full overflow-hidden rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] border-4 border-white shadow-xl transition-transform group-hover:scale-[1.02] duration-500">
+                        <Image
+                            src="/images/departments-images/ent_diseases.png"
+                            alt="Common Diseases"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      {/* ═══════ WHAT WE OFFER SECTION (Full 1366px width) ═══════ */}
+      <section className="py-16 bg-gray-50/30">
+        <div className="mx-auto w-full max-w-[1366px] px-4">
+            <div className="animate-fade-in grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div className="md:col-span-5 relative h-[500px] w-full group order-2 md:order-1">
+                    <div className="absolute inset-0 bg-amber-50 rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] opacity-50 transition-transform group-hover:scale-105 duration-700" />
+                    <div className="relative h-full w-full overflow-hidden rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] border-4 border-white shadow-xl transition-transform group-hover:scale-[1.02] duration-500">
+                        <Image
+                            src="/images/departments-images/ent_treatment.png"
+                            alt="What we offer"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                </div>
+                <div className="md:col-span-7 order-1 md:order-2">
+                    <SectionHeader title="What we" highlight="offer:" />
+                    <div className="flex flex-col gap-1 mt-8">
+                        {whatWeOffer.map((item, idx) => (
+                            <ListItem key={idx} text={item} />
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
       </section>
 

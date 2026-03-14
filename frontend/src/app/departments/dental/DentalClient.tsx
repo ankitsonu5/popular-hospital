@@ -149,7 +149,7 @@ export default function DentalClient() {
                   <div className="lg:w-5/12 w-full order-2 lg:order-1">
                     <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px] border-[12px] border-white group">
                       <Image 
-                        src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800"
+                        src="/images/departments-images/root-canal-treatment.jpg"
                         alt="Dental Radiology"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"

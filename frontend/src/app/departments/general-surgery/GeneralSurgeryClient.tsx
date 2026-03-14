@@ -236,7 +236,6 @@ export default function GeneralSurgeryClient() {
 
             {/* Left: USP List */}
             <div>
-              <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">What We Offer</span>
               <SectionHeader title="Usp Of General &amp;" highlight="Laproscopic Surgery Department" />
               <ul className="mt-2">
                 {uspList.map((item, idx) => (
@@ -268,7 +267,7 @@ export default function GeneralSurgeryClient() {
             {/* Left: Image */}
             <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '440px' }}>
               <Image
-                src="/images/departments-images/general_surgery_procedures_realistic.png"
+                src="/images/departments-images/general_surgery.png"
                 alt="General Surgery Procedures"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -278,7 +277,6 @@ export default function GeneralSurgeryClient() {
 
             {/* Right: List */}
             <div>
-              <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">Conditions We Treat</span>
               <SectionHeader title="Our" highlight="Procedures" />
               <p className="text-gray-500 text-sm mb-6">
                 Comprehensive surgical solutions for a wide range of abdominal and general surgical conditions.

@@ -39,17 +39,34 @@ const obstetricsList = [
 ];
 
 const gynaecologyProcedures = [
-  'OPD consultation',
-  'All minor gynaecological operative procedures: D&C, D&E, Biopsy, Colposcopy, Cryotherapy, Abscess drainage',
-  'Hysterectomy: Abdominal, TLH, Non-descent, Vaginal',
-  'Surgery for benign gynaecological conditions - myomectomy & polypectomy',
-  'Sling surgery for prolapsed uterus vault prolapse',
-  'Surgery for gynaecological malignancy',
-  'Diagnostic & Operative Laparoscopy: Ectopic, Adhesiolysis, Endometriosis, Ovarian cysts',
-  'Diagnostic & Operative Hysteroscopy',
-  'Gynaecological cancer screening - pap smear, CT Scan & MRI, tumour markers',
-  'Pelvic floor repair - Anterior and posterior colporrhaphy',
-  'Family planning services: Tube ligation, CuT/multiload insertion',
+  { text: 'OPD consultation', type: 'item' },
+  { text: 'All minor gynaecological operative procedures', type: 'header' },
+  { text: 'Dilatation and curettage', type: 'sub' },
+  { text: 'Dilatation and evacuation', type: 'sub' },
+  { text: 'Cervical biopsy/ endometrial biopsy', type: 'sub' },
+  { text: 'Colposcopy', type: 'sub' },
+  { text: 'Cryotherapy or thermoablation for cervical erosion', type: 'sub' },
+  { text: 'Abscess drainage – vulval, bartholin\'s etc.', type: 'sub' },
+  { text: 'Hysterectomy', type: 'item' },
+  { text: 'Abdominal hysterectomy', type: 'sub' },
+  { text: 'TLH/ Laparoscopic assisted vaginal hysterectomy', type: 'sub' },
+  { text: 'Non descent vaginal hysterectomy', type: 'sub' },
+  { text: 'Vaginal hysterectomy', type: 'sub' },
+  { text: 'Surgery for benign gynaecological conditions – myomectomy &polypectomy', type: 'item' },
+  { text: 'Sling surgery for prolapsed uterus vault prolapse.', type: 'item' },
+  { text: 'Surgery for gynaecological malignancy', type: 'item' },
+  { text: 'Diagnostic laparoscopy', type: 'item' },
+  { text: 'Operative laparoscopy', type: 'item' },
+  { text: 'Ectopic pregnancy', type: 'sub' },
+  { text: 'Adhesiolysis', type: 'sub' },
+  { text: 'Endometriosis', type: 'sub' },
+  { text: 'Adnexal masses', type: 'sub' },
+  { text: 'Ovarian cysts', type: 'sub' },
+  { text: 'Diagnostic hysteroscopy', type: 'item' },
+  { text: 'Operative hysteroscopy - -polypectomy, myomectomy, adhesiolysis, septal resection', type: 'item' },
+  { text: 'Gynaecological cancer screening – pap smear, CT Scan & MRL, tumour markers', type: 'item' },
+  { text: 'Pelvic floor repair – Anterior and posterior colporrhaphy', type: 'item' },
+  { text: 'Family planning services – Abdominal tube ligation, laparoscopic tube ligation, CuT/multiload insertion.', type: 'item' },
 ];
 
 const doctors = [
@@ -279,7 +296,6 @@ export default function GynaecologyClient() {
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
                 {/* Text Section (Left) - Increased space for readability */}
                 <div className="lg:col-span-5 order-2 lg:order-1">
-                    <span className="text-pink-600 font-bold tracking-widest text-xs uppercase mb-3 block">What We Offer</span>
                     <SectionHeader title="Department" highlight="Facilities" />
                     <ul className="mt-4 space-y-3">
                     {facilitiesList.map((item, idx) => (
@@ -311,7 +327,7 @@ export default function GynaecologyClient() {
              {/* Left: Image (General Surgery Style) */}
              <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
                 <Image
-                    src="/images/departments-images/obstetrics_care.jpeg"
+                    src="/images/departments-images/obstetrics_care.jpg"
                     alt="Obstetrics Care"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -321,11 +337,7 @@ export default function GynaecologyClient() {
 
              {/* Right: List Side (General Surgery Style) */}
              <div className="order-1 lg:order-2">
-                <span className="text-pink-600 font-bold tracking-widest text-xs uppercase mb-3 block">Maternity Services</span>
                 <SectionHeader title="Our" highlight="Obstetrics Care" />
-                <p className="text-gray-500 text-sm mb-6">
-                    Comprehensive care for mothers and children, from prenatal checkups to emergency obstetric interventions.
-                </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
                     {obstetricsList.map((item, idx) => (
                         <ListItem key={idx} text={item} />
@@ -342,15 +354,23 @@ export default function GynaecologyClient() {
         <div className="mx-auto w-full max-w-[1366px] px-4">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <div>
-                    <span className="text-pink-600 font-bold tracking-widest text-xs uppercase mb-3 block">Specialized Care</span>
-                    <SectionHeader title="Our" highlight="Gynaecological Expertise" />
-                    <p className="text-gray-500 text-sm mb-6">
-                        Expert consultation and surgical management for all gynaecological conditions.  
-                    </p>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
-                        {gynaecologyProcedures.map((item, idx) => (
-                            <ListItem key={idx} text={item} />
-                        ))}
+                    <SectionHeader title="Gynaecology"/>
+                    <ul className="space-y-1">
+                        {gynaecologyProcedures.map((item, idx) => {
+                            if (item.type === 'header') {
+                                return (
+                                    <li key={idx} className="text-gray-800 mb-2 text-base md:text-lg font-medium leading-relaxed pl-6">
+                                        {item.text}
+                                    </li>
+                                );
+                            }
+                            return (
+                                <li key={idx} className={`flex items-start gap-2 text-gray-800 mb-1 group text-base md:text-lg font-medium ${item.type === 'sub' ? 'ml-6' : ''}`}>
+                                    <span className="text-pink-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">›</span>
+                                    <span className="leading-relaxed">{item.text}</span>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
                 <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '480px' }}>

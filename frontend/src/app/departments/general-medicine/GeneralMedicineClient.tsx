@@ -20,6 +20,11 @@ const medicalServices = [
     content: "The department has experienced consultant who supervises comprehensive assessment of Type I & Type II diabetes patients for micro vascular and macro vascular complications. The work-up includes glycosylated haemoglobin (HbA1c), 24 hour urinary proteins and creatinine clearance, nerve conduction velocities (NCV), echocardiography and carotid intimal thickness. Newer insulin analogues and oral antidiabetics are used with an emphasis on prevention, early detection and control of complications.",
   },
   {
+    title: "Rheumatology",
+    highlight: "",
+    content: "The department of Rheumatology & Clinical Immunology runs a rheumatology OPD with advanced laboratory back-up geared to diagnose and treat rheumatological problems such as rheumatoid arthritis, systemic lupus erythematosus, progressive systemic sclerosis, sero negative spondyloarthropathy etc. Joint aspirations and intra articular injections are given on an outpatient basis. A large number of patients are on disease modifying antirheumatic drugs (DMARDS) with good results.",
+  },
+  {
     title: "HIV &",
     highlight: "AIDS Care",
     content: "HIV positive and AIDS patients are treated in the hospital with utmost care and confidentiality. CD4 counts and viral loads are available for diagnosis and managing opportunistic infections. The department is guided by National AIDS Control Organization (NACO) guidelines for antiretroviral therapy and holistic management of patients.",

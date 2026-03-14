@@ -15,12 +15,12 @@ const featureCards = [
 
 const medicalContent = [
   {
-    title: "What is a Pain Management Clinic?",
-    text: "Also called Pain Clinics deal with the management of chronic pain usually not responding to conventional treatment. Patients are managed an Interventional Pain Procedures performed by a doctor who has specialised in Pain Medicine."
+    title: "Psychiatry Department",
+    text: "Welcome to the Psychiatry Department at Popular Hospital, Varanasi! Our expert team of psychiatrists and psychologists is devoted to providing comprehensive care for people of all ages. We focus on mental health and are here to assist you in achieving emotional well-being and living a fulfilling life."
   },
   {
-    title: "What kind of patient need Pain Clinic?",
-    text: "Patient suffering from chronic pain including, Headache, Migraine, Trigeminal Neuralgia, Neck, Shoulder, Backpain (Slip Disc), Knee, urogenital, Myofocial, Complex Regional Pain Syndrome and cancer pain are managed in Pain Management Clinic with Medications and Interventional Pain Procedures."
+    title: "Our Services",
+    text: "Psychiatric Evaluation and Diagnosis: Our psychiatrists perform in-depth evaluations to understand your mental health condition and provide accurate diagnoses. We focus on your unique experiences and concerns to create tailored treatment plans. We provide treatment of psychiatric illnesses like-"
   },
   {
     title: "What are various treatment offered in Pain Clinic?",
@@ -222,7 +222,6 @@ export default function PainManagementClient() {
             <div className="lg:col-span-8">
               
               <div className="mb-16">
-                <SectionHeader title="Pain Clinic" highlight="Overview" />
                 {medicalContent.map((item, idx) => (
                     <ContentBlock key={idx} title={item.title} text={item.text} bullets={item.bullets} />
                 ))}
