@@ -103,7 +103,7 @@ export default function CardiologyPage() {
             src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=2000&"
             alt="Cardiac Care"
             fill
-            className="object-cover opacity-30 mix-blend-overlay"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />

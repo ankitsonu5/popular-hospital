@@ -88,7 +88,7 @@ export default function OphthalmologyClient() {
             src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2000"
             alt="Ophthalmology Department Banner"
             fill
-            className="object-cover opacity-30 mix-blend-overlay"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#0f172a]/90 to-transparent" />

@@ -20,7 +20,7 @@ export default function RadiologyPage() {
                 src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=2000"
                 alt="Radiology Imaging"
                 fill
-                className="object-cover opacity-40 mix-blend-overlay"
+                className="object-cover object-center opacity-70 mix-blend-overlay"
                 priority
              />
              <div className="absolute inset-0 bg-gradient-to-r from-[#003B4A] via-[#003B4A]/90 to-transparent"></div>

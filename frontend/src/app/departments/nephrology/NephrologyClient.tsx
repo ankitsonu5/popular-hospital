@@ -85,10 +85,10 @@ export default function NephrologyClient() {
       <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2000"
+            src="/images/banners/nephrology.png"
             alt="Nephrology Banner"
             fill
-            className="object-cover opacity-30 mix-blend-overlay"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />

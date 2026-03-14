@@ -114,10 +114,10 @@ export default function CTVSClient() {
       <section className="relative min-h-[500px] md:h-[450px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=2000"
+            src="/images/banners/cardiothoracic_banner.png"
             alt="Heart and Vascular Care"
             fill
-            className="object-cover opacity-30 mix-blend-overlay"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />

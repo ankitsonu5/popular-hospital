@@ -67,7 +67,7 @@ export default function LaboratoryMedicineClient() {
             src="/images/departments-images/laboratory_medicine_hero.png"
             alt="Laboratory Medicine Research"
             fill
-            className="object-cover opacity-50 mix-blend-luminosity"
+            className="object-cover object-center opacity-70"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/80 to-transparent"></div>

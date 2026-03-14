@@ -85,7 +85,7 @@ export default function DieteticsNutritionClient() {
             src="/images/departments-images/dietetics_nutrition_hero.png"
             alt="Dietetics and Nutrition Center"
             fill
-            className="object-cover opacity-30 mix-blend-overlay"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#064e3b] via-[#064e3b]/90 to-transparent"></div>

@@ -126,10 +126,10 @@ export default function InterventionalRadiologyClient() {
       <section className="relative h-[450px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop"
+            src="/images/banners/radiology_banner.png"
             alt="Interventional Radiology Hero"
             fill
-            className="object-cover opacity-20"
+            className="object-cover object-center opacity-70"
             priority
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(59,130,246,0.15),transparent)]" />

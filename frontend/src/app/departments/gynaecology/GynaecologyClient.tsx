@@ -135,10 +135,10 @@ export default function GynaecologyClient() {
       <section className="relative h-[450px] w-full bg-[#831843] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=60&w=1400"
+            src="/images/banners/obstetrics_banner.png"
             alt="Obstetrics & Gynaecology Banner"
             fill
-            className="object-cover opacity-30 mix-blend-overlay"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#831843] via-[#831843]/90 to-transparent" />

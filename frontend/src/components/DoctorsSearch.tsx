@@ -6,38 +6,10 @@ import Image from 'next/image';
 import { fetchDoctors, fetchSpecialities, fetchBranches, getImageUrl } from '@/lib/api';
 import type { Doctor, Speciality, Branch } from '@/lib/api';
 
-const allDepartments = [
-  // Super Specialties
-  { id: 101, name: "Cardiology", slug: "cardiology" },
-  { id: 102, name: "Cardiothoracic & Vascular Surgery (CTVS)", slug: "ctvs" },
-  { id: 103, name: "Neurosurgery", slug: "neurosurgery" },
-  { id: 104, name: "Gastroenterology", slug: "gastroenterology" },
-  { id: 105, name: "Nephrology", slug: "nephrology" },
-  { id: 106, name: "Oncology", slug: "oncology" },
-  { id: 107, name: "Urology", slug: "urology" },
-  { id: 108, name: "Plastic & Reconstructive Surgery", slug: "burns-plastic-surgery" },
-  { id: 109, name: "Interventional Radiology", slug: "interventional-radiology" },
-  { id: 110, name: "Pediatric Surgery", slug: "pediatric-surgery" },
-  // Specialties
-  { id: 201, name: "Laparoscopy & General Surgery", slug: "general-surgery" },
-  { id: 202, name: "Obstetrics & Gynaecology", slug: "gynaecology" },
-  { id: 203, name: "Pediatrics And Neonatology", slug: "pediatrics" },
-  { id: 204, name: "Orthopedics & Joint Replacement", slug: "orthopedics" },
-  { id: 205, name: "General Medicine", slug: "general-medicine" },
-  { id: 206, name: "ENT", slug: "ent" },
-  { id: 207, name: "Laboratory Medicine", slug: "laboratory-medicine" },
-  { id: 208, name: "Dietetics & Nutrition", slug: "dietetics-nutrition" },
-  { id: 209, name: "Ophthalmology", slug: "ophthalmology" },
-  { id: 210, name: "Dental", slug: "dental" },
-  { id: 211, name: "T.B & Respiratory Medicine", slug: "respiratory" },
-  { id: 212, name: "Anesthesiology & Pain Medicine", slug: "pain-management" },
-  { id: 213, name: "Psychiatry", slug: "psychiatry" },
-  { id: 214, name: "Dermatology", slug: "dermatology" },
-].sort((a, b) => a.name.localeCompare(b.name));
-
 export function DoctorsSearch() {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [speciality, setSpeciality] = useState('');
+  const [departments, setDepartments] = useState<Speciality[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -54,13 +26,14 @@ export function DoctorsSearch() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Fetch Specialities (Departments) once
+  useEffect(() => {
+    fetchSpecialities().then(setDepartments);
+  }, []);
+
   useEffect(() => {
     setLoading(true);
-    const params = new URLSearchParams();
-    if (speciality) params.set('speciality', speciality);
-    if (search) params.set('search', search);
-    fetch(`/api-backend/doctors?${params}`)
-      .then((r) => r.json())
+    fetchDoctors({ speciality, search })
       .then(setDoctors)
       .finally(() => setLoading(false));
   }, [speciality, search]);
@@ -92,7 +65,7 @@ export function DoctorsSearch() {
               className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-4.5 text-left text-base font-bold text-hospital-navy focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] flex items-center justify-between"
             >
               <span className="truncate">
-                {speciality ? allDepartments.find(d => d.slug === speciality)?.name : 'All Departments'}
+                {speciality ? (departments.find(d => d.slug === speciality)?.name || 'All Departments') : 'All Departments'}
               </span>
               <svg 
                 className={`w-5 h-5 transition-transform duration-300 text-gray-400 ${isDropdownOpen ? 'rotate-180 text-hospital-teal' : ''}`} 
@@ -115,9 +88,9 @@ export function DoctorsSearch() {
                     All Departments
                     {!speciality && <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal"></div>}
                   </div>
-                  {allDepartments.map((s) => (
+                  {departments.map((s) => (
                     <div
-                      key={s.id}
+                      key={s._id}
                       onClick={() => { setSpeciality(s.slug); setIsDropdownOpen(false); }}
                       className={`px-6 py-3.5 text-sm font-bold cursor-pointer transition-all flex items-center justify-between ${speciality === s.slug ? 'bg-teal-50 text-hospital-teal' : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'}`}
                     >

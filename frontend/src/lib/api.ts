@@ -213,7 +213,8 @@ export interface Branch {
 }
 
 export interface Speciality {
-  id: number;
+  _id: string;
+  id?: number;
   name: string;
   slug: string;
   department_display_name?: string;

@@ -95,7 +95,7 @@ export default function ENTClient() {
             src="https://images.unsplash.com/photo-1559170624-946772719586?auto=format&fit=crop&q=80&w=2000"
             alt="ENT Department Banner"
             fill
-            className="object-cover opacity-30 mix-blend-overlay"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1e1b4b] via-[#1e1b4b]/90 to-transparent" />

@@ -151,7 +151,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             src={service.image} 
             alt="background" 
             fill 
-            className="object-cover"
+            className="object-cover object-center opacity-70"
           />
         </div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">

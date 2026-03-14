@@ -80,7 +80,7 @@ export default function DentalClient() {
             src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=60&w=1400"
             alt="Dental Care Banner"
             fill
-            className="object-cover opacity-30 mix-blend-overlay"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0e7490] via-[#0e7490]/90 to-transparent" />

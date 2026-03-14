@@ -30,7 +30,7 @@ export default function ServicesPage() {
             src="/images/department_banner.jpg"
             alt="Our Departments"
             fill
-            className="object-cover opacity-80"
+            className="object-cover object-center opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-slate-900/40" />
