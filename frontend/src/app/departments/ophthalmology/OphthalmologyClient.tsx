@@ -85,7 +85,7 @@ export default function OphthalmologyClient() {
       <section className="relative h-[450px] w-full bg-[#0f172a] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2000"
+            src="/images/banners/ophthalmology_banner.png"
             alt="Ophthalmology Department Banner"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"
