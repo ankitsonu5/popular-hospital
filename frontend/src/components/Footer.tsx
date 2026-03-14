@@ -98,7 +98,7 @@ export function Footer() {
                 <a href="https://x.com/popular_vns" target="_blank" rel="noopener noreferrer" className="text-white hover:text-hospital-teal transition-colors" aria-label="X (Twitter)">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
                 </a>
-                <a href="https://www.youtube.com/channel/UCU9QUOtsHqtpi3dQlSz7pbQ" target="_blank" rel="noopener noreferrer" className="text-white hover:text-hospital-teal transition-colors" aria-label="YouTube">
+                <a href="https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY" target="_blank" rel="noopener noreferrer" className="text-white hover:text-hospital-teal transition-colors" aria-label="YouTube">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186c-.273-1.016-1.077-1.815-1.921-2.083-1.6-.454-8.076-.454-8.076-.454s-6.475 0-8.076.454c-.844.268-1.648 1.067-1.921 2.083-.454 1.6-.454 4.936-.454 4.936s0 3.336.454 4.936c.273 1.016 1.077 1.815 1.921 2.083 1.6.454 8.076.454 8.076.454s6.475 0 8.076-.454c.844-.268 1.648-1.067 1.921-2.083.454-1.6.454-4.936.454-4.936s0-3.336-.454-4.936zM10 15V9l5 3-5 3z" /></svg>
                 </a>
                 <a href="https://www.linkedin.com/company/popularhospitals" target="_blank" rel="noopener noreferrer" className="text-white hover:text-hospital-teal transition-colors" aria-label="LinkedIn">

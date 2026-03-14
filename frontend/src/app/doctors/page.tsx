@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function DoctorsPage() {
   return (
-    <div className="max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16">
+    <div className="max-w-[1366px] mx-auto px-6 sm:px-8 md:px-10 lg:px-12 py-12 sm:py-16">
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight mb-4">
         Find a Doctor
       </h1>

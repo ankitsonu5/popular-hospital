@@ -287,7 +287,7 @@ export function Header() {
         </div>
 
         {/* Brand & Desktop Nav */}
-        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 lg:px-12">
+        <div className="relative mx-auto w-full max-w-[1366px] px-6 sm:px-8 lg:px-12">
           <div className="flex h-16 sm:h-20 items-center justify-between gap-2">
             <Link 
               href="/" 

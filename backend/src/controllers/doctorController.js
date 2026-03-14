@@ -50,7 +50,7 @@ export const getAllDoctors = async (req, res) => {
     }
 
     const doctors = await Doctor.find(filter)
-      .populate('speciality', 'name slug')
+      .populate('speciality', 'name slug department_display_name')
       .populate('branches', 'name slug')
       .sort({ name: 1 });
 
@@ -78,12 +78,12 @@ export const getDoctorByIdOrSlug = async (req, res) => {
     let doctor = null;
     if (idOrSlug.match(/^[0-9a-fA-F]{24}$/)) {
       doctor = await Doctor.findById(idOrSlug)
-        .populate('speciality', 'name slug')
+        .populate('speciality', 'name slug department_display_name')
         .populate('branches', 'name slug');
     }
     if (!doctor) {
       doctor = await Doctor.findOne({ slug: idOrSlug })
-        .populate('speciality', 'name slug')
+        .populate('speciality', 'name slug department_display_name')
         .populate('branches', 'name slug');
     }
 
@@ -97,7 +97,7 @@ export const getDoctorByIdOrSlug = async (req, res) => {
 // POST /api/cms/doctors
 export const createDoctor = async (req, res) => {
   try {
-    const { name, slug, speciality, qualification, experience_years, experience_location, bio, consultation_fee, available_days, branches, is_active, opd_timings } = req.body;
+    const { name, slug, speciality, qualification, experience_years, experience_location, bio, consultation_fee, available_days, branches, is_active, opd_timings, designation } = req.body;
     if (!name || !slug || !speciality) {
       return res.status(400).json({ error: 'name, slug, speciality required' });
     }
@@ -127,6 +127,7 @@ export const createDoctor = async (req, res) => {
       available_days, 
       opd_timings: parsedOpdTimings,
       branches: branches || [],
+      designation,
       is_active: is_active !== 'false' && is_active !== false
     });
     res.status(201).json(doctor);
@@ -139,9 +140,8 @@ export const createDoctor = async (req, res) => {
 export const updateDoctor = async (req, res) => {
   try {
     const updates = { ...req.body };
-    
-    if (updates.experience_years) updates.experience_years = parseInt(updates.experience_years);
-    if (updates.consultation_fee) updates.consultation_fee = parseInt(updates.consultation_fee);
+    updates.experience_years = updates.experience_years ? parseInt(updates.experience_years) : null;
+    updates.consultation_fee = updates.consultation_fee ? parseInt(updates.consultation_fee) : null;
     if (updates.is_active !== undefined) updates.is_active = updates.is_active !== 'false' && updates.is_active !== false;
 
     if (updates.opd_timings && typeof updates.opd_timings === 'string') {
@@ -180,10 +180,10 @@ export const deleteDoctor = async (req, res) => {
 // POST /api/cms/specialities
 export const createSpeciality = async (req, res) => {
   try {
-    const { name, slug } = req.body;
+    const { name, slug, department_display_name } = req.body;
     if (!name || !slug) return res.status(400).json({ error: 'Name and slug are required' });
     
-    const spec = await Speciality.create({ name, slug });
+    const spec = await Speciality.create({ name, slug, department_display_name });
     res.status(201).json(spec);
   } catch (error) {
     if (error.code === 11000) {
@@ -215,6 +215,46 @@ export const deleteSpeciality = async (req, res) => {
     await Doctor.deleteMany({ speciality: specId });
     
     res.json({ ok: true, message: 'Department and associated doctors removed' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// --- Designations ---
+export const getAllDesignations = async (req, res) => {
+  try {
+    const list = await Designation.find().sort({ name: 1 });
+    res.json(list);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const createDesignation = async (req, res) => {
+  try {
+    const { name } = req.body;
+    if (!name) return res.status(400).json({ error: 'Name is required' });
+    const desig = await Designation.create({ name });
+    res.status(201).json(desig);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const updateDesignation = async (req, res) => {
+  try {
+    const desig = await Designation.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!desig) return res.status(404).json({ error: 'Designation not found' });
+    res.json(desig);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const deleteDesignation = async (req, res) => {
+  try {
+    await Designation.findByIdAndDelete(req.params.id);
+    res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

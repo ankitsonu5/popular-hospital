@@ -55,7 +55,7 @@ const sections = [
         </p>
       </div>
     ),
-    image: '',
+    image: '/images/departments-images/blood_bank.jpg',
     imgAlt: '',
   },
   {
@@ -68,7 +68,7 @@ const sections = [
         It has been observed that increase in blood iron level increases the chance of heart disease. Iron is involved in the oxidation of cholesterol and this process is believed to be detrimental for the arteries. Increases blood iron level favors this process of cholesterol oxidation and thus leads to heart disease. Regular blood donation helps in loosing iron on regular basis. It helps in reducing the chance of heart attack to one third.
       </p>
     ),
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/reduces_heart_attack.jpg',
     imgAlt: 'Medical checkup',
   },
   {
@@ -86,7 +86,7 @@ const sections = [
         </p>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/enhance_red_blood_cells.jpg',
     imgAlt: 'Blood tubes',
   },
   {
@@ -99,7 +99,7 @@ const sections = [
         Thanks to advances in medical technology, blood can be separated into its different components. Hence, one unit is used to prepare red blood cells, platelet concentrate and plasma each of which can be given to three different patients and therefore one unit of blood when separated into component can save 3 lives.
       </p>
     ),
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/blood_components.jpg',
     imgAlt: 'Patient giving blood',
   },
   {
@@ -123,7 +123,7 @@ const sections = [
         ))}
       </ul>
     ),
-    image: 'https://images.unsplash.com/photo-1532187643603-c11c8d6e3a7f?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/blood_component_therapy.jpg',
     imgAlt: 'Blood bag',
   }
 ];

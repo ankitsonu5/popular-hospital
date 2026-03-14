@@ -11,7 +11,7 @@ export default function DepartmentsPage() {
   const [search, setSearch] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState({ name: '', slug: '' });
+  const [formData, setFormData] = useState({ name: '', slug: '', department_display_name: '' });
   const [isSaving, setIsSaving] = useState(false);
 
   const getHeaders = () => ({
@@ -34,7 +34,11 @@ export default function DepartmentsPage() {
 
   const handleEdit = (dept: any) => {
     setEditingId(dept._id);
-    setFormData({ name: dept.name, slug: dept.slug });
+    setFormData({ 
+      name: dept.name, 
+      slug: dept.slug, 
+      department_display_name: dept.department_display_name || '' 
+    });
     setShowForm(true);
   };
 
@@ -103,7 +107,7 @@ export default function DepartmentsPage() {
       alert(editingId ? 'Department updated' : 'Department added successfully');
       setShowForm(false);
       setEditingId(null);
-      setFormData({ name: '', slug: '' });
+      setFormData({ name: '', slug: '', department_display_name: '' });
       await fetchData();
     } catch (e: any) { 
       console.error('Submit Error:', e);
@@ -126,7 +130,7 @@ export default function DepartmentsPage() {
           <p className="text-sm text-gray-500 mt-1">{departments.length} categories active</p>
         </div>
         <button
-          onClick={() => { setEditingId(null); setFormData({ name: '', slug: '' }); setShowForm(true); }}
+          onClick={() => { setEditingId(null); setFormData({ name: '', slug: '', department_display_name: '' }); setShowForm(true); }}
           className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors shadow-sm"
         >
           <Plus className="w-4 h-4" /> Add Department
@@ -209,6 +213,16 @@ export default function DepartmentsPage() {
                   onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all text-gray-500"
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Display Name (for Doctor Cards)</label>
+                <input 
+                  value={formData.department_display_name} 
+                  onChange={(e) => setFormData({ ...formData, department_display_name: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" 
+                  placeholder="e.g. CARDIOLOGY"
+                />
+                <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Will show as: DEPARTMENT OF {formData.department_display_name || formData.name || '...'}</p>
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="submit" disabled={isSaving}

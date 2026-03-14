@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getAllBranches, createBranch, updateBranch, deleteBranch, uploadBranch } from '../controllers/branchController.js';
-import { getAllDoctors, createDoctor, updateDoctor, deleteDoctor, uploadDoctor, createSpeciality, updateSpeciality, deleteSpeciality } from '../controllers/doctorController.js';
+import { getAllDoctors, createDoctor, updateDoctor, deleteDoctor, uploadDoctor, createSpeciality, updateSpeciality, deleteSpeciality, getAllDesignations, createDesignation, updateDesignation, deleteDesignation } from '../controllers/doctorController.js';
 import { getAllBookings } from '../controllers/bookingController.js';
 import { getSiteContent, setSiteContent } from '../controllers/cmsController.js';
 import { getAllNews, createNews, updateNews, deleteNews, getAdminNews, uploadNews } from '../controllers/newsController.js';
@@ -33,7 +33,7 @@ router.get('/doctors', async (req, res) => {
   const Doctor = (await import('../models/Doctor.js')).default;
   try {
     const doctors = await Doctor.find()
-      .populate('speciality', 'name slug')
+      .populate('speciality', 'name slug department_display_name')
       .populate('branches', 'name slug')
       .sort({ name: 1 });
     res.json(doctors);
@@ -49,6 +49,12 @@ router.delete('/doctors/:id', deleteDoctor);
 router.post('/specialities', createSpeciality);
 router.put('/specialities/:id', updateSpeciality);
 router.delete('/specialities/:id', deleteSpeciality);
+
+// Designations CRUD
+router.get('/designations', getAllDesignations);
+router.post('/designations', createDesignation);
+router.put('/designations/:id', updateDesignation);
+router.delete('/designations/:id', deleteDesignation);
 
 // Bookings (read-only for CMS)
 router.get('/bookings', getAllBookings);

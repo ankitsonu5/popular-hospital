@@ -68,7 +68,7 @@ export async function fetchDoctors(params?: { speciality?: string; branch?: stri
     if (params?.branch) sp.set('branch', params.branch);
     if (params?.search) sp.set('search', params.search);
     const q = sp.toString();
-    const res = await fetch(api(`/doctors${q ? `?${q}` : ''}`), { next: { revalidate: 60 } });
+    const res = await fetch(api(`/doctors${q ? `?${q}` : ''}`), { next: { revalidate: 10 } });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -79,7 +79,7 @@ export async function fetchDoctors(params?: { speciality?: string; branch?: stri
 
 export async function fetchDoctor(idOrSlug: string): Promise<Doctor | null> {
   try {
-    const res = await fetch(api(`/doctors/${idOrSlug}`), { next: { revalidate: 60 } });
+    const res = await fetch(api(`/doctors/${idOrSlug}`), { next: { revalidate: 10 } });
     if (!res.ok) return null;
     return res.json();
   } catch (e) {
@@ -90,7 +90,7 @@ export async function fetchDoctor(idOrSlug: string): Promise<Doctor | null> {
 
 export async function fetchSpecialities(): Promise<Speciality[]> {
   try {
-    const res = await fetch(api('/doctors/specialities'), { next: { revalidate: 300 } });
+    const res = await fetch(api('/doctors/specialities'), { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -216,6 +216,7 @@ export interface Speciality {
   id: number;
   name: string;
   slug: string;
+  department_display_name?: string;
 }
 
 export interface Doctor {
@@ -225,7 +226,7 @@ export interface Doctor {
   speciality_id?: string;
   speciality_name?: string;
   speciality_slug?: string;
-  speciality?: { _id: string; name: string; slug: string };
+  speciality?: { _id: string; name: string; slug: string; department_display_name?: string };
   qualification?: string;
   experience_years?: number;
   experience_location?: string;
@@ -243,6 +244,7 @@ export interface Doctor {
     sunday: string;
   };
   branch_ids?: string;
+  designation?: string;
 }
 
 export interface BookingInput {

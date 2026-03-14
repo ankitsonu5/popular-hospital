@@ -22,6 +22,7 @@ const doctorSchema = new mongoose.Schema(
       sunday: { type: String, default: '-' },
     },
     branches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Branch' }],
+    designation: { type: String, default: null },
     is_active: { type: Boolean, default: true },
   },
   { timestamps: true }

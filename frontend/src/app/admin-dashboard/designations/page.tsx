@@ -1,0 +1,153 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Plus, Pencil, Trash2, X, Loader2, Award, Search } from 'lucide-react';
+
+const API_URL = '/api-backend';
+
+export default function DesignationsPage() {
+  const [designations, setDesignations] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ name: '' });
+  const [isSaving, setIsSaving] = useState(false);
+
+  const getHeaders = () => ({
+    'Authorization': `Bearer ${localStorage.getItem('admin_token')}`,
+    'Content-Type': 'application/json',
+  });
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/cms/designations`, { headers: getHeaders() });
+      if (res.ok) {
+        setDesignations(await res.json());
+      }
+    } catch (e) { console.error('Fetch error:', e); }
+    setIsLoading(false);
+  };
+
+  useEffect(() => { fetchData(); }, []);
+
+  const handleEdit = (desig: any) => {
+    setEditingId(desig._id);
+    setFormData({ name: desig.name });
+    setShowForm(true);
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this designation?')) return;
+    try {
+      await fetch(`${API_URL}/cms/designations/${id}`, { method: 'DELETE', headers: getHeaders() });
+      fetchData();
+    } catch (e) { console.error(e); }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSaving(true);
+    try {
+      if (editingId) {
+        await fetch(`${API_URL}/cms/designations/${editingId}`, {
+          method: 'PUT', headers: getHeaders(), body: JSON.stringify(formData),
+        });
+      } else {
+        await fetch(`${API_URL}/cms/designations`, {
+          method: 'POST', headers: getHeaders(), body: JSON.stringify(formData),
+        });
+      }
+      setShowForm(false);
+      setEditingId(null);
+      setFormData({ name: '' });
+      fetchData();
+    } catch (e) { console.error(e); }
+    setIsSaving(false);
+  };
+
+  const filteredDesignations = designations.filter(d => 
+    d.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Manage Designations</h2>
+          <p className="text-sm text-gray-500 mt-1">{designations.length} total designations</p>
+        </div>
+        <button
+          onClick={() => { setEditingId(null); setFormData({ name: '' }); setShowForm(true); }}
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors shadow-sm"
+        >
+          <Plus className="w-4 h-4" /> Add Designation
+        </button>
+      </div>
+
+      <div className="relative max-w-md">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        <input
+          type="text"
+          placeholder="Search designations..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-sm focus:border-[#0d9488] focus:ring-2 focus:ring-[#0d9488]/20 outline-none transition-all"
+        />
+      </div>
+
+      {isLoading ? (
+        <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-gray-300" /></div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {filteredDesignations.map((desig: any) => (
+            <div key={desig._id} className="group bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all relative overflow-hidden">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center shrink-0">
+                  <Award className="w-6 h-6 text-teal-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-gray-900 text-sm truncate">{desig.name}</h3>
+                </div>
+              </div>
+              <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button onClick={() => handleEdit(desig)} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                  <Pencil className="w-3.5 h-3.5" />
+                </button>
+                <button onClick={() => handleDelete(desig._id)} className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                  <Trash2 className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {showForm && (
+        <div className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative">
+            <button onClick={() => setShowForm(false)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+              <X className="w-5 h-5" />
+            </button>
+            <h3 className="text-xl font-bold text-gray-900 mb-6">{editingId ? 'Edit Designation' : 'Add New Designation'}</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Name *</label>
+                <input required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" placeholder="e.g. Consultant" />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button type="submit" disabled={isSaving} className="flex-1 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2">
+                  {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
+                  {editingId ? 'Update' : 'Create'}
+                </button>
+                <button type="button" onClick={() => setShowForm(false)} className="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-semibold transition-colors">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

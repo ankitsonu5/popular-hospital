@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
   LayoutDashboard, Users, Building2, CalendarCheck, FileText,
-  Stethoscope, Settings, LogOut, Menu, X, ChevronRight, ChevronDown, Newspaper
+  Stethoscope, Settings, LogOut, Menu, X, ChevronRight, ChevronDown, Newspaper, Award
 } from 'lucide-react';
 
 

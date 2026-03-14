@@ -14,7 +14,7 @@ export default function DoctorsPage() {
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    name: '', slug: '', speciality: '', qualification: '',
+    name: '', slug: '', speciality: '', qualification: '', designation: '',
     experience_years: '', experience_location: '', bio: '', image_url: '',
     consultation_fee: '', available_days: '', branches: [] as string[], is_active: true,
     opd_timings: {
@@ -59,6 +59,7 @@ export default function DoctorsPage() {
       name: doc.name || '', slug: doc.slug || '',
       speciality: doc.speciality?._id || doc.speciality || '',
       qualification: doc.qualification || '',
+      designation: doc.designation || '',
       experience_years: doc.experience_years?.toString() || '',
       experience_location: doc.experience_location || '',
       bio: doc.bio || '', image_url: doc.image_url || '',
@@ -122,7 +123,7 @@ export default function DoctorsPage() {
 
   const resetForm = () => {
     setFormData({ 
-      name: '', slug: '', speciality: '', qualification: '', 
+      name: '', slug: '', speciality: '', qualification: '', designation: '',
       experience_years: '', experience_location: '', bio: '', image_url: '', 
       consultation_fee: '', available_days: '', branches: [], is_active: true,
       opd_timings: {
@@ -200,7 +201,8 @@ export default function DoctorsPage() {
                         </div>
                         <div>
                           <p className="font-bold text-gray-900 leading-tight">{doc.name}</p>
-                          <p className="text-[11px] text-gray-400 mt-0.5">{doc.qualification || '-'}</p>
+                          <p className="text-[11px] text-[#0d9488] font-bold uppercase mt-0.5">{doc.designation || '-'}</p>
+                          <p className="text-[10px] text-gray-400 mt-0.5">{doc.qualification || '-'}</p>
                           {doc.experience_location && (
                             <p className="text-[10px] text-[#0d9488] font-bold uppercase mt-0.5">@ {doc.experience_location}</p>
                           )}
@@ -272,6 +274,11 @@ export default function DoctorsPage() {
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Qualification</label>
                   <input value={formData.qualification} onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
                     className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Designation</label>
+                  <input value={formData.designation} onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
+                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" placeholder="e.g. Consultant" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Experience (years)</label>

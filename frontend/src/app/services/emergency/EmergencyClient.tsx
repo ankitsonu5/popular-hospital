@@ -91,7 +91,7 @@ const sections = [
         </p>
       </>
     ),
-    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/trauma_care.jpg',
     shape: 'rounded-[100px_100px_40px_100px]'
   },
   {
@@ -120,7 +120,7 @@ const sections = [
         <p className="text-gray-700 mt-4 text-sm lg:text-base font-medium italic">Our specialist emergency team is available round-the-clock to handle all such conditions.</p>
       </>
     ),
-    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/common_enjury.png',
     shape: 'rounded-[80px_20px_80px_20px]'
   },
   {
@@ -149,7 +149,7 @@ const sections = [
         </ul>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/community-care_trauma.jpg',
     shape: 'rounded-[100px_40px_100px_40px]'
   },
   {
@@ -175,7 +175,7 @@ const sections = [
         </ul>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/trauma_care_community.jpg',
     shape: 'rounded-[40px_100px_40px_100px]'
   },
   {
@@ -202,7 +202,7 @@ const sections = [
         </ul>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/facility-service-img.webp',
     shape: 'rounded-[100px_40px_100px_40px]'
   },
   {
@@ -228,7 +228,7 @@ const sections = [
         </ul>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/cumminity_care_trauma_pl.avif',
     shape: 'rounded-[40px_100px_40px_100px]'
   },
   {
@@ -255,7 +255,7 @@ const sections = [
         </ul>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/doctors-emergency.jpg',
     shape: 'rounded-[100px_40px_100px_40px]'
   },
   {
@@ -285,7 +285,7 @@ const sections = [
         </p>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/trauma_center.webp',
     shape: 'rounded-[100px_100px_40px_100px]'
   },
   {
@@ -313,7 +313,7 @@ const sections = [
         </p>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/treating_trauma_patients.webp',
     shape: 'rounded-[100px_40px_100px_40px]'
   },
   {
@@ -346,7 +346,7 @@ const sections = [
         </p>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/trauma_patients.jpg',
     shape: 'rounded-[100px_20px_100px_20px]'
   },
   {
@@ -362,7 +362,7 @@ const sections = [
         </p>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/first_offered.webp',
     shape: 'rounded-[40px_100px_100px_100px]'
   },
   {
@@ -381,7 +381,7 @@ const sections = [
         </p>
       </div>
     ),
-    image: 'https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=1200',
+    image: '/images/departments-images/bleeding_control.webp',
     shape: 'rounded-[100px_100px_100px_40px]'
   }
 ];

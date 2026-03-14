@@ -66,7 +66,7 @@ export function DoctorsSearch() {
   }, [speciality, search]);
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 w-full overflow-hidden">
       {/* Refined Filter Section */}
       <div className="mb-16 flex flex-col md:flex-row items-stretch gap-6 bg-white p-6 sm:p-10 rounded-[2.5rem] border border-gray-100 shadow-[0_20px_60px_-15px_rgba(30,58,95,0.08)]">
         <div className="w-full md:flex-1 flex flex-col justify-center">
@@ -147,7 +147,7 @@ export function DoctorsSearch() {
           <p className="text-gray-400 text-sm mt-1">Try adjusting the department filter.</p>
         </div>
       ) : (
-        <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-1 pb-8">
           {doctors.map((doc) => (
             <li key={doc.id} className="h-full">
               <Link
@@ -178,12 +178,18 @@ export function DoctorsSearch() {
                     {doc.name}
                   </h3>
 
+                  {doc.designation && (
+                    <p className="text-[12px] font-bold text-[#0d9488] uppercase tracking-wider mb-1">
+                      {doc.designation}
+                    </p>
+                  )}
+
                   <p className="text-[14px] font-bold text-gray-600 leading-tight mb-1 line-clamp-1">
                     {doc.qualification || 'Highly Qualified Physician'}
                   </p>
 
                   <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-6">
-                    DEPARTMENT OF {doc.speciality?.name || 'Medical Science'}
+                    DEPARTMENT OF {doc.speciality?.department_display_name || doc.speciality?.name || 'Medical Science'}
                   </p>
                   {/* Footer with stats and button */}
                   <div className="flex items-center justify-between">
@@ -191,8 +197,11 @@ export function DoctorsSearch() {
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
-                      <span className="text-lg font-bold">{doc.experience_years || '10'}
-                        <span className="text-sm text-gray-400 font-medium">Years Exp.</span></span>
+                      {doc.experience_years && (
+                        <span className="text-lg font-bold">{doc.experience_years}
+                          <span className="text-sm text-gray-400 font-medium ml-1">Years Exp.</span>
+                        </span>
+                      )}
                     </div>
 
                     <div className="bg-[#f1f5f9] px-5 py-3 rounded-2xl font-bold text-gray-900 flex items-center gap-1 hover:bg-[#e2e8f0] transition-colors">
