@@ -95,7 +95,49 @@ export default function PediatricsClient() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden pt-12">
+    <main className="min-h-screen bg-white overflow-x-hidden">
+
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/banners/pediatrics.png"
+            alt="Pediatrics Banner"
+            fill
+            className="object-cover object-center opacity-70 mix-blend-overlay"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
+        </div>
+        
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
+          <div className="animate-fade-in-up max-w-3xl">
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
+              Department of
+            </span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+              Pediatrics & Neonatology
+            </h1>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/doctors"
+                className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Book An Appointment
+              </Link>
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                Get a Call Back
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ═══════ TOP SECTION: INTRO + DOCTOR ═══════ */}
       <section className="py-12 bg-white">
