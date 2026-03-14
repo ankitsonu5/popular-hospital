@@ -64,7 +64,7 @@ export default function LaboratoryMedicineClient() {
       <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/departments-images/laboratory_medicine_hero.png"
+            src="/images/banners/laboratory_medicine.png"
             alt="Laboratory Medicine Research"
             fill
             className="object-cover object-center opacity-70"

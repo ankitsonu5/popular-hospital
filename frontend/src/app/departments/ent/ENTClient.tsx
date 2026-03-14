@@ -92,7 +92,7 @@ export default function ENTClient() {
       <section className="relative h-[450px] w-full bg-[#1e1b4b] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1559170624-946772719586?auto=format&fit=crop&q=80&w=2000"
+            src="/images/banners/ent_banner.png"
             alt="ENT Department Banner"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"

@@ -104,7 +104,7 @@ export default function OrthopedicsClient() {
       <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=2000"
+            src="/images/banners/orthopedics_banner.png"
             alt="Orthopedics Banner"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"

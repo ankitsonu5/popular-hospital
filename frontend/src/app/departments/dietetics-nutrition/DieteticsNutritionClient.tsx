@@ -82,7 +82,7 @@ export default function DieteticsNutritionClient() {
       <section className="relative h-[450px] w-full bg-[#064e3b] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/departments-images/dietetics_nutrition_hero.png"
+            src="/images/banners/dietetics_nutrition.png"
             alt="Dietetics and Nutrition Center"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"

@@ -104,7 +104,7 @@ export default function GeneralMedicineClient() {
       <section className="relative h-[450px] w-full bg-[#1e1b4b] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&q=80&w=2000"
+            src="/images/banners/general_medicine.png"
             alt="General Medicine Banner"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"

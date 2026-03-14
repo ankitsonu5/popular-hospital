@@ -101,7 +101,7 @@ export default function PediatricsClient() {
       <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/banners/pediatrics.png"
+            src="/images/banners/neonatology_banner.png"
             alt="Pediatrics Banner"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"
