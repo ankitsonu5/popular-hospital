@@ -299,9 +299,16 @@ export default function DoctorsPage() {
               <div>
                 <div className="flex justify-between items-center mb-1">
                   <label className="block text-sm font-semibold text-gray-700">Bio</label>
-                  <span className="text-[10px] text-red-500 font-bold uppercase tracking-wider">Max 250 words only</span>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] font-bold uppercase tracking-wider ${
+                      (formData.bio.trim() ? formData.bio.trim().split(/\s+/).length : 0) > 500 ? 'text-red-500' : 'text-gray-400'
+                    }`}>
+                      {formData.bio.trim() ? formData.bio.trim().split(/\s+/).length : 0} / 500 words
+                    </span>
+                    <span className="text-[10px] text-red-500 font-bold uppercase tracking-wider">Max 500 words</span>
+                  </div>
                 </div>
-                <textarea rows={3} value={formData.bio} onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                <textarea rows={5} value={formData.bio} onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
                   placeholder="Tell us about the doctor's background..."
                   className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all resize-none" />
               </div>

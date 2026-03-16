@@ -51,7 +51,7 @@ export function DoctorsSearch() {
               placeholder="Ex: Cardiology or Dr. Sharma..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-4.5 text-base font-medium focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] placeholder:text-gray-400"
+              className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-6 text-base font-medium focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] placeholder:text-gray-400"
             />
           </div>
         </div>
@@ -62,7 +62,7 @@ export function DoctorsSearch() {
             <button
               type="button"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-4.5 text-left text-base font-bold text-hospital-navy focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] flex items-center justify-between"
+              className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-6 text-left text-base font-bold text-hospital-navy focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] flex items-center justify-between"
             >
               <span className="truncate">
                 {speciality ? (departments.find(d => d.slug === speciality)?.name || 'All Departments') : 'All Departments'}

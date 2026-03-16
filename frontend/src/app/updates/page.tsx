@@ -92,11 +92,23 @@ export default function UpdatesPage() {
     <div className="bg-gray-50 min-h-screen">
       {/* Page Header */}
       <section className="relative bg-[#0b1c43] text-white py-16 sm:py-24 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-             <div className="absolute top-0 right-0 w-96 h-96 bg-[#E85222] opacity-10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
-             <div className="absolute bottom-0 left-0 w-72 h-72 bg-hospital-teal opacity-10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3"></div>
+        {/* Banner Image Background */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/images/banners/updates_popular.png" 
+            alt="Hospital Updates" 
+            fill 
+            className="object-cover opacity-40"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/80 to-transparent z-10" />
+          
+          {/* Decorative Elements */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#E85222] opacity-20 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3 z-20"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-hospital-teal opacity-20 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3 z-20"></div>
         </div>
-        <div className="relative mx-auto max-w-[1366px] px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+
+        <div className="relative z-30 mx-auto max-w-[1366px] px-4 sm:px-6 lg:px-8 text-center sm:text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading mb-4">
             Hospital Updates <span className="text-[#E85222]">&</span> Announcements
           </h1>

@@ -222,7 +222,7 @@ export default function HomePage() {
         </div>
 
         {/* Navigation Arrows */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 flex justify-between px-4 sm:px-10 pointer-events-none">
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 flex justify-between px-4 sm:px-20 lg:px-24 pointer-events-none">
           <button
             onClick={prevSlide}
             className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center hover:bg-[#E85222] transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group shadow-2xl"
@@ -245,40 +245,40 @@ export default function HomePage() {
             आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
           </h1>
         </div>
+      </section>
 
-        {/* Notification Ticker */}
-        <div className="absolute bottom-0 w-full bg-[#0b1c43]/90 backdrop-blur-md text-white py-2.5 sm:py-3 overflow-hidden border-t border-[#1e3a8a]/30 z-30 group cursor-pointer transition-colors hover:bg-[#0e2455]">
-          <Link href="/updates" className="absolute inset-0 z-40" aria-label="View all updates"></Link>
-          <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-3 sm:px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
-            <div className="flex items-center gap-1.5 sm:gap-2 text-[#E85222] font-bold tracking-widest text-[10px] sm:text-xs uppercase font-heading">
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E85222] animate-pulse"></span>
-              Updates
+      {/* Standalone Notification Ticker */}
+      <section className="relative w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-y border-[#1e3a8a]/30 group cursor-pointer transition-colors hover:bg-[#0e2455] z-20">
+        <Link href="/updates" className="absolute inset-0 z-40" aria-label="View all updates"></Link>
+        <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
+          <div className="flex items-center gap-2 text-[#E85222] font-bold tracking-widest text-xs uppercase font-heading">
+            <span className="w-2 h-2 rounded-full bg-[#E85222] animate-pulse"></span>
+            Updates
+          </div>
+        </div>
+        <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-32">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">New</span>
+                OPD timings for Cardiology have been updated to 9 AM - 5 PM.
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+              <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                Free Heart Health Checkup Camp scheduled for 15th March 2026.
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+              <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
+                Emergency Trauma Center is now fully operational 24/7.
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
             </div>
-          </div>
-          <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-24 sm:pl-32">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                <span className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                  <span className="px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">New</span>
-                  OPD timings for Cardiology have been updated to 9 AM - 5 PM.
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                <span className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                  Free Heart Health Checkup Camp scheduled for 15th March 2026.
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-                <span className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                  Emergency Trauma Center is now fully operational 24/7.
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
 
-
-      <section className="relative mt-12 sm:mt-16 md:-mt-24 lg:-mt-40 z-30 pb-0 md:pb-10">
+      {/* Action Cards Section */}
+      <section className="relative mt-12 sm:mt-16 md:-mt-28 lg:-mt-32 xl:-mt-40 2xl:-mt-48 z-30 pb-0 md:pb-10">
         <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-6xl 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
@@ -296,6 +296,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+
+
 
       {/* About Section */}
       <section className="relative mt-12 md:mt-20 py-16 sm:py-24 bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] overflow-hidden" aria-labelledby="about-us">
@@ -2042,7 +2045,7 @@ function SimpleCard({
     }`;
 
   // Desktop styles maintaining the original white bar look
-  const desktopClasses = `md:bg-white md:rounded-none md:shadow-none md:min-h-0 md:p-0 md:flex-row md:items-center md:justify-center md:gap-1 lg:gap-3 md:px-2 lg:px-4 md:py-2 lg:py-4 md:w-auto md:flex-1 md:min-w-0 md:border-r md:border-gray-100 md:last:border-0 md:hover:bg-[#FBF8ED]`;
+  const desktopClasses = `md:bg-white md:rounded-none md:shadow-none md:min-h-0 md:p-0 md:flex-row md:items-center md:justify-center md:gap-1 lg:gap-3 md:px-2 lg:px-4 md:py-1.5 lg:py-3 md:w-auto md:flex-1 md:min-w-0 md:border-r md:border-gray-100 md:last:border-0 md:hover:bg-[#FBF8ED]`;
 
   return (
     <Link
