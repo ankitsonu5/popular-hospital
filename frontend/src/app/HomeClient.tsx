@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { fetchBranches, fetchNews, type Branch, type NewsItem } from "@/lib/api";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function HomePage() {
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
@@ -20,23 +21,59 @@ export default function HomePage() {
   });
 
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const slides = [
+    { type: 'video', src: '/videos/hero.mp4' },
+    { 
+      type: 'image', 
+      src: '/images/slide_images/slide_one.png',
+      mobileSrc: '/images/slide_images/slide_one_mobile.png'
+    },
+    { 
+      type: 'image', 
+      src: '/images/slide_images/slide_two.png',
+      mobileSrc: '/images/slide_images/slide_two_mobile.png'
+    },
+    { 
+      type: 'image', 
+      src: '/images/slide_images/slide_three.png',
+      mobileSrc: '/images/slide_images/slide_three_mobile.png'
+    },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   // Robust video loading check
   useEffect(() => {
-    // Check immediately for cached video
     if (videoRef.current && videoRef.current.readyState >= 3) {
       setIsVideoLoaded(true);
     }
 
-    // Fallback: If video takes too long, just show whatever we have
     const timer = setTimeout(() => {
       setIsVideoLoaded(true);
-    }, 5000); // 5 second fallback
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -124,41 +161,87 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative w-full h-screen h-[100dvh] overflow-hidden bg-[#0b1c43]">
-        {/* Video Background */}
-        <div className="absolute inset-0 z-0">
-          {/* Static Background Image (behind video) */}
-          <div className="absolute inset-0 bg-[#0b1c43]">
-            <Image 
-              src="/images/hospital-sample.jpg" 
-              alt="Popular Hospital" 
-              fill 
-              className={`object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-40'}`}
-              priority
-            />
-          </div>
-
-          <video
-            ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover block"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster="/images/hospital-sample.jpg"
-            onLoadedData={() => setIsVideoLoaded(true)}
-            onPlaying={() => setIsVideoLoaded(true)}
-          >
-            <source src="/videos/hero.mp4" type="video/mp4" />
-          </video>
-          
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43] via-transparent to-transparent z-10" aria-hidden />
+      <section 
+        className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[110px] md:mt-0" 
+        style={{ 
+          height: isMobile ? 'calc(100dvh - 110px)' : '100dvh', 
+          minHeight: isMobile ? 'calc(100dvh - 110px)' : '100dvh' 
+        }}
+      >
+        {/* Slider Background */}
+        <div className="absolute inset-0 z-0 bg-white">
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            >
+              {slide.type === 'video' ? (
+                <>
+                  <div className="absolute inset-0 bg-[#0b1c43]">
+                    <Image 
+                      src="/images/hospital-sample.jpg" 
+                      alt="Popular Hospital" 
+                      fill 
+                      className={`object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-40'}`}
+                      priority
+                    />
+                  </div>
+                  <video
+                    ref={index === 0 ? videoRef : null}
+                    className="absolute inset-0 w-full h-full object-cover block"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    poster="/images/hospital-sample.jpg"
+                    onLoadedData={() => setIsVideoLoaded(true)}
+                  >
+                    <source src={slide.src} type="video/mp4" />
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent z-10" aria-hidden />
+                </>
+              ) : (
+                <div className="relative w-full h-full">
+                  <Image
+                    src={isMobile ? (slide.mobileSrc || slide.src) : slide.src}
+                    alt={`Hospital Slide ${index + 1}`}
+                    fill
+                    className="object-cover object-top transition-transform duration-[10000ms]"
+                    style={{ transform: index === currentSlide ? 'scale(1.1)' : 'scale(1)' }}
+                    unoptimized
+                    priority={index === currentSlide}
+                    sizes="100vw"
+                  />
+                  {/* Very subtle gradient for text shadow if needed */}
+                  <div className="absolute inset-0 bg-black/10 z-10" />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Content Overlay */}
-        <div className="relative z-20 h-full flex flex-col items-center justify-end pb-16 sm:pb-24 md:pb-44 lg:pb-48 px-4 text-center">
-          <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold text-white font-heading drop-shadow-2xl tracking-tight leading-[1.2] notranslate animate-fade-in-up">
+        {/* Navigation Arrows */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 flex justify-between px-4 sm:px-10 pointer-events-none">
+          <button
+            onClick={prevSlide}
+            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center hover:bg-[#E85222] transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group shadow-2xl"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10 group-hover:-translate-x-1 transition-transform" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#E85222] text-white flex items-center justify-center hover:bg-[#d1451a] shadow-xl transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+
+        {/* Content Overlay - Hindi Text */}
+        <div className={`relative z-20 h-full flex flex-col items-center justify-end pb-24 sm:pb-32 md:pb-48 lg:pb-58 px-4 text-center transition-all duration-700 ${currentSlide === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white font-heading drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] tracking-tight leading-[1.1] notranslate animate-fade-in-up">
             आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
           </h1>
         </div>

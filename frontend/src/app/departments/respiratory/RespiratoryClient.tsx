@@ -133,7 +133,7 @@ export default function RespiratoryClient() {
       <section className="relative min-h-[500px] md:h-[450px] w-full bg-[#164e63] overflow-hidden flex items-center py-12 md:py-0">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=2000"
+            src="/images/banners/respiratory_medicine.png"
             alt="Respiratory Care"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"

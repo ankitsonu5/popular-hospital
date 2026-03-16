@@ -77,7 +77,7 @@ export default function DentalClient() {
       <section className="relative h-[450px] w-full bg-[#0e7490] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=60&w=1400"
+            src="/images/banners/dental_care_banner.png"
             alt="Dental Care Banner"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"

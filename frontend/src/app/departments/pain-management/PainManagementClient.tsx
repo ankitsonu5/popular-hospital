@@ -188,6 +188,13 @@ export default function PainManagementClient() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(249,115,22,0.1),transparent)]" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+          <Image
+            src="/images/banners/pain_management_banner.png"
+            alt="Pain Management Banner"
+            fill
+            className="object-cover object-center opacity-40 mix-blend-overlay"
+            priority
+          />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">

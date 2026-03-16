@@ -412,10 +412,10 @@ export default function EmergencyTraumaClient() {
       <section className="relative min-h-[400px] md:h-[400px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/emergency.png"
+            src="/images/banners/emergency_trauma.png"
             alt="Emergency & Trauma Care"
             fill
-            className="object-cover opacity-40 mix-blend-overlay"
+            className="object-cover opacity-60 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/80 to-transparent" />

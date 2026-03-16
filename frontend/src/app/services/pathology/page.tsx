@@ -15,7 +15,7 @@ export default function PathologyPage() {
       <section className="relative min-h-[400px] md:h-[400px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/pathological_service.png"
+            src="/images/banners/services_pathology.png"
             alt="Pathology Services"
             fill
             className="object-cover opacity-40 mix-blend-overlay"

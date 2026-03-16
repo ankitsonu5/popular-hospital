@@ -77,6 +77,13 @@ export default function PsychiatryClient() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(139,92,246,0.15),transparent)]" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+          <Image
+            src="/images/banners/psychiatry_banner.png"
+            alt="Psychiatry Department Banner"
+            fill
+            className="object-cover object-center opacity-40 mix-blend-overlay"
+            priority
+          />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
