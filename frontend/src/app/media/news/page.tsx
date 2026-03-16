@@ -105,7 +105,7 @@ export default async function NewsPage() {
 
                 {/* Read More */}
                 <Link
-                  href={`/news/${article.slug}`}
+                  href={`/media/news/${article.slug}`}
                   className="inline-flex items-center gap-2 text-[#E85222] font-semibold hover:text-[#d1451a] transition-colors text-sm group/link"
                 >
                   <span>Read More</span>

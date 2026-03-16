@@ -128,7 +128,7 @@ export const createBlog = async (req, res) => {
       }
     }
 
-    const imagePath = req.file ? `/uploads/blogs/${req.file.filename}` : '';
+    const imagePath = req.file ? `/uploads/blogs/${req.file.filename}` : (req.body.image || '');
     // If no image provided, maybe block? But we have default check up to frontend.
     
     const blog = await Blog.create({
@@ -153,7 +153,7 @@ export const createBlog = async (req, res) => {
 // CMS: Update blog (including replacing image)
 export const updateBlog = async (req, res) => {
   try {
-    const { title, slug, excerpt, content, date, category, isUncategorized, isActive, author } = req.body;
+    const { title, slug, excerpt, content, date, category, isUncategorized, isActive, author, image } = req.body;
     
     let contentArr = [];
     if (content) {
@@ -182,6 +182,8 @@ export const updateBlog = async (req, res) => {
 
     if (req.file) {
       updates.image = `/uploads/blogs/${req.file.filename}`;
+    } else if (image && image.trim() !== '') {
+      updates.image = image;
     }
 
     const blog = await Blog.findByIdAndUpdate(req.params.id, updates, { new: true });

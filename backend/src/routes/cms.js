@@ -65,8 +65,8 @@ router.post('/content', setSiteContent);
 
 // News CRUD
 router.get('/news', getAdminNews);
-router.post('/news', uploadNews.single('image'), createNews);
-router.put('/news/:id', uploadNews.single('image'), updateNews);
+router.post('/news', uploadNews.any(), createNews);
+router.put('/news/:id', uploadNews.any(), updateNews);
 router.delete('/news/:id', deleteNews);
 
 // Blogs CRUD

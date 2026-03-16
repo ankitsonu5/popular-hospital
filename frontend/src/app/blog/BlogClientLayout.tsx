@@ -72,22 +72,35 @@ export default function BlogClientLayout({
 
   return (
     <div className="bg-[#f0f7ff] min-h-screen">
-      {/* ─── Compact Hero Section ─── */}
-      <div className="bg-[#0b1c43] text-white py-8 sm:py-10 lg:py-12 mb-10">
-        <div className="mx-auto max-w-[1366px] px-6 lg:px-12">
+      {/* ─── Compact Hero Section (Matching News Page style) ─── */}
+      <section className="relative bg-[#0b1c43] py-8 sm:py-10 lg:py-12 overflow-hidden mb-10">
+        {/* Background Image - Matching News Page */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/news-sm-inner.jpg"
+            alt="Latest News"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/90 via-[#0b1c43]/40 to-transparent z-10" />
+        </div>
+        
+        <div className="relative z-20 mx-auto max-w-[1366px] px-6 lg:px-12">
           <nav className="mb-4 text-xs sm:text-sm text-white/60" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span className="mx-2">/</span>
             <span className="text-white">Blog</span>
           </nav>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-2 font-heading tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
             Popular Hospital <span className="text-[#00B4D8]">Health Blog</span>
           </h1>
-          <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-4xl">
+          <p className="mt-2 text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed">
             Insightful articles, health maintenance tips, and latest medical breakthroughs delivered by our expert medical team.
           </p>
         </div>
-      </div>
+      </section>
 
       <div className="mx-auto w-full max-w-[1366px] px-6 lg:px-12 pb-20">
 

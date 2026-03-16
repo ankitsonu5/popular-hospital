@@ -14,11 +14,14 @@ export default function AdminNewsPage() {
   
   const [formData, setFormData] = useState({
     title: '', slug: '', contentText: '', 
-    image: '', date: '', dateIso: '', author: '', isActive: true,
+    image: '', gallery: [] as string[], date: '', dateIso: '', author: '', isActive: true,
   });
   const [isSaving, setIsSaving] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
+  
+  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
+  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
 
   const getHeaders = () => ({
     'Authorization': `Bearer ${localStorage.getItem('admin_token')}`
@@ -39,6 +42,7 @@ export default function AdminNewsPage() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const parseDateToIso = (dateStr: string) => {
@@ -54,6 +58,7 @@ export default function AdminNewsPage() {
       slug: item.slug || '',
       contentText: item.content ? item.content.join('\n\n') : '',
       image: item.image || '',
+      gallery: item.gallery || [],
       date: item.date || '',
       dateIso: parseDateToIso(item.date),
       author: item.author || '',
@@ -65,7 +70,15 @@ export default function AdminNewsPage() {
     } else {
       setImagePreview('');
     }
+
+    if (item.gallery && item.gallery.length > 0) {
+      setGalleryPreviews(item.gallery.map((g: string) => g.startsWith('http') ? g : `${API_URL}${g}`));
+    } else {
+      setGalleryPreviews([]);
+    }
+    
     setImageFile(null);
+    setGalleryFiles([]);
     setShowForm(true);
   };
 
@@ -104,35 +117,57 @@ export default function AdminNewsPage() {
     
     if (imageFile) {
       submitData.append('image', imageFile);
+    } else if (editingId && formData.image) {
+      submitData.append('existingImage', formData.image);
     }
 
+    // Append gallery files
+    galleryFiles.forEach(file => {
+      submitData.append('gallery', file);
+    });
+    // Append existing gallery paths as a different field name to avoid collision
+    submitData.append('existingGallery', JSON.stringify(formData.gallery));
+
     try {
+      let res;
       if (editingId) {
-        await fetch(`${API_URL}/api/cms/news/${editingId}`, {
+        res = await fetch(`${API_URL}/api/cms/news/${editingId}`, {
           method: 'PUT', headers: getHeaders(), body: submitData,
         });
       } else {
-        await fetch(`${API_URL}/api/cms/news`, {
+        res = await fetch(`${API_URL}/api/cms/news`, {
           method: 'POST', headers: getHeaders(), body: submitData,
         });
       }
+
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to save news article');
+      }
+
       setShowForm(false);
       setEditingId(null);
       resetForm();
       fetchData();
-    } catch (e) {
+      alert(editingId ? 'News updated successfully!' : 'News published successfully!');
+    } catch (e: any) {
       console.error(e);
+      alert(e.message || 'An error occurred while saving.');
+    } finally {
+      setIsSaving(false);
     }
-    setIsSaving(false);
   };
 
   const resetForm = () => {
     setFormData({ 
       title: '', slug: '', contentText: '',
-      image: '', date: '', dateIso: '', author: '', isActive: true 
+      image: '', gallery: [], date: '', dateIso: '', author: '', isActive: true 
     });
     setImageFile(null);
     setImagePreview('');
+    setGalleryFiles([]);
+    setGalleryPreviews([]);
   };
 
   const filteredNews = newsList.filter((n) =>
@@ -311,6 +346,68 @@ export default function AdminNewsPage() {
                           alt="Preview" 
                           className="max-w-[200px] h-32 object-cover rounded-lg"
                         />
+                      </div>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Gallery Images (Multiple)</label>
+                  <div className="flex flex-col gap-2">
+                    <input 
+                      type="file" 
+                      multiple 
+                      accept="image/*" 
+                      onChange={(e) => {
+                        const files = Array.from(e.target.files || []);
+                        if (files.length === 0) return;
+                        
+                        setGalleryFiles(prev => [...prev, ...files]);
+                        const newPreviews = files.map(f => URL.createObjectURL(f));
+                        setGalleryPreviews(prev => [...prev, ...newPreviews]);
+                        
+                        // Reset input value so onChange fires again for same files if needed
+                        e.target.value = '';
+                      }}
+                      className="w-full px-3 py-2 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#0d9488]/10 file:text-[#0d9488] hover:file:bg-[#0d9488]/20" 
+                    />
+                    {galleryPreviews.length > 0 && (
+                      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mt-2 p-2 rounded-xl border border-dashed border-gray-300">
+                        {galleryPreviews.map((preview, idx) => (
+                          <div key={idx} className="relative group aspect-square">
+                            <img 
+                              src={preview} 
+                              alt={`Gallery ${idx}`} 
+                              className="w-full h-full object-cover rounded-lg border border-gray-100"
+                            />
+                            <button 
+                              type="button"
+                              onClick={() => {
+                                if (idx < (editingId ? formData.gallery.length : 0)) {
+                                  // Removing existing image
+                                  const newGallery = [...formData.gallery];
+                                  newGallery.splice(idx, 1);
+                                  setFormData({ ...formData, gallery: newGallery });
+                                  const newPreviews = [...galleryPreviews];
+                                  newPreviews.splice(idx, 1);
+                                  setGalleryPreviews(newPreviews);
+                                } else {
+                                  // Removing new file
+                                  const fileIdx = idx - (editingId ? formData.gallery.length : 0);
+                                  const newFiles = [...galleryFiles];
+                                  newFiles.splice(fileIdx, 1);
+                                  setGalleryFiles(newFiles);
+                                  const newPreviews = [...galleryPreviews];
+                                  newPreviews.splice(idx, 1);
+                                  setGalleryPreviews(newPreviews);
+                                }
+                              }}
+                              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <X className="w-3 h-3" />
+                            </button>
+                          </div>
+                        ))}
                       </div>
                     )}
                   </div>

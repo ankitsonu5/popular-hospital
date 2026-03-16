@@ -7,6 +7,7 @@ const newsSchema = new mongoose.Schema(
     excerpt: { type: String, default: '' },
     content: [{ type: String }], // Array of paragraphs for the detail page
     image: { type: String, required: true }, // Main thumbnail image
+    gallery: [{ type: String }], // Additional images for the detail page
     author: { type: String, default: null }, // Using 'author' field to store News Source
     date: { type: String, required: true }, // Display date (e.g., "February 10, 2026")
     isActive: { type: Boolean, default: true },

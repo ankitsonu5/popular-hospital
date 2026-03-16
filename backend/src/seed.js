@@ -251,12 +251,11 @@ const newsArticles = [
   }
 ];
 
-// Clear existing news and re-seed
-await News.deleteMany({});
+// Seed news by slug (upsert) to avoid deleting user-uploaded news
 for (const n of newsArticles) {
-  await News.create(n);
+  await News.findOneAndUpdate({ slug: n.slug }, n, { upsert: true });
 }
-console.log('✅ News articles seeded (3 articles)');
+console.log('✅ News articles seeded (upserted 3 articles)');
 
 
 // ──────────── Admin User ────────────
