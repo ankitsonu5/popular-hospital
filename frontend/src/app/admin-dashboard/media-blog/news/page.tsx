@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Plus, Pencil, Trash2, Search, X, Loader2, Newspaper } from 'lucide-react';
+import { getImageUrl } from '@/lib/api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
 
@@ -66,13 +67,13 @@ export default function AdminNewsPage() {
     });
     
     if (item.image) {
-      setImagePreview(item.image.startsWith('http') ? item.image : `${API_URL}${item.image}`);
+      setImagePreview(getImageUrl(item.image));
     } else {
       setImagePreview('');
     }
 
     if (item.gallery && item.gallery.length > 0) {
-      setGalleryPreviews(item.gallery.map((g: string) => g.startsWith('http') ? g : `${API_URL}${g}`));
+      setGalleryPreviews(item.gallery.map((g: string) => getImageUrl(g)));
     } else {
       setGalleryPreviews([]);
     }
@@ -229,7 +230,7 @@ export default function AdminNewsPage() {
                         <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 overflow-hidden relative">
                           {item.image ? (
                             <img 
-                              src={item.image.startsWith('http') ? item.image : `${API_URL}${item.image}`} 
+                              src={getImageUrl(item.image)} 
                               alt={item.title} 
                               className="w-full h-full object-cover" 
                               onError={(e) => {

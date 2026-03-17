@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { fetchBlogs, fetchBlogItem, fetchBlogCategoriesMetrics } from "@/lib/api";
+import { fetchBlogs, fetchBlogItem, fetchBlogCategoriesMetrics, getImageUrl } from "@/lib/api";
 import BlogSidebar, { BlogSearchWidget } from "@/app/blog/BlogSidebar";
 import BlogComments from "./BlogComments";
 import { allCategories } from "../data";
@@ -63,7 +63,7 @@ export default async function BlogDetailPage({
             {/* Main Hero Image */}
             <div className="relative w-full h-[300px] sm:h-[450px] mb-8 rounded-lg overflow-hidden flex-shrink-0">
               <Image
-                src={article.image || "/about-section-image.png"}
+                src={getImageUrl(article.image) || "/about-section-image.png"}
                 alt={article.title}
                 fill
                 className="object-cover"

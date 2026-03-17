@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { fetchBranches, fetchNews, type Branch, type NewsItem } from "@/lib/api";
+import { fetchBranches, fetchNews, getImageUrl, type Branch, type NewsItem } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function HomePage() {
@@ -1211,7 +1211,7 @@ export default function HomePage() {
                 </div>
 
                 <Image
-                  src={location.image_one || '/about-section-image.png'}
+                  src={getImageUrl(location.image_one) || '/about-section-image.png'}
                   alt={location.name}
                   fill
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
@@ -1463,7 +1463,7 @@ export default function HomePage() {
               <article key={article.slug} className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col">
                 <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden shrink-0">
                   <Image
-                    src={article.image ? (article.image.startsWith('/uploads') ? `http://localhost:5100${article.image}` : article.image) : "/about-section-image.png"}
+                    src={getImageUrl(article.image) || "/about-section-image.png"}
                     alt={article.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"

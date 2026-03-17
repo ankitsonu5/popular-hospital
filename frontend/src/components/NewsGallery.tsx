@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { getImageUrl } from "@/lib/api";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface NewsGalleryProps {
@@ -54,7 +55,7 @@ export default function NewsGallery({ images, title }: NewsGalleryProps) {
             onClick={() => setSelectedIndex(index)}
           >
             <Image
-              src={img}
+              src={getImageUrl(img)}
               alt={`${title} - Image ${index + 1}`}
               fill
               sizes="(max-width: 640px) 100vw, 33vw"
@@ -106,7 +107,7 @@ export default function NewsGallery({ images, title }: NewsGalleryProps) {
           >
             <div className="relative w-full max-w-5xl h-[70vh] md:h-[80vh]">
               <Image
-                src={images[selectedIndex]}
+                src={getImageUrl(images[selectedIndex])}
                 alt={`${title} - Preview`}
                 fill
                 className="object-contain"

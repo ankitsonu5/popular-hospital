@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-
 import Image from 'next/image';
+import { getImageUrl } from '@/lib/api';
 
 interface NewsItem {
   id?: number;
@@ -80,7 +80,7 @@ export function BlogSearchWidget({ className = "" }: { className?: string }) {
                   {r.image && (
                     <div className="w-12 h-12 rounded-lg bg-slate-100 shrink-0 overflow-hidden relative">
                       <Image 
-                        src={r.image} 
+                        src={getImageUrl(r.image!)} 
                         alt={r.title} 
                         fill 
                         className="object-cover" 

@@ -35,6 +35,10 @@ export const getImageUrl = (path: string) => {
   }
 
   // Otherwise, assume it's an uploaded file that needs the prefix
+  if (normalizedPath && !normalizedPath.startsWith('/')) {
+    normalizedPath = '/' + normalizedPath;
+  }
+
   if (typeof window !== 'undefined') return `/uploads${normalizedPath}`;
   return `${apiBaseUrl}/uploads${normalizedPath}`;
 };
