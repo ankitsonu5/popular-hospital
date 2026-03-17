@@ -199,6 +199,44 @@ button {
 }
 
 /* ───────────────────────────────────────────────────────────────── */
+/* RICH TEXT (PROSE) STYLING FOR BLOG CONTENT                        */
+/* ───────────────────────────────────────────────────────────────── */
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  @apply text-hospital-navy font-bold mb-4 mt-8;
+}
+.prose h1 { @apply text-4xl; }
+.prose h2 { @apply text-3xl border-b-2 border-gray-50 pb-2; }
+.prose h3 { @apply text-2xl; }
+
+.prose ul {
+  @apply list-disc list-inside space-y-2 mb-6;
+}
+.prose ol {
+  @apply list-decimal list-inside space-y-2 mb-6;
+}
+.prose li {
+  @apply text-gray-700;
+}
+.prose a {
+  @apply text-hospital-teal font-semibold underline decoration-2 underline-offset-4 hover:text-teal-700 transition-all;
+}
+.prose blockquote {
+  @apply border-l-4 border-hospital-teal pl-6 italic text-gray-600 bg-teal-50/30 py-4 pr-4 rounded-r-lg mb-6;
+}
+.prose img {
+  @apply rounded-2xl shadow-lg border border-gray-100 my-8 w-full h-auto;
+}
+.prose table {
+  @apply w-full border-collapse border border-gray-100 my-8;
+}
+.prose th, .prose td {
+  @apply border border-gray-100 p-4 text-left;
+}
+.prose th {
+  @apply bg-gray-50 font-bold;
+}
+
+/* ───────────────────────────────────────────────────────────────── */
 /* HIDE DEFAULT GOOGLE TRANSLATE NATIVE WIDGET AND TOOLTIPS          */
 /* ───────────────────────────────────────────────────────────────── */
 .skiptranslate.goog-te-gadget {

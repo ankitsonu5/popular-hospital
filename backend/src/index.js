@@ -48,6 +48,10 @@ app.use('/api/blogs', blogRouter);
 // Serve uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// Direct Blog Image Upload for TinyMCE (Avoiding router nesting 404s)
+import { upload, uploadBlogImage } from './controllers/blogController.js';
+app.post('/api/blog-image-direct', upload.single('file'), uploadBlogImage);
+
 // CMS / Admin Routes
 app.use('/api/cms', cmsRouter);
 

@@ -13,18 +13,39 @@ const storage = multer.diskStorage({
     cb(null, dir);
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    // Generate unique name with original extension
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, `blog-media-${uniqueSuffix}${path.extname(file.originalname)}`);
   }
 });
 
-export const upload = multer({ storage });
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only image files are allowed!'), false);
+  }
+};
+
+export const upload = multer({ 
+  storage,
+  fileFilter,
+  limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
+});
 
 // Public: Get all blogs
 export const getAllBlogs = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 0;
     const blogs = await Blog.find({ isActive: true }).sort({ createdAt: -1 }).limit(limit);
-    res.json(blogs);
+    const normalized = blogs.map(b => {
+      const obj = b.toObject();
+      if (obj.content && Array.isArray(obj.content)) {
+        obj.content = obj.content.map(p => `<p>${p}</p>`).join('');
+      }
+      return obj;
+    });
+    res.json(normalized);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -72,7 +93,11 @@ export const getBlogBySlug = async (req, res) => {
   try {
     const blog = await Blog.findOne({ slug: req.params.slug, isActive: true });
     if (!blog) return res.status(404).json({ error: 'Blog article not found' });
-    res.json(blog);
+    const obj = blog.toObject();
+    if (obj.content && Array.isArray(obj.content)) {
+      obj.content = obj.content.map(p => `<p>${p}</p>`).join('');
+    }
+    res.json(obj);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -104,7 +129,14 @@ export const searchBlogs = async (req, res) => {
 export const getAdminBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find().sort({ createdAt: -1 });
-    res.json(blogs);
+    const normalized = blogs.map(b => {
+      const obj = b.toObject();
+      if (obj.content && Array.isArray(obj.content)) {
+        obj.content = obj.content.map(p => `<p>${p}</p>`).join('');
+      }
+      return obj;
+    });
+    res.json(normalized);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -113,35 +145,37 @@ export const getAdminBlogs = async (req, res) => {
 // CMS: Create new blog
 export const createBlog = async (req, res) => {
   try {
-    const { title, slug, excerpt, content, date, category, isUncategorized, isActive, author } = req.body;
+    console.log('--- CREATE BLOG BODY ---');
+    console.log(req.body);
+    const { 
+      title, slug, excerpt, content, date, 
+      category, isUncategorized, isActive, author,
+      metaTitle, metaDescription, metaKeywords, 
+      focusKeyword, imageAlt
+    } = req.body;
     
-    let contentArr = [];
-    if (content) {
-      if (typeof content === 'string') {
-        try {
-          contentArr = JSON.parse(content);
-        } catch {
-          contentArr = [content];
-        }
-      } else {
-        contentArr = content;
-      }
-    }
-
     const imagePath = req.file ? `/uploads/blogs/${req.file.filename}` : (req.body.image || '');
-    // If no image provided, maybe block? But we have default check up to frontend.
     
+    // Ensure keywords are synced if one is provided
+    const finalFocusKeyword = focusKeyword || '';
+    const finalMetaKeywords = metaKeywords || finalFocusKeyword;
+
     const blog = await Blog.create({
       title,
       slug,
       excerpt: excerpt || '',
-      content: contentArr,
+      content: content || '',
       author: author || 'popularhospital-admin',
       date,
       image: imagePath,
+      imageAlt: imageAlt || title,
       category: isUncategorized === 'true' || isUncategorized === true ? '' : category,
       isUncategorized: isUncategorized === 'true' || isUncategorized === true,
-      isActive: isActive !== 'false' && isActive !== false
+      isActive: isActive !== 'false' && isActive !== false,
+      metaTitle: metaTitle || title, // Fallback to title
+      metaDescription: metaDescription || excerpt || '',
+      metaKeywords: finalMetaKeywords,
+      focusKeyword: finalFocusKeyword
     });
     
     res.status(201).json(blog);
@@ -153,31 +187,33 @@ export const createBlog = async (req, res) => {
 // CMS: Update blog (including replacing image)
 export const updateBlog = async (req, res) => {
   try {
-    const { title, slug, excerpt, content, date, category, isUncategorized, isActive, author, image } = req.body;
+    console.log('--- UPDATE BLOG BODY ---');
+    console.log(req.body);
+    const { 
+      title, slug, excerpt, content, date, 
+      category, isUncategorized, isActive, author, image,
+      metaTitle, metaDescription, metaKeywords,
+      focusKeyword, imageAlt
+    } = req.body;
     
-    let contentArr = [];
-    if (content) {
-      if (typeof content === 'string') {
-        try {
-          contentArr = JSON.parse(content);
-        } catch {
-          contentArr = [content];
-        }
-      } else {
-        contentArr = content;
-      }
-    }
+    const finalFocusKeyword = focusKeyword || '';
+    const finalMetaKeywords = metaKeywords || finalFocusKeyword;
 
     const updates = {
       title,
       slug,
       excerpt: excerpt || '',
-      content: contentArr,
+      content: content || '',
       author: author || 'popularhospital-admin',
       date,
       category: isUncategorized === 'true' || isUncategorized === true ? '' : category,
       isUncategorized: isUncategorized === 'true' || isUncategorized === true,
-      isActive: isActive !== 'false' && isActive !== false
+      isActive: isActive !== 'false' && isActive !== false,
+      metaTitle: metaTitle || title,
+      metaDescription: metaDescription || excerpt || '',
+      metaKeywords: finalMetaKeywords,
+      focusKeyword: finalFocusKeyword,
+      imageAlt: imageAlt || title
     };
 
     if (req.file) {
@@ -257,3 +293,22 @@ export const deleteComment = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// CMS: TinyMCE Image Upload Handler
+export const uploadBlogImage = (req, res) => {
+  console.log('--- TINYMCE IMAGE UPLOAD REQUEST ---');
+  console.log('File:', req.file);
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+    // TinyMCE expects a JSON response with a 'location' property
+    const protocol = req.protocol;
+    const host = req.get('host');
+    const imageUrl = `${protocol}://${host}/uploads/blogs/${req.file.filename}`;
+    res.json({ location: imageUrl });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+

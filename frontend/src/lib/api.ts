@@ -296,10 +296,15 @@ export interface BlogItem {
   slug: string;
   date: string;
   excerpt: string;
-  content: string[];
+  content: string; // Changed from string[] to string for HTML
   image: string;
   author?: string;
   category?: string;
   isUncategorized?: boolean;
   comments?: CommentItem[];
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  focusKeyword?: string;
+  imageAlt?: string;
 }

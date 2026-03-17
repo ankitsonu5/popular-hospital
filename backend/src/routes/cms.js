@@ -12,7 +12,8 @@ import {
   replyToComment, 
   deleteAdminReply, 
   deleteComment,
-  upload
+  upload,
+  uploadBlogImage
 } from '../controllers/blogController.js';
 import { cmsAuth } from '../middleware/auth.js';
 
@@ -71,6 +72,7 @@ router.delete('/news/:id', deleteNews);
 
 // Blogs CRUD
 router.get('/blogs', getAdminBlogs);
+router.post('/blogs/image-upload-direct', upload.single('file'), uploadBlogImage);
 router.post('/blogs', upload.single('image'), createBlog);
 router.put('/blogs/:id', upload.single('image'), updateBlog);
 router.delete('/blogs/:id', deleteBlog);

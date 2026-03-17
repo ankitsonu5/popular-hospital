@@ -24,8 +24,9 @@ export async function generateMetadata({
 
   if (!article) return { title: "Article Not Found" };
   return {
-    title: `${article.title} – Popular Hospital Blog`,
-    description: article.excerpt || article.title,
+    title: article.metaTitle || `${article.title} – Popular Hospital Blog`,
+    description: article.metaDescription || article.excerpt || article.title,
+    keywords: article.metaKeywords || '',
   };
 }
 
@@ -64,7 +65,7 @@ export default async function BlogDetailPage({
             <div className="relative w-full h-[300px] sm:h-[450px] mb-8 rounded-lg overflow-hidden flex-shrink-0">
               <Image
                 src={getImageUrl(article.image) || "/about-section-image.png"}
-                alt={article.title}
+                alt={article.imageAlt || article.title}
                 fill
                 className="object-cover"
                 priority
@@ -82,69 +83,11 @@ export default async function BlogDetailPage({
             </div>
 
             {/* Content Body */}
-            <div className="text-gray-800 text-base sm:text-lg leading-[1.8] text-justify space-y-6">
-              {(() => {
-                const elements: JSX.Element[] = [];
-                let currentList: string[] = [];
-                let isListMode = false;
-
-                (article.content || []).forEach((paragraph: string, index: number, arr: string[]) => {
-                  const prev = index > 0 ? arr[index - 1] : '';
-                  
-                  const isNumberedHeading = /^\d+\.\s/.test(paragraph);
-                  const isListItemCondition = !isNumberedHeading && paragraph.length < 150 && !paragraph.endsWith('.') && !paragraph.endsWith('?') && !paragraph.endsWith(':');
-                  const isListItem = isListItemCondition && (prev.endsWith(':') || isListMode);
-
-                  if (isListItem) {
-                    isListMode = true;
-                    currentList.push(paragraph);
-                  } else {
-                    if (currentList.length > 0) {
-                      elements.push(
-                        <ul key={`list-${index}`} className="list-disc pl-6 sm:pl-8 space-y-2 mb-6">
-                          {currentList.map((item, i) => (
-                            <li key={i} className="text-base text-gray-700">
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      );
-                      currentList = [];
-                    }
-                    isListMode = false;
-
-                    const isHeading = isNumberedHeading || (paragraph.length < 100 && !paragraph.endsWith('.') && !paragraph.endsWith('?') && !paragraph.endsWith(':') && !paragraph.includes(','));
-                    
-                    if (isHeading) {
-                      elements.push(
-                        <h3 key={index} className="text-xl sm:text-2xl font-serif font-bold text-[#1e3a8a] mt-8 mb-4">
-                          {paragraph}
-                        </h3>
-                      );
-                    } else {
-                      elements.push(
-                        <p key={index} className="mb-6">
-                          {paragraph}
-                        </p>
-                      );
-                    }
-                  }
-                });
-
-                if (currentList.length > 0) {
-                  elements.push(
-                    <ul key={`list-end`} className="list-disc pl-6 sm:pl-8 space-y-2 mb-6">
-                      {currentList.map((item, i) => (
-                        <li key={i} className="text-base text-gray-700">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  );
-                }
-
-                return elements;
-              })()}
+            <div className="mt-8 border-t border-gray-50 pt-8">
+              <div 
+                className="prose prose-teal prose-lg max-w-none text-gray-700 leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: article.content }}
+              />
             </div>
           </article>
 

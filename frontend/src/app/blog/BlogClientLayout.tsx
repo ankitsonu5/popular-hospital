@@ -152,9 +152,10 @@ export default function BlogClientLayout({
                     <h2 className="text-2xl md:text-3xl font-black text-[#1a3a5c] mb-6 leading-tight group-hover:text-[#E85222] transition-colors line-clamp-2">
                       <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                     </h2>
-                    <p className="text-gray-600 text-lg leading-relaxed mb-8 line-clamp-3">
-                      {post.excerpt}
-                    </p>
+                    <div 
+                      className="text-gray-600 text-lg leading-relaxed mb-8 line-clamp-3"
+                      dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                    />
                   </div>
                   
                   <Link 
