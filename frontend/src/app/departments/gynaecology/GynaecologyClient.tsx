@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data (Transcribed from Image & Matched to General Surgery Theme) ─── */
 
@@ -75,14 +76,14 @@ const doctors = [
     qualifications: 'MBBS, MS (OBGY) IMS, BHU',
     designation: 'Head Of Department Obstetrics & Gynaecology',
     slug: 'dr-kiran-kaushik',
-    image: '/images/departments_doctor/kiran.png',
+    image: '/images/departments-images/dr_kiran_kaushik.png',
   },
   {
     name: 'Dr Priyanka Jaiswal',
     qualifications: 'MBBS, MS (OBGY)',
     designation: 'Consultant Laparoscopic Gynaecologist & IVF Specialist',
     slug: 'dr-priyanka-jaiswal',
-    image: '/images/departments_doctor/dr_priyanka_jaiswal.png',
+    image: '/images/departments-images/dr_priyanka_jaiswal.png',
   },
   {
     name: 'Dr Madhavi Parimar',
@@ -114,19 +115,9 @@ const ListItem = ({ text }: { text: string }) => (
   </li>
 );
 
-const FeatureIcon = ({ icon }: { icon: string }) => (
-  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    {icon === 'baby' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />}
-    {icon === 'scope' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />}
-    {icon === 'microscope' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
-    {icon === 'heart' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />}
-  </svg>
-);
-
 /* ─── Page ─── */
 
 export default function GynaecologyClient() {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
@@ -155,17 +146,11 @@ export default function GynaecologyClient() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                 Get a Call Back
               </button>
             </div>
@@ -196,93 +181,10 @@ export default function GynaecologyClient() {
               </div>
             </div>
 
-            {/* ── Right Doctor Card (Cardiology Style) ── */}
+            {/* ── Right Doctor Card ── */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <div className="relative pt-6">
-                  <Link
-                    href="/doctors"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-                  <div className="bg-white rounded-xl shadow border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
-                    <div className="w-full relative overflow-hidden">
-                      <div 
-                        className="flex transition-transform duration-500 ease-in-out" 
-                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                      >
-                        {doctors.map((doc, idx) => (
-                          <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
-                            <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                                {doc.image && (
-                                  <Image
-                                    src={doc.image}
-                                    alt={doc.name}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                                  />
-                                )}
-                                 <Link
-                                  href={`/doctors/${doc.slug}`}
-                                  className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                                >
-                                  <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors uppercase text-sm">
-                                    View More Info
-                                  </span>
-                                </Link>
-                            </div>
-                            <div className="text-center">
-                                <h3 className="text-xl font-bold text-[#3b82f6] mb-1 font-heading">{doc.name}</h3>
-                                <p className="text-gray-600 text-sm font-medium">{doc.qualifications}</p>
-                                <p className="text-gray-500 text-sm mt-1 uppercase tracking-wider font-bold">{doc.designation}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Navigation Arrows — only if > 1 doctor */}
-                    {doctors.length > 1 && (
-                      <>
-                        <button
-                          onClick={() => setCurrentSlide(prev => (prev === 0 ? doctors.length - 1 : prev - 1))}
-                          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => setCurrentSlide(prev => (prev === doctors.length - 1 ? 0 : prev + 1))}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                      </>
-                    )}
-
-                    {/* Pagination Dots */}
-                    {doctors.length > 1 && (
-                      <div className="flex gap-3 mb-8">
-                        {doctors.map((_, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => setCurrentSlide(idx)}
-                            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border ${
-                              currentSlide === idx
-                                ? 'bg-blue-600 border-blue-600 scale-125'
-                                : 'bg-transparent border-gray-400'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    )}
-                    <div className="h-4" />
-                  </div>
-                </div>
+                <DoctorSlider doctors={doctors} departmentName="Obstetrics and Gynaecology" />
               </div>
             </div>
 
@@ -290,11 +192,10 @@ export default function GynaecologyClient() {
         </div>
       </section>
 
-      {/* ═══════ FACILITIES SECTION (Broad Full Width Layout) ═══════ */}
+      {/* ═══════ FACILITIES SECTION ═══════ */}
       <section className="py-24 bg-white border-b border-gray-50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                {/* Text Section (Left) - Increased space for readability */}
                 <div className="lg:col-span-5 order-2 lg:order-1">
                     <SectionHeader title="Department" highlight="Facilities" />
                     <ul className="mt-4 space-y-3">
@@ -303,7 +204,6 @@ export default function GynaecologyClient() {
                     ))}
                     </ul>
                 </div>
-                {/* Image Section (Right) - Adjusted width for balance */}
                 <div className="lg:col-span-7 order-1 lg:order-2 relative rounded-3xl overflow-hidden shadow-2xl group bg-pink-50/10" style={{ minHeight: '600px' }}>
                     <Image
                     src="/images/departments-images/obstetrics_and_gynaecology.jpeg"
@@ -312,19 +212,17 @@ export default function GynaecologyClient() {
                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#831843]/30 via-transparent to-transparent pointer-events-none" />
-                    <div className="absolute inset-6 border border-white/30 rounded-[2.5rem] pointer-events-none" />
                 </div>
            </div>
         </div>
       </section>
 
 
-      {/* ═══════ OBSTETRICS SECTION (General Surgery USP Style - Side List + Image) ═══════ */}
+      {/* ═══════ OBSTETRICS SECTION ═══════ */}
       <section className="py-20 bg-gray-50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
              
-             {/* Left: Image (General Surgery Style) */}
              <div className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1" style={{ minHeight: '480px' }}>
                 <Image
                     src="/images/departments-images/obstetrics_care.jpg"
@@ -335,7 +233,6 @@ export default function GynaecologyClient() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#831843]/40 via-transparent to-transparent" />
              </div>
 
-             {/* Right: List Side (General Surgery Style) */}
              <div className="order-1 lg:order-2">
                 <SectionHeader title="Our" highlight="Obstetrics Care" />
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
@@ -349,7 +246,7 @@ export default function GynaecologyClient() {
         </div>
       </section>
 
-      {/* ═══════ GYNAECOLOGY EXPERTISE (General Surgery USP Style - Side List + Image) ═══════ */}
+      {/* ═══════ GYNAECOLOGY EXPERTISE ═══════ */}
       <section className="py-20 bg-white">
         <div className="mx-auto w-full max-w-[1366px] px-4">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -359,7 +256,7 @@ export default function GynaecologyClient() {
                         {gynaecologyProcedures.map((item, idx) => {
                             if (item.type === 'header') {
                                 return (
-                                    <li key={idx} className="text-gray-800 mb-2 text-base md:text-lg font-medium leading-relaxed pl-6">
+                                    <li key={idx} className="text-gray-800 mb-2 text-base md:text-lg font-bold leading-relaxed pl-6 uppercase tracking-tight text-pink-600">
                                         {item.text}
                                     </li>
                                 );
@@ -410,15 +307,14 @@ export default function GynaecologyClient() {
               <div className="flex flex-col sm:flex-row justify-center gap-6">
                 <Link
                   href="/doctors"
-                  className="bg-[#3b82f6] hover:bg-blue-500 text-white px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1"
+                  className="bg-[#E85222] hover:bg-orange-600 text-white px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
                 >
                   Book Appointment
                 </Link>
                 <a
                   href="tel:+917800001896"
-                  className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center   justify-center gap-3"
+                  className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                   +91-7800001895 / 96
                 </a>
               </div>

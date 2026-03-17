@@ -123,90 +123,25 @@ export default async function NewsDetailPage({
 
       {/* ─── Article Content ─── */}
       <section className="max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16">
-
-        {/* Article Body */}
         <article className="max-w-none">
-          <div className="relative text-gray-700 text-base sm:text-lg leading-relaxed">
-            {/* Featured Image Floated Left */}
-            <div className="float-left w-full sm:w-[500px] mr-10 mb-8 rounded-2xl overflow-hidden shadow-2xl border-4 border-white group">
-              <div className="relative h-[300px] sm:h-[400px]">
-                <Image
-                  src={getImageUrl(article.image) || "/about-section-image.png"}
-                  alt={article.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  priority
-                />
-              </div>
+          {/* Featured Image */}
+          <div className="w-full mb-10 rounded-3xl overflow-hidden shadow-2xl border-2 border-gray-100 group">
+            <div className="relative h-[300px] sm:h-[450px] md:h-[550px]">
+              <Image
+                src={getImageUrl(article.image) || "/about-section-image.png"}
+                alt={article.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
             </div>
+          </div>
 
-            {/* Content Text & Interleaved Gallery Images */}
-            {article.content && article.content.length > 0 ? (
-              <div className="space-y-0">
-                {article.content.map((paragraph, index) => {
-                  return (
-                    <div key={`p-${index}`}>
-                      <p className="mb-8 text-gray-700 font-normal leading-[1.8] text-justify hyphens-auto text-[1.05rem] sm:text-lg">
-                        {paragraph}
-                      </p>
-                      
-                      {/* Inject Gallery Images after specific paragraphs for interleave effect */}
-                      {index === 0 && article.gallery && article.gallery.length >= 1 && (
-                        <div className="flex flex-col sm:flex-row gap-6 my-12 clear-both">
-                          {article.gallery.slice(0, 2).map((img, i) => (
-                            <div key={`g1-${i}`} className={`relative ${article.gallery!.length === 1 ? 'w-full aspect-[16/7]' : 'flex-1 aspect-[4/3] sm:aspect-[3/2]'} rounded-2xl overflow-hidden shadow-xl border border-gray-100 group`}>
-                              <Image src={getImageUrl(img) || "/about-section-image.png"} alt="Gallery image" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      
-                      {index === 2 && article.gallery && article.gallery.length >= 3 && (
-                        <div className="w-full relative aspect-[16/7] md:aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl my-14 border border-gray-200 group clear-both">
-                          <Image src={getImageUrl(article.gallery[2]) || "/about-section-image.png"} alt="Gallery full image" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                          <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        </div>
-                      )}
-                      
-                      {index === 4 && article.gallery && article.gallery.length >= 4 && (
-                        <div className="flex flex-col sm:flex-row gap-6 my-12 clear-both">
-                          {article.gallery.slice(3, 5).map((img, i) => (
-                            <div key={`g2-${i}`} className={`relative ${article.gallery!.length === 4 ? 'w-full aspect-[16/7]' : 'flex-1 aspect-[4/3] sm:aspect-[3/2]'} rounded-2xl overflow-hidden shadow-xl border border-gray-100 group`}>
-                              <Image src={getImageUrl(img) || "/about-section-image.png"} alt="Gallery image" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ) : null}
-
-            {/* Clear the float */}
-            <div className="clear-both" />
-
-            {/* Any remaining images that didn't fit into the interleaved slots */}
-            {article.gallery && article.gallery.length > 0 && (
-               <div className="mt-8">
-                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 clear-both">
-                    {/* Filter out images already shown based on paragraph count */}
-                    {article.gallery.filter((_, i) => {
-                       const pCount = article.content ? article.content.length : 0;
-                       if (pCount > 4) return i >= 5;
-                       if (pCount > 2) return i >= 3;
-                       if (pCount > 0) return i >= 2;
-                       return true;
-                    }).map((img, idx) => (
-                      <div key={`rem-${idx}`} className="relative aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden shadow-md group border border-gray-100">
-                        <Image src={getImageUrl(img) || "/about-section-image.png"} alt="Gallery extra" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                      </div>
-                    ))}
-                 </div>
-               </div>
-            )}
+          {/* Rich Text Body */}
+          <div className="prose prose-teal prose-lg max-w-none text-gray-700 leading-relaxed">
+            <div dangerouslySetInnerHTML={{ 
+              __html: Array.isArray(article.content) ? article.content.join('') : (article.content || '') 
+            }} />
           </div>
         </article>
 

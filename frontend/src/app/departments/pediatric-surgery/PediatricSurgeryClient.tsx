@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 const doctors = [
   {
@@ -17,7 +18,7 @@ const doctors = [
     qualifications: 'MBBS, DCH, DNB (Pediatrics)',
     designation: 'Consultant Senior Pediatrician',
     slug: 'dr-prabhat-kumar',
-    image: '/images/departments_doctor/dr_prabhat_kumar.png',
+    image: '/images/departments-images/dr_prabhat_kumar.png',
   },
   {
     name: 'Dr Greeshma Suresh',
@@ -41,7 +42,6 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 );
 
 export default function PediatricSurgeryClient() {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <main className="min-h-screen bg-white">
@@ -69,17 +69,11 @@ export default function PediatricSurgeryClient() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
                 Book An Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                 Get a Call Back
               </button>
             </div>
@@ -111,95 +105,7 @@ export default function PediatricSurgeryClient() {
             {/* Right Doctor Card Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <div className="relative pt-6">
-                  <Link
-                    href="/doctors"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-
-                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative">
-                    <div className="w-full relative overflow-hidden">
-                      <div
-                        className="flex transition-transform duration-500 ease-in-out"
-                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                      >
-                        {doctors.map((doc, idx) => (
-                          <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
-                            <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                              {doc.image ? (
-                                <Image
-                                  src={doc.image}
-                                  alt={doc.name}
-                                  fill
-                                  className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                                />
-                              ) : (
-                                <div className="flex items-center justify-center h-full bg-blue-50">
-                                  <svg className="w-24 h-24 text-blue-100" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-                                  </svg>
-                                </div>
-                              )}
-                              <Link
-                                href={`/doctors/${doc.slug}`}
-                                className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                              >
-                                <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors">
-                                  View More Info
-                                </span>
-                              </Link>
-                            </div>
-                            <div className="text-center">
-                              <h3 className="text-xl font-bold text-[#3d7cc9] mb-1">{doc.name}</h3>
-                              <p className="text-gray-600 text-sm font-medium">{doc.qualifications}</p>
-                              <p className="text-gray-500 text-sm mt-1 uppercase tracking-wider">{doc.designation}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {doctors.length > 1 && (
-                      <>
-                        <button
-                          onClick={() => setCurrentSlide(p => (p === 0 ? doctors.length - 1 : p - 1))}
-                          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all hover:scale-110"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => setCurrentSlide(p => (p === doctors.length - 1 ? 0 : p + 1))}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all hover:scale-110"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                      </>
-                    )}
-
-                    {doctors.length > 1 && (
-                      <div className="flex gap-2.5 mb-8">
-                        {doctors.map((_, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => setCurrentSlide(idx)}
-                            className={`w-2 h-2 rounded-full transition-all duration-300 border ${
-                              currentSlide === idx 
-                                ? 'bg-blue-600 border-blue-600 scale-125' 
-                                : 'bg-transparent border-gray-400'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    )}
-                    <div className="h-4" />
-                  </div>
-                </div>
+                <DoctorSlider doctors={doctors} departmentName="Pediatric Surgery" />
               </div>
             </div>
           </div>
@@ -210,7 +116,7 @@ export default function PediatricSurgeryClient() {
             {/* Knowing Section */}
             <div className="max-w-4xl">
               <SectionHeader title="Knowing a" highlight="Pediatric Surgeon?" />
-              <p className="text-gray-700 text-base leading-relaxed text-justify">
+              <p className="text-gray-700 text-base leading-relaxed text-justify font-medium">
                 A pediatric surgeon is a uniquely qualified provider whose expertise consists of conducting surgeries that are specific to children. Those caregivers learn the physical or emotional requirements of small patients and collaborate with pediatric anesthesiologists, neurologists, cardiologists, orthopedic surgeons, and urologists to maintain the safest and efficacy procedures.
               </p>
             </div>
@@ -232,14 +138,14 @@ export default function PediatricSurgeryClient() {
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <span className="text-blue-600 font-bold mt-1">›</span>
-                      <p className="text-gray-700 text-base leading-relaxed text-justify">
+                      <p className="text-gray-700 text-base leading-relaxed text-justify font-medium">
                         <span className="font-bold text-blue-600 uppercase tracking-tight">{item.title}:</span> {item.desc}
                       </p>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="order-1 md:order-2 relative h-[400px] rounded-[3rem]">
+              <div className="order-1 md:order-2 relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl">
                 <Image
                   src="/images/departments-images/pediatric_surgery.png"
                   alt="Pediatric Surgery"
@@ -269,14 +175,14 @@ export default function PediatricSurgeryClient() {
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <span className="text-blue-600 font-bold mt-1">›</span>
-                      <p className="text-gray-700 text-base leading-relaxed text-justify">
+                      <p className="text-gray-700 text-base leading-relaxed text-justify font-medium">
                         <span className="font-bold text-blue-600">{item.title}:</span> {item.desc}
                       </p>
                     </li>
                   ))}
                   <li className="flex items-start gap-2 pt-6 border-t border-gray-100">
                     <span className="text-blue-600 font-bold mt-1">›</span>
-                    <p className="text-gray-700 text-base leading-relaxed text-justify">
+                    <p className="text-gray-700 text-base leading-relaxed text-justify font-medium">
                       <span className="font-bold text-[#0b1c43]">Conclusion:</span> At Popular Hospital, we understand that surgery of a child is not only a medical condition needing highest amount of medical care but also an emotional one to the entire family. Our Pediatric Surgery Department provides high-quality medical treatment in various fields, and its experienced staff treats each of the patients with care, understanding, and respect. As these parameters are our key offerings, our parents can be assured of the best surgical care to their children.
                     </p>
                   </li>

@@ -3,6 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 const features = [
   { 
@@ -74,7 +76,6 @@ const ListItem = ({ text }: { text: string }) => (
 );
 
 export default function DieteticsNutritionClient() {
-  const [currentSlide, setCurrentSlide] = React.useState(0);
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
@@ -103,17 +104,11 @@ export default function DieteticsNutritionClient() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                 Get a Call Back
               </button>
             </div>
@@ -138,96 +133,46 @@ export default function DieteticsNutritionClient() {
                     We understand that every individual is unique. Our expert dietitians create personalized, evidence-based nutrition plans tailored to your lifestyle, medical history, and health goals, ensuring optimal recovery and long-term wellness.
                   </p>
                 </div>
-                <p>
-                  "Let food be thy medicine and medicine be thy food." This philosophy drives our approach to health, emphasizing the power of balanced nutrition in restoring vital health and increasing the quality of life.
-                </p>
               </div>
 
-              <SectionHeader title="Our" highlight="Core Highlights" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-                {[
-                  { title: "Personalized Assessment", desc: "Detailed analysis of current diet and health markers." },
-                  { title: "Clinical Support", desc: "Specialized diets for renal, cardiac, and diabetic patients." },
-                  { title: "Lifestyle Coaching", desc: "Focus on sustainable healthy eating habits." },
-                  { title: "Wellness Training", desc: "Nutritional education for preventive care." }
-                ].map((item, idx) => (
-                  <div key={idx} className="p-5 rounded-xl border border-emerald-100 bg-emerald-50/30 group hover:border-emerald-300 transition-colors">
-                    <h4 className="font-bold text-[#064e3b] mb-1">{item.title}</h4>
-                    <p className="text-gray-600 text-sm">{item.desc}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                {features.map((feature, idx) => (
+                  <div key={idx} className="flex gap-4 p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-emerald-200 transition-colors group">
+                    <div className="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={feature.icon} />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-1">{feature.title}</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">{feature.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Sidebar - Doctor Card (4 cols) with Slider */}
+            {/* Right Sidebar - Doctor Card with Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <div className="relative pt-6">
-                  {/* Floating Appointment Button */}
-                  <Link 
-                    href="/doctors" 
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-                  
-                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
-                    <div className="w-full relative overflow-hidden">
-                      <div 
-                        className="flex transition-transform duration-500 ease-in-out" 
-                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                      >
-                        {doctors.map((doc, idx) => (
-                          <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
-                            <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                              <Image
-                                src={doc.image}
-                                alt={doc.name}
-                                fill
-                                className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                              />
-                              <Link 
-                                href={`/doctors/${doc.slug}`} 
-                                className="absolute inset-0 bg-emerald-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                              >
-                                <span className="px-5 py-2.5 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-emerald-600 transition-all uppercase text-sm">
-                                  View Full Profile
-                                </span>
-                              </Link>
-                            </div>
-                            <div className="text-center">
-                              <h3 className="text-xl font-bold text-emerald-600 mb-1 font-heading">{doc.name}</h3>
-                              <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">{doc.qualifications}</p>
-                              <p className="text-gray-500 text-xs mt-2 uppercase tracking-widest font-bold">{doc.designation}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DoctorSlider doctors={doctors} departmentName="Dietetics & Nutrition" />
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ═══════ DIET CATEGORIES ═══════ */}
-      <section className="py-24 bg-gray-50/50">
-        <div className="mx-auto w-full max-w-[1366px] px-4 text-center mb-16">
-          <SectionHeader title="Our Nutritional" highlight="Services" />
-          <p className="text-gray-500 max-w-2xl mx-auto -mt-4">Comprehensive nutrition plans tailored for medical needs and wellness goals.</p>
-        </div>
-
+      {/* ═══════ DIET PLANS SECTION ═══════ */}
+      <section className="py-16 bg-gray-50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {dietPlans.map((box, i) => (
-              <div key={i} className="bg-white p-10 rounded-[2.5rem] border border-emerald-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <h4 className="text-2xl font-bold text-[#064e3b] mb-6 font-heading group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{box.title}</h4>
+          <SectionHeader title="Specialized" highlight="Dietary Plans" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {dietPlans.map((plan, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                <h3 className="text-2xl font-bold text-[#064e3b] mb-6">{plan.title}</h3>
                 <ul className="space-y-4">
-                  {box.items.map((item, j) => (
-                    <ListItem key={j} text={item} />
+                  {plan.items.map((item, i) => (
+                    <ListItem key={i} text={item} />
                   ))}
                 </ul>
               </div>
@@ -236,38 +181,31 @@ export default function DieteticsNutritionClient() {
         </div>
       </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="bg-[#064e3b] rounded-2xl md:rounded-[2.5rem] p-10 md:p-24 text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-                </svg>
-            </div>
-            
-            <div className="relative z-10">
-              <span className="inline-block bg-emerald-500/20 text-emerald-100 text-xs font-bold px-4 py-1.5 rounded-full mb-8 border border-emerald-400/20 uppercase tracking-widest">
-                Partner in your wellness journey
-              </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
-                Listening to Your Body <br className="hidden md:block" /> Nourishing with Expertise
-              </h2>
-              <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-                <Link
-                  href="/doctors"
-                  className="bg-emerald-600 text-white hover:bg-emerald-500 px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1"
-                >
-                  Book Appointment
-                </Link>
-                <a
-                  href="tel:+917800001895"
-                  className="bg-transparent border-2 border-emerald-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
-                >
-                  +91-7800001895 / 96
-                </a>
-              </div>
-            </div>
+      {/* ═══════ CTA SECTION ═══════ */}
+      <section className="py-20 bg-emerald-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-400 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-400 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3"></div>
+        </div>
+        
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 font-heading">Start Your Journey Towards Better Health</h2>
+          <p className="text-emerald-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium">
+            Consult with our expert nutritionists today and get a personalized diet plan tailored to your needs.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link
+              href="/doctors"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl shadow-emerald-900/40 transition-all uppercase tracking-wide"
+            >
+              Book Consultation
+            </Link>
+            <a
+              href="tel:+917800001895"
+              className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-10 py-4 rounded-full font-bold text-lg backdrop-blur-sm transition-all"
+            >
+              Call +91-7800001895
+            </a>
           </div>
         </div>
       </section>

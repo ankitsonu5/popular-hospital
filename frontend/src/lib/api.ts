@@ -269,9 +269,8 @@ export interface NewsItem {
   slug: string;
   date: string;
   excerpt: string;
-  content: string[];
+  content: string; // HTML string from TinyMCE
   image: string;
-  gallery?: string[];
   author?: string;
 }
 

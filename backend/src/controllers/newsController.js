@@ -53,16 +53,7 @@ export const getAdminNews = async (req, res) => {
 // POST /api/cms/news (Admin)
 export const createNews = async (req, res) => {
   try {
-    const { title, slug, content, date, author, isActive } = req.body;
-    let contentArr = [];
-    if (content) {
-      if (typeof content === 'string') {
-        try { contentArr = JSON.parse(content); } catch { contentArr = [content]; }
-      } else {
-        contentArr = content;
-      }
-    }
-    const excerpt = req.body.excerpt || (contentArr && contentArr[0] ? (typeof contentArr[0] === 'string' ? contentArr[0].substring(0, 150) + '...' : '') : '');
+    const { title, slug, content, date, author, isActive, excerpt } = req.body;
     
     // Normalize files from .any() or .fields()
     const files = req.files || [];
@@ -70,30 +61,15 @@ export const createNews = async (req, res) => {
       ? files.reduce((acc, f) => { acc[f.fieldname] = acc[f.fieldname] || []; acc[f.fieldname].push(f); return acc; }, {}) 
       : files;
 
-    // Support single image and gallery
     const existingImg = req.body.existingImage || req.body.image || '';
     const imagePath = (filesObj.image && filesObj.image.length > 0) ? `/uploads/news/${filesObj.image[0].filename}` : existingImg;
     
-    // Uploaded gallery images
-    let galleryPaths = (filesObj.gallery) ? filesObj.gallery.map(f => `/uploads/news/${f.filename}`) : [];
-    
-    // Also include any gallery paths provided in the body (if any)
-    if (req.body.existingGallery) {
-      try {
-        const existing = typeof req.body.existingGallery === 'string' ? JSON.parse(req.body.existingGallery) : req.body.existingGallery;
-        galleryPaths = [...existing, ...galleryPaths];
-      } catch (e) {
-        console.error("Error parsing existingGallery in createNews:", e);
-      }
-    }
-
     const news = await News.create({
       title,
       slug,
-      excerpt,
-      content: contentArr,
+      excerpt: excerpt || '',
+      content: content || '',
       image: imagePath,
-      gallery: galleryPaths,
       date,
       author,
       isActive: isActive !== 'false' && isActive !== false
@@ -107,23 +83,13 @@ export const createNews = async (req, res) => {
 // PUT /api/cms/news/:id (Admin)
 export const updateNews = async (req, res) => {
   try {
-    const { title, slug, content, date, author, isActive, image, gallery } = req.body;
-    
-    let contentArr = [];
-    if (content) {
-      if (typeof content === 'string') {
-        try { contentArr = JSON.parse(content); } catch { contentArr = [content]; }
-      } else {
-        contentArr = content;
-      }
-    }
-    const excerpt = req.body.excerpt || (contentArr && contentArr[0] ? (typeof contentArr[0] === 'string' ? contentArr[0].substring(0, 150) + '...' : '') : '');
+    const { title, slug, content, date, author, isActive, image, excerpt } = req.body;
     
     const updates = {
       title,
       slug,
-      excerpt,
-      content: contentArr,
+      excerpt: excerpt || '',
+      content: content || '',
       date,
       author,
       isActive: isActive !== 'false' && isActive !== false
@@ -141,27 +107,6 @@ export const updateNews = async (req, res) => {
     } else if (existingImg && existingImg.trim() !== '') {
       updates.image = existingImg;
     }
-
-    // Handle Gallery
-    let finalGallery = [];
-    // If frontend sends existing gallery paths
-    const gallerySource = req.body.existingGallery || gallery; 
-    if (gallerySource) {
-      try {
-        finalGallery = typeof gallerySource === 'string' ? JSON.parse(gallerySource) : gallerySource;
-      } catch (e) {
-        console.error("Error parsing gallerySource in updateNews:", e);
-        finalGallery = [];
-      }
-    }
-    
-    // Add new uploads to gallery
-    if (filesObj.gallery) {
-      const newUploads = filesObj.gallery.map(f => `/uploads/news/${f.filename}`);
-      finalGallery = [...finalGallery, ...newUploads];
-    }
-    
-    updates.gallery = finalGallery;
 
     const news = await News.findByIdAndUpdate(req.params.id, updates, { new: true, runValidators: true });
     if (!news) return res.status(404).json({ error: 'News article not found' });

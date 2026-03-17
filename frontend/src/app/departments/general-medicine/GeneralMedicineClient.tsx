@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
@@ -85,18 +86,10 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
   </div>
 );
 
-const FeatureIcon = ({ icon }: { icon: string }) => (
-  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    {icon === 'clipboard' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />}
-    {icon === 'activity' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />}
-    {icon === 'shield' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />}
-    {icon === 'user' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />}
-  </svg>
-);
-
 /* ─── Page ─── */
 
 export default function GeneralMedicineClient() {
+
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
 
@@ -124,11 +117,11 @@ export default function GeneralMedicineClient() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                 Get a Call Back
               </button>
             </div>
@@ -168,42 +161,7 @@ export default function GeneralMedicineClient() {
             {/* ── Right Doctor Sidebar ── */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <div className="relative pt-6">
-                  <Link
-                    href="/doctors"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-
-                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
-                    <div className="w-full relative overflow-hidden h-[480px]">
-                      <div className="w-full h-full p-6 pt-12 flex flex-col items-center">
-                        <div className="relative w-full h-[320px] rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                            <Image
-                              src={doctors[0].image}
-                              alt={doctors[0].name}
-                              fill
-                              className="object-cover transition-transform duration-500 group-hover/img:scale-110"
-                            />
-                             <Link
-                              href={`/doctors/${doctors[0].slug}`}
-                              className="absolute inset-0 bg-indigo-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                            >
-                              <span className="px-5 py-2.5 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-indigo-600 transition-all uppercase text-sm">
-                                View Full Profile
-                              </span>
-                            </Link>
-                        </div>
-                        <div className="text-center">
-                            <h3 className="text-xl font-bold text-indigo-700 mb-1 font-heading">{doctors[0].name}</h3>
-                            <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">{doctors[0].qualifications}</p>
-                            <p className="text-gray-500 text-xs mt-2 uppercase tracking-widest font-bold">{doctors[0].designation}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DoctorSlider doctors={doctors} departmentName="General Medicine" />
               </div>
             </div>
 
@@ -231,7 +189,7 @@ export default function GeneralMedicineClient() {
               <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
                 <Link
                   href="/doctors"
-                  className="bg-[#E85222] text-white hover:bg-[#d1451a] px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1"
+                  className="bg-[#E85222] text-white hover:bg-[#d1451a] px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
                 >
                   Book Appointment
                 </Link>
@@ -250,5 +208,3 @@ export default function GeneralMedicineClient() {
     </main>
   );
 }
-
-

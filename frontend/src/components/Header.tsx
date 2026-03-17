@@ -60,9 +60,9 @@ const menuItems: MenuItem[] = [
   {
     label: 'Media & Blog',
     dropdown: [
-      { label: 'Latest News & Updates', href: '/media/news' },
-      { label: 'Upcoming Events', href: '/media/events' },
-      { label: 'Media Coverage', href: '/media/coverage' },
+      { label: 'News', href: '/media/news' },
+      { label: 'Events', href: '/media/events' },
+      { label: 'Press', href: '/media/coverage' },
       { label: 'Blog', href: '/blog' },
     ],
   },
@@ -95,6 +95,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "T.B & Respiratory Medicine", href: "/departments/respiratory" },
     { label: "Anesthesiology, Critical Care & Pain Medicine", href: "/departments/pain-management" },
     { label: "Psychiatry Department", href: "/departments/psychiatry" },
+    { label: "Radiology", href: "/departments/radiology" },
   ]
 };
 

@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data ─── */
 
@@ -105,7 +106,6 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function CTVSClient() {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <main className="min-h-screen bg-white">
@@ -191,84 +191,7 @@ export default function CTVSClient() {
             {/* Right Sidebar - Doctor Card with Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <div className="relative pt-6">
-                  {/* Floating Appointment Button */}
-                  <Link 
-                    href="/doctors" 
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-                  
-                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
-                    <div className="w-full relative overflow-hidden">
-                      <div 
-                        className="flex transition-transform duration-500 ease-in-out" 
-                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                      >
-                        {doctors.map((doc, idx) => (
-                          <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
-                            <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                              <Image
-                                src={doc.image}
-                                alt={doc.name}
-                                fill
-                                className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                              />
-                              {/* Hover Overlay */}
-                              <Link 
-                                href={`/doctors/${doc.slug}`} 
-                                className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                              >
-                                <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors">
-                                  View More Info
-                                </span>
-                              </Link>
-                            </div>
-                            <div className="text-center">
-                              <h3 className="text-xl font-bold text-[#3b82f6] mb-1">{doc.name}</h3>
-                              <p className="text-gray-600 text-sm font-medium">{doc.qualifications}</p>
-                              <p className="text-gray-500 text-sm mt-1 uppercase tracking-wider">{doc.designation}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Navigation Arrows */}
-                    <button 
-                      onClick={() => setCurrentSlide((prev) => (prev === 0 ? doctors.length - 1 : prev - 1))}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    <button 
-                      onClick={() => setCurrentSlide((prev) => (prev === doctors.length - 1 ? 0 : prev + 1))}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-
-                    {/* Pagination Dots */}
-                    <div className="flex gap-3 mb-8">
-                      {doctors.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setCurrentSlide(idx)}
-                          className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border ${
-                            currentSlide === idx 
-                              ? 'bg-[#3b82f6] border-[#3b82f6] scale-125' 
-                              : 'bg-transparent border-gray-400'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                <DoctorSlider doctors={doctors} departmentName="Cardiothoracic & Vascular Surgery (CTVS)" />
               </div>
             </div>
 

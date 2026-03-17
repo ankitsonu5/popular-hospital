@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data ─── */
 
@@ -46,8 +47,8 @@ const doctors = [
 
 const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
   <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-blue-600">{highlight}</span>
+    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight">
+      {title} <span className="text-blue-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-blue-600" />
@@ -58,7 +59,7 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform">›</span>
+    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">›</span>
     <span className="leading-relaxed">{text}</span>
   </li>
 );
@@ -66,10 +67,9 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function OncologyClient() {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
       <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
@@ -86,26 +86,21 @@ export default function OncologyClient() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Department of
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
+              Centre for Comprehensive Cancer Care
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-              Oncology
+              Oncology <br />
+              <span className="text-blue-300">Excellence</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                 Get a Call Back
               </button>
             </div>
@@ -125,16 +120,16 @@ export default function OncologyClient() {
                 <p>Oncology: Clinical oncology consists of three primary disciplines:</p>
                 <div className="space-y-4">
                   <div className="bg-white p-6 rounded-xl border-l-4 border-blue-600 shadow-sm transition-all hover:shadow-md">
-                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading">Medical Oncology</h3>
-                    <p className="text-gray-600">Medical Oncology consists of treatment of cancer with medicine including chemotherapy. We offer diagnosis and treatment for solid tumours haematological malignancies found in adult and children.</p>
+                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading uppercase tracking-tight">Medical Oncology</h3>
+                    <p className="text-gray-600 text-justify">Medical Oncology consists of treatment of cancer with medicine including chemotherapy. We offer diagnosis and treatment for solid tumours haematological malignancies found in adult and children.</p>
                   </div>
                   <div className="bg-white p-6 rounded-xl border-l-4 border-blue-600 shadow-sm transition-all hover:shadow-md">
-                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading">Surgical Oncology</h3>
-                    <p className="text-gray-600">The surgical aspect of cancer including biopsy, staging and surgical resection of tumours. Right from reconstructive/advanced surgery to minimal access surgery, our highly trained surgical oncologists skilfully perform complex tumour removals.</p>
+                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading uppercase tracking-tight">Surgical Oncology</h3>
+                    <p className="text-gray-600 text-justify">The surgical aspect of cancer including biopsy, staging and surgical resection of tumours. Right from reconstructive/advanced surgery to minimal access surgery, our highly trained surgical oncologists skilfully perform complex tumour removals.</p>
                   </div>
                   <div className="bg-white p-6 rounded-xl border-l-4 border-blue-600 shadow-sm transition-all hover:shadow-md">
-                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading">Radiation Oncology</h3>
-                    <p className="text-gray-600">Radiation Oncology is an advanced branch of modern cancer treatment, which is painless, incision-less and preventive.</p>
+                    <h3 className="text-xl font-bold text-[#0b1c43] mb-2 font-heading uppercase tracking-tight">Radiation Oncology</h3>
+                    <p className="text-gray-600 text-justify">Radiation Oncology is an advanced branch of modern cancer treatment, which is painless, incision-less and preventive.</p>
                   </div>
                 </div>
               </div>
@@ -142,76 +137,8 @@ export default function OncologyClient() {
 
             {/* Right Doctor Card (Sticky) */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full">
-                <div className="relative pt-6">
-                  <Link 
-                    href="/doctors" 
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
-                    <div className="w-full relative overflow-hidden">
-                      <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                        {doctors.map((doc, idx) => (
-                          <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
-                            <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                              <Image src={doc.image} alt={doc.name} fill className="object-cover transition-transform duration-500 group-hover/img:scale-105" />
-                              <Link href={`/doctors/${doc.slug}`} className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
-                                <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors">View More Info</span>
-                              </Link>
-                            </div>
-                            <div className="text-center">
-                              <h3 className="text-xl font-bold text-[#3b82f6] mb-1">{doc.name}</h3>
-                              <p className="text-gray-600 text-sm font-medium">{doc.qualifications}</p>
-                              <p className="text-gray-500 text-sm mt-1 uppercase tracking-wider">{doc.designation}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Navigation Arrows — only if > 1 doctor */}
-                    {doctors.length > 1 && (
-                      <>
-                        <button
-                          onClick={() => setCurrentSlide(prev => (prev === 0 ? doctors.length - 1 : prev - 1))}
-                          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => setCurrentSlide(prev => (prev === doctors.length - 1 ? 0 : prev + 1))}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                      </>
-                    )}
-
-                    {/* Pagination Dots */}
-                    {doctors.length > 1 && (
-                      <div className="flex gap-3 mb-8">
-                        {doctors.map((_, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => setCurrentSlide(idx)}
-                            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border ${
-                              currentSlide === idx
-                                ? 'bg-[#3b82f6] border-[#3b82f6] scale-125'
-                                : 'bg-transparent border-gray-400'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    )}
-                    <div className="h-8" />
-                  </div>
-                </div>
+              <div className="sticky top-24 w-full h-fit">
+                <DoctorSlider doctors={doctors} departmentName="Oncology" />
               </div>
             </div>
 
@@ -277,28 +204,29 @@ export default function OncologyClient() {
       </section>
 
       {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-20 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="bg-[#0b1c43] rounded-2xl md:rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden">
+      <section className="py-24 bg-gray-50 overflow-hidden relative">
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0b1c43 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+        <div className="mx-auto w-full max-w-[1366px] px-4 text-center relative z-10">
+          <div className="bg-[#0b1c43] rounded-2xl md:rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
               <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
               </svg>
             </div>
             <div className="absolute right-0 top-0 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
-            <span className="inline-block bg-blue-500/20 text-blue-200 text-sm font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-400/20">
+            <span className="inline-block bg-blue-500/20 text-blue-200 text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-400/20 uppercase tracking-widest">
               Hope Starts Here
             </span>
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 relative z-10 font-heading">
-              Early Diagnosis Saves Lives
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 relative z-10 font-heading leading-tight">
+              Early Diagnosis <br className="hidden md:block" /> Saves Lives
             </h2>
             <p className="text-blue-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 relative z-10 font-medium leading-relaxed">
               Early diagnosis is the key to cure. If you notice any unusual symptoms, consult our specialists immediately.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10 mt-10">
               <Link
                 href="/doctors"
-                className="bg-[#3b82f6] hover:bg-blue-500 text-white px-8 py-4 rounded-full font-bold text-base transition-all shadow-lg"
+                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-base transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
               >
                 Book Consultation
               </Link>
@@ -306,7 +234,7 @@ export default function OncologyClient() {
                 href="tel:+917800001895"
                 className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-blue-900/30 px-8 py-4 rounded-full font-bold text-base transition-all"
               >
-                Call +91-7800001895
+                +91-7800001895 / 96
               </a>
             </div>
           </div>
@@ -316,5 +244,3 @@ export default function OncologyClient() {
     </main>
   );
 }
-
-

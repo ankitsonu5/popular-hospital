@@ -86,7 +86,9 @@ export default async function BlogDetailPage({
             <div className="mt-8 border-t border-gray-50 pt-8">
               <div 
                 className="prose prose-teal prose-lg max-w-none text-gray-700 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: article.content }}
+                dangerouslySetInnerHTML={{ 
+                  __html: Array.isArray(article.content) ? article.content.join('') : (article.content || '') 
+                }}
               />
             </div>
           </article>

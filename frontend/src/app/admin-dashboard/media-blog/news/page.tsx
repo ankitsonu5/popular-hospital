@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Plus, Pencil, Trash2, Search, X, Loader2, Newspaper } from 'lucide-react';
+import { Plus, Pencil, Trash2, Search, X, Loader2, Newspaper, Image as ImageIcon } from 'lucide-react';
+import { Editor } from '@tinymce/tinymce-react';
 import { getImageUrl } from '@/lib/api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
@@ -14,16 +15,13 @@ export default function AdminNewsPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   
   const [formData, setFormData] = useState({
-    title: '', slug: '', contentText: '', 
-    image: '', gallery: [] as string[], date: '', dateIso: '', author: '', isActive: true,
+    title: '', slug: '', content: '', excerpt: '',
+    image: '', date: '', dateIso: '', author: '', isActive: true,
   });
   const [isSaving, setIsSaving] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
   
-  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
-  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
-
   const getHeaders = () => ({
     'Authorization': `Bearer ${localStorage.getItem('admin_token')}`
   });
@@ -43,7 +41,6 @@ export default function AdminNewsPage() {
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const parseDateToIso = (dateStr: string) => {
@@ -57,9 +54,9 @@ export default function AdminNewsPage() {
     setFormData({
       title: item.title || '',
       slug: item.slug || '',
-      contentText: item.content ? item.content.join('\n\n') : '',
+      content: item.content || '',
+      excerpt: item.excerpt || '',
       image: item.image || '',
-      gallery: item.gallery || [],
       date: item.date || '',
       dateIso: parseDateToIso(item.date),
       author: item.author || '',
@@ -71,15 +68,8 @@ export default function AdminNewsPage() {
     } else {
       setImagePreview('');
     }
-
-    if (item.gallery && item.gallery.length > 0) {
-      setGalleryPreviews(item.gallery.map((g: string) => getImageUrl(g)));
-    } else {
-      setGalleryPreviews([]);
-    }
     
     setImageFile(null);
-    setGalleryFiles([]);
     setShowForm(true);
   };
 
@@ -97,12 +87,6 @@ export default function AdminNewsPage() {
     e.preventDefault();
     setIsSaving(true);
     
-    // Parse content text into array of paragraphs
-    const paragraphs = formData.contentText
-      .split('\n')
-      .map(p => p.trim())
-      .filter(p => p.length > 0);
-
     let finalSlug = formData.slug;
     if (!finalSlug && formData.title) {
       finalSlug = formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -111,7 +95,8 @@ export default function AdminNewsPage() {
     const submitData = new FormData();
     submitData.append('title', formData.title);
     submitData.append('slug', finalSlug);
-    submitData.append('content', JSON.stringify(paragraphs));
+    submitData.append('content', formData.content);
+    submitData.append('excerpt', formData.excerpt);
     submitData.append('date', formData.date);
     submitData.append('author', formData.author);
     submitData.append('isActive', String(formData.isActive));
@@ -121,13 +106,6 @@ export default function AdminNewsPage() {
     } else if (editingId && formData.image) {
       submitData.append('existingImage', formData.image);
     }
-
-    // Append gallery files
-    galleryFiles.forEach(file => {
-      submitData.append('gallery', file);
-    });
-    // Append existing gallery paths as a different field name to avoid collision
-    submitData.append('existingGallery', JSON.stringify(formData.gallery));
 
     try {
       let res;
@@ -162,13 +140,11 @@ export default function AdminNewsPage() {
 
   const resetForm = () => {
     setFormData({ 
-      title: '', slug: '', contentText: '',
-      image: '', gallery: [], date: '', dateIso: '', author: '', isActive: true 
+      title: '', slug: '', content: '', excerpt: '',
+      image: '', date: '', dateIso: '', author: '', isActive: true 
     });
     setImageFile(null);
     setImagePreview('');
-    setGalleryFiles([]);
-    setGalleryPreviews([]);
   };
 
   const filteredNews = newsList.filter((n) =>
@@ -181,7 +157,7 @@ export default function AdminNewsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Manage News & Blog</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Manage News Articles</h2>
           <p className="text-sm text-gray-500 mt-1">{newsList.length} articles published</p>
         </div>
         <button
@@ -217,7 +193,7 @@ export default function AdminNewsPage() {
                 <tr>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider w-1/3">Article</th>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">Date</th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">Author</th>
+                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">Source</th>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Status</th>
                   <th className="text-right py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
@@ -227,7 +203,7 @@ export default function AdminNewsPage() {
                   <tr key={item._id} className="hover:bg-gray-50/50 transition-colors">
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 overflow-hidden relative">
+                        <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 overflow-hidden relative border border-slate-100">
                           {item.image ? (
                             <img 
                               src={getImageUrl(item.image)} 
@@ -284,45 +260,72 @@ export default function AdminNewsPage() {
       {/* Modal Form */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 z-[100] flex items-start justify-center p-4 pt-[5vh] pb-[5vh] overflow-y-auto">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl p-6 sm:p-8 relative">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl p-6 sm:p-8 relative">
             <button onClick={() => { setShowForm(false); setEditingId(null); }} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-1">
               <X className="w-5 h-5" />
             </button>
-            <h3 className="text-xl font-bold text-gray-900 mb-6">{editingId ? 'Edit Article' : 'Add New Article'}</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Title *</label>
-                  <input required value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value, slug: e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-') })}
-                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
-                </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-6">{editingId ? 'Edit News Article' : 'Add New News Article'}</h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Slug</label>
-                  <input value={formData.slug} onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Publish Date *</label>
-                  <input required type="date" value={formData.dateIso} 
-                    onChange={(e) => {
-                      const iso = e.target.value;
-                      if (!iso) {
-                        setFormData({ ...formData, dateIso: '', date: '' });
-                        return;
-                      }
-                      const dateObj = new Date(iso);
-                      const formatted = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                      setFormData({ ...formData, dateIso: iso, date: formatted });
-                    }}
-                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
+                {/* Left Column */}
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Title *</label>
+                    <input required value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value, slug: e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-') })}
+                      className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Slug</label>
+                    <input value={formData.slug} onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+                      className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">Publish Date *</label>
+                    <input required type="date" value={formData.dateIso} 
+                      onChange={(e) => {
+                        const iso = e.target.value;
+                        if (!iso) {
+                          setFormData({ ...formData, dateIso: '', date: '' });
+                          return;
+                        }
+                        const dateObj = new Date(iso);
+                        const formatted = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                        setFormData({ ...formData, dateIso: iso, date: formatted });
+                      }}
+                      className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1">News Source (Author)</label>
+                    <input value={formData.author} onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+                      placeholder="e.g., Dainik Jagran / Times of India"
+                      className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
+                  </div>
                 </div>
 
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Image Upload *</label>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-4">
+                {/* Right Column (Image) */}
+                <div className="bg-gray-50/50 p-4 rounded-3xl border-2 border-gray-100">
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">Featured Image *</label>
+                  <div className="space-y-4">
+                    <div className="relative group aspect-video bg-white rounded-2xl border-2 border-dashed border-gray-200 overflow-hidden flex items-center justify-center">
+                      {imagePreview ? (
+                        <>
+                          <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button type="button" onClick={() => { setImageFile(null); setImagePreview(''); }} className="bg-red-500 text-white p-2 rounded-full shadow-lg">
+                              <X className="w-5 h-5" />
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="text-center p-6">
+                           <ImageIcon className="w-10 h-10 text-gray-300 mx-auto mb-2" />
+                           <p className="text-xs text-gray-400">Click to upload featured image</p>
+                        </div>
+                      )}
                       <input 
                         required={!editingId && !imagePreview} 
                         type="file" 
@@ -332,115 +335,76 @@ export default function AdminNewsPage() {
                           if (file) {
                             setImageFile(file);
                             setImagePreview(URL.createObjectURL(file));
-                          } else {
-                            setImageFile(null);
-                            setImagePreview('');
                           }
                         }}
-                        className="w-full px-3 py-2 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#0d9488]/10 file:text-[#0d9488] hover:file:bg-[#0d9488]/20" 
+                        className="absolute inset-0 opacity-0 cursor-pointer" 
                       />
                     </div>
-                    {imagePreview && (
-                      <div className="mt-2 text-center p-2 rounded-xl border border-dashed border-gray-300 w-fit">
-                        <img 
-                          src={imagePreview} 
-                          alt="Preview" 
-                          className="max-w-[200px] h-32 object-cover rounded-lg"
-                        />
-                      </div>
-                    )}
                   </div>
                 </div>
-                
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Gallery Images (Multiple)</label>
-                  <div className="flex flex-col gap-2">
-                    <input 
-                      type="file" 
-                      multiple 
-                      accept="image/*" 
-                      onChange={(e) => {
-                        const files = Array.from(e.target.files || []);
-                        if (files.length === 0) return;
-                        
-                        setGalleryFiles(prev => [...prev, ...files]);
-                        const newPreviews = files.map(f => URL.createObjectURL(f));
-                        setGalleryPreviews(prev => [...prev, ...newPreviews]);
-                        
-                        // Reset input value so onChange fires again for same files if needed
-                        e.target.value = '';
-                      }}
-                      className="w-full px-3 py-2 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#0d9488]/10 file:text-[#0d9488] hover:file:bg-[#0d9488]/20" 
-                    />
-                    {galleryPreviews.length > 0 && (
-                      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mt-2 p-2 rounded-xl border border-dashed border-gray-300">
-                        {galleryPreviews.map((preview, idx) => (
-                          <div key={idx} className="relative group aspect-square">
-                            <img 
-                              src={preview} 
-                              alt={`Gallery ${idx}`} 
-                              className="w-full h-full object-cover rounded-lg border border-gray-100"
-                            />
-                            <button 
-                              type="button"
-                              onClick={() => {
-                                if (idx < (editingId ? formData.gallery.length : 0)) {
-                                  // Removing existing image
-                                  const newGallery = [...formData.gallery];
-                                  newGallery.splice(idx, 1);
-                                  setFormData({ ...formData, gallery: newGallery });
-                                  const newPreviews = [...galleryPreviews];
-                                  newPreviews.splice(idx, 1);
-                                  setGalleryPreviews(newPreviews);
-                                } else {
-                                  // Removing new file
-                                  const fileIdx = idx - (editingId ? formData.gallery.length : 0);
-                                  const newFiles = [...galleryFiles];
-                                  newFiles.splice(fileIdx, 1);
-                                  setGalleryFiles(newFiles);
-                                  const newPreviews = [...galleryPreviews];
-                                  newPreviews.splice(idx, 1);
-                                  setGalleryPreviews(newPreviews);
-                                }
-                              }}
-                              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
-                            >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
+              </div>
 
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Content Highlights (Paragraphs) *</label>
-                  <p className="text-xs text-gray-400 mb-2">Separate paragraphs with a new line.</p>
-                  <textarea required rows={6} value={formData.contentText} onChange={(e) => setFormData({ ...formData, contentText: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all resize-none" />
-                </div>
+              {/* Excerpt Section */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Short Brief / Excerpt</label>
+                <textarea 
+                  rows={2} 
+                  value={formData.excerpt} 
+                  onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
+                  placeholder="Small snippet for list view..."
+                  className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all resize-none" 
+                />
+              </div>
 
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">News Source (if available)</label>
-                  <input value={formData.author} onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" />
-                </div>
+              {/* TinyMCE News Content */}
+              <div>
+                <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Content Highlights (News Body) *</label>
+                <Editor
+                  apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
+                  value={formData.content}
+                  onEditorChange={(content: string) => setFormData({ ...formData, content: content })}
+                  init={{
+                    height: 450,
+                    menubar: true,
+                    plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount emoticons codesample',
+                    toolbar: 'undo redo | blocks | bold italic underline | image link table | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+                    toolbar_mode: 'wrap',
+                    image_advtab: true,
+                    image_title: true,
+                    automatic_uploads: true,
+                    image_uploadtab: true,
+                    images_upload_url: `${API_URL}/api/blog-image-direct`,
+                    images_upload_handler: (blobInfo: any) => new Promise((resolve, reject) => {
+                      const formData = new FormData();
+                      formData.append('file', blobInfo.blob(), blobInfo.filename());
+                      const uploadEndpoint = `${API_URL}/api/blog-image-direct`;
+                      fetch(uploadEndpoint, {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` },
+                        body: formData
+                      })
+                      .then(res => res.ok ? res.json() : reject('Upload failed'))
+                      .then(json => json.location ? resolve(json.location) : reject('Invalid response'))
+                      .catch(err => reject(err.message));
+                    }),
+                    content_style: 'body { font-family:Inter,Helvetica,Arial,sans-serif; font-size:14px }'
+                  }}
+                />
               </div>
 
               <div className="flex items-center gap-2 pt-2">
-                <input type="checkbox" id="isActive" checked={formData.isActive} onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })} className="rounded" />
+                <input type="checkbox" id="isActive" checked={formData.isActive} onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })} className="rounded accent-[#0d9488] w-4 h-4" />
                 <label htmlFor="isActive" className="text-sm font-medium text-gray-700">Active (Visible on website)</label>
               </div>
 
-              <div className="flex gap-3 pt-4 border-t border-gray-100">
+              <div className="flex gap-3 pt-6 border-t border-gray-100">
                 <button type="submit" disabled={isSaving}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors disabled:opacity-60">
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-bold transition-all disabled:opacity-60 shadow-lg shadow-teal-700/20 active:scale-[0.98]">
                   {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                  {editingId ? 'Update Article' : 'Publish Article'}
+                  {editingId ? 'Update News' : 'Publish News'}
                 </button>
                 <button type="button" onClick={() => { setShowForm(false); setEditingId(null); }}
-                  className="px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-semibold transition-colors">
+                  className="px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-semibold transition-all active:scale-[0.98]">
                   Cancel
                 </button>
               </div>

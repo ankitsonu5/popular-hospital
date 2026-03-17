@@ -154,7 +154,9 @@ export default function BlogClientLayout({
                     </h2>
                     <div 
                       className="text-gray-600 text-lg leading-relaxed mb-8 line-clamp-3"
-                      dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                      dangerouslySetInnerHTML={{ 
+                        __html: Array.isArray(post.excerpt) ? post.excerpt.join(' ') : (post.excerpt || '') 
+                      }}
                     />
                   </div>
                   

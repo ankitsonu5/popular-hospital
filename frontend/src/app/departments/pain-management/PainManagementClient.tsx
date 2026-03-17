@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
@@ -147,7 +148,7 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ContentBlock = ({ title, text, bullets }: { title: string; text?: string; bullets?: string[] }) => (
   <div className="mb-10 group">
-    <h3 className="text-xl md:text-2xl font-bold text-[#334155] mb-4 group-hover:text-orange-600 transition-colors">
+    <h3 className="text-xl md:text-2xl font-bold text-[#334155] mb-4 group-hover:text-orange-600 transition-colors uppercase tracking-tight leading-tight">
         {title}
     </h3>
     {text && (
@@ -158,7 +159,7 @@ const ContentBlock = ({ title, text, bullets }: { title: string; text?: string; 
     {bullets && (
         <ul className="space-y-3 pl-2">
             {bullets.map((bullet, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-gray-700 font-medium text-base md:text-lg">
+                <li key={idx} className="flex items-start gap-3 text-gray-700 font-bold text-base md:text-lg">
                     <span className="text-orange-500 mt-1.5 font-bold flex-shrink-0 text-xl leading-none">›</span>
                     <span>{bullet}</span>
                 </li>
@@ -168,26 +169,16 @@ const ContentBlock = ({ title, text, bullets }: { title: string; text?: string; 
   </div>
 );
 
-const FeatureIcon = ({ icon }: { icon: string }) => (
-  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    {icon === 'bolt' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />}
-    {icon === 'back' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />}
-    {icon === 'shield' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
-    {icon === 'plus' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />}
-  </svg>
-);
-
 /* ─── Page ─── */
 
 export default function PainManagementClient() {
+
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
       <section className="relative h-[450px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(249,115,22,0.1),transparent)]" />
-          <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
           <Image
             src="/images/banners/pain_management_banner.png"
             alt="Pain Management Banner"
@@ -195,24 +186,25 @@ export default function PainManagementClient() {
             className="object-cover object-center opacity-40 mix-blend-overlay"
             priority
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#334155] via-[#334155]/90 to-transparent" />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-orange-500/20 text-orange-200 text-sm font-semibold mb-6 border border-orange-400/30 backdrop-blur-sm">
-                Department of
+            <span className="inline-block py-1 px-3 rounded-full bg-orange-500/20 text-orange-200 text-sm font-semibold mb-6 border border-orange-400/30 backdrop-blur-sm tracking-wide">
+                Specialized Care
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Anesthesiology,<br />
-              <span className="text-orange-400"> Critical Care & Pain Medicine</span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+                Critical Care & <br />
+              <span className="text-orange-400"> Pain Medicine</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                 Get a Call Back
               </button>
             </div>
@@ -257,48 +249,13 @@ export default function PainManagementClient() {
 
             </div>
 
-            {/* Right Sidebar - Doctor Card with standard styling */}
+            {/* Right Sidebar - Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit py-10">
-                <div className="relative pt-6 w-full max-w-sm mx-auto">
-                    <Link
-                        href="/doctors"
-                        className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
-                    >
-                        SCHEDULE AN APPOINTMENT
-                    </Link>
+              <div className="sticky top-24 w-full h-fit flex flex-col gap-10">
+                <DoctorSlider doctors={doctors} departmentName="Pain Medicine" />
 
-                    <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100 flex flex-col items-center p-0 relative group">
-                        <div className="w-full relative overflow-hidden h-[480px]">
-                            <div className="w-full h-full p-6 pt-12 flex flex-col items-center">
-                                <div className="relative w-full h-[320px] rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                                    <Image
-                                        src={doctors[0].image}
-                                        alt={doctors[0].name}
-                                        fill
-                                        className="object-cover transition-transform duration-500 group-hover/img:scale-110"
-                                    />
-                                    <Link
-                                        href={`/doctors/${doctors[0].slug}`}
-                                        className="absolute inset-0 bg-orange-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                                    >
-                                        <span className="px-5 py-2.5 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-orange-600 transition-all uppercase text-sm">
-                                            View Full Profile
-                                        </span>
-                                    </Link>
-                                </div>
-                                <div className="text-center">
-                                    <h3 className="text-xl font-bold text-[#1e293b] mb-1 font-heading uppercase">{doctors[0].name}</h3>
-                                    <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">{doctors[0].qualifications}</p>
-                                    <p className="text-orange-600 text-xs mt-3 uppercase tracking-widest font-bold">{doctors[0].designation}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="mt-12 w-full max-w-sm mx-auto bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                    <h4 className="text-lg font-bold text-[#1e293b] mb-4 uppercase tracking-wider border-b pb-2">Treatment Benefits</h4>
+                <div className="w-full max-w-sm mx-auto bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-inner">
+                    <h4 className="text-lg font-bold text-[#1e293b] mb-4 uppercase tracking-wider border-b border-gray-200 pb-2">Treatment Benefits</h4>
                     <ul className="space-y-4">
                         {[
                             "Percutaneous - No incisions",
@@ -324,5 +281,3 @@ export default function PainManagementClient() {
     </main>
   );
 }
-
-

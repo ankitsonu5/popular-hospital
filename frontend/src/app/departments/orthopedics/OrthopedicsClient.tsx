@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data (Transcribed from Image) ─── */
 
@@ -95,7 +96,6 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function OrthopedicsClient() {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
@@ -151,76 +151,10 @@ export default function OrthopedicsClient() {
               </div>
             </div>
 
-            {/* ── Right Doctor Card ── */}
+            {/* Doctor Column (Sidebar style inside central row) */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full h-fit">
-                <div className="relative pt-6">
-                  <Link
-                    href="/doctors"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-sm font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap uppercase"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-
-                  <div className="bg-white rounded-xl shadow border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
-                    <div className="w-full relative overflow-hidden">
-                      <div 
-                        className="flex transition-transform duration-500 ease-in-out" 
-                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                      >
-                        {doctors.map((doc, idx) => (
-                          <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
-                            <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                                {doc.image ? (
-                                  <Image
-                                    src={doc.image}
-                                    alt={doc.name}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                                  />
-                                ) : (
-                                  <div className="flex items-center justify-center h-full bg-blue-50 text-blue-200">
-                                    <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
-                                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-                                    </svg>
-                                  </div>
-                                )}
-                                 <Link
-                                  href={`/doctors/${doc.slug}`}
-                                  className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                                >
-                                  <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors uppercase text-sm">
-                                    View More Info
-                                  </span>
-                                </Link>
-                            </div>
-                            <div className="text-center">
-                                <h3 className="text-xl font-bold text-[#3b82f6] mb-1 font-heading">{doc.name}</h3>
-                                <p className="text-gray-600 text-sm font-medium">{doc.qualifications}</p>
-                                <p className="text-gray-500 text-[10px] mt-1 uppercase tracking-wider font-bold">{doc.designation}</p>
-                                <p className="text-gray-400 text-[10px] mt-1 uppercase font-bold">Medical Director</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    {/* Navigation Dots */}
-                    {doctors.length >= 1 && (
-                      <div className="flex gap-3 mb-8">
-                        {doctors.map((_, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => setCurrentSlide(idx)}
-                            className={`w-2 h-2 rounded-full transition-all duration-300 border ${
-                              currentSlide === idx ? 'bg-blue-600 border-blue-600 scale-125' : 'border border-gray-400'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    )}
-                    <div className="h-4" />
-                  </div>
-                </div>
+              <div className="w-full h-fit sticky top-24">
+                <DoctorSlider doctors={doctors} departmentName="Orthopedics & Joint Replacement" />
               </div>
             </div>
 

@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
@@ -66,18 +67,10 @@ const ListItem = ({ text }: { text: string }) => (
   </li>
 );
 
-const FeatureIcon = ({ icon }: { icon: string }) => (
-  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    {icon === 'eye' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />}
-    {icon === 'surgery' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758L5 19m6-6L5 5" />}
-    {icon === 'tech' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />}
-    {icon === 'specialist' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />}
-  </svg>
-);
-
 /* ─── Page ─── */
 
 export default function OphthalmologyClient() {
+
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
 
@@ -95,21 +88,21 @@ export default function OphthalmologyClient() {
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Centre for Ophthalmology
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
+              Centre for Comprehensive Eye Care
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-              Dedicated to <br />
-              <span className="text-blue-400">Your Vision Health</span>
+              Restoring Vision, <br />
+              <span className="text-blue-400">Enhancing Life</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/doctors"
-                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                 Get a Call Back
               </button>
             </div>
@@ -141,11 +134,11 @@ export default function OphthalmologyClient() {
                 
               <div className="mt-24">
                 <div className="mb-8">
-                  <h3 className="text-[#1e1b4b] font-bold text-2xl mb-2 flex items-center gap-2">
+                  <h3 className="text-[#1e1b4b] font-bold text-2xl mb-2 flex items-center gap-2 uppercase tracking-tight">
                     <span className="w-8 h-1 bg-blue-600 rounded-full" />
                     Out Patient Procedures:
                   </h3>
-                  <p className="text-gray-500 text-sm font-medium mb-8 ml-10">Advanced diagnostic services for precision eye care</p>
+                  <p className="text-gray-500 text-sm font-medium mb-8 ml-10 italic">Advanced diagnostic services for precision eye care</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 group/list">
                   {outpatientProcedures.map((item, idx) => (
@@ -155,7 +148,7 @@ export default function OphthalmologyClient() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <p className="text-gray-700 font-medium text-sm leading-snug pt-1">{item}</p>
+                      <p className="text-gray-700 font-bold text-sm leading-snug pt-1">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -164,7 +157,7 @@ export default function OphthalmologyClient() {
               <div className="mt-32">
                 <div className="flex flex-col lg:flex-row items-start gap-16">
                   <div className="lg:w-7/12">
-                    <h3 className="text-[#1e1b4b] font-bold text-2xl mb-10 flex items-center gap-2">
+                    <h3 className="text-[#1e1b4b] font-bold text-2xl mb-10 flex items-center gap-2 uppercase tracking-tight">
                       <span className="w-8 h-1 bg-blue-600 rounded-full" />
                       Specialised Programmes:
                     </h3>
@@ -174,7 +167,7 @@ export default function OphthalmologyClient() {
                           <div className="w-9 h-9 rounded-lg bg-[#0f172a] flex items-center justify-center flex-shrink-0 text-white font-bold text-sm group-hover:bg-blue-600 transition-colors shadow-lg">
                             {idx + 1}
                           </div>
-                          <p className="text-gray-800 font-medium text-sm leading-relaxed pt-1">{item}</p>
+                          <p className="text-gray-800 font-bold text-sm leading-relaxed pt-1">{item}</p>
                         </div>
                       ))}
                     </div>
@@ -197,42 +190,7 @@ export default function OphthalmologyClient() {
             {/* ── Right Column (Doctor Sidebar) ── */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <div className="relative pt-6">
-                  <Link
-                    href="/doctors"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-
-                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
-                    <div className="w-full relative overflow-hidden h-[480px]">
-                      <div className="w-full h-full p-6 pt-12 flex flex-col items-center">
-                        <div className="relative w-full h-[320px] rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                            <Image
-                              src={doctors[0].image}
-                              alt={doctors[0].name}
-                              fill
-                              className="object-cover transition-transform duration-500 group-hover/img:scale-110"
-                            />
-                             <Link
-                              href={`/doctors/${doctors[0].slug}`}
-                              className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                            >
-                              <span className="px-5 py-2.5 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-all uppercase text-sm">
-                                View Full Profile
-                              </span>
-                            </Link>
-                        </div>
-                        <div className="text-center">
-                            <h3 className="text-xl font-bold text-blue-700 mb-1 font-heading">{doctors[0].name}</h3>
-                            <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">{doctors[0].qualifications}</p>
-                            <p className="text-gray-500 text-xs mt-2 uppercase tracking-widest font-bold">{doctors[0].designation}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DoctorSlider doctors={doctors} departmentName="Ophthalmology" />
               </div>
             </div>
 
@@ -241,7 +199,8 @@ export default function OphthalmologyClient() {
       </section>
 
       {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-[#0f172a] border-t border-gray-100 mt-20">
+      <section className="py-24 bg-[#0f172a] border-t border-gray-100 mt-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3b82f6 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="text-center relative z-10">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
@@ -250,16 +209,16 @@ export default function OphthalmologyClient() {
             <p className="text-blue-100 text-lg md:text-xl max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
               Take the first step towards better vision. Schedule a comprehensive eye exam with our expert team today.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-6 mt-10">
               <Link
                 href="/doctors"
-                className="bg-[#E85222] text-white hover:bg-[#d1451a] px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1"
+                className="bg-[#E85222] text-white hover:bg-orange-600 px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide flex items-center justify-center gap-3"
               >
                 Book Appointment
               </Link>
               <a
                 href="tel:+917800001895"
-                className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
+                className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3 uppercase tracking-wide"
               >
                  +91-7800001895 / 96
               </a>
@@ -271,5 +230,3 @@ export default function OphthalmologyClient() {
     </main>
   );
 }
-
-

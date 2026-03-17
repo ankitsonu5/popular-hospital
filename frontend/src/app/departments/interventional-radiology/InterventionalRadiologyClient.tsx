@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
@@ -105,19 +106,9 @@ const ListItem = ({ text, boldTitle, desc }: { text?: string; boldTitle?: string
   </li>
 );
 
-const FeatureIcon = ({ icon }: { icon: string }) => (
-  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    {icon === 'bolt' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />}
-    {icon === 'shield' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
-    {icon === 'plus' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />}
-    {icon === 'home' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />}
-  </svg>
-);
-
 /* ─── Main Component ─── */
 
 export default function InterventionalRadiologyClient() {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
@@ -129,28 +120,28 @@ export default function InterventionalRadiologyClient() {
             src="/images/banners/radiology_banner.png"
             alt="Interventional Radiology Hero"
             fill
-            className="object-cover object-center opacity-70"
+            className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(59,130,246,0.15),transparent)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
                 Super-Speciality Care
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
                 Interventional <br />
               <span className="text-blue-400">Radiology</span>  
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/book"
-                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20"
+                href="/doctors"
+                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20">
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                 Get a Call Back
               </button>
             </div>
@@ -189,13 +180,14 @@ export default function InterventionalRadiologyClient() {
                     <div className="flex-1">
                         <ContentBlock text={radiologistSection.text} />
                     </div>
-                    <div className="w-full md:w-1/3 relative aspect-square rounded-2xl overflow-hidden shadow-xl border border-gray-100">
+                    <div className="w-full md:w-1/3 relative aspect-square rounded-2xl overflow-hidden shadow-2xl border border-gray-100 group">
                         <Image 
                             src="/images/departments-images/radiology.jpeg"
                             alt="Radiologist at work"
                             fill
-                            className="object-cover"
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
+                         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                 </div>
               </div>
@@ -213,93 +205,13 @@ export default function InterventionalRadiologyClient() {
 
             </div>
 
-            {/* Right Sidebar - Appointment Card & Help */}
+            {/* Right Sidebar - Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
-               <div className="sticky top-24 w-full space-y-8">
-                  <div className="relative pt-6 max-w-sm mx-auto w-full">
-                      {/* Floating Appointment Button */}
-                      <Link 
-                        href="/doctors" 
-                        className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap uppercase"
-                      >
-                        SCHEDULE AN APPOINTMENT
-                      </Link>
-                      
-                      <div className="bg-white rounded-xl shadow-xl border border-gray-100 flex flex-col items-center p-0 relative group overflow-hidden">
-                        <div className="w-full relative overflow-hidden">
-                          <div 
-                            className="flex transition-transform duration-500 ease-in-out" 
-                            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                          >
-                            {doctors.map((doc, idx) => (
-                              <div key={idx} className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center">
-                                <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                                  <Image
-                                    src={doc.image}
-                                    alt={doc.name}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                                  />
-                                  {/* Hover Overlay */}
-                                  <Link 
-                                    href={`/doctors/${doc.slug}`} 
-                                    className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                                  >
-                                    <span className="px-4 py-2 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-colors uppercase text-xs">
-                                      View More Info
-                                    </span>
-                                  </Link>
-                                </div>
-                                <div className="text-center">
-                                  <h3 className="text-xl font-bold text-blue-600 mb-1 font-heading">{doc.name}</h3>
-                                  <p className="text-gray-600 text-sm font-semibold">{doc.qualifications}</p>
-                                  <p className="text-gray-500 text-xs mt-2 uppercase tracking-widest font-bold">{doc.designation}</p>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
+               <div className="sticky top-24 w-full h-fit space-y-8">
+                  <DoctorSlider doctors={doctors} departmentName="Interventional Radiology" />
 
-                        {/* Navigation Arrows */}
-                        <button 
-                          onClick={() => setCurrentSlide((prev) => (prev === 0 ? doctors.length - 1 : prev - 1))}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white w-8 h-8 rounded-full shadow-lg text-blue-600 z-10 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
-                          aria-label="Previous doctor"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-                          </svg>
-                        </button>
-                        <button 
-                          onClick={() => setCurrentSlide((prev) => (prev === doctors.length - 1 ? 0 : prev + 1))}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white w-8 h-8 rounded-full shadow-lg text-blue-600 z-10 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
-                          aria-label="Next doctor"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                        
-                        {/* Pagination Dots */}
-                        <div className="flex gap-2.5 mb-8">
-                          {doctors.map((_, idx) => (
-                            <button
-                              key={idx}
-                              onClick={() => setCurrentSlide(idx)}
-                              className={`w-2 h-2 rounded-full transition-all duration-300 border ${
-                                currentSlide === idx 
-                                  ? 'bg-blue-600 border-blue-600 scale-125' 
-                                  : 'bg-transparent border-gray-300'
-                              }`}
-                              aria-label={`Go to slide ${idx + 1}`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                  </div>
-
-                  <div className="bg-gray-50 border border-gray-100 p-8 rounded-2xl max-w-sm mx-auto">
-                     <h4 className="text-lg font-bold text-[#0b1c43] mb-4 uppercase tracking-wider border-b pb-2">Quick Info</h4>
+                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-2xl max-w-sm mx-auto shadow-inner">
+                     <h4 className="text-lg font-bold text-[#0b1c43] mb-4 uppercase tracking-wider border-b border-gray-200 pb-2">Quick Info</h4>
                      <ul className="space-y-4">
                         {[
                           "Board-certified Radiologists",
@@ -322,15 +234,16 @@ export default function InterventionalRadiologyClient() {
       </section>
 
       {/* ═══════ MAJOR PROCEDURES ═══════ */}
-      <section className="py-24 bg-white relative">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
+      <section className="py-24 bg-gray-50 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none" />
+        <div className="mx-auto w-full max-w-[1366px] px-6 relative z-10">
           <div className="mb-12">
              <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
                 MAJOR <span className="text-blue-600 font-bold">PROCEDURES</span>
               </h2>
               <div className="flex items-center gap-2 mt-2">
                 <div className="w-2 h-2 rounded-full bg-blue-600" />
-                <div className="h-[2px] w-12 bg-gray-200" />
+                <div className="h-[2px] w-12 bg-gray-300" />
               </div>
           </div>
 
@@ -348,14 +261,14 @@ export default function InterventionalRadiologyClient() {
             </div>
             
             <div className="flex-1">
-              <p className="text-gray-800 text-base md:text-lg mb-10 font-semibold text-justify leading-relaxed">
+              <p className="text-gray-800 text-base md:text-lg mb-10 font-bold text-justify leading-relaxed italic">
                 {proceduresSection.intro}
               </p>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                 {proceduresSection.items.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 group">
                     <span className="text-blue-600 font-bold mt-1.5 transition-transform group-hover:translate-x-1">›</span>
-                    <span className="text-gray-700 text-base leading-relaxed font-medium">{item}</span>
+                    <span className="text-gray-700 text-base leading-relaxed font-bold">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -367,4 +280,3 @@ export default function InterventionalRadiologyClient() {
     </main>
   );
 }
-
