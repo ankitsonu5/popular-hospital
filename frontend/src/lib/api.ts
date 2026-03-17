@@ -193,6 +193,59 @@ export async function fetchBlogSearch(query: string): Promise<BlogItem[]> {
   }
 }
 
+export async function fetchCoverage(): Promise<CoverageItem[]> {
+  try {
+    const res = await fetch(api('/coverage'), { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch coverage:', e);
+    return [];
+  }
+}
+
+export async function fetchEvents(): Promise<EventItem[]> {
+  try {
+    const res = await fetch(api('/events'), { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch events:', e);
+    return [];
+  }
+}
+
+export async function fetchEventItem(slug: string): Promise<EventItem | null> {
+  try {
+    const res = await fetch(api(`/events/${slug}`), { next: { revalidate: 60 } });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch event item:', e);
+    return null;
+  }
+}
+
+export interface CoverageItem {
+  _id: string;
+  title: string;
+  date: string;
+  source: string;
+  image: string;
+  isActive: boolean;
+}
+
+export interface EventItem {
+  _id: string;
+  title: string;
+  slug: string;
+  date: string;
+  thumbnail: string;
+  gallery: string[];
+  description: string;
+  isActive: boolean;
+}
+
 export interface Branch {
   _id: string;
   name: string;

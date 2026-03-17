@@ -61,9 +61,9 @@ const menuItems: MenuItem[] = [
     label: 'Media & Blog',
     dropdown: [
       { label: 'News', href: '/media/news' },
-      { label: 'Events', href: '/media/events' },
-      { label: 'Press', href: '/media/coverage' },
       { label: 'Blog', href: '/blog' },
+      { label: 'Media Coverage', href: '/media/coverage' },
+      { label: 'Events', href: '/media/events' },
     ],
   },
 ];

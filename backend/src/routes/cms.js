@@ -15,8 +15,9 @@ import {
   upload,
   uploadBlogImage
 } from '../controllers/blogController.js';
+import { getAdminEvents, createEvent, updateEvent, deleteEvent, uploadEvent } from '../controllers/eventController.js';
+import { getAdminCoverage, createCoverage, updateCoverage, deleteCoverage, uploadCoverage } from '../controllers/coverageController.js';
 import { cmsAuth } from '../middleware/auth.js';
-
 
 const router = Router();
 
@@ -82,5 +83,16 @@ router.post('/blogs/:id/comments/:commentId/reply', replyToComment);
 router.delete('/blogs/:id/comments/:commentId/reply/:replyId', deleteAdminReply);
 router.delete('/blogs/:id/comments/:commentId', deleteComment);
 
+// Coverage CRUD
+router.get('/coverage', getAdminCoverage);
+router.post('/coverage', uploadCoverage.any(), createCoverage);
+router.put('/coverage/:id', uploadCoverage.any(), updateCoverage);
+router.delete('/coverage/:id', deleteCoverage);
+
+// Events CRUD
+router.get('/events', getAdminEvents);
+router.post('/events', uploadEvent.any(), createEvent);
+router.put('/events/:id', uploadEvent.any(), updateEvent);
+router.delete('/events/:id', deleteEvent);
 
 export default router;

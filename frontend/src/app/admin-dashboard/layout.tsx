@@ -24,7 +24,9 @@ const sidebarItems = [
     icon: Newspaper,
     subItems: [
       { label: 'News', href: '/admin-dashboard/media-blog/news' },
-      { label: 'Blog', href: '/admin-dashboard/media-blog/blog' }
+      { label: 'Blog', href: '/admin-dashboard/media-blog/blog' },
+      { label: 'Events', href: '/admin-dashboard/media-blog/events' },
+      { label: 'Coverage', href: '/admin-dashboard/media-blog/coverage' }
     ]
   },
   { label: 'Settings', href: '/admin-dashboard/settings', icon: Settings },
