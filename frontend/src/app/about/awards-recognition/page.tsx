@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { Share2 } from 'lucide-react';
 
 const awardsData = [
   { year: "2021", award: "Exemplary Award", conferred: "Hon'ble Governor of Maharashtra" },
@@ -17,21 +20,45 @@ const strategicValueData = [
   { title: "High Worth", desc: "Dr. A.K. Kaushik is a personality with High Worth \u2013 again a positive influence for a safe investment." }
 ];
 
-export const metadata = {
-  title: "The Face: Dr. A.K. Kaushik – A Healthcare ICON | Popular Hospital",
-  description: "Profile Summary, Awards and Strategic Value of Dr. A.K. Kaushik.",
-};
-
 export default function AwardsRecognitionPage() {
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: "The Face: Dr. A.K. Kaushik - A Healthcare ICON",
+        url: window.location.href
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard!");
+    }
+  };
+
   return (
     <div className="bg-white min-h-screen">
       {/* ─── Simple & Clean Hero Section ─── */}
-      <div className="bg-[#0b1c43] text-white py-16 md:py-24">
-        <div className="mx-auto max-w-[1366px] px-6 sm:px-12">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-black font-heading tracking-tight leading-tight mb-4 text-[#4285f4]">
-              The Face: Dr. A.K. Kaushik - A Healthcare ICON
+      <div className="bg-[#0b1c43] text-white py-16 md:py-24 relative overflow-hidden">
+        {/* Subtle Background Pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.05] pointer-events-none" 
+          style={{ 
+            backgroundImage: `radial-gradient(#ffffff 1px, transparent 1px)`,
+            backgroundSize: '32px 32px'
+          }} 
+        />
+        <div className="relative z-10 mx-auto max-w-[1366px] px-6 sm:px-12 text-center">
+            <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-black font-heading tracking-tight leading-tight mb-6 text-white drop-shadow-md">
+              The Face: Dr. A.K. Kaushik - A Healthcare <span className="text-[#00B4D8]">ICON</span>
             </h1>
-            <div className="w-16 h-1 bg-hospital-orange rounded-full"></div>
+            <div className="w-24 h-1.5 bg-hospital-orange rounded-full mx-auto mb-8"></div>
+            
+            {/* Share Button */}
+            <button 
+              onClick={handleShare}
+              className="inline-flex items-center gap-2.5 px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all duration-300 backdrop-blur-md group hover:scale-105 active:scale-95 shadow-lg shadow-black/20"
+            >
+              <Share2 className="w-4 h-4 text-[#00B4D8] group-hover:animate-pulse" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em]">Share Profile</span>
+            </button>
         </div>
       </div>
 

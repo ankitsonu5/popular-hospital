@@ -45,7 +45,7 @@ export const getImageUrl = (path: string) => {
 
 export async function fetchBranches(): Promise<Branch[]> {
   try {
-    const res = await fetch(api('/branches'), { next: { revalidate: 60 } });
+    const res = await fetch(api('/branches'), { cache: 'no-store' });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -56,7 +56,7 @@ export async function fetchBranches(): Promise<Branch[]> {
 
 export async function fetchBranch(idOrSlug: string): Promise<Branch | null> {
   try {
-    const res = await fetch(api(`/branches/${idOrSlug}`), { next: { revalidate: 60 } });
+    const res = await fetch(api(`/branches/${idOrSlug}`), { cache: 'no-store' });
     if (!res.ok) return null;
     return res.json();
   } catch (e) {
@@ -359,4 +359,27 @@ export interface BlogItem {
   metaKeywords?: string;
   focusKeyword?: string;
   imageAlt?: string;
+}
+export async function fetchCareers(): Promise<CareerItem[]> {
+  try {
+    const res = await fetch(api('/careers'), { cache: 'no-store' });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch careers:', e);
+    return [];
+  }
+}
+
+export interface CareerItem {
+  _id: string;
+  category: 'Medico' | 'Non-Medical' | 'Admin';
+  department: string;
+  designation: string;
+  location: string;
+  position: string;
+  postedOn: string;
+  lastDate: string;
+  description: string;
+  isActive: boolean;
 }

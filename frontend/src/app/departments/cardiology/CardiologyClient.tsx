@@ -98,10 +98,10 @@ export default function CardiologyPage() {
     <main className="min-h-screen bg-white">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden">
+      <section className="relative min-h-[450px] md:h-[500px] w-full bg-[#0b1c43] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?q=80&w=2000&"
+            src="/images/banners/cardiology_banner.png"
             alt="Cardiac Care"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"
@@ -110,12 +110,12 @@ export default function CardiologyPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
         
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 py-20 md:py-0 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
               Department of
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading break-words">
               Cardiology
             </h1>
             <div className="flex flex-wrap gap-4">

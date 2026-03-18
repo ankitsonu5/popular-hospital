@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAllBranches, createBranch, updateBranch, deleteBranch, uploadBranch } from '../controllers/branchController.js';
+import { getAllBranches, createBranch, updateBranch, deleteBranch, uploadBranch, reorderBranches } from '../controllers/branchController.js';
 import { getAllDoctors, createDoctor, updateDoctor, deleteDoctor, uploadDoctor, createSpeciality, updateSpeciality, deleteSpeciality, getAllDesignations, createDesignation, updateDesignation, deleteDesignation } from '../controllers/doctorController.js';
 import { getAllBookings } from '../controllers/bookingController.js';
 import { getSiteContent, setSiteContent } from '../controllers/cmsController.js';
@@ -17,6 +17,8 @@ import {
 } from '../controllers/blogController.js';
 import { getAdminEvents, createEvent, updateEvent, deleteEvent, uploadEvent } from '../controllers/eventController.js';
 import { getAdminCoverage, createCoverage, updateCoverage, deleteCoverage, uploadCoverage } from '../controllers/coverageController.js';
+import { getUpdates, createUpdate, updateUpdate, deleteUpdate, uploadUpdates } from '../controllers/updateController.js';
+import { getAdminCareers, createCareer, updateCareer, deleteCareer } from '../controllers/careerController.js';
 import { cmsAuth } from '../middleware/auth.js';
 
 const router = Router();
@@ -25,13 +27,23 @@ router.use(cmsAuth);
 
 // Branches CRUD
 router.get('/branches', getAllBranches);
-router.post('/branches', uploadBranch.fields([{ name: 'image_one', maxCount: 1 }, { name: 'image_two', maxCount: 1 }]), createBranch);
-router.put('/branches/:id', uploadBranch.fields([{ name: 'image_one', maxCount: 1 }, { name: 'image_two', maxCount: 1 }]), updateBranch);
+router.put('/branches/reorder', reorderBranches);
+router.post('/branches', uploadBranch.fields([
+  { name: 'image_one', maxCount: 1 }, 
+  { name: 'image_two', maxCount: 1 },
+  { name: 'image_three', maxCount: 1 },
+  { name: 'image_four', maxCount: 1 }
+]), createBranch);
+router.put('/branches/:id', uploadBranch.fields([
+  { name: 'image_one', maxCount: 1 }, 
+  { name: 'image_two', maxCount: 1 },
+  { name: 'image_three', maxCount: 1 },
+  { name: 'image_four', maxCount: 1 }
+]), updateBranch);
 router.delete('/branches/:id', deleteBranch);
 
 // Doctors CRUD
 router.get('/doctors', async (req, res) => {
-  // Override filter — CMS should see all doctors including inactive
   const Doctor = (await import('../models/Doctor.js')).default;
   try {
     const doctors = await Doctor.find()
@@ -88,6 +100,20 @@ router.get('/coverage', getAdminCoverage);
 router.post('/coverage', uploadCoverage.any(), createCoverage);
 router.put('/coverage/:id', uploadCoverage.any(), updateCoverage);
 router.delete('/coverage/:id', deleteCoverage);
+
+// =====================
+// Updates Routes
+// =====================
+router.get('/updates', getUpdates);
+router.post('/updates', uploadUpdates.single('pdf'), createUpdate);
+router.put('/updates/:id', uploadUpdates.single('pdf'), updateUpdate);
+router.delete('/updates/:id', deleteUpdate);
+
+// Careers CRUD
+router.get('/careers', getAdminCareers);
+router.post('/careers', createCareer);
+router.put('/careers/:id', updateCareer);
+router.delete('/careers/:id', deleteCareer);
 
 // Events CRUD
 router.get('/events', getAdminEvents);

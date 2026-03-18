@@ -11,6 +11,8 @@ import authRouter from './routes/auth.js';
 import newsRouter from './routes/news.js';
 import blogRouter from './routes/blog.js';
 import coverageRouter from './routes/coverage.js';
+import updatesRouter from './routes/updates.js';
+import careersRouter from './routes/careers.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -47,6 +49,8 @@ app.use('/api/news', newsRouter);
 app.use('/api/blogs', blogRouter);
 app.use('/api/coverage', coverageRouter);
 app.use('/api/events', (await import('./routes/events.js')).default);
+app.use('/api/updates', updatesRouter);
+app.use('/api/careers', careersRouter);
 
 // Serve uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));

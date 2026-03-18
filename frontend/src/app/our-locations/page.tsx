@@ -6,7 +6,12 @@ import { useEffect, useState, useRef } from "react";
 import { fetchBranches, type Branch, getImageUrl } from "@/lib/api";
 
 export default function OurLocationsPage() {
+  const [branches, setBranches] = useState<Branch[]>([]);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetchBranches().then(setBranches);
+  }, []);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -22,44 +27,6 @@ export default function OurLocationsPage() {
       });
     }
   };
-
-  const branches = [
-    {
-      name: 'Popular Hospital – Main Branch',
-      slug: 'varanasi-main',
-      city: 'Varanasi',
-      address: 'N-10 / 60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh, India',
-      image_one: '/images/branches/varanasi-main/1.webp',
-    },
-    {
-      name: 'City Hospital – Sigra',
-      slug: 'varanasi-city-centre',
-      city: 'Varanasi',
-      address: 'Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh, India',
-      image_one: '/images/branches/varanasi-sigra/1.webp',
-    },
-    {
-      name: 'Popular Hospital – Mirzapur',
-      slug: 'mirzapur',
-      city: 'Mirzapur',
-      address: 'Near Natwan Police Chowki, Jangi Road, Mirzapur, Uttar Pradesh, India',
-      image_one: '/images/branches/mirzapur/1.webp',
-    },
-    {
-      name: 'Popular Hospital – Bachhaon',
-      slug: 'bachhaon',
-      city: 'Bachhaon',
-      address: 'Chunar Road, Bachhaon, Varanasi, Uttar Pradesh, India',
-      image_one: '/images/branches/bachhaon/1.webp',
-    },
-    {
-      name: 'Popular Hospital – Gopiganj',
-      slug: 'gopiganj',
-      city: 'Gopiganj',
-      address: 'G.T. Road, Parao, Near Indus Ind Bank, Gopiganj, Uttar Pradesh, India',
-      image_one: '/images/branches/gopiganj/1.webp',
-    },
-  ];
 
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
@@ -135,7 +102,7 @@ export default function OurLocationsPage() {
 
                   <div className="flex items-center gap-4">
                     <Link
-                      href={`/locations/${location.slug}`}
+                      href={`/locations/${location.slug || ''}`}
                       className="px-6 py-3 rounded-full font-medium transition-colors bg-white text-black hover:bg-gray-100"
                     >
                       Get Directions
@@ -156,8 +123,8 @@ export default function OurLocationsPage() {
                 </div>
 
                 <Image
-                  src={location.image_one || '/about-section-image.png'}
-                  alt={location.name}
+                  src={getImageUrl(location.image_one || '') || '/about-section-image.png'}
+                  alt={location.name || 'Branch'}
                   fill
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
                   sizes="(max-width: 768px) 85vw, (max-width: 1280px) 380px, 400px"

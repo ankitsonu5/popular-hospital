@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function HomePage() {
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
+  const [branches, setBranches] = useState<Branch[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
@@ -25,6 +26,18 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const [newsData, branchesData] = await Promise.all([
+        fetchNews(),
+        fetchBranches()
+      ]);
+      setLatestNews(newsData.slice(0, 3));
+      setBranches(branchesData);
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -90,56 +103,6 @@ export default function HomePage() {
     }
   };
 
-  const branches = [
-    {
-      name: 'Popular Hospital – Main Branch',
-      slug: 'varanasi-main',
-      city: 'Varanasi',
-      address: 'N-10 / 60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh, India',
-      image_one: '/images/branches/varanasi-main/1.webp',
-    },
-    {
-      name: 'City Hospital – Sigra',
-      slug: 'varanasi-city-centre',
-      city: 'Varanasi',
-      address: 'Chandrika Nagar Colony, Sigra, Varanasi, Uttar Pradesh, India',
-      image_one: '/images/branches/varanasi-sigra/1.webp',
-    },
-    {
-      name: 'Popular Hospital – Mirzapur',
-      slug: 'mirzapur',
-      city: 'Mirzapur',
-      address: 'Near Natwan Police Chowki, Jangi Road, Mirzapur, Uttar Pradesh, India',
-      image_one: '/images/branches/mirzapur/1.webp',
-    },
-    {
-      name: 'Popular Hospital – Bachhaon',
-      slug: 'bachhaon',
-      city: 'Bachhaon',
-      address: 'Chunar Road, Bachhaon, Varanasi, Uttar Pradesh, India',
-      image_one: '/images/branches/bachhaon/1.webp',
-    },
-    {
-      name: 'Popular Hospital – Gopiganj',
-      slug: 'gopiganj',
-      city: 'Gopiganj',
-      address: 'G.T. Road, Parao, Near Indus Ind Bank, Gopiganj, Uttar Pradesh, India',
-      image_one: '/images/branches/gopiganj/1.webp',
-    },
-  ];
-
-  useEffect(() => {
-    fetchNews()
-      .then((data) => setLatestNews(data.slice(0, 3)))
-      .catch(() => setLatestNews([]));
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVideoLoaded(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -1190,7 +1153,7 @@ export default function HomePage() {
 
                   <div className="flex items-center gap-4">
                     <Link
-                      href={`/locations/${location.slug}`}
+                      href={`/locations/${location.slug || ''}`}
                       className="px-6 py-3 rounded-full font-medium transition-colors bg-white text-black hover:bg-gray-100"
                     >
                       Get Directions
@@ -1211,8 +1174,8 @@ export default function HomePage() {
                 </div>
 
                 <Image
-                  src={getImageUrl(location.image_one) || '/about-section-image.png'}
-                  alt={location.name}
+                  src={getImageUrl(location.image_one || '') || '/about-section-image.png'}
+                  alt={location.name || 'Branch'}
                   fill
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
                   sizes="(max-width: 768px) 85vw, (max-width: 1280px) 380px, 400px"

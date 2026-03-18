@@ -9,7 +9,7 @@ const commentSchema = new mongoose.Schema({
   replies: [{
     admin: { type: Boolean, default: false },
     text: { type: String, required: true },
-    date: { type: Date, default: Date.now } 
+    date: { type: Date, default: Date.now }
   }]
 });
 

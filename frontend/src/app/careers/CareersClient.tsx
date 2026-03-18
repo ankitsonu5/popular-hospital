@@ -1,90 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-
-const medicoOpenings = [
-  {
-    postedOn: "25-11-2025",
-    department: "Anaesthesiology",
-    designation: "Consultant",
-    location: "Varanasi/Mirzapur",
-    position: "1",
-    lastDate: "2025-12-30",
-    hasDetails: true
-  },
-  {
-    postedOn: "25-11-2025",
-    department: "Endocrinology",
-    designation: "Endocrinologist (DM)",
-    location: "Varanasi/Mirzapur",
-    position: "1",
-    lastDate: "-",
-    hasDetails: false
-  },
-  {
-    postedOn: "25-11-2025",
-    department: "Cardiothoracic & Vascular Surgery (CTVS)",
-    designation: "CTVS Surgeon (CTVS)",
-    location: "Varanasi/Mirzapur",
-    position: "1",
-    lastDate: "-",
-    hasDetails: false
-  },
-  {
-    postedOn: "25-11-2025",
-    department: "Critical Care",
-    designation: "Critical Care Medicine (DM)",
-    location: "Varanasi/Mirzapur",
-    position: "1",
-    lastDate: "-",
-    hasDetails: false
-  },
-  {
-    postedOn: "25-11-2025",
-    department: "Gastrology",
-    designation: "Gastroenterologist (DM)",
-    location: "Varanasi/Mirzapur",
-    position: "1",
-    lastDate: "-",
-    hasDetails: false
-  },
-  {
-    postedOn: "25-11-2025",
-    department: "Cardiology",
-    designation: "Cardiologist (DM)",
-    location: "Varanasi/Mirzapur",
-    position: "1",
-    lastDate: "-",
-    hasDetails: false
-  },
-];
-
-const nonMedicoOpenings = [
-  {
-    postedOn: "26-11-2025",
-    department: "Administration",
-    designation: "Facility Manager",
-    location: "Varanasi",
-    position: "2",
-    lastDate: "2026-01-15",
-    hasDetails: true
-  },
-  {
-    postedOn: "26-11-2025",
-    department: "HR",
-    designation: "HR Executive",
-    location: "Varanasi",
-    position: "1",
-    lastDate: "2026-01-10",
-    hasDetails: true
-  },
-];
+import { X, Loader2, Briefcase, MapPin, Users, Calendar, ArrowRight, Mail, Phone, CheckCircle2 } from 'lucide-react';
+import { fetchCareers } from '@/lib/api';
+import type { CareerItem } from '@/lib/api';
 
 export default function CareerPage() {
-  const [activeTab, setActiveTab] = useState<'Medico' | 'Non-Medico'>('Medico');
+  const [activeTab, setActiveTab] = useState<'Medico' | 'Non-Medical' | 'Admin'>('Medico');
+  const [openings, setOpenings] = useState<CareerItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedJob, setSelectedJob] = useState<CareerItem | null>(null);
 
-  const currentOpenings = activeTab === 'Medico' ? medicoOpenings : nonMedicoOpenings;
+  useEffect(() => {
+    fetchCareers().then(data => {
+      setOpenings(data);
+      setLoading(false);
+    });
+  }, []);
+
+  const currentOpenings = openings.filter(o => o.category === activeTab);
 
   return (
     <div className="bg-[#f0f7ff] min-h-screen pt-12 pb-20">
@@ -104,82 +39,102 @@ export default function CareerPage() {
         <div className="flex flex-wrap gap-4 mb-10 p-2 bg-white/50 backdrop-blur-sm rounded-[2rem] w-fit border border-white">
           <button
             onClick={() => setActiveTab('Medico')}
-            className={`px-10 py-4 rounded-[1.5rem] font-black uppercase tracking-widest text-sm transition-all duration-300 ${
+            className={`px-8 py-3 rounded-[1.5rem] font-black uppercase tracking-widest text-[11px] transition-all duration-300 ${
               activeTab === 'Medico'
-                ? 'bg-[#1a3a5c] text-white shadow-xl shadow-blue-900/20 px-12'
+                ? 'bg-[#1a3a5c] text-white shadow-xl shadow-blue-900/20 px-10'
                 : 'bg-transparent text-gray-400 hover:text-[#1a3a5c]'
             }`}
           >
             Medical Openings
           </button>
           <button
-            onClick={() => setActiveTab('Non-Medico')}
-            className={`px-10 py-4 rounded-[1.5rem] font-black uppercase tracking-widest text-sm transition-all duration-300 ${
-              activeTab === 'Non-Medico'
-                ? 'bg-[#1a3a5c] text-white shadow-xl shadow-blue-900/20 px-12'
+            onClick={() => setActiveTab('Non-Medical')}
+            className={`px-8 py-3 rounded-[1.5rem] font-black uppercase tracking-widest text-[11px] transition-all duration-300 ${
+              activeTab === 'Non-Medical'
+                ? 'bg-[#1a3a5c] text-white shadow-xl shadow-blue-900/20 px-10'
                 : 'bg-transparent text-gray-400 hover:text-[#1a3a5c]'
             }`}
           >
-            Non-Medical & Admin
+            Non-Medical
+          </button>
+          <button
+            onClick={() => setActiveTab('Admin')}
+            className={`px-8 py-3 rounded-[1.5rem] font-black uppercase tracking-widest text-[11px] transition-all duration-300 ${
+              activeTab === 'Admin'
+                ? 'bg-[#1a3a5c] text-white shadow-xl shadow-blue-900/20 px-10'
+                : 'bg-transparent text-gray-400 hover:text-[#1a3a5c]'
+            }`}
+          >
+            Administration
           </button>
         </div>
 
         {/* Job Listings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentOpenings.map((job, index) => (
-            <div 
-              key={index} 
-              className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 group flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex justify-between items-start mb-6">
-                   <div className="bg-[#f0f7ff] text-[#2a7a8c] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
-                     {job.department}
-                   </div>
-                   <div className="text-gray-300 text-[11px] font-bold">
-                     Posted: {job.postedOn}
-                   </div>
+        {loading ? (
+             <div className="flex justify-center py-20"><Loader2 className="w-10 h-10 animate-spin text-[#0d9488]" /></div>
+        ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {currentOpenings.length === 0 ? (
+                <div className="col-span-full py-20 text-center">
+                    <Briefcase className="w-16 h-16 text-gray-200 mx-auto mb-4" />
+                    <p className="text-gray-400 font-bold italic">No active openings in this category at the moment.</p>
                 </div>
-                
-                <h3 className="text-xl md:text-2xl font-black text-[#1a3a5c] mb-4 group-hover:text-[#E85222] transition-colors leading-tight">
-                  {job.designation}
-                </h3>
+            ) : currentOpenings.map((job) => (
+                <div 
+                key={job._id} 
+                className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 group flex flex-col justify-between"
+                >
+                <div className="flex-1">
+                    <div className="flex justify-between items-start mb-6">
+                    <div className="bg-[#f0f7ff] text-[#2a7a8c] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
+                        {job.department}
+                    </div>
+                    <div className="text-gray-300 text-[11px] font-bold">
+                        Posted: {job.postedOn}
+                    </div>
+                    </div>
+                    
+                    <h3 className="text-xl md:text-2xl font-black text-[#1a3a5c] mb-6 group-hover:text-[#E85222] transition-colors leading-tight min-h-[3rem]">
+                    {job.designation}
+                    </h3>
 
-                <div className="space-y-4 mb-10">
-                   <div className="flex items-center gap-3 text-slate-500 text-sm font-bold">
-                      <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400">
-                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                      </div>
-                      {job.location}
-                   </div>
-                   <div className="flex items-center gap-3 text-slate-500 text-sm font-bold">
-                      <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400">
-                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                      </div>
-                      Positions: {job.position}
-                   </div>
-                   <div className="flex items-center gap-3 text-slate-500 text-sm font-bold">
-                      <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400">
-                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                      </div>
-                      Last Date: <span className={job.lastDate === '-' ? 'text-slate-400 underline underline-offset-4 decoration-slate-200' : 'text-[#E85222]'}>{job.lastDate === '-' ? 'Ongoing' : job.lastDate}</span>
-                   </div>
+                    <div className="space-y-4 mb-10">
+                    <div className="flex items-center gap-4 text-slate-500 text-sm font-bold">
+                        <div className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100">
+                            <MapPin className="w-4 h-4" strokeWidth={2.5} />
+                        </div>
+                        {job.location}
+                    </div>
+                    <div className="flex items-center gap-4 text-slate-500 text-sm font-bold">
+                        <div className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100">
+                            <Users className="w-4 h-4" strokeWidth={2.5} />
+                        </div>
+                        Positions: {job.position}
+                    </div>
+                    <div className="flex items-center gap-4 text-slate-500 text-sm font-bold">
+                        <div className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100">
+                            <Calendar className="w-4 h-4" strokeWidth={2.5} />
+                        </div>
+                        Last Date: <span className={job.lastDate === '-' ? 'text-slate-400 underline underline-offset-4 decoration-slate-200' : 'text-[#E85222]'}>{job.lastDate === '-' ? 'Ongoing' : job.lastDate}</span>
+                    </div>
+                    </div>
                 </div>
-              </div>
 
-              <div className="flex flex-col gap-3">
-                {job.hasDetails && (
-                  <button className="w-full py-3 bg-[#2a7a8c]/5 text-[#2a7a8c] rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#2a7a8c] hover:text-white transition-all">
-                    View Job Details
-                  </button>
-                )}
-                <Link href="/apply" className="w-full py-4 bg-[#1a3a5c] text-white rounded-2xl text-center font-black text-sm uppercase tracking-widest hover:bg-[#E85222] transition-all shadow-lg hover:shadow-orange-900/20 active:scale-95">
-                  Apply Now
-                </Link>
-              </div>
+                <div className="flex flex-col gap-3 mt-auto">
+                    <button 
+                        onClick={() => setSelectedJob(job)}
+                        className="w-full py-4 bg-[#f8fafc] text-[#1a3a5c] rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-[#1a3a5c] hover:text-white transition-all border border-slate-100 shadow-sm"
+                    >
+                        View Job Details
+                    </button>
+                    <Link href={`/apply?job=${job._id}`} className="w-full py-4 bg-[#1a3a5c] text-white rounded-2xl text-center font-black text-sm uppercase tracking-widest hover:bg-[#E85222] transition-all shadow-lg hover:shadow-orange-900/20 active:scale-95 flex items-center justify-center gap-2">
+                    Apply Now
+                    </Link>
+                </div>
+                </div>
+            ))}
             </div>
-          ))}
-        </div>
+        )}
 
         {/* Benefits Section */}
         <div className="mt-28">
@@ -239,7 +194,57 @@ export default function CareerPage() {
            </div>
         </div>
       </div>
+
+      {/* Details Modal */}
+      {selectedJob && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0b1c43]/60 backdrop-blur-md overflow-y-auto">
+             <div className="bg-white rounded-[3rem] shadow-2xl w-full max-w-3xl relative animate-in zoom-in-95 duration-200 my-auto">
+                <div className="flex items-center justify-between p-8 border-b border-gray-100">
+                   <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center">
+                          <CheckCircle2 className="w-6 h-6 text-[#0d9488]" />
+                      </div>
+                      <div>
+                         <h3 className="text-xl font-black text-[#1a3a5c] uppercase tracking-widest leading-none">{selectedJob.designation}</h3>
+                         <p className="text-xs text-gray-400 font-bold italic mt-1">{selectedJob.department} Department</p>
+                      </div>
+                   </div>
+                   <button onClick={() => setSelectedJob(null)} className="p-3 hover:bg-gray-100 rounded-full transition-colors">
+                      <X className="w-6 h-6 text-gray-400" />
+                   </button>
+                </div>
+
+                <div className="p-8 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                   <div className="prose prose-sm max-w-none prose-headings:text-[#1a3a5c] prose-headings:font-black prose-p:text-gray-600 prose-p:font-medium"
+                        dangerouslySetInnerHTML={{ __html: selectedJob.description }} 
+                   />
+
+                   <div className="mt-10 p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                      <h4 className="text-sm font-black text-[#1a3a5c] uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <ArrowRight className="w-4 h-4 text-[#E85222]" /> Contact Recruitment Team
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                         <div className="flex items-center gap-3 text-sm text-gray-600 font-bold">
+                            <Mail className="w-4 h-4 text-[#0d9488]" /> careers@popularhospital.in
+                         </div>
+                         <div className="flex items-center gap-3 text-sm text-gray-600 font-bold">
+                            <Phone className="w-4 h-4 text-[#0d9488]" /> +91-7800001895
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+                <div className="p-8 pt-0 flex gap-4">
+                    <Link href={`/apply?job=${selectedJob._id}`} className="flex-1 py-4 bg-[#1a3a5c] text-white rounded-2xl text-center font-black text-sm uppercase tracking-widest hover:bg-[#E85222] transition-all shadow-xl shadow-blue-900/20 active:scale-95">
+                        Apply for this position
+                    </Link>
+                    <button onClick={() => setSelectedJob(null)} className="px-8 py-4 bg-gray-100 text-gray-400 rounded-2xl font-black text-sm uppercase tracking-widest hover:text-gray-600 transition-all">
+                        Close
+                    </button>
+                </div>
+             </div>
+          </div>
+      )}
     </div>
   );
 }
-

@@ -66,7 +66,6 @@ const sitemapData = [
       { name: "Blood Bank", href: "/services/blood-bank" },
       { name: "Ambulance", href: "/services/ambulance" },
       { name: "Pathology", href: "/services/pathology" },
-      { name: "Radiology", href: "/services/radiology" },
       { name: "Pharmacy", href: "/services/pharmacy" },
       { name: "Home Care Services", href: "/services/home-care" },
       { name: "Diagnostic Facilities", href: "/facilities" },

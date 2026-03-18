@@ -19,7 +19,6 @@ const services = [
   { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", image: "/images/departments-images/dental-care.jpeg", href: "/specialties/dental" },
   { title: "Pulmonology", desc: "Respiratory and lung health specialists.", image: "/images/departments-images/pulmonology.jpeg", href: "/specialties/respiratory" },
   { title: "Pathology", desc: "Advanced diagnostic laboratory services.", image: "/images/departments-images/pathology.jpeg", href: "/specialties/pathology" },
-  { title: "Radiology", desc: "Advanced imaging services including X-ray, MRI, and CT Scan.", image: "/images/departments-images/radiology.jpeg", href: "/specialties/radiology" },
 ];
 
 export default function ServicesPage() {

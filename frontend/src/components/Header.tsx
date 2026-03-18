@@ -53,7 +53,6 @@ const menuItems: MenuItem[] = [
       { label: "Wellness Packages", href: "/services/wellness-packages" },
       { label: "Pharmacy", href: "/services/pharmacy" },
       { label: "Pathological Services", href: "/services/pathology" },
-      { label: "Radiological Services", href: "/services/radiology" },
       { label: "Home Care Services", href: "/services/home-care" }
     ],
   },
@@ -95,7 +94,6 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "T.B & Respiratory Medicine", href: "/departments/respiratory" },
     { label: "Anesthesiology, Critical Care & Pain Medicine", href: "/departments/pain-management" },
     { label: "Psychiatry Department", href: "/departments/psychiatry" },
-    { label: "Radiology", href: "/departments/radiology" },
   ]
 };
 
@@ -107,7 +105,6 @@ const servicesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Wellness Packages", href: "/services/wellness-packages" },
     { label: "Pharmacy", href: "/services/pharmacy" },
     { label: "Pathological Services", href: "/services/pathology" },
-    { label: "Radiological Services", href: "/services/radiology" },
     { label: "Home Care Services", href: "/services/home-care" }
   ]
 };
@@ -270,18 +267,28 @@ export function Header() {
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/services/health-packages" className="hover:text-white/80 transition-colors whitespace-nowrap">Health Packages</Link>
             </div>
-            <div className="flex items-center justify-center sm:justify-end gap-x-4 w-full sm:w-auto mt-1 sm:mt-0">
-               <div className="flex items-center gap-1.5">
+            <div className="flex items-center justify-center sm:justify-end gap-x-6 w-full sm:w-auto mt-1 sm:mt-0">
+               <div className="flex items-center gap-2">
                 <a href="https://wa.me/917800001895" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
                   <Image className="w-5 h-5 sm:w-[22px] sm:h-[22px]" src="/images/whatsapp_icon.png" alt="whatsapp" width={22} height={22} />
                 </a>
-                <a href="tel:+917800001895" className="hover:text-white/80 transition-colors">+91-7800001895</a>
+                <a href="tel:+917800001895" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
+                  <svg className="w-4 h-4 sm:w-[20px] sm:h-[20px]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.75-.25 1.02l-2.2 2.2z" />
+                  </svg>
+                  <span>+91-7800001895</span>
+                </a>
                </div>
-               <div className="flex items-center gap-1.5">
+               <div className="flex items-center gap-2">
                 <a href="https://wa.me/917800001896" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
                   <Image className="w-5 h-5 sm:w-[22px] sm:h-[22px]" src="/images/whatsapp_icon.png" alt="whatsapp" width={22} height={22} />
                 </a>
-                <a href="tel:+917800001896" className="hover:text-white/80 transition-colors">+91-7800001896</a>
+                <a href="tel:+917800001896" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
+                  <svg className="w-4 h-4 sm:w-[20px] sm:h-[20px]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.75-.25 1.02l-2.2 2.2z" />
+                  </svg>
+                  <span>+91-7800001896</span>
+                </a>
                </div>
             </div>
           </div>

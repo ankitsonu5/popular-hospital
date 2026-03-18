@@ -17,7 +17,6 @@ const services = [
   { title: "General Medicine", desc: "Primary care for overall health and wellbeing.", image: "/images/departments-images/general-medicine.jpeg", href: "/departments/general-medicine" },
   { title: "Department of ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", image: "/images/departments-images/ent.jpeg", href: "/departments/ent" },
   { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", image: "/images/departments-images/ophthalmology.jpeg", href: "/departments/ophthalmology" },
-  { title: "Radiology", desc: "Full range of diagnostic imaging and interventional services.", image: "/images/departments-images/radiology.jpeg", href: "/departments/radiology" },
   { title: "Internal Medicine", desc: "Comprehensive medical care for adult diseases.", image: "/images/departments-images/general-medicine.jpeg", href: "/departments/general-medicine" },
   { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", image: "/images/departments-images/dental-care.jpeg", href: "/departments/dental" },
   { title: "Pulmonology & Chest Medicine", desc: "Respiratory and lung health specialists.", image: "/images/departments-images/pulmonology.jpeg", href: "/departments/respiratory" },

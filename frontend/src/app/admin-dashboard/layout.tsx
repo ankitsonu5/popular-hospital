@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
   LayoutDashboard, Users, Building2, CalendarCheck, FileText,
-  Stethoscope, Settings, LogOut, Menu, X, ChevronRight, ChevronDown, Newspaper, Award
+  Stethoscope, Settings, LogOut, Menu, X, ChevronRight, ChevronDown, Newspaper, Award, Bell, Briefcase
 } from 'lucide-react';
 
 
@@ -16,6 +16,8 @@ const sidebarItems = [
   { label: 'Dashboard', href: '/admin-dashboard', icon: LayoutDashboard },
   { label: 'Doctors', href: '/admin-dashboard/doctors', icon: Stethoscope },
   { label: 'Branches', href: '/admin-dashboard/branches', icon: Building2 },
+  { label: 'Updates', href: '/admin-dashboard/updates', icon: Bell },
+  { label: 'Careers', href: '/admin-dashboard/careers', icon: Briefcase },
   { label: 'Bookings', href: '/admin-dashboard/bookings', icon: CalendarCheck },
   { label: 'Departments', href: '/admin-dashboard/departments', icon: Users },
   { label: 'Site Content', href: '/admin-dashboard/content', icon: FileText },
@@ -26,7 +28,7 @@ const sidebarItems = [
       { label: 'News', href: '/admin-dashboard/media-blog/news' },
       { label: 'Blog', href: '/admin-dashboard/media-blog/blog' },
       { label: 'Events', href: '/admin-dashboard/media-blog/events' },
-      { label: 'Coverage', href: '/admin-dashboard/media-blog/coverage' }
+      { label: 'Press', href: '/admin-dashboard/media-blog/coverage' }
     ]
   },
   { label: 'Settings', href: '/admin-dashboard/settings', icon: Settings },
@@ -68,6 +70,11 @@ export default function AdminDashboardLayout({
   };
 
   const currentPage = sidebarItems.find((item) => pathname === item.href)?.label || 'Dashboard';
+  const isActionPage = pathname.includes('/action');
+
+  if (isActionPage) {
+     return <div className="min-h-screen bg-white">{children}</div>;
+  }
 
   return (
     <div className="min-h-screen bg-[#f8f9fb]">

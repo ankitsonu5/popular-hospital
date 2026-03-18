@@ -69,7 +69,6 @@ export function Footer() {
               <li><Link href="/media/news" className="hover:text-white transition-colors">Latest News</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/sitemap" className="hover:text-white transition-colors">Site Map</Link></li>
-              <li><Link href="/donate" className="hover:text-white transition-colors text-hospital-orange font-bold">Donate Now</Link></li>
             </ul>
           </div>
 
