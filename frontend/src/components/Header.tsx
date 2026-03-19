@@ -61,7 +61,7 @@ const menuItems: MenuItem[] = [
     dropdown: [
       { label: 'News', href: '/media/news' },
       { label: 'Blog', href: '/blog' },
-      { label: 'Media Coverage', href: '/media/coverage' },
+      { label: 'Press', href: '/media/coverage' },
       { label: 'Events', href: '/media/events' },
     ],
   },
@@ -70,7 +70,7 @@ const menuItems: MenuItem[] = [
 const specialtiesContent: Record<string, { label: string; href: string }[]> = {
   "Super Specialties": [
     { label: "Cardiology", href: "/departments/cardiology" },
-    { label: "Cardiothoracic & Vascular Surgery (CTVS)", href: "/departments/ctvs" },
+    { label: "Cardiothoracic & Vascular Surgery (CTVS)", href: "/departments/ctvs" }, 
     { label: "Neurosurgery", href: "/departments/neurosurgery" },
     { label: "Gastroenterology", href: "/departments/gastroenterology" },
     { label: "Nephrology", href: "/departments/nephrology" },

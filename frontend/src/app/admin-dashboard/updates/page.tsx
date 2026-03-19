@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, Check, X, Loader2, Bell, Save } from 'lucide-react';
+import { useState, useEffect, Suspense } from 'react';
+import { Plus, Edit2, Trash2, Check, X, Loader2, Bell, Sparkles, Megaphone, MapPin, Calendar, FileText } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 interface UpdateItem {
@@ -16,9 +16,9 @@ interface UpdateItem {
   pdfUrl?: string;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
+const API_URL = '/api-backend';
 
-export default function UpdatesAdminPage() {
+function UpdatesHub() {
   const router = useRouter();
   const [updates, setUpdates] = useState<UpdateItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ export default function UpdatesAdminPage() {
   const fetchUpdates = async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api-backend/cms/updates?all=true', { headers: getHeaders() });
+      const res = await fetch(`${API_URL}/cms/updates?all=true`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` } });
       if (res.status === 401) return router.push('/admin-login');
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to fetch updates');
@@ -88,8 +88,8 @@ export default function UpdatesAdminPage() {
       }
 
       const url = isEditMode 
-        ? `/api-backend/cms/updates/${currentUpdate._id}`
-        : '/api-backend/cms/updates';
+        ? `${API_URL}/cms/updates/${currentUpdate._id}`
+        : `${API_URL}/cms/updates`;
       const method = isEditMode ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
@@ -115,9 +115,9 @@ export default function UpdatesAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this update?')) return;
     try {
-      const res = await fetch(`/api-backend/cms/updates/${id}`, {
+      const res = await fetch(`${API_URL}/cms/updates/${id}`, {
         method: 'DELETE',
-        headers: getHeaders(),
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` },
       });
       if (!res.ok) throw new Error('Failed to delete');
       setUpdates(updates.filter((u) => u._id !== id));
@@ -126,118 +126,105 @@ export default function UpdatesAdminPage() {
     }
   };
 
-  if (loading) return <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-[#0d9488]" /></div>;
-  if (error) return <div className="p-4 bg-red-50 text-red-600 rounded-xl font-medium">{error}</div>;
+  if (loading) return <div className="flex justify-center py-40 min-h-screen items-center"><Loader2 className="w-12 h-12 animate-spin text-[#E85222]/30" /></div>;
+  if (error) return <div className="p-10 max-w-2xl mx-auto"><div className="bg-red-50 p-6 rounded-[2rem] text-red-600 font-bold border border-red-100 flex items-center gap-4 text-sm tracking-tight"><X className="w-5 h-5 shrink-0" /> {error}</div></div>;
 
   return (
-    <div className="space-y-6 px-4 sm:px-0">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-3">
-             <Bell className="w-6 h-6 text-[#E85222]" />
-             <span>Manage Updates</span>
-          </h2>
-          <p className="text-sm text-gray-500 mt-1">Hospital news, notices, and public updates.</p>
+    <div className="max-w-[1366px] mx-auto pb-24 font-sans tracking-tight">
+      {/* ─── Premium Header ─── */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-[10px] font-extrabold text-[#E85222] bg-[#E85222]/5 px-4 py-1.5 rounded-full uppercase tracking-widest mb-2 w-fit border border-[#E85222]/10 shadow-sm animate-in fade-in slide-in-from-left duration-700">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Public Notices Hub</span>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-900 tracking-tighter">Announcements Hub</h1>
+          <p className="text-base text-gray-500 font-medium tracking-tight">Broadcast feed for hospital notices, events and clinical updates.</p>
         </div>
+
         <button
           onClick={() => handleOpenModal()}
-          className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl shadow-sm transition-all font-semibold text-sm"
+          className="group flex items-center justify-center gap-3 px-8 py-4 bg-[#E85222] hover:bg-[#d4431a] text-white rounded-[1.5rem] shadow-xl shadow-orange-500/10 transition-all font-bold text-sm active:scale-95"
         >
-          <Plus className="w-4 h-4" /> Add Announcement
+          <Megaphone className="w-4 h-4 transition-transform group-hover:scale-110" />
+          <span>Publish New Notice</span>
         </button>
       </div>
 
-      {/* Mobile Card View */}
-      <div className="grid grid-cols-1 gap-4 md:hidden">
-        {updates.length === 0 ? (
-          <div className="bg-white p-12 rounded-2xl text-center border-2 border-dashed border-gray-100">
-            <p className="text-gray-400 font-medium italic text-sm">No announcements found.</p>
-          </div>
-        ) : updates.map((update) => (
-          <div key={update._id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-            <div className="flex justify-between items-start">
-              <div className="min-w-0">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full text-[8px] font-bold uppercase tracking-widest">
-                    {update.category}
-                  </span>
-                  {update.isImportant && (
-                    <span className="px-2 py-0.5 bg-red-50 text-red-600 rounded-full text-[8px] font-bold uppercase tracking-widest animate-pulse">
-                      Urgent
-                    </span>
-                  )}
-                </div>
-                <h3 className="font-bold text-gray-900 text-sm line-clamp-2">{update.title}</h3>
-                <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mt-1">{update.date}</p>
-              </div>
-              <div className="flex gap-1 shrink-0">
-                <button onClick={() => handleOpenModal(update)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-                  <Edit2 className="w-4 h-4" />
-                </button>
-                <button onClick={() => handleDelete(update._id)} className="p-2 text-gray-400 hover:text-red-300 hover:bg-red-50 rounded-lg">
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-            <div className="flex items-center justify-between pt-3 border-t border-gray-50">
-              <div className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full ${update.isActive ? 'bg-green-500' : 'bg-slate-300'}`}></div>
-                <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">{update.isActive ? 'Live' : 'Hidden'}</span>
-              </div>
-              {update.pdfUrl && (
-                <div className="px-2 py-0.5 bg-teal-50 text-teal-600 rounded-full text-[8px] font-bold uppercase tracking-widest border border-teal-100">PDF Attached</div>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Desktop Table View */}
-      <div className="hidden md:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+      {/* ─── Archive Table ─── */}
+      <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left">
+          <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="bg-gray-50 font-semibold text-gray-600 border-b border-gray-100">
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Date / Category</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Title / Preview</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Status / Type</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-right">Actions</th>
+              <tr className="bg-gray-50/50 border-b border-gray-100 font-extrabold text-[10px] text-gray-400 uppercase tracking-[0.2em]">
+                <th className="px-10 py-6 text-left">Internal ID</th>
+                <th className="px-10 py-6 text-left">Notice Headlines</th>
+                <th className="px-10 py-6 text-left">Context & Date</th>
+                <th className="px-10 py-6 text-center">Engagement</th>
+                <th className="px-10 py-6 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {updates.length === 0 ? (
-                <tr><td colSpan={4} className="px-6 py-20 text-center text-gray-400 font-medium italic">No announcements found.</td></tr>
+                <tr><td colSpan={5} className="px-10 py-40 text-center">
+                   <Megaphone className="w-10 h-10 text-gray-200 mx-auto mb-6" />
+                   <h3 className="text-gray-400 font-bold text-lg tracking-tight uppercase">No Announcements BroadcastED</h3>
+                </td></tr>
               ) : updates.map((update) => (
-                <tr key={update._id} className="hover:bg-gray-50 transition-colors group">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <p className="text-sm font-bold text-gray-900">{update.date}</p>
-                    <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mt-1">{update.category}</p>
+                <tr key={update._id} className="group hover:bg-[#E85222]/[0.02] transition-all duration-300">
+                  <td className="px-10 py-8 whitespace-nowrap">
+                     <span className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">#{update._id.slice(-6)}</span>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                       {update.isImportant && <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse shrink-0"></div>}
-                       <div className="min-w-0">
-                          <p className="text-sm font-bold text-gray-900 truncate max-w-md">{update.title}</p>
-                          <p className="text-[10px] text-gray-400 truncate max-w-md italic">{update.description.substring(0, 60)}...</p>
+                  <td className="px-10 py-8">
+                    <div className="flex flex-col">
+                       <h3 className={`font-extrabold tracking-tight group-hover:text-[#E85222] transition-colors line-clamp-1 ${update.isImportant ? 'text-gray-900 border-l-2 border-red-500 pl-3' : 'text-gray-800'}`}>
+                          {update.title}
+                       </h3>
+                       <div className="flex items-center gap-3 mt-2">
+                          {update.pdfUrl && (
+                             <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-blue-50 text-blue-600 rounded text-[9px] font-black uppercase tracking-widest border border-blue-100">
+                                <FileText className="w-2.5 h-2.5" />
+                                <span>PDF Attachment</span>
+                             </div>
+                          )}
                        </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                     <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-2">
-                           <div className={`w-1.5 h-1.5 rounded-full ${update.isActive ? 'bg-green-500' : 'bg-slate-300'}`}></div>
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{update.isActive ? 'Active' : 'Archived'}</span>
+                  <td className="px-10 py-8">
+                     <div className="flex flex-col">
+                        <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-[#E85222] uppercase tracking-widest mb-1.5">
+                           <MapPin className="w-3 h-3" />
+                           <span>{update.category}</span>
                         </div>
-                        {update.pdfUrl && <span className="text-[8px] font-bold text-teal-500 uppercase tracking-wider">PDF Document</span>}
+                        <div className="flex items-center gap-1.5 text-gray-400 font-bold text-[10px] uppercase">
+                           <Calendar className="w-3 h-3" />
+                           <span>{update.date}</span>
+                        </div>
                      </div>
                   </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-all">
-                      <button onClick={() => handleOpenModal(update)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
+                  <td className="px-10 py-8 text-center whitespace-nowrap">
+                     <div className={`px-4 py-1.5 rounded-2xl inline-flex items-center justify-center border font-extrabold text-[10px] uppercase tracking-widest transition-all ${
+                       update.isActive 
+                       ? 'bg-emerald-50 text-emerald-700 border-emerald-100 shadow-sm shadow-emerald-100' 
+                       : 'bg-slate-50 text-slate-400 border-slate-100'
+                     }`}>
+                        {update.isActive ? 'Live' : 'Draft'}
+                     </div>
+                  </td>
+                  <td className="px-10 py-8 text-right">
+                    <div className="flex items-center justify-end gap-1 pr-2 transition-all">
+                      <button 
+                         onClick={() => handleOpenModal(update)} 
+                         className="p-3.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-all"
+                         title="Edit"
+                      >
                         <Edit2 className="w-4 h-4" />
                       </button>
-                      <button onClick={() => handleDelete(update._id)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg">
+                      <button 
+                         onClick={() => handleDelete(update._id)} 
+                         className="p-3.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-2xl transition-all"
+                         title="Delete"
+                      >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -250,116 +237,74 @@ export default function UpdatesAdminPage() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm sm:p-6 overflow-y-auto">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl my-auto p-6 sm:p-8 animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-100">
-              <h3 className="text-lg font-bold text-gray-900">
-                {isEditMode ? 'Modify Update' : 'New Notice'}
-              </h3>
-              <button 
-                onClick={() => setIsModalOpen(false)}
-                className="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100 transition-all"
-              >
-                <X className="w-6 h-6" />
-              </button>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md sm:p-6 overflow-y-auto animate-in fade-in duration-300">
+          <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-2xl my-auto p-8 sm:p-10 animate-in zoom-in-95 slide-in-from-bottom-5 duration-500 relative">
+            <div className="flex items-center justify-between mb-10">
+               <div className="flex items-center gap-5">
+                  <div className="w-14 h-14 rounded-2xl bg-orange-50 flex items-center justify-center border border-orange-100 text-[#E85222] shadow-sm">
+                     <Megaphone className="w-7 h-7" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-gray-900 tracking-tighter uppercase leading-none">
+                      {isEditMode ? 'Modify Official Update' : 'New System Broadcast'}
+                    </h3>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mt-1.5">Hospital Communication Protocol</p>
+                  </div>
+               </div>
+               <button onClick={() => setIsModalOpen(false)} className="p-3 text-gray-300 hover:text-gray-900 hover:bg-gray-50 rounded-2xl transition-all"><X className="w-7 h-7" /></button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Category (e.g. OPD, Camps)</label>
-                  <input
-                    type="text" required
-                    className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-[#0d9488] outline-none transition-all text-sm font-medium"
-                    value={currentUpdate.category} 
-                    onChange={e => setCurrentUpdate({...currentUpdate, category: e.target.value})}
-                  />
+                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 ml-1">Archive Date</label>
+                  <input type="text" required placeholder="e.g. 23-03-2026" className="w-full px-6 py-4.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#E85222] focus:bg-white outline-none transition-all text-sm font-bold text-gray-900" value={currentUpdate.date} onChange={e => setCurrentUpdate({...currentUpdate, date: e.target.value})} />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Date (e.g. March 15, 2026)</label>
-                  <input
-                    type="text" required
-                    className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-[#0d9488] outline-none transition-all text-sm font-medium"
-                    value={currentUpdate.date} 
-                    onChange={e => setCurrentUpdate({...currentUpdate, date: e.target.value})}
-                  />
+                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 ml-1">Distribution Context</label>
+                  <input type="text" required placeholder="e.g. Departments" className="w-full px-6 py-4.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#E85222] focus:bg-white outline-none transition-all text-sm font-bold text-gray-900" value={currentUpdate.category} onChange={e => setCurrentUpdate({...currentUpdate, category: e.target.value})} />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Title</label>
-                <input
-                  type="text" required
-                  className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-[#0d9488] outline-none transition-all text-sm font-bold"
-                  value={currentUpdate.title} 
-                  onChange={e => setCurrentUpdate({...currentUpdate, title: e.target.value})}
-                  placeholder="e.g. Cardiology OPD Timings"
-                />
+                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 ml-1">Official Headline</label>
+                <input type="text" required placeholder="Enter primary notification title..." className="w-full px-6 py-5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#E85222] focus:bg-white outline-none transition-all text-lg font-black text-gray-900 shadow-sm" value={currentUpdate.title} onChange={e => setCurrentUpdate({...currentUpdate, title: e.target.value})} />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Description</label>
-                <textarea
-                  required rows={4}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#0d9488] outline-none transition-all text-sm font-medium resize-none"
-                  value={currentUpdate.description} 
-                  onChange={e => setCurrentUpdate({...currentUpdate, description: e.target.value})}
-                />
+                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 ml-1">Detailed Briefing</label>
+                <textarea required rows={5} placeholder="Full communication substance for public distribution..." className="w-full px-6 py-5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#E85222] focus:bg-white outline-none transition-all text-sm font-bold resize-none leading-relaxed text-gray-700" value={currentUpdate.description} onChange={e => setCurrentUpdate({...currentUpdate, description: e.target.value})} />
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">PDF (Optional)</label>
-                <input
-                  type="file"
-                  accept=".pdf"
-                  onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
-                  className="w-full px-4 py-2 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#0d9488]/10 file:text-[#0d9488] cursor-pointer"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 bg-gray-50 p-6 rounded-xl border border-gray-100">
-                <label className="flex items-center gap-3 cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    className="sr-only"
-                    checked={currentUpdate.isImportant}
-                    onChange={e => setCurrentUpdate({...currentUpdate, isImportant: e.target.checked})}
-                  />
-                  <div className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${currentUpdate.isImportant ? 'bg-red-500 border-red-500' : 'border-gray-200 bg-white'}`}>
-                    {currentUpdate.isImportant && <Check className="w-4 h-4 text-white font-bold" />}
+              <div className="flex flex-col sm:flex-row gap-5 bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100">
+                <label className="flex-1 flex items-center gap-5 cursor-pointer group bg-white p-5 rounded-3xl border border-gray-100 hover:border-red-200 transition-all hover:shadow-md active:scale-[0.98]">
+                  <input type="checkbox" className="sr-only peer" checked={currentUpdate.isImportant} onChange={e => setCurrentUpdate({...currentUpdate, isImportant: e.target.checked})} />
+                  <div className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center transition-all duration-300 ${currentUpdate.isImportant ? 'bg-red-500 border-red-500 shadow-lg shadow-red-500/20' : 'border-gray-200 bg-white group-hover:border-red-200'}`}>
+                    {currentUpdate.isImportant && <Check className="w-6 h-6 text-white font-black animate-in zoom-in duration-300" />}
                   </div>
-                  <span className="text-xs font-semibold text-gray-700">Mark Important</span>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-black text-gray-900 uppercase tracking-widest">Urgent Alert</span>
+                    <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Alerts whole system</span>
+                  </div>
                 </label>
 
-                <label className="flex items-center gap-3 cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    className="sr-only"
-                    checked={currentUpdate.isActive}
-                    onChange={e => setCurrentUpdate({...currentUpdate, isActive: e.target.checked})}
-                  />
-                  <div className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${currentUpdate.isActive ? 'bg-[#0d9488] border-[#0d9488]' : 'border-gray-200 bg-white'}`}>
-                    {currentUpdate.isActive && <Check className="w-4 h-4 text-white font-bold" />}
+                <label className="flex-1 flex items-center gap-5 cursor-pointer group bg-white p-5 rounded-3xl border border-gray-100 hover:border-emerald-200 transition-all hover:shadow-md active:scale-[0.98]">
+                  <input type="checkbox" className="sr-only peer" checked={currentUpdate.isActive} onChange={e => setCurrentUpdate({...currentUpdate, isActive: e.target.checked})} />
+                  <div className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center transition-all duration-300 ${currentUpdate.isActive ? 'bg-emerald-500 border-emerald-500 shadow-lg shadow-emerald-500/20' : 'border-gray-200 bg-white group-hover:border-emerald-200'}`}>
+                    {currentUpdate.isActive && <Check className="w-6 h-6 text-white font-black animate-in zoom-in duration-300" />}
                   </div>
-                  <span className="text-xs font-semibold text-gray-700">Live On Site</span>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-black text-gray-900 uppercase tracking-widest">Live View</span>
+                    <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Online for public</span>
+                  </div>
                 </label>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-6 py-2.5 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-all"
-                >
-                  Discard
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-8 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl font-bold text-sm shadow-sm transition-all disabled:opacity-50"
-                >
-                  {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin mr-2 inline" /> : null}
-                  {isEditMode ? 'Update' : 'Publish'}
+              <div className="flex justify-end items-center gap-8 pt-6">
+                <button type="button" onClick={() => setIsModalOpen(false)} className="text-[11px] font-black text-gray-400 hover:text-gray-900 transition-all uppercase tracking-[0.2em] px-4">Discard Notice</button>
+                <button type="submit" disabled={isSubmitting} className="px-12 py-5 bg-[#E85222] hover:bg-[#d4431a] text-white rounded-[2rem] font-black text-sm shadow-xl shadow-orange-500/30 transition-all disabled:opacity-50 active:scale-[0.98] flex items-center gap-4">
+                  {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : <Megaphone className="w-6 h-6" />}
+                  <span>{isEditMode ? 'Authorize Revision' : 'Authorize Release'}</span>
                 </button>
               </div>
             </form>
@@ -367,5 +312,13 @@ export default function UpdatesAdminPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function AdminUpdatesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-12 h-12 animate-spin text-[#E85222]" /></div>}>
+      <UpdatesHub />
+    </Suspense>
   );
 }

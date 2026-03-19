@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Newspaper, Loader2, Save, X, ArrowLeft, Image as ImageIcon, Sparkles, Eye, Info, Link as LinkIcon } from 'lucide-react';
+import { Newspaper, Loader2, Save, X, ArrowLeft, Image as ImageIcon, Sparkles, Eye, Trash2 } from 'lucide-react';
 import { Editor } from '@tinymce/tinymce-react';
 import { getImageUrl } from '@/lib/api';
 
@@ -94,222 +94,226 @@ function BlogActionForm() {
   };
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-white">
-      <Loader2 className="w-12 h-12 animate-spin text-[#0d9488]" />
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] pb-20">
-      <div className="sticky top-0 z-50 bg-white border-b border-gray-100 px-4 sm:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-        <div className="flex items-center gap-3 sm:gap-6 w-full sm:w-auto">
-          <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 shrink-0">
-            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-          <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
-             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-inner shrink-0">
-                <Newspaper className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
-             </div>
-             <div className="min-w-0">
-                <h1 className="text-base sm:text-xl font-black text-[#1a3a5c] uppercase tracking-widest truncate">
-                  {editId ? 'Refine Blog' : 'New Blog'}
+    <div className="min-h-screen bg-[#f1f5f9] pb-20 font-sans">
+      {/* ─── Header Section ─── */}
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div className="max-w-[1366px] mx-auto px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4 w-full sm:w-auto">
+            <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500">
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center shadow-sm">
+                <Newspaper className="w-5 h-5 text-purple-600" />
+              </div>
+              <div className="min-w-0">
+                <h1 className="text-lg font-bold text-gray-900 leading-tight">
+                  {editId ? 'Edit Blog' : 'Launch New Blog'}
                 </h1>
-                <p className="text-[8px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">SEO Editorial Suite • Popular Hospital</p>
-             </div>
+                <p className="text-xs text-gray-500 font-medium tracking-tight">SEO Editorial Suite • Popular Hospital</p>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-4 w-full sm:w-auto">
-            <button type="button" onClick={() => setShowPreview(true)} className="flex items-center gap-2 px-3 sm:px-6 py-2 sm:py-3 text-[10px] sm:text-sm font-black text-blue-600 hover:bg-blue-50 rounded-xl sm:rounded-2xl uppercase tracking-widest transition-all">
-               <Eye className="w-4 h-4 sm:w-5 sm:h-5" /> <span>Preview</span>
+          <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+             <button type="button" onClick={() => setShowPreview(true)} className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+               <Eye className="w-4 h-4" /> <span>Preview</span>
             </button>
-            <button onClick={handleSubmit} disabled={isSaving} className="flex items-center gap-2 sm:gap-3 px-4 sm:px-10 py-2.5 sm:py-3.5 bg-[#0d9488] hover:bg-[#E85222] text-white rounded-xl sm:rounded-2xl shadow-xl transition-all font-black uppercase tracking-widest text-[10px] sm:text-sm disabled:opacity-50">
-              {isSaving ? <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /> : <Save className="w-4 h-4 sm:w-5 sm:h-5" />}
-              <span>{editId ? 'Update' : 'Launch'}</span>
+            <button type="button" onClick={() => window.close()} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Cancel</button>
+            <button onClick={handleSubmit} disabled={isSaving} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-semibold text-sm disabled:opacity-50">
+              {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+              <span>{editId ? 'Save Article' : 'Launch Post'}</span>
             </button>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto mt-6 sm:mt-12 px-4 sm:px-8">
-         <form className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12">
-            {/* Left Main Content */}
-            <div className="lg:col-span-8 space-y-8">
-               <div className="bg-white p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 space-y-6 sm:space-y-8 border border-white">
+      {/* ─── Form Content ─── */}
+      <div className="max-w-[1366px] mx-auto mt-8 px-4 sm:px-8 lg:px-12">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Main Details Panel */}
+          <div className="lg:col-span-8 space-y-8">
+            <div className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-200">
+              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Article Body</h2>
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Blog Title *</label>
+                  <input required value={formData.title} 
+                    onChange={(e) => {
+                      const v = e.target.value;
+                      setFormData({ ...formData, title: v, slug: v.toLowerCase().replace(/[^a-z0-9]+/g, '-'), metaTitle: v });
+                    }}
+                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-gray-900 font-bold text-lg" 
+                    placeholder="Enter blog heading..." />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-3 ml-2">Article Heading *</label>
-                    <input required value={formData.title} 
-                      onChange={(e) => {
-                        const v = e.target.value;
-                        setFormData({ ...formData, title: v, slug: v.toLowerCase().replace(/[^a-z0-9]+/g, '-'), metaTitle: v });
-                      }}
-                      className="w-full px-5 sm:px-8 py-4 sm:py-5 rounded-[1.5rem] sm:rounded-[2rem] bg-gray-50 border-2 border-transparent focus:border-purple-500 focus:bg-white outline-none transition-all font-black text-base sm:text-xl text-[#1a3a5c]" 
-                      placeholder="e.g. Breakthrough in Non-Invasive Heart Surgery..." />
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Slug (URL)</label>
+                    <input value={formData.slug} onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
+                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-gray-900 text-sm" />
                   </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <div>
-                      <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-2">Slug (URL)</label>
-                      <input value={formData.slug} onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
-                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-purple-500 outline-none transition-all font-bold text-sm" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-2">Author</label>
-                      <input required value={formData.author} onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-purple-500 outline-none transition-all font-bold text-sm" />
-                    </div>
-                  </div>
-
                   <div>
-                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3 ml-2">Snippet / Excerpt</label>
-                    <div className="rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border-2 border-gray-50">
-                        <Editor
-                          apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
-                          value={formData.excerpt}
-                          onEditorChange={(content: string) => setFormData({ ...formData, excerpt: content })}
-                          init={{ height: 180, menubar: false, plugins: ['link'], toolbar: 'bold italic | link | removeformat', branding: false }}
-                        />
-                    </div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Author</label>
+                    <input required value={formData.author} onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-gray-900 text-sm" />
                   </div>
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3 ml-2">Full Body Content *</label>
-                    <div className="rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden border-2 border-gray-50 min-h-[400px] sm:min-h-[auto]">
-                        <Editor
-                          apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
-                          value={formData.content}
-                          onEditorChange={(content: string) => setFormData({ ...formData, content: content })}
-                          init={{
-                            height: 700,
-                            menubar: true,
-                            plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount emoticons codesample',
-                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | image link media table | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat | help',
-                            images_upload_url: `${API_URL}/api/blog-image-direct`,
-                            branding: false,
-                            images_upload_handler: (blobInfo: any) => new Promise((resolve, reject) => {
-                                const fd = new FormData();
-                                fd.append('file', blobInfo.blob(), blobInfo.filename());
-                                fetch(`${API_URL}/api/blog-image-direct`, {
-                                  method: 'POST',
-                                  headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` },
-                                  body: fd
-                                })
-                                .then(res => res.ok ? res.json() : reject('Upload failed'))
-                                .then(json => json.location ? resolve(json.location) : reject('Invalid location'))
-                                .catch(err => reject(err.message));
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Snippet / Excerpt</label>
+                  <div className="rounded-xl overflow-hidden border border-gray-200">
+                      <Editor
+                        apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
+                        value={formData.excerpt}
+                        onEditorChange={(content: string) => setFormData({ ...formData, excerpt: content })}
+                        init={{ height: 180, menubar: false, plugins: ['link'], toolbar: 'bold italic | link | removeformat', branding: false, statusbar: false }}
+                      />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-4">Detailed Article Content *</label>
+                  <div className="rounded-xl overflow-hidden border border-gray-200 min-h-[700px]">
+                    <Editor
+                      apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
+                      value={formData.content}
+                      onEditorChange={(content: string) => setFormData({ ...formData, content: content })}
+                      init={{
+                        height: 700,
+                        menubar: true,
+                        plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount emoticons codesample',
+                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | image link media table | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat | help',
+                        images_upload_url: `${API_URL}/api/blog-image-direct`,
+                        branding: false,
+                        statusbar: false,
+                        images_upload_handler: (blobInfo: any) => new Promise((resolve, reject) => {
+                            const fd = new FormData();
+                            fd.append('file', blobInfo.blob(), blobInfo.filename());
+                            fetch(`${API_URL}/api/blog-image-direct`, {
+                                method: 'POST',
+                                headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` },
+                                body: fd
                             })
-                          }}
-                        />
-                    </div>
+                            .then(res => res.ok ? res.json() : reject('Upload failed'))
+                            .then(json => json.location ? resolve(json.location) : reject('Invalid location'))
+                            .catch(err => reject(err.message));
+                        })
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Featured Image</h2>
+              <div className="relative aspect-square rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group">
+                  {imagePreview ? (
+                      <>
+                         <img src={imagePreview} alt="Blog Preview" className="w-full h-full object-cover" />
+                         <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <label className="cursor-pointer bg-white text-gray-900 px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-lg">Change Image</label>
+                         </div>
+                      </>
+                  ) : (
+                      <div className="text-center">
+                         <ImageIcon className="w-10 h-10 text-gray-300 mx-auto mb-2" />
+                         <p className="text-[10px] font-bold text-gray-400 uppercase">1:1 Ratio Recommended</p>
+                      </div>
+                  )}
+                  <input type="file" accept="image/*" onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) { setImageFile(f); setImagePreview(URL.createObjectURL(f)); }
+                  }} className="absolute inset-0 opacity-0 cursor-pointer" />
+              </div>
+              <input value={formData.imageAlt} onChange={(e) => setFormData({...formData, imageAlt: e.target.value})} placeholder="Image Alt Text (SEO)..." className="w-full px-4 py-2 mt-4 rounded-lg bg-gray-50 text-xs font-semibold border border-gray-200 outline-none" />
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+               <div className="flex items-center gap-3 mb-6">
+                  <Sparkles className="w-5 h-5 text-amber-500" />
+                  <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest">SEO Intelligence</h2>
+               </div>
+               <div className="space-y-4">
+                  <div>
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Focus Keyword *</label>
+                    <input required value={formData.focusKeyword} onChange={(e) => setFormData({...formData, focusKeyword: e.target.value, metaKeywords: e.target.value})} className="w-full px-4 py-2 rounded-lg bg-gray-50 text-xs font-semibold border border-gray-200" placeholder="e.g. Health Tips" />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Meta Description</label>
+                    <textarea rows={3} value={formData.metaDescription} onChange={(e) => setFormData({...formData, metaDescription: e.target.value})} className="w-full px-4 py-2 rounded-lg bg-gray-50 text-xs font-medium border border-gray-200 resize-none" placeholder="Search excerpt..." />
                   </div>
                </div>
             </div>
 
-            {/* Right Sidebar */}
-            <div className="lg:col-span-4 space-y-10">
-               {/* Image Card */}
-               <div className="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
-                  <div className="flex items-center gap-3">
-                     <ImageIcon className="w-5 h-5 text-purple-500" />
-                     <h4 className="font-black text-gray-900 uppercase tracking-widest text-xs">Featured Asset</h4>
-                  </div>
-                  <div className="relative aspect-square rounded-[1.5rem] sm:rounded-[2rem] bg-slate-50 border-2 border-dashed border-slate-200 overflow-hidden group flex items-center justify-center max-w-[300px] mx-auto lg:max-w-none">
-                     {imagePreview ? (
-                        <>
-                           <img src={imagePreview} className="w-full h-full object-cover" />
-                           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
-                              <label className="cursor-pointer bg-white/20 backdrop-blur-md px-6 py-2.5 rounded-xl text-white font-black text-[10px] uppercase tracking-widest">Change Cover</label>
-                           </div>
-                        </>
-                     ) : (
-                        <div className="text-center">
-                           <ImageIcon className="w-10 h-10 text-slate-200 mx-auto mb-2" />
-                           <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Upload 1:1 Aspect Frame</p>
-                        </div>
-                     )}
-                     <input type="file" accept="image/*" onChange={(e) => {
-                        const f = e.target.files?.[0];
-                        if (f) { setImageFile(f); setImagePreview(URL.createObjectURL(f)); }
-                     }} className="absolute inset-0 opacity-0 cursor-pointer" />
-                  </div>
-                  <input value={formData.imageAlt} onChange={(e) => setFormData({...formData, imageAlt: e.target.value})} placeholder="SEO: Image alt text..." className="w-full px-5 py-3 rounded-xl bg-slate-50 text-xs font-bold border-2 border-transparent focus:border-purple-300 outline-none" />
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 space-y-6">
+               <div>
+                  <label className="block text-xs font-bold text-gray-400 uppercase mb-2">Publish Date</label>
+                  <input required type="date" value={formData.dateIso} 
+                     onChange={(e) => {
+                       const iso = e.target.value;
+                       if (!iso) return;
+                       setFormData({ ...formData, dateIso: iso, date: new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) });
+                     }}
+                     className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold" />
                </div>
-
-               {/* SEO Card */}
-               <div className="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
-                  <div className="flex items-center gap-3">
-                     <Sparkles className="w-5 h-5 text-amber-500" />
-                     <h4 className="font-black text-gray-900 uppercase tracking-widest text-xs">SEO Intelligence</h4>
-                  </div>
-                  <div className="space-y-4">
-                     <div>
-                        <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Focus Keyword *</label>
-                        <input required value={formData.focusKeyword} onChange={(e) => setFormData({...formData, focusKeyword: e.target.value, metaKeywords: e.target.value})} className="w-full px-5 py-3 rounded-xl bg-slate-50 text-xs font-black border-2 border-transparent focus:border-amber-400 outline-none" placeholder="e.g. Best Hospital Varanasi" />
-                     </div>
-                     <div>
-                        <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Meta Description</label>
-                        <textarea rows={3} value={formData.metaDescription} onChange={(e) => setFormData({...formData, metaDescription: e.target.value})} className="w-full px-5 py-3 rounded-xl bg-slate-50 text-xs font-bold border-2 border-transparent focus:border-amber-400 outline-none resize-none" placeholder="Search result snippet..." />
-                     </div>
-                  </div>
+               <div>
+                  <label className="block text-xs font-bold text-gray-400 uppercase mb-2">Category</label>
+                  <select disabled={formData.isUncategorized} value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold">
+                     <option value="">Select Speciality</option>
+                     {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
                </div>
-
-               {/* Meta Card */}
-               <div className="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
-                  <div>
-                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Publishing Date</label>
-                    <input required type="date" value={formData.dateIso} 
-                       onChange={(e) => {
-                         const iso = e.target.value;
-                         if (!iso) return;
-                         setFormData({ ...formData, dateIso: iso, date: new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) });
-                       }}
-                       className="w-full px-5 py-4 rounded-xl bg-slate-50 text-xs font-black border-2 border-transparent focus:border-blue-400 outline-none" />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Category / Speciality</label>
-                    <select disabled={formData.isUncategorized} value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value})} className="w-full px-5 py-4 rounded-xl bg-slate-50 text-xs font-black border-2 border-transparent focus:border-blue-400 outline-none">
-                       <option value="">Choose Category</option>
-                       {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                  </div>
-                  <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
-                     <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Live Status</span>
-                     <label className="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" className="sr-only peer" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} />
-                        <div className="w-12 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer-checked:bg-[#0d9488] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
-                     </label>
-                  </div>
+               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                  <span className="text-xs font-bold text-gray-600">Active Listing</span>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" className="sr-only peer" checked={formData.isActive} onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })} />
+                    <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+                  </label>
                </div>
             </div>
-         </form>
+          </div>
+        </form>
       </div>
 
       {/* Preview Overlay */}
       {showPreview && (
         <div className="fixed inset-0 bg-white z-[200] flex flex-col overflow-hidden">
-           <div className="bg-[#1a3a5c] px-4 sm:px-10 py-3 sm:py-5 flex items-center justify-between text-white">
-              <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
-                 <Eye className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 shrink-0" />
-                 <h2 className="font-black tracking-[0.1em] sm:tracking-[0.3em] uppercase truncate text-sm sm:text-base">Vantage Preview Mode</h2>
+           <div className="bg-gray-900 px-6 py-4 flex items-center justify-between text-white shadow-xl">
+              <div className="flex items-center gap-4">
+                 <Eye className="w-6 h-6 text-blue-400" />
+                 <h2 className="font-bold tracking-widest uppercase text-sm">Vantage Preview Mode</h2>
               </div>
-              <button onClick={() => setShowPreview(false)} className="bg-white/10 hover:bg-white/20 p-2 sm:p-3 rounded-full transition-all shrink-0"><X className="w-6 h-6 sm:w-8 sm:h-8" /></button>
+              <button onClick={() => setShowPreview(false)} className="hover:bg-white/10 p-2 rounded-full transition-colors"><X className="w-8 h-8" /></button>
            </div>
-           <div className="flex-1 overflow-y-auto bg-[#f4f8fb] pb-40 px-4 sm:px-0">
-              <div className="max-w-4xl mx-auto mt-10 sm:mt-20 bg-white rounded-[2rem] sm:rounded-[4rem] shadow-[0_40px_100px_rgba(0,0,0,0.08)] overflow-hidden border border-slate-50">
-                 <div className="h-[250px] sm:h-[450px] relative">
+           <div className="flex-1 overflow-y-auto bg-gray-50 pb-40 px-4">
+              <div className="max-w-4xl mx-auto mt-16 bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                 <div className="h-[400px] relative">
                     <img src={imagePreview || '/about-section-image.png'} alt="Preview" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/90 via-transparent to-transparent" />
-                    <div className="absolute bottom-6 sm:bottom-16 left-6 sm:left-16 right-6 sm:right-16">
-                       <span className="bg-[#E85222] text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest mb-3 sm:mb-6 inline-block">{formData.category || 'General Health'}</span>
-                       <h1 className="text-2xl sm:text-5xl font-black text-white leading-tight drop-shadow-2xl">{formData.title || 'Draft Article Heading'}</h1>
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent" />
+                    <div className="absolute bottom-12 left-12 right-12">
+                       <span className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">{formData.category || 'General Health'}</span>
+                       <h1 className="text-4xl font-bold text-white leading-tight">{formData.title || 'Draft Article'}</h1>
                     </div>
                  </div>
-                 <div className="p-6 sm:p-16">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mb-8 sm:mb-12 py-4 sm:py-8 border-y border-slate-50 text-[10px] sm:text-sm font-black text-slate-400 uppercase tracking-widest">
-                       <span>Editor: {formData.author}</span>
-                       <span className="hidden sm:block w-2 h-2 rounded-full bg-slate-200" />
+                 <div className="p-12">
+                    <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-100 text-sm text-gray-400 font-semibold uppercase">
+                       <span>{formData.author}</span>
+                       <span className="w-1.5 h-1.5 rounded-full bg-gray-200" />
                        <span>{formData.date || 'Pending Release'}</span>
                     </div>
-                    <div className="prose prose-lg sm:prose-2xl prose-slate max-w-none text-slate-700 font-medium leading-[1.6] sm:leading-[2]" dangerouslySetInnerHTML={{ __html: formData.content }} />
+                    <div className="prose prose-xl prose-slate max-w-none text-gray-700 leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: formData.content }} />
                  </div>
               </div>
            </div>
@@ -321,7 +325,7 @@ function BlogActionForm() {
 
 export default function BlogActionPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-12 h-12 animate-spin text-[#0d9488]" /></div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-10 h-10 animate-spin text-blue-600" /></div>}>
       <BlogActionForm />
     </Suspense>
   );

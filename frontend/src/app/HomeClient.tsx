@@ -1226,10 +1226,11 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
             {[
               {
                 title: "Emergency",
+                image: "/images/banners/Emergency_24_bg.jpg",
                 desc: "Equipped With the State of the Art facility to manage all types of Trauma, Medical Queries, or Surgical emergencies. Our Emergency Department.",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -1237,6 +1238,7 @@ export default function HomePage() {
               },
               {
                 title: "Blood Bank",
+                image: "/images/banners/blood_bank_24_bg.jpg",
                 desc: "The 24hour Blood Bank present within the campus is equipped with an ultramodern collection centre, component lab and single donor plateletpheresis (SDP).",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -1244,19 +1246,15 @@ export default function HomePage() {
               },
               {
                 title: "Ambulance",
+                image: "/images/banners/Ambulance_24_bg.avif",
                 desc: "Popular Hospital has Air Ambulance services. It also provides ground ambulance services to shift patient from one hospital to another hospital.",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                ),
-                customIcon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                ),
-                customIcon2: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                 )
               },
               {
                 title: "Diagnostics & Imaging",
+                image: "/images/banners/diagnostics_imaging_24_bg.avif",
                 desc: "The Pathology Laboratory at Popular Hospital is fully licensed. The laboratory supplements its testing capability by using reference laboratories that provide high quality service.",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
@@ -1264,6 +1262,7 @@ export default function HomePage() {
               },
               {
                 title: "ICU Service",
+                image: "/images/banners/icu_service_24_bg.jpg",
                 desc: "Intensive care Unit is needed if someone is seriously ill and requires intensive treatment and close monitoring, or surgery intensive care can help them to recover.",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -1271,6 +1270,7 @@ export default function HomePage() {
               },
               {
                 title: "Pharmacy",
+                image: "/images/banners/pharmacy_24_bg.avif",
                 desc: "Hospital Pharmacy is situated in the campus of all the hospitals to facilitate patients fulfilling their emergency needs as well as the medicines as prescribed inside the hospital.",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -1279,55 +1279,39 @@ export default function HomePage() {
             ].map((service, idx) => (
               <div
                 key={service.title}
-                className="group [perspective:1000px] w-full h-full"
+                className="group [perspective:1000px] w-full h-[360px]"
               >
-                <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+                <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100">
                   
                   {/* FRONT SIDE */}
-                  <div className="w-full h-full min-h-[340px] [backface-visibility:hidden] bg-white rounded-xl p-8 text-center flex flex-col border-t-4 border-[#0b1c43]">
-                    
-                    <div className="flex justify-center mb-6">
-                      <div className="w-16 h-16 rounded-full bg-[#E0F2FE] flex items-center justify-center">
-                        <svg className="w-8 h-8 text-[#0b1c43]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          {service.customIcon2 || service.icon}
-                        </svg>
-                      </div>
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-white rounded-3xl p-8 text-center flex flex-col items-center">
+                    <div className="w-16 h-16 rounded-full bg-[#f0f9ff] flex items-center justify-center mb-8 border border-gray-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
+                      <svg className="w-8 h-8 text-[#1e3a8a] transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {service.icon}
+                      </svg>
                     </div>
-
-                    <h3 className="text-xl font-bold mb-4 font-heading text-[#0b1c43]">
+                    <h3 className="text-2xl font-bold mb-4 font-heading text-[#0b1c43]">
                       {service.title}
                     </h3>
-
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6 font-medium flex-grow">
+                    <p className="text-gray-500 text-base leading-relaxed font-medium">
                       {service.desc}
                     </p>
-
-                    {/* Mobile-only Read More */}
-                    <div className="md:hidden mt-auto">
-                      <Link 
-                        href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                        className="inline-block px-6 py-2 border-2 border-[#E85222] text-[#E85222] text-sm font-bold rounded-full uppercase tracking-wide"
-                      >
-                        Read more
-                      </Link>
-                    </div>
-
                   </div>
 
-                  {/* BACK SIDE (Desktop/Tablet only) */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden hidden md:flex border-t-4 border-[#E85222]">
+                  {/* BACK SIDE */}
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden hidden md:flex">
                      <Image 
-                        src="https://images.unsplash.com/photo-1551076805-e18690c5e561?q=80&w=500&auto=format&fit=crop" 
+                        src={service.image} 
                         alt={service.title} 
                         fill 
                         className="object-cover" 
                      />
-                     <div className="absolute inset-0 bg-[#0b1c43]/85" />
+                     <div className="absolute inset-0 bg-[#0b1c43]/50" />
                      <div className="relative z-10 flex flex-col items-center justify-center p-8 w-full h-full text-center">
-                        <h3 className="text-white text-2xl font-bold mb-8 font-heading px-4">{service.title}</h3>
+                        <h3 className="text-white text-2xl font-bold mb-8 font-heading px-4 drop-shadow-md">{service.title}</h3>
                         <Link 
                           href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                          className="px-8 py-3 bg-[#E85222] text-white text-sm font-bold rounded-full hover:bg-white hover:text-[#E85222] transition-colors duration-300 uppercase tracking-wide"
+                          className="px-8 py-3 bg-[#E85222] text-white text-sm font-bold rounded-full hover:bg-white hover:text-[#E85222] transition-colors duration-300 uppercase tracking-wide shadow-lg"
                         >
                           Read more
                         </Link>
@@ -1343,10 +1327,21 @@ export default function HomePage() {
 
       {/* Appointment Booking Banner */}
       <section
-        className="py-12 sm:py-16 bg-[#0b1c43]"
+        className="py-12 sm:py-16 bg-[#0b1c43] relative overflow-hidden"
         aria-labelledby="appointment-banner"
       >
-        <div className="mx-auto w-full max-w-[1920px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+        {/* Background Image with High Visibility for striking look */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/banners/book_an_appointment_banner.png"
+            alt="Hospital background"
+            fill
+            className="object-cover opacity-45"
+          />
+          <div className="absolute inset-0 bg-[#0b1c43]/40 mix-blend-multiply" />
+        </div>
+
+        <div className="mx-auto w-full max-w-[1920px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
             {/* Left Side - Icon, Heading, and Description */}
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 flex-1">

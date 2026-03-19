@@ -195,53 +195,82 @@ export default function CareerPage() {
         </div>
       </div>
 
-      {/* Details Modal */}
+      {/* Balanced Single Column Fully Scrollable Modal */}
       {selectedJob && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0b1c43]/60 backdrop-blur-md overflow-y-auto">
-             <div className="bg-white rounded-[3rem] shadow-2xl w-full max-w-3xl relative animate-in zoom-in-95 duration-200 my-auto">
-                <div className="flex items-center justify-between p-8 border-b border-gray-100">
-                   <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center">
-                          <CheckCircle2 className="w-6 h-6 text-[#0d9488]" />
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-slate-900/60 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-300">
+             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl relative animate-in zoom-in-95 duration-400 my-auto border border-slate-200">
+                
+                {/* ─── Header Part (Scrollable) ─── */}
+                <div className="px-8 lg:px-10 py-9 lg:py-12 border-b border-slate-100 flex items-center justify-between">
+                   <div className="flex items-center gap-5">
+                      <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 border border-blue-100">
+                          <CheckCircle2 className="w-6 h-6" />
                       </div>
                       <div>
-                         <h3 className="text-xl font-black text-[#1a3a5c] uppercase tracking-widest leading-none">{selectedJob.designation}</h3>
-                         <p className="text-xs text-gray-400 font-bold italic mt-1">{selectedJob.department} Department</p>
+                         <h3 className="text-xl lg:text-2xl font-extrabold text-slate-900 uppercase tracking-tight leading-none">{selectedJob.designation}</h3>
+                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-2">{selectedJob.department} Division</p>
                       </div>
                    </div>
-                   <button onClick={() => setSelectedJob(null)} className="p-3 hover:bg-gray-100 rounded-full transition-colors">
-                      <X className="w-6 h-6 text-gray-400" />
+                   <button onClick={() => setSelectedJob(null)} className="p-2.5 hover:bg-slate-50 text-slate-300 hover:text-slate-900 rounded-lg transition-all border border-transparent hover:border-slate-100">
+                      <X className="w-6 h-6" />
                    </button>
                 </div>
 
-                <div className="p-8 max-h-[60vh] overflow-y-auto custom-scrollbar">
-                   <div className="prose prose-sm max-w-none prose-headings:text-[#1a3a5c] prose-headings:font-black prose-p:text-gray-600 prose-p:font-medium"
-                        dangerouslySetInnerHTML={{ __html: selectedJob.description }} 
-                   />
+                {/* ─── Main Content Body ─── */}
+                <div className="px-8 lg:px-10 py-12 lg:py-14 space-y-12">
+                   
+                   {/* Job Specification Bar */}
+                   <div className="flex flex-wrap gap-4 pb-8 border-b border-slate-100/60">
+                      <div className="flex items-center gap-3 px-5 py-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                         <MapPin className="w-3.5 h-3.5 text-[#E85222]" />
+                         <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{selectedJob.location || 'Varanasi'}</span>
+                      </div>
+                      <div className="flex items-center gap-3 px-5 py-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                         <Users className="w-3.5 h-3.5 text-blue-500" />
+                         <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{selectedJob.position} Positions</span>
+                      </div>
+                      <div className="flex items-center gap-3 px-5 py-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                         <Calendar className="w-3.5 h-3.5 text-orange-400" />
+                         <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none block">{selectedJob.lastDate === '-' ? 'Ongoing Recruitment' : `Deadline: ${selectedJob.lastDate}`}</span>
+                      </div>
+                   </div>
 
-                   <div className="mt-10 p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                      <h4 className="text-sm font-black text-[#1a3a5c] uppercase tracking-widest mb-4 flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4 text-[#E85222]" /> Contact Recruitment Team
+                   {/* Description Area */}
+                   <div className="prose prose-slate prose-sm lg:prose-base max-w-none text-slate-600 font-medium leading-[1.8] tracking-tight"
+                        dangerouslySetInnerHTML={{ __html: selectedJob.description }} />
+
+                   {/* Contact Section */}
+                   <div className="bg-slate-50/70 p-8 rounded-2xl border border-slate-100 space-y-6">
+                      <h4 className="text-xs font-bold text-slate-900 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                        <ArrowRight className="w-4 h-4 text-[#E85222]" /> Recruitment Inquiry
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                         <div className="flex items-center gap-3 text-sm text-gray-600 font-bold">
-                            <Mail className="w-4 h-4 text-[#0d9488]" /> careers@popularhospital.in
+                         <div className="flex items-center gap-3.5 text-xs text-slate-600 font-bold group hover:text-blue-600 transition-colors cursor-pointer">
+                            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-blue-400 border border-slate-200">
+                               <Mail className="w-4 h-4" />
+                            </div>
+                            <span>careers@popularhospital.in</span>
                          </div>
-                         <div className="flex items-center gap-3 text-sm text-gray-600 font-bold">
-                            <Phone className="w-4 h-4 text-[#0d9488]" /> +91-7800001895
+                         <div className="flex items-center gap-3.5 text-xs text-slate-600 font-bold group hover:text-blue-600 transition-colors cursor-pointer">
+                            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-blue-400 border border-slate-200">
+                               <Phone className="w-4 h-4" />
+                            </div>
+                            <span>+91 7800001895</span>
                          </div>
                       </div>
                    </div>
+
+                   {/* Footer Actions */}
+                   <div className="pt-12 border-t border-slate-100 flex flex-col sm:flex-row gap-4">
+                      <Link href={`/apply?job=${selectedJob._id}`} className="flex-[2] py-5 bg-[#1a3a5c] text-white rounded-xl text-center font-black text-xs uppercase tracking-[0.25em] hover:bg-[#E85222] transition-all shadow-lg active:scale-[0.98]">
+                           Confirm Application
+                      </Link>
+                      <button onClick={() => setSelectedJob(null)} className="flex-1 py-5 bg-slate-100 text-slate-400 hover:text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-200 transition-all border border-slate-200 shadow-sm">
+                          Close Details
+                      </button>
+                   </div>
                 </div>
 
-                <div className="p-8 pt-0 flex gap-4">
-                    <Link href={`/apply?job=${selectedJob._id}`} className="flex-1 py-4 bg-[#1a3a5c] text-white rounded-2xl text-center font-black text-sm uppercase tracking-widest hover:bg-[#E85222] transition-all shadow-xl shadow-blue-900/20 active:scale-95">
-                        Apply for this position
-                    </Link>
-                    <button onClick={() => setSelectedJob(null)} className="px-8 py-4 bg-gray-100 text-gray-400 rounded-2xl font-black text-sm uppercase tracking-widest hover:text-gray-600 transition-all">
-                        Close
-                    </button>
-                </div>
              </div>
           </div>
       )}

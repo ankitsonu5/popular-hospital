@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, Suspense, useCallback } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Newspaper, Loader2, Save, X, ArrowLeft, Camera, Image as ImageIcon } from 'lucide-react';
 import { getImageUrl } from '@/lib/api';
@@ -79,96 +79,106 @@ function PressActionForm() {
   };
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f8fafc]">
-      <Loader2 className="w-12 h-12 animate-spin text-teal-600" />
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] pb-20">
-      <div className="sticky top-0 z-50 bg-white border-b border-gray-100 px-4 sm:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-        <div className="flex items-center gap-3 sm:gap-6 w-full sm:w-auto">
-          <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 shrink-0">
-            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-          <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
-             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-teal-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-inner shrink-0">
-                <Newspaper className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600" />
-             </div>
-             <div className="min-w-0">
-                <h1 className="text-base sm:text-xl font-black text-[#1a3a5c] uppercase tracking-widest truncate">
-                  {editId ? 'Edit Clipping' : 'New Coverage'}
-                </h1>
-                <p className="text-[8px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">Press Archive • Popular Hospital</p>
-             </div>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-4 w-full sm:w-auto">
-            <button type="button" onClick={() => window.close()} className="flex-1 sm:flex-none px-4 sm:px-6 py-2 sm:py-3 text-[10px] sm:text-sm font-black text-gray-400 hover:text-gray-600 uppercase tracking-widest transition-all">Cancel</button>
-            <button onClick={handleSubmit} disabled={isSaving} className="flex-1 sm:flex-none flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-10 py-2.5 sm:py-3.5 bg-teal-600 hover:bg-[#E85222] text-white rounded-xl sm:rounded-2xl shadow-xl transition-all font-black uppercase tracking-widest text-[10px] sm:text-sm disabled:opacity-50">
-              {isSaving ? <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /> : <Save className="w-4 h-4 sm:w-5 sm:h-5" />}
-              <span>{editId ? 'Save' : 'Upload'}</span>
+    <div className="min-h-screen bg-[#f1f5f9] pb-20 font-sans">
+      {/* ─── Header Section ─── */}
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div className="max-w-[1366px] mx-auto px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4 w-full sm:w-auto">
+            <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500">
+              <ArrowLeft className="w-5 h-5" />
             </button>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center shadow-sm">
+                <Newspaper className="w-5 h-5 text-teal-600" />
+              </div>
+              <div className="min-w-0">
+                <h1 className="text-lg font-bold text-gray-900 leading-tight">
+                  {editId ? 'Edit Clipping' : 'New Press Coverage'}
+                </h1>
+                <p className="text-xs text-gray-500 font-medium tracking-tight">Press Archive • Popular Hospital</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+            <button type="button" onClick={() => window.close()} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Cancel</button>
+            <button onClick={handleSubmit} disabled={isSaving} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-semibold text-sm disabled:opacity-50">
+              {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+              <span>{editId ? 'Save Changes' : 'Publish Coverage'}</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto mt-6 sm:mt-12 px-4 sm:px-6">
-         <form className="space-y-6 sm:space-y-10 bg-white p-6 sm:p-12 rounded-[2rem] sm:rounded-[3.5rem] shadow-2xl shadow-blue-900/5 border border-white">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12">
-                <div className="space-y-8">
+      {/* ─── Form Content ─── */}
+      <div className="max-w-[1366px] mx-auto mt-8 px-4 sm:px-8 lg:px-12">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Main Details Panel */}
+          <div className="lg:col-span-12 space-y-8">
+            <div className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-200">
+              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Coverage Details</h2>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div className="space-y-6">
                     <div>
-                      <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3 ml-2">Publication Heading *</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Publication Heading *</label>
                       <input required value={formData.title} 
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full px-8 py-5 rounded-[2rem] bg-gray-50 border-2 border-transparent focus:border-teal-500 focus:bg-white outline-none transition-all font-black text-lg" 
-                        placeholder="e.g. Popular Hospital Awarded Best Cardiology..." />
+                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-gray-900 font-bold" 
+                        placeholder="Enter headline as seen in publication..." />
                     </div>
                     
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-2">Date *</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Date *</label>
                           <input required type="date" value={formData.dateIso} 
                             onChange={(e) => {
                                 const iso = e.target.value;
                                 if (!iso) return;
                                 setFormData({ ...formData, dateIso: iso, date: new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) });
                             }}
-                            className="w-full px-5 sm:px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-teal-500 outline-none font-bold text-sm" />
+                            className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold" />
                         </div>
                         <div>
-                          <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-2">Media Source *</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Media Source *</label>
                           <input required value={formData.source} onChange={(e) => setFormData({ ...formData, source: e.target.value })}
-                            className="w-full px-5 sm:px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-teal-500 outline-none font-bold text-sm" placeholder="e.g. Amar Ujala" />
+                            className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold" placeholder="e.g. Times of India" />
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-between p-6 bg-slate-50 rounded-[2rem] border border-slate-100">
-                        <div className="flex flex-col">
-                           <span className="text-[10px] font-black text-[#1a3a5c] uppercase tracking-widest">Gallery Visibility</span>
-                           <span className="text-[8px] text-gray-400 font-bold italic uppercase mt-1">Status: {formData.isActive ? 'VISIBLE' : 'HIDDEN'}</span>
+                    <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                        <div className="flex items-center justify-between mb-2">
+                           <span className="text-sm font-bold text-gray-700">Gallery Visibility</span>
+                           <label className="relative inline-flex items-center cursor-pointer">
+                               <input type="checkbox" className="sr-only peer" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} />
+                               <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+                           </label>
                         </div>
-                        <label className="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" className="sr-only peer" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} />
-                            <div className="w-12 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer-checked:bg-teal-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
-                        </label>
+                        <p className="text-[10px] text-gray-400 font-medium italic">Status: {formData.isActive ? 'VISIBLE IN PRESS SECTION' : 'HIDDEN FROM PUBLIC VIEW'}</p>
                     </div>
                 </div>
 
                 <div className="space-y-4">
-                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest ml-2 mb-3">Press Clipping Photo *</label>
-                    <div className="relative aspect-[3/4] sm:aspect-video md:aspect-[3/4] rounded-[1.5rem] sm:rounded-[2.5rem] bg-slate-50 border-2 border-dashed border-slate-100 flex items-center justify-center overflow-hidden transition-all hover:bg-slate-100/50 group shadow-inner">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Press Clipping Photo *</label>
+                    <div className="relative aspect-[3/4] sm:aspect-video lg:aspect-[4/3] rounded-2xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group shadow-inner">
                         {imagePreview ? (
                             <>
-                               <img src={imagePreview} className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700" />
-                               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
-                                  <label className="cursor-pointer bg-white text-teal-600 px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-2xl">Replace Clipping</label>
+                               <img src={imagePreview} className="w-full h-full object-contain p-4 transition-transform duration-700 hover:scale-105" />
+                               <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                  <label className="cursor-pointer bg-white text-gray-900 px-6 py-2.5 rounded-xl font-bold text-xs uppercase shadow-lg">Replace Clipping</label>
                                </div>
                             </>
                         ) : (
                             <div className="text-center">
-                               <Camera className="w-12 h-12 text-slate-200 mx-auto mb-3" />
-                               <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Scan or Photo of Publication</p>
+                               <Camera className="w-10 h-10 text-gray-300 mx-auto mb-2" />
+                               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Scan or Photo of Publication</p>
                             </div>
                         )}
                         <input type="file" accept="image/*" onChange={(e) => {
@@ -177,8 +187,10 @@ function PressActionForm() {
                         }} className="absolute inset-0 opacity-0 cursor-pointer" />
                     </div>
                 </div>
+              </div>
             </div>
-         </form>
+          </div>
+        </form>
       </div>
     </div>
   );
@@ -186,7 +198,7 @@ function PressActionForm() {
 
 export default function PressActionPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-12 h-12 animate-spin text-teal-600" /></div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-10 h-10 animate-spin text-blue-600" /></div>}>
       <PressActionForm />
     </Suspense>
   );

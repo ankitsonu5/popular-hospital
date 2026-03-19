@@ -1,229 +1,190 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { Plus, Edit2, Trash2, Search, Filter, Loader2, Briefcase, MapPin, Users, Globe } from 'lucide-react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
+import { Plus, Edit2, Trash2, Search, Loader2, Briefcase, MapPin, Calendar, Clock, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
-interface Career {
-  _id: string;
-  title: string;
-  category: string;
-  department: string;
-  designation: string;
-  location: string;
-  position: string;
-  description: string;
-  isActive: boolean;
-}
+const API_URL = '/api-backend';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
-
-export default function AdminCareersPage() {
-  const [careers, setCareers] = useState<Career[]>([]);
-  const [loading, setLoading] = useState(true);
+function CareerList() {
+  const [careers, setCareers] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
   
   const getHeaders = useCallback(() => ({
     'Authorization': `Bearer ${localStorage.getItem('admin_token')}`
   }), []);
 
-  const fetchCareers = useCallback(async () => {
-    setLoading(true);
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
     try {
-      const res = await fetch(`${API_URL}/api/cms/careers`, {
-        headers: getHeaders()
-      });
+      const res = await fetch(`${API_URL}/cms/careers`, { headers: getHeaders() });
       if (res.ok) {
         setCareers(await res.json());
       }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+    } catch (e) {
+      console.error(e);
     }
+    setIsLoading(false);
   }, [getHeaders]);
 
   useEffect(() => {
-    fetchCareers();
-    const handleFocus = () => fetchCareers();
+    fetchData();
+    const handleFocus = () => fetchData();
     window.addEventListener('focus', handleFocus);
     return () => window.removeEventListener('focus', handleFocus);
-  }, [fetchCareers]);
+  }, [fetchData]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this career?')) return;
+    if (!confirm('Are you sure you want to delete this job posting?')) return;
     try {
-      const res = await fetch(`${API_URL}/api/cms/careers/${id}`, {
-        method: 'DELETE',
-        headers: getHeaders()
-      });
-      if (res.ok) {
-        setCareers(careers.filter(c => c._id !== id));
-      }
-    } catch (err) {
-      console.error(err);
+      await fetch(`${API_URL}/cms/careers/${id}`, { method: 'DELETE', headers: getHeaders() });
+      fetchData();
+    } catch (e) {
+      console.error(e);
     }
   };
 
-  const filteredCareers = careers.filter(c => 
+  const filtered = careers.filter((c) =>
     c.title?.toLowerCase().includes(search.toLowerCase()) ||
     c.department?.toLowerCase().includes(search.toLowerCase()) ||
     c.designation?.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (loading && careers.length === 0) return <div className="min-h-[400px] flex items-center justify-center"><Loader2 className="w-8 h-8 animate-spin text-[#0d9488]" /></div>;
-
   return (
-    <div className="space-y-6 px-4 sm:px-0">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <Briefcase className="w-6 h-6 text-[#0d9488]" />
+    <div className="max-w-[1366px] mx-auto pb-24 font-sans tracking-tight">
+      {/* ─── Modern Header ─── */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-[10px] font-extrabold text-teal-600 bg-teal-50 px-4 py-1.5 rounded-full uppercase tracking-widest mb-2 w-fit border border-teal-100 shadow-sm animate-in fade-in slide-in-from-left duration-700">
+            <Sparkles className="w-3.5 h-3.5" />
             <span>Recruitment Center</span>
-          </h2>
-          <p className="text-sm text-gray-500 mt-1">{careers.length} job openings managed.</p>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-900 tracking-tighter">Career Opportunities</h1>
+          <p className="text-base text-gray-500 font-medium tracking-tight leading-relaxed max-w-xl">Public job openings and vacancies management system.</p>
         </div>
+
         <Link
           href="/admin-dashboard/careers/action"
           target="_blank"
-          className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl shadow-sm transition-all font-semibold text-sm"
+          className="group inline-flex items-center gap-2.5 px-8 py-4 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-2xl text-sm font-bold transition-all shadow-md hover:shadow-lg active:scale-95"
         >
-          <Plus className="w-4 h-4" /> Add New Role
+          <Plus className="w-4 h-4 transition-transform group-hover:rotate-90" />
+          <span>Post New Vacancy</span>
         </Link>
       </div>
 
-      {/* Stats & Search bar */}
-      <div className="flex flex-col lg:flex-row gap-4 lg:items-center justify-between">
-        <div className="relative w-full max-w-2xl">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+      {/* ─── Control Bar ─── */}
+      <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100 mb-10 flex flex-col md:flex-row gap-6">
+        <div className="relative flex-1 group">
+          <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300 group-focus-within:text-teal-500 transition-colors" />
           <input
             type="text"
-            placeholder="Search by role or department..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-gray-200 bg-white focus:border-[#0d9488] outline-none transition-all text-sm font-medium"
+            placeholder="Search by role, department or location..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-16 pr-6 py-4 rounded-[2rem] bg-gray-50 border border-transparent focus:border-teal-500 focus:bg-white outline-none transition-all text-sm font-semibold text-gray-700 placeholder:text-gray-300"
           />
         </div>
-        <div className="flex items-center gap-3">
-            <div className="bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">{careers.filter(c => c.isActive).length} Active</span>
-            </div>
-            <div className="bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-slate-200"></div>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{careers.filter(c => !c.isActive).length} Drafts</span>
-            </div>
+      </div>
+
+      {/* ─── Career Table ─── */}
+      {isLoading && careers.length === 0 ? (
+        <div className="py-48 flex flex-col items-center justify-center space-y-6">
+           <Loader2 className="w-14 h-14 animate-spin text-teal-200" />
+           <p className="text-xs font-bold text-gray-300 uppercase tracking-widest text-center">Loading Archives...</p>
         </div>
-      </div>
-
-      {/* Mobile Card View */}
-      <div className="grid grid-cols-1 gap-4 md:hidden">
-        {filteredCareers.map((c) => (
-          <div key={c._id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-            <div className="flex justify-between items-start">
-              <div className="min-w-0">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className={`px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-widest ${
-                    c.category === 'Medico' ? 'bg-red-50 text-red-600' : 
-                    c.category === 'Non-Medical' ? 'bg-blue-50 text-blue-600' : 'bg-orange-50 text-orange-600'
-                  }`}>
-                    {c.category}
-                  </span>
-                  <span className={`px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-widest ${
-                    c.isActive ? 'bg-green-50 text-green-700' : 'bg-slate-50 text-slate-400'
-                  }`}>
-                    {c.isActive ? 'Live' : 'Hidden'}
-                  </span>
-                </div>
-                <h3 className="font-bold text-gray-900 text-sm line-clamp-2">{c.title}</h3>
-                <p className="text-xs text-gray-500 mt-1 uppercase font-semibold text-[10px] tracking-wider">{c.department}</p>
-              </div>
-              <div className="flex gap-1">
-                <Link href={`/admin-dashboard/careers/action?id=${c._id}`} target="_blank" className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-                  <Edit2 className="w-4 h-4" />
-                </Link>
-                <button onClick={() => handleDelete(c._id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg">
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4 pt-3 border-t border-gray-50">
-                <div className="flex items-center gap-2 text-xs text-gray-400">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>{c.location || 'N/A'}</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-gray-400">
-                    <Users className="w-3.5 h-3.5" />
-                    <span>{c.position || 0} Openings</span>
-                </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Desktop View - Table */}
-      <div className="hidden md:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead className="bg-gray-50/50 border-b border-gray-100">
-              <tr>
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Job Details</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Dept / Category</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Location</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">Status</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {filteredCareers.map((c) => (
-                <tr key={c._id} className="hover:bg-gray-50/50 transition-all group">
-                  <td className="px-6 py-5">
-                    <p className="font-bold text-gray-900 text-sm">{c.title}</p>
-                    <p className="text-xs text-gray-400 mt-1">{c.designation}</p>
-                  </td>
-                  <td className="px-6 py-5">
-                    <div className="flex flex-col gap-1">
-                        <span className="text-xs font-semibold text-gray-600">{c.department}</span>
-                        <span className={`text-[9px] font-bold uppercase tracking-wider ${
-                            c.category === 'Medico' ? 'text-red-500' : 
-                            c.category === 'Non-Medical' ? 'text-blue-500' : 'text-orange-500'
-                        }`}>{c.category}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-5 whitespace-nowrap">
-                    <div className="flex items-center gap-1.5 text-xs text-gray-500">
-                        <MapPin className="w-3 h-3" />
-                        <span>{c.location}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-5 text-center">
-                    <span className={`inline-flex px-3 py-1 rounded-full text-[10px] font-bold ${
-                      c.isActive ? 'bg-green-50 text-green-700' : 'bg-slate-50 text-slate-500'
-                    }`}>
-                      {c.isActive ? 'Active' : 'Draft'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-5 text-right">
-                    <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-all">
-                      <Link href={`/admin-dashboard/careers/action?id=${c._id}`} target="_blank" className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-                        <Edit2 className="w-4 h-4" />
-                      </Link>
-                      <button onClick={() => handleDelete(c._id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg">
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
+      ) : (
+        <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden group/table">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr className="bg-gray-50/50 border-b border-gray-100 font-extrabold text-[10px] text-gray-400 uppercase tracking-[0.2em]">
+                  <th className="px-10 py-6 text-left">Post Details</th>
+                  <th className="px-10 py-6 text-left">Department</th>
+                  <th className="px-10 py-6 text-left">Posted On</th>
+                  <th className="px-10 py-6 text-left">Deadline</th>
+                  <th className="px-10 py-6 text-center">Status</th>
+                  <th className="px-10 py-6 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          {filteredCareers.length === 0 && (
-            <div className="py-20 text-center text-gray-400 font-medium">No roles found.</div>
-          )}
+              </thead>
+              <tbody className="divide-y divide-gray-50/50">
+                {filtered.map((item) => (
+                  <tr key={item._id} className="group hover:bg-teal-50/30 transition-all duration-300">
+                    <td className="px-10 py-8">
+                       <div className="flex items-center gap-7">
+                          <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center border border-teal-100 shadow-sm relative group-hover:scale-105 transition-transform duration-500 overflow-hidden">
+                             <Briefcase className="w-6 h-6 text-teal-600 opacity-60" />
+                          </div>
+                          <div className="min-w-0">
+                             <h3 className="font-extrabold text-gray-900 group-hover:text-teal-600 transition-colors uppercase tracking-tight mb-1">{item.title}</h3>
+                             <div className="flex items-center gap-2 text-[10px] font-bold text-gray-400">
+                                <MapPin className="w-3 h-3 text-red-400" />
+                                <span>{item.location || 'Varanasi'}</span>
+                             </div>
+                          </div>
+                       </div>
+                    </td>
+                    <td className="px-10 py-8">
+                       <div className="flex flex-col">
+                          <span className="text-sm font-bold text-gray-700">{item.department || '-'}</span>
+                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">{item.category}</span>
+                       </div>
+                    </td>
+                    <td className="px-10 py-8 text-gray-500 font-medium whitespace-nowrap">{item.postedOn || '-'}</td>
+                    <td className="px-10 py-8 text-gray-500 font-medium whitespace-nowrap">{item.lastDate || '-'}</td>
+                    <td className="px-10 py-8 text-center whitespace-nowrap">
+                       <div className={`px-4 py-1.5 rounded-2xl inline-flex items-center justify-center border font-extrabold text-[10px] uppercase tracking-widest transition-all ${
+                         item.isActive !== false 
+                         ? 'bg-emerald-50 text-emerald-700 border-emerald-100 shadow-emerald-100 shadow-sm' 
+                         : 'bg-slate-50 text-slate-400 border-slate-100'
+                       }`}>
+                          {item.isActive !== false ? 'Hiring' : 'Closed'}
+                       </div>
+                    </td>
+                    <td className="px-10 py-8 text-right">
+                       <div className="flex items-center justify-end gap-1 pr-2 transition-all">
+                          <Link 
+                            href={`/admin-dashboard/careers/action?id=${item._id}`} 
+                            target="_blank" 
+                            className="p-3 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-all"
+                            title="Edit"
+                          >
+                             <Edit2 className="w-4 h-4" />
+                          </Link>
+                          <button 
+                            onClick={() => handleDelete(item._id)} 
+                            className="p-3 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-2xl transition-all"
+                            title="Delete"
+                          >
+                             <Trash2 className="w-4 h-4" />
+                          </button>
+                       </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {filtered.length === 0 && (
+              <div className="py-40 flex flex-col items-center justify-center">
+                 <div className="w-20 h-20 bg-gray-50 flex items-center justify-center rounded-[2rem] mb-6 scale-90 opacity-40">
+                    <Briefcase className="w-10 h-10 text-gray-400" />
+                 </div>
+                 <h3 className="font-extrabold text-gray-400 text-lg uppercase tracking-tight">No Vacancies Found</h3>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
+  );
+}
+
+export default function AdminCareersPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-14 h-14 animate-spin text-[#0d9488]" /></div>}>
+      <CareerList />
+    </Suspense>
   );
 }
