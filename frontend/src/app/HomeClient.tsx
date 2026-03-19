@@ -3,11 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { fetchBranches, fetchNews, getImageUrl, type Branch, type NewsItem } from "@/lib/api";
+import { fetchBranches, fetchNews, fetchEvents, getImageUrl, type Branch, type NewsItem, type EventItem } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function HomePage() {
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
+  const [latestEvents, setLatestEvents] = useState<EventItem[]>([]);
   const [branches, setBranches] = useState<Branch[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -29,12 +30,14 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [newsData, branchesData] = await Promise.all([
+      const [newsData, branchesData, eventsData] = await Promise.all([
         fetchNews(),
-        fetchBranches()
+        fetchBranches(),
+        fetchEvents()
       ]);
       setLatestNews(newsData.slice(0, 3));
       setBranches(branchesData);
+      setLatestEvents(eventsData.slice(0, 3));
     };
     fetchData();
   }, []);
@@ -1098,10 +1101,15 @@ export default function HomePage() {
       <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
         <div className="mx-auto max-w-[1666px] px-6 sm:px-8 lg:px-12 relative">
           {/* Section Header */}
-          <div className="mb-12 flex items-end justify-between">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1e3a8a] tracking-tight font-heading">
-              Our Branches. <span className="text-[#6e6e73]">Always within reach.</span>
-            </h2>
+          <div className="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div className="max-w-4xl">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1e3a8a] tracking-tight font-heading leading-tight">
+                Our Branches. <span className="text-[#6e6e73]">Always within reach.</span>
+              </h2>
+              <p className="sm:hidden mt-4 text-gray-500 font-medium text-sm tracking-wide bg-gray-100/50 inline-block px-3 py-1 rounded-full">
+                Swipe right to see more locations
+              </p>
+            </div>
 
             {/* Navigation Buttons */}
             <div className="hidden sm:flex gap-4 mb-2">
@@ -1488,6 +1496,104 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Latest Events Section */}
+      <section
+        className="py-16 sm:py-24 bg-white relative overflow-hidden"
+        aria-labelledby="latest-events"
+      >
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-hospital-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#E85222]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div className="max-w-2xl">
+
+              <h2
+                id="latest-events"
+                className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0b1c43] font-heading tracking-tight"
+              >
+                Latest <span className="text-hospital-teal">Events</span>
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {latestEvents.map((event) => (
+              <article 
+                key={event.slug} 
+                className="group relative bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full"
+              >
+                {/* Event Image Container */}
+                <div className="relative w-full h-64 overflow-hidden shrink-0">
+                  <Image
+                    src={getImageUrl(event.thumbnail) || "/about-section-image.png"}
+                    alt={event.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  {/* Date Badge */}
+                  <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-lg border border-white/20">
+                    <p className="text-[#0b1c43] font-black text-sm">
+                      {new Date(event.date).toLocaleDateString('en-US', { day: '2-digit', month: 'short' })}
+                    </p>
+                    <p className="text-[#E85222] font-bold text-xs">
+                      {new Date(event.date).getFullYear()}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-8 flex flex-col flex-1">
+                  <h3 className="text-2xl font-bold text-[#0b1c43] mb-4 font-heading leading-tight group-hover:text-hospital-teal transition-colors line-clamp-2">
+                    {event.title}
+                  </h3>
+                  <p className="text-gray-500 text-base leading-relaxed line-clamp-3 mb-6 flex-1">
+                    {event.description?.replace(/<[^>]*>/g, '') || "Experience our latest medical workshops and community health programs..."}
+                  </p>
+                  
+                  <Link
+                    href={`/media/events/${event.slug}`}
+                    className="inline-flex items-center gap-3 text-[#E85222] font-bold group/btn hover:gap-4 transition-all"
+                  >
+                    View Details
+                    <div className="w-8 h-8 rounded-full bg-[#E85222]/10 flex items-center justify-center group-hover/btn:bg-[#E85222] group-hover/btn:text-white transition-colors">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* View All Link */}
+          <div className="mt-16 text-center">
+            <Link
+              href="/media/events"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
+            >
+              <span>View All Events</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
 
       {/* Cashless Empanelment Section */}
       <section className="py-14 sm:py-16 bg-white border-t border-gray-100">
@@ -1958,6 +2064,74 @@ export default function HomePage() {
                 </button>
               </form>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Why We Are The Best Section (Achievements) ─── */}
+      <section className="bg-[#0b3c8a] py-20 sm:py-24 text-white">
+        <div className="mx-auto w-full max-w-[1366px] px-6 sm:px-8 lg:px-12 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-16 font-heading max-w-5xl mx-auto leading-tight italic">
+            Popular Hospital Is The Best Hospital In Varanasi. <br className="hidden md:block" />
+            <span className="text-[#FA9A3E] not-italic">Here&apos;s The Reason Why?</span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:max-w-5xl mx-auto border border-white/20 rounded-3xl overflow-hidden shadow-2xl bg-white/5 backdrop-blur-sm">
+             {/* Stat 1: Patients */}
+             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 12h2l1-4 2 8 1-4h2" />
+                   </svg>
+                </div>
+                <div className="text-left">
+                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Lacs of Happy</div>
+                   <div className="text-lg sm:text-xl font-medium text-white/80">Patients</div>
+                </div>
+             </div>
+
+             {/* Stat 2: Doctors */}
+             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b border-white/10 group hover:bg-white/10 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                   <svg className="w-16 h-16 text-white" stroke="currentColor" fill="none" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                      <circle cx="10" cy="7" r="4" />
+                      <path d="M14 11h2a2 2 0 012 2v6" />
+                   </svg>
+                </div>
+                <div className="text-left">
+                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Excellent Team of</div>
+                   <div className="text-lg sm:text-xl font-medium text-white/80">Qualified Doctors</div>
+                </div>
+             </div>
+
+             {/* Stat 3: Beds */}
+             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path d="M3 7v11m18-11v11M3 13h18M5 8h14M7 9v4m10-4v4" />
+                   </svg>
+                </div>
+                <div className="text-left">
+                   <div className="text-5xl sm:text-6xl font-black font-heading leading-tight text-[#FA9A3E] mb-1">450</div>
+                   <div className="text-lg sm:text-xl font-bold tracking-[0.1em] text-white/80 uppercase">Beds</div>
+                </div>
+             </div>
+
+             {/* Stat 4: Locations */}
+             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 group hover:bg-white/10 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <circle cx="12" cy="11" r="3" strokeWidth={1.5} />
+                   </svg>
+                </div>
+                <div className="text-left">
+                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Convenient Multiple</div>
+                   <div className="text-lg sm:text-xl font-medium text-white/80">Locations</div>
+                </div>
+             </div>
           </div>
         </div>
       </section>

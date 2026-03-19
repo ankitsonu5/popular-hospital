@@ -44,7 +44,7 @@ export default function LeadershipPage() {
         <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-3xl font-bold text-[#0b1c43] mb-4 font-heading">Guiding with Purpose</h2>
             <p className="text-gray-600 leading-relaxed text-lg">
-                Our leadership team comprises distinguished professionals from medical and management backgrounds, united by a common commitment to clinical excellence and patient-centric care.
+               Our leadership team includes experienced experts from both medical and management fields, all working together with a shared focus on providing high-quality treatment and putting patients first.
             </p>
         </div>
 

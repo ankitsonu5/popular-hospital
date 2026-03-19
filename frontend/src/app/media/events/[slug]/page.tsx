@@ -67,7 +67,7 @@ export default function EventDetailPage() {
     <main className="min-h-screen bg-white pb-24">
       {/* ─── Header Section ─── */}
       <section className="bg-gray-50 border-b border-gray-100 py-12 sm:py-20 lg:py-24">
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-[1366px] mx-auto px-6 sm:px-8 lg:px-12">
           <Link href="/media/events" className="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 mb-8 hover:translate-x-[-4px] transition-transform">
             <ChevronLeft className="w-4 h-4" /> Back to Events
           </Link>
@@ -78,11 +78,11 @@ export default function EventDetailPage() {
                  <Calendar className="w-4 h-4" /> {event.date}
                </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] leading-tight max-w-4xl">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] leading-tight w-full">
               {event.title}
             </h1>
             {event.description && (
-              <p className="text-gray-500 text-base sm:text-lg max-w-3xl leading-relaxed mt-2 whitespace-pre-wrap">
+              <p className="text-gray-500 text-base sm:text-lg w-full leading-relaxed mt-2 whitespace-pre-wrap">
                 {event.description}
               </p>
             )}
@@ -91,26 +91,28 @@ export default function EventDetailPage() {
       </section>
 
       {/* ─── Gallery Grid ─── */}
-      <section className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12 py-16">
+      <section className="max-w-[1366px] mx-auto px-6 sm:px-8 lg:px-12 py-16">
         <div className="flex items-center gap-3 mb-10 border-b border-gray-100 pb-6">
            <LayoutGrid className="w-6 h-6 text-[#E85222]" />
            <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wider">Event Highlights Gallery</h2>
            <span className="ml-auto text-sm font-medium text-gray-400">({event.gallery.length} Photos)</span>
         </div>
 
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
            {event.gallery.map((img, index) => (
              <div 
                key={index} 
                onClick={() => openLightbox(index)}
-               className="group relative cursor-zoom-in overflow-hidden rounded-2xl border border-gray-100 break-inside-avoid shadow-sm hover:shadow-xl transition-all duration-300"
+               className="group relative aspect-[4/3] cursor-zoom-in overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500"
              >
-                <img 
+                <Image 
                   src={getImageUrl(img)} 
                   alt={`${event.title} - photo ${index + 1}`}
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-indigo-900/0 group-hover:bg-indigo-900/20 transition-all flex items-center justify-center">
+                <div className="absolute inset-0 bg-indigo-900/0 group-hover:bg-indigo-900/40 transition-all flex items-center justify-center">
                     <Maximize2 className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300" />
                 </div>
              </div>

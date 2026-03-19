@@ -135,7 +135,7 @@ export default function BloodBankPage() {
       <section className="relative min-h-[400px] md:h-[400px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/blood_bank.png"
+            src="/images/banners/blood_bank_services.png"
             alt="Blood Bank"
             fill
             className="object-cover opacity-40 mix-blend-overlay"

@@ -4,6 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+// Helper to extract YouTube ID
+const getYoutubeId = (url: string) => {
+  if (!url) return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
 // Mock Data for Patient Stories
 const stories = [
   {
@@ -54,7 +62,29 @@ const stories = [
     name: "Patient Story 7",
     thumbnail: "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?q=80&w=800&auto=format&fit=crop",
     videoUrl: "/videos/popular_hospital_happy_pateint_five.mp4",
-  }
+  },
+  // New YouTube Stories
+  { id: 8, name: "Patient Story 8", videoUrl: "https://youtu.be/u1bEdChi85k" },
+  { id: 9, name: "Patient Story 9", videoUrl: "https://youtu.be/XKOLgUQhQAc" },
+  { id: 10, name: "Patient Story 10", videoUrl: "https://youtu.be/P3o0GstAjOw" },
+  { id: 11, name: "Patient Story 11", videoUrl: "https://youtu.be/ns5Y_MiCk1g" },
+  { id: 12, name: "Patient Story 12", videoUrl: "https://youtu.be/CKELqiNRXlU" },
+  { id: 13, name: "Patient Story 13", videoUrl: "https://youtu.be/hQG0tT0oPwE" },
+  { id: 14, name: "Patient Story 14", videoUrl: "https://youtu.be/OQ--tSdAr44" },
+  { id: 15, name: "Patient Story 15", videoUrl: "https://youtu.be/_USYaLNBr0I" },
+  { id: 16, name: "Patient Story 16", videoUrl: "https://youtu.be/lWoTlBf-iWY" },
+  { id: 17, name: "Patient Story 17", videoUrl: "https://youtu.be/cA9QMYwRYvQ" },
+  { id: 18, name: "Patient Story 18", videoUrl: "https://youtu.be/lRSfBVFRRyU" },
+  { id: 19, name: "Patient Story 19", videoUrl: "https://youtu.be/JawHPyAW50U" },
+  { id: 20, name: "Patient Story 20", videoUrl: "https://youtu.be/eaaW5JgGkFM" },
+  { id: 21, name: "Patient Story 21", videoUrl: "https://youtu.be/_XYudCsc5zk" },
+  { id: 22, name: "Patient Story 22", videoUrl: "https://youtu.be/enhaFLhURq0" },
+  { id: 23, name: "Patient Story 23", videoUrl: "https://youtu.be/kM_fHur_wWM" },
+  { id: 24, name: "Patient Story 24", videoUrl: "https://youtu.be/5Q9q9Azr6dA" },
+  { id: 25, name: "Patient Story 25", videoUrl: "https://youtu.be/LiA2mdckn6U" },
+  { id: 26, name: "Patient Story 26", videoUrl: "https://youtu.be/-Yjto4oDNI0" },
+  { id: 27, name: "Patient Story 27", videoUrl: "https://youtu.be/rPYoLVXxvZM" },
+  { id: 28, name: "Patient Story 28", videoUrl: "https://youtu.be/dHcZfxm6ZEI" },
 ];
 
 export default function StoriesPage() {
@@ -79,66 +109,94 @@ export default function StoriesPage() {
       {/* Video Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {stories.map((story) => (
-            <button
-              key={story.id}
-              onClick={() => setSelectedVideo(story.videoUrl)}
-              className="relative group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 text-left flex flex-col h-full"
-            >
-              <div className="relative aspect-[16/9] w-full bg-gray-200 overflow-hidden">
-                <video
-                  src={story.videoUrl}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  muted
-                  preload="metadata"
-                  playsInline
-                />
-                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                
-                {/* Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-white/30 backdrop-blur-md border border-white/60 flex items-center justify-center transform group-hover:scale-110 transition-transform shadow-lg">
-                    <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+          {stories.map((story) => {
+            const ytId = getYoutubeId(story.videoUrl);
+            const thumbUrl = ytId 
+              ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`
+              : (story.thumbnail || "/images/news-sm-inner.jpg");
+
+            return (
+              <button
+                key={story.id}
+                onClick={() => setSelectedVideo(story.videoUrl)}
+                className="relative group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 text-left flex flex-col h-full"
+              >
+                <div className="relative aspect-[16/9] w-full bg-gray-200 overflow-hidden">
+                  {ytId ? (
+                    <Image
+                      src={thumbUrl}
+                      alt={story.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <video
+                      src={story.videoUrl}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      muted
+                      preload="metadata"
+                      playsInline
+                    />
+                  )}
+                  
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                  
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-md border border-white/60 flex items-center justify-center transform group-hover:scale-110 transition-all shadow-xl">
+                      <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center transition-colors group-hover:bg-white group-hover:text-[#0b1c43]">
+                        <svg className="w-6 h-6 text-white transition-colors group-hover:text-[#0b1c43] ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="p-6 flex-1 flex flex-col">
-
-                <p className="text-gray-500 text-sm font-medium mt-auto">
-                  {story.name}
-                </p>
-              </div>
-            </button>
-          ))}
+                <div className="p-5 border-t border-gray-50 bg-white">
+                  <p className="text-[#0b1c43] text-sm font-bold tracking-tight">
+                    {story.name}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </section>
 
       {/* Video Modal */}
       {selectedVideo && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 animate-in fade-in duration-300"
           onClick={() => setSelectedVideo(null)}
         >
           <div 
-            className="relative w-full max-w-5xl bg-black rounded-xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedVideo(null)}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+              className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-black/50 hover:bg-red-500 text-white flex items-center justify-center transition-all"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <div className="relative aspect-video w-full">
-              <video
-                src={selectedVideo}
-                className="absolute inset-0 w-full h-full"
-                controls
-                autoPlay
-              />
+              {getYoutubeId(selectedVideo) ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${getYoutubeId(selectedVideo)}?autoplay=1`}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <video
+                  src={selectedVideo}
+                  className="absolute inset-0 w-full h-full"
+                  controls
+                  autoPlay
+                />
+              )}
             </div>
           </div>
         </div>
@@ -146,3 +204,4 @@ export default function StoriesPage() {
     </div>
   );
 }
+

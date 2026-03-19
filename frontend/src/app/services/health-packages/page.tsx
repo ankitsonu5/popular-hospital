@@ -18,7 +18,7 @@ const WellnessPage = () => {
       <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=2000"
+            src="/images/banners/health_packages.png"
             alt="Wellness Services"
             fill
             className="object-cover opacity-80"
@@ -313,7 +313,7 @@ const WellnessPage = () => {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
-              { title: "100% Discount on OPD", icon: "/images/wellness_packages/discount-icon.png" },
+              { title: "50% Discount on OPD for 1 year", icon: "/images/wellness_packages/discount-icon.png" },
               { title: "Priority Access in case of Trauma or Emergency", icon: "/images/wellness_packages/emergency-case-icon.png" },
               { title: "20% Discount in-house Pathology", icon: "/images/wellness_packages/house-pathology-icon.png" },
               { title: "20% Discount on in-house Radiological Test", icon: "/images/wellness_packages/radiological-test-icon.png" },

@@ -4,32 +4,18 @@ import { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import { Loader2, Bell, AlertCircle, Calendar, FileText, Info } from 'lucide-react';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
-
-interface UpdateItem {
-  _id: string;
-  category: string;
-  title: string;
-  date: string;
-  description: string;
-  iconType: string;
-  isImportant: boolean;
-  pdfUrl?: string;
-}
+import { fetchUpdates, getImageUrl } from '@/lib/api';
+import type { UpdateItem } from '@/lib/api';
 
 export default function UpdatesPage() {
   const [updates, setUpdates] = useState<UpdateItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_URL}/api/updates`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setUpdates(data);
-      })
-      .catch((err) => console.error("Error fetching updates:", err))
-      .finally(() => setLoading(false));
+    fetchUpdates().then(data => {
+      setUpdates(data);
+      setLoading(false);
+    });
   }, []);
 
   const renderIcon = (type: string, className: string = "w-6 h-6") => {
@@ -111,7 +97,7 @@ export default function UpdatesPage() {
                               
                               {update.pdfUrl && (
                                 <a 
-                                  href={`${API_URL}${update.pdfUrl}`}
+                                  href={getImageUrl(update.pdfUrl)}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#E85222] text-white rounded-xl font-bold text-sm hover:bg-[#d1451a] transition-all shadow-md active:scale-95"
@@ -152,7 +138,7 @@ export default function UpdatesPage() {
 
                                {update.pdfUrl && (
                                   <a 
-                                    href={`${API_URL}${update.pdfUrl}`}
+                                  href={getImageUrl(update.pdfUrl)}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-[#0d9488] text-[#0d9488] rounded-xl font-bold text-xs hover:bg-[#0d9488] hover:text-white transition-all active:scale-95"

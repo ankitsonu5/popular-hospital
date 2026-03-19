@@ -101,40 +101,40 @@ function BlogActionForm() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-20">
-      <div className="sticky top-0 z-50 bg-white border-b border-gray-100 px-8 py-4 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-6">
-          <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-full transition-all text-gray-400">
-            <ArrowLeft className="w-6 h-6" />
+      <div className="sticky top-0 z-50 bg-white border-b border-gray-100 px-4 sm:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+        <div className="flex items-center gap-3 sm:gap-6 w-full sm:w-auto">
+          <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 shrink-0">
+            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
-          <div className="flex items-center gap-4">
-             <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center shadow-inner">
-                <Newspaper className="w-6 h-6 text-purple-600" />
+          <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
+             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-inner shrink-0">
+                <Newspaper className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
              </div>
-             <div>
-                <h1 className="text-xl font-black text-[#1a3a5c] uppercase tracking-widest">
-                  {editId ? 'Refine Medical Blog' : 'New Clinical Publication'}
+             <div className="min-w-0">
+                <h1 className="text-base sm:text-xl font-black text-[#1a3a5c] uppercase tracking-widest truncate">
+                  {editId ? 'Refine Blog' : 'New Blog'}
                 </h1>
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">SEO Editorial Suite • Popular Hospital</p>
+                <p className="text-[8px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">SEO Editorial Suite • Popular Hospital</p>
              </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-            <button type="button" onClick={() => setShowPreview(true)} className="flex items-center gap-2 px-6 py-3 text-sm font-black text-blue-600 hover:bg-blue-50 rounded-2xl uppercase tracking-widest transition-all">
-               <Eye className="w-5 h-5" /> Preview
+        <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-4 w-full sm:w-auto">
+            <button type="button" onClick={() => setShowPreview(true)} className="flex items-center gap-2 px-3 sm:px-6 py-2 sm:py-3 text-[10px] sm:text-sm font-black text-blue-600 hover:bg-blue-50 rounded-xl sm:rounded-2xl uppercase tracking-widest transition-all">
+               <Eye className="w-4 h-4 sm:w-5 sm:h-5" /> <span>Preview</span>
             </button>
-            <button onClick={handleSubmit} disabled={isSaving} className="flex items-center gap-3 px-10 py-3.5 bg-[#0d9488] hover:bg-[#E85222] text-white rounded-2xl shadow-xl transition-all font-black uppercase tracking-widest text-sm disabled:opacity-50">
-              {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-              {editId ? 'Update Live' : 'Launch Live'}
+            <button onClick={handleSubmit} disabled={isSaving} className="flex items-center gap-2 sm:gap-3 px-4 sm:px-10 py-2.5 sm:py-3.5 bg-[#0d9488] hover:bg-[#E85222] text-white rounded-xl sm:rounded-2xl shadow-xl transition-all font-black uppercase tracking-widest text-[10px] sm:text-sm disabled:opacity-50">
+              {isSaving ? <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /> : <Save className="w-4 h-4 sm:w-5 sm:h-5" />}
+              <span>{editId ? 'Update' : 'Launch'}</span>
             </button>
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto mt-12 px-8">
-         <form className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="max-w-[1400px] mx-auto mt-6 sm:mt-12 px-4 sm:px-8">
+         <form className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12">
             {/* Left Main Content */}
             <div className="lg:col-span-8 space-y-8">
-               <div className="bg-white p-10 rounded-[3rem] shadow-xl shadow-blue-900/5 space-y-8 border border-white">
+               <div className="bg-white p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 space-y-6 sm:space-y-8 border border-white">
                   <div>
                     <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-3 ml-2">Article Heading *</label>
                     <input required value={formData.title} 
@@ -142,11 +142,11 @@ function BlogActionForm() {
                         const v = e.target.value;
                         setFormData({ ...formData, title: v, slug: v.toLowerCase().replace(/[^a-z0-9]+/g, '-'), metaTitle: v });
                       }}
-                      className="w-full px-8 py-5 rounded-[2rem] bg-gray-50 border-2 border-transparent focus:border-purple-500 focus:bg-white outline-none transition-all font-black text-xl text-[#1a3a5c]" 
+                      className="w-full px-5 sm:px-8 py-4 sm:py-5 rounded-[1.5rem] sm:rounded-[2rem] bg-gray-50 border-2 border-transparent focus:border-purple-500 focus:bg-white outline-none transition-all font-black text-base sm:text-xl text-[#1a3a5c]" 
                       placeholder="e.g. Breakthrough in Non-Invasive Heart Surgery..." />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-2">Slug (URL)</label>
                       <input value={formData.slug} onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
@@ -161,7 +161,7 @@ function BlogActionForm() {
 
                   <div>
                     <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3 ml-2">Snippet / Excerpt</label>
-                    <div className="rounded-[2rem] overflow-hidden border-2 border-gray-50">
+                    <div className="rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border-2 border-gray-50">
                         <Editor
                           apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
                           value={formData.excerpt}
@@ -173,7 +173,7 @@ function BlogActionForm() {
 
                   <div>
                     <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-3 ml-2">Full Body Content *</label>
-                    <div className="rounded-[2.5rem] overflow-hidden border-2 border-gray-50">
+                    <div className="rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden border-2 border-gray-50 min-h-[400px] sm:min-h-[auto]">
                         <Editor
                           apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
                           value={formData.content}
@@ -207,12 +207,12 @@ function BlogActionForm() {
             {/* Right Sidebar */}
             <div className="lg:col-span-4 space-y-10">
                {/* Image Card */}
-               <div className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
+               <div className="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
                   <div className="flex items-center gap-3">
                      <ImageIcon className="w-5 h-5 text-purple-500" />
                      <h4 className="font-black text-gray-900 uppercase tracking-widest text-xs">Featured Asset</h4>
                   </div>
-                  <div className="relative aspect-square rounded-[2rem] bg-slate-50 border-2 border-dashed border-slate-200 overflow-hidden group flex items-center justify-center">
+                  <div className="relative aspect-square rounded-[1.5rem] sm:rounded-[2rem] bg-slate-50 border-2 border-dashed border-slate-200 overflow-hidden group flex items-center justify-center max-w-[300px] mx-auto lg:max-w-none">
                      {imagePreview ? (
                         <>
                            <img src={imagePreview} className="w-full h-full object-cover" />
@@ -235,7 +235,7 @@ function BlogActionForm() {
                </div>
 
                {/* SEO Card */}
-               <div className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
+               <div className="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
                   <div className="flex items-center gap-3">
                      <Sparkles className="w-5 h-5 text-amber-500" />
                      <h4 className="font-black text-gray-900 uppercase tracking-widest text-xs">SEO Intelligence</h4>
@@ -253,7 +253,7 @@ function BlogActionForm() {
                </div>
 
                {/* Meta Card */}
-               <div className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
+               <div className="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-white space-y-6">
                   <div>
                     <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Publishing Date</label>
                     <input required type="date" value={formData.dateIso} 
@@ -286,30 +286,30 @@ function BlogActionForm() {
       {/* Preview Overlay */}
       {showPreview && (
         <div className="fixed inset-0 bg-white z-[200] flex flex-col overflow-hidden">
-           <div className="bg-[#1a3a5c] px-10 py-5 flex items-center justify-between text-white">
-              <div className="flex items-center gap-4">
-                 <Eye className="w-6 h-6 text-blue-400" />
-                 <h2 className="font-black tracking-[0.3em] uppercase">Vantage Preview Mode</h2>
+           <div className="bg-[#1a3a5c] px-4 sm:px-10 py-3 sm:py-5 flex items-center justify-between text-white">
+              <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
+                 <Eye className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 shrink-0" />
+                 <h2 className="font-black tracking-[0.1em] sm:tracking-[0.3em] uppercase truncate text-sm sm:text-base">Vantage Preview Mode</h2>
               </div>
-              <button onClick={() => setShowPreview(false)} className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all"><X className="w-8 h-8" /></button>
+              <button onClick={() => setShowPreview(false)} className="bg-white/10 hover:bg-white/20 p-2 sm:p-3 rounded-full transition-all shrink-0"><X className="w-6 h-6 sm:w-8 sm:h-8" /></button>
            </div>
-           <div className="flex-1 overflow-y-auto bg-[#f4f8fb] pb-40">
-              <div className="max-w-4xl mx-auto mt-20 bg-white rounded-[4rem] shadow-[0_40px_100px_rgba(0,0,0,0.08)] overflow-hidden border border-slate-50">
-                 <div className="h-[450px] relative">
-                    <img src={imagePreview || '/about-section-image.png'} className="w-full h-full object-cover" />
+           <div className="flex-1 overflow-y-auto bg-[#f4f8fb] pb-40 px-4 sm:px-0">
+              <div className="max-w-4xl mx-auto mt-10 sm:mt-20 bg-white rounded-[2rem] sm:rounded-[4rem] shadow-[0_40px_100px_rgba(0,0,0,0.08)] overflow-hidden border border-slate-50">
+                 <div className="h-[250px] sm:h-[450px] relative">
+                    <img src={imagePreview || '/about-section-image.png'} alt="Preview" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a5c]/90 via-transparent to-transparent" />
-                    <div className="absolute bottom-16 left-16 right-16">
-                       <span className="bg-[#E85222] text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-6 inline-block">{formData.category || 'General Health'}</span>
-                       <h1 className="text-5xl font-black text-white leading-tight drop-shadow-2xl">{formData.title || 'Draft Article Heading'}</h1>
+                    <div className="absolute bottom-6 sm:bottom-16 left-6 sm:left-16 right-6 sm:right-16">
+                       <span className="bg-[#E85222] text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest mb-3 sm:mb-6 inline-block">{formData.category || 'General Health'}</span>
+                       <h1 className="text-2xl sm:text-5xl font-black text-white leading-tight drop-shadow-2xl">{formData.title || 'Draft Article Heading'}</h1>
                     </div>
                  </div>
-                 <div className="p-16">
-                    <div className="flex items-center gap-6 mb-12 py-8 border-y border-slate-50 text-sm font-black text-slate-400 uppercase tracking-widest">
+                 <div className="p-6 sm:p-16">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mb-8 sm:mb-12 py-4 sm:py-8 border-y border-slate-50 text-[10px] sm:text-sm font-black text-slate-400 uppercase tracking-widest">
                        <span>Editor: {formData.author}</span>
-                       <span className="w-2 h-2 rounded-full bg-slate-200" />
+                       <span className="hidden sm:block w-2 h-2 rounded-full bg-slate-200" />
                        <span>{formData.date || 'Pending Release'}</span>
                     </div>
-                    <div className="prose prose-2xl prose-slate max-w-none text-slate-700 font-medium leading-[2]" dangerouslySetInnerHTML={{ __html: formData.content }} />
+                    <div className="prose prose-lg sm:prose-2xl prose-slate max-w-none text-slate-700 font-medium leading-[1.6] sm:leading-[2]" dangerouslySetInnerHTML={{ __html: formData.content }} />
                  </div>
               </div>
            </div>

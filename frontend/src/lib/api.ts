@@ -371,6 +371,40 @@ export async function fetchCareers(): Promise<CareerItem[]> {
   }
 }
 
+export async function fetchCareerItem(id: string): Promise<CareerItem | null> {
+  try {
+    const res = await fetch(api(`/careers/${id}`), { cache: 'no-store' });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch career item:', e);
+    return null;
+  }
+}
+
+export async function fetchUpdates(all: boolean = false): Promise<UpdateItem[]> {
+  try {
+    const url = all ? api('/updates?all=true') : api('/updates');
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch updates:', e);
+    return [];
+  }
+}
+
+export async function fetchUpdateItem(id: string): Promise<UpdateItem | null> {
+  try {
+    const res = await fetch(api(`/updates/${id}`), { cache: 'no-store' });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch update item:', e);
+    return null;
+  }
+}
+
 export interface CareerItem {
   _id: string;
   category: 'Medico' | 'Non-Medical' | 'Admin';
@@ -382,4 +416,16 @@ export interface CareerItem {
   lastDate: string;
   description: string;
   isActive: boolean;
+}
+
+export interface UpdateItem {
+  _id: string;
+  category: string;
+  title: string;
+  date: string;
+  description: string;
+  iconType: string;
+  isImportant: boolean;
+  isActive: boolean;
+  pdfUrl?: string;
 }

@@ -10,6 +10,16 @@ export const getActiveCareers = async (req, res) => {
   }
 };
 
+export const getCareerById = async (req, res) => {
+  try {
+    const career = await Career.findById(req.params.id);
+    if (!career) return res.status(404).json({ error: 'Career not found' });
+    res.json(career);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // Admin methods
 export const getAdminCareers = async (req, res) => {
   try {

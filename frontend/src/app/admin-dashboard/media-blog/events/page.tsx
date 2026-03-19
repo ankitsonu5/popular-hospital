@@ -8,7 +8,7 @@ import Link from 'next/link';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
 
 export default function AdminEventsPage() {
-  const [items, setItems] = useState<any[]>([]);
+  const [events, setEvents] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
   
@@ -21,7 +21,7 @@ export default function AdminEventsPage() {
     try {
       const res = await fetch(`${API_URL}/api/cms/events`, { headers: getHeaders() });
       if (res.ok) {
-        setItems(await res.json());
+        setEvents(await res.json());
       }
     } catch (e) {
       console.error(e);
@@ -31,8 +31,9 @@ export default function AdminEventsPage() {
 
   useEffect(() => {
     fetchData();
-    window.addEventListener('focus', fetchData);
-    return () => window.removeEventListener('focus', fetchData);
+    const handleFocus = () => fetchData();
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
   }, [fetchData]);
 
   const handleDelete = async (id: string) => {
@@ -45,7 +46,7 @@ export default function AdminEventsPage() {
     }
   };
 
-  const filteredItems = items.filter((n) =>
+  const filteredEvents = events.filter((n) =>
     n.title?.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -53,8 +54,11 @@ export default function AdminEventsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Manage Event Gallery</h2>
-          <p className="text-sm text-gray-500 mt-1">{items.length} events curated</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-3">
+             <Calendar className="w-6 h-6 text-orange-500" />
+             <span>Events Gallery</span>
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">{events.length} events documented.</p>
         </div>
         <Link
           href="/admin-dashboard/media-blog/events/action"
@@ -76,70 +80,105 @@ export default function AdminEventsPage() {
         />
       </div>
 
-      {isLoading && items.length === 0 ? (
-        <div className="flex justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-[#0d9488]" />
+      {isLoading && events.length === 0 ? (
+        <div className="flex justify-center py-20 text-[#0d9488]">
+          <Loader2 className="w-8 h-8 animate-spin" />
         </div>
       ) : (
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="bg-gray-50 font-semibold text-gray-600 border-b border-gray-100">
-                <tr>
-                  <th className="py-4 px-4">Event Details</th>
-                  <th className="py-4 px-4 hidden md:table-cell">Event Date</th>
-                  <th className="py-4 px-4 hidden lg:table-cell">Photos</th>
-                  <th className="py-4 px-4 hidden sm:table-cell text-center">Status</th>
-                  <th className="py-4 px-4 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50">
-                {filteredItems.map((item) => (
-                  <tr key={item._id} className="hover:bg-gray-50/50 transition-colors">
-                    <td className="py-4 px-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0 overflow-hidden border border-slate-100">
-                          {item.thumbnail ? (
-                             <img src={getImageUrl(item.thumbnail)} alt={item.title} className="w-full h-full object-cover" />
-                          ) : (
-                            <Calendar className="w-5 h-5" />
-                          )}
-                        </div>
-                        <div>
-                          <p className="font-semibold text-gray-900 line-clamp-1">{item.title}</p>
-                          <p className="text-xs text-gray-400">/{item.slug}</p>
-                        </div>
+        <>
+          {/* Mobile Card View */}
+          <div className="grid grid-cols-1 gap-4 md:hidden">
+            {filteredEvents.map((item) => (
+              <div key={item._id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                <div className="flex gap-4">
+                  <div className="w-24 h-24 rounded-xl bg-slate-50 border border-orange-100 overflow-hidden shrink-0">
+                    {item.thumbnail ? (
+                       <img src={getImageUrl(item.thumbnail)} alt={item.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-slate-200">
+                        <Calendar className="w-8 h-8" />
                       </div>
-                    </td>
-                    <td className="py-4 px-4 text-gray-600 hidden md:table-cell">{item.date}</td>
-                    <td className="py-4 px-4 hidden lg:table-cell">
-                      <span className="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider">{item.gallery?.length || 0} Photos</span>
-                    </td>
-                    <td className="py-4 px-4 hidden sm:table-cell text-center">
-                      <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-semibold ${item.isActive !== false ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
-                        {item.isActive !== false ? 'Active' : 'Draft'}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 text-right">
-                      <div className="inline-flex gap-1 justify-end">
-                        <Link 
-                          href={`/admin-dashboard/media-blog/events/action?id=${item._id}`} 
-                          target="_blank"
-                          className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                        >
-                          <Pencil className="w-4 h-4" />
-                        </Link>
-                        <button onClick={() => handleDelete(item._id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-bold text-gray-900 text-sm line-clamp-2">{item.title}</h3>
+                    <div className="flex items-center gap-2 mt-3">
+                       <span className={`px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-widest ${item.isActive !== false ? 'bg-green-50 text-green-600' : 'bg-slate-50 text-slate-400'}`}>
+                          {item.isActive !== false ? 'Live Gallery' : 'Draft'}
+                       </span>
+                       <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{item.gallery?.length || 0} Photos</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex gap-2 pt-4 border-t border-gray-50">
+                  <Link href={`/admin-dashboard/media-blog/events/action?id=${item._id}`} target="_blank" className="flex-1 flex items-center justify-center gap-2 py-2 bg-blue-50 text-blue-600 rounded-xl font-bold text-xs">
+                    <Pencil className="w-3.5 h-3.5" /> Edit
+                  </Link>
+                  <button onClick={() => handleDelete(item._id)} className="flex-1 flex items-center justify-center gap-2 py-2 bg-red-50 text-red-500 rounded-xl font-bold text-xs">
+                    <Trash2 className="w-3.5 h-3.5" /> Delete
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden md:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead className="bg-gray-50 font-semibold text-gray-600 border-b border-gray-100">
+                  <tr>
+                    <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Event Thumbnail</th>
+                    <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">Photos</th>
+                    <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">Status</th>
+                    <th className="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
+                  {filteredEvents.map((item) => (
+                    <tr key={item._id} className="hover:bg-gray-50/50 transition-colors group">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-12 rounded-lg bg-orange-50 overflow-hidden shrink-0 border border-orange-100">
+                            {item.thumbnail ? (
+                               <img src={getImageUrl(item.thumbnail)} alt={item.title} className="w-full h-full object-cover" />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center text-orange-200">
+                                <Calendar className="w-5 h-5" />
+                              </div>
+                            )}
+                          </div>
+                          <div>
+                            <p className="font-bold text-gray-900 text-sm line-clamp-1 max-w-md">{item.title}</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase mt-1">/{item._id.substring(0, 8)}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                         <span className="text-xs font-bold text-slate-500">{item.gallery?.length || 0}</span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <span className={`inline-flex px-3 py-1 rounded-full text-[10px] font-bold ${item.isActive !== false ? 'bg-green-50 text-green-700' : 'bg-slate-50 text-slate-400'}`}>
+                           {item.isActive !== false ? 'Active' : 'Draft'}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                          <Link href={`/admin-dashboard/media-blog/events/action?id=${item._id}`} target="_blank" className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
+                            <Pencil className="w-4 h-4" />
+                          </Link>
+                          <button onClick={() => handleDelete(item._id)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

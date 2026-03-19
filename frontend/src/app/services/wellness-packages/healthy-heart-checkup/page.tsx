@@ -19,7 +19,7 @@ export default function PackagePage() {
       <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/health-packages/health_packages.jpg"
+            src="/images/wellness_packages/healthy-lungs-checkup.jpg"
             alt="Healthy Heart Checkup"
             fill
             className="object-cover opacity-90"
@@ -53,7 +53,7 @@ export default function PackagePage() {
             <div className="w-full md:w-[70%] bg-white rounded-[32px] shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-gray-100 flex overflow-hidden group">
                 <div className="w-[160px] sm:w-[220px] relative bg-[#f5f5f7] flex-shrink-0">
                     <Image
-                        src="/images/health-packages/health_packages.jpg"
+                        src="/images/wellness_packages/healthy-lungs-checkup.jpg"
                         alt="Healthy Heart Checkup"
                         fill
                         className="object-cover transition-transform duration-700"
