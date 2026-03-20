@@ -85,6 +85,10 @@ const stories = [
   { id: 26, name: "Patient Story 26", videoUrl: "https://youtu.be/-Yjto4oDNI0" },
   { id: 27, name: "Patient Story 27", videoUrl: "https://youtu.be/rPYoLVXxvZM" },
   { id: 28, name: "Patient Story 28", videoUrl: "https://youtu.be/dHcZfxm6ZEI" },
+  { id: 29, name: "Patient Story 29", videoUrl: "https://youtu.be/ykJorcbx6yA" },
+  { id: 30, name: "Patient Story 30", videoUrl: "https://youtu.be/xunfVSSJhXE" },
+  { id: 31, name: "Patient Story 31", videoUrl: "https://youtu.be/ICIDc8_pZFU" },
+  { id: 32, name: "Patient Story 32", videoUrl: "https://youtu.be/ttXWMDHxdXQ" },
 ];
 
 export default function StoriesPage() {
@@ -112,7 +116,7 @@ export default function StoriesPage() {
           {stories.map((story) => {
             const ytId = getYoutubeId(story.videoUrl);
             const thumbUrl = ytId 
-              ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`
+              ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
               : (story.thumbnail || "/images/news-sm-inner.jpg");
 
             return (
