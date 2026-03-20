@@ -39,7 +39,7 @@ export function Footer() {
                   B.L.W. ROAD, KAKARMATTA,
                   <br />
                   VARANASI 221004, <br />
-                  UTTAR PRADESH, INDIA  
+                  UTTAR PRADESH, INDIA
                 </p>
               </div>
 
