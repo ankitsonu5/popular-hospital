@@ -3,22 +3,33 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { fetchBranches, fetchNews, fetchEvents, getImageUrl, type Branch, type NewsItem, type EventItem } from "@/lib/api";
+import { fetchBranches, fetchNews, fetchEvents, getImageUrl, fetchSpecialities, type Branch, type NewsItem, type EventItem, type Speciality } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const COUNTRIES = [
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Republic of the)", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Republic of Korea", "Republic of Moldova", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syrian Arab Republic", "Tajikistan", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Türkiye", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United Republic of Tanzania", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Yemen", "Zambia", "Zimbabwe"
+];
 
 export default function HomePage() {
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
   const [latestEvents, setLatestEvents] = useState<EventItem[]>([]);
   const [branches, setBranches] = useState<Branch[]>([]);
+  const [specialities, setSpecialities] = useState<Speciality[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHoveringAwards, setIsHoveringAwards] = useState(false);
+  const [isInternationalModalOpen, setIsInternationalModalOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    message: "",
     name: "",
     email: "",
     phone: "",
-    query: "",
+    date: "",
+    timing: "",
+    department: "",
+    location: "",
+    message: "",
     agreeTerms: false,
   });
 
@@ -30,14 +41,16 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [newsData, branchesData, eventsData] = await Promise.all([
+      const [newsData, branchesData, eventsData, specialitiesData] = await Promise.all([
         fetchNews(),
         fetchBranches(),
-        fetchEvents()
+        fetchEvents(),
+        fetchSpecialities()
       ]);
       setLatestNews(newsData.slice(0, 3));
       setBranches(branchesData);
       setLatestEvents(eventsData.slice(0, 3));
+      setSpecialities(specialitiesData);
     };
     fetchData();
   }, []);
@@ -1285,17 +1298,25 @@ export default function HomePage() {
                   
                   {/* FRONT SIDE */}
                   <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-white rounded-3xl p-8 text-center flex flex-col items-center">
-                    <div className="w-16 h-16 rounded-full bg-[#f0f9ff] flex items-center justify-center mb-8 border border-gray-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
-                      <svg className="w-8 h-8 text-[#1e3a8a] transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-16 h-16 rounded-full bg-[#f0f9ff] flex items-center justify-center mb-8 border border-gray-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-all duration-300 shadow-inner">
+                      <svg className="w-8 h-8 text-[#1e3a8a] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         {service.icon}
                       </svg>
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 font-heading text-[#0b1c43]">
+                    <h3 className="text-2xl font-bold mb-4 font-heading text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-gray-500 text-base leading-relaxed font-medium">
+                    <p className="text-gray-500 text-base leading-relaxed font-medium mb-6">
                       {service.desc}
                     </p>
+                    
+                    {/* Read More button for mobile (as hover flip is md: only) */}
+                    <Link 
+                      href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
+                      className="md:hidden mt-auto px-6 py-2 bg-white text-[#E85222] border-2 border-[#E85222] text-[10px] font-black rounded-full uppercase tracking-widest hover:bg-[#E85222] hover:text-white transition-all shadow-sm"
+                    >
+                      Read more
+                    </Link>
                   </div>
 
                   {/* BACK SIDE */}
@@ -1507,9 +1528,9 @@ export default function HomePage() {
 
               <h2
                 id="latest-events"
-                className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0b1c43] font-heading tracking-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] font-heading"
               >
-                Latest <span className="text-hospital-teal">Events</span>
+                Latest Events
               </h2>
             </div>
           </div>
@@ -1518,10 +1539,10 @@ export default function HomePage() {
             {latestEvents.map((event) => (
               <article 
                 key={event.slug} 
-                className="group relative bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full"
+                className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col h-full"
               >
                 {/* Event Image Container */}
-                <div className="relative w-full h-64 overflow-hidden shrink-0">
+                <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden shrink-0">
                   <Image
                     src={getImageUrl(event.thumbnail) || "/about-section-image.png"}
                     alt={event.title}
@@ -1530,34 +1551,48 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   {/* Date Badge */}
-                  <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-lg border border-white/20">
-                    <p className="text-[#0b1c43] font-black text-sm">
-                      {new Date(event.date).toLocaleDateString('en-US', { day: '2-digit', month: 'short' })}
+                  <div className="absolute top-4 left-4 bg-white px-4 py-2.5 rounded-xl shadow-md border-l-4 border-[#E85222] flex items-center gap-3">
+                    <p className="text-[#0b1c43] font-black text-xl leading-none">
+                      {new Date(event.date).getDate()}
                     </p>
-                    <p className="text-[#E85222] font-bold text-xs">
-                      {new Date(event.date).getFullYear()}
-                    </p>
+                    <div className="w-[1.5px] h-6 bg-gray-100"></div>
+                    <div className="flex flex-col">
+                      <p className="text-[#1e3a8a] font-bold text-xs uppercase tracking-wider leading-none">
+                        {new Date(event.date).toLocaleString('default', { month: 'short' })}
+                      </p>
+                      <p className="text-[#E85222] font-semibold text-[10px] mt-1 leading-none">
+                        {new Date(event.date).getFullYear()}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-8 flex flex-col flex-1">
-                  <h3 className="text-2xl font-bold text-[#0b1c43] mb-4 font-heading leading-tight group-hover:text-hospital-teal transition-colors line-clamp-2">
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-heading leading-tight line-clamp-2">
                     {event.title}
                   </h3>
-                  <p className="text-gray-500 text-base leading-relaxed line-clamp-3 mb-6 flex-1">
+                  <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2 flex-1">
                     {event.description?.replace(/<[^>]*>/g, '') || "Experience our latest medical workshops and community health programs..."}
                   </p>
                   
                   <Link
                     href={`/media/events/${event.slug}`}
-                    className="inline-flex items-center gap-3 text-[#E85222] font-bold group/btn hover:gap-4 transition-all"
+                    className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base mt-auto w-max group/btn"
                   >
-                    View Details
-                    <div className="w-8 h-8 rounded-full bg-[#E85222]/10 flex items-center justify-center group-hover/btn:bg-[#E85222] group-hover/btn:text-white transition-colors">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
+                    <span>View Details</span>
+                    <svg
+                      className="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
                   </Link>
                 </div>
               </article>
@@ -1779,281 +1814,263 @@ export default function HomePage() {
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-20 sm:py-24 bg-white" aria-labelledby="contact-us">
+      <section className="py-20 sm:py-24 bg-gray-50" aria-labelledby="contact-us">
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-[auto_2fr] gap-8 lg:gap-12 items-stretch">
-            {/* Left Column - Informational Cards */}
-            <div className="flex flex-col gap-6 w-full lg:h-full">
-              {/* OUR LOCATIONS Card */}
-              <Link href="/our-locations" className="block flex-1 hover:scale-[1.02] transition-transform duration-300">
-                <div className="bg-purple-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm h-full flex items-center justify-center">
-                  <div className="w-full h-full rounded-2xl border border-purple-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
-                    <div className="flex items-center justify-center gap-4 w-full h-full">
-                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-                        <svg
-                          className="w-6 h-6 sm:w-7 sm:h-7 text-gray-700"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                        </svg>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 font-heading">
-                          OUR LOCATIONS
-                        </h3>
-                        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                          N-10 / 60, A-2, B.L.W. ROAD, KAKARMATTA, VARANASI 221004,UTTAR PRADESH, INDIA
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.8fr] gap-12 lg:gap-16 items-start">
+            
+            {/* Left Column - Brand Quote & Info (Refined Modern Style) */}
+            <div className="flex flex-col gap-10 order-2 lg:order-1">
+              {/* Branding Block from Image */}
+              <div className="bg-[#0b1c43] text-white rounded-3xl p-10 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden transition-all duration-500 hover:shadow-[#0b1c43]/20">
+                <div className="relative z-10">
+                  <h2 className="text-4xl sm:text-5xl lg:text-5xl font-black italic leading-[1.15] tracking-tight mb-8 font-heading">
+                    Committed To Build A<br />
+                    <span className="text-[#FA9A3E]">Positive, Safe, Patient</span><br />
+                    Focused Culture.
+                  </h2>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl font-medium">
+                    Today the hospital is recognised as a world renowned institution, not only providing outstanding care and treatment, our goal is to deliver quality care in a respectful & compassionate manner. We strive to be the first and best choice for healthcare.
+                  </p>
 
-              {/* CONNECT WITH US Card */}
-              <div className="bg-pink-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm flex-1 flex items-center justify-center">
-                <div className="w-full h-full rounded-2xl border border-pink-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
-                  <div className="flex items-center justify-center gap-4 w-full h-full">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 sm:w-7 sm:h-7 text-gray-700"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 font-heading">
-                        CONNECT WITH US
-                      </h3>
-                      <div className="text-gray-700 text-sm sm:text-base space-y-1">
-                        <p>CALL: +91-7800001896</p>
-                        <p>CALL: +91-7800001895</p>
-                        <p>EMAIL : info@popularhospitals.in</p>
+                  <div className="flex flex-col sm:flex-row items-center gap-6 mb-16">
+                    <Link 
+                      href="/doctors"
+                      className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-3.5 bg-[#FA9A3E] text-white rounded-xl text-lg font-bold hover:bg-[#e88a2d] transition-all duration-300 shadow-lg shadow-[#FA9A3E]/20"
+                    >
+                      Find a Doctor
+                    </Link>
+
+                    <button 
+                      onClick={() => setIsInternationalModalOpen(true)}
+                      className="w-full sm:w-auto flex flex-col items-center justify-center px-8 py-3 border-2 border-white/20 hover:border-[#FA9A3E] text-white rounded-xl transition-all duration-300 group bg-white/5 backdrop-blur-sm"
+                    >
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FA9A3E] group-hover:text-white mb-0.5">For International Patients</span>
+                      <span className="text-xs font-bold whitespace-nowrap">Send Your Inquiry to Assist You</span>
+                    </button>
+                  </div>
+
+                  {/* Modernized Services Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+                    {[
+                      "Fractures and dislocations",
+                      "Home medicine review",
+                      "High Quality Care",
+                      "Desensitisation injections",
+                      "Health Assessments"
+                    ].map((service) => (
+                      <div key={service} className="flex items-center gap-4 group cursor-default">
+                        <div className="w-2.5 h-2.5 rounded-full bg-hospital-teal shadow-[0_0_10px_rgba(45,212,191,0.5)] group-hover:scale-125 transition-transform"></div>
+                        <span className="text-xl font-bold tracking-tight italic font-heading opacity-90 group-hover:opacity-100 transition-opacity">
+                          {service}
+                        </span>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              {/* VISITING HOURS Card */}
-              <div className="bg-green-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm flex-1 flex items-center justify-center">
-                <div className="w-full h-full rounded-2xl border border-green-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
-                  <div className="flex items-center justify-center gap-4 w-full h-full">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 sm:w-7 sm:h-7 text-gray-700"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+              {/* Simplified Connect With Us Box */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-xl shadow-gray-200/50 flex flex-col sm:flex-row items-center gap-8 group">
+                <div className="flex-shrink-0 w-20 h-20 bg-pink-50 rounded-xl flex items-center justify-center text-[#E85222] group-hover:scale-110 transition-transform duration-500">
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div className="flex-1 text-center sm:text-left">
+                  <h3 className="text-2xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase italic underline decoration-[#E85222]/30 underline-offset-8">
+                    Connect With Us
+                  </h3>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
+                      <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
+                        <span className="text-[#E85222] mr-2">CALL:</span> +91-7800001896
+                      </p>
+                      <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
+                        <span className="text-[#E85222] mr-2">CALL:</span> +91-7800001895
+                      </p>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 font-heading">
-                        VISITING HOURS
-                      </h3>
-                      <div className="text-gray-700 text-sm sm:text-base space-y-1">
-                        <p>Sunday: 08:00 AM - 10:00 PM</p>
-                        <p>Monday - Friday: 06:00 AM - 12:00 AM</p>
-                      </div>
-                    </div>
+                    <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
+                      <span className="text-[#E85222] mr-2">EMAIL:</span> info@popularhospitals.in
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Contact Form */}
-            <div className="bg-orange-50 rounded-xl border border-gray-200 p-6 sm:p-8 shadow-sm">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 font-heading">
-                Send Us A Message Anytime
-              </h2>
-              <p className="text-sm text-gray-500 mb-6">
-                Your email address will not be published. Required fields are
-                marked*
+            <div className="bg-[#FFFAF5] rounded-3xl border border-[#F3E6D8] p-8 sm:p-10 lg:p-12 shadow-sm order-1 lg:order-2 self-stretch">
+              <p className="text-[#0b1c43] text-md sm:text-md font-medium mb-1 leading-relaxed">
+                We will confirm your appointment within 2 hours
               </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5x1 font-black text-[#0b1c43] mb-10 font-heading tracking-tight">
+                Request An Appointment
+              </h2>
 
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  // Handle form submission here
                   console.log("Form submitted:", formData);
                 }}
-                className="space-y-5"
+                className="space-y-6"
               >
-                {/* Message Field */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Your Message*
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    placeholder="Please write your message here"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none resize-none"
-                  />
-                </div>
-
-                {/* Name Field */}
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Name*
-                  </label>
+                {/* Name */}
+                <div className="relative group">
                   <input
-                    id="name"
                     type="text"
                     required
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    placeholder="Please enter name"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Name"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                  </div>
                 </div>
 
-                {/* Email Field */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Email*
-                  </label>
+                {/* Email */}
+                <div className="relative group">
                   <input
-                    id="email"
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    placeholder="Please enter email"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="Email"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                  </div>
                 </div>
 
-                {/* Phone Field */}
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Phone*
-                  </label>
+                {/* Phone */}
+                <div className="relative group">
                   <input
-                    id="phone"
                     type="tel"
                     required
                     value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                    placeholder="Please enter phone"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="Phone"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 004.815 4.815l.773-1.548a1 1 0 011.06-.539l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                  </div>
                 </div>
 
-                {/* Website Field */}
-                {/* Query Field */}
-                <div>
-                  <label
-                    htmlFor="query"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Query*
-                  </label>
-                  <input
-                    id="query"
-                    type="text"
-                    required
-                    value={formData.query}
-                    onChange={(e) =>
-                      setFormData({ ...formData, query: e.target.value })
-                    }
-                    placeholder="Please enter your query"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                {/* Date & Select Timing */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="relative">
+                    <input
+                      type="date"
+                      required
+                      value={formData.date}
+                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-400"
+                    />
+                  </div>
+                  <div className="relative">
+                    <select
+                      value={formData.timing}
+                      onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
+                      className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
+                    >
+                      <option value="">Select Timing</option>
+                      <option value="09:30-11:00">9:30 AM - 11:00 AM</option>
+                      <option value="11:00-13:00">11:00 AM - 1:00 PM</option>
+                      <option value="13:00-15:00">1:00 PM - 3:00 PM</option>
+                      <option value="15:00-17:00">3:00 PM - 5:00 PM</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Department & Location */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="relative">
+                    <select
+                      value={formData.department}
+                      onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                      className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
+                    >
+                      <option value="">Department</option>
+                      {specialities.map((spec) => (
+                        <option key={spec._id} value={spec.slug}>
+                          {spec.name}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <select
+                      value={formData.location}
+                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                      className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
+                    >
+                      <option value="">Location</option>
+                      {branches.map((branch) => (
+                        <option key={branch._id} value={branch.slug}>
+                          {branch.name}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div className="relative group">
+                  <textarea
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Message"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all resize-none placeholder:text-gray-400"
                   />
                 </div>
 
                 {/* Checkbox */}
-                <div className="flex items-start gap-3">
+                <div className="flex items-center gap-3">
                   <input
                     id="agreeTerms"
                     type="checkbox"
                     required
                     checked={formData.agreeTerms}
-                    onChange={(e) =>
-                      setFormData({ ...formData, agreeTerms: e.target.checked })
-                    }
-                    className="mt-1 w-4 h-4 rounded border-gray-300 text-[#E85222] focus:ring-2 focus:ring-[#E85222] accent-[#E85222]"
+                    onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
+                    className="w-5 h-5 rounded border-gray-300 text-[#E85222] focus:ring-0 accent-[#E85222] cursor-pointer"
                   />
-                  <label htmlFor="agreeTerms" className="text-sm text-gray-700">
-                    I agree with the terms.
+                  <label htmlFor="agreeTerms" className="text-sm font-medium text-gray-600 cursor-pointer">
+                    I agree with the <Link href="/terms" className="text-[#E85222] hover:underline">terms and conditions</Link>.
                   </label>
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
-                  style={{ backgroundColor: "#E85222" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#d1451a";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#E85222";
-                  }}
+                  className="group relative w-full inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E85222] text-white font-bold rounded-xl overflow-hidden transition-all hover:bg-[#d1451a] shadow-lg shadow-[#E85222]/20 uppercase tracking-widest"
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
+                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                   </svg>
                   <span>Send Message Now</span>
                 </button>
@@ -2061,6 +2078,129 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Awards & Recognitions Section */}
+      <section 
+        className="py-20 sm:py-24 bg-[#F8FAFC] relative overflow-hidden group/section border-t border-gray-100"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+        }}
+        onMouseEnter={() => setIsHoveringAwards(true)}
+        onMouseLeave={() => setIsHoveringAwards(false)}
+      >
+        <Link href="/about/awards-recognition" className="block relative cursor-pointer">
+          <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-10">
+            
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading tracking-tight inline-flex items-center gap-4">
+                Awards & <span className="text-[#1D4ED8]">Recognitions</span>
+              </h2>
+              <div className="flex items-center justify-center mt-4">
+                <div className="w-12 h-1 bg-gray-300 rounded-full" />
+                <div className="w-3 h-3 bg-[#E85222] rounded-full mx-2" />
+                <div className="w-12 h-1 bg-gray-300 rounded-full" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1fr] gap-12 lg:gap-20 items-center">
+              
+              {/* Left Column - Chairman Profile */}
+              <div className="flex flex-col items-center">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[#1D4ED8]/5 rounded-full scale-[1.15] blur-2xl group-hover/section:bg-[#1D4ED8]/10 transition-colors" />
+                  
+                  <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full p-2 border border-blue-100 shadow-2xl bg-white overflow-hidden ring-12 ring-blue-50/50">
+                    <div className="relative w-full h-full rounded-full overflow-hidden">
+                      <Image
+                        src="/images/dr_ak_kaushik.png"
+                        alt="DR. A.K. KAUSHIK"
+                        fill
+                        className="object-cover transform group-hover/section:scale-[1.02] transition-transform duration-700"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="absolute top-0 right-0 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center p-3">
+                    <svg className="w-full h-full text-[#1D4ED8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <h3 className="text-2xl font-black text-[#0b1c43] font-heading tracking-tight uppercase italic underline decoration-[#1D4ED8]/30 decoration-4 underline-offset-8">
+                    DR. A.K.KAUSHIK
+                  </h3>
+                  <p className="mt-6 text-gray-500 font-bold leading-relaxed tracking-wide uppercase text-sm">
+                    Chairman & Director<br />
+                    Popular Group of Hospitals
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column - Awards Gallery Grid */}
+              <div className="flex flex-col gap-8">
+                <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                  <div className="relative h-48 sm:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                    <Image
+                      src="/images/awards/award1.png"
+                      alt="Hospital Award"
+                      fill
+                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+
+                  <div className="relative h-48 sm:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                    <Image
+                      src="/images/awards/award2.png"
+                      alt="Medical Achievement"
+                      fill
+                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+
+                  <div className="relative h-64 sm:h-80 col-span-2 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                    <Image
+                      src="/images/awards/award3.png"
+                      alt="Hospital Recognition Ceremony"
+                      fill
+                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Mobile Call to Action */}
+                <div className="lg:hidden text-center mt-2 px-6 py-4 bg-white shadow-xl rounded-full border border-blue-50">
+                  <p className="text-[#1D4ED8] font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3">
+                    <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
+                    Click for detailed view
+                    <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mouse Follower Title (Desktop only) */}
+          <div 
+             className="fixed md:absolute pointer-events-none z-[100] transition-opacity duration-300 hidden lg:block"
+             style={{
+                left: `${mousePosition.x}px`,
+                top: `${mousePosition.y}px`,
+                opacity: isHoveringAwards ? 1 : 0,
+                transform: `translate(-50%, -50%)`,
+             }}
+          >
+             <div className="bg-[#E85222] text-white px-6 py-2.5 rounded-full whitespace-nowrap shadow-2xl flex items-center gap-3 scale-90 group-hover/section:scale-100 transition-transform duration-300">
+                <span className="text-[10px] font-black uppercase tracking-[0.3em]">Click to view detailed</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
+                </svg>
+             </div>
+          </div>
+        </Link>
       </section>
 
       {/* ─── Why We Are The Best Section (Achievements) ─── */}
@@ -2153,6 +2293,110 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* International Patient Inquiry Modal */}
+      {isInternationalModalOpen && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center px-4 bg-black/80 backdrop-blur-md">
+          <div className="relative w-full max-w-[450px] bg-[#333333] rounded-sm p-1 shadow-2xl animate-in zoom-in duration-300">
+            {/* Close Button */}
+            <button 
+              onClick={() => setIsInternationalModalOpen(false)}
+              className="absolute -top-10 right-0 text-white hover:text-[#FA9A3E] transition-colors"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="bg-[#444444] p-8">
+              <h2 className="text-2xl font-bold text-white text-center mb-8 tracking-tight font-heading">Book An Appointment</h2>
+              
+              <form className="space-y-4">
+                <div className="relative group">
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="w-full bg-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="w-full bg-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    type="tel"
+                    placeholder="Contact"
+                    className="w-full bg-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20 15.5c-1.2 0-2.4-.2-3.5-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    type="text"
+                    placeholder="Age"
+                    className="w-full bg-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                </div>
+
+                <div className="relative">
+                  <select className="w-full bg-white px-4 py-3 text-sm appearance-none focus:outline-none focus:ring-1 focus:ring-gray-300 text-gray-500 max-h-48 overflow-y-auto">
+                    <option>-Select Country-</option>
+                    {COUNTRIES.map(country => (
+                      <option key={country} value={country}>{country}</option>
+                    ))}
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <select className="w-full bg-white px-4 py-3 text-sm appearance-none focus:outline-none focus:ring-1 focus:ring-gray-300 text-gray-500">
+                    <option>Department</option>
+                    {specialities.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-black text-white text-lg font-bold uppercase transition-all hover:bg-black/90 tracking-widest mt-6"
+                >
+                  Submit Now
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
