@@ -96,15 +96,41 @@ export default function StoriesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
-      {/* Hero Section */}
-      <section className="bg-[#0b1c43] text-white py-20 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-        <Link href="/" className="inline-flex items-center text-sm text-gray-400 hover:text-white mb-6 transition-colors">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+      {/* Hero Section with Banner */}
+      <section className="relative w-full py-20 overflow-hidden flex items-center justify-center">
+        {/* Desktop Banner */}
+        <div className="absolute inset-0 hidden md:block">
+          <Image
+            src="/images/banners/patient_testimonials_video.png"
+            alt="Patient Stories Banner"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+
+        {/* Mobile Banner */}
+        <div className="absolute inset-0 block md:hidden">
+          <Image
+            src="/images/banners/patient_testimonials_video.png"
+            alt="Patient Stories Banner Mobile"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 text-center text-white">
+          <Link href="/" className="inline-flex items-center text-sm text-gray-300 hover:text-white mb-6 transition-colors">
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
             Back to Home
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4">Patient Stories</h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-black font-heading tracking-tight mb-4 drop-shadow-lg">Patient Stories</h1>
+          <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto font-medium drop-shadow-md">
             Hear directly from our patients about their experiences and successful recovery journeys at Popular Hospital.
           </p>
         </div>

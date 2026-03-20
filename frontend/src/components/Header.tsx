@@ -150,20 +150,26 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const scrollThreshold = 15; // px threshold to avoid glitching
       
       // Mobile-only: Hide top bar when scrolling down, show when scrolling up
       if (window.innerWidth < 1280) {
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setShowTopBar(false);
-        } else if (currentScrollY < lastScrollY) {
-          setShowTopBar(true);
+        const diff = currentScrollY - lastScrollY;
+        
+        if (Math.abs(diff) > scrollThreshold) {
+          if (diff > 0 && currentScrollY > 100) {
+            setShowTopBar(false);
+          } else if (diff < 0) {
+            setShowTopBar(true);
+          }
+          setLastScrollY(currentScrollY);
         }
       } else {
         setShowTopBar(true);
+        setLastScrollY(currentScrollY);
       }
 
       setScrolled(currentScrollY > 50);
-      setLastScrollY(currentScrollY);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
