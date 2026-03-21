@@ -68,18 +68,18 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
     { type: 'video', src: '/videos/hero.mp4' },
     { 
       type: 'image', 
-      src: '/images/slide_images/slide_two.png',
-      mobileSrc: '/images/slide_images/slide_three_mobile.png'
+      src: '/images/slide_images/slide_one.png?v=update',
+      mobileSrc: '/images/slide_images/slide_one_mobile.png?v=update'
     },
     { 
       type: 'image', 
-      src: '/images/slide_images/slide_three.png',
-      mobileSrc: '/images/slide_images/slide_two_mobile.png'
+      src: '/images/slide_images/slide_three.png?v=update',
+      mobileSrc: '/images/slide_images/slide_three_mobile.png?v=update'
     },
     { 
       type: 'image', 
-      src: '/images/slide_images/slide_one.png',
-      mobileSrc: '/images/slide_images/slide_one_mobile.png'
+      src: '/images/slide_images/slide_two.png?v=update',
+      mobileSrc: '/images/slide_images/slide_two_mobile.png?v=update'
     },
   ];
 
