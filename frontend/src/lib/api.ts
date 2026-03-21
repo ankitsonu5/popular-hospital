@@ -45,7 +45,7 @@ export const getImageUrl = (path: string) => {
 
 export async function fetchBranches(): Promise<Branch[]> {
   try {
-    const res = await fetch(api('/branches'), { cache: 'no-store' });
+    const res = await fetch(api('/branches'), { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -56,7 +56,7 @@ export async function fetchBranches(): Promise<Branch[]> {
 
 export async function fetchBranch(idOrSlug: string): Promise<Branch | null> {
   try {
-    const res = await fetch(api(`/branches/${idOrSlug}`), { cache: 'no-store' });
+    const res = await fetch(api(`/branches/${idOrSlug}`), { next: { revalidate: 60 } });
     if (!res.ok) return null;
     return res.json();
   } catch (e) {
@@ -129,7 +129,7 @@ export async function createBooking(data: BookingInput): Promise<{ id: number; m
 
 export async function fetchNews(): Promise<NewsItem[]> {
   try {
-    const res = await fetch(api('/news'), { cache: 'no-store' });
+    const res = await fetch(api('/news'), { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -140,7 +140,7 @@ export async function fetchNews(): Promise<NewsItem[]> {
 
 export async function fetchNewsItem(slug: string): Promise<NewsItem | null> {
   try {
-    const res = await fetch(api(`/news/${slug}`), { cache: 'no-store' });
+    const res = await fetch(api(`/news/${slug}`), { next: { revalidate: 60 } });
     if (!res.ok) return null;
     return res.json();
   } catch (e) {
@@ -376,7 +376,7 @@ export interface BlogItem {
 }
 export async function fetchCareers(): Promise<CareerItem[]> {
   try {
-    const res = await fetch(api('/careers'), { cache: 'no-store' });
+    const res = await fetch(api('/careers'), { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -387,7 +387,7 @@ export async function fetchCareers(): Promise<CareerItem[]> {
 
 export async function fetchCareerItem(id: string): Promise<CareerItem | null> {
   try {
-    const res = await fetch(api(`/careers/${id}`), { cache: 'no-store' });
+    const res = await fetch(api(`/careers/${id}`), { next: { revalidate: 60 } });
     if (!res.ok) return null;
     return res.json();
   } catch (e) {
@@ -399,7 +399,7 @@ export async function fetchCareerItem(id: string): Promise<CareerItem | null> {
 export async function fetchUpdates(all: boolean = false): Promise<UpdateItem[]> {
   try {
     const url = all ? api('/updates?all=true') : api('/updates');
-    const res = await fetch(url, { cache: 'no-store' });
+    const res = await fetch(url, { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -410,7 +410,7 @@ export async function fetchUpdates(all: boolean = false): Promise<UpdateItem[]> 
 
 export async function fetchUpdateItem(id: string): Promise<UpdateItem | null> {
   try {
-    const res = await fetch(api(`/updates/${id}`), { cache: 'no-store' });
+    const res = await fetch(api(`/updates/${id}`), { next: { revalidate: 60 } });
     if (!res.ok) return null;
     return res.json();
   } catch (e) {

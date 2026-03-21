@@ -146,10 +146,12 @@ export default function EventDetailPage() {
                 <ChevronLeft className="w-8 h-8" />
               </button>
               
-              <img 
+              <Image 
                 src={getImageUrl(event.gallery[selectedImageIndex])} 
-                className="max-w-full max-h-full object-contain select-none animate-in zoom-in-95 duration-500 drop-shadow-2xl"
+                className="object-contain select-none animate-in zoom-in-95 duration-500 drop-shadow-2xl"
                 alt="Event Enlarged"
+                fill
+                unoptimized
               />
 
               <button onClick={nextImg} className="absolute right-4 sm:right-12 p-4 bg-black/40 hover:bg-indigo-600/80 text-white rounded-full transition-all z-20 backdrop-blur-md">

@@ -3,7 +3,13 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Newspaper, Loader2, Save, X, ArrowLeft, Image as ImageIcon } from 'lucide-react';
-import { Editor } from '@tinymce/tinymce-react';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+
+const Editor = dynamic(() => import('@/components/TinyMCEEditor'), {
+  ssr: false,
+  loading: () => <div className="h-[550px] animate-pulse bg-gray-100 rounded-xl" />
+});
 import { getImageUrl } from '@/lib/api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
@@ -202,7 +208,7 @@ function NewsActionForm() {
               <div className="relative aspect-video rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group">
                   {imagePreview ? (
                       <>
-                         <img src={imagePreview} alt="News Preview" className="w-full h-full object-cover" />
+                         <Image src={imagePreview} alt="News Preview" fill unoptimized className="object-cover" />
                          <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <label className="cursor-pointer bg-white text-gray-900 px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-lg">Change Photo</label>
                          </div>

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { getImageUrl } from '@/lib/api';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const API_URL = '/api-backend';
 
@@ -305,7 +306,7 @@ function BranchActionForm() {
                                         <label htmlFor={`upload-${key}`} className="block relative aspect-square rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 hover:border-[#0d9488] cursor-pointer overflow-hidden transition-all group shadow-inner">
                                             {previews[key] ? (
                                                 <>
-                                                    <img src={previews[key]!} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Preview" />
+                                                    <Image src={previews[key]!} className="object-cover transition-transform duration-700 group-hover:scale-110" fill unoptimized alt="Preview" />
                                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity backdrop-blur-[2px]">
                                                         <Upload className="w-6 h-6 text-white" />
                                                     </div>

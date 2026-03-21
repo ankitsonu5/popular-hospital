@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Calendar, Loader2, Save, X, ArrowLeft, Camera, Plus, Trash2, Image as ImageIcon } from 'lucide-react';
 import { getImageUrl } from '@/lib/api';
+import Image from 'next/image';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
 
@@ -186,7 +187,7 @@ function EventsActionForm() {
                   {/* Existing Photos */}
                   {existingGallery.map((img, i) => (
                       <div key={i} className="relative aspect-square rounded-xl overflow-hidden group border border-gray-200 shadow-sm transition-transform hover:scale-[1.02]">
-                         <img src={getImageUrl(img)} alt="Gallery" className="w-full h-full object-cover" />
+                         <Image src={getImageUrl(img)} alt="Gallery" fill unoptimized className="object-cover" />
                          <button type="button" onClick={() => setExistingGallery(existingGallery.filter((_, idx) => idx !== i))}
                            className="absolute top-2 right-2 p-1.5 bg-red-500/90 hover:bg-red-600 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-md"><Trash2 className="w-3.5 h-3.5" /></button>
                          <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-gray-900/60 text-white text-[8px] font-bold uppercase rounded-md">Existing</div>
@@ -195,7 +196,7 @@ function EventsActionForm() {
                   {/* New Photos Previews */}
                   {galleryPreviews.map((pre, i) => (
                       <div key={i} className="relative aspect-square rounded-xl overflow-hidden group border border-blue-200 shadow-sm transition-transform hover:scale-[1.02]">
-                         <img src={pre} alt="New Preview" className="w-full h-full object-cover" />
+                         <Image src={pre} alt="New Preview" fill unoptimized className="object-cover" />
                          <button type="button" onClick={() => {
                             setGalleryFiles(prev => prev.filter((_, idx) => idx !== i));
                             setGalleryPreviews(prev => prev.filter((_, idx) => idx !== i));
@@ -227,7 +228,7 @@ function EventsActionForm() {
               <div className="relative aspect-[4/3] rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group">
                   {thumbnailPreview ? (
                       <>
-                         <img src={thumbnailPreview} alt="Thumbnail" className="w-full h-full object-cover" />
+                         <Image src={thumbnailPreview} alt="Thumbnail" fill unoptimized className="object-cover" />
                          <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <label className="cursor-pointer bg-white text-gray-900 px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-lg">Change Cover</label>
                          </div>

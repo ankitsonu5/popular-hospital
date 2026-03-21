@@ -3,7 +3,13 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Newspaper, Loader2, Save, X, ArrowLeft, Image as ImageIcon, Sparkles, Eye, Trash2 } from 'lucide-react';
-import { Editor } from '@tinymce/tinymce-react';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+
+const Editor = dynamic(() => import('@/components/TinyMCEEditor'), {
+  ssr: false,
+  loading: () => <div className="h-[400px] animate-pulse bg-gray-100 rounded-xl" />
+});
 import { getImageUrl } from '@/lib/api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
@@ -221,7 +227,7 @@ function BlogActionForm() {
               <div className="relative aspect-square rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group">
                   {imagePreview ? (
                       <>
-                         <img src={imagePreview} alt="Blog Preview" className="w-full h-full object-cover" />
+                         <Image src={imagePreview} alt="Blog Preview" fill unoptimized className="object-cover" />
                          <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <label className="cursor-pointer bg-white text-gray-900 px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-lg">Change Image</label>
                          </div>
@@ -300,7 +306,7 @@ function BlogActionForm() {
            <div className="flex-1 overflow-y-auto bg-gray-50 pb-40 px-4">
               <div className="max-w-4xl mx-auto mt-16 bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                  <div className="h-[400px] relative">
-                    <img src={imagePreview || '/about-section-image.png'} alt="Preview" className="w-full h-full object-cover" />
+                    <Image src={imagePreview || '/about-section-image.png'} alt="Preview" fill unoptimized className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent" />
                     <div className="absolute bottom-12 left-12 right-12">
                        <span className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">{formData.category || 'General Health'}</span>

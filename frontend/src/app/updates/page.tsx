@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import useSWR from 'swr';
 import Link from "next/link";
 import Image from "next/image";
 import { Loader2, Bell, AlertCircle, Calendar, FileText, Info } from 'lucide-react';
@@ -8,15 +9,7 @@ import { fetchUpdates, getImageUrl } from '@/lib/api';
 import type { UpdateItem } from '@/lib/api';
 
 export default function UpdatesPage() {
-  const [updates, setUpdates] = useState<UpdateItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchUpdates().then(data => {
-      setUpdates(data);
-      setLoading(false);
-    });
-  }, []);
+  const { data: updates = [], isLoading: loading } = useSWR('updates', () => fetchUpdates());
 
   const renderIcon = (type: string, className: string = "w-6 h-6") => {
     switch(type) {

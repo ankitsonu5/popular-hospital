@@ -234,10 +234,12 @@ export default function MediaCoveragePage() {
           <div className="w-full h-full flex flex-col items-center justify-center gap-6 max-w-5xl mx-auto">
             {/* Image Container */}
             <div className="relative w-full flex-1 max-h-[75vh] group">
-              <img
+              <Image
                 src={getImageUrl(items[selectedImageIndex].image)}
                 alt={items[selectedImageIndex].title}
-                className="w-full h-full object-contain drop-shadow-2xl select-none animate-in zoom-in-95 duration-300"
+                fill
+                unoptimized
+                className="object-contain drop-shadow-2xl select-none animate-in zoom-in-95 duration-300"
               />
             </div>
             

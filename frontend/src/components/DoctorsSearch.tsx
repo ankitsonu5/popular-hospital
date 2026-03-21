@@ -1,17 +1,22 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import useSWR from 'swr';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchDoctors, fetchSpecialities, fetchBranches, getImageUrl } from '@/lib/api';
 import type { Doctor, Speciality, Branch } from '@/lib/api';
 
 export function DoctorsSearch() {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [speciality, setSpeciality] = useState('');
-  const [departments, setDepartments] = useState<Speciality[]>([]);
   const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
+
+  const { data: departments = [] } = useSWR('specialities', fetchSpecialities, { revalidateOnFocus: false });
+  const { data: doctors = [], isLoading: loading } = useSWR(
+    ['doctors', speciality, search],
+    () => fetchDoctors({ speciality, search }),
+    { keepPreviousData: true }
+  );
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -26,17 +31,6 @@ export function DoctorsSearch() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Fetch Specialities (Departments) once
-  useEffect(() => {
-    fetchSpecialities().then(setDepartments);
-  }, []);
-
-  useEffect(() => {
-    setLoading(true);
-    fetchDoctors({ speciality, search })
-      .then(setDoctors)
-      .finally(() => setLoading(false));
-  }, [speciality, search]);
 
   return (
     <div className="mt-8 w-full overflow-hidden">

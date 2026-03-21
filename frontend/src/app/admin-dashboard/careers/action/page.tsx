@@ -3,7 +3,12 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Briefcase, Loader2, Save, X, ArrowLeft } from 'lucide-react';
-import { Editor } from '@tinymce/tinymce-react';
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(() => import('@/components/TinyMCEEditor'), {
+  ssr: false,
+  loading: () => <div className="h-[400px] animate-pulse bg-gray-100 rounded-xl" />
+});
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
 

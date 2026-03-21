@@ -3,7 +3,7 @@ import { fetchBranches, fetchDoctors } from '@/lib/api';
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'https://popularhospital.com';
 
-export const dynamic = 'force-dynamic';
+
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [branches, doctors] = await Promise.all([

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { fetchBranches } from '@/lib/api';
 import type { Branch } from '@/lib/api';
 
-export const dynamic = 'force-dynamic';
+
 
 export const metadata: Metadata = {
   title: 'Our Branches',
