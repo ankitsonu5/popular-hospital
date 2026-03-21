@@ -145,37 +145,16 @@ export function Header() {
     };
   }, [menuOpen]);
 
-  const [showTopBar, setShowTopBar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollThreshold = 15; // px threshold to avoid glitching
-      
-      // Mobile-only: Hide top bar when scrolling down, show when scrolling up
-      if (window.innerWidth < 1280) {
-        const diff = currentScrollY - lastScrollY;
-        
-        if (Math.abs(diff) > scrollThreshold) {
-          if (diff > 0 && currentScrollY > 100) {
-            setShowTopBar(false);
-          } else if (diff < 0) {
-            setShowTopBar(true);
-          }
-          setLastScrollY(currentScrollY);
-        }
-      } else {
-        setShowTopBar(true);
-        setLastScrollY(currentScrollY);
-      }
-
-      setScrolled(currentScrollY > 50);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const handleMouseEnter = (label: string) => {
     setActiveDropdown(label);
@@ -275,9 +254,7 @@ export function Header() {
         />
         
         {/* Top Bar */}
-        <div className={`bg-[#2E59A8] text-white transition-all duration-300 relative z-50 overflow-hidden ${
-          showTopBar ? 'max-h-[200px] opacity-100 py-3 sm:py-4' : 'max-h-0 opacity-0 py-0'
-        }`}>
+        <div className="bg-[#2E59A8] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-3 sm:py-4">
           <div className="max-w-[1366px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[14px] sm:text-[17px] font-medium">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
               <Link href="/online-payment" className="flex items-center gap-2 hover:text-white/80 transition-colors whitespace-nowrap">
