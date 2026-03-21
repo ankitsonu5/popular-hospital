@@ -5,7 +5,7 @@ import Link from 'next/link';
 import RadiologyVideoSection from "../../../components/RadiologyVideoSection";
 import DoctorSlider from "@/components/DoctorSlider";
 
-const doctors = []; // No doctors for now
+const doctors: never[] = []; // No doctors for now
 
 export default function RadiologyPage() {
   return (

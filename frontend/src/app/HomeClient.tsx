@@ -5,16 +5,35 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { fetchBranches, fetchNews, fetchEvents, getImageUrl, fetchSpecialities, type Branch, type NewsItem, type EventItem, type Speciality } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const DynamicTestimonials = dynamic(() => import('@/components/home/Testimonials'), {
+  ssr: false, // Client side interactivity only needed
+  loading: () => <div className="h-[600px] w-full bg-gray-50 animate-pulse rounded-xl" />
+});
+
+const DynamicLocationSlider = dynamic(() => import('@/components/home/LocationSlider'), {
+  ssr: false,
+  loading: () => <div className="h-[520px] w-full bg-[#f5f5f7] animate-pulse" />
+});
+
+const DynamicEmergencyServices = dynamic(() => import('@/components/home/EmergencyServices'), {
+  ssr: false,
+  loading: () => <div className="h-[600px] w-full bg-slate-50 animate-pulse" />
+});
 
 const COUNTRIES = [
   "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Republic of the)", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Republic of Korea", "Republic of Moldova", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syrian Arab Republic", "Tajikistan", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Türkiye", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United Republic of Tanzania", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Yemen", "Zambia", "Zimbabwe"
 ];
 
-export default function HomePage() {
-  const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
-  const [latestEvents, setLatestEvents] = useState<EventItem[]>([]);
-  const [branches, setBranches] = useState<Branch[]>([]);
-  const [specialities, setSpecialities] = useState<Speciality[]>([]);
+interface HomeClientProps {
+  latestNews: NewsItem[];
+  latestEvents: EventItem[];
+  branches: Branch[];
+  specialities: Speciality[];
+}
+
+export default function HomeClient({ latestNews, latestEvents, branches, specialities }: HomeClientProps) {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringAwards, setIsHoveringAwards] = useState(false);
@@ -36,24 +55,7 @@ export default function HomePage() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const [newsData, branchesData, eventsData, specialitiesData] = await Promise.all([
-        fetchNews(),
-        fetchBranches(),
-        fetchEvents(),
-        fetchSpecialities()
-      ]);
-      setLatestNews(newsData.slice(0, 3));
-      setBranches(branchesData);
-      setLatestEvents(eventsData.slice(0, 3));
-      setSpecialities(specialitiesData);
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -103,22 +105,6 @@ export default function HomePage() {
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400; // Approximate card width + gap
-      const newScrollLeft =
-        direction === "left"
-          ? scrollContainerRef.current.scrollLeft - scrollAmount
-          : scrollContainerRef.current.scrollLeft + scrollAmount;
-
-      scrollContainerRef.current.scrollTo({
-        left: newScrollLeft,
-        behavior: "smooth",
-      });
-    }
-  };
-
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -172,7 +158,7 @@ export default function HomePage() {
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     poster="/images/hospital-sample.jpg"
                     onLoadedData={() => setIsVideoLoaded(true)}
                   >
@@ -188,8 +174,8 @@ export default function HomePage() {
                     fill
                     className="object-cover object-top transition-transform duration-[10000ms]"
                     style={{ transform: index === currentSlide ? 'scale(1.1)' : 'scale(1)' }}
-                    unoptimized
-                    priority={index === currentSlide}
+                    priority={index <= 1}
+                    loading={index > 1 ? 'lazy' : undefined}
                     sizes="100vw"
                   />
                   {/* Very subtle gradient for text shadow if needed */}
@@ -841,510 +827,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Patients Speak Testimonial Section */}
-      <section
-        className="py-16 sm:py-20 bg-white"
-        aria-labelledby="patients-speak"
-      >
-        <div className="mx-auto w-full max-w-[1666px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 font-heading">
-            Patients Speak
-          </h2>
+      {/* Patients Speak Testimonial Section (Dynamically Loaded) */}
+      <DynamicTestimonials />
 
+      {/* Our Locations Section - Dynamically Loaded */}
+      <DynamicLocationSlider branches={branches} />
 
-          {/* Custom 5-Column Video Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
-
-            {/* Column 1: Far Left (Centered Single Card) */}
-            <div className="flex flex-col justify-center">
-              <button
-                onClick={() => setSelectedVideo("/videos/testimonial-one.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5]"
-              >
-                <video
-                  src="/videos/testimonial-one.mp4"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Mauritian Patient</h3>
-                  <p className="text-gray-300 text-xs">Mr Fazil Hosany</p> */}
-                </div>
-              </button>
-            </div>
-
-            {/* Column 2: Inner Left (Two Stacked Cards) */}
-            <div className="flex flex-col gap-4 lg:gap-6">
-              <button
-                onClick={() => setSelectedVideo("/videos/testimonial-two.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
-              >
-                <video
-                  src="/videos/testimonial-two.mp4"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Liver Failure</h3>
-                  <p className="text-gray-300 text-xs">Baby Bhavika</p> */}
-                </div>
-              </button>
-
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_one.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_one.mp4"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Cancer</h3>
-                  <p className="text-gray-300 text-xs">Dr. Abhilasha Agarwal</p> */}
-                </div>
-              </button>
-            </div>
-
-            {/* Column 3: Center (Tall Featured Card) */}
-            <div className="h-[400px] lg:h-full">
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_three.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-full"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_three.mp4"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-
-                {/* Large Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/60 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
-                    <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-10 left-0 right-0 p-8 text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-2xl font-bold font-heading mb-2 drop-shadow-md">Pre-term Babies</h3>
-                  <p className="text-gray-200 text-lg font-medium">Ms Sakshi</p> */}
-                </div>
-              </button>
-            </div>
-
-            {/* Column 4: Inner Right (Two Stacked Cards) */}
-            <div className="flex flex-col gap-4 lg:gap-6">
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_four.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_four.mp4"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Neurosurgical Treatment</h3>
-                  <p className="text-gray-300 text-xs">Mr. Devender Jeet Singh</p> */}
-                </div>
-              </button>
-
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_five.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_five.mp4"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-100 transition-transform">
-                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Bone Marrow</h3>
-                  <p className="text-gray-300 text-xs">Patient Father Mr Haider</p> */}
-                </div>
-              </button>
-            </div>
-
-            {/* Column 5: Far Right (Centered Single Card) */}
-            <div className="flex flex-col justify-center">
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_two.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5]"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_two.mp4"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Kidney Donor</h3>
-                  <p className="text-gray-300 text-xs">Ms Paluk Sunger</p> */}
-                </div>
-              </button>
-            </div>
-
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/stories"
-              className="inline-flex items-center gap-2 text-[#E85222] font-semibold text-xl hover:gap-3 transition-all"
-            >
-              View All Patient Stories
-              <span className="w-8 h-8 rounded-full bg-[#E85222] text-white flex items-center justify-center shadow-md">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-              </span>
-            </Link>
-          </div>
-
-        </div>
-        {/* Video Modal */}
-        {selectedVideo && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
-            onClick={() => setSelectedVideo(null)}
-          >
-            <div
-              className="relative w-full max-w-4xl bg-white rounded-lg overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setSelectedVideo(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-gray-100 transition-colors"
-                aria-label="Close video"
-              >
-                <svg
-                  className="w-6 h-6 text-gray-800"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-              <div
-                className="relative w-full"
-                style={{ paddingBottom: "56.25%" }}
-              >
-                {selectedVideo?.includes("youtube") || selectedVideo?.includes("vimeo") ? (
-                  <iframe
-                    src={selectedVideo}
-                    className="absolute inset-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                ) : (
-                  <video
-                    src={selectedVideo || ""}
-                    className="absolute inset-0 w-full h-full"
-                    controls
-                    autoPlay
-                  ></video>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* Our Locations Section - Apple Style */}
-      <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
-        <div className="mx-auto max-w-[1666px] px-6 sm:px-8 lg:px-12 relative">
-          {/* Section Header */}
-          <div className="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <div className="max-w-4xl">
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1e3a8a] tracking-tight font-heading leading-tight">
-                Our Branches. <span className="text-[#6e6e73]">Always within reach.</span>
-              </h2>
-              <p className="sm:hidden mt-4 text-gray-500 font-medium text-sm tracking-wide bg-gray-100/50 inline-block px-3 py-1 rounded-full">
-                Swipe right to see more locations
-              </p>
-            </div>
-
-            {/* Navigation Buttons */}
-            <div className="hidden sm:flex gap-4 mb-2">
-              <button
-                onClick={() => scroll('left')}
-                className="w-12 h-12 rounded-full bg-[#d2d2d7] hover:bg-[#86868b] text-white flex items-center justify-center transition-colors shadow-sm"
-                aria-label="Previous locations"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="w-12 h-12 rounded-full bg-[#E85222] hover:bg-[#d1451a] text-white flex items-center justify-center transition-colors shadow-sm"
-                aria-label="Next locations"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Cards Scroll Container */}
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {branches.map((location, index) => (
-              <div
-                key={location.slug}
-                className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[480px] sm:h-[520px] rounded-[32px] overflow-hidden snap-center group transition-transform duration-500 hover:scale-[1.02] shadow-xl border border-gray-100/10"
-              >
-                {/* Content Overlay */}
-                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between">
-                  <div>
-                    <span className="text-base font-semibold tracking-wide uppercase text-[#00B4D8] drop-shadow-sm">
-                      {location.city}
-                    </span>
-                    <h3 className="mt-2 text-3xl font-bold leading-tight font-heading text-white drop-shadow-md">
-                      {location.name}
-                    </h3>
-                    <p className="mt-3 text-lg leading-relaxed text-white/80 drop-shadow-sm">
-                      {location.address}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <Link
-                      href={`/locations/${location.slug || ''}`}
-                      className="px-6 py-3 rounded-full font-medium transition-colors bg-white text-black hover:bg-gray-100"
-                    >
-                      Get Directions
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Background Image with Focused Gradient Overlay */}
-                <div className="absolute inset-0 z-10 transition-opacity duration-500">
-                  {/* Overall light tint to reduce harshness */}
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
-                  
-                  {/* Subtle top-down gradient for text protection */}
-                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/50 to-transparent" />
-                  
-                  {/* Subtle bottom-up gradient for button protection */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
-                </div>
-
-                <Image
-                  src={getImageUrl(location.image_one || '') || '/about-section-image.png'}
-                  alt={location.name || 'Branch'}
-                  fill
-                  className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
-                  sizes="(max-width: 768px) 85vw, (max-width: 1280px) 380px, 400px"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 24x7 Services Section */}
-      <section id="emergency-services" className="py-24 bg-slate-50 relative overflow-hidden" aria-labelledby="24-7-services">
-        {/* Subtle Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-y-1/2 mix-blend-multiply"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl translate-y-1/2 mix-blend-multiply"></div>
-        </div>
-
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col items-center justify-center mb-16 text-center">
-
-            {/* Header Lockup */}
-            <div className="relative inline-block mb-6">
-              <div className="flex items-center justify-center gap-4">
-                <svg className="w-10 h-10 sm:w-12 sm:h-12 text-[#1e3a8a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1e3a8a] font-heading tracking-tight">
-                  24x7 Services
-                </h2>
-              </div>
-            </div>
-
-            {/* Clean Divider */}
-            <div className="w-24 h-1.5 bg-[#E85222] rounded-full mx-auto mb-8 shadow-sm"></div>
-
-            {/* Subtitle */}
-            <p className="text-slate-600 text-lg sm:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
-              We cover a big variety of medical services, ensuring you have access to critical care whenever you need it.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-            {[
-              {
-                title: "Emergency",
-                image: "/images/banners/Emergency_24_bg.jpg",
-                desc: "Equipped With the State of the Art facility to manage all types of Trauma, Medical Queries, or Surgical emergencies. Our Emergency Department.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                )
-              },
-              {
-                title: "Blood Bank",
-                image: "/images/banners/blood_bank_24_bg.jpg",
-                desc: "The 24hour Blood Bank present within the campus is equipped with an ultramodern collection centre, component lab and single donor plateletpheresis (SDP).",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                )
-              },
-              {
-                title: "Ambulance",
-                image: "/images/banners/Ambulance_24_bg.avif",
-                desc: "Popular Hospital has Air Ambulance services. It also provides ground ambulance services to shift patient from one hospital to another hospital.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                )
-              },
-              {
-                title: "Diagnostics & Imaging",
-                image: "/images/banners/diagnostics_imaging_24_bg.avif",
-                desc: "The Pathology Laboratory at Popular Hospital is fully licensed. The laboratory supplements its testing capability by using reference laboratories that provide high quality service.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                )
-              },
-              {
-                title: "ICU Service",
-                image: "/images/banners/icu_service_24_bg.jpg",
-                desc: "Intensive care Unit is needed if someone is seriously ill and requires intensive treatment and close monitoring, or surgery intensive care can help them to recover.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                )
-              },
-              {
-                title: "Pharmacy",
-                image: "/images/banners/pharmacy_24_bg.avif",
-                desc: "Hospital Pharmacy is situated in the campus of all the hospitals to facilitate patients fulfilling their emergency needs as well as the medicines as prescribed inside the hospital.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                )
-              },
-            ].map((service, idx) => (
-              <div
-                key={service.title}
-                className="group [perspective:1000px] w-full h-[360px]"
-              >
-                <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100">
-                  
-                  {/* FRONT SIDE */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-white rounded-3xl p-8 text-center flex flex-col items-center">
-                    <div className="w-16 h-16 rounded-full bg-[#f0f9ff] flex items-center justify-center mb-8 border border-gray-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-all duration-300 shadow-inner">
-                      <svg className="w-8 h-8 text-[#1e3a8a] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {service.icon}
-                      </svg>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 font-heading text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-500 text-base leading-relaxed font-medium mb-6">
-                      {service.desc}
-                    </p>
-                    
-                    {/* Read More button for mobile (as hover flip is md: only) */}
-                    <Link 
-                      href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                      className="md:hidden mt-auto px-6 py-2 bg-white text-[#E85222] border-2 border-[#E85222] text-[10px] font-black rounded-full uppercase tracking-widest hover:bg-[#E85222] hover:text-white transition-all shadow-sm"
-                    >
-                      Read more
-                    </Link>
-                  </div>
-
-                  {/* BACK SIDE */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden hidden md:flex">
-                     <Image 
-                        src={service.image} 
-                        alt={service.title} 
-                        fill 
-                        className="object-cover" 
-                     />
-                     <div className="absolute inset-0 bg-[#0b1c43]/50" />
-                     <div className="relative z-10 flex flex-col items-center justify-center p-8 w-full h-full text-center">
-                        <h3 className="text-white text-2xl font-bold mb-8 font-heading px-4 drop-shadow-md">{service.title}</h3>
-                        <Link 
-                          href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                          className="px-8 py-3 bg-[#E85222] text-white text-sm font-bold rounded-full hover:bg-white hover:text-[#E85222] transition-colors duration-300 uppercase tracking-wide shadow-lg"
-                        >
-                          Read more
-                        </Link>
-                     </div>
-                  </div>
-
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 24x7 Services Section - Dynamically Loaded */}
+      <DynamicEmergencyServices />
 
       {/* Appointment Booking Banner */}
       <section

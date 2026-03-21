@@ -84,6 +84,7 @@ const sitemapData = [
       { name: "Wellness Packages", href: "/services/wellness-packages" },
       { name: "Pharmacy", href: "/services/pharmacy" },
       { name: "Pathological Services", href: "/services/pathology" },
+      { name: "Radiological Services", href: "/services/radiology" },
       { name: "Home Care Services", href: "/services/home-care" },
       { name: "Health Packages", href: "/services/health-packages" },
     ]

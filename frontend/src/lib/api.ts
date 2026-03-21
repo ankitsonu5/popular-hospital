@@ -204,6 +204,17 @@ export async function fetchCoverage(): Promise<CoverageItem[]> {
   }
 }
 
+export async function fetchCoverageItem(slug: string): Promise<CoverageItem | null> {
+  try {
+    const res = await fetch(api(`/coverage/${slug}`), { next: { revalidate: 60 } });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error('Failed to fetch coverage item:', e);
+    return null;
+  }
+}
+
 export async function fetchEvents(): Promise<EventItem[]> {
   try {
     const res = await fetch(api('/events'), { next: { revalidate: 60 } });
@@ -229,9 +240,12 @@ export async function fetchEventItem(slug: string): Promise<EventItem | null> {
 export interface CoverageItem {
   _id: string;
   title: string;
+  slug: string;
   date: string;
   source: string;
   image: string;
+  gallery?: string[];
+  content?: string | string[];
   isActive: boolean;
 }
 

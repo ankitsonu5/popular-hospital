@@ -53,6 +53,7 @@ const menuItems: MenuItem[] = [
       { label: "Wellness Packages", href: "/services/wellness-packages" },
       { label: "Pharmacy", href: "/services/pharmacy" },
       { label: "Pathological Services", href: "/services/pathology" },
+      { label: "Radiological Services", href: "/services/radiology" },
       { label: "Home Care Services", href: "/services/home-care" }
     ],
   },
@@ -105,6 +106,7 @@ const servicesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Wellness Packages", href: "/services/wellness-packages" },
     { label: "Pharmacy", href: "/services/pharmacy" },
     { label: "Pathological Services", href: "/services/pathology" },
+    { label: "Radiological Services", href: "/services/radiology" },
     { label: "Home Care Services", href: "/services/home-care" }
   ]
 };
