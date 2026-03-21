@@ -32,7 +32,7 @@ const doctors = [
     qualifications: 'BDS, MDS (Oral & Maxillofacial Surgery)',
     designation: 'Senior Consultant',
     slug: 'dental-specialist',
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800',
+    image: '',
   },
 ];
 
