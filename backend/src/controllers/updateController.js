@@ -30,6 +30,16 @@ export const getUpdates = async (req, res) => {
   }
 };
 
+export const getUpdateById = async (req, res) => {
+    try {
+      const update = await Update.findById(req.params.id);
+      if (!update) return res.status(404).json({ error: 'Update not found' });
+      res.json(update);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+
 // Create a new update (Admin only)
 export const createUpdate = async (req, res) => {
   try {

@@ -33,12 +33,13 @@ export function Footer() {
             <div className="space-y-6 text-[17px] text-gray-200">
               <div>
                 <h4 className="text-lg font-semibold text-white mb-2">Locations:</h4>
-                <p className="leading-relaxed">
-                  Popular Hospital, N 10/60 A-2,
+                <p className="leading-relaxed font-medium">
+                  N-10 / 60, A-2,
                   <br />
-                  Kakarmatta, DLW Road,
+                  B.L.W. ROAD, KAKARMATTA,
                   <br />
-                  Varanasi, Uttar Pradesh 221004
+                  VARANASI 221004, <br />
+                  UTTAR PRADESH, INDIA
                 </p>
               </div>
 

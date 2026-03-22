@@ -17,8 +17,8 @@ import {
 } from '../controllers/blogController.js';
 import { getAdminEvents, createEvent, updateEvent, deleteEvent, uploadEvent } from '../controllers/eventController.js';
 import { getAdminCoverage, createCoverage, updateCoverage, deleteCoverage, uploadCoverage } from '../controllers/coverageController.js';
-import { getUpdates, createUpdate, updateUpdate, deleteUpdate, uploadUpdates } from '../controllers/updateController.js';
-import { getAdminCareers, createCareer, updateCareer, deleteCareer } from '../controllers/careerController.js';
+import { getUpdates, createUpdate, updateUpdate, deleteUpdate, uploadUpdates, getUpdateById } from '../controllers/updateController.js';
+import { getAdminCareers, createCareer, updateCareer, deleteCareer, getCareerById } from '../controllers/careerController.js';
 import { cmsAuth } from '../middleware/auth.js';
 
 const router = Router();
@@ -105,12 +105,14 @@ router.delete('/coverage/:id', deleteCoverage);
 // Updates Routes
 // =====================
 router.get('/updates', getUpdates);
+router.get('/updates/:id', getUpdateById);
 router.post('/updates', uploadUpdates.single('pdf'), createUpdate);
 router.put('/updates/:id', uploadUpdates.single('pdf'), updateUpdate);
 router.delete('/updates/:id', deleteUpdate);
 
 // Careers CRUD
 router.get('/careers', getAdminCareers);
+router.get('/careers/:id', getCareerById);
 router.post('/careers', createCareer);
 router.put('/careers/:id', updateCareer);
 router.delete('/careers/:id', deleteCareer);

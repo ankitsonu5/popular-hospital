@@ -53,6 +53,7 @@ const menuItems: MenuItem[] = [
       { label: "Wellness Packages", href: "/services/wellness-packages" },
       { label: "Pharmacy", href: "/services/pharmacy" },
       { label: "Pathological Services", href: "/services/pathology" },
+      { label: "Radiological Services", href: "/services/radiology" },
       { label: "Home Care Services", href: "/services/home-care" }
     ],
   },
@@ -61,7 +62,7 @@ const menuItems: MenuItem[] = [
     dropdown: [
       { label: 'News', href: '/media/news' },
       { label: 'Blog', href: '/blog' },
-      { label: 'Media Coverage', href: '/media/coverage' },
+      { label: 'Press', href: '/media/coverage' },
       { label: 'Events', href: '/media/events' },
     ],
   },
@@ -70,7 +71,7 @@ const menuItems: MenuItem[] = [
 const specialtiesContent: Record<string, { label: string; href: string }[]> = {
   "Super Specialties": [
     { label: "Cardiology", href: "/departments/cardiology" },
-    { label: "Cardiothoracic & Vascular Surgery (CTVS)", href: "/departments/ctvs" },
+    { label: "Cardiothoracic & Vascular Surgery (CTVS)", href: "/departments/ctvs" }, 
     { label: "Neurosurgery", href: "/departments/neurosurgery" },
     { label: "Gastroenterology", href: "/departments/gastroenterology" },
     { label: "Nephrology", href: "/departments/nephrology" },
@@ -87,7 +88,6 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Orthopedics & Joint Replacement", href: "/departments/orthopedics" },
     { label: "General Medicine", href: "/departments/general-medicine" },
     { label: "ENT", href: "/departments/ent" },
-    { label: "Laboratory Medicine", href: "/departments/laboratory-medicine" },
     { label: "Dietetics & Nutrition", href: "/departments/dietetics-nutrition" },
     { label: "Ophthalmology", href: "/departments/ophthalmology" },
     { label: "Dental", href: "/departments/dental" },
@@ -105,6 +105,7 @@ const servicesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Wellness Packages", href: "/services/wellness-packages" },
     { label: "Pharmacy", href: "/services/pharmacy" },
     { label: "Pathological Services", href: "/services/pathology" },
+    { label: "Radiological Services", href: "/services/radiology" },
     { label: "Home Care Services", href: "/services/home-care" }
   ]
 };
@@ -143,6 +144,8 @@ export function Header() {
       document.body.style.overflow = 'unset';
     };
   }, [menuOpen]);
+
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -251,7 +254,7 @@ export function Header() {
         />
         
         {/* Top Bar */}
-        <div className="bg-[#2E59A8] text-white py-3 sm:py-4 relative z-50">
+        <div className="bg-[#2E59A8] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-3 sm:py-4">
           <div className="max-w-[1366px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[14px] sm:text-[17px] font-medium">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
               <Link href="/online-payment" className="flex items-center gap-2 hover:text-white/80 transition-colors whitespace-nowrap">

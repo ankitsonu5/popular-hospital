@@ -108,11 +108,11 @@ export default function GeneralMedicineClient() {
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/20 text-indigo-200 text-sm font-semibold mb-6 border border-indigo-400/30 backdrop-blur-sm">
-                Department of General Medicine
+                Department of
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Internal Medicine <br />
-              <span className="text-indigo-400">& Diagnostics</span>
+                General <br />
+              <span className="text-indigo-400">Medicine</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link

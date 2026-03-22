@@ -2,8 +2,13 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Briefcase, Loader2, Save, X, ArrowLeft, CheckCircle2 } from 'lucide-react';
-import { Editor } from '@tinymce/tinymce-react';
+import { Briefcase, Loader2, Save, X, ArrowLeft } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(() => import('@/components/TinyMCEEditor'), {
+  ssr: false,
+  loading: () => <div className="h-[400px] animate-pulse bg-gray-100 rounded-xl" />
+});
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
 
@@ -43,13 +48,12 @@ function CareerActionForm() {
     if (editId) {
       const fetchCareer = async () => {
         try {
-          const headers = { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` };
-          // Fetch the whole list and find the specific item by ID
-          const res = await fetch(`/api-backend/cms/careers`, { headers });
+          const res = await fetch(`/api-backend/cms/careers/${editId}`, { 
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` } 
+          });
           if (!res.ok) throw new Error('Could not fetch career details');
           const data = await res.json();
-          const item = data.find((c: any) => c._id === editId);
-          if (item) setFormData(item);
+          setFormData(data);
         } catch (err) {
           console.error(err);
         } finally {
@@ -61,7 +65,7 @@ function CareerActionForm() {
   }, [editId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setIsSaving(true);
     const getHeaders = () => ({
       'Authorization': `Bearer ${localStorage.getItem('admin_token')}`,
@@ -74,7 +78,6 @@ function CareerActionForm() {
         : `/api-backend/cms/careers`;
       const method = editId ? 'PUT' : 'POST';
 
-      // CLEANUP: Remove MongoDB system fields that shouldn't be sent in the body
       const submitData = { ...formData };
       delete submitData._id;
       delete (submitData as any).__v;
@@ -87,16 +90,14 @@ function CareerActionForm() {
         body: JSON.stringify(submitData),
       });
 
-      // Handle non-JSON responses gracefully (to avoid "Unexpected token <")
       const contentType = res.headers.get("content-type");
       let result;
       if (contentType && contentType.includes("application/json")) {
           result = await res.json();
       } else {
-          // If not JSON, it might be an HTML error page from the server/proxy
           const errorText = await res.text();
           console.error('Server returned non-JSON response:', errorText);
-          throw new Error('Server error: Received invalid response format. Please check if backend is running.');
+          throw new Error('Server error: Received invalid response format.');
       }
 
       if (!res.ok) {
@@ -104,13 +105,7 @@ function CareerActionForm() {
       }
 
       alert(editId ? 'Job opening updated successfully!' : 'New job role published successfully!');
-      
-      // Attempt to close the tab and return to previous dashboard
-      if (window.opener || window.history.length === 1) {
-        window.close();
-      }
-      
-      // Fallback if window didn't close
+      if (window.opener || window.history.length === 1) window.close();
       router.push('/admin-dashboard/careers');
     } catch (err: any) {
       alert(err.message);
@@ -121,60 +116,55 @@ function CareerActionForm() {
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <Loader2 className="w-12 h-12 animate-spin text-[#0d9488]" />
+      <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] pb-20">
-      {/* Top Professional Navbar */}
-      <div className="sticky top-0 z-50 bg-white border-b border-gray-100 px-8 py-4 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-6">
-          <button 
-            onClick={() => window.close()} 
-            className="p-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-gray-600"
-          >
-            <ArrowLeft className="w-6 h-6" />
-          </button>
-          <div className="flex items-center gap-4">
-             <div className="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center shadow-inner">
-                <Briefcase className="w-6 h-6 text-[#0d9488]" />
-             </div>
-             <div>
-                <h1 className="text-xl font-black text-[#1a3a5c] uppercase tracking-widest">
-                  {editId ? 'Edit Job Opening' : 'Announce New Vacancy'}
+    <div className="min-h-screen bg-[#f1f5f9] pb-20 font-sans">
+      {/* ─── Header Section ─── */}
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div className="max-w-[1366px] mx-auto px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4 w-full sm:w-auto">
+            <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500">
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center shadow-sm">
+                <Briefcase className="w-5 h-5 text-teal-600" />
+              </div>
+              <div className="min-w-0">
+                <h1 className="text-lg font-bold text-gray-900 leading-tight">
+                  {editId ? 'Modify Role' : 'New Job Vacancy'}
                 </h1>
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Talent Acquisition Center • Popular Hospital</p>
-             </div>
+                <p className="text-xs text-gray-500 font-medium tracking-tight">Talent Acquisition • Popular Hospital</p>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="flex items-center gap-4">
-            <button 
-              type="button"
-              onClick={() => window.close()}
-              className="px-6 py-3 text-sm font-black text-gray-400 hover:text-gray-600 uppercase tracking-widest transition-all"
-            >
-              Cancel
+          <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+            <button type="button" onClick={() => window.close()} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Cancel</button>
+            <button onClick={handleSubmit} disabled={isSaving} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-semibold text-sm disabled:opacity-50">
+              {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+              <span>{editId ? 'Save opening' : 'Publish Role'}</span>
             </button>
-            <button 
-              onClick={handleSubmit}
-              disabled={isSaving}
-              className="flex items-center gap-3 px-10 py-3.5 bg-[#1a3a5c] hover:bg-[#E85222] text-white rounded-2xl shadow-xl shadow-blue-900/20 transition-all font-black uppercase tracking-widest text-sm active:scale-95 disabled:opacity-50"
-            >
-              {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-              {editId ? 'Save Changes' : 'Publish Role'}
-            </button>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-12 px-6">
-         <form className="space-y-8 bg-white p-12 rounded-[3.5rem] shadow-2xl shadow-blue-900/5 border border-white">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* ─── Form Content ─── */}
+      <div className="max-w-[1366px] mx-auto mt-8 px-4 sm:px-8 lg:px-12">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <div className="lg:col-span-8 space-y-8">
+            <div className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-200">
+              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Job Specifications</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="space-y-2">
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Category *</label>
+                  <label className="block text-sm font-semibold text-gray-700">Category *</label>
                   <select
-                    className="w-full px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-[#0d9488] focus:bg-white outline-none transition-all font-bold text-sm text-[#1a3a5c]"
+                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-semibold"
                     value={formData.category}
                     onChange={(e: any) => setFormData({ ...formData, category: e.target.value })}
                   >
@@ -184,95 +174,94 @@ function CareerActionForm() {
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Department *</label>
+                  <label className="block text-sm font-semibold text-gray-700">Department *</label>
                   <input required
-                    className="w-full px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-[#0d9488] focus:bg-white outline-none transition-all font-bold text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-semibold"
                     placeholder="e.g. Cardiology"
                     value={formData.department}
                     onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Designation *</label>
-                  <input required
-                    className="w-full px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-[#0d9488] focus:bg-white outline-none transition-all font-bold text-sm"
-                    placeholder="e.g. Senior Consultant"
-                    value={formData.designation}
-                    onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                  />
-                </div>
-            </div>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="space-y-2 mb-6">
+                <label className="block text-sm font-semibold text-gray-700">Designation *</label>
+                <input required
+                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-semibold"
+                  placeholder="e.g. Senior Consultant / Staff Nurse"
+                  value={formData.designation}
+                  onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
                 <div className="space-y-2">
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Location</label>
-                  <input required
-                    className="w-full px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-[#0d9488] focus:bg-white outline-none transition-all font-bold text-sm"
+                  <label className="block text-sm font-semibold text-gray-700">Location</label>
+                  <input 
+                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-semibold"
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Positions</label>
-                  <input required
-                    className="w-full px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-[#0d9488] focus:bg-white outline-none transition-all font-bold text-sm text-center"
+                  <label className="block text-sm font-semibold text-gray-700">Open Positions</label>
+                  <input type="number"
+                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-semibold"
                     value={formData.position}
                     onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Posted Date</label>
-                  <input required
-                    className="w-full px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-[#0d9488] focus:bg-white outline-none transition-all font-bold text-sm"
-                    value={formData.postedOn}
-                    onChange={(e) => setFormData({ ...formData, postedOn: e.target.value })}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Deadline</label>
-                  <input required
-                    className="w-full px-6 py-4 rounded-[1.5rem] bg-gray-50 border-2 border-transparent focus:border-[#0d9488] focus:bg-white outline-none transition-all font-bold text-sm"
-                    value={formData.lastDate}
+                  <label className="block text-sm font-semibold text-gray-700">Deadline Date</label>
+                  <input type="date"
+                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-sm font-semibold"
+                    value={formData.lastDate && formData.lastDate !== '-' ? new Date(formData.lastDate).toISOString().split('T')[0] : ''}
                     onChange={(e) => setFormData({ ...formData, lastDate: e.target.value })}
                   />
                 </div>
-            </div>
+              </div>
 
-            <div className="space-y-4">
-                <label className="block text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-2">Job Description & Requirements *</label>
-                <div className="rounded-[2.5rem] overflow-hidden border-2 border-gray-50 shadow-inner min-h-[500px]">
+              <div className="space-y-4 pt-4">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Detailed Job Description & Requirements</label>
+                  <div className="rounded-xl overflow-hidden border border-gray-200 min-h-[450px]">
                     <Editor
                       apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
+                      init={{
+                        height: 450,
+                        menubar: false,
+                        plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
+                        toolbar: 'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+                        content_style: 'body { font-family:Inter,Arial,sans-serif; font-size:14px; color: #1f2937; }',
+                        branding: false,
+                        statusbar: false
+                      }}
                       value={formData.description}
                       onEditorChange={(content: string) => setFormData({ ...formData, description: content })}
-                      init={{
-                        height: 550,
-                        menubar: true,
-                        plugins: 'advlist autolink lists link charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
-                        toolbar: 'undo redo | blocks | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-                        content_style: 'body { font-family:Inter,Helvetica,Arial,sans-serif; font-size:16px; color:#4a5568; line-height:1.6 }',
-                        branding: false
-                      }}
                     />
-                </div>
+                  </div>
+              </div>
             </div>
+          </div>
 
-            <div className="flex items-center justify-between p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
-                <div className="flex flex-col">
-                   <span className="text-sm font-black text-[#1a3a5c] uppercase tracking-widest">Public Visibility</span>
-                   <span className="text-[10px] text-gray-400 font-bold italic">When toggled on, this job will appear on the public careers page.</span>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="sr-only peer"
-                    checked={formData.isActive}
-                    onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                  />
-                  <div className="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#0d9488]"></div>
-                </label>
+          {/* Sidebar */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+               <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Visibility Center</h2>
+               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl mb-4">
+                  <div className="flex flex-col">
+                     <span className="text-sm font-bold text-gray-700">Live Status</span>
+                     <span className="text-[10px] text-gray-400 font-medium">Toggle visibility on site</span>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" className="sr-only peer" checked={formData.isActive} onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })} />
+                    <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+                  </label>
+               </div>
+               <p className="text-[10px] text-gray-400 leading-relaxed font-medium">When active, this opening will appear in the careers section of the hospital website.</p>
             </div>
-         </form>
+          </div>
+
+        </form>
       </div>
     </div>
   );
@@ -280,7 +269,7 @@ function CareerActionForm() {
 
 export default function CareerActionPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-12 h-12 animate-spin text-[#0d9488]" /></div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-10 h-10 animate-spin text-blue-600" /></div>}>
       <CareerActionForm />
     </Suspense>
   );

@@ -165,7 +165,7 @@ export default function DepartmentsPage() {
                 </div>
               </div>
               
-              <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute top-2 right-2 flex gap-1 transition-opacity">
                 <button onClick={() => handleEdit(spec)} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
                   <Pencil className="w-3.5 h-3.5" />
                 </button>

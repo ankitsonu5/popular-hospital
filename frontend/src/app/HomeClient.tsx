@@ -3,41 +3,59 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { fetchBranches, fetchNews, getImageUrl, type Branch, type NewsItem } from "@/lib/api";
+import { fetchBranches, fetchNews, fetchEvents, getImageUrl, fetchSpecialities, type Branch, type NewsItem, type EventItem, type Speciality } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import dynamic from "next/dynamic";
 
-export default function HomePage() {
-  const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
-  const [branches, setBranches] = useState<Branch[]>([]);
+const DynamicTestimonials = dynamic(() => import('@/components/home/Testimonials'), {
+  ssr: false, // Client side interactivity only needed
+  loading: () => <div className="h-[600px] w-full bg-gray-50 animate-pulse rounded-xl" />
+});
+
+const DynamicLocationSlider = dynamic(() => import('@/components/home/LocationSlider'), {
+  ssr: false,
+  loading: () => <div className="h-[520px] w-full bg-[#f5f5f7] animate-pulse" />
+});
+
+const DynamicEmergencyServices = dynamic(() => import('@/components/home/EmergencyServices'), {
+  ssr: false,
+  loading: () => <div className="h-[600px] w-full bg-slate-50 animate-pulse" />
+});
+
+const COUNTRIES = [
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Republic of the)", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Republic of Korea", "Republic of Moldova", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syrian Arab Republic", "Tajikistan", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Türkiye", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United Republic of Tanzania", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Yemen", "Zambia", "Zimbabwe"
+];
+
+interface HomeClientProps {
+  latestNews: NewsItem[];
+  latestEvents: EventItem[];
+  branches: Branch[];
+  specialities: Speciality[];
+}
+
+export default function HomeClient({ latestNews, latestEvents, branches, specialities }: HomeClientProps) {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHoveringAwards, setIsHoveringAwards] = useState(false);
+  const [isInternationalModalOpen, setIsInternationalModalOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    message: "",
     name: "",
     email: "",
     phone: "",
-    query: "",
+    date: "",
+    timing: "",
+    department: "",
+    location: "",
+    message: "",
     agreeTerms: false,
   });
 
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const [newsData, branchesData] = await Promise.all([
-        fetchNews(),
-        fetchBranches()
-      ]);
-      setLatestNews(newsData.slice(0, 3));
-      setBranches(branchesData);
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -50,18 +68,18 @@ export default function HomePage() {
     { type: 'video', src: '/videos/hero.mp4' },
     { 
       type: 'image', 
-      src: '/images/slide_images/slide_one.png',
-      mobileSrc: '/images/slide_images/slide_one_mobile.png'
+      src: '/images/slide_images/slide_one.png?v=update',
+      mobileSrc: '/images/slide_images/slide_one_mobile.png?v=update'
     },
     { 
       type: 'image', 
-      src: '/images/slide_images/slide_two.png',
-      mobileSrc: '/images/slide_images/slide_two_mobile.png'
+      src: '/images/slide_images/slide_three.png?v=update',
+      mobileSrc: '/images/slide_images/slide_three_mobile.png?v=update'
     },
     { 
       type: 'image', 
-      src: '/images/slide_images/slide_three.png',
-      mobileSrc: '/images/slide_images/slide_three_mobile.png'
+      src: '/images/slide_images/slide_two.png?v=update',
+      mobileSrc: '/images/slide_images/slide_two_mobile.png?v=update'
     },
   ];
 
@@ -87,22 +105,6 @@ export default function HomePage() {
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400; // Approximate card width + gap
-      const newScrollLeft =
-        direction === "left"
-          ? scrollContainerRef.current.scrollLeft - scrollAmount
-          : scrollContainerRef.current.scrollLeft + scrollAmount;
-
-      scrollContainerRef.current.scrollTo({
-        left: newScrollLeft,
-        behavior: "smooth",
-      });
-    }
-  };
-
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -156,7 +158,7 @@ export default function HomePage() {
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     poster="/images/hospital-sample.jpg"
                     onLoadedData={() => setIsVideoLoaded(true)}
                   >
@@ -172,8 +174,8 @@ export default function HomePage() {
                     fill
                     className="object-cover object-top transition-transform duration-[10000ms]"
                     style={{ transform: index === currentSlide ? 'scale(1.1)' : 'scale(1)' }}
-                    unoptimized
-                    priority={index === currentSlide}
+                    priority={index <= 1}
+                    loading={index > 1 ? 'lazy' : undefined}
                     sizes="100vw"
                   />
                   {/* Very subtle gradient for text shadow if needed */}
@@ -825,520 +827,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Patients Speak Testimonial Section */}
-      <section
-        className="py-16 sm:py-20 bg-white"
-        aria-labelledby="patients-speak"
-      >
-        <div className="mx-auto w-full max-w-[1666px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 font-heading">
-            Patients Speak
-          </h2>
+      {/* Patients Speak Testimonial Section (Dynamically Loaded) */}
+      <DynamicTestimonials />
 
+      {/* Our Locations Section - Dynamically Loaded */}
+      <DynamicLocationSlider branches={branches} />
 
-          {/* Custom 5-Column Video Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
-
-            {/* Column 1: Far Left (Centered Single Card) */}
-            <div className="flex flex-col justify-center">
-              <button
-                onClick={() => setSelectedVideo("/videos/testimonial-one.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5]"
-              >
-                <video
-                  src="/videos/testimonial-one.mp4"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Mauritian Patient</h3>
-                  <p className="text-gray-300 text-xs">Mr Fazil Hosany</p> */}
-                </div>
-              </button>
-            </div>
-
-            {/* Column 2: Inner Left (Two Stacked Cards) */}
-            <div className="flex flex-col gap-4 lg:gap-6">
-              <button
-                onClick={() => setSelectedVideo("/videos/testimonial-two.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
-              >
-                <video
-                  src="/videos/testimonial-two.mp4"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Liver Failure</h3>
-                  <p className="text-gray-300 text-xs">Baby Bhavika</p> */}
-                </div>
-              </button>
-
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_one.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_one.mp4"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Cancer</h3>
-                  <p className="text-gray-300 text-xs">Dr. Abhilasha Agarwal</p> */}
-                </div>
-              </button>
-            </div>
-
-            {/* Column 3: Center (Tall Featured Card) */}
-            <div className="h-[400px] lg:h-full">
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_three.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-full"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_three.mp4"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-
-                {/* Large Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/60 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
-                    <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-10 left-0 right-0 p-8 text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-2xl font-bold font-heading mb-2 drop-shadow-md">Pre-term Babies</h3>
-                  <p className="text-gray-200 text-lg font-medium">Ms Sakshi</p> */}
-                </div>
-              </button>
-            </div>
-
-            {/* Column 4: Inner Right (Two Stacked Cards) */}
-            <div className="flex flex-col gap-4 lg:gap-6">
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_four.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_four.mp4"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Neurosurgical Treatment</h3>
-                  <p className="text-gray-300 text-xs">Mr. Devender Jeet Singh</p> */}
-                </div>
-              </button>
-
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_five.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_five.mp4"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-100 transition-transform">
-                    <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-base font-bold leading-tight mb-0.5">Bone Marrow</h3>
-                  <p className="text-gray-300 text-xs">Patient Father Mr Haider</p> */}
-                </div>
-              </button>
-            </div>
-
-            {/* Column 5: Far Right (Centered Single Card) */}
-            <div className="flex flex-col justify-center">
-              <button
-                onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_two.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5]"
-              >
-                <video
-                  src="/videos/popular_hospital_happy_pateint_two.mp4"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  {/* <h3 className="text-white text-sm font-bold leading-tight mb-0.5">Kidney Donor</h3>
-                  <p className="text-gray-300 text-xs">Ms Paluk Sunger</p> */}
-                </div>
-              </button>
-            </div>
-
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/stories"
-              className="inline-flex items-center gap-2 text-[#E85222] font-semibold text-xl hover:gap-3 transition-all"
-            >
-              View All Patient Stories
-              <span className="w-8 h-8 rounded-full bg-[#E85222] text-white flex items-center justify-center shadow-md">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-              </span>
-            </Link>
-          </div>
-
-        </div>
-        {/* Video Modal */}
-        {selectedVideo && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
-            onClick={() => setSelectedVideo(null)}
-          >
-            <div
-              className="relative w-full max-w-4xl bg-white rounded-lg overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setSelectedVideo(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-gray-100 transition-colors"
-                aria-label="Close video"
-              >
-                <svg
-                  className="w-6 h-6 text-gray-800"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-              <div
-                className="relative w-full"
-                style={{ paddingBottom: "56.25%" }}
-              >
-                {selectedVideo?.includes("youtube") || selectedVideo?.includes("vimeo") ? (
-                  <iframe
-                    src={selectedVideo}
-                    className="absolute inset-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                ) : (
-                  <video
-                    src={selectedVideo || ""}
-                    className="absolute inset-0 w-full h-full"
-                    controls
-                    autoPlay
-                  ></video>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* Our Locations Section - Apple Style */}
-      <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
-        <div className="mx-auto max-w-[1666px] px-6 sm:px-8 lg:px-12 relative">
-          {/* Section Header */}
-          <div className="mb-12 flex items-end justify-between">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1e3a8a] tracking-tight font-heading">
-              Our Branches. <span className="text-[#6e6e73]">Always within reach.</span>
-            </h2>
-
-            {/* Navigation Buttons */}
-            <div className="hidden sm:flex gap-4 mb-2">
-              <button
-                onClick={() => scroll('left')}
-                className="w-12 h-12 rounded-full bg-[#d2d2d7] hover:bg-[#86868b] text-white flex items-center justify-center transition-colors shadow-sm"
-                aria-label="Previous locations"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="w-12 h-12 rounded-full bg-[#E85222] hover:bg-[#d1451a] text-white flex items-center justify-center transition-colors shadow-sm"
-                aria-label="Next locations"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Cards Scroll Container */}
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {branches.map((location, index) => (
-              <div
-                key={location.slug}
-                className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[480px] sm:h-[520px] rounded-[32px] overflow-hidden snap-center group transition-transform duration-500 hover:scale-[1.02] shadow-xl border border-gray-100/10"
-              >
-                {/* Content Overlay */}
-                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between">
-                  <div>
-                    <span className="text-base font-semibold tracking-wide uppercase text-[#00B4D8] drop-shadow-sm">
-                      {location.city}
-                    </span>
-                    <h3 className="mt-2 text-3xl font-bold leading-tight font-heading text-white drop-shadow-md">
-                      {location.name}
-                    </h3>
-                    <p className="mt-3 text-lg leading-relaxed text-white/80 drop-shadow-sm">
-                      {location.address}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <Link
-                      href={`/locations/${location.slug || ''}`}
-                      className="px-6 py-3 rounded-full font-medium transition-colors bg-white text-black hover:bg-gray-100"
-                    >
-                      Get Directions
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Background Image with Focused Gradient Overlay */}
-                <div className="absolute inset-0 z-10 transition-opacity duration-500">
-                  {/* Overall light tint to reduce harshness */}
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
-                  
-                  {/* Subtle top-down gradient for text protection */}
-                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/50 to-transparent" />
-                  
-                  {/* Subtle bottom-up gradient for button protection */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
-                </div>
-
-                <Image
-                  src={getImageUrl(location.image_one || '') || '/about-section-image.png'}
-                  alt={location.name || 'Branch'}
-                  fill
-                  className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
-                  sizes="(max-width: 768px) 85vw, (max-width: 1280px) 380px, 400px"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 24x7 Services Section */}
-      <section id="emergency-services" className="py-24 bg-slate-50 relative overflow-hidden" aria-labelledby="24-7-services">
-        {/* Subtle Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-y-1/2 mix-blend-multiply"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl translate-y-1/2 mix-blend-multiply"></div>
-        </div>
-
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col items-center justify-center mb-16 text-center">
-
-            {/* Header Lockup */}
-            <div className="relative inline-block mb-6">
-              <div className="flex items-center justify-center gap-4">
-                <svg className="w-10 h-10 sm:w-12 sm:h-12 text-[#1e3a8a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1e3a8a] font-heading tracking-tight">
-                  24x7 Services
-                </h2>
-              </div>
-            </div>
-
-            {/* Clean Divider */}
-            <div className="w-24 h-1.5 bg-[#E85222] rounded-full mx-auto mb-8 shadow-sm"></div>
-
-            {/* Subtitle */}
-            <p className="text-slate-600 text-lg sm:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
-              We cover a big variety of medical services, ensuring you have access to critical care whenever you need it.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Emergency",
-                desc: "Equipped With the State of the Art facility to manage all types of Trauma, Medical Queries, or Surgical emergencies. Our Emergency Department.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                )
-              },
-              {
-                title: "Blood Bank",
-                desc: "The 24hour Blood Bank present within the campus is equipped with an ultramodern collection centre, component lab and single donor plateletpheresis (SDP).",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                )
-              },
-              {
-                title: "Ambulance",
-                desc: "Popular Hospital has Air Ambulance services. It also provides ground ambulance services to shift patient from one hospital to another hospital.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                ),
-                customIcon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                ),
-                customIcon2: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
-                )
-              },
-              {
-                title: "Diagnostics & Imaging",
-                desc: "The Pathology Laboratory at Popular Hospital is fully licensed. The laboratory supplements its testing capability by using reference laboratories that provide high quality service.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                )
-              },
-              {
-                title: "ICU Service",
-                desc: "Intensive care Unit is needed if someone is seriously ill and requires intensive treatment and close monitoring, or surgery intensive care can help them to recover.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                )
-              },
-              {
-                title: "Pharmacy",
-                desc: "Hospital Pharmacy is situated in the campus of all the hospitals to facilitate patients fulfilling their emergency needs as well as the medicines as prescribed inside the hospital.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                )
-              },
-            ].map((service, idx) => (
-              <div
-                key={service.title}
-                className="group [perspective:1000px] w-full h-full"
-              >
-                <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
-                  
-                  {/* FRONT SIDE */}
-                  <div className="w-full h-full min-h-[340px] [backface-visibility:hidden] bg-white rounded-xl p-8 text-center flex flex-col border-t-4 border-[#0b1c43]">
-                    
-                    <div className="flex justify-center mb-6">
-                      <div className="w-16 h-16 rounded-full bg-[#E0F2FE] flex items-center justify-center">
-                        <svg className="w-8 h-8 text-[#0b1c43]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          {service.customIcon2 || service.icon}
-                        </svg>
-                      </div>
-                    </div>
-
-                    <h3 className="text-xl font-bold mb-4 font-heading text-[#0b1c43]">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6 font-medium flex-grow">
-                      {service.desc}
-                    </p>
-
-                    {/* Mobile-only Read More */}
-                    <div className="md:hidden mt-auto">
-                      <Link 
-                        href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                        className="inline-block px-6 py-2 border-2 border-[#E85222] text-[#E85222] text-sm font-bold rounded-full uppercase tracking-wide"
-                      >
-                        Read more
-                      </Link>
-                    </div>
-
-                  </div>
-
-                  {/* BACK SIDE (Desktop/Tablet only) */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden hidden md:flex border-t-4 border-[#E85222]">
-                     <Image 
-                        src="https://images.unsplash.com/photo-1551076805-e18690c5e561?q=80&w=500&auto=format&fit=crop" 
-                        alt={service.title} 
-                        fill 
-                        className="object-cover" 
-                     />
-                     <div className="absolute inset-0 bg-[#0b1c43]/85" />
-                     <div className="relative z-10 flex flex-col items-center justify-center p-8 w-full h-full text-center">
-                        <h3 className="text-white text-2xl font-bold mb-8 font-heading px-4">{service.title}</h3>
-                        <Link 
-                          href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                          className="px-8 py-3 bg-[#E85222] text-white text-sm font-bold rounded-full hover:bg-white hover:text-[#E85222] transition-colors duration-300 uppercase tracking-wide"
-                        >
-                          Read more
-                        </Link>
-                     </div>
-                  </div>
-
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 24x7 Services Section - Dynamically Loaded */}
+      <DynamicEmergencyServices />
 
       {/* Appointment Booking Banner */}
       <section
-        className="py-12 sm:py-16 bg-[#0b1c43]"
+        className="py-12 sm:py-16 bg-[#0b1c43] relative overflow-hidden"
         aria-labelledby="appointment-banner"
       >
-        <div className="mx-auto w-full max-w-[1920px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+        {/* Background Image with High Visibility for striking look */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/banners/book_an_appointment_banner.png"
+            alt="Hospital background"
+            fill
+            className="object-cover opacity-45"
+          />
+          <div className="absolute inset-0 bg-[#0b1c43]/40 mix-blend-multiply" />
+        </div>
+
+        <div className="mx-auto w-full max-w-[1920px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
             {/* Left Side - Icon, Heading, and Description */}
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 flex-1">
@@ -1488,6 +1002,118 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Latest Events Section */}
+      <section
+        className="py-16 sm:py-24 bg-white relative overflow-hidden"
+        aria-labelledby="latest-events"
+      >
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-hospital-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#E85222]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div className="max-w-2xl">
+
+              <h2
+                id="latest-events"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] font-heading"
+              >
+                Latest Events
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {latestEvents.map((event) => (
+              <article 
+                key={event.slug} 
+                className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col h-full"
+              >
+                {/* Event Image Container */}
+                <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden shrink-0">
+                  <Image
+                    src={getImageUrl(event.thumbnail) || "/about-section-image.png"}
+                    alt={event.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  {/* Date Badge */}
+                  <div className="absolute top-4 left-4 bg-white px-4 py-2.5 rounded-xl shadow-md border-l-4 border-[#E85222] flex items-center gap-3">
+                    <p className="text-[#0b1c43] font-black text-xl leading-none">
+                      {new Date(event.date).getDate()}
+                    </p>
+                    <div className="w-[1.5px] h-6 bg-gray-100"></div>
+                    <div className="flex flex-col">
+                      <p className="text-[#1e3a8a] font-bold text-xs uppercase tracking-wider leading-none">
+                        {new Date(event.date).toLocaleString('default', { month: 'short' })}
+                      </p>
+                      <p className="text-[#E85222] font-semibold text-[10px] mt-1 leading-none">
+                        {new Date(event.date).getFullYear()}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-heading leading-tight line-clamp-2">
+                    {event.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2 flex-1">
+                    {event.description?.replace(/<[^>]*>/g, '') || "Experience our latest medical workshops and community health programs..."}
+                  </p>
+                  
+                  <Link
+                    href={`/media/events/${event.slug}`}
+                    className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base mt-auto w-max group/btn"
+                  >
+                    <span>View Details</span>
+                    <svg
+                      className="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* View All Link */}
+          <div className="mt-16 text-center">
+            <Link
+              href="/media/events"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
+            >
+              <span>View All Events</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
 
       {/* Cashless Empanelment Section */}
       <section className="py-14 sm:py-16 bg-white border-t border-gray-100">
@@ -1678,286 +1304,459 @@ export default function HomePage() {
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-20 sm:py-24 bg-white" aria-labelledby="contact-us">
+      <section className="py-20 sm:py-24 bg-gray-50" aria-labelledby="contact-us">
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-[auto_2fr] gap-8 lg:gap-12 items-stretch">
-            {/* Left Column - Informational Cards */}
-            <div className="flex flex-col gap-6 w-full lg:h-full">
-              {/* OUR LOCATIONS Card */}
-              <Link href="/our-locations" className="block flex-1 hover:scale-[1.02] transition-transform duration-300">
-                <div className="bg-purple-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm h-full flex items-center justify-center">
-                  <div className="w-full h-full rounded-2xl border border-purple-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
-                    <div className="flex items-center justify-center gap-4 w-full h-full">
-                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-                        <svg
-                          className="w-6 h-6 sm:w-7 sm:h-7 text-gray-700"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                        </svg>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 font-heading">
-                          OUR LOCATIONS
-                        </h3>
-                        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                          N-10 / 60, A-2, B.L.W. ROAD, KAKARMATTA, VARANASI 221004,UTTAR PRADESH, INDIA
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.8fr] gap-12 lg:gap-16 items-start">
+            
+            {/* Left Column - Brand Quote & Info (Refined Modern Style) */}
+            <div className="flex flex-col gap-10 order-2 lg:order-1">
+              {/* Branding Block from Image */}
+              <div className="bg-[#0b1c43] text-white rounded-3xl p-10 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden transition-all duration-500 hover:shadow-[#0b1c43]/20">
+                <div className="relative z-10">
+                  <h2 className="text-4xl sm:text-5xl lg:text-5xl font-black italic leading-[1.15] tracking-tight mb-8 font-heading">
+                    Committed To Build A<br />
+                    <span className="text-[#FA9A3E]">Positive, Safe, Patient</span><br />
+                    Focused Culture.
+                  </h2>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl font-medium">
+                    Today the hospital is recognised as a world renowned institution, not only providing outstanding care and treatment, our goal is to deliver quality care in a respectful & compassionate manner. We strive to be the first and best choice for healthcare.
+                  </p>
 
-              {/* CONNECT WITH US Card */}
-              <div className="bg-pink-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm flex-1 flex items-center justify-center">
-                <div className="w-full h-full rounded-2xl border border-pink-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
-                  <div className="flex items-center justify-center gap-4 w-full h-full">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 sm:w-7 sm:h-7 text-gray-700"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 font-heading">
-                        CONNECT WITH US
-                      </h3>
-                      <div className="text-gray-700 text-sm sm:text-base space-y-1">
-                        <p>CALL: +91-7800001896</p>
-                        <p>CALL: +91-7800001895</p>
-                        <p>EMAIL : info@popularhospitals.in</p>
+                  <div className="flex flex-col sm:flex-row items-center gap-6 mb-16">
+                    <Link 
+                      href="/doctors"
+                      className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-3.5 bg-[#FA9A3E] text-white rounded-xl text-lg font-bold hover:bg-[#e88a2d] transition-all duration-300 shadow-lg shadow-[#FA9A3E]/20"
+                    >
+                      Find a Doctor
+                    </Link>
+
+                    <button 
+                      onClick={() => setIsInternationalModalOpen(true)}
+                      className="w-full sm:w-auto flex flex-col items-center justify-center px-8 py-3 border-2 border-white/20 hover:border-[#FA9A3E] text-white rounded-xl transition-all duration-300 group bg-white/5 backdrop-blur-sm"
+                    >
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FA9A3E] group-hover:text-white mb-0.5">For International Patients</span>
+                      <span className="text-xs font-bold whitespace-nowrap">Send Your Inquiry to Assist You</span>
+                    </button>
+                  </div>
+
+                  {/* Modernized Services Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+                    {[
+                      "Fractures and dislocations",
+                      "Home medicine review",
+                      "High Quality Care",
+                      "Desensitisation injections",
+                      "Health Assessments"
+                    ].map((service) => (
+                      <div key={service} className="flex items-center gap-4 group cursor-default">
+                        <div className="w-2.5 h-2.5 rounded-full bg-hospital-teal shadow-[0_0_10px_rgba(45,212,191,0.5)] group-hover:scale-125 transition-transform"></div>
+                        <span className="text-xl font-bold tracking-tight italic font-heading opacity-90 group-hover:opacity-100 transition-opacity">
+                          {service}
+                        </span>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              {/* VISITING HOURS Card */}
-              <div className="bg-green-50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm flex-1 flex items-center justify-center">
-                <div className="w-full h-full rounded-2xl border border-green-300 bg-transparent p-4 sm:p-5 md:p-6 flex items-center justify-center">
-                  <div className="flex items-center justify-center gap-4 w-full h-full">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 sm:w-7 sm:h-7 text-gray-700"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+              {/* Simplified Connect With Us Box */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-xl shadow-gray-200/50 flex flex-col sm:flex-row items-center gap-8 group">
+                <div className="flex-shrink-0 w-20 h-20 bg-pink-50 rounded-xl flex items-center justify-center text-[#E85222] group-hover:scale-110 transition-transform duration-500">
+                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div className="flex-1 text-center sm:text-left">
+                  <h3 className="text-2xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase italic underline decoration-[#E85222]/30 underline-offset-8">
+                    Connect With Us
+                  </h3>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
+                      <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
+                        <span className="text-[#E85222] mr-2">CALL:</span> +91-7800001896
+                      </p>
+                      <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
+                        <span className="text-[#E85222] mr-2">CALL:</span> +91-7800001895
+                      </p>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3 font-heading">
-                        VISITING HOURS
-                      </h3>
-                      <div className="text-gray-700 text-sm sm:text-base space-y-1">
-                        <p>Sunday: 08:00 AM - 10:00 PM</p>
-                        <p>Monday - Friday: 06:00 AM - 12:00 AM</p>
-                      </div>
-                    </div>
+                    <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
+                      <span className="text-[#E85222] mr-2">EMAIL:</span> info@popularhospitals.in
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Contact Form */}
-            <div className="bg-orange-50 rounded-xl border border-gray-200 p-6 sm:p-8 shadow-sm">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 font-heading">
-                Send Us A Message Anytime
-              </h2>
-              <p className="text-sm text-gray-500 mb-6">
-                Your email address will not be published. Required fields are
-                marked*
+            <div className="bg-[#FFFAF5] rounded-3xl border border-[#F3E6D8] p-8 sm:p-10 lg:p-12 shadow-sm order-1 lg:order-2 self-stretch">
+              <p className="text-[#0b1c43] text-md sm:text-md font-medium mb-1 leading-relaxed">
+                We will confirm your appointment within 2 hours
               </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5x1 font-black text-[#0b1c43] mb-10 font-heading tracking-tight">
+                Request An Appointment
+              </h2>
 
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  // Handle form submission here
                   console.log("Form submitted:", formData);
                 }}
-                className="space-y-5"
+                className="space-y-6"
               >
-                {/* Message Field */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Your Message*
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    placeholder="Please write your message here"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none resize-none"
-                  />
-                </div>
-
-                {/* Name Field */}
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Name*
-                  </label>
+                {/* Name */}
+                <div className="relative group">
                   <input
-                    id="name"
                     type="text"
                     required
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    placeholder="Please enter name"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Name"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                  </div>
                 </div>
 
-                {/* Email Field */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Email*
-                  </label>
+                {/* Email */}
+                <div className="relative group">
                   <input
-                    id="email"
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    placeholder="Please enter email"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="Email"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                  </div>
                 </div>
 
-                {/* Phone Field */}
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Phone*
-                  </label>
+                {/* Phone */}
+                <div className="relative group">
                   <input
-                    id="phone"
                     type="tel"
                     required
                     value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                    placeholder="Please enter phone"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="Phone"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 004.815 4.815l.773-1.548a1 1 0 011.06-.539l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                  </div>
                 </div>
 
-                {/* Website Field */}
-                {/* Query Field */}
-                <div>
-                  <label
-                    htmlFor="query"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Query*
-                  </label>
-                  <input
-                    id="query"
-                    type="text"
-                    required
-                    value={formData.query}
-                    onChange={(e) =>
-                      setFormData({ ...formData, query: e.target.value })
-                    }
-                    placeholder="Please enter your query"
-                    className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                {/* Date & Select Timing */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="relative">
+                    <input
+                      type="date"
+                      required
+                      value={formData.date}
+                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-400"
+                    />
+                  </div>
+                  <div className="relative">
+                    <select
+                      value={formData.timing}
+                      onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
+                      className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
+                    >
+                      <option value="">Select Timing</option>
+                      <option value="09:30-11:00">9:30 AM - 11:00 AM</option>
+                      <option value="11:00-13:00">11:00 AM - 1:00 PM</option>
+                      <option value="13:00-15:00">1:00 PM - 3:00 PM</option>
+                      <option value="15:00-17:00">3:00 PM - 5:00 PM</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Department & Location */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="relative">
+                    <select
+                      value={formData.department}
+                      onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                      className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
+                    >
+                      <option value="">Department</option>
+                      {specialities.map((spec) => (
+                        <option key={spec._id} value={spec.slug}>
+                          {spec.name}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <select
+                      value={formData.location}
+                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                      className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
+                    >
+                      <option value="">Location</option>
+                      {branches.map((branch) => (
+                        <option key={branch._id} value={branch.slug}>
+                          {branch.name}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div className="relative group">
+                  <textarea
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Message"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all resize-none placeholder:text-gray-400"
                   />
                 </div>
 
                 {/* Checkbox */}
-                <div className="flex items-start gap-3">
+                <div className="flex items-center gap-3">
                   <input
                     id="agreeTerms"
                     type="checkbox"
                     required
                     checked={formData.agreeTerms}
-                    onChange={(e) =>
-                      setFormData({ ...formData, agreeTerms: e.target.checked })
-                    }
-                    className="mt-1 w-4 h-4 rounded border-gray-300 text-[#E85222] focus:ring-2 focus:ring-[#E85222] accent-[#E85222]"
+                    onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
+                    className="w-5 h-5 rounded border-gray-300 text-[#E85222] focus:ring-0 accent-[#E85222] cursor-pointer"
                   />
-                  <label htmlFor="agreeTerms" className="text-sm text-gray-700">
-                    I agree with the terms.
+                  <label htmlFor="agreeTerms" className="text-sm font-medium text-gray-600 cursor-pointer">
+                    I agree with the <Link href="/terms" className="text-[#E85222] hover:underline">terms and conditions</Link>.
                   </label>
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
-                  style={{ backgroundColor: "#E85222" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#d1451a";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#E85222";
-                  }}
+                  className="group relative w-full inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E85222] text-white font-bold rounded-xl overflow-hidden transition-all hover:bg-[#d1451a] shadow-lg shadow-[#E85222]/20 uppercase tracking-widest"
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
+                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                   </svg>
                   <span>Send Message Now</span>
                 </button>
               </form>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Awards & Recognitions Section */}
+      <section 
+        className="py-20 sm:py-24 bg-[#F8FAFC] relative overflow-hidden group/section border-t border-gray-100"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+        }}
+        onMouseEnter={() => setIsHoveringAwards(true)}
+        onMouseLeave={() => setIsHoveringAwards(false)}
+      >
+        <Link href="/about/awards-recognition" className="block relative cursor-pointer">
+          <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-10">
+            
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading tracking-tight inline-flex items-center gap-4">
+                Awards & <span className="text-[#1D4ED8]">Recognitions</span>
+              </h2>
+              <div className="flex items-center justify-center mt-4">
+                <div className="w-12 h-1 bg-gray-300 rounded-full" />
+                <div className="w-3 h-3 bg-[#E85222] rounded-full mx-2" />
+                <div className="w-12 h-1 bg-gray-300 rounded-full" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1fr] gap-12 lg:gap-20 items-center">
+              
+              {/* Left Column - Chairman Profile */}
+              <div className="flex flex-col items-center">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[#1D4ED8]/5 rounded-full scale-[1.15] blur-2xl group-hover/section:bg-[#1D4ED8]/10 transition-colors" />
+                  
+                  <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full p-2 border border-blue-100 shadow-2xl bg-white overflow-hidden ring-12 ring-blue-50/50">
+                    <div className="relative w-full h-full rounded-full overflow-hidden">
+                      <Image
+                        src="/images/dr_ak_kaushik.png"
+                        alt="DR. A.K. KAUSHIK"
+                        fill
+                        className="object-cover transform group-hover/section:scale-[1.02] transition-transform duration-700"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="absolute top-0 right-0 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center p-3">
+                    <svg className="w-full h-full text-[#1D4ED8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <h3 className="text-2xl font-black text-[#0b1c43] font-heading tracking-tight uppercase italic underline decoration-[#1D4ED8]/30 decoration-4 underline-offset-8">
+                    DR. A.K.KAUSHIK
+                  </h3>
+                  <p className="mt-6 text-gray-500 font-bold leading-relaxed tracking-wide uppercase text-sm">
+                    Chairman & Director<br />
+                    Popular Group of Hospitals
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column - Awards Gallery Grid */}
+              <div className="flex flex-col gap-8">
+                <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                  <div className="relative h-48 sm:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                    <Image
+                      src="/images/awards/award1.png"
+                      alt="Hospital Award"
+                      fill
+                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+
+                  <div className="relative h-48 sm:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                    <Image
+                      src="/images/awards/award2.png"
+                      alt="Medical Achievement"
+                      fill
+                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+
+                  <div className="relative h-64 sm:h-80 col-span-2 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                    <Image
+                      src="/images/awards/award3.png"
+                      alt="Hospital Recognition Ceremony"
+                      fill
+                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Mobile Call to Action */}
+                <div className="lg:hidden text-center mt-2 px-6 py-4 bg-white shadow-xl rounded-full border border-blue-50">
+                  <p className="text-[#1D4ED8] font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3">
+                    <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
+                    Click for detailed view
+                    <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mouse Follower Title (Desktop only) */}
+          <div 
+             className="fixed md:absolute pointer-events-none z-[100] transition-opacity duration-300 hidden lg:block"
+             style={{
+                left: `${mousePosition.x}px`,
+                top: `${mousePosition.y}px`,
+                opacity: isHoveringAwards ? 1 : 0,
+                transform: `translate(-50%, -50%)`,
+             }}
+          >
+             <div className="bg-[#E85222] text-white px-6 py-2.5 rounded-full whitespace-nowrap shadow-2xl flex items-center gap-3 scale-90 group-hover/section:scale-100 transition-transform duration-300">
+                <span className="text-[10px] font-black uppercase tracking-[0.3em]">Click to view detailed</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
+                </svg>
+             </div>
+          </div>
+        </Link>
+      </section>
+
+      {/* ─── Why We Are The Best Section (Achievements) ─── */}
+      <section className="bg-[#0b3c8a] py-20 sm:py-24 text-white">
+        <div className="mx-auto w-full max-w-[1366px] px-6 sm:px-8 lg:px-12 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-16 font-heading max-w-5xl mx-auto leading-tight italic">
+            Popular Hospital Is The Best Hospital In Varanasi. <br className="hidden md:block" />
+            <span className="text-[#FA9A3E] not-italic">Here&apos;s The Reason Why?</span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:max-w-5xl mx-auto border border-white/20 rounded-3xl overflow-hidden shadow-2xl bg-white/5 backdrop-blur-sm">
+             {/* Stat 1: Patients */}
+             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 12h2l1-4 2 8 1-4h2" />
+                   </svg>
+                </div>
+                <div className="text-left">
+                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Lacs of Happy</div>
+                   <div className="text-lg sm:text-xl font-medium text-white/80">Patients</div>
+                </div>
+             </div>
+
+             {/* Stat 2: Doctors */}
+             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b border-white/10 group hover:bg-white/10 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                   <svg className="w-16 h-16 text-white" stroke="currentColor" fill="none" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                      <circle cx="10" cy="7" r="4" />
+                      <path d="M14 11h2a2 2 0 012 2v6" />
+                   </svg>
+                </div>
+                <div className="text-left">
+                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Excellent Team of</div>
+                   <div className="text-lg sm:text-xl font-medium text-white/80">Qualified Doctors</div>
+                </div>
+             </div>
+
+             {/* Stat 3: Beds */}
+             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path d="M3 7v11m18-11v11M3 13h18M5 8h14M7 9v4m10-4v4" />
+                   </svg>
+                </div>
+                <div className="text-left">
+                   <div className="text-5xl sm:text-6xl font-black font-heading leading-tight text-[#FA9A3E] mb-1">450</div>
+                   <div className="text-lg sm:text-xl font-bold tracking-[0.1em] text-white/80 uppercase">Beds</div>
+                </div>
+             </div>
+
+             {/* Stat 4: Locations */}
+             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 group hover:bg-white/10 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <circle cx="12" cy="11" r="3" strokeWidth={1.5} />
+                   </svg>
+                </div>
+                <div className="text-left">
+                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Convenient Multiple</div>
+                   <div className="text-lg sm:text-xl font-medium text-white/80">Locations</div>
+                </div>
+             </div>
           </div>
         </div>
       </section>
@@ -1984,6 +1783,110 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* International Patient Inquiry Modal */}
+      {isInternationalModalOpen && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center px-4 bg-black/80 backdrop-blur-md">
+          <div className="relative w-full max-w-[450px] bg-[#333333] rounded-sm p-1 shadow-2xl animate-in zoom-in duration-300">
+            {/* Close Button */}
+            <button 
+              onClick={() => setIsInternationalModalOpen(false)}
+              className="absolute -top-10 right-0 text-white hover:text-[#FA9A3E] transition-colors"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="bg-[#444444] p-8">
+              <h2 className="text-2xl font-bold text-white text-center mb-8 tracking-tight font-heading">Book An Appointment</h2>
+              
+              <form className="space-y-4">
+                <div className="relative group">
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="w-full bg-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="w-full bg-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    type="tel"
+                    placeholder="Contact"
+                    className="w-full bg-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20 15.5c-1.2 0-2.4-.2-3.5-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <input
+                    type="text"
+                    placeholder="Age"
+                    className="w-full bg-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  />
+                </div>
+
+                <div className="relative">
+                  <select className="w-full bg-white px-4 py-3 text-sm appearance-none focus:outline-none focus:ring-1 focus:ring-gray-300 text-gray-500 max-h-48 overflow-y-auto">
+                    <option>-Select Country-</option>
+                    {COUNTRIES.map(country => (
+                      <option key={country} value={country}>{country}</option>
+                    ))}
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <select className="w-full bg-white px-4 py-3 text-sm appearance-none focus:outline-none focus:ring-1 focus:ring-gray-300 text-gray-500">
+                    <option>Department</option>
+                    {specialities.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-black text-white text-lg font-bold uppercase transition-all hover:bg-black/90 tracking-widest mt-6"
+                >
+                  Submit Now
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

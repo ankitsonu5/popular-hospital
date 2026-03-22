@@ -46,9 +46,9 @@ const dietPlans = [
 
 const doctors = [
   {
-    name: 'Mrs. Nutrition Specialist',
-    qualifications: 'MSc. (Food & Nutrition), RD',
-    designation: 'Sr. Clinical Dietitian',
+    name: 'Dt. Sakshi Pandey',
+    qualifications: 'MSc. (Food Science), CCN, CDE, PGDDN',
+    designation: 'Dietition And Center Head',
     slug: 'dietetics-specialist',
     image: 'https://images.unsplash.com/photo-1559839734-2b71f1536780?auto=format&fit=crop&q=80&w=800',
   },

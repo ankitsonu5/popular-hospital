@@ -42,7 +42,7 @@ export const localDoctors: Record<string, LocalDoctorDetail> = {
     image: '/images/departments_doctor/dr-Manoj-Sharma.jpg',
     bio: 'Non Invasive Cardiologist having experience of many hospitals of repute like Medanta, Gurgaon. He has experties in 2D/3D Echo, Holter Monitoring, TMT etc',
     experience: '10+ Years',
-    pastHospitals: ['Heritage Institute of Medical Sciences, Varanasi'],
+    pastHospitals: [''],
     opdTimings: [{ branch: 'Varanasi', schedule: OPD_DEFAULT }],
   },
   'dr-hari-krishan-srivastava': {
