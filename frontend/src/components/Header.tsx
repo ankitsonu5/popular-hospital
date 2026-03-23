@@ -249,7 +249,7 @@ export function Header() {
       >
         {/* Gradient Overlay */}
         <div 
-          className={`hidden xl:block absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent transition-opacity duration-500 pointer-events-none ${
+          className={`hidden xl:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${
             scrolled || !isTransparentPage ? 'opacity-0' : 'opacity-100'
           }`} 
         />
