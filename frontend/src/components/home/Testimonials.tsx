@@ -5,8 +5,8 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Testimonials() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-  const [isFrontVideoVisible, setIsFrontVideoVisible] = useState(false);
-  const frontVideoRef = useRef<HTMLDivElement>(null);
+  const [areVideosVisible, setAreVideosVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   // Added useEffect for ESC key close
   useEffect(() => {
@@ -23,25 +23,26 @@ export default function Testimonials() {
     };
   }, []);
 
-  // Intersection Observer for Lazy Loading Front Video Thumbnail
+  // Intersection Observer for Lazy Loading Video Thumbnails
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsFrontVideoVisible(true);
+          setAreVideosVisible(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "50px" }
+      { threshold: 0.1, rootMargin: "200px" }
     );
     
-    if (frontVideoRef.current) observer.observe(frontVideoRef.current);
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
     <>
       <section
+        ref={sectionRef}
         className="py-16 sm:py-20 bg-white"
         aria-labelledby="patients-speak"
       >
@@ -58,6 +59,16 @@ export default function Testimonials() {
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5] bg-gray-900"
                 aria-label="Play patient testimonial video 1"
               >
+                {areVideosVisible && (
+                  <video 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                    preload="metadata"
+                    muted
+                    playsInline
+                  >
+                    <source src="/videos/testimonial-one.mp4#t=0.1" type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
@@ -74,6 +85,16 @@ export default function Testimonials() {
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2 bg-gray-800"
                 aria-label="Play patient testimonial video 2"
               >
+                {areVideosVisible && (
+                  <video 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                    preload="metadata"
+                    muted
+                    playsInline
+                  >
+                    <source src="/videos/testimonial-two.mp4#t=0.1" type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
@@ -87,6 +108,16 @@ export default function Testimonials() {
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2 bg-gray-800"
                 aria-label="Play patient testimonial video 3"
               >
+                {areVideosVisible && (
+                  <video 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                    preload="metadata"
+                    muted
+                    playsInline
+                  >
+                    <source src="/videos/popular_hospital_happy_pateint_one.mp4#t=0.1" type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
@@ -97,13 +128,13 @@ export default function Testimonials() {
             </div>
 
             {/* Column 3: Center (Tall Featured Card) */}
-            <div className="h-[400px] lg:h-full" ref={frontVideoRef}>
+            <div className="h-[400px] lg:h-full">
               <button
                 onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_three.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-full bg-[#0b1c43]"
                 aria-label="Play featured patient testimonial video"
               >
-                {isFrontVideoVisible && (
+                {areVideosVisible && (
                   <video 
                     className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                     preload="metadata"
@@ -129,6 +160,16 @@ export default function Testimonials() {
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2 bg-gray-800"
                 aria-label="Play patient testimonial video 4"
               >
+                {areVideosVisible && (
+                  <video 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                    preload="metadata"
+                    muted
+                    playsInline
+                  >
+                    <source src="/videos/popular_hospital_happy_pateint_four.mp4#t=0.1" type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
@@ -142,6 +183,16 @@ export default function Testimonials() {
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2 bg-gray-800"
                 aria-label="Play patient testimonial video 5"
               >
+                {areVideosVisible && (
+                  <video 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                    preload="metadata"
+                    muted
+                    playsInline
+                  >
+                    <source src="/videos/popular_hospital_happy_pateint_five.mp4#t=0.1" type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-100 group-hover:bg-[#E85222] transition-all">
@@ -158,6 +209,16 @@ export default function Testimonials() {
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5] bg-gray-900"
                 aria-label="Play patient testimonial video 6"
               >
+                {areVideosVisible && (
+                  <video 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                    preload="metadata"
+                    muted
+                    playsInline
+                  >
+                    <source src="/videos/popular_hospital_happy_pateint_two.mp4#t=0.1" type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
