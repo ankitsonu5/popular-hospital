@@ -31,7 +31,7 @@ const BackToTop = () => {
   }, []);
 
   return (
-    <div className={`fixed bottom-8 right-8 z-[999] transition-all duration-300 transform ${isVisible ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-10 opacity-0 pointer-events-none'}`}>
+    <div className={`fixed bottom-[90px] md:bottom-8 left-4 md:left-auto right-auto md:right-8 z-[999] transition-all duration-300 transform ${isVisible ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-10 opacity-0 pointer-events-none'}`}>
       <button
         onClick={scrollToTop}
         className="flex items-center gap-2 bg-[#e85222] hover:bg-[#d13d10] text-white px-5 py-2 rounded-lg shadow-xl transition-all duration-300 hover:-translate-y-1 group focus:outline-none"

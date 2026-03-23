@@ -17,16 +17,7 @@ export default function PackagePage() {
     <div className="bg-white min-h-screen">
       {/* ------- HERO ------- */}
       <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/wellness_packages/diamond-men.jpg"
-            alt="Executive Health Check Up (Male)"
-            fill
-            className="object-cover opacity-90"
-            priority
-          />
-          <div className="absolute inset-0 bg-slate-900/15" />
-        </div>
+        
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="max-w-4xl">

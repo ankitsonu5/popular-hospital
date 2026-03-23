@@ -68,19 +68,35 @@ const SocialSidebar = () => {
 
   return (
     <div className="fixed right-0 top-1/2 -translate-y-1/2 z-[999] hidden md:flex flex-col gap-px overflow-hidden rounded-l-2xl shadow-2xl group/sidebar">
+      {/* Vertical "Request Call Back" Button */}
+      <a
+        href="/book"
+        className="bg-[#E85222] text-white py-6 px-2.5 flex flex-col items-center justify-center gap-4 hover:pr-5 transition-all duration-300 group relative overflow-hidden"
+        aria-label="Request Call Back"
+      >
+        <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors"></div>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:scale-110">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.2em] whitespace-nowrap [writing-mode:vertical-rl] rotate-180">
+          CALL BACK
+        </span>
+      </a>
+
+      {/* Social Links Group */}
       {socialLinks.map((social) => (
         <a
           key={social.name}
           href={social.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${social.color} text-white p-3.5 hover:pr-8 transition-all duration-300 flex items-center justify-center group relative overflow-hidden opacity-100 group-hover/sidebar:opacity-40 hover:!opacity-100`}
+          className={`${social.color} text-white p-2.5 hover:pr-6 transition-all duration-300 flex items-center justify-center group relative overflow-hidden opacity-100 group-hover/sidebar:opacity-60 hover:!opacity-100`}
           aria-label={social.name}
         >
           {/* Subtle light effect on hover */}
           <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors"></div>
           <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-            {social.icon}
+            {React.cloneElement(social.icon as React.ReactElement, { className: 'w-4 h-4' })}
           </span>
         </a>
       ))}

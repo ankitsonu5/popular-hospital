@@ -409,25 +409,25 @@ const WellnessPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* For Pregnant Women */}
             <div className="group h-full">
-                <div className="bg-white rounded-[4rem] p-12 shadow-[0_30px_60px_-15px_rgba(236,72,153,0.1)] border border-pink-50 hover:border-pink-300 transition-all duration-700 relative overflow-hidden h-full">
-                    <div className="absolute -top-10 -right-10 w-64 h-64 bg-pink-50 rounded-full group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="bg-white rounded-[2.5rem] md:rounded-[4rem] p-6 md:p-12 shadow-[0_30px_60px_-15px_rgba(236,72,153,0.1)] border border-pink-50 hover:border-pink-300 transition-all duration-700 relative overflow-hidden h-full">
+                    <div className="absolute -top-10 -right-10 w-48 h-48 md:w-64 md:h-64 bg-pink-50 rounded-full group-hover:scale-110 transition-transform duration-700"></div>
                     <div className="relative z-10">
-                        <div className="w-24 h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-[2.5rem] flex items-center justify-center text-white text-5xl mb-10 shadow-2xl shadow-pink-200 transform group-hover:rotate-6 transition-transform">🤰</div>
-                        <h3 className="text-3xl font-black text-[#0b1c43] mb-8 font-heading italic">For Pregnant Women</h3>
-                        <div className="space-y-8">
-                            <div className="flex items-start gap-6 bg-pink-50/30 p-6 rounded-3xl border border-pink-100/50">
-                                <span className="w-10 h-10 rounded-2xl bg-pink-500 text-white flex items-center justify-center flex-shrink-0 font-black shadow-lg">01</span>
-                                <p className="text-gray-700 font-bold text-lg leading-relaxed">Free first Antenatal Checkup for pregnant women during nine month of pregnancy</p>
+                        <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-[1.5rem] md:rounded-[2.5rem] flex items-center justify-center text-3xl md:text-5xl mb-8 md:mb-10 shadow-2xl shadow-pink-200 transform group-hover:rotate-6 transition-transform">🤰</div>
+                        <h3 className="text-2xl md:text-3xl font-black text-[#0b1c43] mb-6 md:mb-8 font-heading italic">For Pregnant Women</h3>
+                        <div className="space-y-6 md:space-y-8">
+                            <div className="flex items-start gap-4 md:gap-6 bg-pink-50/30 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-pink-100/50">
+                                <span className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-pink-500 text-white flex items-center justify-center flex-shrink-0 font-black shadow-lg text-sm md:text-base">01</span>
+                                <p className="text-gray-700 font-bold text-base md:text-lg leading-relaxed">Free first Antenatal Checkup for pregnant women during nine month of pregnancy</p>
                             </div>
-                            <div className="bg-white p-8 rounded-[3rem] border border-pink-100 shadow-inner">
-                                <div className="flex items-center gap-4 mb-6">
-                                    <span className="w-10 h-10 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center flex-shrink-0 font-black">02</span>
-                                    <h4 className="text-xl font-black text-[#0b1c43] leading-snug">Free Blood test of pregnant women once during pregnancy</h4>
+                            <div className="bg-white p-5 md:p-8 rounded-[2rem] md:rounded-[3rem] border border-pink-100 shadow-inner">
+                                <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-6">
+                                    <span className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center flex-shrink-0 font-black text-sm md:text-base">02</span>
+                                    <h4 className="text-lg md:text-xl font-black text-[#0b1c43] leading-snug">Free Blood test of pregnant women once during pregnancy</h4>
                                 </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                                     {['(a) Blood Group,', '(b) TSH,', '(c) Random Blood Sugar'].map((item) => (
-                                        <div key={item} className="flex items-center gap-3 text-gray-600 font-bold bg-slate-50 px-5 py-4 rounded-2xl border border-slate-100 group-hover:border-pink-200 transition-colors">
-                                            <div className="w-2 h-2 bg-pink-500 rounded-full flex-shrink-0"></div>
+                                        <div key={item} className="flex items-center gap-3 text-gray-600 font-bold bg-slate-50 px-4 py-3 md:px-5 md:py-4 rounded-xl md:rounded-2xl border border-slate-100 group-hover:border-pink-200 transition-colors text-sm md:text-base">
+                                            <div className="w-1.5 h-1.5 bg-pink-500 rounded-full flex-shrink-0"></div>
                                             {item}
                                         </div>
                                     ))}
@@ -440,26 +440,26 @@ const WellnessPage = () => {
 
             {/* For Non-Pregnant Women */}
             <div className="group h-full">
-                <div className="bg-white rounded-[4rem] p-12 shadow-[0_30px_60px_-15px_rgba(20,184,166,0.1)] border border-teal-50 hover:border-hospital-teal/30 transition-all duration-700 relative overflow-hidden h-full">
-                    <div className="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="bg-white rounded-[2.5rem] md:rounded-[4rem] p-6 md:p-12 shadow-[0_30px_60px_-15px_rgba(20,184,166,0.1)] border border-teal-50 hover:border-hospital-teal/30 transition-all duration-700 relative overflow-hidden h-full">
+                    <div className="absolute -top-10 -right-10 w-48 h-48 md:w-64 md:h-64 bg-teal-50 rounded-full group-hover:scale-110 transition-transform duration-700"></div>
                     <div className="relative z-10">
-                        <div className="w-24 h-24 bg-gradient-to-br from-hospital-teal to-blue-500 rounded-[2.5rem] flex items-center justify-center text-white text-5xl mb-10 shadow-2xl shadow-teal-100 transform group-hover:-rotate-6 transition-transform">👩‍💼</div>
-                        <h3 className="text-3xl font-black text-[#0b1c43] mb-2 font-heading italic">For Non-Pregnant Women</h3>
-                        <p className="text-hospital-teal text-sm font-black uppercase tracking-[0.2em] mb-10 opacity-80">(Recommended for 35+ Years of Age)</p>
-                        <div className="space-y-4">
+                        <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-hospital-teal to-blue-500 rounded-[1.5rem] md:rounded-[2.5rem] flex items-center justify-center text-3xl md:text-5xl mb-8 md:mb-10 shadow-2xl shadow-teal-100 transform group-hover:-rotate-6 transition-transform">👩‍💼</div>
+                        <h3 className="text-2xl md:text-3xl font-black text-[#0b1c43] mb-2 font-heading italic">For Non-Pregnant Women</h3>
+                        <p className="text-hospital-teal text-xs md:text-sm font-black uppercase tracking-[0.2em] mb-8 md:mb-10 opacity-80">(Recommended for 35+ Years of Age)</p>
+                        <div className="space-y-3 md:space-y-4">
                             {[
                                 { title: "Pap Smear once in a Year", icon: "🔬" },
                                 { title: "Colposcopy once in year", icon: "🩺" },
                                 { title: "Urine RM Analysis", icon: "🧪" },
                                 { title: "Random Blood Sugar", icon: "🩸" }
                             ].map((item, idx) => (
-                                <div key={idx} className="flex items-center justify-between p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:bg-teal-50/50 hover:border-teal-100 transition-all group/item">
-                                    <div className="flex items-center gap-5">
-                                        <span className="text-2xl">{item.icon}</span>
-                                        <span className="text-lg font-bold text-gray-700">{item.title}</span>
+                                <div key={idx} className="flex items-center justify-between p-4 md:p-6 rounded-2xl md:rounded-3xl bg-slate-50 border border-slate-100 hover:bg-teal-50/50 hover:border-teal-100 transition-all group/item">
+                                    <div className="flex items-center gap-4 md:gap-5">
+                                        <span className="text-xl md:text-2xl">{item.icon}</span>
+                                        <span className="text-base md:text-lg font-bold text-gray-700">{item.title}</span>
                                     </div>
-                                    <div className="w-8 h-8 rounded-full bg-hospital-teal text-white flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-opacity">
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-hospital-teal text-white flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                        <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
@@ -645,11 +645,11 @@ const WellnessPage = () => {
       </section>
 
       {/* How to Use Section */}
-      <section className="py-20 px-6 bg-white relative overflow-hidden">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
         <div className="container mx-auto max-w-[1366px]">
-          <div className="bg-slate-50 rounded-[3rem] p-10 md:p-16 border border-slate-100 flex flex-col md:flex-row items-center gap-12 shadow-sm">
+          <div className="bg-slate-50 rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-16 border border-slate-100 flex flex-col md:flex-row items-center gap-10 md:gap-12 shadow-sm">
             <div className="md:w-1/3 text-center md:text-left">
-              <div className="w-20 h-20 bg-[#0b1c43] text-white rounded-[2rem] flex items-center justify-center text-4xl mb-6 mx-auto md:mx-0 shadow-xl shadow-blue-900/20">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-[#0b1c43] text-white rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center text-3xl md:text-4xl mb-6 mx-auto md:mx-0 shadow-xl shadow-blue-900/20 transform hover:scale-110 transition-transform">
                 💡
               </div>
               <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading tracking-tight uppercase">
@@ -657,19 +657,20 @@ const WellnessPage = () => {
               </h2>
             </div>
             <div className="md:w-2/3 space-y-6">
-              <div className="bg-white p-8 rounded-3xl shadow-inner border border-slate-100">
-                <p className="text-lg text-gray-700 font-bold leading-relaxed mb-6">
+              <div className="bg-white p-5 md:p-8 rounded-3xl shadow-inner border border-slate-100">
+                <p className="text-base md:text-lg text-gray-700 font-bold leading-relaxed mb-6">
                   In case of consultation, emergency or planned hospitalization,
                   just use your health ID card at the reception of any of our
                   branches. They will trace your details with the unique Family
                   health-fit card ID.
                 </p>
-                <div className="flex items-start gap-4 p-4 bg-orange-50 border border-orange-100 rounded-2xl">
-                  <p className="text-orange-900 font-black text-sm uppercase tracking-wide leading-relaxed">
-                    Important Note: During OPD Consultation or IPD admissions,
+                <div className="flex items-start gap-3 md:gap-4 p-4 md:p-5 bg-orange-50/50 border border-orange-100 rounded-2xl">
+                  <div className="text-orange-900 font-black text-xs md:text-sm uppercase tracking-wide leading-relaxed">
+                    <span className="text-orange-600 block mb-1">Important Note:</span>
+                    During OPD Consultation or IPD admissions,
                     the health card possession is to be informed before hand &
                     prior to the bill generation.
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
