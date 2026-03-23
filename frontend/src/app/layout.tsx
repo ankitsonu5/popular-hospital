@@ -44,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <head>
         {/* DNS Prefetch for API and uploads */}
         <link rel="dns-prefetch" href="//localhost:5100" />

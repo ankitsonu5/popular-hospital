@@ -1,17 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Testimonials() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [isFrontVideoVisible, setIsFrontVideoVisible] = useState(false);
+  const frontVideoRef = useRef<HTMLDivElement>(null);
 
   // Added useEffect for ESC key close
-  if (typeof window !== "undefined") {
-    window.onkeydown = (e) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSelectedVideo(null);
     };
-  }
+    if (typeof window !== "undefined") {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("keydown", handleKeyDown);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for Lazy Loading Front Video Thumbnail
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsFrontVideoVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: "50px" }
+    );
+    
+    if (frontVideoRef.current) observer.observe(frontVideoRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -71,15 +97,25 @@ export default function Testimonials() {
             </div>
 
             {/* Column 3: Center (Tall Featured Card) */}
-            <div className="h-[400px] lg:h-full">
+            <div className="h-[400px] lg:h-full" ref={frontVideoRef}>
               <button
                 onClick={() => setSelectedVideo("/videos/popular_hospital_happy_pateint_three.mp4")}
                 className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-full bg-[#0b1c43]"
                 aria-label="Play featured patient testimonial video"
               >
+                {isFrontVideoVisible && (
+                  <video 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                    preload="metadata"
+                    muted
+                    playsInline
+                  >
+                    <source src="/videos/popular_hospital_happy_pateint_three.mp4#t=0.1" type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/60 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] group-hover:border-[#E85222] transition-all duration-300 shadow-2xl">
+                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/60 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] group-hover:border-[#E85222] transition-all duration-300 shadow-2xl relative z-10">
                     <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
                   </div>
                 </div>
