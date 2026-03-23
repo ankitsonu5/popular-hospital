@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import LanguageSelector from '@/components/LanguageSelector';
+import { CreditCard, Users, HeartPulse, Activity } from 'lucide-react';
 
 interface DropdownItem {
   label: string;
@@ -243,7 +244,7 @@ export function Header() {
         className={`${pathname === '/' ? 'fixed' : 'sticky'} top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled || !isTransparentPage 
             ? 'bg-white shadow-sm' 
-            : 'bg-transparent shadow-none'
+            : 'bg-white shadow-sm md:bg-transparent md:shadow-none'
         }`}
       >
         {/* Gradient Overlay */}
@@ -254,7 +255,7 @@ export function Header() {
         />
         
         {/* Top Bar */}
-        <div className="bg-[#2E59A8] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-3 sm:py-4">
+        <div className="hidden md:block bg-[#2E59A8] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-3 sm:py-4">
           <div className="max-w-[1366px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[14px] sm:text-[17px] font-medium">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
               <Link href="/online-payment" className="flex items-center gap-2 hover:text-white/80 transition-colors whitespace-nowrap">
@@ -303,7 +304,7 @@ export function Header() {
             <Link 
               href="/" 
               className={`flex items-center transition-all duration-300 ${
-                scrolled || !isTransparentPage ? '' : 'bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1'
+                scrolled || !isTransparentPage ? '' : 'md:bg-white/90 md:backdrop-blur-sm md:rounded-lg md:px-3 md:py-1'
               }`}
             >
               <Image
@@ -461,7 +462,7 @@ export function Header() {
                   className={`p-2 rounded-lg transition-all duration-300 ${
                     scrolled || !isTransparentPage 
                       ? 'text-gray-600 hover:bg-gray-100' 
-                      : 'bg-white/90 backdrop-blur-sm text-gray-600 shadow-sm'
+                      : 'text-gray-600 hover:bg-gray-100 md:bg-white/90 md:backdrop-blur-sm md:text-gray-600 md:shadow-sm'
                   }`}
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
@@ -567,6 +568,45 @@ export function Header() {
                 )}
               </div>
             ))}
+
+            {/* Added Bottom Nav Items to Mobile Menu */}
+            <div className="mt-6 pt-4 border-t border-gray-100">
+              <h3 className="px-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Quick Links</h3>
+              <div className="space-y-1">
+                <Link
+                  href="/online-payment"
+                  className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <CreditCard className="w-5 h-5 text-gray-400" />
+                  Online Payment
+                </Link>
+                <Link
+                  href="/second-opinion"
+                  className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <Users className="w-5 h-5 text-gray-400" />
+                  Second Opinion
+                </Link>
+                <Link
+                  href="/services/wellness-packages"
+                  className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <HeartPulse className="w-5 h-5 text-gray-400" />
+                  Wellness Packages
+                </Link>
+                <Link
+                  href="/services/health-packages"
+                  className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <Activity className="w-5 h-5 text-gray-400" />
+                  Health Packages
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </header>

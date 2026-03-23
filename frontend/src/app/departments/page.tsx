@@ -24,7 +24,7 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+      <section className="relative min-h-[180px] md:min-h-[220px] w-full bg-[#1a2b3c] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/department_banner.jpg"

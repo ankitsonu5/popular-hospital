@@ -136,6 +136,15 @@ button {
   animation: loading-bar 1.5s ease-in-out infinite;
 }
 
+@keyframes driveRight {
+  0% { transform: translateX(-100vw); }
+  100% { transform: translateX(100vw); }
+}
+
+.animate-drive {
+  animation: driveRight 5s linear infinite;
+}
+
 @keyframes progress {
   from { width: 0%; }
   to { width: 100%; }

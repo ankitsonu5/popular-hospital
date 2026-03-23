@@ -6,6 +6,8 @@ import { Footer } from '@/components/Footer';
 import SocialSidebar from '@/components/SocialSidebar';
 import LoadingScreen from '@/components/LoadingScreen';
 import BackToTop from '@/components/BackToTop';
+import MobileBottomNav from '@/components/MobileBottomNav';
+import MobileWhatsAppFAB from '@/components/MobileWhatsAppFAB';
 
 export default function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -28,9 +30,11 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
       <LoadingScreen />
       <Header />
       <SocialSidebar />
-      <main id="main-content" className="flex-1" tabIndex={-1}>
+      <main id="main-content" className="flex-1 pb-[70px] md:pb-0" tabIndex={-1}>
         {children}
       </main>
+      <MobileBottomNav />
+      <MobileWhatsAppFAB />
       <BackToTop />
       <Footer />
     </>

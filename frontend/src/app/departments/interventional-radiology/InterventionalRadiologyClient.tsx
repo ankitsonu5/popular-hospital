@@ -114,7 +114,7 @@ export default function InterventionalRadiologyClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[450px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center">
+      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/radiology_banner.png"

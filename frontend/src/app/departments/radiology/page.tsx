@@ -11,7 +11,7 @@ export default function RadiologyPage() {
   return (
     <main className="min-h-screen bg-white overflow-hidden">
       {/* Hero Section */}
-      <section className="relative h-[600px] w-full bg-[#004d61] overflow-hidden">
+      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#004d61] overflow-hidden flex items-center py-10 md:py-12">
         {/* Background Image Overlay */}
         <div className="absolute inset-0 z-0">
              <Image

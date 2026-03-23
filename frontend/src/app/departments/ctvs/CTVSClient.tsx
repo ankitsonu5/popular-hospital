@@ -111,7 +111,7 @@ export default function CTVSClient() {
     <main className="min-h-screen bg-white">
 
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative min-h-[500px] md:h-[450px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
+      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/cardiothoracic_banner.png"

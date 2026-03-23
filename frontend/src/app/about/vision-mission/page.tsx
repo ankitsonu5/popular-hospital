@@ -10,7 +10,7 @@ export default function VisionMissionPage() {
     <div className="bg-white min-h-screen">
 
       {/* ─── Clean Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12">
+      <section className="relative bg-[#0b1c43] overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0">
           <Image
             src="/images/about_popular/vision_mission.webp"

@@ -36,7 +36,7 @@ export default function AwardsRecognitionPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ─── Simple & Clean Hero Section ─── */}
-      <div className="bg-[#0b1c43] text-white py-16 md:py-24 relative overflow-hidden">
+      <div className="bg-[#0b1c43] text-white py-10 md:py-12 relative overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center">
         {/* Subtle Background Pattern */}
         <div 
           className="absolute inset-0 opacity-[0.05] pointer-events-none" 

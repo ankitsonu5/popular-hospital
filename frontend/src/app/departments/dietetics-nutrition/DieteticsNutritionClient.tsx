@@ -80,7 +80,7 @@ export default function DieteticsNutritionClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative h-[450px] w-full bg-[#064e3b] overflow-hidden">
+      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#064e3b] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/dietetics_nutrition.png"

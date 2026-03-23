@@ -177,7 +177,7 @@ export default function PainManagementClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[450px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center">
+      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/pain_management_banner.png"

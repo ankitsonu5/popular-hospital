@@ -52,10 +52,8 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
     agreeTerms: false,
   });
 
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -65,7 +63,6 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
   }, []);
 
   const slides = [
-    { type: 'video', src: '/videos/hero.mp4' },
     { 
       type: 'image', 
       src: '/images/slide_images/slide_one.png?v=update',
@@ -90,18 +87,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Robust video loading check
-  useEffect(() => {
-    if (videoRef.current && videoRef.current.readyState >= 3) {
-      setIsVideoLoaded(true);
-    }
-
-    const timer = setTimeout(() => {
-      setIsVideoLoaded(true);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  // No video logic needed
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
@@ -127,11 +113,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
   return (
     <>
       <section 
-        className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[110px] md:mt-0" 
-        style={{ 
-          height: isMobile ? 'calc(100dvh - 110px)' : '100dvh', 
-          minHeight: isMobile ? 'calc(100dvh - 110px)' : '100dvh' 
-        }}
+        className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[64px] sm:mt-[80px] md:mt-0 h-[calc(100dvh-64px)] sm:h-[calc(100dvh-80px)] md:h-[100dvh] min-h-[calc(100dvh-64px)] sm:min-h-[calc(100dvh-80px)] md:min-h-[100dvh]" 
       >
         {/* Slider Background */}
         <div className="absolute inset-0 z-0 bg-white">
@@ -140,33 +122,6 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
               key={index}
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             >
-              {slide.type === 'video' ? (
-                <>
-                  <div className="absolute inset-0 bg-[#0b1c43]">
-                    <Image 
-                      src="/images/hospital-sample.jpg" 
-                      alt="Popular Hospital" 
-                      fill 
-                      className={`object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-40'}`}
-                      priority
-                    />
-                  </div>
-                  <video
-                    ref={index === 0 ? videoRef : null}
-                    className="absolute inset-0 w-full h-full object-cover block"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    poster="/images/hospital-sample.jpg"
-                    onLoadedData={() => setIsVideoLoaded(true)}
-                  >
-                    <source src={slide.src} type="video/mp4" />
-                  </video>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent z-10" aria-hidden />
-                </>
-              ) : (
                 <div className="relative w-full h-full">
                   <Image
                     src={isMobile ? (slide.mobileSrc || slide.src) : slide.src}
@@ -174,14 +129,13 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     fill
                     className="object-cover object-top transition-transform duration-[10000ms]"
                     style={{ transform: index === currentSlide ? 'scale(1.1)' : 'scale(1)' }}
-                    priority={index <= 1}
-                    loading={index > 1 ? 'lazy' : undefined}
+                    priority={index === 0}
+                    loading={index === 0 ? undefined : 'lazy'}
                     sizes="100vw"
                   />
                   {/* Very subtle gradient for text shadow if needed */}
                   <div className="absolute inset-0 bg-black/10 z-10" />
                 </div>
-              )}
             </div>
           ))}
         </div>
@@ -205,8 +159,8 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
         </div>
 
         {/* Content Overlay - Hindi Text */}
-        <div className={`relative z-20 h-full flex flex-col items-center justify-end pb-24 sm:pb-32 md:pb-48 lg:pb-58 px-4 text-center transition-all duration-700 ${currentSlide === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white font-heading drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] tracking-tight leading-[1.1] notranslate animate-fade-in-up">
+        <div className={`md:hidden relative z-20 h-full flex flex-col items-center justify-end pb-24 sm:pb-32 px-4 text-center transition-all duration-700 opacity-100 translate-y-0`}>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white font-heading drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] tracking-tight leading-[1.1] notranslate animate-fade-in-up">
             आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
           </h1>
         </div>

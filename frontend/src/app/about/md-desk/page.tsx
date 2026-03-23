@@ -27,7 +27,7 @@ export default function MDDeskPage() {
   return (
     <div className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[300px] md:min-h-[380px] flex flex-col justify-center py-12">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/from_chairman's_desk.png"
@@ -62,11 +62,18 @@ export default function MDDeskPage() {
                 unoptimized
               />
             </div>
-            <div className="bg-gray-50 p-6 rounded-3xl border border-gray-100">
-              <h2 className="text-xl font-black text-[#0b1c43] font-heading mb-1 uppercase tracking-tight">
+            <div className="bg-[#1e5eb2] p-8 rounded-3xl border border-blue-400/20 shadow-xl text-white">
+              <h2 className="text-2xl md:text-3xl font-black font-heading mb-2 uppercase tracking-tight">
                 {mdData.name}
               </h2>
-              <p className="text-hospital-orange font-bold text-xs tracking-widest uppercase">{mdData.role}</p>
+              <p className="text-yellow-400 font-bold text-sm tracking-widest uppercase mb-4">{mdData.role}</p>
+              
+              <div className="space-y-1 text-xs md:text-sm font-medium uppercase opacity-90 leading-snug">
+                <p>POPULAR GROUP OF</p>
+                <p>HOSPITALS & ACADEMICS</p>
+                <p className="pt-1">{mdData.subtitle}</p>
+                <p>{mdData.extra}</p>
+              </div>
             </div>
           </div>
 

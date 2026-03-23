@@ -21,16 +21,6 @@ const LoadingScreen = () => {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700 overflow-hidden">
-      <style>{`
-        @keyframes driveRight {
-          0% { transform: translateX(-100vw); }
-          100% { transform: translateX(100vw); }
-        }
-        .animate-drive {
-          animation: driveRight 5s linear infinite;
-        }
-      `}</style>
-      
       <div className="w-full relative flex items-center justify-center h-48">
         {/* Central Logo with Pulsing Rings (Background) */}
         <div className="absolute flex items-center justify-center opacity-40 z-0">

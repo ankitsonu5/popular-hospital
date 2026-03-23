@@ -68,7 +68,7 @@ export default function CSRPage() {
     <main className="min-h-screen bg-white font-sans overflow-x-hidden">
       
       {/* ─── Hero Section ─── */}
-      <section className="relative h-[450px] w-full bg-[#0b1c43] overflow-hidden flex items-center">
+      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
@@ -82,16 +82,10 @@ export default function CSRPage() {
         
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-4 rounded-full bg-blue-500/20 text-blue-200 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Social Responsibility
-            </span>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-              Healing Beyond the <br /> 
-              <span className="text-blue-400">Hospital Walls</span>
+              Social <br /> 
+              <span className="text-blue-400">Responsibility</span>
             </h1>
-            <p className="text-blue-100/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed font-medium">
-              At Popular Hospital, we believe that healthcare extends far beyond our medical facilities.
-            </p>
           </div>
         </div>
       </section>
