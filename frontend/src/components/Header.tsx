@@ -23,7 +23,7 @@ const menuItems: MenuItem[] = [
   {
     label: 'About Us',
     dropdown: [
-      { label: 'Our Story', href: '/about/our-story' },
+      { label: 'Overview', href: '/about' },
       { label: 'Our Vision & Mission', href: '/about/vision-mission' },
       { label: "From Chairman's Desk", href: '/about/chairman-desk' },
       { label: "From MD's Desk", href: '/about/md-desk' },
@@ -166,7 +166,7 @@ export function Header() {
 
   function getIcon(label: string) {
     const iconClass = 'w-5 h-5 text-gray-600 flex-shrink-0';
-    if (label.includes('Story') || label.includes('Vision')) {
+    if (label.includes('Story') || label.includes('Vision') || label.includes('About')) {
       return (
         <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
