@@ -43,12 +43,33 @@ export default function Testimonials() {
     <>
       <section
         ref={sectionRef}
-        className="py-16 sm:py-20 bg-white"
+        className="py-16 sm:py-24 bg-white relative overflow-hidden group/testimonials"
         aria-labelledby="patients-speak"
       >
-        <div className="mx-auto w-full max-w-[1666px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 font-heading">
-            Patients Speak
+        {/* Background Decorative Patterns */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden select-none">
+          {/* Top-Left Horizontal Pattern */}
+          <div 
+            className="absolute -top-10 -left-10 w-[600px] h-[400px] opacity-[0.4] transition-transform duration-1000 group-hover/testimonials:scale-105"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='173.2' viewBox='0 0 200 173.2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L150 0 L200 86.6 L150 173.2 L50 173.2 L0 86.6 Z' fill='none' stroke='%23bae6fd' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='0' r='3' fill='%237dd3fc'/%3E%3Ccircle cx='150' cy='0' r='3' fill='%237dd3fc'/%3E%3Ccircle cx='0' cy='86.6' r='3' fill='%237dd3fc'/%3E%3C/svg%3E")`,
+              backgroundSize: '120px 104px'
+            }}
+          />
+          {/* Right-Side Vertical Pattern (Aligned to the right edge) */}
+          <div 
+            className="absolute top-1/4 -right-12 w-[300px] h-[600px] opacity-[0.5] transition-transform duration-1000 group-hover/testimonials:translate-y-4"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='173.2' viewBox='0 0 200 173.2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L150 0 L200 86.6 L150 173.2 L50 173.2 L0 86.6 Z' fill='none' stroke='%23bae6fd' stroke-width='1.5'/%3E%3Cpath d='M100 0 L100 173.2' stroke='%23e0f2fe' stroke-width='0.5'/%3E%3C/svg%3E")`,
+              backgroundSize: '100px 86.6px'
+            }}
+          />
+        </div>
+
+        <div className="mx-auto w-full max-w-[1766px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 relative z-10">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading tracking-tight mb-16 inline-flex items-center gap-4">
+            Patients <span className="text-[#1e3a8a]">Speak</span>
+            <div className="w-12 h-1 bg-[#E85222] rounded-full mt-2" />
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
@@ -66,7 +87,7 @@ export default function Testimonials() {
                     muted
                     playsInline
                   >
-                    <source src="/videos/testimonial-one.mp4#t=0.1" type="video/mp4" />
+                    <source src="/videos/testimonial-one.mp4#t=0.1" type="video/mp4" /> 
                   </video>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

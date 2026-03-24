@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Plus, Pencil, Trash2, Search, X, Loader2, Stethoscope } from 'lucide-react';
+import Link from 'next/link';
 
 const API_URL = '/api-backend';
 
@@ -9,6 +10,7 @@ export default function DoctorsPage() {
   const [doctors, setDoctors] = useState<any[]>([]);
   const [specialities, setSpecialities] = useState<any[]>([]);
   const [branches, setBranches] = useState<any[]>([]);
+  const [designations, setDesignations] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [showForm, setShowForm] = useState(false);
@@ -36,22 +38,24 @@ export default function DoctorsPage() {
     'Content-Type': 'application/json',
   });
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const [docsRes, specsRes, branchesRes] = await Promise.all([
+      const [docsRes, specsRes, branchesRes, desigRes] = await Promise.all([
         fetch(`${API_URL}/cms/doctors`, { headers: getHeaders() }),
         fetch(`${API_URL}/doctors/specialities`),
         fetch(`${API_URL}/branches`),
+        fetch(`${API_URL}/cms/designations`, { headers: getHeaders() }),
       ]);
       setDoctors(await docsRes.json());
       setSpecialities(await specsRes.json());
       setBranches(await branchesRes.json());
+      if (desigRes.ok) setDesignations(await desigRes.json());
     } catch (e) { console.error(e); }
     setIsLoading(false);
-  };
+  }, []);
 
-  useEffect(() => { fetchData(); }, []);
+  useEffect(() => { fetchData(); }, [fetchData]);
 
   const handleEdit = (doc: any) => {
     setEditingId(doc._id);
@@ -59,7 +63,7 @@ export default function DoctorsPage() {
       name: doc.name || '', slug: doc.slug || '',
       speciality: doc.speciality?._id || doc.speciality || '',
       qualification: doc.qualification || '',
-      designation: doc.designation || '',
+      designation: doc.designation?._id || doc.designation || '',
       experience_years: doc.experience_years?.toString() || '',
       experience_location: doc.experience_location || '',
       bio: doc.bio || '', image_url: doc.image_url || '',
@@ -149,12 +153,20 @@ export default function DoctorsPage() {
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Manage Doctors</h2>
           <p className="text-sm text-gray-500 mt-1">{doctors.length} doctors registered</p>
         </div>
-        <button
-          onClick={() => { resetForm(); setEditingId(null); setShowForm(true); }}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors shadow-sm"
-        >
-          <Plus className="w-4 h-4" /> Add Doctor
-        </button>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/admin-dashboard/designations"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-[#0d9488] hover:text-[#0d9488] text-gray-600 rounded-xl text-sm font-semibold transition-all shadow-sm"
+          >
+            Manage Designations
+          </Link>
+          <button
+            onClick={() => { resetForm(); setEditingId(null); setShowForm(true); }}
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors shadow-sm"
+          >
+            <Plus className="w-4 h-4" /> Add Doctor
+          </button>
+        </div>
       </div>
 
       {/* Search */}
@@ -201,7 +213,7 @@ export default function DoctorsPage() {
                         </div>
                         <div>
                           <p className="font-bold text-gray-900 leading-tight">{doc.name}</p>
-                          <p className="text-[11px] text-[#0d9488] font-bold uppercase mt-0.5">{doc.designation || '-'}</p>
+                          <p className="text-[11px] text-[#0d9488] font-bold uppercase mt-0.5">{doc.designation?.name || doc.designation || '-'}</p>
                           <p className="text-[10px] text-gray-400 mt-0.5">{doc.qualification || '-'}</p>
                           {doc.experience_location && (
                             <p className="text-[10px] text-[#0d9488] font-bold uppercase mt-0.5">@ {doc.experience_location}</p>
@@ -277,8 +289,11 @@ export default function DoctorsPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Designation</label>
-                  <input value={formData.designation} onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all" placeholder="e.g. Consultant" />
+                  <select value={formData.designation} onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
+                    className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all">
+                    <option value="">Select Designation</option>
+                    {designations.map((d: any) => <option key={d._id} value={d._id}>{d.name}</option>)}
+                  </select>
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Experience (years)</label>

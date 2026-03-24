@@ -147,12 +147,12 @@ export function DoctorsSearch() {
 
                   {doc.designation && (
                     <p className="text-[12px] font-bold text-[#0d9488] uppercase tracking-wider mb-1">
-                      {doc.designation}
+                      {typeof doc.designation === 'object' ? doc.designation.name : (doc.designation || '-')}
                     </p>
                   )}
 
                   <p className="text-[14px] font-bold text-gray-600 leading-tight mb-1 line-clamp-1">
-                    {doc.qualification || 'Highly Qualified Physician'}
+                      {(doc.qualification || '').replace(/\s*\([^)]*\)\s*$/, '').trim() || 'Highly Qualified Physician'}
                   </p>
 
                   <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-6">

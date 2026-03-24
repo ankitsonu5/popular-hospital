@@ -75,8 +75,8 @@ export default function ServicesPage() {
                 {/* Content Section */}
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="mb-4">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2 block">
-                      Expert Care
+                    <span className="text-[13px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal">
+                      Department of
                     </span>
                     <h3 className="text-xl md:text-2xl font-bold text-[#1d1d1f] mb-3 font-heading leading-tight group-hover:text-[#E85222] transition-colors">
                       {service.title}

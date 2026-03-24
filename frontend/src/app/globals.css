@@ -198,7 +198,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #e85222; /* hospital-orange */
+  background: #FF6600; /* hospital-orange */
 }
 
 /* Firefox scrollbar support */
@@ -252,7 +252,7 @@ button {
 }
 
 .prose a {
-  @apply text-[#E85222] font-bold underline decoration-1 underline-offset-4 hover:text-[#d1451a] transition-all;
+  @apply text-[#FF6600] font-bold underline decoration-1 underline-offset-4 hover:text-[#d1451a] transition-all;
 }
 
 .prose blockquote {

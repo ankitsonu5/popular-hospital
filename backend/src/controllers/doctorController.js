@@ -3,6 +3,7 @@ import Speciality from '../models/Speciality.js';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
+import Designation from '../models/Designation.js';
 
 // Setup Multer Storage for Doctors
 const storage = multer.diskStorage({
@@ -52,6 +53,7 @@ export const getAllDoctors = async (req, res) => {
     const doctors = await Doctor.find(filter)
       .populate('speciality', 'name slug department_display_name')
       .populate('branches', 'name slug')
+      .populate('designation', 'name')
       .sort({ name: 1 });
 
     res.json(doctors);
@@ -79,12 +81,14 @@ export const getDoctorByIdOrSlug = async (req, res) => {
     if (idOrSlug.match(/^[0-9a-fA-F]{24}$/)) {
       doctor = await Doctor.findById(idOrSlug)
         .populate('speciality', 'name slug department_display_name')
-        .populate('branches', 'name slug');
+        .populate('branches', 'name slug')
+        .populate('designation', 'name');
     }
     if (!doctor) {
       doctor = await Doctor.findOne({ slug: idOrSlug })
         .populate('speciality', 'name slug department_display_name')
-        .populate('branches', 'name slug');
+        .populate('branches', 'name slug')
+        .populate('designation', 'name');
     }
 
     if (!doctor) return res.status(404).json({ error: 'Doctor not found' });

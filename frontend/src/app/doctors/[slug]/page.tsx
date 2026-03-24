@@ -33,8 +33,13 @@ export default async function DoctorPage({ params }: Props) {
   // Merge: DB takes priority, local is the fallback
   const displayName = dbDoctor?.name ?? local?.name ?? slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   const displaySpeciality = dbDoctor?.speciality?.department_display_name ?? dbDoctor?.speciality?.name ?? dbDoctor?.speciality_name ?? local?.speciality ?? 'Specialist';
-  const displayQualification = dbDoctor?.qualification ?? local?.qualifications ?? '';
-  const displayDesignation = dbDoctor?.designation ?? local?.designation ?? '';
+  const displayQualificationRaw = dbDoctor?.qualification ?? local?.qualifications ?? '';
+  // Cleanup: Remove redundant (Speciality) or (Designation) from qualifications if present in parentheses
+  const displayQualification = displayQualificationRaw.replace(/\s*\([^)]*\)\s*$/, '').trim();
+  
+  const displayDesignation = typeof dbDoctor?.designation === 'object' 
+    ? dbDoctor.designation.name 
+    : (dbDoctor?.designation || local?.designation || '');
   const displayExperience = dbDoctor 
     ? (dbDoctor.experience_years ? `${dbDoctor.experience_years}+ Years` : null)
     : local?.experience;

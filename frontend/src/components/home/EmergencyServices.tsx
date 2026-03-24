@@ -88,54 +88,71 @@ export default function EmergencyServices() {
           ].map((service, idx) => (
             <div
               key={service.title}
-              className="group [perspective:1000px] w-full h-[360px]"
+              className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-auto md:h-[360px] overflow-hidden"
             >
-              <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)] rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100">
-                
-                {/* FRONT SIDE */}
-                <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-white rounded-3xl p-8 text-center flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-[#f0f9ff] flex items-center justify-center mb-8 border border-gray-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-all duration-300 shadow-inner">
-                    <svg className="w-8 h-8 text-[#1e3a8a] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      {service.icon}
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 font-heading text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-500 text-base leading-relaxed font-medium mb-6">
-                    {service.desc}
-                  </p>
-                  
-                  {/* Read More button for mobile (as hover flip is md: only) */}
-                  <Link 
-                    href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                    className="md:hidden mt-auto px-6 py-2 bg-white text-[#E85222] border-2 border-[#E85222] text-[10px] font-black rounded-full uppercase tracking-widest hover:bg-[#E85222] hover:text-white transition-all shadow-sm"
-                  >
-                    Read more
-                  </Link>
-                </div>
-
-                {/* BACK SIDE */}
-                <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden hidden md:flex">
-                   <Image 
-                      src={service.image} 
-                      alt={service.title} 
-                      fill 
-                      className="object-cover" 
-                   />
-                   <div className="absolute inset-0 bg-[#0b1c43]/50" />
-                   <div className="relative z-10 flex flex-col items-center justify-center p-8 w-full h-full text-center">
-                      <h3 className="text-white text-2xl font-bold mb-8 font-heading px-4 drop-shadow-md">{service.title}</h3>
-                      <Link 
-                        href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                        className="px-8 py-3 bg-[#E85222] text-white text-sm font-bold rounded-full hover:bg-white hover:text-[#E85222] transition-colors duration-300 uppercase tracking-wide shadow-lg"
-                      >
-                        Read more
-                      </Link>
-                   </div>
-                </div>
-
+              {/* IMAGE BACKGROUND (Default Desktop) */}
+              <div className="absolute inset-0 hidden md:block z-0 pointer-events-none">
+                <Image 
+                  src={service.image} 
+                  alt={service.title} 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
               </div>
+
+              {/* MOBILE IMAGE (Static) */}
+              <div className="md:hidden w-full h-48 relative bg-gray-100">
+                <Image 
+                  src={service.image} 
+                  alt={service.title} 
+                  fill 
+                  className="object-cover" 
+                />
+              </div>
+
+              {/* CONTENT AREA */}
+              <div className="relative z-10 flex-grow flex flex-col p-6 sm:p-8">
+                
+                {/* DEFAULT BOTTOM TITLE (Desktop Only) */}
+                <div className="hidden md:flex absolute bottom-0 left-0 right-0 p-8 items-center gap-4 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-10">
+                   <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {service.icon}
+                      </svg>
+                   </div>
+                   <h3 className="text-2xl font-bold text-white font-heading capitalize drop-shadow-lg">{service.title}</h3>
+                </div>
+
+                {/* HOVER OVERLAY (Desktop) / STATIC CONTENT (Mobile) */}
+                <div className="md:absolute md:inset-0 md:bg-white md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 md:p-8 flex flex-col md:items-center md:justify-center md:text-center z-20">
+                   <div className="hidden md:flex w-16 h-16 rounded-full bg-[#f0f9ff] items-center justify-center mb-6 border border-gray-100 text-[#1e3a8a]">
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {service.icon}
+                      </svg>
+                   </div>
+                   
+                   {/* Icon for mobile only */}
+                   <div className="md:hidden w-12 h-12 rounded-lg bg-hospital-teal/10 flex items-center justify-center text-hospital-teal mb-4">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {service.icon}
+                      </svg>
+                   </div>
+
+                   <h3 className="text-xl sm:text-2xl font-bold mb-4 font-heading text-[#0b1c43]">{service.title}</h3>
+                   <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-medium mb-6 line-clamp-4 md:line-clamp-none">
+                     {service.desc}
+                   </p>
+                   
+                   <Link 
+                     href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
+                     className="inline-flex items-center justify-center px-8 py-3 bg-[#E85222] text-white text-[11px] font-black rounded-full uppercase tracking-widest hover:bg-black transition-all shadow-md mt-auto md:mt-0"
+                   >
+                     Read more
+                   </Link>
+                </div>
+              </div>
+
             </div>
           ))}
         </div>

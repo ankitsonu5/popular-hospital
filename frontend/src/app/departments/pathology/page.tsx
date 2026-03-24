@@ -210,28 +210,6 @@ export default function PathologyPage() {
            </div>
       </section>
 
-      <section className="bg-[#EFF6FF] py-12">
-        <div className="container-narrow flex flex-col items-center gap-4 sm:flex-row sm:justify-between px-4 max-w-[1366px] mx-auto">
-          <p className="text-center text-lg font-bold sm:text-left text-[#1a3a5c] uppercase tracking-wide">
-            Need to talk to us? Call our helpline 24/7
-          </p>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <a
-              href="tel:+917800001895"
-              className="text-2xl font-black text-[#E85222] underline hover:no-underline tracking-tighter"
-            >
-              +91-7800001895
-            </a>
-            <span className="text-2xl font-bold text-[#1a3a5c] font-heading">/</span>
-            <a
-              href="tel:+917800001896"
-              className="text-2xl font-black text-[#E85222] underline hover:no-underline tracking-tighter"
-            >
-              96
-            </a>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

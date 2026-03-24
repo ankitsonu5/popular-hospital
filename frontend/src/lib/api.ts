@@ -83,7 +83,7 @@ export async function fetchDoctors(params?: { speciality?: string; branch?: stri
 
 export async function fetchDoctor(idOrSlug: string): Promise<Doctor | null> {
   try {
-    const res = await fetch(api(`/doctors/${idOrSlug}`), { next: { revalidate: 10 } });
+    const res = await fetch(api(`/doctors/${idOrSlug}`), { next: { revalidate: 0 } });
     if (!res.ok) return null;
     return res.json();
   } catch (e) {
@@ -316,7 +316,7 @@ export interface Doctor {
     sunday: string;
   };
   branch_ids?: string;
-  designation?: string;
+  designation?: string | { _id: string; name: string };
 }
 
 export interface BookingInput {
