@@ -64,11 +64,25 @@ const medicalServices = [
 
 const doctors = [
   {
-    name: 'Dr. Medicine Specialist',
-    qualifications: 'MBBS, MD (General Medicine)',
-    designation: 'Sr. Consultant',
-    slug: 'dr-medicine-specialist',
-    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800',
+    name: 'Dr K.P Singh',
+    qualifications: 'MBBS, MD, (Respiratory Medicine) Dip. Card MNCCP, MICS, MICAI, MIES, MERS',
+    designation: 'Senior Consultant Pulmonologist',
+    slug: 'dr-kp-singh',
+    image: '/images/departments_doctor/dr_k_p_singh.png',
+  },
+  {
+    name: 'Dr P.K Tiwari',
+    qualifications: 'MBBS, MD (Internal Medicine) IMS, BHU',
+    designation: 'Senior Consultant Physician',
+    slug: 'dr-pk-tiwari',
+    image: '',
+  },
+  {
+    name: 'Dr Sandesh M Raykar',
+    qualifications: 'MBBS, MD (Internal Medicine) IMS, BHU',
+    designation: 'Consultant Physician',
+    slug: 'dr-sandesh-m-raykar',
+    image: '/images/departments_doctor/dr_sandesh_m_raykar.jpg',
   },
 ];
 
@@ -169,41 +183,6 @@ export default function GeneralMedicineClient() {
         </div>
       </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="bg-[#1e1b4b] rounded-2xl md:rounded-[2.5rem] p-10 md:p-24 text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0 100 C 20 20 50 20 100 100 Z" fill="white" />
-                </svg>
-            </div>
-            
-            <div className="relative z-10">
-              <span className="inline-block bg-indigo-500/20 text-indigo-100 text-xs font-bold px-4 py-1.5 rounded-full mb-8 border border-indigo-400/20 uppercase tracking-widest">
-                Partner in your medical journey
-              </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
-                Listening to Your Body <br className="hidden md:block" /> Healing with Expertise
-              </h2>
-              <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-                <Link
-                  href="/doctors"
-                  className="bg-[#E85222] text-white hover:bg-[#d1451a] px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
-                >
-                  Book Appointment
-                </Link>
-                <a
-                  href="tel:+917800001895"
-                  className="bg-transparent border-2 border-indigo-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
-                >
-                  +91-7800001895 / 96
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </main>
   );

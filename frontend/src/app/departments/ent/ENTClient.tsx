@@ -45,11 +45,11 @@ const whatWeOffer = [
 
 const doctors = [
   {
-    name: 'Dr. Anshuman Singh',
-    qualifications: 'M.B.B.S., MS',
-    designation: 'Consultant',
+    name: 'Dr Anshuman Singh',
+    qualifications: 'M.B.B.S., MS - Otorhinolaryngology',
+    designation: 'Consultant ENT Surgeon',
     slug: 'dr-anshuman-singh',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800',
+    image: '', // Placeholder as per backend and uploaded image
   },
 ];
 
@@ -204,44 +204,6 @@ export default function ENTClient() {
         </div>
       </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="bg-[#1e1b4b] rounded-2xl md:rounded-[2.5rem] p-10 md:p-24 text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0 100 C 20 20 50 20 100 100 Z" fill="white" />
-                </svg>
-            </div>
-            
-            <div className="relative z-10">
-              <span className="inline-block bg-amber-500/20 text-amber-100 text-xs font-bold px-4 py-1.5 rounded-full mb-8 border border-amber-400/20 uppercase tracking-widest">
-                Comprehensive ENT Healthcare
-              </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
-                Quality Treatment for Your <br className="hidden md:block" /> Precious Senses
-              </h2>
-              <p className="text-amber-100 text-lg md:text-xl max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
-                Our team of specialists is dedicated to providing you with the best medical and surgical ENT solutions.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-                <Link
-                  href="/doctors"
-                  className="bg-[#E85222] text-white hover:bg-orange-600 px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
-                >
-                  Book Appointment
-                </Link>
-                <a
-                  href="tel:+917800001895"
-                  className="bg-transparent border-2 border-amber-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
-                >
-                   +91-7800001895 / 96
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </main>
   );

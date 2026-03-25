@@ -76,20 +76,27 @@ const doctors = [
     qualifications: 'MBBS, MS (OBGY) IMS, BHU',
     designation: 'Head Of Department Obstetrics & Gynaecology',
     slug: 'dr-kiran-kaushik',
-    image: '/images/departments-images/dr_kiran_kaushik.png',
+    image: '/images/departments_doctor/kiran.png',
+  },
+  {
+    name: 'Dr Madhavi Paramar',
+    qualifications: 'MBBS, DGO',
+    designation: 'Consultant Obstetrician, Gynaecologist & Infertility Specialist',
+    slug: 'dr-madhavi-paramar',
+    image: '/images/departments_doctor/dr_parmar_madhavi.jpg',
   },
   {
     name: 'Dr Priyanka Jaiswal',
     qualifications: 'MBBS, MS (OBGY)',
     designation: 'Consultant Laparoscopic Gynaecologist & IVF Specialist',
     slug: 'dr-priyanka-jaiswal',
-    image: '/images/departments-images/dr_priyanka_jaiswal.png',
+    image: '/images/departments_doctor/dr_priyanka_jaiswal.png',
   },
   {
-    name: 'Dr Madhavi Parimar',
-    qualifications: 'MBBS, DGO',
-    designation: 'Consultant Obstetrician, Gynaecologist & Infertility Specialist',
-    slug: 'dr-madhavi-parimar',
+    name: 'Dr. Srishti Tanya',
+    qualifications: 'M.B.B.S., MS',
+    designation: 'Consultant Gynaecologist',
+    slug: 'dr-srishti-tanya',
     image: '',
   },
 ];
@@ -283,45 +290,6 @@ export default function GynaecologyClient() {
         </div>
       </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="bg-[#831843] rounded-2xl md:rounded-[2.5rem] p-10 md:p-24 text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-                </svg>
-            </div>
-            <div className="absolute -right-40 -bottom-40 w-[600px] h-[450px] bg-pink-500/10 rounded-full blur-[100px]" />
-            
-            <div className="relative z-10">
-              <span className="inline-block bg-pink-500/20 text-pink-100 text-xs font-bold px-4 py-1.5 rounded-full mb-8 border border-pink-400/20 uppercase tracking-widest">
-                Expert Care Since 1994
-              </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
-                Empowering Women&apos;s <br className="hidden md:block" /> Health Every Day
-              </h2>
-              <p className="text-pink-100 text-base md:text-xl max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
-                Comprehensive obstetric and gynaecological care delivered with compassion and clinical excellence. Join thousands of happy mothers who trusted us.  
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-6">
-                <Link
-                  href="/doctors"
-                  className="bg-[#E85222] hover:bg-orange-600 text-white px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
-                >
-                  Book Appointment
-                </Link>
-                <a
-                  href="tel:+917800001896"
-                  className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
-                >
-                  +91-7800001895 / 96
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </main>
   );

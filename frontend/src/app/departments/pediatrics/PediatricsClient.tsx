@@ -52,11 +52,32 @@ const highlights = [
 
 const doctors = [
   {
-    name: 'Dr. Alok C Bhardwaj',
-    qualifications: 'MBBS (IMS, BHU, Varanasi - 1987), MD - Paediatrician (IMS, BHU, Varanasi - 1991)',
-    designation: 'Medical Director',
-    slug: 'dr-alok-c-bhardwaj',
-    image: '', // Image path if available later
+    name: 'Dr Alok C Bhardwajs',
+    qualifications: 'MBBS, MD (Pediatrics) IMS, BHU',
+    designation: 'HEAD, DEPARTMENT OF PEDIATRICS',
+    slug: 'dr-alok-c-bhardwajs',
+    image: '/images/departments_doctor/dr._alok_c_bhardwaj.jpg',
+  },
+  {
+    name: 'Dr Greeshma Suresh',
+    qualifications: 'MBBS, MS, MCh (Pediatric Surgery) IMS, BHU',
+    designation: 'Consultant Pediatric Surgeon',
+    slug: 'dr-greeshma-suresh',
+    image: '',
+  },
+  {
+    name: 'Dr Prabhat Kumar',
+    qualifications: 'MBBS, DCH, DNB (Pediatrics)',
+    designation: 'Consultant Senior Pediatrician',
+    slug: 'dr-prabhat-kumar',
+    image: '/images/departments_doctor/dr_prabhat_kumar.png',
+  },
+  {
+    name: 'Dr Rajesh Kumar Singh',
+    qualifications: 'MBBS, MD, IAP Fellowship in Neonatology',
+    designation: 'Consultant Pediatrician',
+    slug: 'dr-rajesh-kumar-singh',
+    image: '',
   },
 ];
 

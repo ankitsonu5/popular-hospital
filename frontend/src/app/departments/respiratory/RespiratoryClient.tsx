@@ -88,16 +88,23 @@ const doctors = [
   {
     name: 'Dr. K. P. Singh',
     qualifications: 'MBBS, MD (Respiratory Medicine), Dip Card',
-    designation: 'Sr. Consultant',
-    slug: 'dr-k-p-singh',
-    image: '',
+    designation: 'Sr. Consultant Pulmonologist',
+    slug: 'dr-kp-singh',
+    image: '/images/departments_doctor/dr_k_p_singh.png',
   },
   {
-    name: 'Doctor Name Placeholder',
-    qualifications: 'Qualifications Placeholder',
-    designation: 'Designation Placeholder',
-    slug: 'doctor-placeholder',
-    image: '',
+    name: 'Dr Shailendra Shivhare',
+    qualifications: 'MBBS, MD (Respiratory Medicine)',
+    designation: 'Consultant Pulmonologist',
+    slug: 'dr-shailendra-shivhare',
+    image: '/uploads/doctors/1742444391694-dr-shailendra-shivhare.jpg',
+  },
+  {
+    name: 'Dr Vikas Jaiswal',
+    qualifications: 'MBBS, DTCD, DNB (Respiratory Medicine)',
+    designation: 'Consultant Pulmonologist',
+    slug: 'dr-vikas-jaiswal',
+    image: '/uploads/doctors/1742795458316-dr-vikas-jaiswal.jpg',
   },
 ];
 
@@ -256,21 +263,6 @@ export default function RespiratoryClient() {
               <div className="sticky top-24 w-full h-fit flex flex-col gap-10">
                 <DoctorSlider doctors={doctors} departmentName="Respiratory Medicine" />
 
-                <div className="bg-[#164e63] p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden items-center justify-center flex flex-col text-center">
-                    <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                            <path d="M0 100 C 20 20 50 20 100 100 Z" fill="white" />
-                        </svg>
-                    </div>
-                    <p className="font-bold mb-6 text-cyan-100 uppercase tracking-widest text-xs">Healthcare Excellence</p>
-                    <p className="text-xl font-bold mb-8">Breathe Easy. Live Fully. Your Lung Health is Our Utmost Concern.</p>
-                    <a
-                        href="tel:+917800001895"
-                        className="bg-white text-[#164e63] hover:bg-cyan-100 px-8 py-3 rounded-full font-bold transition-all shadow-xl font-heading"
-                    >
-                        Call Now
-                    </a>
-                </div>
               </div>
             </div>
 

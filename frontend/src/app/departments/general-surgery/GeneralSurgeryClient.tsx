@@ -51,7 +51,21 @@ const doctors = [
     qualifications: 'MBBS, MS (General Surgery) IMS, BHU',
     designation: 'Head, Department of General Surgery',
     slug: 'dr-ak-kaushik',
-    image: '/images/departments-images/dr_ak_kaushik.png',
+    image: '/images/departments_doctor/dr_ak_kaushik.png',
+  },
+  {
+    name: 'Dr R.K Singh',
+    qualifications: 'MBBS, MS, FIAGES, FSG',
+    designation: 'Consultant Surgeon',
+    slug: 'dr-rk-singh',
+    image: '',
+  },
+  {
+    name: 'Dr. Abhishek',
+    qualifications: 'M.B.B.S, M.S. - General Surgery, FIAGES',
+    designation: 'Consultant Surgeon',
+    slug: 'dr-abhishek',
+    image: '',
   },
 ];
 

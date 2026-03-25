@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import DoctorSlider from '@/components/DoctorSlider';
 
 /* ─── Data ─── */
 
@@ -33,14 +32,7 @@ const doctors = [
     designation: 'Consultant Surgical Oncology',
     slug: 'dr-ajay-kumar-prajapati',
     image: '',
-  },
-  {
-    name: 'Dr Neha Gupta',
-    qualifications: 'MBBS, MD (Radiotherapy)',
-    designation: 'Consultant Radiation Oncology',
-    slug: 'dr-neha-gupta',
-    image: '/images/departments_doctor/dr_neha_gupta.png',
-  },
+  }
 ];
 
 /* ─── Sub-Components ─── */
@@ -135,10 +127,47 @@ export default function OncologyClient() {
               </div>
             </div>
 
-            {/* Right Doctor Card (Sticky) */}
+            {/* Right Doctor Card (Static - Restored Style) */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Oncology" />
+              <div className="sticky top-24 w-full max-w-sm">
+                <div className="relative pt-6">
+                  {/* Floating Appointment Button */}
+                  <Link 
+                    href="/doctors" 
+                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap uppercase"
+                  >
+                    SCHEDULE AN APPOINTMENT
+                  </Link>
+
+                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
+                    <div className="w-full p-6 pt-12 flex flex-col items-center">
+                      <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
+                        <div className="flex items-center justify-center h-full bg-blue-50 text-blue-200">
+                          <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                          </svg>
+                        </div>
+                        {/* Hover Overlay */}
+                        <Link 
+                          href={`/doctors/${doctors[0].slug}`} 
+                          className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
+                        >
+                          <span className="px-5 py-2.5 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-all uppercase text-sm">
+                            View Full Profile
+                          </span>
+                        </Link>
+                      </div>
+                      <div className="text-center">
+                        <h3 className="text-xl font-bold text-[#3b82f6] mb-1 font-heading">{doctors[0].name}</h3>
+                        <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">{doctors[0].qualifications}</p>
+                        <p className="text-gray-500 text-[10px] mt-3 uppercase tracking-[0.2em] font-black">
+                          DEPARTMENT OF ONCOLOGY
+                        </p>
+                      </div>
+                    </div>
+                    <div className="h-4" />
+                  </div>
+                </div>
               </div>
             </div>
 

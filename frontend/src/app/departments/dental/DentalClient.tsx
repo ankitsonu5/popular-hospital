@@ -28,11 +28,11 @@ const surgeryList = [
 
 const doctors = [
   {
-    name: 'Dr. Dental Specialist',
-    qualifications: 'BDS, MDS (Oral & Maxillofacial Surgery)',
-    designation: 'Senior Consultant',
-    slug: 'dental-specialist',
-    image: '',
+    name: 'Dr Hena Kauser',
+    qualifications: 'BDS',
+    designation: 'Consultant Dentist',
+    slug: 'dr-hena-kauser',
+    image: '', // Placeholder as per backend and uploaded image
   },
 ];
 

@@ -38,11 +38,11 @@ const specialisedProgrammes = [
 
 const doctors = [
   {
-    name: 'Dr. Eye Specialist',
-    qualifications: 'M.B.B.S., MS (Ophthalmology)',
-    designation: 'Senior Consultant',
-    slug: 'ophthalmology-consultant',
-    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800',
+    name: 'Dr Bhavesh Makkar',
+    qualifications: 'M.B.B.S, DNB',
+    designation: 'Consultant Ophthalmologist',
+    slug: 'dr-bhavesh-makkar',
+    image: '', // Placeholder as per backend and uploaded image
   },
 ];
 
@@ -198,34 +198,6 @@ export default function OphthalmologyClient() {
         </div>
       </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-[#0f172a] border-t border-gray-100 mt-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3b82f6 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="text-center relative z-10">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
-              World-Class Eye Care <br className="hidden md:block" /> at Popular Hospital
-            </h2>
-            <p className="text-blue-100 text-lg md:text-xl max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
-              Take the first step towards better vision. Schedule a comprehensive eye exam with our expert team today.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6 mt-10">
-              <Link
-                href="/doctors"
-                className="bg-[#E85222] text-white hover:bg-orange-600 px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide flex items-center justify-center gap-3"
-              >
-                Book Appointment
-              </Link>
-              <a
-                href="tel:+917800001895"
-                className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3 uppercase tracking-wide"
-              >
-                 +91-7800001895 / 96
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </main>
   );

@@ -27,18 +27,6 @@ const introSections: ContentItem[] = [
     text: "Various modalities of treatment available in Pain Management Clinic are Interventional Pain procedures, Platelet Rich Plasma Therapy (PRP), Vertebroplasty ,Radio Frequency Lesioning , Percutaneous Balloon Compression for Trigeminal Neuralgia, Epidural Infusion pumps ,Percutaneous Lumbar Sympathectomy, Percutaneous Discectomy(Disc-Fix), PLED."
   },
   {
-    title: "What are the advantage of Interventional Pain Procedure over the existing modes of treatment ?",
-    text: "Advantages of Interventional Pain Procedures as Follows:",
-    bullets: [
-      "Less invasive as compared to Surgery",
-      "Procedures are percutaneous no incision or cut is required",
-      "Absolutely blood less",
-      "Usually done under LA.General Anaesthesia not required",
-      "No or Minimal Hospital Stay required",
-      "Safe, cost effective, possible in poor risk cases"
-    ]
-  },
-  {
     title: "Where are Pain Management services available in India?",
     text: "Pain Management services available only few Medical Colleges, Major Cancer hospital and corporate hospitals. Pain Management Clinic at Popular hospital is the only Pain Clinic in Purvanchal area from corporate hospital with cashless facilities."
   }
@@ -120,11 +108,32 @@ const cancerSection: ContentItem[] = [
 
 const doctors = [
   {
-    name: 'Prof. V. Rastogi',
-    qualifications: 'MBBS, MD (Anesthesiology & Pain Medicine)',
-    designation: 'Sr. Consultant & Head - Pain Medicine',
-    slug: 'prof-v-rastogi',
-    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800',
+    name: 'Dr Alisha Raj',
+    qualifications: 'MBBS, MD (Anaesthesia), PDCC',
+    designation: 'Consultant Pain Management',
+    slug: 'dr-alisha-raj',
+    image: '', // Placeholder as per backend and uploaded image
+  },
+  {
+    name: 'Dr Rahul Singh',
+    qualifications: 'MBBS, MD (Anaesthesia), PDCC',
+    designation: 'Consultant Pain Management',
+    slug: 'dr-rahul-singh',
+    image: '',
+  },
+  {
+    name: 'Dr Sumit Vishwakarma',
+    qualifications: 'MBBS, MD (Anaesthesia) IMS, BHU',
+    designation: 'Consultant Pain Management',
+    slug: 'dr-sumit-vishwakarma',
+    image: '',
+  },
+  {
+    name: 'Dr Vikas Mishra',
+    qualifications: 'MBBS, MD (Anaesthesia)',
+    designation: 'Consultant Pain Management',
+    slug: 'dr-vikas-mishra',
+    image: '',
   },
 ];
 
@@ -250,24 +259,6 @@ export default function PainManagementClient() {
               <div className="sticky top-24 w-full h-fit flex flex-col gap-10">
                 <DoctorSlider doctors={doctors} departmentName="Pain Medicine" />
 
-                <div className="w-full max-w-sm mx-auto bg-blue-50 p-8 rounded-2xl border border-blue-100 shadow-inner">
-                    <h4 className="text-lg font-bold text-[#1e293b] mb-4 uppercase tracking-wider border-b border-gray-200 pb-2">Treatment Benefits</h4>
-                    <ul className="space-y-4">
-                        {[
-                            "Less invasive as compared to Surgery",
-                            "Procedures are percutaneous no incision or cut is required",
-                            "Absolutely blood less",
-                            "Usually done under LA.General Anaesthesia not required",
-                            "No or Minimal Hospital Stay required",
-                            "Safe, cost effective, possible in poor risk cases"
-                        ].map((b, i) => (
-                            <li key={i} className="flex items-center gap-3 text-gray-700 font-medium text-sm">
-                                <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                                {b}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
               </div>
             </div>
 

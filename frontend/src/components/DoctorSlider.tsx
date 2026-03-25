@@ -14,14 +14,24 @@ interface Doctor {
 
 export default function DoctorSlider({ doctors, departmentName }: { doctors: Doctor[], departmentName: string }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
-    if (doctors.length <= 1) return;
+    if (doctors.length <= 1 || !isAutoPlaying) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev === doctors.length - 1 ? 0 : prev + 1));
-    }, 2000);
+    }, 5000);
     return () => clearInterval(interval);
-  }, [doctors.length]);
+  }, [doctors.length, isAutoPlaying]);
+
+  const handleManualSlide = (index: number | ((prev: number) => number)) => {
+    setIsAutoPlaying(false);
+    if (typeof index === 'function') {
+      setCurrentSlide(index);
+    } else {
+      setCurrentSlide(index);
+    }
+  };
 
   if (!doctors || doctors.length === 0) {
     return (
@@ -96,7 +106,7 @@ export default function DoctorSlider({ doctors, departmentName }: { doctors: Doc
         {doctors.length > 1 && (
           <>
             <button 
-              onClick={() => setCurrentSlide((prev) => (prev === 0 ? doctors.length - 1 : prev - 1))}
+              onClick={() => handleManualSlide((prev) => (prev === 0 ? doctors.length - 1 : prev - 1))}
               className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
               aria-label="Previous doctor"
             >
@@ -105,7 +115,7 @@ export default function DoctorSlider({ doctors, departmentName }: { doctors: Doc
               </svg>
             </button>
             <button 
-              onClick={() => setCurrentSlide((prev) => (prev === doctors.length - 1 ? 0 : prev + 1))}
+              onClick={() => handleManualSlide((prev) => (prev === doctors.length - 1 ? 0 : prev + 1))}
               className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
               aria-label="Next doctor"
             >
@@ -119,7 +129,7 @@ export default function DoctorSlider({ doctors, departmentName }: { doctors: Doc
               {doctors.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setCurrentSlide(idx)}
+                  onClick={() => handleManualSlide(idx)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 border ${
                     currentSlide === idx 
                       ? 'bg-[#3b82f6] border-[#3b82f6] scale-125' 

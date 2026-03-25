@@ -64,11 +64,18 @@ const spineSurgeries = [
 
 const doctors = [
   {
-    name: 'Dr. Mohd Akhtar Ali Ansari',
-    qualifications: 'MBBS (Gauhati Medical College), MS Orthopaedics (AIIMS, New Delhi)',
+    name: 'Dr Md Akhtar Ali Ansari',
+    qualifications: 'MBBS, MS (Orthopedics) AIIMS, New Delhi',
     designation: 'Specialist in Joint Replacement, Arthroscopy, Spine Surgery & Trauma Care',
-    slug: 'dr-mohd-akhtar-ali-ansari',
-    image: '', // Image path if available
+    slug: 'dr-md-akhtar-ali-ansari',
+    image: '/images/departments_doctor/dr_ohd_akhtar_ali_ansari.jpg',
+  },
+  {
+    name: 'Dr Vinit Yadav',
+    qualifications: 'MBBS, MS (Orthopedics) IMS, BHU',
+    designation: 'Consultant Orthopedic Surgeon',
+    slug: 'dr-vinit-yadav',
+    image: '/images/departments_doctor/dr_vinit_yadav.jpg',
   },
 ];
 
