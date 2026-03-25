@@ -29,10 +29,10 @@ export default function InternationalPatients({ specialities }: { specialities: 
     <section className="py-20 sm:py-24 bg-[#F8FAFC] overflow-hidden">
       <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading tracking-tight mb-4">
             For International Patients
           </h2>
-          <p className="text-lg font-bold text-[#FF6B00] uppercase tracking-wider">
+          <p className="text-base font-bold text-[#FF6B00] uppercase tracking-wider">
             Send Your Inquiry to Assist You
           </p>
         </div>
