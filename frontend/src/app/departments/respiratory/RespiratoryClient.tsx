@@ -40,7 +40,7 @@ const services = [
     content: "Quitting smoking is one of the most impactful steps you can take to improve your respiratory health. Our respiratory department offers specialized smoking cessation programs to support and guide individuals in their journey towards a smoke-free life. Our team of experts provides counseling, behavioral therapies, and medical interventions to help you quit smoking successfully."
   },
   {
-    title: "Rehabilitation Programs:",
+    title: "Smoking Cessation Programs:",
     content: "For patients with chronic respiratory conditions, we offer specialized respiratory rehabilitation programs. These programs combine exercise, education, and emotional support to enhance lung capacity, reduce symptoms, and improve overall physical and mental well-being."
   }
 ];
@@ -90,7 +90,14 @@ const doctors = [
     qualifications: 'MBBS, MD (Respiratory Medicine), Dip Card',
     designation: 'Sr. Consultant',
     slug: 'dr-k-p-singh',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800',
+    image: '',
+  },
+  {
+    name: 'Doctor Name Placeholder',
+    qualifications: 'Qualifications Placeholder',
+    designation: 'Designation Placeholder',
+    slug: 'doctor-placeholder',
+    image: '',
   },
 ];
 
@@ -123,7 +130,7 @@ export default function RespiratoryClient() {
     <main className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#164e63] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] w-full bg-[#164e63] overflow-hidden flex items-center py-6 md:py-8">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/respiratory_medicine.png"
@@ -137,14 +144,13 @@ export default function RespiratoryClient() {
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-cyan-500/20 text-cyan-100 text-xs md:text-sm font-bold mb-6 border border-cyan-400/30 backdrop-blur-sm uppercase tracking-wider">
+            <span className="inline-block py-1 px-3 rounded-full bg-cyan-500/20 text-cyan-100 text-xs md:text-sm font-bold mb-4 border border-cyan-400/30 backdrop-blur-sm uppercase tracking-wider">
                 Centre for Advanced Pulmonology
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] font-heading">
-                T.B & <br className="hidden md:block" />
-                <span className="text-cyan-400">Respiratory Medicine</span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-[1.1] font-heading">
+                Department of <span className="text-cyan-400">Pulmonology & Chest/Respiratory Medicine Department</span>
             </h1>
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row gap-4 mt-6">
               <Link
                 href="/doctors"
                 className="bg-[#E85222] hover:bg-orange-600 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 text-center uppercase text-sm tracking-wide"
@@ -166,7 +172,7 @@ export default function RespiratoryClient() {
 
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
-              <SectionHeader title="Department of" highlight="Pulmonology & Chest Medicine" />
+              <SectionHeader title="Department of" highlight="Pulmonology & Chest/Respiratory Medicine Department" />
               <div className="space-y-6 text-gray-800 text-base md:text-lg leading-relaxed mb-12 font-medium text-justify">
                 <p>
                   Our Respiratory medicine Department is dedicated to providing exceptional care of chest, lungs, and your Sleep Disorder that helps you to breathe and provide comprehensive treatment for a wide range of respiratory illness such as asthma, Difficult to treat Asthma, COPD(smoking/pollution related damage to lungs), pneumonia(INCLUDING COVID-19), lung cancer, lung fibrosis, sleep apnea, and other respiratory diseases.
@@ -203,15 +209,14 @@ export default function RespiratoryClient() {
                 </div>
               </div>
 
-              <div className="mt-20 text-gray-800 text-base md:text-lg leading-relaxed font-bold text-justify bg-cyan-900 text-white p-10 rounded-3xl shadow-2xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-                <p className="relative z-10 leading-relaxed italic">
-                    &quot;At our Respiratory Department, patient-centered care is our top priority. We strive to create a comfortable and supportive environment where you can openly discuss your concerns, receive personalized attention, and actively participate in your treatment decisions. Our team of compassionate respiratory specialists is dedicated to delivering the highest standard of care while ensuring your comfort and well-being throughout your healthcare journey.&quot;
+              <div className="mt-12 space-y-6 text-gray-800 text-base md:text-lg leading-relaxed font-bold text-justify">
+                <p>
+                  At our Respiratory Department, patient-centered care is our top priority. We strive to create a comfortable and supportive environment where you can openly discuss your concerns, receive personalized attention, and actively participate in your treatment decisions. Our team of compassionate respiratory specialists is dedicated to delivering the highest standard of care while ensuring your comfort and well-being throughout your healthcare journey.
                 </p>
               </div>
 
               <div className="mt-20">
-                <SectionHeader title="Why Choose Our" highlight="Department?" />
+                <SectionHeader title="Why Choose Our" highlight="Respiratory Department?" />
                 <div className="space-y-8 mt-8">
                   {whyChooseUs.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-4">
@@ -223,6 +228,24 @@ export default function RespiratoryClient() {
                          </p>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              <div className="mt-16 space-y-8 text-gray-800 text-base md:text-lg leading-relaxed font-bold text-justify">
+                <p>
+                  We invite you to Popular Hospital for more information about our services, our team of experts, and patient resources. If you have any questions or would like to schedule an appointment, please don&apos;t hesitate to contact us. Breathe easier and experience the difference at our Respiratory Department – where your respiratory health is our utmost concern.
+                </p>
+                
+                <div className="p-8 border-2 border-cyan-600/20 rounded-[2rem] bg-cyan-50/30">
+                  <p className="mb-6">
+                    Take the first step towards better respiratory health today. Contact our Respiratory Department to schedule an appointment or to learn more about our services. Our dedicated team is here to help you breathe easier and live a healthier, more fulfilling life.
+                  </p>
+                  <p className="text-center text-[#0b1c43] font-black text-xl md:text-2xl mt-8">
+                    Breathe freely with the Respiratory Department at <span className="text-[#E85222]">Popular Hospital</span>.
+                  </p>
+                  <p className="text-center text-cyan-600 font-black text-2xl md:text-3xl mt-4 uppercase tracking-widest">
+                    Breathe Easy. Live Fully.
+                  </p>
                 </div>
               </div>
 
@@ -255,27 +278,6 @@ export default function RespiratoryClient() {
         </div>
       </section>
 
-      {/* ═══════ FINAL CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-white relative overflow-hidden text-center border-t border-gray-100">
-          <div className="mx-auto w-full max-w-[1366px] px-4">
-              <span className="text-cyan-600 font-bold uppercase tracking-[0.2em] text-sm mb-6 block">Take Action Today</span>
-              <h2 className="text-4xl md:text-6xl font-bold text-[#0b1c43] mb-12 font-heading leading-tight">Ready to Breathe <br className="hidden md:block" /> with Confidence?</h2>
-              <div className="flex flex-col sm:flex-row justify-center gap-6">
-                <Link
-                  href="/doctors"
-                  className="bg-[#E85222] text-white hover:bg-orange-600 px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wider"
-                >
-                  Book Your Consultation
-                </Link>
-                <a
-                  href="tel:+917800001895"
-                  className="bg-transparent border-2 border-cyan-900 text-cyan-900 hover:bg-cyan-900 hover:text-white px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3 uppercase tracking-wider"
-                >
-                    +91-7800001895 / 96
-                </a>
-              </div>
-          </div>
-      </section>
 
     </main>
   );

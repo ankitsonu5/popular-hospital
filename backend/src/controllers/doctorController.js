@@ -25,7 +25,7 @@ export const uploadDoctor = multer({ storage });
 export const getAllDoctors = async (req, res) => {
   try {
     const { speciality, branch, search } = req.query;
-    const filter = { is_active: true };
+    const filter = {};
 
     if (speciality) {
       // Find speciality by slug or ID
@@ -53,8 +53,30 @@ export const getAllDoctors = async (req, res) => {
     const doctors = await Doctor.find(filter)
       .populate('speciality', 'name slug department_display_name')
       .populate('branches', 'name slug')
-      .populate('designation', 'name')
-      .sort({ name: 1 });
+      .populate('designation', 'name');
+
+    // Custom sorting in-memory
+    doctors.sort((a, b) => {
+      const priorityNames = ['General Surgeon / Surgery', 'Gynecologist / OBGY'];
+      const aSpec = a.speciality?.name || '';
+      const bSpec = b.speciality?.name || '';
+
+      // If no speciality filter is applied, apply priority
+      if (!speciality) {
+        const aIndex = priorityNames.indexOf(aSpec);
+        const bIndex = priorityNames.indexOf(bSpec);
+
+        if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+        if (aIndex !== -1) return -1;
+        if (bIndex !== -1) return 1;
+      }
+
+      // Group by speciality name
+      if (aSpec !== bSpec) return aSpec.localeCompare(bSpec);
+      
+      // Sort by doctor name within group
+      return a.name.localeCompare(b.name);
+    });
 
     res.json(doctors);
   } catch (error) {

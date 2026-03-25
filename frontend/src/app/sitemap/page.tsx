@@ -42,7 +42,7 @@ const sitemapData = [
       { name: "Nephrology", href: "/departments/nephrology" },
       { name: "Oncology", href: "/departments/oncology" },
       { name: "Urology", href: "/departments/urology" },
-      { name: "Plastic & Reconstructive Surgery", href: "/departments/burns-plastic-surgery" },
+      { name: "Burns & Plastic Surgery", href: "/departments/burns-plastic-surgery" },
       { name: "Interventional Radiology", href: "/departments/interventional-radiology" },
       { name: "Pediatric Surgery", href: "/departments/pediatric-surgery" },
     ]
@@ -66,7 +66,7 @@ const sitemapData = [
       { name: "Ophthalmology", href: "/departments/ophthalmology" },
       { name: "Dental", href: "/departments/dental" },
       { name: "Respiratory Medicine", href: "/departments/respiratory" },
-      { name: "Critical Care & Pain Medicine", href: "/departments/pain-management" },
+      { name: "Pain Medicine", href: "/departments/pain-management" },
       { name: "Psychiatry Department", href: "/departments/psychiatry" },
     ]
   },
@@ -81,7 +81,7 @@ const sitemapData = [
       { name: "Emergency And Trauma Care", href: "/services/emergency" },
       { name: "Blood Bank", href: "/services/blood-bank" },
       { name: "Ambulance", href: "/services/ambulance" },
-      { name: "Wellness Packages", href: "/services/wellness-packages" },
+      { name: "Preventive Health Check Up", href: "/services/wellness-packages" },
       { name: "Pharmacy", href: "/services/pharmacy" },
       { name: "Pathological Services", href: "/services/pathology" },
       { name: "Radiological Services", href: "/services/radiology" },

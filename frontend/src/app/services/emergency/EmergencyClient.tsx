@@ -99,25 +99,25 @@ const sections = [
     title: 'Common Traumatic injuries requiring Emergency Care:',
     content: (
       <>
-        <p className="text-gray-700 mb-4 text-sm lg:text-base font-medium">Common injuries and illnesses that are treated in the emergency and trauma center. Some of the most common injuries and illnesses treated include:</p>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 text-sm lg:text-base text-gray-700 font-bold">
+        <p className="text-gray-700 mb-6 text-sm lg:text-base font-medium">Emergency care is necessary for the most typical traumatic injuries, which include:</p>
+        <ul className="space-y-4 text-sm lg:text-base text-gray-700 font-bold ml-1">
           {[
-            'Motor vehicle accidents',
-            'Severe falls and head injuries',
-            'Sports and athletic injuries',
-            'Severe burns and scalds',
-            'Industrial and workplace accidents',
-            'Deep cuts or puncture wounds',
-            'Fractures and dislocations',
-            'Breathing difficulties',
+            'Accidents involving vehicles (car accidents or road traffic accidents)',
+            'Injuries occurring on the street, at home, or at work',
+            'Serious accidents caused by natural disasters',
+            'Sports-related injuries',
+            'Serious falls (accidental)',
+            'Gunshot injuries'
           ].map((item, idx) => (
             <li key={idx} className="flex items-start gap-3">
-              <div className="w-2 h-2 rounded-full bg-orange-500 mt-2 flex-shrink-0"></div>
-              <span>{item}</span>
+              <span className="text-purple-700 font-black flex-shrink-0 leading-none mt-0.5">&gt;</span>
+              <span className="text-left font-semibold">{item}</span>
             </li>
           ))}
         </ul>
-        <p className="text-gray-700 mt-4 text-sm lg:text-base font-medium italic">Our specialist emergency team is available round-the-clock to handle all such conditions.</p>
+        <p className="text-gray-700 mt-8 text-sm lg:text-base font-medium">
+          If you ever look out for emergency hospital services, then you can reach out to us at <span className="text-blue-600 font-bold">+91-7800001896</span>
+        </p>
       </>
     ),
     image: '/images/departments-images/common_enjury.png',

@@ -43,18 +43,7 @@ router.put('/branches/:id', uploadBranch.fields([
 router.delete('/branches/:id', deleteBranch);
 
 // Doctors CRUD
-router.get('/doctors', async (req, res) => {
-  const Doctor = (await import('../models/Doctor.js')).default;
-  try {
-    const doctors = await Doctor.find()
-      .populate('speciality', 'name slug department_display_name')
-      .populate('branches', 'name slug')
-      .sort({ name: 1 });
-    res.json(doctors);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+router.get('/doctors', getAllDoctors);
 router.post('/doctors', uploadDoctor.single('image'), createDoctor);
 router.put('/doctors/:id', uploadDoctor.single('image'), updateDoctor);
 router.delete('/doctors/:id', deleteDoctor);

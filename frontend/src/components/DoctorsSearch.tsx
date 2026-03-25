@@ -1,9 +1,9 @@
 'use client';
-
 import { useState, useEffect, useRef } from 'react';
 import useSWR from 'swr';
 import Link from 'next/link';
 import Image from 'next/image';
+import { RotateCcw } from 'lucide-react';
 import { fetchDoctors, fetchSpecialities, fetchBranches, getImageUrl } from '@/lib/api';
 import type { Doctor, Speciality, Branch } from '@/lib/api';
 
@@ -31,12 +31,11 @@ export function DoctorsSearch() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-
   return (
     <div className="mt-8 w-full overflow-hidden">
       {/* Refined Filter Section */}
-      <div className="mb-16 flex flex-col md:flex-row items-stretch gap-6 bg-white p-6 sm:p-10 rounded-[2.5rem] border border-gray-100 shadow-[0_20px_60px_-15px_rgba(30,58,95,0.08)]">
-        <div className="w-full md:flex-1 flex flex-col justify-center">
+      <div className="mb-16 flex flex-col lg:flex-row items-stretch gap-6 bg-white p-6 sm:p-10 rounded-[2.5rem] border border-gray-100 shadow-[0_20px_60px_-15px_rgba(30,58,95,0.08)]">
+        <div className="w-full lg:flex-1 flex flex-col justify-center">
           <label htmlFor="search" className="mb-3 block text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">Name / Qualification</label>
           <div className="relative">
             <input
@@ -50,7 +49,7 @@ export function DoctorsSearch() {
           </div>
         </div>
         
-        <div className="w-full md:w-80 flex flex-col justify-center relative" ref={dropdownRef}>
+        <div className="w-full lg:w-80 flex flex-col justify-center relative" ref={dropdownRef}>
           <label className="mb-3 block text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">Departments</label>
           <div className="relative">
             <button
@@ -74,7 +73,7 @@ export function DoctorsSearch() {
             {/* Custom Dropdown Menu */}
             {isDropdownOpen && (
               <div className="absolute top-full left-0 mt-3 w-full bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-50 z-[100] overflow-hidden animate-fade-in py-3">
-                <div className="max-h-72 overflow-y-auto scrollbar-fancy custom-scrollbar-minimal">
+                <div className="max-h-96 overflow-y-auto scrollbar-fancy custom-scrollbar-minimal">
                   <div 
                     onClick={() => { setSpeciality(''); setIsDropdownOpen(false); }}
                     className={`px-6 py-3.5 text-sm font-bold cursor-pointer transition-all flex items-center justify-between ${!speciality ? 'bg-teal-50 text-hospital-teal' : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'}`}
@@ -96,6 +95,24 @@ export function DoctorsSearch() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Reset Button */}
+        <div className="flex flex-col justify-end pb-0">
+          <label className="mb-3 hidden lg:block text-[11px] font-bold text-transparent select-none uppercase tracking-[0.2em] px-1">Reset</label>
+          <button
+            onClick={() => { setSearch(''); setSpeciality(''); }}
+            className={`flex items-center justify-center h-[76px] px-6 lg:px-8 rounded-2xl border-2 transition-all duration-300 min-w-max ${
+              search || speciality 
+                ? 'border-red-100 bg-red-50 text-red-500 hover:bg-red-100 hover:border-red-200' 
+                : 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed opacity-50'
+            }`}
+            title="Reset All Filters"
+            disabled={!search && !speciality}
+          >
+            <RotateCcw className={`w-5 h-5 ${search || speciality ? 'animate-in spin-in-180' : ''}`} />
+            <span className="ml-2 font-bold text-[13px] uppercase tracking-wider block">Reset</span>
+          </button>
         </div>
       </div>
 

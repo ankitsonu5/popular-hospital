@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Plus, Pencil, Trash2, X, Loader2, LayoutGrid, Search } from 'lucide-react';
+import Link from 'next/link';
 
 const API_URL = '/api-backend';
 
@@ -129,12 +130,26 @@ export default function DepartmentsPage() {
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Manage Departments</h2>
           <p className="text-sm text-gray-500 mt-1">{departments.length} categories active</p>
         </div>
-        <button
-          onClick={() => { setEditingId(null); setFormData({ name: '', slug: '', department_display_name: '' }); setShowForm(true); }}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors shadow-sm"
-        >
-          <Plus className="w-4 h-4" /> Add Department
-        </button>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link
+            href="/admin-dashboard/doctors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-[#0d9488] hover:text-[#0d9488] text-gray-600 rounded-xl text-sm font-semibold transition-all shadow-sm"
+          >
+            Manage Doctors
+          </Link>
+          <Link
+            href="/admin-dashboard/designations"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-[#0d9488] hover:text-[#0d9488] text-gray-600 rounded-xl text-sm font-semibold transition-all shadow-sm"
+          >
+            Manage Designations
+          </Link>
+          <button
+            onClick={() => { setEditingId(null); setFormData({ name: '', slug: '', department_display_name: '' }); setShowForm(true); }}
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors shadow-sm"
+          >
+            <Plus className="w-4 h-4" /> Add Department
+          </button>
+        </div>
       </div>
 
       {/* Search */}

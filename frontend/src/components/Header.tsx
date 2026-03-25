@@ -51,7 +51,7 @@ const menuItems: MenuItem[] = [
       { label: "Emergency And Trauma Care", href: "/services/emergency" },
       { label: "Blood Bank", href: "/services/blood-bank" },
       { label: "Ambulance", href: "/services/ambulance" },
-      { label: "Wellness Packages", href: "/services/wellness-packages" },
+      { label: "Preventive Health Check Up", href: "/services/wellness-packages" },
       { label: "Pharmacy", href: "/services/pharmacy" },
       { label: "Pathological Services", href: "/services/pathology" },
       { label: "Radiological Services", href: "/services/radiology" },
@@ -82,7 +82,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Nephrology", href: "/departments/nephrology" },
     { label: "Oncology", href: "/departments/oncology" },
     { label: "Urology", href: "/departments/urology" },
-    { label: "Plastic & Reconstructive Surgery", href: "/departments/burns-plastic-surgery" },
+    { label: "Burns & Plastic Surgery", href: "/departments/burns-plastic-surgery" },
     { label: "Interventional Radiology", href: "/departments/interventional-radiology" },
     { label: "Pediatric Surgery", href: "/departments/pediatric-surgery" }
   ],
@@ -96,8 +96,8 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     { label: "Dietetics & Nutrition", href: "/departments/dietetics-nutrition" },
     { label: "Ophthalmology", href: "/departments/ophthalmology" },
     { label: "Dental", href: "/departments/dental" },
-    { label: "T.B & Respiratory Medicine", href: "/departments/respiratory" },
-    { label: "Anesthesiology, Critical Care & Pain Medicine", href: "/departments/pain-management" },
+    { label: "Respiratory Medicine", href: "/departments/respiratory" },
+    { label: "Pain Medicine", href: "/departments/pain-management" },
     { label: "Psychiatry Department", href: "/departments/psychiatry" },
   ]
 };

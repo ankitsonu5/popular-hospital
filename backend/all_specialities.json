@@ -1,0 +1,152 @@
+[
+  {
+    "_id": "69c3447472dae178c5c5c5ab",
+    "name": "Burns & Plastic Surgery",
+    "slug": "burns-plastic-surgery"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c59d",
+    "name": "Cardiology",
+    "slug": "cardiology"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c59f",
+    "name": "Cardiothoracic & Vascular Surgery (CTVS)",
+    "slug": "ctvs"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5cb",
+    "name": "Dental",
+    "slug": "dental"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5c3",
+    "name": "Dermatology",
+    "slug": "dermatology"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5c7",
+    "name": "Dietetics & Nutrition",
+    "slug": "nutrition"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5bd",
+    "name": "ENT",
+    "slug": "ent"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5a3",
+    "name": "Gastroenterology",
+    "slug": "gastroenterology"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5b9",
+    "name": "General Medicine / Physician",
+    "slug": "general-medicine"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5bb",
+    "name": "General Physician",
+    "slug": "general-physician"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5bf",
+    "name": "Gynecology",
+    "slug": "gynecology"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5ad",
+    "name": "Interventional Radiology",
+    "slug": "interventional-radiology"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5c5",
+    "name": "Laboratory Medicine",
+    "slug": "laboratory-medicine"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5b1",
+    "name": "Laparoscopy & General Surgery",
+    "slug": "general-surgery"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5a5",
+    "name": "Nephrology",
+    "slug": "nephrology"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5c1",
+    "name": "Neurology",
+    "slug": "neurology"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5a1",
+    "name": "Neurosurgery",
+    "slug": "neurosurgery"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5b3",
+    "name": "Obstetrics & Gynaecology",
+    "slug": "gynaecology"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5a7",
+    "name": "Oncology",
+    "slug": "oncology"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5c9",
+    "name": "Ophthalmology",
+    "slug": "ophthalmology"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5b7",
+    "name": "Orthopedics & Joint Replacement",
+    "slug": "orthopedics"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5cf",
+    "name": "Pain Medicine",
+    "slug": "pain-management"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5d7",
+    "name": "Pathology",
+    "slug": "pathology"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5af",
+    "name": "Pediatric Surgery",
+    "slug": "pediatric-surgery"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5b5",
+    "name": "Pediatrics And Neonatology",
+    "slug": "pediatrics"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5d3",
+    "name": "Physiotherapy",
+    "slug": "physiotherapy"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5d1",
+    "name": "Psychiatry Department",
+    "slug": "psychiatry"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5d5",
+    "name": "Radiology",
+    "slug": "radiology"
+  },
+  {
+    "_id": "69c3447572dae178c5c5c5cd",
+    "name": "Respiratory Medicine",
+    "slug": "respiratory"
+  },
+  {
+    "_id": "69c3447472dae178c5c5c5a9",
+    "name": "Urology",
+    "slug": "urology"
+  }
+]

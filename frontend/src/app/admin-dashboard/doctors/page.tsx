@@ -1,7 +1,6 @@
 'use client';
-
 import { useEffect, useState, useCallback } from 'react';
-import { Plus, Pencil, Trash2, Search, X, Loader2, Stethoscope } from 'lucide-react';
+import { Plus, Pencil, Trash2, Search, X, Loader2, Stethoscope, RotateCcw, Filter } from 'lucide-react';
 import Link from 'next/link';
 
 const API_URL = '/api-backend';
@@ -13,6 +12,9 @@ export default function DoctorsPage() {
   const [designations, setDesignations] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [filtSpec, setFiltSpec] = useState('');
+  const [filtDesig, setFiltDesig] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -140,10 +142,16 @@ export default function DoctorsPage() {
     setImagePreview(null);
   };
 
-  const filteredDoctors = doctors.filter((d) =>
-    d.name?.toLowerCase().includes(search.toLowerCase()) ||
-    d.qualification?.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredDoctors = doctors.filter((d) => {
+    const matchesSearch = !search || 
+      d.name?.toLowerCase().includes(search.toLowerCase()) ||
+      d.qualification?.toLowerCase().includes(search.toLowerCase());
+      
+    const matchesSpec = !filtSpec || (d.speciality?._id === filtSpec || d.speciality === filtSpec);
+    const matchesDesig = !filtDesig || (d.designation?._id === filtDesig || d.designation === filtDesig);
+
+    return matchesSearch && matchesSpec && matchesDesig;
+  });
 
   return (
     <div className="space-y-6">
@@ -155,11 +163,27 @@ export default function DoctorsPage() {
         </div>
         <div className="flex items-center gap-3">
           <Link
+            href="/admin-dashboard/departments"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-[#0d9488] hover:text-[#0d9488] text-gray-600 rounded-xl text-sm font-semibold transition-all shadow-sm"
+          >
+            Manage Departments
+          </Link>
+          <Link
             href="/admin-dashboard/designations"
             className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-[#0d9488] hover:text-[#0d9488] text-gray-600 rounded-xl text-sm font-semibold transition-all shadow-sm"
           >
             Manage Designations
           </Link>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm ${
+              showFilters 
+                ? 'bg-[#0d9488] text-white shadow-inner' 
+                : 'bg-white border-2 border-gray-200 text-gray-600 hover:border-[#0d9488] hover:text-[#0d9488]'
+            }`}
+          >
+            <Filter className="w-4 h-4" /> Filter
+          </button>
           <button
             onClick={() => { resetForm(); setEditingId(null); setShowForm(true); }}
             className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors shadow-sm"
@@ -169,17 +193,61 @@ export default function DoctorsPage() {
         </div>
       </div>
 
-      {/* Search */}
-      <div className="relative max-w-md">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-        <input
-          type="text"
-          placeholder="Search doctors..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-sm focus:border-[#0d9488] focus:ring-2 focus:ring-[#0d9488]/20 outline-none transition-all"
-        />
-      </div>
+      {/* Search & Filters */}
+      {showFilters && (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end bg-gray-50/50 p-4 rounded-2xl border border-gray-100 animate-in slide-in-from-top-2 duration-300">
+          <div className="relative">
+            <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 px-1">Search</label>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Name/qualification..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-sm focus:border-[#0d9488] focus:ring-2 focus:ring-[#0d9488]/20 outline-none transition-all"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 px-1">Department</label>
+            <select 
+              value={filtSpec} 
+              onChange={(e) => setFiltSpec(e.target.value)}
+              className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-sm focus:border-[#0d9488] outline-none"
+            >
+              <option value="">All Departments</option>
+              {specialities.map((s: any) => <option key={s._id} value={s._id}>{s.name}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 px-1">Designation</label>
+            <select 
+              value={filtDesig} 
+              onChange={(e) => setFiltDesig(e.target.value)}
+              className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-sm focus:border-[#0d9488] outline-none"
+            >
+              <option value="">All Designations</option>
+              {designations.map((d: any) => <option key={d._id} value={d._id}>{d.name}</option>)}
+            </select>
+          </div>
+
+          <button
+            onClick={() => { setSearch(''); setFiltSpec(''); setFiltDesig(''); }}
+            disabled={!search && !filtSpec && !filtDesig}
+            className={`flex items-center justify-center gap-2 h-[46px] px-4 rounded-xl border-2 transition-all ${
+              search || filtSpec || filtDesig 
+                ? 'border-red-100 bg-red-50 text-red-500 hover:bg-red-100' 
+                : 'border-gray-100 bg-gray-50 text-gray-300'
+            }`}
+          >
+            <RotateCcw className="w-4 h-4" />
+            <span className="text-xs font-bold uppercase">Reset</span>
+          </button>
+        </div>
+      )}
 
       {/* Table */}
       {isLoading ? (

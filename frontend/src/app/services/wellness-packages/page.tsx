@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Wellness Packages | Popular Hospital',
-  description: 'Comprehensive wellness check-up packages designed for all age groups and health needs.',
+  title: 'Preventive Health Check Up | Popular Hospital',
+  description: 'Comprehensive preventive health check-up packages designed for all age groups and health needs.',
 };
 
 const packages = [
@@ -35,7 +35,7 @@ export default function PreventiveHealthPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/health_packages.png"
-            alt="Wellness Packages"
+            alt="Preventive Health Check Up"
             fill
             className="object-cover opacity-40 mix-blend-overlay"
             priority
@@ -46,14 +46,14 @@ export default function PreventiveHealthPage() {
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="animate-fade-in-up max-w-4xl">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 font-heading tracking-tight leading-[1.1]">
-              Wellness Packages
+              Preventive Health Check Up
             </h1>
             <nav className="flex items-center text-sm md:text-lg text-white/90 font-bold" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-blue-300 transition-colors uppercase tracking-wider">Home</Link>
               <span className="mx-3 text-red-500 font-black">/</span>
               <Link href="/services" className="hover:text-blue-300 transition-colors uppercase tracking-wider">Services</Link>
               <span className="mx-3 text-red-500 font-black">/</span>
-              <span className="text-white uppercase tracking-wider">Wellness Packages</span>
+              <span className="text-white uppercase tracking-wider">Preventive Health Check Up</span>
             </nav>
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function PreventiveHealthPage() {
       <section className="py-20 bg-gray-50/30">
         <div className="container mx-auto max-w-[1366px] px-4 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading mb-4">Choose Your <span className="text-[#0066cc]">Wellness Package</span></h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading mb-4">Choose Your <span className="text-[#0066cc]">Preventive Health Check Up</span></h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
           </div>
 
@@ -200,7 +200,7 @@ export default function PreventiveHealthPage() {
 
         <div className="container mx-auto max-w-[1366px] text-center relative z-10">
           <h2 className="text-[#0066cc] text-2xl md:text-3xl font-black uppercase tracking-widest mb-4">
-            Wellness Program
+            Preventive Health Program
           </h2>
           
           <p className="text-gray-700 text-base md:text-xl font-medium leading-relaxed mb-8 max-w-3xl mx-auto">

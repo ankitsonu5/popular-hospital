@@ -1,0 +1,266 @@
+[
+  {
+    "_id": "69b5060de91529da06eebbb6",
+    "name": "Dr. Hari Krishan Srivastava",
+    "qualification": "M.B.B.S., M.D., DM (Cardiology)",
+    "specId": "69b4222b54ebe88a2ac5ec94"
+  },
+  {
+    "_id": "69b50642e91529da06eebbbc",
+    "name": "Dr. Manoj Sharma",
+    "qualification": "M.B.B.S., MD, PGDCC (Cardiology)",
+    "specId": "69b4222b54ebe88a2ac5ec94"
+  },
+  {
+    "_id": "69b50680e91529da06eebbca",
+    "name": "Dr Kamlesh Kumar Singh",
+    "qualification": "MBBS, MS, M.Ch (Neurosurgery)",
+    "specId": "69b4222c54ebe88a2ac5ec98"
+  },
+  {
+    "_id": "69b506b7e91529da06eebbd0",
+    "name": "Dr Vinit Yadav",
+    "qualification": "MBBS, MS (Orthopedics) IMS, BHU",
+    "specId": "69b4222c54ebe88a2ac5ecae"
+  },
+  {
+    "_id": "69b50725e91529da06eebbd6",
+    "name": "Dr Md Akhtar Ali Ansari",
+    "qualification": "MBBS, MS (Orthopedics) AIIMS, New Delhi",
+    "specId": "69b4222c54ebe88a2ac5ecae"
+  },
+  {
+    "_id": "69b50816e91529da06eebbe9",
+    "name": "Dr Harendra Pratap Singh",
+    "qualification": "MBBS, MD, DM (Nephrology)",
+    "specId": "69b4222c54ebe88a2ac5ec9c"
+  },
+  {
+    "_id": "69b50bd7e91529da06eebc44",
+    "name": "Dr Dinesh Singh",
+    "qualification": "MBBS, MS, MCh (Urology)",
+    "specId": "69b4222c54ebe88a2ac5eca0"
+  },
+  {
+    "_id": "69b50c10e91529da06eebc4a",
+    "name": "Dr Piyush Saini",
+    "qualification": "MBBS, MS, MCh (Urology)",
+    "specId": "69b4222c54ebe88a2ac5eca0"
+  },
+  {
+    "_id": "69b50c54e91529da06eebc50",
+    "name": "Dr Ajay Kumar Prajapat",
+    "qualification": "MBBS, MS, MCh (Surgical Oncology)",
+    "specId": "69b4222c54ebe88a2ac5ec9e"
+  },
+  {
+    "_id": "69b50d3ce91529da06eebc56",
+    "name": "Dr Neha Gupta",
+    "qualification": "MBBS, MD (Radiotherapy)",
+    "specId": "69b4222c54ebe88a2ac5eca4"
+  },
+  {
+    "_id": "69b50d88e91529da06eebc5c",
+    "name": "Dr Anirban De",
+    "qualification": "MBBS, MD, DM (Gastroenterology)",
+    "specId": "69b4222c54ebe88a2ac5ec9a"
+  },
+  {
+    "_id": "69b50dc0e91529da06eebc62",
+    "name": "Dr R.K Singh",
+    "qualification": "MBBS, MS, FIAGES, FSG",
+    "specId": "69b4222c54ebe88a2ac5ec9a"
+  },
+  {
+    "_id": "69b50df1e91529da06eebc68",
+    "name": "Dr Mahesh Tiwari",
+    "qualification": "MBBS, MS, MCh (Gastrosurgery)",
+    "specId": "69b4222c54ebe88a2ac5ec9a"
+  },
+  {
+    "_id": "69b50e3ee91529da06eebc6e",
+    "name": "Dr A.K Pradhan",
+    "qualification": "MBBS, MS, MCh (Plastic Surgery)",
+    "specId": "69b4222c54ebe88a2ac5eca2"
+  },
+  {
+    "_id": "69b50e73e91529da06eebc74",
+    "name": "Dr Sudhir Singh",
+    "qualification": "MBBS, MS, MCh (Plastic Surgery)",
+    "specId": "69b4222c54ebe88a2ac5eca2"
+  },
+  {
+    "_id": "69b50ea3e91529da06eebc7a",
+    "name": "Dr Deepak Agrahari",
+    "qualification": "MBBS, MS, MCh (Plastic Surgery)",
+    "specId": "69b4222c54ebe88a2ac5eca2"
+  },
+  {
+    "_id": "69b50f75e91529da06eebc80",
+    "name": "Dr A.K Kaushik",
+    "qualification": "MBBS, MS (General Surgery) IMS, BHU",
+    "specId": "69b4222c54ebe88a2ac5eca8"
+  },
+  {
+    "_id": "69b50fe5e91529da06eebc93",
+    "name": "Dr K.P Singh",
+    "qualification": "MBBS, MD, (Respiratory Medicine) Dip. Card  MNCCP, MICS, MICAI, MIES, MERS",
+    "specId": "69b4222c54ebe88a2ac5ecbc"
+  },
+  {
+    "_id": "69b51014e91529da06eebc99",
+    "name": "Dr Shailendra Shivhare",
+    "qualification": "MBBS, MD (Respiratory Medicine) ",
+    "specId": "69b4222c54ebe88a2ac5ecbc"
+  },
+  {
+    "_id": "69b5104de91529da06eebc9f",
+    "name": "Dr Vikas Jaiswal",
+    "qualification": "MBBS, DTCD, DNB (Respiratory Medicine)",
+    "specId": "69b4222c54ebe88a2ac5ecbc"
+  },
+  {
+    "_id": "69b51087e91529da06eebca5",
+    "name": "Dr Kiran Kaushik",
+    "qualification": "MBBS, MS (OBGY) IMS, BHU",
+    "specId": "69b4222c54ebe88a2ac5ecaa"
+  },
+  {
+    "_id": "69b510b5e91529da06eebcab",
+    "name": "Dr Priyanka Jaiswal",
+    "qualification": "MBBS, MS (OBGY)",
+    "specId": "69b4222c54ebe88a2ac5ecaa"
+  },
+  {
+    "_id": "69b510efe91529da06eebcb1",
+    "name": "Dr Madhavi Paramar",
+    "qualification": "MBBS, DGO",
+    "specId": "69b4222c54ebe88a2ac5ec9a"
+  },
+  {
+    "_id": "69b5118de91529da06eebcb7",
+    "name": "Dr Alok C Bhardwajs",
+    "qualification": "MBBS, MD (Pediatrics) IMS, BHU",
+    "specId": "69b4222c54ebe88a2ac5ecac"
+  },
+  {
+    "_id": "69b511bfe91529da06eebcbd",
+    "name": "Dr Prabhat Kumar",
+    "qualification": "MBBS, DCH, DNB (Pediatrics)",
+    "specId": "69b4222c54ebe88a2ac5ecac"
+  },
+  {
+    "_id": "69b5121ce91529da06eebcc3",
+    "name": "Dr Rajesh Kumar Singh",
+    "qualification": "MBBS, MD, IAP Fellowship in Neonatology",
+    "specId": "69b4222c54ebe88a2ac5ecac"
+  },
+  {
+    "_id": "69b51299e91529da06eebcc9",
+    "name": "Dr Greeshma Suresh",
+    "qualification": "MBBS, MS, MCh (Pediatric Surgery) IMS, BHU",
+    "specId": "69b4222c54ebe88a2ac5eca6"
+  },
+  {
+    "_id": "69b512f2e91529da06eebccf",
+    "name": "Dr P.K Tiwari",
+    "qualification": "MBBS, MD (Internal Medicine) IMS, BHU",
+    "specId": "69b4222c54ebe88a2ac5ecb0"
+  },
+  {
+    "_id": "69b5132ee91529da06eebcd5",
+    "name": "Dr Sandesh M Raykar",
+    "qualification": "MBBS, MD (Internal Medicine) IMS, BHU",
+    "specId": "69b4222c54ebe88a2ac5ecb0"
+  },
+  {
+    "_id": "69b51374e91529da06eebcdb",
+    "name": "Dr Sumit Vishwakarma",
+    "qualification": "MBBS, MD (Anaesthesia) IMS, BHU",
+    "specId": "69b4222c54ebe88a2ac5ecbe"
+  },
+  {
+    "_id": "69b513ade91529da06eebce1",
+    "name": "Dr Rahul Singh",
+    "qualification": "MBBS, MD (Anaesthesia), PDCC",
+    "specId": "69b4222c54ebe88a2ac5ecbe"
+  },
+  {
+    "_id": "69b51431e91529da06eebce7",
+    "name": "Dr Vikas Mishra",
+    "qualification": "MBBS, MD (Anaesthesia)",
+    "specId": "69b4222c54ebe88a2ac5ecbe"
+  },
+  {
+    "_id": "69b5145de91529da06eebced",
+    "name": "Dr Alisha Raj",
+    "qualification": "MBBS, MD (Anaesthesia), PDCC",
+    "specId": "69b4222c54ebe88a2ac5ecbe"
+  },
+  {
+    "_id": "69b5149ee91529da06eebcf3",
+    "name": "Dr Rohan Kumar Singh",
+    "qualification": "MBBS, MD (Radiodiagnosis), FIVIR",
+    "specId": "69b4222c54ebe88a2ac5eca4"
+  },
+  {
+    "_id": "69b514cfe91529da06eebcf9",
+    "name": "Dr Omkareshwar Pratap Singh",
+    "qualification": "MBBS, DNB (Radiodiagnosis)",
+    "specId": "69b4222c54ebe88a2ac5eca4"
+  },
+  {
+    "_id": "69c1a4ce816677c0b1ea3e26",
+    "name": "Dr. Shasank shekhar Tripathi",
+    "qualification": "MBBS, MS, MCh, (Urology)",
+    "specId": "69b4222c54ebe88a2ac5eca0"
+  },
+  {
+    "_id": "69c335788a6f11f08f8bbb7f",
+    "name": "Dr. Abhishek",
+    "qualification": "M.B.B.S, M.S. - General Surgery, FIAGES",
+    "specId": "69b4222c54ebe88a2ac5eca8"
+  },
+  {
+    "_id": "69c336258a6f11f08f8bbb86",
+    "name": "Dr. Srishti Tanya",
+    "qualification": "M.B.B.S., MS",
+    "specId": "69b4222c54ebe88a2ac5ec9a"
+  },
+  {
+    "_id": "69c337b28a6f11f08f8bbbd0",
+    "name": "Dr. Sachidanand",
+    "qualification": "M.B.B.S, MD (Pathology)",
+    "specId": "69c337688a6f11f08f8bbbc3"
+  },
+  {
+    "_id": "69c338a58a6f11f08f8bbbe6",
+    "name": "Dr. Piyush Hari",
+    "qualification": "M.B.B.S., MD (Microbiology)",
+    "specId": "69c338338a6f11f08f8bbbd9"
+  },
+  {
+    "_id": "69c33a258a6f11f08f8bbc22",
+    "name": "Dr. Jyoti Ranjan",
+    "qualification": "MPT",
+    "specId": "69c339f98a6f11f08f8bbc15"
+  },
+  {
+    "_id": "69c33acf8a6f11f08f8bbc29",
+    "name": "Dr. Anshuman Singh",
+    "qualification": "M.B.B.S., MS - Otorhinolaryngology",
+    "specId": "69b4222c54ebe88a2ac5ecb2"
+  },
+  {
+    "_id": "69c33b0d8a6f11f08f8bbc3c",
+    "name": "Dr. Hena Kauser",
+    "qualification": "BDS",
+    "specId": "69b4222c54ebe88a2ac5ecba"
+  },
+  {
+    "_id": "69c33ba88a6f11f08f8bbc55",
+    "name": "Dr. Bhavesh Makkar",
+    "qualification": "M.B.B.S, DNB",
+    "specId": "69b4222c54ebe88a2ac5ecb8"
+  }
+]

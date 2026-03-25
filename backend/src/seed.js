@@ -22,7 +22,7 @@ const specialities = [
   { name: 'Nephrology', slug: 'nephrology' },
   { name: 'Oncology', slug: 'oncology' },
   { name: 'Urology', slug: 'urology' },
-  { name: 'Plastic & Reconstructive Surgery', slug: 'plastic-surgery' },
+  { name: 'Burns & Plastic Surgery', slug: 'burns-plastic-surgery' },
   { name: 'Interventional Radiology', slug: 'interventional-radiology' },
   { name: 'Pediatric Surgery', slug: 'pediatric-surgery' },
 
@@ -31,15 +31,19 @@ const specialities = [
   { name: 'Obstetrics & Gynaecology', slug: 'gynaecology' },
   { name: 'Pediatrics And Neonatology', slug: 'pediatrics' },
   { name: 'Orthopedics & Joint Replacement', slug: 'orthopedics' },
-  { name: 'General Medicine', slug: 'general-medicine' },
+  { name: 'General Medicine / Physician', slug: 'general-medicine' },
   { name: 'ENT', slug: 'ent' },
   { name: 'Laboratory Medicine', slug: 'laboratory-medicine' },
   { name: 'Dietetics & Nutrition', slug: 'nutrition' },
   { name: 'Ophthalmology', slug: 'ophthalmology' },
   { name: 'Dental', slug: 'dental' },
-  { name: 'T.B & Respiratory Medicine', slug: 'respiratory-medicine' },
-  { name: 'Anesthesiology, Critical Care & Pain Medicine', slug: 'anesthesiology' },
+  { name: "Respiratory Medicine", slug: "respiratory" },
+  { name: "Pain Medicine", slug: "pain-management" },
   { name: 'Psychiatry Department', slug: 'psychiatry' },
+  { name: 'Radiology', slug: 'radiology' },
+  { name: 'Pathology', slug: 'pathology' },
+  { name: 'Physiotherapy', slug: 'physiotherapy' },
+  { name: 'Dermatology', slug: 'dermatology' },
 ];
 
 for (const s of specialities) {
