@@ -45,64 +45,56 @@ export default function MDDeskPage() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1200px] px-4 py-16 lg:py-24">
+      <div className="mx-auto w-full max-w-[1366px] px-4 py-16 lg:py-24">
 
-        {/* Float-based layout: image floats left, text wraps around and below */}
-        <div className="clearfix">
-
-          {/* Floating image + name card block */}
-          <div className="float-left w-full sm:w-[380px] lg:w-[460px] mr-10 mb-6 space-y-6">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
-              <Image
-                src={mdData.image}
-                alt={mdData.name}
-                fill
-                className="object-cover"
-                priority
-                unoptimized
-              />
-            </div>
-            <div className="bg-[#1e5eb2] p-8 rounded-3xl border border-blue-400/20 shadow-xl text-white">
-              <h2 className="text-2xl md:text-3xl font-black font-heading mb-2 uppercase tracking-tight">
-                {mdData.name}
-              </h2>
-              <p className="text-yellow-400 font-bold text-sm tracking-widest uppercase mb-4">{mdData.role}</p>
-              
-              <div className="space-y-1 text-xs md:text-sm font-medium uppercase opacity-90 leading-snug">
-                <p>POPULAR GROUP OF</p>
-                <p>HOSPITALS & ACADEMICS</p>
-                <p className="pt-1">{mdData.subtitle}</p>
-                <p>{mdData.extra}</p>
+        <div className="bg-white relative">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            {/* Left Column: MD Info & Photo */}
+            <div className="lg:col-span-5 mb-10 lg:mb-0">
+              <div className="space-y-6 sticky top-24">
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
+                  <Image
+                    src={mdData.image}
+                    alt={mdData.name}
+                    fill
+                    className="object-cover"
+                    priority
+                    unoptimized
+                  />
+                </div>
+                <div className="bg-[#1e5eb2] p-8 rounded-3xl border border-blue-400/20 shadow-xl text-white">
+                  <h2 className="text-2xl md:text-3xl font-black font-heading mb-2 uppercase tracking-tight">
+                    {mdData.name}
+                  </h2>
+                  <p className="text-yellow-400 font-bold text-sm tracking-widest uppercase mb-4">{mdData.role}</p>
+                  
+                  <div className="space-y-1 text-xs md:text-sm font-medium uppercase opacity-90 leading-snug">
+                    <p>POPULAR GROUP OF</p>
+                    <p>HOSPITALS & ACADEMICS</p>
+                    <p className="pt-1">{mdData.subtitle}</p>
+                    <p>{mdData.extra}</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Text area — wraps around image and continues below */}
-          <div className="relative pt-2">
-            <div className="mt-8 mb-6">
-              <h3 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading leading-tight">
-                A Commitment to <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">Clinical Excellence</span>
-              </h3>
-            </div>
+            {/* Right Column: Text Content Area */}
+            <div className="lg:col-span-7 relative pt-2">
+              <div className="mt-8 mb-6">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic">
+                  A Commitment to <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">Clinical Excellence</span>
+                </h3>
+              </div>
 
-            <div className="space-y-6">
-              {mdData.message.map((para, i) => (
-                <p key={i} className="text-lg md:text-xl text-gray-600 leading-relaxed font-normal">
-                  {para}
-                </p>
-              ))}
-            </div>
-
-            <div className="mt-16 pt-12 border-t border-gray-100 italic text-gray-400 text-lg">
-              Touching thousands of lives with compassion, excellence, and modern medical science.
-            </div>
-
-            <div className="mt-12 group">
-              <span className="text-hospital-teal font-signature text-3xl mb-2 italic block">Kiran Kaushik</span>
-              <div className="w-20 h-0.5 bg-gray-100 group-hover:bg-hospital-teal transition-all duration-500 mb-2"></div>
-              <p className="text-sm font-black text-[#0b1c43] uppercase tracking-widest">{mdData.name}</p>
-              <p className="text-[10px] font-bold text-gray-400 uppercase mt-0.5 tracking-wider">Managing Director</p>
+              <div className="space-y-6">
+                {mdData.message.map((para, i) => (
+                  <p key={i} className="text-lg md:text-xl text-gray-600 leading-relaxed font-normal text-justify">
+                    {para}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
 

@@ -57,7 +57,7 @@ export default function AboutPage() {
           {/* Bottom Section: Paragraphs */}
           <div className="space-y-6 max-w-5xl text-gray-600 text-[15px] sm:text-[17px] leading-relaxed font-medium">
             <p>
-              POPULAR HOSPITAL is a 450 bedded Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical &amp; Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 31 years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs &amp; Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
+              POPULAR HOSPITAL is a 450 bedded Multi Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical &amp; Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32+ years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs &amp; Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department.
             </p>
             <p>
               We are having ultramodern facilities of Cath Lab, ICU, CCU, MICU, SICU, NICU, PICU, Deluxe Room, Private Room, and General Ward etc. In Diagnostics we have well equipped Pathology lab, CT-Scan, MRI, Mammography Machine, Digital X-ray, USG, TMT, Colour Doppler, 2D Echo, DSC, STRESS ECHO, PFT, ECG and EEG.
