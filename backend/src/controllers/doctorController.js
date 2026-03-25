@@ -80,7 +80,7 @@ export const getAllDoctors = async (req, res) => {
 
     res.json(doctors);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -90,7 +90,7 @@ export const getAllSpecialities = async (req, res) => {
     const list = await Speciality.find().sort({ name: 1 });
     res.json(list);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -116,7 +116,7 @@ export const getDoctorByIdOrSlug = async (req, res) => {
     if (!doctor) return res.status(404).json({ error: 'Doctor not found' });
     res.json(doctor);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -158,7 +158,7 @@ export const createDoctor = async (req, res) => {
     });
     res.status(201).json(doctor);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -186,7 +186,7 @@ export const updateDoctor = async (req, res) => {
     if (!doctor) return res.status(404).json({ error: 'Doctor not found' });
     res.json(doctor);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -197,7 +197,7 @@ export const deleteDoctor = async (req, res) => {
     if (!doctor) return res.status(404).json({ error: 'Doctor not found' });
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -215,7 +215,7 @@ export const createSpeciality = async (req, res) => {
     if (error.code === 11000) {
       return res.status(400).json({ error: 'A department with this name or slug already exists' });
     }
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -226,7 +226,7 @@ export const updateSpeciality = async (req, res) => {
     if (!spec) return res.status(404).json({ error: 'Speciality not found' });
     res.json(spec);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -242,7 +242,7 @@ export const deleteSpeciality = async (req, res) => {
     
     res.json({ ok: true, message: 'Department and associated doctors removed' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -252,7 +252,7 @@ export const getAllDesignations = async (req, res) => {
     const list = await Designation.find().sort({ name: 1 });
     res.json(list);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -263,7 +263,7 @@ export const createDesignation = async (req, res) => {
     const desig = await Designation.create({ name });
     res.status(201).json(desig);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -273,7 +273,7 @@ export const updateDesignation = async (req, res) => {
     if (!desig) return res.status(404).json({ error: 'Designation not found' });
     res.json(desig);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -282,6 +282,6 @@ export const deleteDesignation = async (req, res) => {
     await Designation.findByIdAndDelete(req.params.id);
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };

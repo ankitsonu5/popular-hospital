@@ -2,6 +2,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import Blog from '../models/Blog.js';
+import { escapeRegex } from '../middleware/security.js';
 
 // Setup Multer Storage
 const storage = multer.diskStorage({
@@ -47,7 +48,8 @@ export const getAllBlogs = async (req, res) => {
     });
     res.json(normalized);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('[BLOG]', error.message);
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -79,12 +81,27 @@ export const addComment = async (req, res) => {
     if (!blog) return res.status(404).json({ error: 'Blog not found' });
     
     const { name, email, website, comment } = req.body;
-    blog.comments.push({ name, email, website, comment });
+
+    // Validate required comment fields
+    if (!name || !comment || typeof name !== 'string' || typeof comment !== 'string') {
+      return res.status(400).json({ error: 'Name and comment are required.' });
+    }
+    if (name.length > 100 || comment.length > 2000) {
+      return res.status(400).json({ error: 'Input exceeds maximum length.' });
+    }
+
+    blog.comments.push({ 
+      name: name.trim().substring(0, 100), 
+      email: email ? String(email).trim().substring(0, 200) : '',
+      website: website ? String(website).trim().substring(0, 200) : '',
+      comment: comment.trim().substring(0, 2000)
+    });
     await blog.save();
     
     res.status(201).json(blog);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('[BLOG]', error.message);
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -107,10 +124,11 @@ export const getBlogBySlug = async (req, res) => {
 export const searchBlogs = async (req, res) => {
   try {
     const query = req.query.q || '';
-    if (!query) return res.json([]);
+    if (!query || typeof query !== 'string') return res.json([]);
     
-    // Fuzzy search using regex for better matches in title or category
-    const regex = new RegExp(query, 'i');
+    // Escape user input to prevent ReDoS attacks
+    const safeQuery = escapeRegex(query.substring(0, 100));
+    const regex = new RegExp(safeQuery, 'i');
     const blogs = await Blog.find({
       isActive: true,
       $or: [
@@ -121,7 +139,8 @@ export const searchBlogs = async (req, res) => {
     
     res.json(blogs);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('[BLOG]', error.message);
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -145,8 +164,7 @@ export const getAdminBlogs = async (req, res) => {
 // CMS: Create new blog
 export const createBlog = async (req, res) => {
   try {
-    console.log('--- CREATE BLOG BODY ---');
-    console.log(req.body);
+    // Request body logged at debug level only
     const { 
       title, slug, excerpt, content, date, 
       category, isUncategorized, isActive, author,
@@ -187,8 +205,7 @@ export const createBlog = async (req, res) => {
 // CMS: Update blog (including replacing image)
 export const updateBlog = async (req, res) => {
   try {
-    console.log('--- UPDATE BLOG BODY ---');
-    console.log(req.body);
+    // Request body logged at debug level only
     const { 
       title, slug, excerpt, content, date, 
       category, isUncategorized, isActive, author, image,
@@ -296,8 +313,7 @@ export const deleteComment = async (req, res) => {
 
 // CMS: TinyMCE Image Upload Handler
 export const uploadBlogImage = (req, res) => {
-  console.log('--- TINYMCE IMAGE UPLOAD REQUEST ---');
-  console.log('File:', req.file);
+  // File upload logged at debug level only
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });

@@ -26,7 +26,7 @@ export const getUpdates = async (req, res) => {
     const updates = await Update.find(query).sort({ _id: -1 }); // Sort by newest first
     res.json(updates);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -36,7 +36,7 @@ export const getUpdateById = async (req, res) => {
       if (!update) return res.status(404).json({ error: 'Update not found' });
       res.json(update);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ error: 'An internal error occurred.' });
     }
   };
 
@@ -54,7 +54,7 @@ export const createUpdate = async (req, res) => {
     const savedUpdate = await newUpdate.save();
     res.status(201).json(savedUpdate);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: 'Invalid request data.' });
   }
 };
 
@@ -76,7 +76,7 @@ export const updateUpdate = async (req, res) => {
     if (!updated) return res.status(404).json({ error: 'Update not found' });
     res.json(updated);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: 'Invalid request data.' });
   }
 };
 
@@ -87,6 +87,6 @@ export const deleteUpdate = async (req, res) => {
     if (!deleted) return res.status(404).json({ error: 'Update not found' });
     res.json({ message: 'Update deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };

@@ -24,7 +24,7 @@ export const getAllCoverage = async (req, res) => {
     const items = await Coverage.find({ isActive: true }).sort({ createdAt: -1 });
     res.json(items);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -34,7 +34,7 @@ export const getAdminCoverage = async (req, res) => {
     const items = await Coverage.find().sort({ createdAt: -1 });
     res.json(items);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -61,7 +61,7 @@ export const createCoverage = async (req, res) => {
     });
     res.status(201).json(item);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -93,7 +93,7 @@ export const updateCoverage = async (req, res) => {
     if (!item) return res.status(404).json({ error: 'Coverage item not found' });
     res.json(item);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -103,6 +103,6 @@ export const deleteCoverage = async (req, res) => {
     if (!item) return res.status(404).json({ error: 'Coverage item not found' });
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };

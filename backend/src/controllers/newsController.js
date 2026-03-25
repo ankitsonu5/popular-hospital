@@ -25,7 +25,7 @@ export const getAllNews = async (req, res) => {
     const news = await News.find({ isActive: true }).sort({ createdAt: -1 });
     res.json(news);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -36,7 +36,7 @@ export const getNewsBySlug = async (req, res) => {
     if (!news) return res.status(404).json({ error: 'News article not found' });
     res.json(news);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -46,7 +46,7 @@ export const getAdminNews = async (req, res) => {
     const news = await News.find().sort({ createdAt: -1 });
     res.json(news);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -76,7 +76,7 @@ export const createNews = async (req, res) => {
     });
     res.status(201).json(news);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -112,7 +112,7 @@ export const updateNews = async (req, res) => {
     if (!news) return res.status(404).json({ error: 'News article not found' });
     res.json(news);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -123,6 +123,6 @@ export const deleteNews = async (req, res) => {
     if (!news) return res.status(404).json({ error: 'News article not found' });
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };

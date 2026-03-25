@@ -24,7 +24,7 @@ export const getAllEvents = async (req, res) => {
     const items = await Event.find({ isActive: true }).sort({ createdAt: -1 });
     res.json(items);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -34,7 +34,7 @@ export const getEventBySlug = async (req, res) => {
     if (!item) return res.status(404).json({ error: 'Event not found' });
     res.json(item);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -44,7 +44,7 @@ export const getAdminEvents = async (req, res) => {
     const items = await Event.find().sort({ createdAt: -1 });
     res.json(items);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -75,7 +75,7 @@ export const createEvent = async (req, res) => {
     });
     res.status(201).json(item);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -116,7 +116,7 @@ export const updateEvent = async (req, res) => {
     if (!item) return res.status(404).json({ error: 'Event not found' });
     res.json(item);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -126,6 +126,6 @@ export const deleteEvent = async (req, res) => {
     if (!item) return res.status(404).json({ error: 'Event not found' });
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };

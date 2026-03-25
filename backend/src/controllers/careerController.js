@@ -6,7 +6,7 @@ export const getActiveCareers = async (req, res) => {
     const careers = await Career.find({ isActive: true }).sort({ createdAt: -1 });
     res.json(careers);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -16,7 +16,7 @@ export const getCareerById = async (req, res) => {
     if (!career) return res.status(404).json({ error: 'Career not found' });
     res.json(career);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -26,7 +26,7 @@ export const getAdminCareers = async (req, res) => {
     const careers = await Career.find().sort({ createdAt: -1 });
     res.json(careers);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -36,7 +36,7 @@ export const createCareer = async (req, res) => {
     const savedCareer = await newCareer.save();
     res.status(201).json(savedCareer);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: 'Invalid request data.' });
   }
 };
 
@@ -50,7 +50,7 @@ export const updateCareer = async (req, res) => {
     if (!updated) return res.status(404).json({ error: 'Career not found' });
     res.json(updated);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: 'Invalid request data.' });
   }
 };
 
@@ -60,6 +60,6 @@ export const deleteCareer = async (req, res) => {
     if (!deleted) return res.status(404).json({ error: 'Career not found' });
     res.json({ message: 'Career deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };

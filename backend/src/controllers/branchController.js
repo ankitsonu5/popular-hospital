@@ -25,7 +25,7 @@ export const getAllBranches = async (req, res) => {
     const branches = await Branch.find().sort({ order: 1 });
     res.json(branches);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -48,7 +48,7 @@ export const getBranchByIdOrSlug = async (req, res) => {
     if (!branch) return res.status(404).json({ error: 'Branch not found' });
     res.json(branch);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -71,7 +71,7 @@ export const createBranch = async (req, res) => {
     const branch = await Branch.create(body);
     res.status(201).json(branch);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -92,7 +92,7 @@ export const updateBranch = async (req, res) => {
     if (!branch) return res.status(404).json({ error: 'Branch not found' });
     res.json(branch);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -103,7 +103,7 @@ export const deleteBranch = async (req, res) => {
     if (!branch) return res.status(404).json({ error: 'Branch not found' });
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -122,6 +122,6 @@ export const reorderBranches = async (req, res) => {
     await Promise.all(updates);
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };

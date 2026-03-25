@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   swcMinify: true,
+  poweredByHeader: false,  // Remove X-Powered-By header
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,8 +12,8 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
-      { protocol: 'https', hostname: '**' },
-      { protocol: 'http', hostname: '**' },
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: '*.popularhospital.com' },
     ],
   },
   async headers() {
@@ -20,9 +21,37 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: [
+          // ─── Core Security Headers ───────────────────
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
+          
+          // ─── HSTS: Force HTTPS for 1 year ───────────
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
+          
+          // ─── Referrer Policy ─────────────────────────
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          
+          // ─── Content Security Policy ─────────────────
+          { 
+            key: 'Content-Security-Policy', 
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.tiny.cloud",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tiny.cloud",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "img-src 'self' data: blob: https: http://localhost:5100",
+              "media-src 'self' blob: https:",
+              "connect-src 'self' http://localhost:5100 https://*.popularhospital.com",
+              "frame-src 'self'",
+              "frame-ancestors 'self'",
+              "object-src 'none'",
+              "base-uri 'self'",
+            ].join('; ')
+          },
+          
+          // ─── Permissions Policy ──────────────────────
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(self), payment=()' },
         ],
       },
       {

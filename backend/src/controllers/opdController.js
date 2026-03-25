@@ -1,5 +1,6 @@
 import OpdSlot from '../models/OpdSlot.js';
 import Booking from '../models/Booking.js';
+import mongoose from 'mongoose';
 
 const DEFAULT_SLOTS = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30'];
 
@@ -11,11 +12,16 @@ export const getAvailableSlots = async (req, res) => {
       return res.status(400).json({ error: 'doctor_id, branch_id and date are required' });
     }
 
+    // Validate ObjectIds
+    if (!mongoose.Types.ObjectId.isValid(doctor_id) || !mongoose.Types.ObjectId.isValid(branch_id)) {
+      return res.status(400).json({ error: 'Invalid doctor or branch ID format' });
+    }
+
     // Get booked slots
     const bookedBookings = await Booking.find({
       doctor: doctor_id,
       branch: branch_id,
-      slot_date: date,
+      slot_date: String(date).trim(),
       status: { $ne: 'cancelled' },
     }).select('slot_time');
     const bookedSet = new Set(bookedBookings.map((b) => b.slot_time));
@@ -24,7 +30,7 @@ export const getAvailableSlots = async (req, res) => {
     const storedSlots = await OpdSlot.find({
       doctor: doctor_id,
       branch: branch_id,
-      slot_date: date,
+      slot_date: String(date).trim(),
       is_available: true,
     }).select('slot_time');
 
@@ -35,11 +41,12 @@ export const getAvailableSlots = async (req, res) => {
     const available = allForDay.filter((t) => !bookedSet.has(t));
     res.json({ date, slots: available });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('[OPD]', error.message);
+    res.status(500).json({ error: 'An error occurred.' });
   }
 };
 
-// POST /api/opd/slots
+// POST /api/opd/slots (admin only)
 export const setSlots = async (req, res) => {
   try {
     const { branch_id, doctor_id, slot_date, slots } = req.body;
@@ -47,9 +54,14 @@ export const setSlots = async (req, res) => {
       return res.status(400).json({ error: 'branch_id, doctor_id, slot_date and slots array required' });
     }
 
+    // Validate ObjectIds
+    if (!mongoose.Types.ObjectId.isValid(doctor_id) || !mongoose.Types.ObjectId.isValid(branch_id)) {
+      return res.status(400).json({ error: 'Invalid doctor or branch ID format' });
+    }
+
     const operations = slots.map((slot_time) => ({
       updateOne: {
-        filter: { branch: branch_id, doctor: doctor_id, slot_date, slot_time },
+        filter: { branch: branch_id, doctor: doctor_id, slot_date: String(slot_date).trim(), slot_time: String(slot_time).trim() },
         update: { $set: { is_available: true } },
         upsert: true,
       },
@@ -58,6 +70,7 @@ export const setSlots = async (req, res) => {
     await OpdSlot.bulkWrite(operations);
     res.json({ message: 'Slots updated' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('[OPD]', error.message);
+    res.status(500).json({ error: 'An error occurred.' });
   }
 };

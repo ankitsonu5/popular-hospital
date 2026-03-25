@@ -8,7 +8,7 @@ export const getSiteContent = async (req, res) => {
     rows.forEach((r) => { content[r.key] = r.value; });
     res.json(content);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
 
@@ -26,6 +26,6 @@ export const setSiteContent = async (req, res) => {
 
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'An internal error occurred.' });
   }
 };
