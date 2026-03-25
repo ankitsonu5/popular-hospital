@@ -46,23 +46,28 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-[#0b1c43] via-[#122a5e] to-[#0d9488] overflow-hidden p-6 sm:p-10">
-      {/* Pattern Background */}
-      <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-        }}
-      />
-      {/* Gradient overlay circles */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0d9488]/30 rounded-full blur-[100px] -translate-y-1/4 translate-x-1/4" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#E85222]/20 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4" />
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden p-6 sm:p-10">
+      {/* Immersive Background Image */}
+      <div className="absolute inset-0 z-0 bg-[#0b1c43]">
+        <Image
+          src="/images/auth-bg.png"
+          alt="Healthcare background"
+          fill
+          className="object-cover opacity-60 animate-slow-zoom"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0b1c43]/90 via-[#0b1c43]/80 to-[#0d9488]/70 mix-blend-multiply" />
+        <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
+      </div>
 
-      {/* Login Card */}
-      <div className="relative z-10 w-full max-w-[440px] bg-white rounded-[2rem] p-8 sm:p-10 shadow-2xl shadow-black/30 border border-white/20 transform transition-all">
+      {/* Decorative Blur Circles */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0d9488]/30 rounded-full blur-[100px] -translate-y-1/4 translate-x-1/4" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#E85222]/10 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4" />
+
+      {/* Login Card (Reverted to Centered Style) */}
+      <div className="relative z-10 w-full max-w-[460px] bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] border border-white/20 transform transition-all animate-fade-in-up">
         {/* Logo */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-10">
           <Image
             src="/logo-horizontal.png"
             alt="Popular Hospital"
@@ -73,62 +78,68 @@ export default function AdminLoginPage() {
           />
         </div>
 
-        {/* Welcome text */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 text-[#0b1c43] mb-4 shadow-inner">
-            <Shield className="w-7 h-7" />
+        {/* Welcome Text */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#0b1c43]/5 text-[#0b1c43] mb-5 shadow-inner">
+            <Shield className="w-8 h-8" />
           </div>
-          <h2 className="text-2xl font-black text-gray-900 tracking-tight">Admin Control Panel</h2>
-          <p className="text-gray-500 mt-2 text-sm font-medium">Access your management dashboard</p>
+          <h2 className="text-3xl font-black text-[#0b1c43] tracking-tight">Admin Portal.</h2>
+          <p className="text-gray-500 mt-2 text-base font-medium">Access your secure management board</p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-100 text-red-600 text-sm flex items-center gap-3 font-medium">
-            <svg className="w-5 h-5 shrink-0 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>{error}</span>
+          <div className="mb-8 p-4 rounded-2xl bg-red-50 border border-red-100 flex items-center gap-3 animate-head-shake">
+            <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+               <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12"/></svg>
+            </div>
+            <p className="text-[13px] font-bold text-red-700">{error}</p>
           </div>
         )}
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email */}
-          <div>
-            <label htmlFor="email" className="block text-sm font-bold text-gray-700 mb-2">
+          <div className="space-y-2">
+            <label htmlFor="email" className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1">
               Email Address
             </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@popularhospital.com"
-              required
-              className="w-full px-5 py-3.5 rounded-2xl border-2 border-gray-100 bg-gray-50/50 text-gray-900 placeholder-gray-400 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium"
-            />
+            <div className="relative group">
+               <input
+                 id="email"
+                 type="email"
+                 value={email}
+                 onChange={(e) => setEmail(e.target.value)}
+                 placeholder="Enter admin email"
+                 required
+                 className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium"
+               />
+               <LogIn className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-[#0d9488] transition-colors" />
+            </div>
           </div>
 
           {/* Password */}
-          <div>
-            <label htmlFor="password" className="block text-sm font-bold text-gray-700 mb-2">
-              Password
-            </label>
-            <div className="relative">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+               <label htmlFor="password" className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1">
+                 Security Password
+               </label>
+               <button type="button" className="text-[10px] font-bold text-[#0d9488] uppercase tracking-wider hover:opacity-70">Forgot Key?</button>
+            </div>
+            <div className="relative group">
               <input
                 id="password"
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
+                placeholder="Enter security password"
                 required
-                className="w-full px-5 py-3.5 rounded-2xl border-2 border-gray-100 bg-gray-50/50 text-gray-900 placeholder-gray-400 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium pr-12"
+                className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium pr-12"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-1"
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
@@ -136,29 +147,36 @@ export default function AdminLoginPage() {
           </div>
 
           {/* Submit */}
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 px-6 py-4 mt-2 bg-gradient-to-r from-[#0b1c43] to-[#1e3a8a] hover:from-[#0e2455] hover:to-[#1e40af] text-white rounded-2xl font-bold text-sm transition-all shadow-lg shadow-blue-900/20 hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-          >
-            {isLoading ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Signing in...
-              </>
-            ) : (
-              <>
-                <LogIn className="w-5 h-5" />
-                Secure Sign In
-              </>
-            )}
-          </button>
+          <div className="pt-2">
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full h-16 flex items-center justify-center gap-3 bg-[#0b1c43] hover:bg-[#0e2455] text-white rounded-2xl font-bold text-sm transition-all shadow-[0_15px_35px_-10px_rgba(11,28,67,0.4)] hover:shadow-[0_15px_35px_-5px_rgba(11,28,67,0.6)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 active:scale-95 group overflow-hidden relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              {isLoading ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Authenticating Access...
+                </>
+              ) : (
+                <>
+                  <LogIn className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Secure Sign In
+                </>
+              )}
+            </button>
+          </div>
         </form>
 
         {/* Footer */}
-        <p className="text-center text-xs font-semibold text-gray-400 mt-8 pt-6 border-t border-gray-100">
-          © 2026 Popular Hospital.<br/>Admin Access Only.
-        </p>
+        <div className="mt-10 pt-8 border-t border-gray-100">
+           <div className="flex flex-col items-center gap-4 text-center">
+              <p className="text-[#0b1c43]/30 text-[11px] font-black uppercase tracking-[0.2em] leading-tight">
+                © 2026 Popular Hospital.<br/>Admin Access Only.
+              </p>
+           </div>
+        </div>
       </div>
     </div>
   );
