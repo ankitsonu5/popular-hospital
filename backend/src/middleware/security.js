@@ -76,7 +76,10 @@ export const errorHandler = (err, req, res, _next) => {
     ? 'An internal server error occurred.'
     : err.message;
 
-  res.status(statusCode).json({ error: message });
+  res.status(statusCode).json({ 
+    message,
+    error: message 
+  });
 };
 
 // ─── Regex Escaper (for search queries) ──────────────────────

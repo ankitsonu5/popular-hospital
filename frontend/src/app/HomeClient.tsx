@@ -56,6 +56,9 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
     message: "",
     agreeTerms: false,
   });
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -118,7 +121,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
   return (
     <>
       <section 
-        className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[64px] sm:mt-[80px] md:mt-0 h-[calc(100dvh-64px)] sm:h-[calc(100dvh-80px)] md:h-[100dvh] min-h-[calc(100dvh-64px)] sm:min-h-[calc(100dvh-80px)] md:min-h-[100dvh]" 
+        className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[64px] sm:mt-[80px] md:mt-0 h-[480px] sm:h-[calc(100dvh-80px)] md:h-[100dvh] min-h-[480px] sm:min-h-[calc(100dvh-80px)] md:min-h-[100dvh]" 
       >
         {/* Slider Background */}
         <div className="absolute inset-0 z-0 bg-white">
@@ -133,7 +136,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     alt={`Hospital Slide ${index + 1}`}
                     fill
                     className="object-cover object-top transition-transform duration-[10000ms]"
-                    style={{ transform: index === currentSlide ? 'scale(1.1)' : 'scale(1)' }}
+                    style={{ transform: 'scale(1)' }}
                     priority={index === 0}
                     loading={index === 0 ? undefined : 'lazy'}
                     sizes="100vw"
@@ -149,26 +152,20 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 flex justify-between px-4 sm:px-20 lg:px-24 pointer-events-none">
           <button
             onClick={prevSlide}
-            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center hover:bg-[#E85222] transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group shadow-2xl"
+            className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center hover:bg-[#E85222] transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group shadow-2xl"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10 group-hover:-translate-x-1 transition-transform" />
+            <ChevronLeft className="w-5 h-5 sm:w-10 sm:h-10 group-hover:-translate-x-1 transition-transform" />
           </button>
           <button
             onClick={nextSlide}
-            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#E85222] text-white flex items-center justify-center hover:bg-[#d1451a] shadow-xl transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group"
+            className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-[#E85222] text-white flex items-center justify-center hover:bg-[#d1451a] shadow-xl transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group"
             aria-label="Next slide"
           >
-            <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10 group-hover:translate-x-1 transition-transform" />
+            <ChevronRight className="w-5 h-5 sm:w-10 sm:h-10 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
-        {/* Content Overlay - Hindi Text */}
-        <div className={`md:hidden relative z-20 h-full flex flex-col items-center justify-end pb-24 sm:pb-32 px-4 text-center transition-all duration-700 opacity-100 translate-y-0`}>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white font-heading drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] tracking-tight leading-[1.1] notranslate animate-fade-in-up">
-            आपकी सेहत, <br className="sm:hidden" /> हमारी प्राथमिकता
-          </h1>
-        </div>
       </section>
 
       {/* Standalone Notification Ticker */}
@@ -1341,9 +1338,38 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
               </h2>
 
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  console.log("Form submitted:", formData);
+                  setFormSubmitting(true);
+                  setFormError('');
+                  setFormSuccess(false);
+                  try {
+                    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
+                    const res = await fetch(`${API_URL}/api/contacts`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                        phone: formData.phone,
+                        date: formData.date,
+                        timing: formData.timing,
+                        department: formData.department,
+                        location: formData.location,
+                        message: formData.message,
+                        agreedToTerms: formData.agreeTerms,
+                      }),
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+                    setFormSuccess(true);
+                    setFormData({ name: '', email: '', phone: '', date: '', timing: '', department: '', location: '', message: '', agreeTerms: false });
+                    setTimeout(() => setFormSuccess(false), 5000);
+                  } catch (err: unknown) {
+                    setFormError(err instanceof Error ? err.message : 'Submission failed. Please try again.');
+                  } finally {
+                    setFormSubmitting(false);
+                  }
                 }}
                 className="space-y-6"
               >
@@ -1498,15 +1524,37 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                   </label>
                 </div>
 
+                {/* Success/Error Toast */}
+                {formSuccess && (
+                  <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-xl text-green-800 text-sm font-medium">
+                    <svg className="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    Your appointment request has been submitted! We will confirm within 2 hours.
+                  </div>
+                )}
+                {formError && (
+                  <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium">
+                    <svg className="w-5 h-5 text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    {formError}
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="group relative w-full inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E85222] text-white font-bold rounded-xl overflow-hidden transition-all hover:bg-[#d1451a] shadow-lg shadow-[#E85222]/20 uppercase tracking-widest"
+                  disabled={formSubmitting}
+                  className="group relative w-full inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E85222] text-white font-bold rounded-xl overflow-hidden transition-all hover:bg-[#d1451a] shadow-lg shadow-[#E85222]/20 uppercase tracking-widest disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                  </svg>
-                  <span>Send Message Now</span>
+                  {formSubmitting ? (
+                    <>
+                      <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                      <span>Send Message Now</span>
+                    </>
+                  )}
                 </button>
               </form>
             </div>

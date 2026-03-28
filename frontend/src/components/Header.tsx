@@ -22,6 +22,10 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   {
+    label: 'Home',
+    href: '/',
+  },
+  {
     label: 'About Us',
     dropdown: [
       { label: 'Overview', href: '/about' },
@@ -160,6 +164,20 @@ export function Header() {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const isMenuItemActive = (item: MenuItem) => {
+    if (item.href === pathname) return true;
+    if (item.dropdown) {
+      if (item.dropdown.some(d => d.href === pathname)) return true;
+      if (item.label === 'Departments') {
+        return Object.values(specialtiesContent).flat().some(s => s.href === pathname);
+      }
+      if (item.label === 'Services') {
+        return Object.values(servicesContent).flat().some(s => s.href === pathname);
+      }
+    }
+    return false;
+  };
 
   const handleMouseEnter = (label: string) => {
     setActiveDropdown(label);
@@ -342,8 +360,8 @@ export function Header() {
                         type="button"
                         className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[14.5px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
                           scrolled || !isTransparentPage
-                            ? (activeDropdown === item.label ? 'text-hospital-teal' : 'text-gray-700 hover:text-hospital-teal')
-                            : 'text-white hover:text-gray-200'
+                            ? (isMenuItemActive(item) || activeDropdown === item.label ? 'text-hospital-teal' : 'text-gray-700 hover:text-hospital-teal')
+                            : (isMenuItemActive(item) && item.label !== 'Home' ? 'text-teal-400' : 'text-white hover:text-gray-200')
                         }`}
                       >
                         {item.label}
@@ -439,8 +457,8 @@ export function Header() {
                       href={item.href || '#'}
                       className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[14.5px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
                         scrolled || !isTransparentPage
-                          ? (pathname === item.href ? 'text-hospital-teal' : 'text-gray-700 hover:text-hospital-teal')
-                          : 'text-white hover:text-gray-200'
+                          ? (isMenuItemActive(item) && item.label !== 'Home' ? 'text-hospital-teal' : 'text-gray-700 hover:text-hospital-teal')
+                          : (isMenuItemActive(item) && item.label !== 'Home' ? 'text-teal-400' : 'text-white hover:text-gray-200')
                       }`}
                     >
                       {item.label}
@@ -490,7 +508,9 @@ export function Header() {
                   <div className="flex flex-col">
                     <button
                       type="button"
-                      className="flex items-center justify-between w-full px-4 py-3 text-sm font-semibold text-gray-900 rounded-lg hover:bg-gray-50"
+                      className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${
+                        isMenuItemActive(item) && item.label !== 'Home' ? 'text-hospital-teal bg-teal-50' : 'text-gray-900'
+                      }`}
                       onClick={() => setActiveMobileDropdown(activeMobileDropdown === item.label ? null : item.label)}
                     >
                       <span>{item.label}</span>
@@ -560,7 +580,9 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href || '#'}
-                    className="block px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
+                    className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${
+                      isMenuItemActive(item) && item.label !== 'Home' ? 'text-hospital-teal bg-teal-50' : 'text-gray-700'
+                    }`}
                     onClick={() => setMenuOpen(false)}
                   >
                     {item.label}

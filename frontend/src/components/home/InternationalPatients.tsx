@@ -17,32 +17,71 @@ export default function InternationalPatients({ specialities }: { specialities: 
     country: "",
     department: ""
   });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Inquiry submitted:", formData);
-    // Add API call here
-    alert("Thank you! Your inquiry has been sent. We will contact you shortly.");
+    setSubmitting(true);
+    try {
+      const response = await fetch('/api-backend/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.contact, // Mapping 'contact' to 'phone'
+          age: formData.age,
+          country: formData.country,
+          department: formData.department,
+          isInternational: true
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to submit');
+      }
+
+      alert("Thank you! Your inquiry has been sent. We will contact you shortly.");
+      setFormData({ name: "", email: "", contact: "", age: "", country: "", department: "" });
+    } catch (error: any) {
+      console.error("Inquiry error:", error);
+      alert(error.message || "Something went wrong. Please try again later.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-[#F8FAFC] overflow-hidden">
-      <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading tracking-tight mb-4">
+    <section className="relative py-12 sm:py-20 lg:py-24 bg-[#F8FAFC] overflow-hidden">
+      {/* Mobile Only Background Image */}
+      <div className="absolute inset-0 z-0 lg:hidden">
+        <Image
+          src="/images/international_patients.png"
+          alt="International Patients Background"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#0b1c43]/80 backdrop-blur-[2px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white lg:text-[#0b1c43] font-heading tracking-tight mb-3 sm:mb-4 drop-shadow-md lg:drop-shadow-none">
             For International Patients
           </h2>
-          <p className="text-base font-bold text-[#FF6B00] uppercase tracking-wider">
+          <p className="text-sm sm:text-base font-bold text-[#FF6B00] uppercase tracking-wider drop-shadow-md lg:drop-shadow-none">
             Send Your Inquiry to Assist You
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20">
           {/* Form Side */}
           <div className="w-full lg:w-[480px] shrink-0">
-            <div className="bg-[#333333] p-1 shadow-2xl rounded-sm">
+            <div className="bg-[#333333] lg:bg-[#333333] p-1 shadow-2xl rounded-sm">
               <div className="bg-[#333333] px-6 py-8 sm:px-10 sm:py-12">
-                <h3 className="text-2xl font-black text-white text-center mb-10 font-heading tracking-tight">
+                <h3 className="text-2xl font-black text-white text-center mb-8 sm:mb-10 font-heading tracking-tight">
                   Book An Appointment
                 </h3>
 
@@ -146,17 +185,18 @@ export default function InternationalPatients({ specialities }: { specialities: 
 
                   <button
                     type="submit"
-                    className="w-full bg-black text-white font-bold py-4 mt-6 hover:bg-gray-900 transition-colors uppercase tracking-[0.2em] text-sm"
+                    disabled={submitting}
+                    className="w-full bg-[#FF6B00] text-white font-bold py-4 mt-6 hover:bg-[#e66000] transition-colors uppercase tracking-[0.2em] text-sm shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit Now
+                    {submitting ? 'Submitting...' : 'Submit Now'}
                   </button>
                 </form>
               </div>
             </div>
           </div>
 
-          {/* Image Side */}
-          <div className="relative flex-1 w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden">
+          {/* Desktop Only Side Image */}
+          <div className="relative hidden lg:block flex-1 w-full h-[600px] overflow-hidden rounded-2xl shadow-xl">
             <Image
               src="/images/international_patients.png"
               alt="International Patient Inquiry"
@@ -168,5 +208,7 @@ export default function InternationalPatients({ specialities }: { specialities: 
         </div>
       </div>
     </section>
+
+
   );
 }

@@ -21,6 +21,8 @@ import blogRouter from './routes/blog.js';
 import coverageRouter from './routes/coverage.js';
 import updatesRouter from './routes/updates.js';
 import careersRouter from './routes/careers.js';
+import contactsRouter from './routes/contacts.js';
+import applicationsRouter from './routes/applications.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -83,6 +85,8 @@ app.use('/api/coverage', coverageRouter);
 app.use('/api/events', (await import('./routes/events.js')).default);
 app.use('/api/updates', updatesRouter);
 app.use('/api/careers', careersRouter);
+app.use('/api/contacts', contactsRouter);
+app.use('/api/applications', applicationsRouter);
 
 // Serve uploads (static files)
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));

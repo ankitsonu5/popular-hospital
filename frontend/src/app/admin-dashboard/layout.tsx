@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
   LayoutDashboard, Users, Building2, CalendarCheck, FileText,
-  Stethoscope, Settings, LogOut, Menu, X, ChevronRight, ChevronDown, Newspaper, Award, Bell, Briefcase
+  Stethoscope, Settings, LogOut, Menu, X, ChevronRight, ChevronDown, Newspaper, Award, Bell, Briefcase, Mail
 } from 'lucide-react';
 
 
@@ -18,7 +18,9 @@ const sidebarItems = [
   { label: 'Branches', href: '/admin-dashboard/branches', icon: Building2 },
   { label: 'Updates', href: '/admin-dashboard/updates', icon: Bell },
   { label: 'Careers', href: '/admin-dashboard/careers', icon: Briefcase },
+  { label: 'Job Portal', href: '/admin-dashboard/applications', icon: Award, target: '_blank' },
   { label: 'Bookings', href: '/admin-dashboard/bookings', icon: CalendarCheck },
+  { label: 'Contacts', href: '/admin-dashboard/contacts', icon: Mail, target: '_blank' },
   { label: 'Departments', href: '/admin-dashboard/departments', icon: Users },
   { label: 'Site Content', href: '/admin-dashboard/content', icon: FileText },
   { 
@@ -171,7 +173,11 @@ export default function AdminDashboardLayout({
                 <Link
                   key={item.href || item.label}
                   href={item.href || '#'}
-                  onClick={() => setSidebarOpen(false)}
+                  target={item.label === 'Contacts' ? '_blank' : undefined}
+                  rel={item.label === 'Contacts' ? 'noopener noreferrer' : undefined}
+                  onClick={() => {
+                    if (item.label !== 'Contacts') setSidebarOpen(false);
+                  }}
                   className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all
                     ${isActive
                       ? 'bg-white/15 text-white shadow-sm'
