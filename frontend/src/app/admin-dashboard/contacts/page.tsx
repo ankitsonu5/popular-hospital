@@ -5,8 +5,10 @@ import {
   Mail, MailOpen, Search, RefreshCw, Calendar, Phone, MapPin, 
   Clock, Building2, MessageSquare, CheckCircle, ArrowLeft, 
   MoreVertical, Trash2, Archive, Star, Square, 
-  ChevronLeft, ChevronRight, Settings, Grid, Globe
+  ChevronLeft, ChevronRight, Settings, Grid, Globe, AlertTriangle
 } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { mutate } from 'swr';
 
 const API_URL = '/api-backend';
 
@@ -44,6 +46,7 @@ export default function GmailContactsPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState<'primary' | 'unread' | 'read'>('primary');
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   const fetchContacts = useCallback(async () => {
     setLoading(true);
@@ -78,27 +81,34 @@ export default function GmailContactsPage() {
       setContacts((prev) =>
         prev.map((c) => (c._id === contact._id ? { ...c, status: 'read' } : c))
       );
+      mutate('/api-backend/contacts?status=new');
     } catch (e) {
       console.error(e);
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this contact?')) return;
+  const promptDelete = (id: string) => {
+    setDeleteConfirmId(id);
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteConfirmId) return;
     try {
       const token = localStorage.getItem('admin_token');
-      const res = await fetch(`${API_URL}/contacts/${id}`, {
+      const res = await fetch(`${API_URL}/contacts/${deleteConfirmId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to delete');
       
-      setContacts((prev) => prev.filter((c) => c._id !== id));
-      if (selected?._id === id) setSelected(null);
-      alert('Contact deleted successfully');
+      setContacts((prev) => prev.filter((c) => c._id !== deleteConfirmId));
+      if (selected?._id === deleteConfirmId) setSelected(null);
+      toast.success('Contact deleted successfully');
     } catch (e) {
       console.error(e);
-      alert('Failed to delete contact');
+      toast.error('Failed to delete contact');
+    } finally {
+      setDeleteConfirmId(null);
     }
   };
 
@@ -141,7 +151,7 @@ export default function GmailContactsPage() {
             <div className="flex items-center gap-1 border-l pl-2 ml-1">
               <button className="p-2 hover:bg-gray-100 rounded-md"><Archive className="w-4 h-4 text-gray-600" /></button>
               <button 
-                onClick={() => handleDelete(selected._id)}
+                onClick={() => promptDelete(selected._id)}
                 className="p-2 hover:bg-gray-100 rounded-md text-red-500"
                 title="Delete"
               >
@@ -268,7 +278,7 @@ export default function GmailContactsPage() {
                           </button>
                           <button 
                             className="p-1.5 hover:bg-red-50 text-red-500 rounded-full transition-colors"
-                            onClick={(e) => { e.stopPropagation(); handleDelete(contact._id); }}
+                            onClick={(e) => { e.stopPropagation(); promptDelete(contact._id); }}
                             title="Delete"
                           >
                             <Trash2 className="w-4 h-4"/>
@@ -381,6 +391,38 @@ export default function GmailContactsPage() {
                 </div>
              </div>
            </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {deleteConfirmId && (
+        <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="p-6">
+              <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-4 mx-auto">
+                <AlertTriangle className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-center text-gray-900 mb-2">Delete Contact</h3>
+              <p className="text-gray-500 text-sm text-center">
+                Are you sure you want to delete this contact? This action cannot be undone.
+              </p>
+            </div>
+            <div className="flex bg-gray-50 border-t border-gray-100">
+              <button 
+                onClick={() => setDeleteConfirmId(null)}
+                className="flex-1 py-3.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 transition-colors"
+              >
+                Cancel
+              </button>
+              <div className="w-px bg-gray-200"></div>
+              <button 
+                onClick={confirmDelete}
+                className="flex-1 py-3.5 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

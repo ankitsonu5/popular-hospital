@@ -1,127 +1,348 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
-import { CreditCard, Clock, CheckCircle } from "lucide-react";
+import { CreditCard, Clock, CheckCircle, X, Check, ArrowRight, Upload, ArrowLeft } from "lucide-react";
 
-
-export const metadata: Metadata = {
-  title: "Health Fit Card & Health Packages | Popular Hospital",
-  description:
-    "Apply for the Popular Hospital Health Fit Card to get priority services, free checkups, and massive discounts on healthcare.",
-};
+// Types for members
+interface Member {
+  name: string;
+  age: string;
+  sex: string;
+  mobile: string;
+  aadhaar: string;
+  relation: string;
+}
 
 const WellnessPage = () => {
-  return (
-    <div className="bg-white min-h-screen">
-      {/* ═══════ HERO ═══════ */}
-      <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/banners/health_packages.png"
-            alt="Wellness Services"
-            fill
-            className="object-cover opacity-80"
-            priority
-          />
-          <div className="absolute inset-0 bg-slate-900/30" />
-        </div>
-        
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
-              Health Packages
-            </h1>
-            <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
-              <span className="mx-2 text-red-600 font-bold">|</span>
-              <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
-              <span className="mx-2 text-red-600 font-bold">|</span>
-              <span className="text-white">Health Packages</span>
-            </nav>
-          </div>
-        </div>
-      </section>
+  const [purchaseStep, setPurchaseStep] = useState<'none' | 'small-form' | 'application-form'>('none');
+  const [selectedCard, setSelectedCard] = useState<string | null>(null);
+  const [userDetails, setUserDetails] = useState({ name: "", mobile: "" });
+  const [members, setMembers] = useState<Member[]>(
+    Array(6).fill(null).map((_, i) => ({
+      name: "",
+      age: "",
+      sex: "",
+      mobile: "",
+      aadhaar: "",
+      relation: i === 0 ? "Self" : ""
+    }))
+  );
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
-      {/* Intro Section with Image */}
-      <section id="benefits" className="py-24 px-6 bg-slate-50">
-        <div className="container mx-auto max-w-[1366px]">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="w-full lg:w-1/2">
-              <div className="relative w-full aspect-[4/3] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-lg border-4 md:border-8 border-white bg-white">
-                <Image
-                  src="/images/wellness/1.jpeg"
-                  alt="Health Packages"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+  const handleBuyNow = (cardName: string) => {
+    setSelectedCard(cardName);
+    setPurchaseStep('small-form');
+  };
+
+  const handleSmallFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (userDetails.name && userDetails.mobile) {
+      // Pre-fill the first row (Self) with user details
+      const updatedMembers = [...members];
+      updatedMembers[0] = {
+        ...updatedMembers[0],
+        name: userDetails.name,
+        mobile: userDetails.mobile
+      };
+      setMembers(updatedMembers);
+      setPurchaseStep('application-form');
+    }
+  };
+
+  const updateMember = (index: number, field: keyof Member, value: string) => {
+    const updatedMembers = [...members];
+    updatedMembers[index] = { ...updatedMembers[index], [field]: value };
+    setMembers(updatedMembers);
+  };
+
+  return (
+    <div className="bg-white min-h-screen relative overflow-x-hidden">
+      {purchaseStep === 'application-form' ? (
+        <div className="bg-white min-h-screen animate-in fade-in duration-500 relative pb-24">
+          <div className="w-full">
+            {/* Header / Navigation Bar */}
+            <div className="bg-[#0b1c43] py-6 px-6 md:px-12 flex items-center justify-between sticky top-0 z-50 shadow-lg">
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={() => setPurchaseStep('none')}
+                  className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-[#0b1c43] transition-all group"
+                >
+                  <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
+                </button>
+                <h2 className="text-xl md:text-2xl font-black text-white font-heading uppercase tracking-tight">
+                  Health-Fit Card Application
+                </h2>
+              </div>
+              
+              {/* Selected Plan Badge - Mini Version for Header */}
+              <div className="hidden md:flex bg-[#E85222] px-6 py-2 rounded-full border border-orange-400 shadow-sm items-center gap-3">
+                <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Selected:</span>
+                <span className="text-sm font-black text-white">{selectedCard}</span>
               </div>
             </div>
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-5xl font-black text-[#0b1c43] mb-6 font-heading tracking-tight">
-                One card for all your{" "}
-                <span className="text-hospital-teal text-outline">
-                  family Health needs
-                </span>
-              </h2>
-              <div className="prose prose-lg text-gray-600 space-y-4">
-                <p className="text-lg leading-relaxed">
-                  Health-fit Card is the perfect solution for all your hospital care needs. Get access to hospital services with just a swipe of your card. Benefit from discounts on diagnostics and medicines. Enjoy hassle-free hospitalization with the help of this card. Get fit and stay healthy with the Health-fit Card. Get unlimited access to doctor's consultations (OPD) and get free health checkups and screenings. Enjoy the benefits of staying healthy with the Health-fit Card.
-                </p>
-              </div>
 
-              {/* Health-fit Card benefits */}
-              <div className="mt-16">
-                <h3 className="text-xl md:text-2xl font-black text-[#0b1c43] mb-8 font-heading text-center sm:text-left">
-                  Health-fit Card benefits
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                  {[
-                    { 
-                      title: "Cash-to-cashless services", 
-                      icon: <CreditCard className="w-8 h-8 text-slate-600" strokeWidth={1.5} /> 
-                    },
-                    { 
-                      title: "24X7 available in-need", 
-                      icon: (
-                        <div className="relative flex items-center justify-center">
-                          <span className="text-[12px] font-black text-slate-600">24/7</span>
-                          <svg className="absolute w-12 h-12 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                            <circle cx="12" cy="12" r="11" />
-                          </svg>
-                        </div>
-                      )
-                    },
-                    { 
-                      title: "On-time, Anytime Services", 
-                      icon: (
-                        <div className="relative flex items-center justify-center">
-                          <Clock className="w-8 h-8 text-slate-600" strokeWidth={1.5} />
-                          <CheckCircle className="absolute -bottom-1 -right-1 w-4 h-4 text-[#0b1c43] fill-white" strokeWidth={2.5} />
-                        </div>
-                      ) 
-                    },
-                  ].map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white p-8 rounded-[1.5rem] shadow-sm border border-slate-100 flex flex-col items-center text-center group hover:border-[#0b1c43] hover:shadow-md transition-all duration-300"
-                    >
-                      <div className="w-16 h-16 rounded-full border border-slate-100 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
-                      </div>
-                      <span className="text-[15px] font-bold text-[#0b1c43] leading-snug">
-                        {item.title}
-                      </span>
-                    </div>
-                  ))}
+            <div className="max-w-[1366px] mx-auto px-6 py-12">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16 pb-12">
+                <div className="relative">
+                  <div className="w-24 h-1.5 bg-[#E85222] rounded-full mb-6"></div>
+                  <h2 className="text-5xl md:text-7xl font-black text-[#0b1c43] font-heading tracking-tighter leading-[0.9] uppercase">
+                    Application-cum-consent<br/>Form
+                  </h2>
+                  <h3 className="text-2xl md:text-4xl font-black text-[#E85222] italic font-heading mt-2">
+                     For Family Health Card
+                  </h3>
+                </div>
+                
+                {/* Selected Plan Badge - Premium Style (Matches User Image) */}
+                <div className="bg-[#FFF5F0] px-10 py-8 rounded-[2rem] md:rounded-full border-2 border-orange-100 shadow-xl shrink-0 flex flex-col items-center min-w-[320px] transform hover:scale-105 transition-transform duration-500">
+                  <span className="text-[12px] font-black text-[#E85222] uppercase tracking-[0.4em] block mb-2">Selected Plan</span>
+                  <span className="text-2xl md:text-3xl font-black text-[#0b1c43] text-center">{selectedCard}</span>
                 </div>
               </div>
 
+                {/* Consent Text */}
+                <div className="bg-slate-50/70 p-10 md:p-14 rounded-[3.5rem] border border-slate-100 mb-16 shadow-inner">
+                  <p className="text-xl text-slate-600 leading-[1.8] font-medium text-justify">
+                    I <span className="inline-block px-4 py-0.5 border-b-2 border-[#0b1c43] text-[#0b1c43] font-black italic">{userDetails.name}</span> would like to apply for the Family Health Card offered by Popular Group of Hospitals. I have been informed and satisfied for the information provided. Therefore, agreed to apply for the same and here by do grant my consent for Popular Group of Hospital to use my information provided below.
+                  </p>
+                  <p className="mt-8 text-xl text-slate-600 leading-[1.8] font-medium text-justify">
+                    I would like to add following members to Family Health Card as per my wish, they are in my close blood relation. I am aware that as per Family Health Card policy, following members will only be covered.
+                  </p>
+                </div>
+
+                {/* Membership Table */}
+                <div className="mb-16 overflow-x-auto rounded-[2rem] border border-slate-200 shadow-xl bg-white">
+                  <table className="w-full border-collapse min-w-[1000px]">
+                    <thead>
+                      <tr className="bg-[#0b1c43] text-white uppercase tracking-widest text-xs font-black">
+                        <th className="px-6 py-6 text-left w-16">SN</th>
+                        <th className="px-6 py-6 text-left">Full Name</th>
+                        <th className="px-6 py-6 text-left w-24">Age</th>
+                        <th className="px-6 py-6 text-left w-24">Sex</th>
+                        <th className="px-6 py-6 text-left">Mobile No</th>
+                        <th className="px-6 py-6 text-left">Aadhaar Card No</th>
+                        <th className="px-6 py-6 text-left">Relation</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {members.map((member, index) => (
+                        <tr key={index} className="hover:bg-slate-50 transition-colors">
+                          <td className="px-6 py-5 font-black text-[#0b1c43] opacity-40">
+                            {index + 1}
+                          </td>
+                          <td className="px-3 py-3">
+                            <input
+                              type="text"
+                              className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-hospital-teal outline-none font-bold text-slate-700 shadow-sm"
+                              placeholder="Full Name"
+                              value={member.name}
+                              onChange={(e) => updateMember(index, 'name', e.target.value)}
+                            />
+                          </td>
+                          <td className="px-3 py-3">
+                            <input
+                              type="text"
+                              className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-hospital-teal outline-none font-bold text-slate-700 text-center"
+                              placeholder="00"
+                              value={member.age}
+                              onChange={(e) => updateMember(index, 'age', e.target.value)}
+                            />
+                          </td>
+                          <td className="px-3 py-3">
+                            <select
+                              className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-hospital-teal outline-none font-bold text-slate-700 appearance-none"
+                              value={member.sex}
+                              onChange={(e) => updateMember(index, 'sex', e.target.value)}
+                            >
+                              <option value=""></option>
+                              <option value="M">M</option>
+                              <option value="F">F</option>
+                              <option value="O">O</option>
+                            </select>
+                          </td>
+                          <td className="px-3 py-3">
+                            <input
+                              type="tel"
+                              className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-hospital-teal outline-none font-bold text-slate-700"
+                              placeholder="Mobile No"
+                              value={member.mobile}
+                              onChange={(e) => updateMember(index, 'mobile', e.target.value)}
+                            />
+                          </td>
+                          <td className="px-3 py-3">
+                            <div className="flex flex-col gap-2">
+                              <input
+                                type="text"
+                                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-hospital-teal outline-none font-bold text-slate-700"
+                                placeholder="Aadhaar No"
+                                value={member.aadhaar}
+                                onChange={(e) => updateMember(index, 'aadhaar', e.target.value)}
+                              />
+                              <label className="flex items-center justify-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg cursor-pointer transition-colors text-[9px] uppercase font-black tracking-widest text-[#0b1c43] border border-slate-200">
+                                <Upload className="w-3 h-3" /> Choose File
+                                <input type="file" className="hidden" />
+                              </label>
+                            </div>
+                          </td>
+                          <td className="px-3 py-3">
+                            <input
+                              disabled={index === 0}
+                              type="text"
+                              className={`w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-hospital-teal outline-none font-bold text-slate-700 ${index === 0 ? 'bg-slate-50 cursor-not-allowed opacity-70' : ''}`}
+                              placeholder={index === 0 ? "Self" : "Relation"}
+                              value={member.relation}
+                              onChange={(e) => updateMember(index, 'relation', e.target.value)}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Footer Actions */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-10 mt-12 bg-slate-50 p-10 rounded-[3rem] border border-slate-100 shadow-inner">
+                  <label className="flex items-center gap-5 cursor-pointer group">
+                    <input 
+                      type="checkbox" 
+                      className="w-8 h-8 rounded-lg border-2 border-slate-300 text-hospital-teal focus:ring-hospital-teal cursor-pointer" 
+                      checked={agreedToTerms}
+                      onChange={() => setAgreedToTerms(!agreedToTerms)}
+                    />
+                    <span className="text-xl font-bold text-slate-700 group-hover:text-[#0b1c43] transition-colors">
+                      I have read the terms and conditions.
+                    </span>
+                  </label>
+
+                  <button 
+                    disabled={!agreedToTerms}
+                    className={`px-16 py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm transition-all shadow-xl ${
+                      agreedToTerms 
+                      ? 'bg-hospital-teal text-white hover:bg-[#0b1c43] shadow-teal-900/40 transform active:scale-[0.97]' 
+                      : 'bg-slate-200 text-slate-400 cursor-not-allowed grayscale'
+                    }`}
+                    onClick={() => {
+                      alert("Redirecting to Secure Payment Gateway...");
+                    }}
+                  >
+                    Pay Now
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        ) : (
+          <>
+            {/* ═══════ HERO ═══════ */}
+            <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/banners/health_packages.png"
+                  alt="Wellness Services"
+                  fill
+                  className="object-cover opacity-80"
+                  priority
+                />
+                <div className="absolute inset-0 bg-slate-900/30" />
+              </div>
+              
+              <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+                <div className="max-w-4xl">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight text-shadow-lg">
+                    Health Packages
+                  </h1>
+                  <nav className="flex items-center text-sm md:text-base text-white/90 font-medium" aria-label="Breadcrumb">
+                    <Link href="/" className="hover:text-blue-300 transition-colors">Home</Link>
+                    <span className="mx-2 text-red-600 font-bold">|</span>
+                    <Link href="/services" className="hover:text-blue-300 transition-colors">Services</Link>
+                    <span className="mx-2 text-red-600 font-bold">|</span>
+                    <span className="text-white">Health Packages</span>
+                  </nav>
+                </div>
+              </div>
+            </section>
+
+            {/* Intro Section with Image */}
+            <section id="benefits" className="py-24 px-6 bg-slate-50">
+              <div className="container mx-auto max-w-[1366px]">
+                <div className="flex flex-col lg:flex-row items-center gap-16">
+                  <div className="w-full lg:w-1/2">
+                    <div className="relative w-full aspect-[4/3] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-lg border-4 md:border-8 border-white bg-white">
+                      <Image
+                        src="/images/wellness/1.jpeg"
+                        alt="Health Packages"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                    </div>
+                  </div>
+                  <div className="lg:w-1/2">
+                    <h2 className="text-3xl md:text-5xl font-black text-[#0b1c43] mb-6 font-heading tracking-tight">
+                      One card for all your{" "}
+                      <span className="text-hospital-teal text-outline">
+                        family Health needs
+                      </span>
+                    </h2>
+                    <div className="prose prose-lg text-gray-600 space-y-4">
+                      <p className="text-lg leading-relaxed">
+                        Health-fit Card is the perfect solution for all your hospital care needs. Get access to hospital services with just a swipe of your card. Benefit from discounts on diagnostics and medicines. Enjoy hassle-free hospitalization with the help of this card. Get fit and stay healthy with the Health-fit Card. Get unlimited access to doctor's consultations (OPD) and get free health checkups and screenings. Enjoy the benefits of staying healthy with the Health-fit Card.
+                      </p>
+                    </div>
+
+                    {/* Health-fit Card benefits */}
+                    <div className="mt-16">
+                      <h3 className="text-xl md:text-2xl font-black text-[#0b1c43] mb-8 font-heading text-center sm:text-left">
+                        Health-fit Card benefits
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        {[
+                          { 
+                            title: "Cash-to-cashless services", 
+                            icon: <CreditCard className="w-8 h-8 text-slate-600" strokeWidth={1.5} /> 
+                          },
+                          { 
+                            title: "24X7 available in-need", 
+                            icon: (
+                              <div className="relative flex items-center justify-center">
+                                <span className="text-[12px] font-black text-slate-600">24/7</span>
+                                <svg className="absolute w-12 h-12 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                  <circle cx="12" cy="12" r="11" />
+                                </svg>
+                              </div>
+                            )
+                          },
+                          { 
+                            title: "On-time, Anytime Services", 
+                            icon: (
+                              <div className="relative flex items-center justify-center">
+                                <Clock className="w-8 h-8 text-slate-600" strokeWidth={1.5} />
+                                <CheckCircle className="absolute -bottom-1 -right-1 w-4 h-4 text-[#0b1c43] fill-white" strokeWidth={2.5} />
+                              </div>
+                            ) 
+                          },
+                        ].map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="bg-white p-8 rounded-[1.5rem] shadow-sm border border-slate-100 flex flex-col items-center text-center group hover:border-[#0b1c43] hover:shadow-md transition-all duration-300"
+                          >
+                            <div className="w-16 h-16 rounded-full border border-slate-100 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                              {item.icon}
+                            </div>
+                            <span className="text-[15px] font-bold text-[#0b1c43] leading-snug">
+                              {item.title}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </section>
 
       {/* Card Tiers Selection */}
       <section className="py-24 px-6 relative">
@@ -169,7 +390,10 @@ const WellnessPage = () => {
                   Priority Support
                 </li>
               </ul>
-              <button className="w-full py-4 bg-[#0b1c43] text-white rounded-2xl font-black hover:bg-hospital-teal transition-all shadow-lg shadow-blue-900/10 uppercase tracking-widest text-xs">
+              <button 
+                onClick={() => handleBuyNow('Health-Fit Gold (365 Days)')}
+                className="w-full py-4 bg-[#0b1c43] text-white rounded-2xl font-black hover:bg-hospital-teal transition-all shadow-lg shadow-blue-900/10 uppercase tracking-widest text-xs"
+              >
                 Buy Now
               </button>
             </div>
@@ -209,7 +433,10 @@ const WellnessPage = () => {
                   Extended Benefits
                 </li>
               </ul>
-              <button className="w-full py-4 bg-[#0b1c43] text-white rounded-2xl font-black hover:bg-hospital-teal transition-all shadow-lg shadow-blue-900/10 uppercase tracking-widest text-xs">
+              <button 
+                onClick={() => handleBuyNow('Health-Fit Gold (730 Days)')}
+                className="w-full py-4 bg-[#0b1c43] text-white rounded-2xl font-black hover:bg-hospital-teal transition-all shadow-lg shadow-blue-900/10 uppercase tracking-widest text-xs"
+              >
                 Buy Now
               </button>
             </div>
@@ -248,7 +475,10 @@ const WellnessPage = () => {
                   Dedicated Priority Desk
                 </li>
               </ul>
-              <button className="w-full py-4 bg-hospital-teal text-white rounded-2xl font-black hover:bg-white hover:text-hospital-teal transition-all shadow-lg shadow-teal-900/40 uppercase tracking-widest text-xs">
+              <button 
+                onClick={() => handleBuyNow('Health-Fit Platinum (365 Days)')}
+                className="w-full py-4 bg-hospital-teal text-white rounded-2xl font-black hover:bg-white hover:text-hospital-teal transition-all shadow-lg shadow-teal-900/40 uppercase tracking-widest text-xs"
+              >
                 Buy Now
               </button>
             </div>
@@ -289,7 +519,10 @@ const WellnessPage = () => {
                   Elite Priority Access
                 </li>
               </ul>
-              <button className="w-full py-4 bg-hospital-teal text-white rounded-2xl font-black hover:bg-white hover:text-hospital-teal transition-all shadow-lg shadow-teal-900/40 uppercase tracking-widest text-xs">
+              <button 
+                onClick={() => handleBuyNow('Health-Fit Platinum (730 Days)')}
+                className="w-full py-4 bg-hospital-teal text-white rounded-2xl font-black hover:bg-white hover:text-hospital-teal transition-all shadow-lg shadow-teal-900/40 uppercase tracking-widest text-xs"
+              >
                 Buy Now
               </button>
             </div>
@@ -730,8 +963,62 @@ const WellnessPage = () => {
           </p>
         </div>
       </section>
-    </div>
-  );
+
+
+      {/* Small Form Modal */}
+      {purchaseStep === 'small-form' && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-12 w-full max-w-lg relative overflow-hidden border border-slate-100 scale-in duration-300 shadow-orange-900/10">
+            <button 
+              onClick={() => setPurchaseStep('none')}
+              className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-500 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-black text-[#0b1c43] mb-3 font-heading tracking-tight italic">Getting Started</h2>
+              <p className="text-gray-500 font-bold uppercase tracking-widest text-[10px]">Please provide basic details to proceed</p>
+              <div className="w-16 h-1.5 bg-[#E85222] mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <form onSubmit={handleSmallFormSubmit} className="space-y-6">
+              <div className="space-y-3">
+                <label className="text-xs font-black text-[#0b1c43] uppercase tracking-[0.2em] ml-2">Full Name</label>
+                <input
+                  required
+                  type="text"
+                  placeholder="Enter your name"
+                  className="w-full px-7 py-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:ring-4 focus:ring-hospital-teal/10 focus:border-hospital-teal transition-all font-bold text-slate-700"
+                  value={userDetails.name}
+                  onChange={(e) => setUserDetails({ ...userDetails, name: e.target.value })}
+                />
+              </div>
+              <div className="space-y-3">
+                <label className="text-xs font-black text-[#0b1c43] uppercase tracking-[0.2em] ml-2">Mobile Number</label>
+                <input
+                  required
+                  type="tel"
+                  placeholder="+91 XXXXX XXXXX"
+                  className="w-full px-7 py-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:ring-4 focus:ring-hospital-teal/10 focus:border-hospital-teal transition-all font-bold text-slate-700"
+                  value={userDetails.mobile}
+                  onChange={(e) => setUserDetails({ ...userDetails, mobile: e.target.value })}
+                />
+              </div>
+              <button 
+                type="submit"
+                className="w-full py-6 bg-[#E85222] text-white rounded-[2rem] font-black uppercase tracking-[0.25em] text-xs hover:bg-[#d1451a] shadow-2xl shadow-orange-900/30 transition-all transform active:scale-[0.98] mt-4 flex items-center justify-center gap-3 group"
+              >
+                Proceed to Application <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
+  )}
+</div>
+);
 };
 
 export default WellnessPage;

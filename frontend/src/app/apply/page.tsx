@@ -12,11 +12,11 @@ export default function ApplyPage() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     name: '',
-    dob: '',
+    gender: '',
     nationality: '',
     identificationType: '',
     mobile: '',
@@ -43,6 +43,30 @@ export default function ApplyPage() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name as FormDataKey]: value }));
+  };
+
+  const handleResumeSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    if (file && file.size > 2 * 1024 * 1024) {
+      setError('Resume file size must be less than 2MB');
+      setResume(null);
+      if (resumeRef.current) resumeRef.current.value = '';
+      return;
+    }
+    setResume(file);
+    if (error && error.includes('Resume')) setError(null);
+  };
+
+  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    if (file && file.size > 250 * 1024) {
+      setError('Photo file size must be less than 250KB');
+      setPhoto(null);
+      if (photoRef.current) photoRef.current.value = '';
+      return;
+    }
+    setPhoto(file);
+    if (error && error.includes('Photo')) setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -159,14 +183,19 @@ export default function ApplyPage() {
 
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2">
-                    Date of Birth <span className="text-red-500">*</span>
+                    Gender <span className="text-red-500">*</span>
                   </label>
                   <div className="relative group">
-                    <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
-                    <input 
-                      type="date" name="dob" required value={formData.dob} onChange={handleInputChange}
-                      className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-blue-600/20 focus:bg-white transition-all outline-none text-sm font-semibold" 
-                    />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <select 
+                      name="gender" required value={formData.gender} onChange={handleInputChange}
+                      className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-blue-600/20 focus:bg-white transition-all outline-none text-sm font-semibold appearance-none"
+                    >
+                      <option value="">Select Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
                   </div>
                 </div>
 
@@ -288,9 +317,9 @@ export default function ApplyPage() {
                       </div>
                       <div className="text-center">
                         <p className="text-sm font-bold text-gray-800">Drop files here or <span className="text-blue-600">browse</span></p>
-                        <p className="text-xs text-gray-400 mt-1">Max file size 5MB (PDF, DOCX)</p>
+                        <p className="text-xs text-gray-400 mt-1">Max file size 2MB (PDF, DOCX)</p>
                       </div>
-                      <input type="file" ref={resumeRef} className="hidden" accept=".pdf,.doc,.docx" onChange={(e) => setResume(e.target.files ? e.target.files[0] : null)} />
+                      <input type="file" ref={resumeRef} className="hidden" accept=".pdf,.doc,.docx" onChange={handleResumeSelect} />
                     </div>
                     {resume && (
                       <div className="mt-4 flex items-center justify-between p-3 bg-blue-50 rounded-xl border border-blue-100">
@@ -323,9 +352,9 @@ export default function ApplyPage() {
                       </div>
                       <div className="text-center">
                         <p className="text-sm font-bold text-gray-800">Drop files here or <span className="text-blue-600">browse</span></p>
-                        <p className="text-xs text-gray-400 mt-1">Max file size 5MB (JPG, PNG)</p>
+                        <p className="text-xs text-gray-400 mt-1">Max file size 250KB (JPG, PNG)</p>
                       </div>
-                      <input type="file" ref={photoRef} className="hidden" accept="image/*" onChange={(e) => setPhoto(e.target.files ? e.target.files[0] : null)} />
+                      <input type="file" ref={photoRef} className="hidden" accept="image/*" onChange={handlePhotoSelect} />
                     </div>
                     {photo && (
                       <div className="mt-4 flex items-center justify-between p-3 bg-blue-50 rounded-xl border border-blue-100">
@@ -333,7 +362,7 @@ export default function ApplyPage() {
                           <ImageIcon className="w-5 h-5 text-blue-600" />
                           <div>
                             <p className="text-xs font-bold text-gray-800 truncate max-w-[150px]">{photo.name}</p>
-                            <p className="text-[10px] text-blue-500">{(photo.size / (1024 * 1024)).toFixed(2)} MB</p>
+                            <p className="text-[10px] text-blue-500">{(photo.size / 1024).toFixed(1)} KB</p>
                           </div>
                         </div>
                         <button onClick={() => setPhoto(null)} className="p-1 hover:bg-blue-200 rounded-full text-blue-600 transition-colors">

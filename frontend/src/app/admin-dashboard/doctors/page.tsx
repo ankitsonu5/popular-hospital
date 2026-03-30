@@ -1,7 +1,78 @@
 'use client';
 import { useEffect, useState, useCallback } from 'react';
-import { Plus, Pencil, Trash2, Search, X, Loader2, Stethoscope, RotateCcw, Filter } from 'lucide-react';
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { Plus, Pencil, Trash2, Search, X, Loader2, Stethoscope, RotateCcw, Filter, GripVertical } from 'lucide-react';
+import toast from 'react-hot-toast';
 import Link from 'next/link';
+
+function SortableDoctorRow({ doc, onEdit, onDelete, isDragEnabled }: any) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging
+  } = useSortable({ id: doc._id, disabled: !isDragEnabled });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+    zIndex: isDragging ? 50 : 'auto',
+    position: isDragging ? 'relative' : 'static' as any,
+  };
+
+  return (
+    <tr ref={setNodeRef} style={style} className={`hover:bg-gray-50/50 transition-colors ${isDragging ? 'bg-white shadow-xl ring-1 ring-gray-200' : 'bg-transparent'}`}>
+      {isDragEnabled && (
+        <td className="pl-4 pr-1 py-3.5 w-10">
+          <button type="button" {...attributes} {...listeners} className="p-1.5 text-gray-400 hover:text-gray-600 cursor-grab active:cursor-grabbing rounded hover:bg-gray-100 transition-colors focus:outline-none">
+            <GripVertical className="w-4 h-4" />
+          </button>
+        </td>
+      )}
+      <td className="py-3.5 px-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 font-bold text-xs shrink-0 overflow-hidden border border-gray-100">
+            {doc.image_url ? (
+              <img src={doc.image_url.startsWith('http') ? doc.image_url : doc.image_url} alt={doc.name} className="w-full h-full object-cover" />
+            ) : (
+              doc.name?.charAt(0)
+            )}
+          </div>
+          <div>
+            <p className="font-bold text-gray-900 leading-tight">{doc.name}</p>
+            <p className="text-[11px] text-[#0d9488] font-bold uppercase mt-0.5">{doc.designation?.name || doc.designation || '-'}</p>
+            <p className="text-[10px] text-gray-400 mt-0.5">{doc.qualification || '-'}</p>
+            {doc.experience_location && (
+              <p className="text-[10px] text-[#0d9488] font-bold uppercase mt-0.5">@ {doc.experience_location}</p>
+            )}
+          </div>
+        </div>
+      </td>
+      <td className="py-3.5 px-4 text-gray-600 hidden md:table-cell">{doc.speciality?.name || '-'}</td>
+      <td className="py-3.5 px-4 text-gray-600 hidden lg:table-cell">{doc.experience_years ? `${doc.experience_years} yrs` : '-'}</td>
+      <td className="py-3.5 px-4 hidden sm:table-cell">
+        <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-semibold ${doc.is_active !== false ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+          {doc.is_active !== false ? 'Active' : 'Inactive'}
+        </span>
+      </td>
+      <td className="py-3.5 px-4 text-right">
+        <div className="inline-flex gap-1">
+          <button onClick={() => onEdit(doc)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
+            <Pencil className="w-4 h-4" />
+          </button>
+          <button onClick={() => onDelete(doc._id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
+      </td>
+    </tr>
+  );
+}
 
 const API_URL = '/api-backend';
 
@@ -35,6 +106,46 @@ export default function DoctorsPage() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const isDragEnabled = !search && !filtSpec && !filtDesig;
+
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (active.id !== over?.id) {
+      setDoctors((items) => {
+        const oldIndex = items.findIndex((item) => item._id === active.id);
+        const newIndex = items.findIndex((item) => item._id === over?.id);
+        const newOrder = arrayMove(items, oldIndex, newIndex);
+        
+        const updates = newOrder.map((doc, index) => ({ id: doc._id, sortIndex: index }));
+        
+        fetch(`${API_URL}/cms/doctors/reorder`, {
+          method: 'PUT',
+          headers: getHeaders(),
+          body: JSON.stringify({ doctors: updates }),
+        })
+        .then(async (res) => {
+          if (!res.ok) {
+            const errorText = await res.text();
+            throw new Error(`Failed to save: ${res.status} ${errorText}`);
+          }
+          toast.success('Doctor order saved!');
+        })
+        .catch(e => {
+          console.error('Failed to reorder', e);
+          toast.error('Failed to save order!');
+        });
+
+        return newOrder;
+      });
+    }
+  };
+
   const getHeaders = () => ({
     'Authorization': `Bearer ${localStorage.getItem('admin_token')}`,
     'Content-Type': 'application/json',
@@ -49,11 +160,21 @@ export default function DoctorsPage() {
         fetch(`${API_URL}/branches`),
         fetch(`${API_URL}/cms/designations`, { headers: getHeaders() }),
       ]);
-      setDoctors(await docsRes.json());
-      setSpecialities(await specsRes.json());
-      setBranches(await branchesRes.json());
-      if (desigRes.ok) setDesignations(await desigRes.json());
-    } catch (e) { console.error(e); }
+      const [docsData, specsData, branchesData, desigData] = await Promise.all([
+        docsRes.json().catch(() => []),
+        specsRes.json().catch(() => []),
+        branchesRes.json().catch(() => []),
+        desigRes.ok ? desigRes.json().catch(() => []) : Promise.resolve([]),
+      ]);
+
+      setDoctors(Array.isArray(docsData) ? docsData : (docsData?.doctors || []));
+      setSpecialities(Array.isArray(specsData) ? specsData : (specsData?.specialities || []));
+      setBranches(Array.isArray(branchesData) ? branchesData : (branchesData?.branches || []));
+      setDesignations(Array.isArray(desigData) ? desigData : (desigData?.designations || []));
+    } catch (e) { 
+      console.error(e);
+      setDoctors([]);
+    }
     setIsLoading(false);
   }, []);
 
@@ -142,7 +263,7 @@ export default function DoctorsPage() {
     setImagePreview(null);
   };
 
-  const filteredDoctors = doctors.filter((d) => {
+  const filteredDoctors = (Array.isArray(doctors) ? doctors : []).filter((d) => {
     const matchesSearch = !search || 
       d.name?.toLowerCase().includes(search.toLowerCase()) ||
       d.qualification?.toLowerCase().includes(search.toLowerCase());
@@ -159,7 +280,7 @@ export default function DoctorsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Manage Doctors</h2>
-          <p className="text-sm text-gray-500 mt-1">{doctors.length} doctors registered</p>
+          <p className="text-sm text-gray-500 mt-1">{(Array.isArray(doctors) ? doctors.length : 0)} doctors registered</p>
         </div>
         <div className="flex items-center gap-3">
           <Link
@@ -260,6 +381,7 @@ export default function DoctorsPage() {
             <table className="w-full text-sm">
               <thead className="bg-gray-50/80">
                 <tr>
+                  {isDragEnabled && <th className="w-10 px-4"></th>}
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Doctor</th>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">Department</th>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">Experience</th>
@@ -268,49 +390,22 @@ export default function DoctorsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {filteredDoctors.map((doc) => (
-                  <tr key={doc._id} className="hover:bg-gray-50/50 transition-colors">
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 font-bold text-xs shrink-0 overflow-hidden border border-gray-100">
-                          {doc.image_url ? (
-                            <img src={doc.image_url.startsWith('http') ? doc.image_url : doc.image_url} alt={doc.name} className="w-full h-full object-cover" />
-                          ) : (
-                            doc.name?.charAt(0)
-                          )}
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 leading-tight">{doc.name}</p>
-                          <p className="text-[11px] text-[#0d9488] font-bold uppercase mt-0.5">{doc.designation?.name || doc.designation || '-'}</p>
-                          <p className="text-[10px] text-gray-400 mt-0.5">{doc.qualification || '-'}</p>
-                          {doc.experience_location && (
-                            <p className="text-[10px] text-[#0d9488] font-bold uppercase mt-0.5">@ {doc.experience_location}</p>
-                          )}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-3.5 px-4 text-gray-600 hidden md:table-cell">{doc.speciality?.name || '-'}</td>
-                    <td className="py-3.5 px-4 text-gray-600 hidden lg:table-cell">{doc.experience_years ? `${doc.experience_years} yrs` : '-'}</td>
-                    <td className="py-3.5 px-4 hidden sm:table-cell">
-                      <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-semibold ${doc.is_active !== false ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
-                        {doc.is_active !== false ? 'Active' : 'Inactive'}
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-right">
-                      <div className="inline-flex gap-1">
-                        <button onClick={() => handleEdit(doc)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
-                          <Pencil className="w-4 h-4" />
-                        </button>
-                        <button onClick={() => handleDelete(doc._id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                  <SortableContext items={filteredDoctors.map(d => d._id)} strategy={verticalListSortingStrategy}>
+                    {filteredDoctors.map((doc) => (
+                      <SortableDoctorRow 
+                        key={doc._id} 
+                        doc={doc} 
+                        onEdit={handleEdit} 
+                        onDelete={handleDelete} 
+                        isDragEnabled={isDragEnabled}
+                      />
+                    ))}
+                  </SortableContext>
+                </DndContext>
                 {filteredDoctors.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="text-center py-16 text-gray-400">
+                    <td colSpan={isDragEnabled ? 6 : 5} className="text-center py-16 text-gray-400">
                       <Stethoscope className="w-10 h-10 mx-auto mb-3 text-gray-200" />
                       <p>No doctors found</p>
                     </td>

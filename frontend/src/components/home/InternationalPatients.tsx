@@ -18,10 +18,12 @@ export default function InternationalPatients({ specialities }: { specialities: 
     department: ""
   });
   const [submitting, setSubmitting] = useState(false);
+  const [statusMsg, setStatusMsg] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setStatusMsg(null);
     try {
       const response = await fetch('/api-backend/contacts', {
         method: 'POST',
@@ -42,13 +44,14 @@ export default function InternationalPatients({ specialities }: { specialities: 
         throw new Error(errorData.error || 'Failed to submit');
       }
 
-      alert("Thank you! Your inquiry has been sent. We will contact you shortly.");
+      setStatusMsg({ type: 'success', text: "Thank you! Your inquiry has been sent. We will contact you shortly." });
       setFormData({ name: "", email: "", contact: "", age: "", country: "", department: "" });
     } catch (error: any) {
       console.error("Inquiry error:", error);
-      alert(error.message || "Something went wrong. Please try again later.");
+      setStatusMsg({ type: 'error', text: error.message || "Something went wrong. Please try again later." });
     } finally {
       setSubmitting(false);
+      setTimeout(() => setStatusMsg(null), 6000);
     }
   };
 
@@ -182,6 +185,12 @@ export default function InternationalPatients({ specialities }: { specialities: 
                       </svg>
                     </div>
                   </div>
+
+                  {statusMsg && (
+                    <div className={`p-3 text-sm font-bold rounded mt-4 ${statusMsg.type === 'success' ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-red-100 text-red-700 border border-red-200'}`}>
+                      {statusMsg.text}
+                    </div>
+                  )}
 
                   <button
                     type="submit"

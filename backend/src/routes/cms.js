@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { getAllBranches, createBranch, updateBranch, deleteBranch, uploadBranch, reorderBranches } from '../controllers/branchController.js';
-import { getAllDoctors, createDoctor, updateDoctor, deleteDoctor, uploadDoctor, createSpeciality, updateSpeciality, deleteSpeciality, getAllDesignations, createDesignation, updateDesignation, deleteDesignation } from '../controllers/doctorController.js';
-import { getAllBookings } from '../controllers/bookingController.js';
+import { getAllDoctors, createDoctor, updateDoctor, deleteDoctor, uploadDoctor, createSpeciality, updateSpeciality, deleteSpeciality, getAllDesignations, createDesignation, updateDesignation, deleteDesignation, reorderDoctors } from '../controllers/doctorController.js';
+import { getAllBookings, markBookingRead, updateBookingStatus, deleteBooking } from '../controllers/bookingController.js';
 import { getSiteContent, setSiteContent } from '../controllers/cmsController.js';
 import { getAllNews, createNews, updateNews, deleteNews, getAdminNews, uploadNews } from '../controllers/newsController.js';
 import { 
@@ -44,6 +44,7 @@ router.delete('/branches/:id', deleteBranch);
 
 // Doctors CRUD
 router.get('/doctors', getAllDoctors);
+router.put('/doctors/reorder', reorderDoctors);
 router.post('/doctors', uploadDoctor.single('image'), createDoctor);
 router.put('/doctors/:id', uploadDoctor.single('image'), updateDoctor);
 router.delete('/doctors/:id', deleteDoctor);
@@ -61,6 +62,9 @@ router.delete('/designations/:id', deleteDesignation);
 
 // Bookings (read-only for CMS)
 router.get('/bookings', getAllBookings);
+router.patch('/bookings/:id/read', markBookingRead);
+router.patch('/bookings/:id/status', updateBookingStatus);
+router.delete('/bookings/:id', deleteBooking);
 
 // Site Content
 router.get('/content', getSiteContent);

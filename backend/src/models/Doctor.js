@@ -24,6 +24,7 @@ const doctorSchema = new mongoose.Schema(
     branches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Branch' }],
     designation: { type: mongoose.Schema.Types.ObjectId, ref: 'Designation', default: null },
     is_active: { type: Boolean, default: true },
+    sortIndex: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

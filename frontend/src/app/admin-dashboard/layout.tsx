@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 import {
   LayoutDashboard, Users, Building2, CalendarCheck, FileText,
   Stethoscope, Settings, LogOut, Menu, X, ChevronRight, ChevronDown, Newspaper, Award, Bell, Briefcase, Mail
@@ -64,6 +65,29 @@ export default function AdminDashboardLayout({
     }
     if (storedUser) setUser(JSON.parse(storedUser));
   }, [router]);
+
+  const fetcher = (url: string) => fetch(url, {
+    headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` }
+  }).then(res => res.json());
+
+  const { data: newContacts } = useSWR(user ? '/api-backend/contacts?status=new' : null, fetcher, { 
+    refreshInterval: 15000, 
+    revalidateOnFocus: true 
+  });
+
+  const { data: newApplications } = useSWR(user ? '/api-backend/applications?isRead=false' : null, fetcher, { 
+    refreshInterval: 15000, 
+    revalidateOnFocus: true 
+  });
+
+  const { data: newBookings } = useSWR(user ? '/api-backend/cms/bookings?status=pending' : null, fetcher, { 
+    refreshInterval: 15000, 
+    revalidateOnFocus: true 
+  });
+  
+  const unreadCount = Array.isArray(newContacts) ? newContacts.length : 0;
+  const unreadAppsCount = Array.isArray(newApplications) ? newApplications.length : 0;
+  const unreadBookingsCount = Array.isArray(newBookings) ? newBookings.length : 0;
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
@@ -187,7 +211,18 @@ export default function AdminDashboardLayout({
                 >
                   <Icon className={`w-5 h-5 ${isActive ? 'text-[#0d9488]' : ''}`} />
                   <span>{item.label}</span>
-                  {isActive && <ChevronRight className="w-4 h-4 ml-auto text-white/40" />}
+                  <div className="flex-1 flex items-center justify-end gap-2">
+                    {item.label === 'Contacts' && unreadCount > 0 && (
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
+                    )}
+                    {item.label === 'Job Portal' && unreadAppsCount > 0 && (
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
+                    )}
+                    {item.label === 'Bookings' && unreadBookingsCount > 0 && (
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
+                    )}
+                    {isActive && <ChevronRight className="w-4 h-4 text-white/40" />}
+                  </div>
                 </Link>
               );
             })}

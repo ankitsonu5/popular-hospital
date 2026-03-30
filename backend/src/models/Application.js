@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const applicationSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    dob: { type: String, required: true },
+    gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
     nationality: { type: String, required: true },
     identificationType: { type: String, required: true },
     mobile: { type: String, required: true },

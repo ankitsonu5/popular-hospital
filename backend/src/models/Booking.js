@@ -9,8 +9,9 @@ const bookingSchema = new mongoose.Schema(
     branch: { type: mongoose.Schema.Types.ObjectId, ref: 'Branch', required: true },
     slot_date: { type: String, required: true },
     slot_time: { type: String, required: true },
-    status: { type: String, enum: ['confirmed', 'cancelled', 'completed'], default: 'confirmed' },
+    status: { type: String, enum: ['pending', 'confirmed', 'done'], default: 'pending' },
     notes: { type: String, default: null },
+    isRead: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

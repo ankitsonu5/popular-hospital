@@ -2,6 +2,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import Application from '../models/Application.js';
+import { sendApplicationEmail } from '../services/emailService.js';
 
 // Multer Storage Config
 const storage = multer.diskStorage({
@@ -31,13 +32,13 @@ const fileFilter = (req, file, cb) => {
 export const upload = multer({ 
   storage, 
   fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
+  limits: { fileSize: 2 * 1024 * 1024 } // 2MB limit
 });
 
 // Submit Application
 export const submitApplication = async (req, res) => {
   try {
-    let { name, dob, nationality, identificationType, mobile, email, address, location, appliedFor } = req.body;
+    let { name, gender, nationality, identificationType, mobile, email, address, location, appliedFor } = req.body;
     
     // Safety check for appliedFor (if it's an empty string or 'null'/'undefined' string)
     if (!appliedFor || appliedFor === 'null' || appliedFor === 'undefined') {
@@ -51,7 +52,7 @@ export const submitApplication = async (req, res) => {
 
     const application = new Application({
       name,
-      dob,
+      gender,
       nationality,
       identificationType,
       mobile,
@@ -64,6 +65,12 @@ export const submitApplication = async (req, res) => {
     });
 
     await application.save();
+
+    // Send email notification (non-blocking)
+    sendApplicationEmail(application).catch((err) => {
+      console.error('[EMAIL] Failed to send application email:', err.message);
+    });
+
     res.status(201).json({ message: 'Application submitted successfully!', data: application });
   } catch (error) {
     res.status(500).json({ 
@@ -76,7 +83,11 @@ export const submitApplication = async (req, res) => {
 // Admin: List Applications
 export const getApplications = async (req, res) => {
   try {
-    const applications = await Application.find()
+    const filter = {};
+    if (req.query.isRead !== undefined) {
+      filter.isRead = req.query.isRead === 'true';
+    }
+    const applications = await Application.find(filter)
       .populate('appliedFor', 'designation department')
       .sort({ createdAt: -1 });
     res.json(applications);

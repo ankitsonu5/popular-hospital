@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { fetchDoctors, fetchBranches, fetchOpdSlots, createBooking } from '@/lib/api';
+import { fetchDoctors, fetchBranches, createBooking } from '@/lib/api';
 import type { Doctor, Branch } from '@/lib/api';
 
 type SearchParams = Promise<{ doctor?: string; branch?: string }>;
@@ -15,7 +15,6 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
   const [doctorId, setDoctorId] = useState('');
   const [branchId, setBranchId] = useState('');
   const [slotDate, setSlotDate] = useState('');
-  const [slots, setSlots] = useState<string[]>([]);
   const [slotTime, setSlotTime] = useState('');
   const [patientName, setPatientName] = useState('');
   const [patientPhone, setPatientPhone] = useState('');
@@ -37,17 +36,7 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
     });
   }, [presetDoctor, presetBranch]);
 
-  useEffect(() => {
-    if (!doctorId || !branchId || !slotDate) {
-      setSlots([]);
-      setSlotTime('');
-      return;
-    }
-    fetchOpdSlots(parseInt(doctorId, 10), parseInt(branchId, 10), slotDate)
-      .then((r) => setSlots(r.slots))
-      .catch(() => setSlots([]));
-    setSlotTime('');
-  }, [doctorId, branchId, slotDate]);
+
 
   const minDate = new Date().toISOString().slice(0, 10);
 
@@ -61,8 +50,8 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
     setLoading(true);
     try {
       await createBooking({
-        doctor_id: parseInt(doctorId, 10),
-        branch_id: parseInt(branchId, 10),
+        doctor: doctorId,
+        branch: branchId,
         slot_date: slotDate,
         slot_time: slotTime,
         patient_name: patientName,
@@ -105,7 +94,7 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
           >
             <option value="">Select doctor</option>
             {doctors.map((d) => (
-              <option key={d.id} value={d.id}>{d.name} – {d.speciality_name}</option>
+              <option key={d._id || d.id} value={d._id || d.id}>{d.name} – {d.speciality_name}</option>
             ))}
           </select>
         </div>
@@ -138,21 +127,14 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
         </div>
         <div>
           <label htmlFor="slotTime" className="mb-1 block text-sm font-medium text-gray-700">Time *</label>
-          <select
+          <input
             id="slotTime"
+            type="time"
             required
             value={slotTime}
             onChange={(e) => setSlotTime(e.target.value)}
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
-          >
-            <option value="">Select time</option>
-            {slots.map((t) => (
-              <option key={t} value={t}>{t}</option>
-            ))}
-            {doctorId && branchId && slotDate && slots.length === 0 && (
-              <option value="" disabled>No slots available – try another date</option>
-            )}
-          </select>
+          />
         </div>
       </div>
       <div className="mt-6 grid gap-6 sm:grid-cols-2">

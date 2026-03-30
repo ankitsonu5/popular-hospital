@@ -103,7 +103,7 @@ export async function fetchSpecialities(): Promise<Speciality[]> {
   }
 }
 
-export async function fetchOpdSlots(doctorId: number, branchId: number, date: string): Promise<{ date: string; slots: string[] }> {
+export async function fetchOpdSlots(doctorId: string, branchId: string, date: string): Promise<{ date: string; slots: string[] }> {
   try {
     const res = await fetch(api(`/opd/slots?doctor_id=${doctorId}&branch_id=${branchId}&date=${date}`));
     if (!res.ok) return { date, slots: [] };
@@ -292,7 +292,8 @@ export interface Speciality {
 }
 
 export interface Doctor {
-  id: string;
+  _id?: string;
+  id?: string;
   name: string;
   slug: string;
   speciality_id?: string;
@@ -323,8 +324,8 @@ export interface BookingInput {
   patient_name: string;
   patient_phone: string;
   patient_email?: string;
-  doctor_id: number;
-  branch_id: number;
+  doctor: string;
+  branch: string;
   slot_date: string;
   slot_time: string;
   notes?: string;

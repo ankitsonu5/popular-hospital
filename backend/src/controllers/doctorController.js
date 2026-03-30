@@ -57,6 +57,14 @@ export const getAllDoctors = async (req, res) => {
 
     // Custom sorting in-memory
     doctors.sort((a, b) => {
+      // First sort by sortIndex if they differ (default to 0 if undefined)
+      const aIndex = typeof a.sortIndex === 'number' ? a.sortIndex : 0;
+      const bIndex = typeof b.sortIndex === 'number' ? b.sortIndex : 0;
+      
+      if (aIndex !== bIndex) {
+        return aIndex - bIndex;
+      }
+
       const priorityNames = ['General Surgeon / Surgery', 'Gynecologist / OBGY'];
       const aSpec = a.speciality?.name || '';
       const bSpec = b.speciality?.name || '';
@@ -197,6 +205,32 @@ export const deleteDoctor = async (req, res) => {
     if (!doctor) return res.status(404).json({ error: 'Doctor not found' });
     res.json({ ok: true });
   } catch (error) {
+    res.status(500).json({ error: 'An internal error occurred.' });
+  }
+};
+
+// PUT /api/cms/doctors/reorder
+export const reorderDoctors = async (req, res) => {
+  try {
+    const { doctors } = req.body;
+    if (!Array.isArray(doctors)) {
+      return res.status(400).json({ error: 'doctors must be an array of { id, sortIndex }' });
+    }
+
+    const updates = doctors.map((doc) => ({
+      updateOne: {
+        filter: { _id: doc._id || doc.id },
+        update: { $set: { sortIndex: doc.sortIndex } },
+      },
+    }));
+
+    if (updates.length > 0) {
+      await Doctor.bulkWrite(updates);
+    }
+    
+    res.json({ ok: true });
+  } catch (error) {
+    console.error('Error reordering doctors:', error);
     res.status(500).json({ error: 'An internal error occurred.' });
   }
 };

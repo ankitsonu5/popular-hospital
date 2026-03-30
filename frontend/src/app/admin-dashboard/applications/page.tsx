@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { 
   Briefcase, Search, RefreshCw, Trash2, ExternalLink, 
   User, Mail, Phone, Calendar, Globe, MapPin, FileText, 
-  ArrowLeft, CheckCircle2, X, Printer
+  ArrowLeft, CheckCircle2, X, Printer, AlertTriangle
 } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { mutate } from 'swr';
 import Link from 'next/link';
 
 import { CareerItem } from '@/lib/api';
@@ -15,7 +17,7 @@ interface Application {
   name: string;
   email: string;
   mobile: string;
-  dob: string;
+  gender: string;
   nationality: string;
   identificationType: string;
   address?: string;
@@ -35,6 +37,7 @@ export default function JobPortalPage() {
   const [selectedApp, setSelectedApp] = useState<Application | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('Primary');
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   const fetchApplications = async () => {
     setLoading(true);
@@ -67,6 +70,7 @@ export default function JobPortalPage() {
         });
         if (resp.ok) {
           setApplications(prev => prev.map(a => a._id === app._id ? { ...a, isRead: true } : a));
+          mutate('/api-backend/applications?isRead=false');
         }
       } catch (err) {
         console.error('Error marking as read:', err);
@@ -91,19 +95,62 @@ export default function JobPortalPage() {
     }
   };
 
-  const handleDelete = async (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!confirm('Are you sure you want to delete this application?')) return;
-    
+  const promptDelete = (id: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setDeleteConfirmId(id);
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteConfirmId) return;
     try {
-      const resp = await fetch(`/api-backend/applications/${id}`, { method: 'DELETE' });
+      const resp = await fetch(`/api-backend/applications/${deleteConfirmId}`, { method: 'DELETE' });
       if (resp.ok) {
-        setApplications(prev => prev.filter(app => app._id !== id));
-        if (selectedApp?._id === id) setSelectedApp(null);
+        setApplications(prev => prev.filter(app => app._id !== deleteConfirmId));
+        if (selectedApp?._id === deleteConfirmId) setSelectedApp(null);
+        toast.success('Application deleted successfully');
+      } else {
+        toast.error('Failed to delete application');
       }
     } catch (err: any) {
       console.error('Error deleting application:', err);
+      toast.error('Failed to delete application');
+    } finally {
+      setDeleteConfirmId(null);
     }
+  };
+
+  const renderDeleteModal = () => {
+    if (!deleteConfirmId) return null;
+    return (
+      <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200">
+        <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+          <div className="p-6">
+            <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-4 mx-auto">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-center text-gray-900 mb-2">Delete Application</h3>
+            <p className="text-gray-500 text-sm text-center">
+              Are you sure you want to delete this application? This action cannot be undone.
+            </p>
+          </div>
+          <div className="flex bg-gray-50 border-t border-gray-100">
+            <button 
+              onClick={() => setDeleteConfirmId(null)}
+              className="flex-1 py-3.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 transition-colors"
+            >
+              Cancel
+            </button>
+            <div className="w-px bg-gray-200"></div>
+            <button 
+              onClick={confirmDelete}
+              className="flex-1 py-3.5 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const filteredApps = applications.filter(app => {
@@ -185,7 +232,7 @@ export default function JobPortalPage() {
             <button onClick={() => window.print()} className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20">
               <Printer className="w-4 h-4" /> Print A4 Form
             </button>
-            <button onClick={(e) => handleDelete(selectedApp._id, e)} className="flex items-center gap-2 bg-red-50 text-red-600 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-red-100 transition-all border border-red-100/50">
+            <button onClick={(e) => promptDelete(selectedApp._id, e)} className="flex items-center gap-2 bg-red-50 text-red-600 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-red-100 transition-all border border-red-100/50">
               <Trash2 className="w-4 h-4" /> Delete Profile
             </button>
           </div>
@@ -239,7 +286,7 @@ export default function JobPortalPage() {
                     <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Personal Identification</h4>
                   </div>
                   <div className="grid gap-4">
-                    <InfoRow label="Date of Birth" value={selectedApp.dob} />
+                    <InfoRow label="Gender" value={selectedApp.gender} />
                     <InfoRow label="Nationality" value={selectedApp.nationality} />
                     <InfoRow label="Identity Proof" value={selectedApp.identificationType} />
                   </div>
@@ -311,6 +358,7 @@ export default function JobPortalPage() {
             </div>
           </div>
         </div>
+        {renderDeleteModal()}
       </div>
     );
   }
@@ -412,7 +460,7 @@ export default function JobPortalPage() {
                 {/* Date and Hover Actions */}
                 <div className="flex items-center gap-4 shrink-0 px-2 min-w-[100px] justify-end relative">
                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md absolute right-0">
-                      <button onClick={(e) => handleDelete(app._id, e)} className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-all">
+                      <button onClick={(e) => promptDelete(app._id, e)} className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-all">
                         <Trash2 className="w-4 h-4" />
                       </button>
                    </div>
@@ -425,6 +473,7 @@ export default function JobPortalPage() {
           </div>
         )}
       </div>
+      {renderDeleteModal()}
     </div>
   );
 }
