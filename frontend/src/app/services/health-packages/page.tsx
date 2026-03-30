@@ -30,6 +30,9 @@ const WellnessPage = () => {
     }))
   );
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [inquiryData, setInquiryData] = useState({ name: "", phone: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleBuyNow = (cardName: string) => {
     setSelectedCard(cardName);
@@ -55,6 +58,35 @@ const WellnessPage = () => {
     const updatedMembers = [...members];
     updatedMembers[index] = { ...updatedMembers[index], [field]: value };
     setMembers(updatedMembers);
+  };
+
+  const handleInquirySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    
+    try {
+      const response = await fetch('/api-backend/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...inquiryData,
+          subject: 'Health Fit Card Inquiry'
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setInquiryData({ name: "", phone: "", email: "", message: "" });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -87,18 +119,18 @@ const WellnessPage = () => {
               <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16 pb-12">
                 <div className="relative">
                   <div className="w-24 h-1.5 bg-[#E85222] rounded-full mb-6"></div>
-                  <h2 className="text-5xl md:text-7xl font-black text-[#0b1c43] font-heading tracking-tighter leading-[0.9] uppercase">
+                  <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading tracking-tight leading-tight uppercase">
                     Application-cum-consent<br/>Form
                   </h2>
-                  <h3 className="text-2xl md:text-4xl font-black text-[#E85222] italic font-heading mt-2">
+                  <h3 className="text-lg md:text-2xl font-black text-[#E85222] italic font-heading mt-2">
                      For Family Health Card
                   </h3>
                 </div>
                 
                 {/* Selected Plan Badge - Premium Style (Matches User Image) */}
-                <div className="bg-[#FFF5F0] px-10 py-8 rounded-[2rem] md:rounded-full border-2 border-orange-100 shadow-xl shrink-0 flex flex-col items-center min-w-[320px] transform hover:scale-105 transition-transform duration-500">
-                  <span className="text-[12px] font-black text-[#E85222] uppercase tracking-[0.4em] block mb-2">Selected Plan</span>
-                  <span className="text-2xl md:text-3xl font-black text-[#0b1c43] text-center">{selectedCard}</span>
+                <div className="bg-[#FFF5F0] px-6 py-4 rounded-full border border-orange-100 shadow-md shrink-0 flex flex-col items-center min-w-[200px] hover:scale-105 transition-transform duration-300">
+                  <span className="text-[10px] font-black text-[#E85222] uppercase tracking-[0.3em] block mb-1">Selected Plan</span>
+                  <span className="text-base md:text-lg font-black text-[#0b1c43] text-center">{selectedCard}</span>
                 </div>
               </div>
 
@@ -343,6 +375,124 @@ const WellnessPage = () => {
                 </div>
               </div>
             </section>
+      {/* Contact Form Section */}
+      <section id="apply" className="py-24 px-6 bg-[#0b1c43]/5">
+        <div className="container mx-auto max-w-[1366px]">
+          <div className="bg-white rounded-[4rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row shadow-blue-900/10">
+            <div className="lg:w-1/2 bg-[#0b1c43] p-8 md:p-16 text-white flex flex-col justify-center">
+              <h2 className="text-4xl md:text-5xl font-black mb-8 font-heading tracking-tight">
+                If you wish to know more about Health Fit Card{" "}
+                <span className="text-[#E85222]">contact us</span>
+              </h2>
+              <p className="text-xl text-gray-300 mb-10 leading-relaxed font-medium">
+                
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-center gap-6 group">
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-white text-2xl group-hover:bg-[#E85222] transition-colors">
+                    📞
+                  </div>
+                  <div>
+                    <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs">
+                      Call Helpline
+                    </span>
+                    <span className="text-xl font-bold">+91 7800001895 / 96</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-6 group">
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-white text-2xl group-hover:bg-hospital-teal transition-colors">
+                    ✉️
+                  </div>
+                  <div>
+                    <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs">
+                      Email Us
+                    </span>
+                    <span className="text-lg md:text-xl font-bold break-all leading-tight">
+                      info@popularhospitals.in
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="lg:w-1/2 p-8 md:p-16">
+              <form onSubmit={handleInquirySubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
+                      Full Name
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
+                      placeholder="Ex: Rahul Sharma"
+                      value={inquiryData.name}
+                      onChange={(e) => setInquiryData({...inquiryData, name: e.target.value})}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
+                      Phone Number
+                    </label>
+                    <input
+                      required
+                      type="tel"
+                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
+                      placeholder="+91 98XXX XXXXX"
+                      value={inquiryData.phone}
+                      onChange={(e) => setInquiryData({...inquiryData, phone: e.target.value})}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
+                    email
+                  </label>
+                  <input
+                      required
+                      type="email"
+                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
+                      placeholder="Enter Your Email"
+                      value={inquiryData.email}
+                      onChange={(e) => setInquiryData({...inquiryData, email: e.target.value})}
+                    />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
+                    Message (Optional)
+                  </label>
+                  <textarea
+                    rows={4}
+                    className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
+                    placeholder="How can we help you?"
+                    value={inquiryData.message}
+                    onChange={(e) => setInquiryData({...inquiryData, message: e.target.value})}
+                  ></textarea>
+                </div>
+                
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 text-green-700 rounded-xl border border-green-200 font-bold text-sm">
+                    Thank you! Your inquiry has been submitted successfully.
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 text-red-700 rounded-xl border border-red-200 font-bold text-sm">
+                    Oops! Something went wrong. Please try again.
+                  </div>
+                )}
+
+                <button 
+                  disabled={isSubmitting}
+                  className="w-full py-5 bg-[#E85222] text-white rounded-2xl font-black hover:bg-[#d1451a] transition-all shadow-xl shadow-orange-900/20 uppercase tracking-widest text-sm disabled:opacity-50"
+                >
+                  {isSubmitting ? 'Sending...' : 'Submit Application'}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Card Tiers Selection */}
       <section className="py-24 px-6 relative">
@@ -783,99 +933,7 @@ const WellnessPage = () => {
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section id="apply" className="py-24 px-6 bg-[#0b1c43]/5">
-        <div className="container mx-auto max-w-[1366px]">
-          <div className="bg-white rounded-[4rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row shadow-blue-900/10">
-            <div className="lg:w-1/2 bg-[#0b1c43] p-8 md:p-16 text-white flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl font-black mb-8 font-heading tracking-tight">
-                Ready to join the{" "}
-                <span className="text-[#E85222]">Health Fit</span> family?
-              </h2>
-              <p className="text-xl text-gray-300 mb-10 leading-relaxed font-medium">
-                Fill out the form and our Wellness Representative will contact
-                you to explain all benefits and help you get
-                started.
-              </p>
-              <div className="space-y-6">
-                <div className="flex items-center gap-6 group">
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-white text-2xl group-hover:bg-[#E85222] transition-colors">
-                    📞
-                  </div>
-                  <div>
-                    <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs">
-                      Call Helpline
-                    </span>
-                    <span className="text-xl font-bold">+91 7800001895 / 96</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6 group">
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-white text-2xl group-hover:bg-hospital-teal transition-colors">
-                    ✉️
-                  </div>
-                  <div>
-                    <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs">
-                      Email Us
-                    </span>
-                    <span className="text-lg md:text-xl font-bold break-all leading-tight">
-                      info@popularhospitals.in
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:w-1/2 p-8 md:p-16">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
-                      placeholder="Ex: Rahul Sharma"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
-                      placeholder="+91 98XXX XXXXX"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                    email
-                  </label>
-                  <input
-                      type="email"
-                      className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
-                      placeholder="Enter Your Email"
-                    />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                    Message (Optional)
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
-                    placeholder="How can we help you?"
-                  ></textarea>
-                </div>
-                <button className="w-full py-5 bg-[#E85222] text-white rounded-2xl font-black hover:bg-[#d1451a] transition-all shadow-xl shadow-orange-900/20 uppercase tracking-widest text-sm">
-                  Submit Application
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* How to Use Section */}
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
