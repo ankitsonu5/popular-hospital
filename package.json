@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "cd backend && npm run dev",
-    "build": "npm run build:backend && npm run build:frontend",
-    "build:frontend": "cd frontend && npm run build",
-    "build:backend": "cd backend && npm run build",
+    "dev:frontend": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; npm --prefix (Join-Path $pkg 'frontend') run dev",
+    "dev:backend": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; npm --prefix (Join-Path $pkg 'backend') run dev",
+    "build": "npm run build:backend; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; npm run build:frontend",
+    "build:frontend": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; npm --prefix (Join-Path $pkg 'frontend') run build",
+    "build:backend": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; npm --prefix (Join-Path $pkg 'backend') run build",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
-    "start:frontend": "cd frontend && npm run start",
-    "start:backend": "cd backend && npm run start"
+    "start:frontend": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; npm --prefix (Join-Path $pkg 'frontend') run start",
+    "start:backend": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; npm --prefix (Join-Path $pkg 'backend') run start"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

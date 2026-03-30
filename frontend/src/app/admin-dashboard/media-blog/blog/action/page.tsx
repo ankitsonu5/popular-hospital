@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Newspaper, Loader2, Save, X, ArrowLeft, Image as ImageIcon, Sparkles, Eye, Trash2 } from 'lucide-react';
+import { Newspaper, Loader2, Save, X, ArrowLeft, Image as ImageIcon, Sparkles, Eye } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
@@ -11,8 +11,19 @@ const Editor = dynamic(() => import('@/components/TinyMCEEditor'), {
   loading: () => <div className="h-[400px] animate-pulse bg-gray-100 rounded-xl" />
 });
 import { getImageUrl } from '@/lib/api';
+const BLOG_CMS_API = '/api-backend/cms/blogs';
+const BLOG_IMAGE_UPLOAD_API = '/api-backend/blog-image-direct';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
+const normalizeEditorImagePath = (value: string) => {
+  if (!value) return value;
+  const match = value.match(/\/uploads\/[^"'\s)]+/i);
+  return match ? match[0] : value;
+};
+
+const normalizeEditorHtml = (html: string) => {
+  if (!html) return '';
+  return html.replace(/https?:\/\/[^"'\s<]+(\/uploads\/[^"'\s<]+)/gi, '$1');
+};
 
 const CATEGORIES = [
   "Best Cancer Specialist Hospital", "best cancer specialist hospital in India", "best cardiology hospital",
@@ -51,7 +62,7 @@ function BlogActionForm() {
     if (editId) {
       const fetchBlog = async () => {
         try {
-          const res = await fetch(`${API_URL}/api/cms/blogs`, {
+          const res = await fetch(BLOG_CMS_API, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` }
           });
           const data = await res.json();
@@ -59,10 +70,10 @@ function BlogActionForm() {
           if (item) {
             setFormData({
                ...item,
-               content: typeof item.content === 'string' ? item.content : (item.content ? item.content.join('\n\n') : ''),
+               content: normalizeEditorHtml(typeof item.content === 'string' ? item.content : (item.content ? item.content.join('\n\n') : '')),
                dateIso: item.date ? new Date(item.date).toISOString().split('T')[0] : ''
             });
-            if (item.image) setImagePreview(item.image.startsWith('http') ? item.image : `${API_URL}${item.image}`);
+            if (item.image) setImagePreview(getImageUrl(item.image));
           }
         } catch (err) { console.error(err); }
         finally { setLoading(false); }
@@ -77,13 +88,13 @@ function BlogActionForm() {
     
     const submitData = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
-      if (key !== 'image') submitData.append(key, String(value));
+      if (key !== 'image') submitData.append(key, key === 'content' ? normalizeEditorHtml(String(value)) : String(value));
     });
     
     if (imageFile) submitData.append('image', imageFile);
 
     try {
-      const url = editId ? `${API_URL}/api/cms/blogs/${editId}` : `${API_URL}/api/cms/blogs`;
+      const url = editId ? `${BLOG_CMS_API}/${editId}` : BLOG_CMS_API;
       const method = editId ? 'PUT' : 'POST';
       const res = await fetch(url, {
         method,
@@ -177,7 +188,6 @@ function BlogActionForm() {
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Snippet / Excerpt</label>
                   <div className="rounded-xl overflow-hidden border border-gray-200">
                       <Editor
-                        apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
                         value={formData.excerpt}
                         onEditorChange={(content: string) => setFormData({ ...formData, excerpt: content })}
                         init={{ height: 180, menubar: false, plugins: ['link'], toolbar: 'bold italic | link | removeformat', branding: false, statusbar: false }}
@@ -189,27 +199,26 @@ function BlogActionForm() {
                   <label className="block text-sm font-semibold text-gray-700 mb-4">Detailed Article Content *</label>
                   <div className="rounded-xl overflow-hidden border border-gray-200 min-h-[700px]">
                     <Editor
-                      apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
                       value={formData.content}
-                      onEditorChange={(content: string) => setFormData({ ...formData, content: content })}
+                      onEditorChange={(content: string) => setFormData({ ...formData, content: normalizeEditorHtml(content) })}
                       init={{
                         height: 700,
                         menubar: true,
                         plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount emoticons codesample',
                         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | image link media table | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat | help',
-                        images_upload_url: `${API_URL}/api/blog-image-direct`,
+                        images_upload_url: BLOG_IMAGE_UPLOAD_API,
                         branding: false,
                         statusbar: false,
                         images_upload_handler: (blobInfo: any) => new Promise((resolve, reject) => {
                             const fd = new FormData();
                             fd.append('file', blobInfo.blob(), blobInfo.filename());
-                            fetch(`${API_URL}/api/blog-image-direct`, {
+                            fetch(BLOG_IMAGE_UPLOAD_API, {
                                 method: 'POST',
                                 headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` },
                                 body: fd
                             })
                             .then(res => res.ok ? res.json() : reject('Upload failed'))
-                            .then(json => json.location ? resolve(json.location) : reject('Invalid location'))
+                            .then(json => json.location ? resolve(normalizeEditorImagePath(json.location)) : reject('Invalid location'))
                             .catch(err => reject(err.message));
                         })
                       }}

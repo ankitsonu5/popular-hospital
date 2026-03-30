@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; Set-Location $pkg; node (Join-Path $pkg 'node_modules/next/dist/bin/next') dev",
+    "build": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; Set-Location $pkg; node (Join-Path $pkg 'node_modules/next/dist/bin/next') build",
+    "start": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; Set-Location $pkg; node (Join-Path $pkg 'node_modules/next/dist/bin/next') start",
+    "lint": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; Set-Location $pkg; node (Join-Path $pkg 'node_modules/next/dist/bin/next') lint"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

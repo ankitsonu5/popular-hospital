@@ -4,6 +4,35 @@ import fs from 'fs';
 import Blog from '../models/Blog.js';
 import { escapeRegex } from '../middleware/security.js';
 
+const normalizeUploadPath = (value = '') => {
+  if (typeof value !== 'string' || !value) return '';
+  const match = value.match(/\/uploads\/[^"'\s)]+/i);
+  return match ? match[0] : value;
+};
+
+const normalizeRichContent = (content = '') => {
+  if (typeof content !== 'string' || !content) return '';
+  return content.replace(/https?:\/\/[^"'\s<]+(\/uploads\/[^"'\s<]+)/gi, '$1');
+};
+
+const extractContentImages = (content = '') => {
+  if (typeof content !== 'string' || !content) return [];
+  const matches = [...content.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)];
+  return [...new Set(matches.map((match) => normalizeUploadPath(match[1])).filter(Boolean))];
+};
+
+const normalizeBlogOutput = (blogDoc) => {
+  const obj = blogDoc.toObject();
+  if (obj.content && Array.isArray(obj.content)) {
+    obj.content = obj.content.map(p => `<p>${p}</p>`).join('');
+  }
+  obj.content = normalizeRichContent(obj.content || '');
+  obj.contentImages = Array.isArray(obj.contentImages) && obj.contentImages.length
+    ? obj.contentImages.map(normalizeUploadPath).filter(Boolean)
+    : extractContentImages(obj.content);
+  return obj;
+};
+
 // Setup Multer Storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -39,13 +68,7 @@ export const getAllBlogs = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 0;
     const blogs = await Blog.find({ isActive: true }).sort({ createdAt: -1 }).limit(limit);
-    const normalized = blogs.map(b => {
-      const obj = b.toObject();
-      if (obj.content && Array.isArray(obj.content)) {
-        obj.content = obj.content.map(p => `<p>${p}</p>`).join('');
-      }
-      return obj;
-    });
+    const normalized = blogs.map(normalizeBlogOutput);
     res.json(normalized);
   } catch (error) {
     console.error('[BLOG]', error.message);
@@ -110,10 +133,7 @@ export const getBlogBySlug = async (req, res) => {
   try {
     const blog = await Blog.findOne({ slug: req.params.slug, isActive: true });
     if (!blog) return res.status(404).json({ error: 'Blog article not found' });
-    const obj = blog.toObject();
-    if (obj.content && Array.isArray(obj.content)) {
-      obj.content = obj.content.map(p => `<p>${p}</p>`).join('');
-    }
+    const obj = normalizeBlogOutput(blog);
     res.json(obj);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -148,13 +168,7 @@ export const searchBlogs = async (req, res) => {
 export const getAdminBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find().sort({ createdAt: -1 });
-    const normalized = blogs.map(b => {
-      const obj = b.toObject();
-      if (obj.content && Array.isArray(obj.content)) {
-        obj.content = obj.content.map(p => `<p>${p}</p>`).join('');
-      }
-      return obj;
-    });
+    const normalized = blogs.map(normalizeBlogOutput);
     res.json(normalized);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -172,7 +186,8 @@ export const createBlog = async (req, res) => {
       focusKeyword, imageAlt
     } = req.body;
     
-    const imagePath = req.file ? `/uploads/blogs/${req.file.filename}` : (req.body.image || '');
+    const imagePath = req.file ? `/uploads/blogs/${req.file.filename}` : normalizeUploadPath(req.body.image || '');
+    const normalizedContent = normalizeRichContent(content || '');
     
     // Ensure keywords are synced if one is provided
     const finalFocusKeyword = focusKeyword || '';
@@ -182,7 +197,8 @@ export const createBlog = async (req, res) => {
       title,
       slug,
       excerpt: excerpt || '',
-      content: content || '',
+      content: normalizedContent,
+      contentImages: extractContentImages(normalizedContent),
       author: author || 'popularhospital-admin',
       date,
       image: imagePath,
@@ -216,11 +232,13 @@ export const updateBlog = async (req, res) => {
     const finalFocusKeyword = focusKeyword || '';
     const finalMetaKeywords = metaKeywords || finalFocusKeyword;
 
+    const normalizedContent = normalizeRichContent(content || '');
     const updates = {
       title,
       slug,
       excerpt: excerpt || '',
-      content: content || '',
+      content: normalizedContent,
+      contentImages: extractContentImages(normalizedContent),
       author: author || 'popularhospital-admin',
       date,
       category: isUncategorized === 'true' || isUncategorized === true ? '' : category,
@@ -236,13 +254,13 @@ export const updateBlog = async (req, res) => {
     if (req.file) {
       updates.image = `/uploads/blogs/${req.file.filename}`;
     } else if (image && image.trim() !== '') {
-      updates.image = image;
+      updates.image = normalizeUploadPath(image);
     }
 
     const blog = await Blog.findByIdAndUpdate(req.params.id, updates, { new: true });
     if (!blog) return res.status(404).json({ error: 'Blog not found' });
     
-    res.json(blog);
+    res.json(normalizeBlogOutput(blog));
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -319,10 +337,8 @@ export const uploadBlogImage = (req, res) => {
       return res.status(400).json({ error: 'No file uploaded' });
     }
     // TinyMCE expects a JSON response with a 'location' property
-    const protocol = req.protocol;
-    const host = req.get('host');
-    const imageUrl = `${protocol}://${host}/uploads/blogs/${req.file.filename}`;
-    res.json({ location: imageUrl });
+    const imagePath = `/uploads/blogs/${req.file.filename}`;
+    res.json({ location: imagePath, path: imagePath });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

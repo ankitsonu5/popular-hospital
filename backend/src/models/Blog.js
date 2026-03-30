@@ -19,6 +19,7 @@ const blogSchema = new mongoose.Schema(
     slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
     excerpt: { type: String, default: '' },
     content: { type: String, default: '' }, // Store rich HTML from CMS
+    contentImages: [{ type: String }], // Embedded editor image paths from rich HTML
     image: { type: String, required: true }, // main thumbnail image path
     imageAlt: { type: String, default: '' }, // for SEO Full Content (Article History) *& Accessibility
     author: { type: String, default: 'popularhospital-admin' },

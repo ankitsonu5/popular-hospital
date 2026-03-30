@@ -294,3 +294,10 @@ body {
   box-shadow: none !important;
   border: none !important;
 }
+
+/* ───────────────────────────────────────────────────────────────── */
+/* HIDE TINY CLOUD WARNING                                           */
+/* ───────────────────────────────────────────────────────────────── */
+.tox-notifications-container {
+  display: none !important;
+}

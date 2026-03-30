@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node src/index.js",
+    "dev": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; Set-Location $pkg; node (Join-Path $pkg 'src/index.js')",
     "build": "echo \"No backend build step required\"",
-    "start": "node src/index.js",
-    "db:seed": "node src/seed.js"
+    "start": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; Set-Location $pkg; node (Join-Path $pkg 'src/index.js')",
+    "db:seed": "$pkg = (Split-Path $env:npm_package_json -Parent) -replace '^\\\\\\\\\\?\\\\', ''; Set-Location $pkg; node (Join-Path $pkg 'src/seed.js')"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

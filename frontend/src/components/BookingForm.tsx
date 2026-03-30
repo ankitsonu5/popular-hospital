@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { fetchDoctors, fetchBranches, createBooking } from '@/lib/api';
 import type { Doctor, Branch } from '@/lib/api';
+import { formatTimeToAmPm } from '@/lib/time';
 
 type SearchParams = Promise<{ doctor?: string; branch?: string }>;
 
@@ -135,6 +136,9 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
             onChange={(e) => setSlotTime(e.target.value)}
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
           />
+          {slotTime && (
+            <p className="mt-1 text-xs text-gray-500">Selected time: {formatTimeToAmPm(slotTime)}</p>
+          )}
         </div>
       </div>
       <div className="mt-6 grid gap-6 sm:grid-cols-2">

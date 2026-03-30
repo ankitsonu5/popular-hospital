@@ -182,7 +182,6 @@ function NewsActionForm() {
                   <label className="block text-sm font-semibold text-gray-700 mb-4">Detailed Article Content *</label>
                   <div className="rounded-xl overflow-hidden border border-gray-200 min-h-[500px]">
                     <Editor
-                      apiKey='is3j4bzf30lgwckvfur7e3gakfrp7cs9deounruffapc2zvl'
                       value={formData.content}
                       onEditorChange={(content: string) => setFormData({ ...formData, content: content })}
                       init={{
@@ -191,8 +190,21 @@ function NewsActionForm() {
                         plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount emoticons codesample',
                         toolbar: 'undo redo | blocks | bold italic underline | image link table | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
                         content_style: 'body { font-family:Inter,Helvetica,Arial,sans-serif; font-size:16px }',
+                        images_upload_url: `${API_URL}/api/blog-image-direct`,
                         branding: false,
-                        statusbar: false
+                        statusbar: false,
+                        images_upload_handler: (blobInfo: any) => new Promise((resolve, reject) => {
+                            const fd = new FormData();
+                            fd.append('file', blobInfo.blob(), blobInfo.filename());
+                            fetch(`${API_URL}/api/blog-image-direct`, {
+                                method: 'POST',
+                                headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` },
+                                body: fd
+                            })
+                            .then(res => res.ok ? res.json() : reject('Upload failed'))
+                            .then(json => json.location ? resolve(json.location) : reject('Invalid location'))
+                            .catch(err => reject(err.message));
+                        })
                       }}
                     />
                   </div>

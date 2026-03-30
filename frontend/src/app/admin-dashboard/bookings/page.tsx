@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { mutate } from 'swr';
+import { formatTimeToAmPm } from '@/lib/time';
 
 const API_URL = '/api-backend';
 
@@ -233,7 +234,7 @@ export default function BookingsAdminPage() {
                       <Clock className="w-5 h-5 text-teal-500 shrink-0" />
                       <div>
                          <div className="text-[11px] font-semibold text-gray-400">TIME SLOT</div>
-                         <div className="text-sm font-semibold text-gray-800">{selected.slot_time}</div>
+                         <div className="text-sm font-semibold text-gray-800">{formatTimeToAmPm(selected.slot_time)}</div>
                       </div>
                     </div>
                   </div>
@@ -306,8 +307,8 @@ export default function BookingsAdminPage() {
                 </div>
 
                 <div className="flex-1 min-w-0 pr-4 w-full text-gray-600 font-medium">
-                  <span className="text-blue-600 font-bold hidden sm:inline mr-2 text-[13px]">{booking.slot_date} at {booking.slot_time}</span>
-                  <span className="sm:hidden text-blue-600 font-bold block mb-1 text-xs">{booking.slot_date} at {booking.slot_time}</span>
+                  <span className="text-blue-600 font-bold hidden sm:inline mr-2 text-[13px]">{booking.slot_date} at {formatTimeToAmPm(booking.slot_time)}</span>
+                  <span className="sm:hidden text-blue-600 font-bold block mb-1 text-xs">{booking.slot_date} at {formatTimeToAmPm(booking.slot_time)}</span>
                   <span className="text-gray-500 truncate inline-block max-w-full align-bottom">
                     - {booking.doctor?.name || 'Doctor'} @ {booking.branch?.name || 'Branch'}
                   </span>
