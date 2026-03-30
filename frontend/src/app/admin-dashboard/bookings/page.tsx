@@ -72,10 +72,10 @@ export default function BookingsAdminPage() {
       });
       if (!res.ok) throw new Error('Failed to delete');
       
-      setBookings((prev) => prev.filter((b) => b._id !== deleteConfirmId));
-      if (selected?._id === deleteConfirmId) setSelected(null);
+      setSelected(null);
       toast.success('Booking deleted successfully');
       mutate('/api-backend/cms/bookings?status=pending');
+      await fetchBookings();
     } catch (e) {
       console.error(e);
       toast.error('Failed to delete booking');

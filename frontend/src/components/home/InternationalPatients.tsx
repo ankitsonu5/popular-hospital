@@ -60,7 +60,7 @@ export default function InternationalPatients({ specialities }: { specialities: 
       {/* Mobile Only Background Image */}
       <div className="absolute inset-0 z-0 lg:hidden">
         <Image
-          src="/images/international_patients.png"
+          src="/images/international_patients.png?v=2"
           alt="International Patients Background"
           fill
           className="object-cover"
@@ -207,7 +207,7 @@ export default function InternationalPatients({ specialities }: { specialities: 
           {/* Desktop Only Side Image */}
           <div className="relative hidden lg:block flex-1 w-full h-[600px] overflow-hidden rounded-2xl shadow-xl">
             <Image
-              src="/images/international_patients.png"
+              src="/images/international_patients.png?v=2"
               alt="International Patient Inquiry"
               fill
               className="object-contain"

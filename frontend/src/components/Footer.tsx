@@ -77,6 +77,7 @@ export function Footer() {
           <div>
             <h3 className="text-xl font-bold font-heading mb-6">Quick Links</h3>
             <ul className="space-y-3 text-[17px] text-gray-200">
+              <li><Link href="/book" className="hover:text-white transition-colors">Book an Appointment</Link></li>
               <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
               <li><Link href="/payment-policy" className="hover:text-white transition-colors">Payment Policy</Link></li>
