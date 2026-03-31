@@ -10,6 +10,11 @@ const newsSchema = new mongoose.Schema(
     author: { type: String, default: null }, // Using 'author' field to store News Source
     date: { type: String, required: true }, // Display date (e.g., "February 10, 2026")
     isActive: { type: Boolean, default: true },
+    // Meta SEO fields
+    metaTitle: { type: String, default: '' },
+    metaDescription: { type: String, default: '' },
+    metaKeywords: { type: String, default: '' },
+    focusKeyword: { type: String, default: '' },
   },
   { timestamps: true }
 );

@@ -52,7 +52,7 @@ function NewsList() {
   );
 
   return (
-    <div className="max-w-[1366px] mx-auto pb-20 font-sans tracking-tight">
+    <div className="max-w-[1700px] mx-auto pb-20 font-sans tracking-tight px-4 sm:px-6 lg:px-8">
       {/* ─── Modern Header ─── */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div className="space-y-1">

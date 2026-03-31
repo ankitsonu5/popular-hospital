@@ -207,7 +207,7 @@ export const createBlog = async (req, res) => {
       isUncategorized: isUncategorized === 'true' || isUncategorized === true,
       isActive: isActive !== 'false' && isActive !== false,
       metaTitle: metaTitle || title, // Fallback to title
-      metaDescription: metaDescription || excerpt || '',
+      metaDescription: metaDescription !== undefined ? metaDescription : (excerpt || ''),
       metaKeywords: finalMetaKeywords,
       focusKeyword: finalFocusKeyword
     });
@@ -245,7 +245,7 @@ export const updateBlog = async (req, res) => {
       isUncategorized: isUncategorized === 'true' || isUncategorized === true,
       isActive: isActive !== 'false' && isActive !== false,
       metaTitle: metaTitle || title,
-      metaDescription: metaDescription || excerpt || '',
+      metaDescription: metaDescription !== undefined ? metaDescription : (excerpt || ''),
       metaKeywords: finalMetaKeywords,
       focusKeyword: finalFocusKeyword,
       imageAlt: imageAlt || title

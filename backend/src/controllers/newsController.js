@@ -53,7 +53,10 @@ export const getAdminNews = async (req, res) => {
 // POST /api/cms/news (Admin)
 export const createNews = async (req, res) => {
   try {
-    const { title, slug, content, date, author, isActive, excerpt } = req.body;
+    const { 
+      title, slug, content, date, author, isActive, excerpt,
+      metaTitle, metaDescription, metaKeywords, focusKeyword 
+    } = req.body;
     
     // Normalize files from .any() or .fields()
     const files = req.files || [];
@@ -72,7 +75,11 @@ export const createNews = async (req, res) => {
       image: imagePath,
       date,
       author,
-      isActive: isActive !== 'false' && isActive !== false
+      isActive: isActive !== 'false' && isActive !== false,
+      metaTitle: metaTitle || title,
+      metaDescription: metaDescription !== undefined ? metaDescription : (excerpt || ''),
+      metaKeywords: metaKeywords || focusKeyword || '',
+      focusKeyword: focusKeyword || ''
     });
     res.status(201).json(news);
   } catch (error) {
@@ -83,7 +90,10 @@ export const createNews = async (req, res) => {
 // PUT /api/cms/news/:id (Admin)
 export const updateNews = async (req, res) => {
   try {
-    const { title, slug, content, date, author, isActive, image, excerpt } = req.body;
+    const { 
+      title, slug, content, date, author, isActive, image, excerpt,
+      metaTitle, metaDescription, metaKeywords, focusKeyword
+    } = req.body;
     
     const updates = {
       title,
@@ -92,7 +102,11 @@ export const updateNews = async (req, res) => {
       content: content || '',
       date,
       author,
-      isActive: isActive !== 'false' && isActive !== false
+      isActive: isActive !== 'false' && isActive !== false,
+      metaTitle: metaTitle || title,
+      metaDescription: metaDescription !== undefined ? metaDescription : (excerpt || ''),
+      metaKeywords: metaKeywords || focusKeyword || '',
+      focusKeyword: focusKeyword || ''
     };
 
     // Normalize files from .any() or .fields()

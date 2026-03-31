@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const Editor = dynamic(() => import('@/components/TinyMCEEditor'), {
   ssr: false,
-  loading: () => <div className="h-[400px] animate-pulse bg-gray-100 rounded-xl" />
+  loading: () => <div className="h-[700px] animate-pulse bg-gray-100 rounded-xl" />
 });
 import { getImageUrl } from '@/lib/api';
 const BLOG_CMS_API = '/api-backend/cms/blogs';
@@ -57,6 +57,24 @@ function BlogActionForm() {
   
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
+  const [keywordInput, setKeywordInput] = useState('');
+
+  const addTag = (tag: string) => {
+    const trimmed = tag.trim().replace(/,$/, '');
+    if (!trimmed) return;
+    const currentTags = formData.focusKeyword ? formData.focusKeyword.split(',').map(t => t.trim()) : [];
+    if (!currentTags.includes(trimmed)) {
+      const newTags = [...currentTags, trimmed].join(', ');
+      setFormData({ ...formData, focusKeyword: newTags, metaKeywords: newTags });
+    }
+    setKeywordInput('');
+  };
+
+  const removeTag = (index: number) => {
+    const currentTags = formData.focusKeyword.split(',').map(t => t.trim());
+    const newTags = currentTags.filter((_, i) => i !== index).join(', ');
+    setFormData({ ...formData, focusKeyword: newTags, metaKeywords: newTags });
+  };
 
   useEffect(() => {
     if (editId) {
@@ -120,7 +138,7 @@ function BlogActionForm() {
     <div className="min-h-screen bg-[#f1f5f9] pb-20 font-sans">
       {/* ─── Header Section ─── */}
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div className="max-w-[1366px] mx-auto px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-8 xl:px-12 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500">
               <ArrowLeft className="w-5 h-5" />
@@ -152,7 +170,7 @@ function BlogActionForm() {
       </div>
 
       {/* ─── Form Content ─── */}
-      <div className="max-w-[1366px] mx-auto mt-8 px-4 sm:px-8 lg:px-12">
+      <div className="max-w-[1800px] mx-auto mt-8 px-4 sm:px-8 lg:px-12 xl:px-16">
         <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Main Details Panel */}
@@ -262,8 +280,35 @@ function BlogActionForm() {
                </div>
                <div className="space-y-4">
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Focus Keyword *</label>
-                    <input required value={formData.focusKeyword} onChange={(e) => setFormData({...formData, focusKeyword: e.target.value, metaKeywords: e.target.value})} className="w-full px-4 py-2 rounded-lg bg-gray-50 text-xs font-semibold border border-gray-200" placeholder="e.g. Health Tips" />
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase mb-2">Focus Keyword *</label>
+                    <div className="w-full p-2.5 rounded-xl bg-gray-50 border border-gray-200 flex flex-wrap gap-2 focus-within:border-blue-500 focus-within:bg-white transition-all shadow-inner">
+                        {formData.focusKeyword && formData.focusKeyword.split(',').filter(t => t.trim()).map((tag, i) => (
+                           <span key={i} className="flex items-center gap-1.5 bg-gray-200 text-gray-700 px-3 py-1 rounded-lg text-[10px] font-extrabold uppercase tracking-tight group">
+                              {tag.trim()}
+                              <button type="button" onClick={() => removeTag(i)} className="text-gray-400 hover:text-red-500 transition-colors">
+                                 <X className="w-3.5 h-3.5" />
+                              </button>
+                           </span>
+                        ))}
+                        <input 
+                           value={keywordInput}
+                           onChange={(e) => {
+                             if (e.target.value.endsWith(',')) {
+                               addTag(e.target.value);
+                             } else {
+                               setKeywordInput(e.target.value);
+                             }
+                           }}
+                           onKeyDown={(e) => {
+                             if (e.key === 'Enter') {
+                               e.preventDefault();
+                               addTag(keywordInput);
+                             }
+                           }}
+                           className="flex-1 min-w-[150px] bg-transparent outline-none text-xs font-bold text-gray-700 placeholder:text-gray-300"
+                           placeholder="Type tag & press Enter..."
+                        />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Meta Description</label>
