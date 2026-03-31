@@ -1,42 +1,65 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 import {
-  LayoutDashboard, Users, Building2, CalendarCheck, FileText,
-  Stethoscope, Settings, LogOut, Menu, X, ChevronRight, ChevronDown, Newspaper, Award, Bell, Briefcase, Mail
-} from 'lucide-react';
+  LayoutDashboard,
+  Users,
+  Building2,
+  CalendarCheck,
+  FileText,
+  Stethoscope,
+  Settings,
+  LogOut,
+  Menu,
+  X,
+  ChevronRight,
+  ChevronDown,
+  Newspaper,
+  Award,
+  Bell,
+  Briefcase,
+  Mail,
+} from "lucide-react";
 
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
 
 const sidebarItems = [
-  { label: 'Dashboard', href: '/admin-dashboard', icon: LayoutDashboard },
-  { label: 'Doctors', href: '/admin-dashboard/doctors', icon: Stethoscope },
-  { label: 'Branches', href: '/admin-dashboard/branches', icon: Building2 },
-  { label: 'Updates', href: '/admin-dashboard/updates', icon: Bell },
-  { label: 'Careers', href: '/admin-dashboard/careers', icon: Briefcase },
-  { label: 'Job Portal', href: '/admin-dashboard/applications', icon: Award, target: '_blank' },
-  { label: 'Bookings', href: '/admin-dashboard/bookings', icon: CalendarCheck },
-  { label: 'Contacts', href: '/admin-dashboard/contacts', icon: Mail, target: '_blank' },
-  { label: 'Departments', href: '/admin-dashboard/departments', icon: Users },
-  { label: 'Site Content', href: '/admin-dashboard/content', icon: FileText },
-  { 
-    label: 'Media & Blog', 
+  { label: "Dashboard", href: "/admin-dashboard", icon: LayoutDashboard },
+  { label: "Doctors", href: "/admin-dashboard/doctors", icon: Stethoscope },
+  { label: "Branches", href: "/admin-dashboard/branches", icon: Building2 },
+  { label: "Updates", href: "/admin-dashboard/updates", icon: Bell },
+  { label: "Careers", href: "/admin-dashboard/careers", icon: Briefcase },
+  {
+    label: "Job Portal",
+    href: "/admin-dashboard/applications",
+    icon: Award,
+    target: "_blank",
+  },
+  { label: "Bookings", href: "/admin-dashboard/bookings", icon: CalendarCheck },
+  {
+    label: "Contacts",
+    href: "/admin-dashboard/contacts",
+    icon: Mail,
+    target: "_blank",
+  },
+  { label: "Departments", href: "/admin-dashboard/departments", icon: Users },
+  { label: "Site Content", href: "/admin-dashboard/content", icon: FileText },
+  {
+    label: "Media & Blog",
     icon: Newspaper,
     subItems: [
-      { label: 'News', href: '/admin-dashboard/media-blog/news' },
-      { label: 'Blog', href: '/admin-dashboard/media-blog/blog' },
-      { label: 'Events', href: '/admin-dashboard/media-blog/events' },
-      { label: 'Press', href: '/admin-dashboard/media-blog/coverage' }
-    ]
+      { label: "News", href: "/admin-dashboard/media-blog/news" },
+      { label: "Blog", href: "/admin-dashboard/media-blog/blog" },
+      { label: "Events", href: "/admin-dashboard/media-blog/events" },
+      { label: "Press", href: "/admin-dashboard/media-blog/coverage" },
+    ],
   },
-  { label: 'Settings', href: '/admin-dashboard/settings', icon: Settings },
+  { label: "Settings", href: "/admin-dashboard/settings", icon: Settings },
 ];
-
 
 export default function AdminDashboardLayout({
   children,
@@ -51,55 +74,75 @@ export default function AdminDashboardLayout({
 
   // Auto-open dropdown if we are currently inside media-blog route
   useEffect(() => {
-    if (pathname.includes('/media-blog')) {
+    if (pathname.includes("/media-blog")) {
       setMediaBlogOpen(true);
     }
   }, [pathname]);
 
   useEffect(() => {
-    const token = localStorage.getItem('admin_token');
-    const storedUser = localStorage.getItem('admin_user');
+    const token = localStorage.getItem("admin_token");
+    const storedUser = localStorage.getItem("admin_user");
     if (!token) {
-      router.push('/admin-login');
+      router.push("/admin-login");
       return;
     }
     if (storedUser) setUser(JSON.parse(storedUser));
   }, [router]);
 
-  const fetcher = (url: string) => fetch(url, {
-    headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` }
-  }).then(res => res.json());
+  const fetcher = (url: string) =>
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+      },
+    }).then((res) => res.json());
 
-  const { data: newContacts } = useSWR(user ? '/api-backend/contacts?status=new' : null, fetcher, { 
-    refreshInterval: 15000, 
-    revalidateOnFocus: true 
-  });
+  const { data: newContacts } = useSWR(
+    user ? "/api-backend/contacts?status=new" : null,
+    fetcher,
+    {
+      refreshInterval: 15000,
+      revalidateOnFocus: true,
+    },
+  );
 
-  const { data: newApplications } = useSWR(user ? '/api-backend/applications?isRead=false' : null, fetcher, { 
-    refreshInterval: 15000, 
-    revalidateOnFocus: true 
-  });
+  const { data: newApplications } = useSWR(
+    user ? "/api-backend/applications?isRead=false" : null,
+    fetcher,
+    {
+      refreshInterval: 15000,
+      revalidateOnFocus: true,
+    },
+  );
 
-  const { data: newBookings } = useSWR(user ? '/api-backend/cms/bookings?status=pending' : null, fetcher, { 
-    refreshInterval: 15000, 
-    revalidateOnFocus: true 
-  });
-  
+  const { data: newBookings } = useSWR(
+    user ? "/api-backend/cms/bookings?status=pending" : null,
+    fetcher,
+    {
+      refreshInterval: 15000,
+      revalidateOnFocus: true,
+    },
+  );
+
   const unreadCount = Array.isArray(newContacts) ? newContacts.length : 0;
-  const unreadAppsCount = Array.isArray(newApplications) ? newApplications.length : 0;
-  const unreadBookingsCount = Array.isArray(newBookings) ? newBookings.length : 0;
+  const unreadAppsCount = Array.isArray(newApplications)
+    ? newApplications.length
+    : 0;
+  const unreadBookingsCount = Array.isArray(newBookings)
+    ? newBookings.length
+    : 0;
 
   const handleLogout = () => {
-    localStorage.removeItem('admin_token');
-    localStorage.removeItem('admin_user');
-    router.push('/admin-login');
+    localStorage.removeItem("admin_token");
+    localStorage.removeItem("admin_user");
+    router.push("/admin-login");
   };
 
-  const currentPage = sidebarItems.find((item) => pathname === item.href)?.label || 'Dashboard';
-  const isActionPage = pathname.includes('/action');
+  const currentPage =
+    sidebarItems.find((item) => pathname === item.href)?.label || "Dashboard";
+  const isActionPage = pathname.includes("/action");
 
   if (isActionPage) {
-     return <div className="min-h-screen bg-white">{children}</div>;
+    return <div className="min-h-screen bg-white">{children}</div>;
   }
 
   return (
@@ -115,7 +158,7 @@ export default function AdminDashboardLayout({
       {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 z-50 h-full w-[280px] bg-[#0b1c43] transform transition-transform duration-300 ease-in-out 
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
       >
         {/* Logo */}
         <div className="flex items-center justify-between h-16 px-5 border-b border-white/10">
@@ -138,26 +181,31 @@ export default function AdminDashboardLayout({
 
         {/* Nav Items */}
         <nav className="mt-6 px-3 flex-1 overflow-y-auto overflow-x-hidden">
-          <p className="px-3 mb-3 text-[10px] font-bold tracking-widest text-white/30 uppercase">Menu</p>
+          <p className="px-3 mb-3 text-[10px] font-bold tracking-widest text-white/30 uppercase">
+            Menu
+          </p>
           <div className="space-y-1">
             {sidebarItems.map((item) => {
               const Icon = item.icon;
-              
+
               if (item.subItems) {
-                const isActiveGroup = pathname.includes('/media-blog');
+                const isActiveGroup = pathname.includes("/media-blog");
                 return (
                   <div key={item.label} className="space-y-1">
                     <button
                       onClick={() => setMediaBlogOpen(!mediaBlogOpen)}
                       className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-all
-                        ${isActiveGroup
-                          ? 'bg-white/10 text-white'
-                          : 'text-white/60 hover:text-white hover:bg-white/5'
+                        ${
+                          isActiveGroup
+                            ? "bg-white/10 text-white"
+                            : "text-white/60 hover:text-white hover:bg-white/5"
                         }
                       `}
                     >
                       <div className="flex items-center gap-3">
-                        <Icon className={`w-5 h-5 ${isActiveGroup ? 'text-[#0d9488]' : ''}`} />
+                        <Icon
+                          className={`w-5 h-5 ${isActiveGroup ? "text-[#0d9488]" : ""}`}
+                        />
                         <span>{item.label}</span>
                       </div>
                       {mediaBlogOpen ? (
@@ -176,9 +224,10 @@ export default function AdminDashboardLayout({
                               href={sub.href}
                               onClick={() => setSidebarOpen(false)}
                               className={`block px-4 py-2 rounded-lg text-sm font-medium transition-all
-                                ${isSubActive
-                                  ? 'bg-white/15 text-white shadow-sm'
-                                  : 'text-white/50 hover:text-white hover:bg-white/5'
+                                ${
+                                  isSubActive
+                                    ? "bg-white/15 text-white shadow-sm"
+                                    : "text-white/50 hover:text-white hover:bg-white/5"
                                 }
                               `}
                             >
@@ -196,32 +245,41 @@ export default function AdminDashboardLayout({
               return (
                 <Link
                   key={item.href || item.label}
-                  href={item.href || '#'}
-                  target={item.label === 'Contacts' ? '_blank' : undefined}
-                  rel={item.label === 'Contacts' ? 'noopener noreferrer' : undefined}
+                  href={item.href || "#"}
+                  target={item.label === "Contacts" ? "_blank" : undefined}
+                  rel={
+                    item.label === "Contacts"
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
                   onClick={() => {
-                    if (item.label !== 'Contacts') setSidebarOpen(false);
+                    if (item.label !== "Contacts") setSidebarOpen(false);
                   }}
                   className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all
-                    ${isActive
-                      ? 'bg-white/15 text-white shadow-sm'
-                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                    ${
+                      isActive
+                        ? "bg-white/15 text-white shadow-sm"
+                        : "text-white/60 hover:text-white hover:bg-white/5"
                     }
                   `}
                 >
-                  <Icon className={`w-5 h-5 ${isActive ? 'text-[#0d9488]' : ''}`} />
+                  <Icon
+                    className={`w-5 h-5 ${isActive ? "text-[#0d9488]" : ""}`}
+                  />
                   <span>{item.label}</span>
                   <div className="flex-1 flex items-center justify-end gap-2">
-                    {item.label === 'Contacts' && unreadCount > 0 && (
+                    {item.label === "Contacts" && unreadCount > 0 && (
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
                     )}
-                    {item.label === 'Job Portal' && unreadAppsCount > 0 && (
+                    {item.label === "Job Portal" && unreadAppsCount > 0 && (
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
                     )}
-                    {item.label === 'Bookings' && unreadBookingsCount > 0 && (
+                    {item.label === "Bookings" && unreadBookingsCount > 0 && (
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
                     )}
-                    {isActive && <ChevronRight className="w-4 h-4 text-white/40" />}
+                    {isActive && (
+                      <ChevronRight className="w-4 h-4 text-white/40" />
+                    )}
                   </div>
                 </Link>
               );
@@ -233,11 +291,15 @@ export default function AdminDashboardLayout({
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/10">
           <div className="flex items-center gap-3 px-2 py-2">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#0d9488] to-[#0b1c43] flex items-center justify-center text-white font-bold text-sm shrink-0">
-              {user?.name?.charAt(0) || 'A'}
+              {user?.name?.charAt(0) || "A"}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white truncate">{user?.name || 'Admin'}</p>
-              <p className="text-[11px] text-white/40 truncate">{user?.email || ''}</p>
+              <p className="text-sm font-medium text-white truncate">
+                {user?.name || "Admin"}
+              </p>
+              <p className="text-[11px] text-white/40 truncate">
+                {user?.email || ""}
+              </p>
             </div>
             <button
               onClick={handleLogout}
@@ -262,7 +324,9 @@ export default function AdminDashboardLayout({
               <Menu className="w-5 h-5" />
             </button>
             <div>
-              <h1 className="text-lg sm:text-xl font-bold text-gray-900">{currentPage}</h1>
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900">
+                {currentPage}
+              </h1>
             </div>
           </div>
           <div className="hidden sm:flex items-center gap-3">
@@ -277,9 +341,7 @@ export default function AdminDashboardLayout({
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 p-4 sm:p-6 lg:p-8">
-          {children}
-        </div>
+        <div className="flex-1 p-4 sm:p-6 lg:p-8">{children}</div>
       </div>
     </div>
   );

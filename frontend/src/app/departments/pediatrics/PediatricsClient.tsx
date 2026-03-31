@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import DoctorSlider from '@/components/DoctorSlider';
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import DoctorSlider from "@/components/DoctorSlider";
 
 /* ─── Data (Transcribed from previous turn + General Surgery Theme) ─── */
 
@@ -52,38 +52,44 @@ const highlights = [
 
 const doctors = [
   {
-    name: 'Dr Alok C Bhardwajs',
-    qualifications: 'MBBS, MD (Pediatrics) IMS, BHU',
-    designation: 'HEAD, DEPARTMENT OF PEDIATRICS',
-    slug: 'dr-alok-c-bhardwajs',
-    image: '/images/departments_doctor/dr._alok_c_bhardwaj.jpg',
+    name: "Dr Alok C Bhardwajs",
+    qualifications: "MBBS, MD (Pediatrics) IMS, BHU",
+    designation: "HEAD, DEPARTMENT OF PEDIATRICS",
+    slug: "dr-alok-c-bhardwajs",
+    image: "/images/departments_doctor/dr._alok_c_bhardwaj.jpg",
   },
   {
-    name: 'Dr Greeshma Suresh',
-    qualifications: 'MBBS, MS, MCh (Pediatric Surgery) IMS, BHU',
-    designation: 'Consultant Pediatric Surgeon',
-    slug: 'dr-greeshma-suresh',
-    image: '',
+    name: "Dr Greeshma Suresh",
+    qualifications: "MBBS, MS, MCh (Pediatric Surgery) IMS, BHU",
+    designation: "Consultant Pediatric Surgeon",
+    slug: "dr-greeshma-suresh",
+    image: "",
   },
   {
-    name: 'Dr Prabhat Kumar',
-    qualifications: 'MBBS, DCH, DNB (Pediatrics)',
-    designation: 'Consultant Senior Pediatrician',
-    slug: 'dr-prabhat-kumar',
-    image: '/images/departments_doctor/dr_prabhat_kumar.png',
+    name: "Dr Prabhat Kumar",
+    qualifications: "MBBS, DCH, DNB (Pediatrics)",
+    designation: "Consultant Senior Pediatrician",
+    slug: "dr-prabhat-kumar",
+    image: "/images/departments_doctor/dr_prabhat_kumar.png",
   },
   {
-    name: 'Dr Rajesh Kumar Singh',
-    qualifications: 'MBBS, MD, IAP Fellowship in Neonatology',
-    designation: 'Consultant Pediatrician',
-    slug: 'dr-rajesh-kumar-singh',
-    image: '',
+    name: "Dr Rajesh Kumar Singh",
+    qualifications: "MBBS, MD, IAP Fellowship in Neonatology",
+    designation: "Consultant Pediatrician",
+    slug: "dr-rajesh-kumar-singh",
+    image: "",
   },
 ];
 
 /* ─── Sub-Components ─── */
 
-const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
+const SectionHeader = ({
+  title,
+  highlight,
+}: {
+  title: string;
+  highlight?: string;
+}) => (
   <div className="mb-6">
     <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight">
       {title} <span className="text-blue-600 font-bold">{highlight}</span>
@@ -97,27 +103,60 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">›</span>
+    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
+      ›
+    </span>
     <span className="leading-relaxed">{text}</span>
   </li>
 );
 
 const FeatureIcon = ({ icon }: { icon: string }) => (
-  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    {icon === 'baby' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />}
-    {icon === 'shield' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
-    {icon === 'chart' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />}
-    {icon === 'plus' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />}
+  <svg
+    className="w-7 h-7"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    {icon === "baby" && (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+      />
+    )}
+    {icon === "shield" && (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+      />
+    )}
+    {icon === "chart" && (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+      />
+    )}
+    {icon === "plus" && (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+      />
+    )}
   </svg>
 );
 
 /* ─── Page ─── */
 
 export default function PediatricsClient() {
-
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -130,7 +169,7 @@ export default function PediatricsClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        
+
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
@@ -144,14 +183,34 @@ export default function PediatricsClient() {
                 href="/doctors"
                 className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
                 Book An Appointment
               </Link>
               <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
                 </svg>
                 Get a Call Back
               </button>
@@ -164,10 +223,12 @@ export default function PediatricsClient() {
       <section className="py-12 bg-white">
         <div className="mx-auto w-full max-w-[1366px] px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
-              <SectionHeader title="Department of" highlight="Pediatrics And Neonatology" />
+              <SectionHeader
+                title="Department of"
+                highlight="Pediatrics And Neonatology"
+              />
               <div className="space-y-6 text-gray-700 text-base md:text-lg leading-relaxed mb-12 text-justify">
                 {introParagraphs.map((para, idx) => (
                   <p key={idx}>{para}</p>
@@ -178,10 +239,12 @@ export default function PediatricsClient() {
             {/* ── Right Doctor Card ── */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="w-full h-fit sticky top-24">
-                <DoctorSlider doctors={doctors} departmentName="Pediatrics & Neonatology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Pediatrics & Neonatology"
+                />
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -201,15 +264,15 @@ export default function PediatricsClient() {
             </div>
             {/* Image Right (Blob Shape) */}
             <div className="lg:col-span-5 h-[500px] relative">
-               <div className="absolute inset-0 bg-blue-50  opacity-50" />
-               <div className="w-full h-full relative overflow-hidden border-4 border-white shadow rounded-xl">
-                  <Image 
-                    src="/images/departments-images/Pediatrics Service.jpg"
-                    alt="Pediatrics Service"
-                    fill
-                    className="object-cover"
-                  />
-               </div>
+              <div className="absolute inset-0 bg-blue-50  opacity-50" />
+              <div className="w-full h-full relative overflow-hidden border-4 border-white shadow rounded-xl">
+                <Image
+                  src="/images/departments-images/Pediatrics Service.jpg"
+                  alt="Pediatrics Service"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -221,15 +284,15 @@ export default function PediatricsClient() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             {/* Image Left (Blob Shape) */}
             <div className="lg:col-span-6 h-[550px] relative order-2 lg:order-1">
-               <div className="absolute inset-0 bg-blue-50 rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] opacity-50" />
-               <div className="w-full h-full relative overflow-hidden rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] border-4 border-white shadow-2xl">
-                  <Image 
-                    src="/images/departments-images/pediatric_opd_realistic.png"
-                    alt="Indoor Services"
-                    fill
-                    className="object-cover"
-                  />
-               </div>
+              <div className="absolute inset-0 bg-blue-50 rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] opacity-50" />
+              <div className="w-full h-full relative overflow-hidden rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] border-4 border-white shadow-2xl">
+                <Image
+                  src="/images/departments-images/pediatric_opd_realistic.png"
+                  alt="Indoor Services"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
             {/* List Right */}
             <div className="lg:col-span-6 order-1 lg:order-2">
@@ -250,7 +313,9 @@ export default function PediatricsClient() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             {/* List Left */}
             <div className="lg:col-span-6">
-              <h2 className="text-3xl font-bold text-[#3b82f6] font-heading mb-6">Highlights</h2>
+              <h2 className="text-3xl font-bold text-[#3b82f6] font-heading mb-6">
+                Highlights
+              </h2>
               <ul className="space-y-4">
                 {highlights.map((item, idx) => (
                   <ListItem key={idx} text={item} />
@@ -259,22 +324,19 @@ export default function PediatricsClient() {
             </div>
             {/* Image Right (Blob Shape) */}
             <div className="lg:col-span-6 h-[400px] relative">
-               <div className="absolute inset-0 bg-blue-50 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] opacity-50" />
-               <div className="w-full h-full relative overflow-hidden rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] border-4 border-white shadow-2xl">
-                  <Image 
-                    src="/images/departments-images/neonatology.jpeg"
-                    alt="Pediatrics Highlights"
-                    fill
-                    className="object-cover"
-                  />
-               </div>
+              <div className="absolute inset-0 bg-blue-50 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] opacity-50" />
+              <div className="w-full h-full relative overflow-hidden rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] border-4 border-white shadow-2xl">
+                <Image
+                  src="/images/departments-images/neonatology.jpeg"
+                  alt="Pediatrics Highlights"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
-
     </main>
   );
 }
-
-

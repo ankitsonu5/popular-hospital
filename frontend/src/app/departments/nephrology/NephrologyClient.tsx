@@ -1,61 +1,67 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import DoctorSlider from '@/components/DoctorSlider';
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import DoctorSlider from "@/components/DoctorSlider";
 
 /* ─── Data ─── */
 
 const symptoms = [
-  'Increased blood pressure',
-  'Swelling of lower limbs & around eyes',
-  'Decreased haemoglobin',
-  'Reduced urine output',
-  'Nausea & Vomiting',
+  "Increased blood pressure",
+  "Swelling of lower limbs & around eyes",
+  "Decreased haemoglobin",
+  "Reduced urine output",
+  "Nausea & Vomiting",
 ];
 
 const renalDiseases = [
-  'Acute (sudden onset) renal diseases',
-  'Chronic (slow ongoing decline in renal function) renal diseases',
-  'Renal damage due to high blood pressure, diabetes, infections, tubulointerstitial disorders, glomerular diseases',
-  'Blood in the urine (hematuria)',
-  'Protein loss in the urine (proteinuria)',
-  'Electrolyte or acid-base imbalance',
-  'Chronic and recurrent urinary tract infection',
-  'Hereditary renal disorders',
-  'Renovascular Diseases',
-  'Pre Transplant workup & Post Transplant care',
+  "Acute (sudden onset) renal diseases",
+  "Chronic (slow ongoing decline in renal function) renal diseases",
+  "Renal damage due to high blood pressure, diabetes, infections, tubulointerstitial disorders, glomerular diseases",
+  "Blood in the urine (hematuria)",
+  "Protein loss in the urine (proteinuria)",
+  "Electrolyte or acid-base imbalance",
+  "Chronic and recurrent urinary tract infection",
+  "Hereditary renal disorders",
+  "Renovascular Diseases",
+  "Pre Transplant workup & Post Transplant care",
 ];
 
 const conditions = [
-  'Chronic Kidney Disease',
-  'Diabetic Nephropathy',
-  'Glomerulonephritis',
-  'Hypertensive Nephropathy',
-  'Kidney Stones (Nephrolithiasis)',
-  'Acute Kidney Injury',
-  'Urinary Tract Infections',
-  'Electrolyte Disorders',
-  'Polycystic Kidney Disease',
-  'Renovascular Disease',
-  'Renal Failure',
-  'Pre & Post Transplant Care',
+  "Chronic Kidney Disease",
+  "Diabetic Nephropathy",
+  "Glomerulonephritis",
+  "Hypertensive Nephropathy",
+  "Kidney Stones (Nephrolithiasis)",
+  "Acute Kidney Injury",
+  "Urinary Tract Infections",
+  "Electrolyte Disorders",
+  "Polycystic Kidney Disease",
+  "Renovascular Disease",
+  "Renal Failure",
+  "Pre & Post Transplant Care",
 ];
 
 const doctors = [
   {
-    name: 'Dr Harendra Pratap Singh',
-    qualifications: 'MBBS, MD, DM (Nephrology)',
-    designation: 'Consultant Nephrologist',
-    slug: 'dr-harendra-pratap-singh',
-    image: '/images/departments_doctor/dr_harendra_pratap_singh.png',
+    name: "Dr Harendra Pratap Singh",
+    qualifications: "MBBS, MD, DM (Nephrology)",
+    designation: "Consultant Nephrologist",
+    slug: "dr-harendra-pratap-singh",
+    image: "/images/departments_doctor/dr_harendra_pratap_singh.png",
   },
 ];
 
 /* ─── Components ─── */
 
-const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
+const SectionHeader = ({
+  title,
+  highlight,
+}: {
+  title: string;
+  highlight?: string;
+}) => (
   <div className="mb-6">
     <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight">
       {title} <span className="text-blue-600 font-bold">{highlight}</span>
@@ -69,7 +75,9 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">›</span>
+    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">
+      ›
+    </span>
     <span className="leading-relaxed">{text}</span>
   </li>
 );
@@ -77,10 +85,8 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function NephrologyClient() {
-
   return (
     <main className="min-h-screen bg-white">
-
       {/* ═══════ HERO SECTION ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -122,14 +128,20 @@ export default function NephrologyClient() {
       <section className="py-12">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-
             {/* Left Content Area */}
             <div className="lg:col-span-8">
-              
               {/* Intro Paragraph */}
               <div className="prose prose-blue max-w-none text-gray-700 mb-16 leading-relaxed text-lg font-medium">
                 <p>
-                  Nephrology is a medical super speciality that deals with the functioning of diseases related to the kidney. Kidneys are the sophisticated filtering units of the body. On average, the kidneys of a healthy adult process about 180 litres of blood daily to dispose of the extra water and waste material in the form of urine. Any alteration or dysfunction in the anatomy or the physiology of the kidney can cause acute or chronic renal (kidney) diseases which can seriously affect the functioning of the entire body.
+                  Nephrology is a medical super speciality that deals with the
+                  functioning of diseases related to the kidney. Kidneys are the
+                  sophisticated filtering units of the body. On average, the
+                  kidneys of a healthy adult process about 180 litres of blood
+                  daily to dispose of the extra water and waste material in the
+                  form of urine. Any alteration or dysfunction in the anatomy or
+                  the physiology of the kidney can cause acute or chronic renal
+                  (kidney) diseases which can seriously affect the functioning
+                  of the entire body.
                 </p>
               </div>
 
@@ -146,8 +158,13 @@ export default function NephrologyClient() {
                   </div>
                   <ul className="space-y-4">
                     {symptoms.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-3 text-gray-800 text-lg font-medium group">
-                        <span className="text-blue-600 font-bold text-xl group-hover:translate-x-1 transition-transform">›</span>
+                      <li
+                        key={idx}
+                        className="flex items-center gap-3 text-gray-800 text-lg font-medium group"
+                      >
+                        <span className="text-blue-600 font-bold text-xl group-hover:translate-x-1 transition-transform">
+                          ›
+                        </span>
                         {item}
                       </li>
                     ))}
@@ -171,25 +188,42 @@ export default function NephrologyClient() {
                   {/* Left Column */}
                   <div>
                     <p>
-                      Nephrology department is a state-of-the-art setup geared to manage any form of Nephrological Emergency. It has facilities to treat cases with Acute Kidney Failure, Chronic Kidney Failure, Renal Hypertension, General Nephrology & Dialysis. For Critical Care Nephrology, we have facilities of &quot;Slow Low-Efficiency Dialysis (SLED)&quot;, &quot;Continuous Renal Replacement Therapy&quot; (CRRT) and &quot;Plasmapheresis&quot;. Dialysis centre is ultramodern with 08 Dialysis Stations with separate set up for Hepatitis C. The Dialysis Centre is functional round the clock and is manned by very experienced dialysis staff.
+                      Nephrology department is a state-of-the-art setup geared
+                      to manage any form of Nephrological Emergency. It has
+                      facilities to treat cases with Acute Kidney Failure,
+                      Chronic Kidney Failure, Renal Hypertension, General
+                      Nephrology & Dialysis. For Critical Care Nephrology, we
+                      have facilities of &quot;Slow Low-Efficiency Dialysis
+                      (SLED)&quot;, &quot;Continuous Renal Replacement
+                      Therapy&quot; (CRRT) and &quot;Plasmapheresis&quot;.
+                      Dialysis centre is ultramodern with 08 Dialysis Stations
+                      with separate set up for Hepatitis C. The Dialysis Centre
+                      is functional round the clock and is manned by very
+                      experienced dialysis staff.
                     </p>
                   </div>
                   {/* Right Column */}
                   <div className="space-y-6 text-gray-800">
                     <p>
-                      Popular hospital is the only Hospital in the eastern up to have facility of &apos;Continuous Renal Replacement Therapy&apos; (CRRT) for children & adult dialysis. Peritoneal dialysis (Acute PD &CAPD)
+                      Popular hospital is the only Hospital in the eastern up to
+                      have facility of &apos;Continuous Renal Replacement
+                      Therapy&apos; (CRRT) for children & adult dialysis.
+                      Peritoneal dialysis (Acute PD &CAPD)
                     </p>
                     <p>
-                      The Centre has excellent backup support of Urology, Pathology, Radiology and Intensivists. It runs daily OPD&apos;s with lot of focus on Preventive Nephrology. The Nephrology Department follows International guidelines.
+                      The Centre has excellent backup support of Urology,
+                      Pathology, Radiology and Intensivists. It runs daily
+                      OPD&apos;s with lot of focus on Preventive Nephrology. The
+                      Nephrology Department follows International guidelines.
                     </p>
                     <p>
-                      Our nephrologists strive to deliver the best possible care to patients suffering from acute or chronic kidney diseases.
+                      Our nephrologists strive to deliver the best possible care
+                      to patients suffering from acute or chronic kidney
+                      diseases.
                     </p>
                   </div>
                 </div>
               </div>
-
-
             </div>
 
             {/* Right Sidebar - Doctor Divider */}
@@ -202,7 +236,6 @@ export default function NephrologyClient() {
                 <DoctorSlider doctors={doctors} departmentName="Nephrology" />
               </div>
             </div>
-
           </div>
 
           {/* Professionals Section - Moved out of sidebar container for 1366px optimization */}
@@ -210,12 +243,18 @@ export default function NephrologyClient() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center animate-fade-in pb-20">
               <div className="lg:col-span-7">
                 <h2 className="text-3xl font-bold text-[#0b1c43] mb-12 font-heading leading-tight">
-                  The Department Professionals Are Capable Of Diligently Evaluating And Managing All Types Of Renal Diseases Like:
+                  The Department Professionals Are Capable Of Diligently
+                  Evaluating And Managing All Types Of Renal Diseases Like:
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                   {renalDiseases.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-4 text-[#1a2b4b] text-base font-semibold group">
-                      <span className="text-blue-500 font-bold text-xl leading-none mt-1 group-hover:translate-x-1 transition-transform shrink-0">›</span>
+                    <div
+                      key={idx}
+                      className="flex items-start gap-4 text-[#1a2b4b] text-base font-semibold group"
+                    >
+                      <span className="text-blue-500 font-bold text-xl leading-none mt-1 group-hover:translate-x-1 transition-transform shrink-0">
+                        ›
+                      </span>
                       <span className="leading-snug">{item}</span>
                     </div>
                   ))}
@@ -235,7 +274,6 @@ export default function NephrologyClient() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }

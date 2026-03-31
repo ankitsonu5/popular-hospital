@@ -1,44 +1,63 @@
-'use client';
+"use client";
 
-import { useEffect, useState, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Newspaper, Loader2, Save, X, ArrowLeft, Camera, Image as ImageIcon } from 'lucide-react';
-import { getImageUrl } from '@/lib/api';
+import { useEffect, useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import {
+  Newspaper,
+  Loader2,
+  Save,
+  X,
+  ArrowLeft,
+  Camera,
+  Image as ImageIcon,
+} from "lucide-react";
+import { getImageUrl } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
 
 function PressActionForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const editId = searchParams.get('id');
-  
+  const editId = searchParams.get("id");
+
   const [loading, setLoading] = useState(!!editId);
   const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState({
-    title: '', date: '', dateIso: '', source: '', isActive: true,
+    title: "",
+    date: "",
+    dateIso: "",
+    source: "",
+    isActive: true,
   });
-  
+
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>('');
+  const [imagePreview, setImagePreview] = useState<string>("");
 
   useEffect(() => {
     if (editId) {
       const fetchPress = async () => {
         try {
           const res = await fetch(`${API_URL}/api/cms/coverage`, {
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` }
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+            },
           });
           const data = await res.json();
           const item = data.find((c: any) => c._id === editId);
           if (item) {
             setFormData({
               ...item,
-              dateIso: item.date ? new Date(item.date).toISOString().split('T')[0] : ''
+              dateIso: item.date
+                ? new Date(item.date).toISOString().split("T")[0]
+                : "",
             });
             if (item.image) setImagePreview(getImageUrl(item.image));
           }
-        } catch (err) { console.error(err); }
-        finally { setLoading(false); }
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
       };
       fetchPress();
     }
@@ -47,42 +66,50 @@ function PressActionForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
-    
+
     const submitData = new FormData();
-    submitData.append('title', formData.title);
-    submitData.append('date', formData.date);
-    submitData.append('source', formData.source);
-    submitData.append('isActive', String(formData.isActive));
-    
+    submitData.append("title", formData.title);
+    submitData.append("date", formData.date);
+    submitData.append("source", formData.source);
+    submitData.append("isActive", String(formData.isActive));
+
     if (imageFile) {
-      submitData.append('image', imageFile);
+      submitData.append("image", imageFile);
     } else if (editId && imagePreview) {
-        const path = imagePreview.split(`${API_URL}`).pop();
-        if (path) submitData.append('image', path);
+      const path = imagePreview.split(`${API_URL}`).pop();
+      if (path) submitData.append("image", path);
     }
 
     try {
-      const url = editId ? `${API_URL}/api/cms/coverage/${editId}` : `${API_URL}/api/cms/coverage`;
-      const method = editId ? 'PUT' : 'POST';
+      const url = editId
+        ? `${API_URL}/api/cms/coverage/${editId}`
+        : `${API_URL}/api/cms/coverage`;
+      const method = editId ? "PUT" : "POST";
       const res = await fetch(url, {
         method,
-        headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+        },
         body: submitData,
       });
 
-      if (!res.ok) throw new Error('Failed to save press release');
-      alert(editId ? 'Press clipping updated!' : 'Press clipping published!');
+      if (!res.ok) throw new Error("Failed to save press release");
+      alert(editId ? "Press clipping updated!" : "Press clipping published!");
       if (window.opener || window.history.length === 1) window.close();
-      router.push('/admin-dashboard/media-blog/coverage');
-    } catch (err: any) { alert(err.message); }
-    finally { setIsSaving(false); }
+      router.push("/admin-dashboard/media-blog/coverage");
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
-  if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
+      </div>
+    );
 
   return (
     <div className="min-h-screen bg-[#f1f5f9] pb-20 font-sans">
@@ -90,7 +117,10 @@ function PressActionForm() {
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div className="max-w-[1366px] mx-auto px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4 w-full sm:w-auto">
-            <button onClick={() => window.close()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500">
+            <button
+              onClick={() => window.close()}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500"
+            >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <div className="flex items-center gap-3">
@@ -99,18 +129,34 @@ function PressActionForm() {
               </div>
               <div className="min-w-0">
                 <h1 className="text-lg font-bold text-gray-900 leading-tight">
-                  {editId ? 'Edit Clipping' : 'New Press Coverage'}
+                  {editId ? "Edit Clipping" : "New Press Coverage"}
                 </h1>
-                <p className="text-xs text-gray-500 font-medium tracking-tight">Press Archive • Popular Hospital</p>
+                <p className="text-xs text-gray-500 font-medium tracking-tight">
+                  Press Archive • Popular Hospital
+                </p>
               </div>
             </div>
           </div>
 
           <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
-            <button type="button" onClick={() => window.close()} className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Cancel</button>
-            <button onClick={handleSubmit} disabled={isSaving} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-semibold text-sm disabled:opacity-50">
-              {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-              <span>{editId ? 'Save Changes' : 'Publish Coverage'}</span>
+            <button
+              type="button"
+              onClick={() => window.close()}
+              className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSubmit}
+              disabled={isSaving}
+              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-semibold text-sm disabled:opacity-50"
+            >
+              {isSaving ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Save className="w-4 h-4" />
+              )}
+              <span>{editId ? "Save Changes" : "Publish Coverage"}</span>
             </button>
           </div>
         </div>
@@ -118,74 +164,142 @@ function PressActionForm() {
 
       {/* ─── Form Content ─── */}
       <div className="max-w-[1366px] mx-auto mt-8 px-4 sm:px-8 lg:px-12">
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8"
+        >
           {/* Main Details Panel */}
           <div className="lg:col-span-12 space-y-8">
             <div className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-200">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Coverage Details</h2>
-              
+              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">
+                Coverage Details
+              </h2>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div className="space-y-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Publication Heading *</label>
-                      <input required value={formData.title} 
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-gray-900 font-bold" 
-                        placeholder="Enter headline as seen in publication..." />
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Date *</label>
-                          <input required type="date" value={formData.dateIso} 
-                            onChange={(e) => {
-                                const iso = e.target.value;
-                                if (!iso) return;
-                                setFormData({ ...formData, dateIso: iso, date: new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) });
-                            }}
-                            className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold" />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Media Source *</label>
-                          <input required value={formData.source} onChange={(e) => setFormData({ ...formData, source: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold" placeholder="e.g. Times of India" />
-                        </div>
-                    </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Publication Heading *
+                    </label>
+                    <input
+                      required
+                      value={formData.title}
+                      onChange={(e) =>
+                        setFormData({ ...formData, title: e.target.value })
+                      }
+                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white outline-none transition-all text-gray-900 font-bold"
+                      placeholder="Enter headline as seen in publication..."
+                    />
+                  </div>
 
-                    <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
-                        <div className="flex items-center justify-between mb-2">
-                           <span className="text-sm font-bold text-gray-700">Gallery Visibility</span>
-                           <label className="relative inline-flex items-center cursor-pointer">
-                               <input type="checkbox" className="sr-only peer" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} />
-                               <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
-                           </label>
-                        </div>
-                        <p className="text-[10px] text-gray-400 font-medium italic">Status: {formData.isActive ? 'VISIBLE IN PRESS SECTION' : 'HIDDEN FROM PUBLIC VIEW'}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Date *
+                      </label>
+                      <input
+                        required
+                        type="date"
+                        value={formData.dateIso}
+                        onChange={(e) => {
+                          const iso = e.target.value;
+                          if (!iso) return;
+                          setFormData({
+                            ...formData,
+                            dateIso: iso,
+                            date: new Date(iso).toLocaleDateString("en-US", {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                            }),
+                          });
+                        }}
+                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold"
+                      />
                     </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Media Source *
+                      </label>
+                      <input
+                        required
+                        value={formData.source}
+                        onChange={(e) =>
+                          setFormData({ ...formData, source: e.target.value })
+                        }
+                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold"
+                        placeholder="e.g. Times of India"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-bold text-gray-700">
+                        Gallery Visibility
+                      </span>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="sr-only peer"
+                          checked={formData.isActive}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              isActive: e.target.checked,
+                            })
+                          }
+                        />
+                        <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+                      </label>
+                    </div>
+                    <p className="text-[10px] text-gray-400 font-medium italic">
+                      Status:{" "}
+                      {formData.isActive
+                        ? "VISIBLE IN PRESS SECTION"
+                        : "HIDDEN FROM PUBLIC VIEW"}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Press Clipping Photo *</label>
-                    <div className="relative aspect-[3/4] sm:aspect-video lg:aspect-[4/3] rounded-2xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group shadow-inner">
-                        {imagePreview ? (
-                            <>
-                               <img src={imagePreview} className="w-full h-full object-contain p-4 transition-transform duration-700 hover:scale-105" />
-                               <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                  <label className="cursor-pointer bg-white text-gray-900 px-6 py-2.5 rounded-xl font-bold text-xs uppercase shadow-lg">Replace Clipping</label>
-                               </div>
-                            </>
-                        ) : (
-                            <div className="text-center">
-                               <Camera className="w-10 h-10 text-gray-300 mx-auto mb-2" />
-                               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Scan or Photo of Publication</p>
-                            </div>
-                        )}
-                        <input type="file" accept="image/*" onChange={(e) => {
-                            const f = e.target.files?.[0];
-                            if (f) { setImageFile(f); setImagePreview(URL.createObjectURL(f)); }
-                        }} className="absolute inset-0 opacity-0 cursor-pointer" />
-                    </div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Press Clipping Photo *
+                  </label>
+                  <div className="relative aspect-[3/4] sm:aspect-video lg:aspect-[4/3] rounded-2xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group shadow-inner">
+                    {imagePreview ? (
+                      <>
+                        <img
+                          src={imagePreview}
+                          className="w-full h-full object-contain p-4 transition-transform duration-700 hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <label className="cursor-pointer bg-white text-gray-900 px-6 py-2.5 rounded-xl font-bold text-xs uppercase shadow-lg">
+                            Replace Clipping
+                          </label>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-center">
+                        <Camera className="w-10 h-10 text-gray-300 mx-auto mb-2" />
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                          Scan or Photo of Publication
+                        </p>
+                      </div>
+                    )}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const f = e.target.files?.[0];
+                        if (f) {
+                          setImageFile(f);
+                          setImagePreview(URL.createObjectURL(f));
+                        }
+                      }}
+                      className="absolute inset-0 opacity-0 cursor-pointer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -198,7 +312,13 @@ function PressActionForm() {
 
 export default function PressActionPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-10 h-10 animate-spin text-blue-600" /></div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
+        </div>
+      }
+    >
       <PressActionForm />
     </Suspense>
   );

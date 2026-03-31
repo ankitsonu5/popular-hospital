@@ -1,21 +1,28 @@
-'use client';
-import { useState, useEffect, useRef } from 'react';
-import useSWR from 'swr';
-import Link from 'next/link';
-import Image from 'next/image';
-import { RotateCcw } from 'lucide-react';
-import { fetchDoctors, fetchSpecialities, fetchBranches, getImageUrl } from '@/lib/api';
-import type { Doctor, Speciality, Branch } from '@/lib/api';
+"use client";
+import { useState, useEffect, useRef } from "react";
+import useSWR from "swr";
+import Link from "next/link";
+import Image from "next/image";
+import { RotateCcw } from "lucide-react";
+import {
+  fetchDoctors,
+  fetchSpecialities,
+  fetchBranches,
+  getImageUrl,
+} from "@/lib/api";
+import type { Doctor, Speciality, Branch } from "@/lib/api";
 
 export function DoctorsSearch() {
-  const [speciality, setSpeciality] = useState('');
-  const [search, setSearch] = useState('');
+  const [speciality, setSpeciality] = useState("");
+  const [search, setSearch] = useState("");
 
-  const { data: departments = [] } = useSWR('specialities', fetchSpecialities, { revalidateOnFocus: false });
+  const { data: departments = [] } = useSWR("specialities", fetchSpecialities, {
+    revalidateOnFocus: false,
+  });
   const { data: doctors = [], isLoading: loading } = useSWR(
-    ['doctors', speciality, search],
+    ["doctors", speciality, search],
     () => fetchDoctors({ speciality, search }),
-    { keepPreviousData: true }
+    { keepPreviousData: true },
   );
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -23,12 +30,15 @@ export function DoctorsSearch() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -36,7 +46,12 @@ export function DoctorsSearch() {
       {/* Refined Filter Section */}
       <div className="mb-16 flex flex-col lg:flex-row items-stretch gap-6 bg-white p-6 sm:p-10 rounded-[2.5rem] border border-gray-100 shadow-[0_20px_60px_-15px_rgba(30,58,95,0.08)]">
         <div className="w-full lg:flex-1 flex flex-col justify-center">
-          <label htmlFor="search" className="mb-3 block text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">Name / Qualification</label>
+          <label
+            htmlFor="search"
+            className="mb-3 block text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1"
+          >
+            Name / Qualification
+          </label>
           <div className="relative">
             <input
               id="search"
@@ -48,9 +63,14 @@ export function DoctorsSearch() {
             />
           </div>
         </div>
-        
-        <div className="w-full lg:w-80 flex flex-col justify-center relative" ref={dropdownRef}>
-          <label className="mb-3 block text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">Departments</label>
+
+        <div
+          className="w-full lg:w-80 flex flex-col justify-center relative"
+          ref={dropdownRef}
+        >
+          <label className="mb-3 block text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">
+            Departments
+          </label>
           <div className="relative">
             <button
               type="button"
@@ -58,15 +78,23 @@ export function DoctorsSearch() {
               className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-6 text-left text-base font-bold text-hospital-navy focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] flex items-center justify-between"
             >
               <span className="truncate">
-                {speciality ? (departments.find(d => d.slug === speciality)?.name || 'All Departments') : 'All Departments'}
+                {speciality
+                  ? departments.find((d) => d.slug === speciality)?.name ||
+                    "All Departments"
+                  : "All Departments"}
               </span>
-              <svg 
-                className={`w-5 h-5 transition-transform duration-300 text-gray-400 ${isDropdownOpen ? 'rotate-180 text-hospital-teal' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className={`w-5 h-5 transition-transform duration-300 text-gray-400 ${isDropdownOpen ? "rotate-180 text-hospital-teal" : ""}`}
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
 
@@ -74,21 +102,31 @@ export function DoctorsSearch() {
             {isDropdownOpen && (
               <div className="absolute top-full left-0 mt-3 w-full bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-50 z-[100] overflow-hidden animate-fade-in py-3">
                 <div className="max-h-96 overflow-y-auto scrollbar-fancy custom-scrollbar-minimal">
-                  <div 
-                    onClick={() => { setSpeciality(''); setIsDropdownOpen(false); }}
-                    className={`px-6 py-3.5 text-sm font-bold cursor-pointer transition-all flex items-center justify-between ${!speciality ? 'bg-teal-50 text-hospital-teal' : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'}`}
+                  <div
+                    onClick={() => {
+                      setSpeciality("");
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`px-6 py-3.5 text-sm font-bold cursor-pointer transition-all flex items-center justify-between ${!speciality ? "bg-teal-50 text-hospital-teal" : "text-gray-600 hover:bg-gray-50 hover:text-hospital-teal"}`}
                   >
                     All Departments
-                    {!speciality && <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal"></div>}
+                    {!speciality && (
+                      <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal"></div>
+                    )}
                   </div>
                   {departments.map((s) => (
                     <div
                       key={s._id}
-                      onClick={() => { setSpeciality(s.slug); setIsDropdownOpen(false); }}
-                      className={`px-6 py-3.5 text-sm font-bold cursor-pointer transition-all flex items-center justify-between ${speciality === s.slug ? 'bg-teal-50 text-hospital-teal' : 'text-gray-600 hover:bg-gray-50 hover:text-hospital-teal'}`}
+                      onClick={() => {
+                        setSpeciality(s.slug);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`px-6 py-3.5 text-sm font-bold cursor-pointer transition-all flex items-center justify-between ${speciality === s.slug ? "bg-teal-50 text-hospital-teal" : "text-gray-600 hover:bg-gray-50 hover:text-hospital-teal"}`}
                     >
                       {s.name}
-                      {speciality === s.slug && <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal"></div>}
+                      {speciality === s.slug && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal"></div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -99,19 +137,28 @@ export function DoctorsSearch() {
 
         {/* Reset Button */}
         <div className="flex flex-col justify-end pb-0">
-          <label className="mb-3 hidden lg:block text-[11px] font-bold text-transparent select-none uppercase tracking-[0.2em] px-1">Reset</label>
+          <label className="mb-3 hidden lg:block text-[11px] font-bold text-transparent select-none uppercase tracking-[0.2em] px-1">
+            Reset
+          </label>
           <button
-            onClick={() => { setSearch(''); setSpeciality(''); }}
+            onClick={() => {
+              setSearch("");
+              setSpeciality("");
+            }}
             className={`flex items-center justify-center h-[76px] px-6 lg:px-8 rounded-2xl border-2 transition-all duration-300 min-w-max ${
-              search || speciality 
-                ? 'border-red-100 bg-red-50 text-red-500 hover:bg-red-100 hover:border-red-200' 
-                : 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed opacity-50'
+              search || speciality
+                ? "border-red-100 bg-red-50 text-red-500 hover:bg-red-100 hover:border-red-200"
+                : "border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed opacity-50"
             }`}
             title="Reset All Filters"
             disabled={!search && !speciality}
           >
-            <RotateCcw className={`w-5 h-5 ${search || speciality ? 'animate-in spin-in-180' : ''}`} />
-            <span className="ml-2 font-bold text-[13px] uppercase tracking-wider block">Reset</span>
+            <RotateCcw
+              className={`w-5 h-5 ${search || speciality ? "animate-in spin-in-180" : ""}`}
+            />
+            <span className="ml-2 font-bold text-[13px] uppercase tracking-wider block">
+              Reset
+            </span>
           </button>
         </div>
       </div>
@@ -123,12 +170,26 @@ export function DoctorsSearch() {
       ) : doctors.length === 0 ? (
         <div className="text-center py-24 bg-white rounded-[40px] border-2 border-dashed border-gray-100">
           <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <svg
+              className="w-10 h-10 text-gray-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
             </svg>
           </div>
-          <p className="text-gray-500 font-bold text-lg">No doctors found matching your criteria.</p>
-          <p className="text-gray-400 text-sm mt-1">Try adjusting the department filter.</p>
+          <p className="text-gray-500 font-bold text-lg">
+            No doctors found matching your criteria.
+          </p>
+          <p className="text-gray-400 text-sm mt-1">
+            Try adjusting the department filter.
+          </p>
         </div>
       ) : (
         <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-1 pb-8">
@@ -149,7 +210,11 @@ export function DoctorsSearch() {
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-teal-50/30 text-teal-200">
-                      <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+                      <svg
+                        className="w-24 h-24"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
                       </svg>
                     </div>
@@ -164,26 +229,46 @@ export function DoctorsSearch() {
 
                   {doc.designation && (
                     <p className="text-[12px] font-bold text-[#0d9488] uppercase tracking-wider mb-1">
-                      {typeof doc.designation === 'object' ? doc.designation.name : (doc.designation || '-')}
+                      {typeof doc.designation === "object"
+                        ? doc.designation.name
+                        : doc.designation || "-"}
                     </p>
                   )}
 
                   <p className="text-[14px] font-bold text-gray-600 leading-tight mb-1 line-clamp-1">
-                      {(doc.qualification || '').replace(/\s*\([^)]*\)\s*$/, '').trim() || 'Highly Qualified Physician'}
+                    {(doc.qualification || "")
+                      .replace(/\s*\([^)]*\)\s*$/, "")
+                      .trim() || "Highly Qualified Physician"}
                   </p>
 
                   <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-6">
-                    DEPARTMENT OF {doc.speciality?.department_display_name || doc.speciality?.name || 'Medical Science'}
+                    DEPARTMENT OF{" "}
+                    {doc.speciality?.department_display_name ||
+                      doc.speciality?.name ||
+                      "Medical Science"}
                   </p>
                   {/* Footer with stats and button */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-gray-900">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      <svg
+                        className="w-5 h-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
                       </svg>
                       {doc.experience_years && (
-                        <span className="text-lg font-bold">{doc.experience_years}
-                          <span className="text-sm text-gray-400 font-medium ml-1">Years Exp.</span>
+                        <span className="text-lg font-bold">
+                          {doc.experience_years}
+                          <span className="text-sm text-gray-400 font-medium ml-1">
+                            Years Exp.
+                          </span>
                         </span>
                       )}
                     </div>

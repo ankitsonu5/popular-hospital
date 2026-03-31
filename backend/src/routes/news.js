@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { getAllNews, getNewsBySlug } from '../controllers/newsController.js';
+import { Router } from "express";
+import { getAllNews, getNewsBySlug } from "../controllers/newsController.js";
 
 const router = Router();
 
-router.get('/', getAllNews);
-router.get('/:slug', getNewsBySlug);
+router.get("/", getAllNews);
+router.get("/:slug", getNewsBySlug);
 
 export default router;

@@ -13,7 +13,7 @@ export default function OurLocationsPage() {
     fetchBranches().then(setBranches);
   }, []);
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
       const scrollAmount = 400; // Approximate card width + gap
       const newScrollLeft =
@@ -41,35 +41,59 @@ export default function OurLocationsPage() {
               Our Branches.
             </h1>
             <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">
-              Find a Popular Hospital branch near you. We are always within reach, providing world-class healthcare, expert doctors, and modern infrastructure across multiple locations.
+              Find a Popular Hospital branch near you. We are always within
+              reach, providing world-class healthcare, expert doctors, and
+              modern infrastructure across multiple locations.
             </p>
           </div>
         </div>
       </section>
 
       {/* Our Locations Slider Section */}
-      <section id="our-locations" className="py-20 overflow-hidden min-h-[calc(100vh-80px)]">
+      <section
+        id="our-locations"
+        className="py-20 overflow-hidden min-h-[calc(100vh-80px)]"
+      >
         <div className="mx-auto max-w-[1666px] px-6 sm:px-8 lg:px-12 relative">
-          
           <div className="mb-12 flex items-end justify-end">
             {/* Navigation Buttons */}
             <div className="hidden sm:flex gap-4 mb-2">
               <button
-                onClick={() => scroll('left')}
+                onClick={() => scroll("left")}
                 className="w-12 h-12 rounded-full bg-[#d2d2d7] hover:bg-[#86868b] text-white flex items-center justify-center transition-colors shadow-sm"
                 aria-label="Previous locations"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </button>
               <button
-                onClick={() => scroll('right')}
+                onClick={() => scroll("right")}
                 className="w-12 h-12 rounded-full bg-[#E85222] hover:bg-[#d1451a] text-white flex items-center justify-center transition-colors shadow-sm"
                 aria-label="Next locations"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </button>
             </div>
@@ -79,7 +103,7 @@ export default function OurLocationsPage() {
           <div
             ref={scrollContainerRef}
             className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {branches.map((location, index) => (
               <div
@@ -102,7 +126,7 @@ export default function OurLocationsPage() {
 
                   <div className="flex items-center gap-4">
                     <Link
-                      href={`/locations/${location.slug || ''}`}
+                      href={`/locations/${location.slug || ""}`}
                       className="px-6 py-3 rounded-full font-medium transition-colors bg-white text-black hover:bg-gray-100"
                     >
                       Get Directions
@@ -114,17 +138,20 @@ export default function OurLocationsPage() {
                 <div className="absolute inset-0 z-10 transition-opacity duration-500">
                   {/* Overall light tint to reduce harshness */}
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
-                  
+
                   {/* Subtle top-down gradient for text protection */}
                   <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/50 to-transparent" />
-                  
+
                   {/* Subtle bottom-up gradient for button protection */}
                   <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
                 </div>
 
                 <Image
-                  src={getImageUrl(location.image_one || '') || '/about-section-image.png'}
-                  alt={location.name || 'Branch'}
+                  src={
+                    getImageUrl(location.image_one || "") ||
+                    "/about-section-image.png"
+                  }
+                  alt={location.name || "Branch"}
                   fill
                   className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
                   sizes="(max-width: 768px) 85vw, (max-width: 1280px) 380px, 400px"

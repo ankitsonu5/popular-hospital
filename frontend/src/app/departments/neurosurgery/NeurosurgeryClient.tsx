@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import DoctorSlider from '@/components/DoctorSlider';
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import DoctorSlider from "@/components/DoctorSlider";
 
 /* ─── Data ─── */
 
@@ -11,13 +11,13 @@ const introParas = [
   "Neurosurgery is a speciality of surgery that involves surgical treatment of the disorders of the brain, spinal cord, and the peripheral nerves. With the advent of microsurgery techniques and ultra-modern technology, neurosurgery has grown from making burr holes in the skull for mere lifesaving in the olden days to the most complex surgical procedures involving the brain, spinal cord, and the nerves.",
   "Neurosurgery is one of the most challenging specialties in the field of medicine, which deals with the diseases of the Brain, Skull, Spinal Cord and Spinal Column as well as the Peripheral Nerves. Advances In Neurosurgical Techniques along with the latest technological innovation in tools and equipments have resulted in excellent treatment outcome. Minimally Invasive and Endoscopic Neurosurgery contributes to a much shorter Hospital stay, better patient comfort while maximising the efficacy of the procedure. With the availability of a qualified and highly experienced team and latest state-of-the-art equipments We are committed to provide excellent results in Neuro surgical Procedures.",
   "The Centre of Neuro and Spine Surgery is well supported by experienced NeurologistAnesthesiolologists, Critical Care Specialists, Radiologists, Pathologists and Rehabilitation therapists.",
-  "Popular Hospital is the only centre in this region where endoscopic spine surgery is being done successfully."
+  "Popular Hospital is the only centre in this region where endoscopic spine surgery is being done successfully.",
 ];
 
 const peripheralNerveList = [
   "Peripheral Nerve Injury including Brachial Plexus Injury",
   "Release of Nerve Entrapments",
-  "Peripheral Nerve Tumors"
+  "Peripheral Nerve Tumors",
 ];
 
 const brainSurgeryList = [
@@ -27,7 +27,7 @@ const brainSurgeryList = [
   "Endoscopic Treatment of Hydrocephalus",
   "Clipping of Intracranial Aneurysm and excision of AVM'S",
   "Transsphenoidal Endoscopic/ Microscopic excision Pituitary Tumors",
-  "Microvascular decompression for Trigeminal Neuralgia"
+  "Microvascular decompression for Trigeminal Neuralgia",
 ];
 
 const spinalSurgeryList = [
@@ -38,21 +38,27 @@ const spinalSurgeryList = [
   "Endoscopic Discectomy",
   "Spinal Decompression and Fusion",
   "Minimally Invasive Spinal Surgery for Listhesis",
-  "Kyphoplasty and Vertebroplasty"
+  "Kyphoplasty and Vertebroplasty",
 ];
 
 const doctors = [
   {
-    name: 'Dr. Kamlesh Kumar Singh',
-    qualifications: 'MBBS, MS, M.Ch (Neurosurgery)',
-    designation: 'Head, Department of Neurosurgery',
-    slug: 'dr-kamlesh-kumar-singh',
-    image: '/images/departments_doctor/dr._kamlesh_kumar_Singh.jpg'
-  }
+    name: "Dr. Kamlesh Kumar Singh",
+    qualifications: "MBBS, MS, M.Ch (Neurosurgery)",
+    designation: "Head, Department of Neurosurgery",
+    slug: "dr-kamlesh-kumar-singh",
+    image: "/images/departments_doctor/dr._kamlesh_kumar_Singh.jpg",
+  },
 ];
 
 /* ─── Components ─── */
-const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
+const SectionHeader = ({
+  title,
+  highlight,
+}: {
+  title: string;
+  highlight?: string;
+}) => (
   <div className="mb-6">
     <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
       {title} <span className="text-blue-600">{highlight}</span>
@@ -66,7 +72,9 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform">›</span>
+    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform">
+      ›
+    </span>
     <span className="leading-relaxed">{text}</span>
   </li>
 );
@@ -74,10 +82,8 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function NeurosurgeryClient() {
-
   return (
     <main className="min-h-screen bg-white">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -104,14 +110,34 @@ export default function NeurosurgeryClient() {
                 href="/doctors"
                 className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
                 Book An Appointment
               </Link>
               <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
                 </svg>
                 Get a Call Back
               </button>
@@ -124,7 +150,6 @@ export default function NeurosurgeryClient() {
       <section className="pt-16 pb-6 bg-gray-50/50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
             {/* Left Content (8 cols) */}
             <div className="lg:col-span-8">
               <SectionHeader title="Department of" highlight="Neurosurgery" />
@@ -135,8 +160,11 @@ export default function NeurosurgeryClient() {
               </div>
 
               <SectionHeader title="Service" highlight="Offered:" />
-              <p className="text-gray-800 mb-6 text-base md:text-lg font-medium px-4 border-l-4 border-blue-600">We at Popular Hospital successfully provide all Neurosurgical solutions under one roof.</p>
-              
+              <p className="text-gray-800 mb-6 text-base md:text-lg font-medium px-4 border-l-4 border-blue-600">
+                We at Popular Hospital successfully provide all Neurosurgical
+                solutions under one roof.
+              </p>
+
               <SectionHeader title="Peripheral Nerve" highlight="Surgery:" />
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mb-4">
                 {peripheralNerveList.map((item, idx) => (
@@ -151,7 +179,6 @@ export default function NeurosurgeryClient() {
                 <DoctorSlider doctors={doctors} departmentName="Neurosurgery" />
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -182,7 +209,6 @@ export default function NeurosurgeryClient() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -191,7 +217,6 @@ export default function NeurosurgeryClient() {
       <section className="py-20 bg-gray-50 overflow-hidden">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
-            
             <div className="mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-square max-w-md mx-auto">
                 <div className="absolute inset-0 bg-blue-100 rounded-3xl" />
@@ -214,13 +239,9 @@ export default function NeurosurgeryClient() {
                 ))}
               </ul>
             </div>
-
           </div>
         </div>
       </section>
-
     </main>
   );
 }
-
-

@@ -1,54 +1,58 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const OnlinePaymentPage = () => {
   const [formData, setFormData] = useState({
-    selectPatient: '',
-    patientName: '',
-    uhidNo: '',
-    paymentFor: 'Out Patient Department (OPD)',
-    amount: '',
-    otherReason: '',
-    name: '',
-    mobileNo: '',
-    emailId: '',
-    relation: '',
-    comment: '',
-    country: 'India',
-    city: '',
-    zipCode: ''
+    selectPatient: "",
+    patientName: "",
+    uhidNo: "",
+    paymentFor: "Out Patient Department (OPD)",
+    amount: "",
+    otherReason: "",
+    name: "",
+    mobileNo: "",
+    emailId: "",
+    relation: "",
+    comment: "",
+    country: "India",
+    city: "",
+    zipCode: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form Submitted:', formData);
+    console.log("Form Submitted:", formData);
     // Add payment gateway integration logic here
   };
 
   const handleReset = () => {
     setFormData({
-      selectPatient: '',
-      patientName: '',
-      uhidNo: '',
-      paymentFor: 'Out Patient Department (OPD)',
-      amount: '',
-      otherReason: '',
-      name: '',
-      mobileNo: '',
-      emailId: '',
-      relation: '',
-      comment: '',
-      country: 'India',
-      city: '',
-      zipCode: ''
+      selectPatient: "",
+      patientName: "",
+      uhidNo: "",
+      paymentFor: "Out Patient Department (OPD)",
+      amount: "",
+      otherReason: "",
+      name: "",
+      mobileNo: "",
+      emailId: "",
+      relation: "",
+      comment: "",
+      country: "India",
+      city: "",
+      zipCode: "",
     });
   };
 
@@ -67,11 +71,15 @@ const OnlinePaymentPage = () => {
           />
           <div className="absolute inset-0 bg-blue-900/40"></div>
         </div>
-        
+
         <div className="container mx-auto px-6 relative z-10">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">Online Payment</h1>
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
+            Online Payment
+          </h1>
           <nav className="text-white text-sm md:text-base">
-            <Link href="/" className="hover:underline">Home</Link>
+            <Link href="/" className="hover:underline">
+              Home
+            </Link>
             <span className="mx-2">|</span>
             <span>Online Payment</span>
           </nav>
@@ -81,8 +89,10 @@ const OnlinePaymentPage = () => {
       {/* Form Section */}
       <section className="py-12 bg-gray-100">
         <div className="container mx-auto px-4 max-w-4xl">
-          <form onSubmit={handleSubmit} className="bg-white p-6 md:p-10 shadow-lg rounded-sm">
-            
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-6 md:p-10 shadow-lg rounded-sm"
+          >
             {/* Select Patient */}
             <div className="mb-8 flex flex-col md:flex-row md:items-center gap-4">
               <label className="text-sm font-semibold text-gray-700 whitespace-nowrap">
@@ -103,10 +113,14 @@ const OnlinePaymentPage = () => {
 
             {/* Patient Details */}
             <div className="mb-8">
-              <h2 className="bg-[#2A57A4] text-white px-4 py-1 inline-block text-sm font-bold mb-4">Patient Details</h2>
+              <h2 className="bg-[#2A57A4] text-white px-4 py-1 inline-block text-sm font-bold mb-4">
+                Patient Details
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">Patient Name<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    Patient Name<span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     name="patientName"
@@ -131,10 +145,14 @@ const OnlinePaymentPage = () => {
 
             {/* Payment Details */}
             <div className="mb-8">
-              <h2 className="bg-[#2A57A4] text-white px-4 py-1 inline-block text-sm font-bold mb-4">Payment Details</h2>
+              <h2 className="bg-[#2A57A4] text-white px-4 py-1 inline-block text-sm font-bold mb-4">
+                Payment Details
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">Payment for<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    Payment for<span className="text-red-500">*</span>
+                  </label>
                   <select
                     name="paymentFor"
                     value={formData.paymentFor}
@@ -142,8 +160,12 @@ const OnlinePaymentPage = () => {
                     required
                     className="border border-gray-300 p-2 text-sm focus:outline-none focus:border-blue-500"
                   >
-                    <option value="Out Patient Department (OPD)">Out Patient Department (OPD)</option>
-                    <option value="In Patient Department (IPD)">In Patient Department (IPD)</option>
+                    <option value="Out Patient Department (OPD)">
+                      Out Patient Department (OPD)
+                    </option>
+                    <option value="In Patient Department (IPD)">
+                      In Patient Department (IPD)
+                    </option>
                     <option value="Teleconsultancy">Teleconsultancy</option>
                     <option value="Health Card">Health Card</option>
                     <option value="Other">Other</option>
@@ -174,10 +196,14 @@ const OnlinePaymentPage = () => {
 
             {/* Details */}
             <div className="mb-8">
-              <h2 className="bg-[#2A57A4] text-white px-4 py-1 inline-block text-sm font-bold mb-4">Details</h2>
+              <h2 className="bg-[#2A57A4] text-white px-4 py-1 inline-block text-sm font-bold mb-4">
+                Details
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">Name<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    Name<span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     name="name"
@@ -188,7 +214,9 @@ const OnlinePaymentPage = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">Mobile No<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    Mobile No<span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="tel"
                     name="mobileNo"
@@ -199,7 +227,9 @@ const OnlinePaymentPage = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">Email Id<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    Email Id<span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="email"
                     name="emailId"
@@ -210,7 +240,9 @@ const OnlinePaymentPage = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">Relation with Patient<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    Relation with Patient<span className="text-red-500">*</span>
+                  </label>
                   <select
                     name="relation"
                     value={formData.relation}
@@ -246,7 +278,9 @@ const OnlinePaymentPage = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">Country<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    Country<span className="text-red-500">*</span>
+                  </label>
                   <select
                     name="country"
                     value={formData.country}
@@ -260,7 +294,9 @@ const OnlinePaymentPage = () => {
                     <option value="Algeria">Algeria</option>
                     <option value="Andorra">Andorra</option>
                     <option value="Angola">Angola</option>
-                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                    <option value="Antigua and Barbuda">
+                      Antigua and Barbuda
+                    </option>
                     <option value="Argentina">Argentina</option>
                     <option value="Armenia">Armenia</option>
                     <option value="Australia">Australia</option>
@@ -276,7 +312,9 @@ const OnlinePaymentPage = () => {
                     <option value="Benin">Benin</option>
                     <option value="Bhutan">Bhutan</option>
                     <option value="Bolivia">Bolivia</option>
-                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                    <option value="Bosnia and Herzegovina">
+                      Bosnia and Herzegovina
+                    </option>
                     <option value="Botswana">Botswana</option>
                     <option value="Brazil">Brazil</option>
                     <option value="Brunei">Brunei</option>
@@ -287,7 +325,9 @@ const OnlinePaymentPage = () => {
                     <option value="Cambodia">Cambodia</option>
                     <option value="Cameroon">Cameroon</option>
                     <option value="Canada">Canada</option>
-                    <option value="Central African Republic">Central African Republic</option>
+                    <option value="Central African Republic">
+                      Central African Republic
+                    </option>
                     <option value="Chad">Chad</option>
                     <option value="Chile">Chile</option>
                     <option value="China">China</option>
@@ -302,7 +342,9 @@ const OnlinePaymentPage = () => {
                     <option value="Denmark">Denmark</option>
                     <option value="Djibouti">Djibouti</option>
                     <option value="Dominica">Dominica</option>
-                    <option value="Dominican Republic">Dominican Republic</option>
+                    <option value="Dominican Republic">
+                      Dominican Republic
+                    </option>
                     <option value="Ecuador">Ecuador</option>
                     <option value="Egypt">Egypt</option>
                     <option value="El Salvador">El Salvador</option>
@@ -403,7 +445,9 @@ const OnlinePaymentPage = () => {
                     <option value="Romania">Romania</option>
                     <option value="Russia">Russia</option>
                     <option value="Rwanda">Rwanda</option>
-                    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                    <option value="Saint Kitts and Nevis">
+                      Saint Kitts and Nevis
+                    </option>
                     <option value="Saint Lucia">Saint Lucia</option>
                     <option value="Saint Vincent">Saint Vincent</option>
                     <option value="Samoa">Samoa</option>
@@ -434,14 +478,18 @@ const OnlinePaymentPage = () => {
                     <option value="Timor-Leste">Timor-Leste</option>
                     <option value="Togo">Togo</option>
                     <option value="Tonga">Tonga</option>
-                    <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                    <option value="Trinidad and Tobago">
+                      Trinidad and Tobago
+                    </option>
                     <option value="Tunisia">Tunisia</option>
                     <option value="Turkey">Turkey</option>
                     <option value="Turkmenistan">Turkmenistan</option>
                     <option value="Tuvalu">Tuvalu</option>
                     <option value="Uganda">Uganda</option>
                     <option value="Ukraine">Ukraine</option>
-                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="United Arab Emirates">
+                      United Arab Emirates
+                    </option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="United States">United States</option>
                     <option value="Uruguay">Uruguay</option>
@@ -456,7 +504,9 @@ const OnlinePaymentPage = () => {
                   </select>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">City<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    City<span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     name="city"
@@ -467,7 +517,9 @@ const OnlinePaymentPage = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm text-gray-700">ZIP/Postal Code<span className="text-red-500">*</span></label>
+                  <label className="text-sm text-gray-700">
+                    ZIP/Postal Code<span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     name="zipCode"
@@ -496,7 +548,6 @@ const OnlinePaymentPage = () => {
                 Reset
               </button>
             </div>
-
           </form>
         </div>
       </section>

@@ -1,28 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { Eye, EyeOff, LogIn, Shield, Loader2 } from 'lucide-react';
-
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { Eye, EyeOff, LogIn, Shield, Loader2 } from "lucide-react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api-backend/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api-backend/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
       const text = await res.text();
@@ -30,16 +29,18 @@ export default function AdminLoginPage() {
       try {
         data = JSON.parse(text);
       } catch (e) {
-        throw new Error('Server returned an invalid response. Please check if the backend is running.');
+        throw new Error(
+          "Server returned an invalid response. Please check if the backend is running.",
+        );
       }
-      
-      if (!res.ok) throw new Error(data.error || 'Login failed');
 
-      localStorage.setItem('admin_token', data.token);
-      localStorage.setItem('admin_user', JSON.stringify(data.user));
-      router.push('/admin-dashboard');
+      if (!res.ok) throw new Error(data.error || "Login failed");
+
+      localStorage.setItem("admin_token", data.token);
+      localStorage.setItem("admin_user", JSON.stringify(data.user));
+      router.push("/admin-dashboard");
     } catch (err: any) {
-      setError(err.message || 'Invalid credentials');
+      setError(err.message || "Invalid credentials");
     } finally {
       setIsLoading(false);
     }
@@ -83,15 +84,31 @@ export default function AdminLoginPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#0b1c43]/5 text-[#0b1c43] mb-5 shadow-inner">
             <Shield className="w-8 h-8" />
           </div>
-          <h2 className="text-3xl font-black text-[#0b1c43] tracking-tight">Admin Portal.</h2>
-          <p className="text-gray-500 mt-2 text-base font-medium">Access your secure management board</p>
+          <h2 className="text-3xl font-black text-[#0b1c43] tracking-tight">
+            Admin Portal.
+          </h2>
+          <p className="text-gray-500 mt-2 text-base font-medium">
+            Access your secure management board
+          </p>
         </div>
 
         {/* Error Message */}
         {error && (
           <div className="mb-8 p-4 rounded-2xl bg-red-50 border border-red-100 flex items-center gap-3 animate-head-shake">
             <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center shrink-0">
-               <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg
+                className="w-4 h-4 text-red-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={3}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </div>
             <p className="text-[13px] font-bold text-red-700">{error}</p>
           </div>
@@ -101,35 +118,46 @@ export default function AdminLoginPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email */}
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1">
+            <label
+              htmlFor="email"
+              className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
+            >
               Email Address
             </label>
             <div className="relative group">
-               <input
-                 id="email"
-                 type="email"
-                 value={email}
-                 onChange={(e) => setEmail(e.target.value)}
-                 placeholder="Enter admin email"
-                 required
-                 className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium"
-               />
-               <LogIn className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-[#0d9488] transition-colors" />
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter admin email"
+                required
+                className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium"
+              />
+              <LogIn className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-[#0d9488] transition-colors" />
             </div>
           </div>
 
           {/* Password */}
           <div className="space-y-2">
             <div className="flex items-center justify-between px-1">
-               <label htmlFor="password" className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1">
-                 Security Password
-               </label>
-               <button type="button" className="text-[10px] font-bold text-[#0d9488] uppercase tracking-wider hover:opacity-70">Forgot Key?</button>
+              <label
+                htmlFor="password"
+                className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
+              >
+                Security Password
+              </label>
+              <button
+                type="button"
+                className="text-[10px] font-bold text-[#0d9488] uppercase tracking-wider hover:opacity-70"
+              >
+                Forgot Key?
+              </button>
             </div>
             <div className="relative group">
               <input
                 id="password"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter security password"
@@ -141,7 +169,11 @@ export default function AdminLoginPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
               </button>
             </div>
           </div>
@@ -171,11 +203,13 @@ export default function AdminLoginPage() {
 
         {/* Footer */}
         <div className="mt-10 pt-8 border-t border-gray-100">
-           <div className="flex flex-col items-center gap-4 text-center">
-              <p className="text-[#0b1c43]/30 text-[11px] font-black uppercase tracking-[0.2em] leading-tight">
-                © 2026 Popular Hospital.<br/>Admin Access Only.
-              </p>
-           </div>
+          <div className="flex flex-col items-center gap-4 text-center">
+            <p className="text-[#0b1c43]/30 text-[11px] font-black uppercase tracking-[0.2em] leading-tight">
+              © 2026 Popular Hospital.
+              <br />
+              Admin Access Only.
+            </p>
+          </div>
         </div>
       </div>
     </div>

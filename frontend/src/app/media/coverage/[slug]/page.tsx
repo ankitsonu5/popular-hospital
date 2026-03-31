@@ -15,7 +15,10 @@ export async function generateMetadata({
   if (!item) return { title: "Coverage Not Found" };
   return {
     title: `${item.title} – Media Coverage | Popular Hospital`,
-    description: typeof item.content === 'string' ? item.content.substring(0, 160) : 'Media coverage story from Popular Hospital.',
+    description:
+      typeof item.content === "string"
+        ? item.content.substring(0, 160)
+        : "Media coverage story from Popular Hospital.",
   };
 }
 
@@ -51,10 +54,13 @@ export default async function MediaCoverageDetailPage({
           <div className="absolute inset-0 bg-black/40 z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/90 via-[#0b1c43]/40 to-transparent z-10" />
         </div>
-        
+
         <div className="relative z-10 max-w-[1100px] mx-auto px-6 sm:px-8 lg:px-12 text-center sm:text-left">
           {/* Breadcrumb */}
-          <nav className="mb-4 text-[10px] sm:text-xs text-white/60 uppercase tracking-widest" aria-label="Breadcrumb">
+          <nav
+            className="mb-4 text-[10px] sm:text-xs text-white/60 uppercase tracking-widest"
+            aria-label="Breadcrumb"
+          >
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
@@ -73,8 +79,18 @@ export default async function MediaCoverageDetailPage({
               {item.source}
             </span>
             <span className="flex items-center gap-1.5 text-white/70 text-xs text-center">
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
               {item.date}
             </span>
@@ -92,9 +108,13 @@ export default async function MediaCoverageDetailPage({
         <article className="">
           {/* Rich Text Body */}
           <div className="prose prose-teal prose-lg max-w-none text-gray-700 leading-relaxed mb-12">
-            <div dangerouslySetInnerHTML={{ 
-              __html: Array.isArray(item.content) ? item.content.join('') : (item.content || '') 
-            }} />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: Array.isArray(item.content)
+                  ? item.content.join("")
+                  : item.content || "",
+              }}
+            />
           </div>
 
           {/* ─── Image Gallery ─── */}

@@ -30,9 +30,12 @@ export default async function NewsPage() {
           <div className="absolute inset-0 bg-black/40 z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/90 via-[#0b1c43]/40 to-transparent z-10" />
         </div>
-        
+
         <div className="relative z-10 max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <nav className="mb-4 text-xs sm:text-sm text-white/60" aria-label="Breadcrumb">
+          <nav
+            className="mb-4 text-xs sm:text-sm text-white/60"
+            aria-label="Breadcrumb"
+          >
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
@@ -40,8 +43,7 @@ export default async function NewsPage() {
             <span className="text-white">Latest News & Updates</span>
           </nav>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
-            Latest News{" "}
-            <span className="text-[#00B4D8]">& Updates</span>
+            Latest News <span className="text-[#00B4D8]">& Updates</span>
           </h1>
           <p className="mt-2 text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed">
             Stay informed with the latest health news, articles, expert tips,
@@ -68,7 +70,6 @@ export default async function NewsPage() {
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Category Badge removed */}
-
               </div>
 
               {/* Content */}

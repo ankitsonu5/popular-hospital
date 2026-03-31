@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const coverageSchema = new mongoose.Schema(
   {
@@ -8,10 +8,10 @@ const coverageSchema = new mongoose.Schema(
     image: { type: String, required: true }, // The newspaper clipping
     isActive: { type: Boolean, default: true },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-coverageSchema.index({ title: 'text', source: 'text' });
+coverageSchema.index({ title: "text", source: "text" });
 
-const Coverage = mongoose.model('Coverage', coverageSchema);
+const Coverage = mongoose.model("Coverage", coverageSchema);
 export default Coverage;

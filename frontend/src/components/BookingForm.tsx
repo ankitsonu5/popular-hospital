@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { fetchDoctors, fetchBranches, createBooking } from '@/lib/api';
-import type { Doctor, Branch } from '@/lib/api';
-import { formatTimeToAmPm } from '@/lib/time';
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { fetchDoctors, fetchBranches, createBooking } from "@/lib/api";
+import type { Doctor, Branch } from "@/lib/api";
+import { formatTimeToAmPm } from "@/lib/time";
 
 type SearchParams = Promise<{ doctor?: string; branch?: string }>;
 
@@ -13,20 +13,20 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
   const urlSearchParams = useSearchParams();
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [branches, setBranches] = useState<Branch[]>([]);
-  const [doctorId, setDoctorId] = useState('');
-  const [branchId, setBranchId] = useState('');
-  const [slotDate, setSlotDate] = useState('');
-  const [slotTime, setSlotTime] = useState('');
-  const [patientName, setPatientName] = useState('');
-  const [patientPhone, setPatientPhone] = useState('');
-  const [patientEmail, setPatientEmail] = useState('');
-  const [notes, setNotes] = useState('');
+  const [doctorId, setDoctorId] = useState("");
+  const [branchId, setBranchId] = useState("");
+  const [slotDate, setSlotDate] = useState("");
+  const [slotTime, setSlotTime] = useState("");
+  const [patientName, setPatientName] = useState("");
+  const [patientPhone, setPatientPhone] = useState("");
+  const [patientEmail, setPatientEmail] = useState("");
+  const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
-  const presetDoctor = urlSearchParams.get('doctor') || '';
-  const presetBranch = urlSearchParams.get('branch') || '';
+  const presetDoctor = urlSearchParams.get("doctor") || "";
+  const presetBranch = urlSearchParams.get("branch") || "";
 
   useEffect(() => {
     Promise.all([fetchDoctors(), fetchBranches()]).then(([d, b]) => {
@@ -37,17 +37,22 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
     });
   }, [presetDoctor, presetBranch]);
 
-
-
   const minDate = new Date().toISOString().slice(0, 10);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!doctorId || !branchId || !slotDate || !slotTime || !patientName || !patientPhone) {
-      setError('Please fill all required fields.');
+    if (
+      !doctorId ||
+      !branchId ||
+      !slotDate ||
+      !slotTime ||
+      !patientName ||
+      !patientPhone
+    ) {
+      setError("Please fill all required fields.");
       return;
     }
-    setError('');
+    setError("");
     setLoading(true);
     try {
       await createBooking({
@@ -62,7 +67,11 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
       });
       setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Booking failed. Please try again.');
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Booking failed. Please try again.",
+      );
     } finally {
       setLoading(false);
     }
@@ -71,9 +80,18 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
   if (submitted) {
     return (
       <div className="mx-auto mt-12 max-w-md rounded-xl border border-green-200 bg-green-50 p-8 text-center">
-        <h2 className="text-xl font-semibold text-green-800">Booking Confirmed</h2>
-        <p className="mt-2 text-green-700">We have received your appointment request. Our team will confirm shortly.</p>
-        <button type="button" className="btn-primary mt-6" onClick={() => router.push('/')}>
+        <h2 className="text-xl font-semibold text-green-800">
+          Booking Confirmed
+        </h2>
+        <p className="mt-2 text-green-700">
+          We have received your appointment request. Our team will confirm
+          shortly.
+        </p>
+        <button
+          type="button"
+          className="btn-primary mt-6"
+          onClick={() => router.push("/")}
+        >
           Back to Home
         </button>
       </div>
@@ -81,11 +99,23 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-2xl rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-      {error && <p className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto mt-8 max-w-2xl rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8"
+    >
+      {error && (
+        <p className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">
+          {error}
+        </p>
+      )}
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="doctor" className="mb-1 block text-sm font-medium text-gray-700">Doctor *</label>
+          <label
+            htmlFor="doctor"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Doctor *
+          </label>
           <select
             id="doctor"
             required
@@ -95,12 +125,19 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
           >
             <option value="">Select doctor</option>
             {doctors.map((d) => (
-              <option key={d._id || d.id} value={d._id || d.id}>{d.name} – {d.speciality_name}</option>
+              <option key={d._id || d.id} value={d._id || d.id}>
+                {d.name} – {d.speciality_name}
+              </option>
             ))}
           </select>
         </div>
         <div>
-          <label htmlFor="branch" className="mb-1 block text-sm font-medium text-gray-700">Branch *</label>
+          <label
+            htmlFor="branch"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Branch *
+          </label>
           <select
             id="branch"
             required
@@ -110,12 +147,19 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
           >
             <option value="">Select branch</option>
             {branches.map((b) => (
-              <option key={b._id} value={b._id}>{b.name}</option>
+              <option key={b._id} value={b._id}>
+                {b.name}
+              </option>
             ))}
           </select>
         </div>
         <div>
-          <label htmlFor="slotDate" className="mb-1 block text-sm font-medium text-gray-700">Date *</label>
+          <label
+            htmlFor="slotDate"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Date *
+          </label>
           <input
             id="slotDate"
             type="date"
@@ -127,7 +171,12 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
           />
         </div>
         <div>
-          <label htmlFor="slotTime" className="mb-1 block text-sm font-medium text-gray-700">Time *</label>
+          <label
+            htmlFor="slotTime"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Time *
+          </label>
           <input
             id="slotTime"
             type="time"
@@ -137,13 +186,20 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
           />
           {slotTime && (
-            <p className="mt-1 text-xs text-gray-500">Selected time: {formatTimeToAmPm(slotTime)}</p>
+            <p className="mt-1 text-xs text-gray-500">
+              Selected time: {formatTimeToAmPm(slotTime)}
+            </p>
           )}
         </div>
       </div>
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="patientName" className="mb-1 block text-sm font-medium text-gray-700">Your name *</label>
+          <label
+            htmlFor="patientName"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Your name *
+          </label>
           <input
             id="patientName"
             type="text"
@@ -154,7 +210,12 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
           />
         </div>
         <div>
-          <label htmlFor="patientPhone" className="mb-1 block text-sm font-medium text-gray-700">Phone *</label>
+          <label
+            htmlFor="patientPhone"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Phone *
+          </label>
           <input
             id="patientPhone"
             type="tel"
@@ -165,7 +226,12 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
           />
         </div>
         <div className="sm:col-span-2">
-          <label htmlFor="patientEmail" className="mb-1 block text-sm font-medium text-gray-700">Email</label>
+          <label
+            htmlFor="patientEmail"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Email
+          </label>
           <input
             id="patientEmail"
             type="email"
@@ -175,7 +241,12 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
           />
         </div>
         <div className="sm:col-span-2">
-          <label htmlFor="notes" className="mb-1 block text-sm font-medium text-gray-700">Notes (optional)</label>
+          <label
+            htmlFor="notes"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Notes (optional)
+          </label>
           <textarea
             id="notes"
             rows={2}
@@ -186,10 +257,18 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
         </div>
       </div>
       <div className="mt-8 flex gap-4">
-        <button type="submit" disabled={loading} className="btn-primary disabled:opacity-70">
-          {loading ? 'Booking...' : 'Confirm Booking'}
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn-primary disabled:opacity-70"
+        >
+          {loading ? "Booking..." : "Confirm Booking"}
         </button>
-        <button type="button" className="btn-secondary" onClick={() => router.back()}>
+        <button
+          type="button"
+          className="btn-secondary"
+          onClick={() => router.back()}
+        >
           Cancel
         </button>
       </div>

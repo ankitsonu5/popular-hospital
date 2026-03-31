@@ -28,8 +28,7 @@ export default function MediaCoveragePage() {
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage:
-              "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
             backgroundSize: "24px 24px",
           }}
         />
@@ -42,11 +41,12 @@ export default function MediaCoveragePage() {
             <span className="text-white">Media Coverage</span>
           </nav>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
-            Media{" "}
-            <span className="text-[#00B4D8]">Coverage</span>
+            Media <span className="text-[#00B4D8]">Coverage</span>
           </h1>
           <p className="mt-4 text-lg text-white/70 max-w-2xl leading-relaxed">
-            Explore our presence in newspapers, media, and press — highlighting milestones, achievements, and healthcare excellence at Popular Hospital.
+            Explore our presence in newspapers, media, and press — highlighting
+            milestones, achievements, and healthcare excellence at Popular
+            Hospital.
           </p>
         </div>
       </section>
@@ -80,8 +80,18 @@ export default function MediaCoveragePage() {
                   {/* Source + Date Row */}
                   <div className="flex items-center justify-between mb-2.5">
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#1e3a8a]/10 text-[#1e3a8a] text-[10px] font-bold uppercase tracking-wider">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                      <svg
+                        className="w-3 h-3"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                        />
                       </svg>
                       {item.source}
                     </span>
@@ -105,7 +115,7 @@ export default function MediaCoveragePage() {
       {selectedImageIndex !== null && (
         <div className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 sm:p-8 backdrop-blur-sm animate-in fade-in duration-300">
           {/* Close Button */}
-          <button 
+          <button
             onClick={closeLightbox}
             className="absolute top-6 right-6 text-white/70 hover:text-white p-2 bg-white/10 hover:bg-white/20 rounded-full transition-all z-[110]"
           >
@@ -113,13 +123,13 @@ export default function MediaCoveragePage() {
           </button>
 
           {/* Controls */}
-          <button 
+          <button
             onClick={prevImage}
             className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-3 hover:bg-white/10 rounded-full transition-all z-[110]"
           >
             <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10" />
           </button>
-          <button 
+          <button
             onClick={nextImage}
             className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-3 hover:bg-white/10 rounded-full transition-all z-[110]"
           >
@@ -135,14 +145,20 @@ export default function MediaCoveragePage() {
                 className="w-full h-full object-contain drop-shadow-2xl select-none animate-in zoom-in-95 duration-300"
               />
             </div>
-            
+
             {/* Caption */}
             <div className="text-center text-white max-w-3xl space-y-2 px-4 animate-in slide-in-from-bottom-4 duration-500">
               <div className="flex items-center justify-center gap-3">
-                <span className="bg-teal-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">{items[selectedImageIndex].source}</span>
-                <span className="text-white/50 text-xs font-medium">{items[selectedImageIndex].date}</span>
+                <span className="bg-teal-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                  {items[selectedImageIndex].source}
+                </span>
+                <span className="text-white/50 text-xs font-medium">
+                  {items[selectedImageIndex].date}
+                </span>
               </div>
-              <h3 className="text-lg sm:text-2xl font-bold leading-tight">{items[selectedImageIndex].title}</h3>
+              <h3 className="text-lg sm:text-2xl font-bold leading-tight">
+                {items[selectedImageIndex].title}
+              </h3>
               <p className="text-white/40 text-[11px] uppercase tracking-widest pt-2">
                 Image {selectedImageIndex + 1} of {items.length}
               </p>

@@ -1,14 +1,14 @@
 "use client";
- 
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { getImageUrl } from "@/lib/api";
- 
+
 interface LocationGalleryProps {
   images: string[];
   name: string;
 }
- 
+
 export function LocationGallery({ images, name }: LocationGalleryProps) {
   const [selectedImage, setSelectedImage] = useState(images[0]);
 
@@ -18,7 +18,7 @@ export function LocationGallery({ images, name }: LocationGalleryProps) {
       setSelectedImage(images[0]);
     }
   }, [images]);
- 
+
   return (
     <div className="w-full lg:w-1/2 flex flex-col gap-4 order-1 lg:order-2">
       {/* Main Large Image */}
@@ -34,7 +34,7 @@ export function LocationGallery({ images, name }: LocationGalleryProps) {
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
       </div>
- 
+
       {/* Thumbnails Row */}
       <div className="grid grid-cols-4 gap-3 sm:gap-4 w-full">
         {images.slice(0, 4).map((thumb, index) => (
@@ -44,8 +44,8 @@ export function LocationGallery({ images, name }: LocationGalleryProps) {
             className={`relative w-full aspect-square rounded-lg overflow-hidden border-2 transition-all duration-200
               ${
                 selectedImage === thumb
-                  ? 'border-[#E85222] scale-105 shadow-lg'
-                  : 'border-transparent hover:border-[#E85222] hover:scale-105 active:scale-95'
+                  ? "border-[#E85222] scale-105 shadow-lg"
+                  : "border-transparent hover:border-[#E85222] hover:scale-105 active:scale-95"
               }
             `}
             aria-label={`View image ${index + 1}`}
