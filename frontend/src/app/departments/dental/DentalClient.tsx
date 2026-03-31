@@ -169,31 +169,6 @@ export default function DentalClient() {
         </div>
       </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-[#0e7490] border-t border-gray-100 mt-20">
-        <div className="mx-auto w-full max-w-[1366px] px-4 text-center relative z-10">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
-                Your Smile, Our Priority
-            </h2>
-            <p className="text-cyan-50 text-lg md:text-xl max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
-                Take the first step towards a healthier, brighter smile. Consult our dental experts today and experience pain-free precision dentistry.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Link
-                href="/doctors"
-                className="bg-[#E85222] text-white hover:bg-orange-600 px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
-              >
-                Book Dental Checkup
-              </Link>
-              <a
-                href="tel:+917800001895"
-                className="bg-transparent border-2 border-cyan-400/50 text-white hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
-              >
-                 +91-7800001895 / 96
-              </a>
-            </div>
-        </div>
-      </section>
 
     </main>
   );

@@ -181,34 +181,7 @@ export default function DieteticsNutritionClient() {
         </div>
       </section>
 
-      {/* ═══════ CTA SECTION ═══════ */}
-      <section className="py-20 bg-emerald-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-400 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-400 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3"></div>
-        </div>
-        
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 font-heading">Start Your Journey Towards Better Health</h2>
-          <p className="text-emerald-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium">
-            Consult with our expert nutritionists today and get a personalized diet plan tailored to your needs.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              href="/doctors"
-              className="bg-emerald-500 hover:bg-emerald-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl shadow-emerald-900/40 transition-all uppercase tracking-wide"
-            >
-              Book Consultation
-            </Link>
-            <a
-              href="tel:+917800001895"
-              className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-10 py-4 rounded-full font-bold text-lg backdrop-blur-sm transition-all"
-            >
-              Call +91-7800001895
-            </a>
-          </div>
-        </div>
-      </section>
+
     </main>
   );
 }

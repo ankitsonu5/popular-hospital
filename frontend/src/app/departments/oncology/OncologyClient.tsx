@@ -232,43 +232,6 @@ export default function OncologyClient() {
         </div>
       </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-gray-50 overflow-hidden relative">
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0b1c43 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
-        <div className="mx-auto w-full max-w-[1366px] px-4 text-center relative z-10">
-          <div className="bg-[#0b1c43] rounded-2xl md:rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-              </svg>
-            </div>
-            <div className="absolute right-0 top-0 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
-            <span className="inline-block bg-blue-500/20 text-blue-200 text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-400/20 uppercase tracking-widest">
-              Hope Starts Here
-            </span>
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 relative z-10 font-heading leading-tight">
-              Early Diagnosis <br className="hidden md:block" /> Saves Lives
-            </h2>
-            <p className="text-blue-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 relative z-10 font-medium leading-relaxed">
-              Early diagnosis is the key to cure. If you notice any unusual symptoms, consult our specialists immediately.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10 mt-10">
-              <Link
-                href="/doctors"
-                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-base transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
-              >
-                Book Consultation
-              </Link>
-              <a
-                href="tel:+917800001895"
-                className="bg-transparent border-2 border-blue-400/50 text-white hover:bg-blue-900/30 px-8 py-4 rounded-full font-bold text-base transition-all"
-              >
-                +91-7800001895 / 96
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </main>
   );
