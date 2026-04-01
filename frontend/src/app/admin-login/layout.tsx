@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Admin Login | Popular Hospital',
-  description: 'Admin login for Popular Hospital management system.',
+  title: "Admin Login | Popular Hospital",
+  description: "Admin login for Popular Hospital management system.",
   robots: { index: false, follow: false },
 };
 

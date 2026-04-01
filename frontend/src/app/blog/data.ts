@@ -24,5 +24,10 @@ export const allCategories = [
   "Best Urologist Hospital",
   "Gastroenterology",
   "Orthopaedic in Varanasi",
-  "Cardiology", "Neurology", "Orthopedics", "ENT Care", "Pediatrics", "Emergency Care"
+  "Cardiology",
+  "Neurology",
+  "Orthopedics",
+  "ENT Care",
+  "Pediatrics",
+  "Emergency Care",
 ];

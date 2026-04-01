@@ -1,63 +1,68 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import DoctorSlider from '@/components/DoctorSlider';
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import DoctorSlider from "@/components/DoctorSlider";
 
 /* ─── Data (exact from original page content) ─── */
 
 const hospitalOptions = [
-  'Open Surgery',
-  'Endo-Urology: PCNI, URS, URSL, TURP, TUR-BT, RIRS',
-  'Andrology',
-  'Female Urology',
-  'Pediatric Urology',
-  'Uro-Oncology',
-  'Urology Laparoscopy',
+  "Open Surgery",
+  "Endo-Urology: PCNI, URS, URSL, TURP, TUR-BT, RIRS",
+  "Andrology",
+  "Female Urology",
+  "Pediatric Urology",
+  "Uro-Oncology",
+  "Urology Laparoscopy",
 ];
 
 const procedures = [
-  'Uroflowmetry and Urodynamic - to help in an accurate diagnosis of diseases of the Lower Urinary Track',
-  'Flexible Cystoscopy for Diagnostic OPD Cystourethroscopy',
-  'Flexible UreterRenoscopy and Laser Lithotripsy/RIRS for treating Kidney Stones without any holes/cuts',
-  'Laparoscopic treatment for diseases of the Kidney, Ureter and Bladder including Laparoscopic Uro Oncology and Laparoscopic Reconstructive Urology',
-  'Reconstructive Surgeries for complex diseases of the Kidney, Ureter, Bladder and Urethra including Laparoscopic Pyeloplasty, Augmentation Cystoplasty etc.',
-  'Female Urology including VVF Repair, TOT/TVT for Stress Urinary Incontinence, recurrent UTI, Urethral Stenosis etc.',
-  'Andrology & Male Infertility including Penile Prosthesis, Artificial Urinary Sphincter, Testicular Prosthesis, VVA and VEA etc.',
+  "Uroflowmetry and Urodynamic - to help in an accurate diagnosis of diseases of the Lower Urinary Track",
+  "Flexible Cystoscopy for Diagnostic OPD Cystourethroscopy",
+  "Flexible UreterRenoscopy and Laser Lithotripsy/RIRS for treating Kidney Stones without any holes/cuts",
+  "Laparoscopic treatment for diseases of the Kidney, Ureter and Bladder including Laparoscopic Uro Oncology and Laparoscopic Reconstructive Urology",
+  "Reconstructive Surgeries for complex diseases of the Kidney, Ureter, Bladder and Urethra including Laparoscopic Pyeloplasty, Augmentation Cystoplasty etc.",
+  "Female Urology including VVF Repair, TOT/TVT for Stress Urinary Incontinence, recurrent UTI, Urethral Stenosis etc.",
+  "Andrology & Male Infertility including Penile Prosthesis, Artificial Urinary Sphincter, Testicular Prosthesis, VVA and VEA etc.",
 ];
 
 const doctors = [
   {
-    name: 'Dr Dinesh Singh',
-    qualifications: 'MBBS, MS, MCh (Urology)',
-    designation: 'Consultant Urologist',
-    slug: 'dr-dinesh-singh',
-    image: '/images/departments_doctor/dr-dinesh-singh.jpg',
+    name: "Dr Dinesh Singh",
+    qualifications: "MBBS, MS, MCh (Urology)",
+    designation: "Consultant Urologist",
+    slug: "dr-dinesh-singh",
+    image: "/images/departments_doctor/dr-dinesh-singh.jpg",
   },
   {
-    name: 'Dr Piyush Saini',
-    qualifications: 'MBBS, MS, MCh (Urology)',
-    designation: 'Consultant Urologist',
-    slug: 'dr-piyush-saini',
-    image: '/images/departments_doctor/dr_piyush_saini.png',
+    name: "Dr Piyush Saini",
+    qualifications: "MBBS, MS, MCh (Urology)",
+    designation: "Consultant Urologist",
+    slug: "dr-piyush-saini",
+    image: "/images/departments_doctor/dr_piyush_saini.png",
   },
   {
-    name: 'Dr. Shasank shekhar Tripathi',
-    qualifications: 'MBBS, MS, MCh (Urology)',
-    designation: 'Consultant Urologist',
-    slug: 'dr-shasank-shekhar-tripathi',
-    image: '',
+    name: "Dr. Shasank shekhar Tripathi",
+    qualifications: "MBBS, MS, MCh (Urology)",
+    designation: "Consultant Urologist",
+    slug: "dr-shasank-shekhar-tripathi",
+    image: "",
   },
 ];
 
 /* ─── Sub-Components ─── */
 
-const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
+const SectionHeader = ({
+  title,
+  highlight,
+}: {
+  title: string;
+  highlight?: string;
+}) => (
   <div className="mb-6">
     <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
-      {title}{' '}
-      <span className="text-blue-600">{highlight}</span>
+      {title} <span className="text-blue-600">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-blue-600" />
@@ -68,7 +73,9 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">›</span>
+    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
+      ›
+    </span>
     <span className="leading-relaxed">{text}</span>
   </li>
 );
@@ -76,10 +83,8 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function UrologyClient() {
-
   return (
     <main className="min-h-screen bg-white">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -120,28 +125,48 @@ export default function UrologyClient() {
       <section className="py-16 bg-gray-50/50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
               <SectionHeader title="Department of" highlight="Urology" />
 
               {/* What is Urology */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-blue-600 mb-2">What Is Urology?</h3>
+                <h3 className="text-xl font-bold text-blue-600 mb-2">
+                  What Is Urology?
+                </h3>
                 <p className="text-gray-800 leading-relaxed text-base md:text-lg font-medium text-justify">
-                  Urology is a surgical speciality which deals with diseases of the male and female urinary Tract and of the male reproductive organs. The Department of Urology at Popular Hospital is at the forefront of providing clinical services, innovative treatment strategies. It deals with the disorder of Kidney, Urine bladder, Prostate gland, Testis & penis.
+                  Urology is a surgical speciality which deals with diseases of
+                  the male and female urinary Tract and of the male reproductive
+                  organs. The Department of Urology at Popular Hospital is at
+                  the forefront of providing clinical services, innovative
+                  treatment strategies. It deals with the disorder of Kidney,
+                  Urine bladder, Prostate gland, Testis & penis.
                 </p>
               </div>
 
               {/* What Are Kidney Stones */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-blue-600 mb-2">What Are Kidney Stones?</h3>
+                <h3 className="text-xl font-bold text-blue-600 mb-2">
+                  What Are Kidney Stones?
+                </h3>
                 <p className="text-gray-800 leading-relaxed text-base md:text-lg font-medium text-justify mb-4">
-                  Kidney stones are small, hard deposits that form inside your kidneys. The stones are made of mineral and acid salts. Kidney stones have many causes and can affect any part of your urinary tract — from your kidneys to your bladder. Often, stones form when the urine becomes concentrated, allowing minerals to crystallize and stick together.
+                  Kidney stones are small, hard deposits that form inside your
+                  kidneys. The stones are made of mineral and acid salts. Kidney
+                  stones have many causes and can affect any part of your
+                  urinary tract — from your kidneys to your bladder. Often,
+                  stones form when the urine becomes concentrated, allowing
+                  minerals to crystallize and stick together.
                 </p>
                 <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
                   <p className="text-gray-800 leading-relaxed text-base md:text-lg font-medium text-justify">
-                    <strong className="text-[#0b1c43]">Percutaneous nephrolithotomy:</strong> Percutaneous nephrolithotomy (PCNL) is a minimally-invasive procedure which is done to remove stones from the kidney by a small puncture wound up to about 1 cm through the skin. It is most suitable to remove the stones which are more than 2 cm in size and which are present near the pelvic region.
+                    <strong className="text-[#0b1c43]">
+                      Percutaneous nephrolithotomy:
+                    </strong>{" "}
+                    Percutaneous nephrolithotomy (PCNL) is a minimally-invasive
+                    procedure which is done to remove stones from the kidney by
+                    a small puncture wound up to about 1 cm through the skin. It
+                    is most suitable to remove the stones which are more than 2
+                    cm in size and which are present near the pelvic region.
                   </p>
                 </div>
               </div>
@@ -153,7 +178,6 @@ export default function UrologyClient() {
                 <DoctorSlider doctors={doctors} departmentName="Urology" />
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -177,11 +201,23 @@ export default function UrologyClient() {
                 className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 flex items-start gap-4 group"
               >
                 <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-[#0b1c43] transition-colors">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
-                <p className="text-gray-700 font-medium text-sm leading-snug pt-1">{item}</p>
+                <p className="text-gray-700 font-medium text-sm leading-snug pt-1">
+                  {item}
+                </p>
               </div>
             ))}
           </div>
@@ -200,7 +236,7 @@ export default function UrologyClient() {
               <div className="h-[2px] w-16 bg-gray-200" />
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
             {procedures.map((item, idx) => (
               <div
@@ -218,8 +254,6 @@ export default function UrologyClient() {
           </div>
         </div>
       </section>
-
-
     </main>
   );
 }

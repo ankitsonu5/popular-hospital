@@ -1,14 +1,14 @@
-import Doctor from '../models/Doctor.js';
-import Speciality from '../models/Speciality.js';
-import multer from 'multer';
-import fs from 'fs';
-import path from 'path';
-import Designation from '../models/Designation.js';
+import Doctor from "../models/Doctor.js";
+import Speciality from "../models/Speciality.js";
+import multer from "multer";
+import fs from "fs";
+import path from "path";
+import Designation from "../models/Designation.js";
 
 // Setup Multer Storage for Doctors
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = 'uploads/doctors';
+    const dir = "uploads/doctors";
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
-  }
+  },
 });
 
 export const uploadDoctor = multer({ storage });
@@ -45,29 +45,32 @@ export const getAllDoctors = async (req, res) => {
 
     if (search) {
       filter.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { qualification: { $regex: search, $options: 'i' } },
+        { name: { $regex: search, $options: "i" } },
+        { qualification: { $regex: search, $options: "i" } },
       ];
     }
 
     const doctors = await Doctor.find(filter)
-      .populate('speciality', 'name slug department_display_name')
-      .populate('branches', 'name slug')
-      .populate('designation', 'name');
+      .populate("speciality", "name slug department_display_name")
+      .populate("branches", "name slug")
+      .populate("designation", "name");
 
     // Custom sorting in-memory
     doctors.sort((a, b) => {
       // First sort by sortIndex if they differ (default to 0 if undefined)
-      const aIndex = typeof a.sortIndex === 'number' ? a.sortIndex : 0;
-      const bIndex = typeof b.sortIndex === 'number' ? b.sortIndex : 0;
-      
+      const aIndex = typeof a.sortIndex === "number" ? a.sortIndex : 0;
+      const bIndex = typeof b.sortIndex === "number" ? b.sortIndex : 0;
+
       if (aIndex !== bIndex) {
         return aIndex - bIndex;
       }
 
-      const priorityNames = ['General Surgeon / Surgery', 'Gynecologist / OBGY'];
-      const aSpec = a.speciality?.name || '';
-      const bSpec = b.speciality?.name || '';
+      const priorityNames = [
+        "General Surgeon / Surgery",
+        "Gynecologist / OBGY",
+      ];
+      const aSpec = a.speciality?.name || "";
+      const bSpec = b.speciality?.name || "";
 
       // If no speciality filter is applied, apply priority
       if (!speciality) {
@@ -81,14 +84,14 @@ export const getAllDoctors = async (req, res) => {
 
       // Group by speciality name
       if (aSpec !== bSpec) return aSpec.localeCompare(bSpec);
-      
+
       // Sort by doctor name within group
       return a.name.localeCompare(b.name);
     });
 
     res.json(doctors);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -98,7 +101,7 @@ export const getAllSpecialities = async (req, res) => {
     const list = await Speciality.find().sort({ name: 1 });
     res.json(list);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -110,63 +113,79 @@ export const getDoctorByIdOrSlug = async (req, res) => {
     let doctor = null;
     if (idOrSlug.match(/^[0-9a-fA-F]{24}$/)) {
       doctor = await Doctor.findById(idOrSlug)
-        .populate('speciality', 'name slug department_display_name')
-        .populate('branches', 'name slug')
-        .populate('designation', 'name');
+        .populate("speciality", "name slug department_display_name")
+        .populate("branches", "name slug")
+        .populate("designation", "name");
     }
     if (!doctor) {
       doctor = await Doctor.findOne({ slug: idOrSlug })
-        .populate('speciality', 'name slug department_display_name')
-        .populate('branches', 'name slug')
-        .populate('designation', 'name');
+        .populate("speciality", "name slug department_display_name")
+        .populate("branches", "name slug")
+        .populate("designation", "name");
     }
 
-    if (!doctor) return res.status(404).json({ error: 'Doctor not found' });
+    if (!doctor) return res.status(404).json({ error: "Doctor not found" });
     res.json(doctor);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
 // POST /api/cms/doctors
 export const createDoctor = async (req, res) => {
   try {
-    const { name, slug, speciality, qualification, experience_years, experience_location, bio, consultation_fee, available_days, branches, is_active, opd_timings, designation } = req.body;
+    const {
+      name,
+      slug,
+      speciality,
+      qualification,
+      experience_years,
+      experience_location,
+      bio,
+      consultation_fee,
+      available_days,
+      branches,
+      is_active,
+      opd_timings,
+      designation,
+    } = req.body;
     if (!name || !slug || !speciality) {
-      return res.status(400).json({ error: 'name, slug, speciality required' });
+      return res.status(400).json({ error: "name, slug, speciality required" });
     }
 
-    const image_url = req.file ? `/uploads/doctors/${req.file.filename}` : (req.body.image_url || '');
+    const image_url = req.file
+      ? `/uploads/doctors/${req.file.filename}`
+      : req.body.image_url || "";
 
     // Parse opd_timings if it's a string (e.g. from FormData)
     let parsedOpdTimings = opd_timings;
-    if (typeof opd_timings === 'string') {
+    if (typeof opd_timings === "string") {
       try {
         parsedOpdTimings = JSON.parse(opd_timings);
       } catch (e) {
-        console.error('Failed to parse opd_timings:', e);
+        console.error("Failed to parse opd_timings:", e);
       }
     }
 
-    const doctor = await Doctor.create({ 
-      name, 
-      slug, 
-      speciality, 
-      qualification, 
-      experience_years: experience_years ? parseInt(experience_years) : null, 
+    const doctor = await Doctor.create({
+      name,
+      slug,
+      speciality,
+      qualification,
+      experience_years: experience_years ? parseInt(experience_years) : null,
       experience_location,
-      bio, 
-      image_url, 
-      consultation_fee: consultation_fee ? parseInt(consultation_fee) : null, 
-      available_days, 
+      bio,
+      image_url,
+      consultation_fee: consultation_fee ? parseInt(consultation_fee) : null,
+      available_days,
       opd_timings: parsedOpdTimings,
       branches: branches || [],
       designation,
-      is_active: is_active !== 'false' && is_active !== false
+      is_active: is_active !== "false" && is_active !== false,
     });
     res.status(201).json(doctor);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -174,15 +193,21 @@ export const createDoctor = async (req, res) => {
 export const updateDoctor = async (req, res) => {
   try {
     const updates = { ...req.body };
-    updates.experience_years = updates.experience_years ? parseInt(updates.experience_years) : null;
-    updates.consultation_fee = updates.consultation_fee ? parseInt(updates.consultation_fee) : null;
-    if (updates.is_active !== undefined) updates.is_active = updates.is_active !== 'false' && updates.is_active !== false;
+    updates.experience_years = updates.experience_years
+      ? parseInt(updates.experience_years)
+      : null;
+    updates.consultation_fee = updates.consultation_fee
+      ? parseInt(updates.consultation_fee)
+      : null;
+    if (updates.is_active !== undefined)
+      updates.is_active =
+        updates.is_active !== "false" && updates.is_active !== false;
 
-    if (updates.opd_timings && typeof updates.opd_timings === 'string') {
+    if (updates.opd_timings && typeof updates.opd_timings === "string") {
       try {
         updates.opd_timings = JSON.parse(updates.opd_timings);
       } catch (e) {
-        console.error('Failed to parse opd_timings:', e);
+        console.error("Failed to parse opd_timings:", e);
       }
     }
 
@@ -190,11 +215,14 @@ export const updateDoctor = async (req, res) => {
       updates.image_url = `/uploads/doctors/${req.file.filename}`;
     }
 
-    const doctor = await Doctor.findByIdAndUpdate(req.params.id, updates, { new: true, runValidators: true });
-    if (!doctor) return res.status(404).json({ error: 'Doctor not found' });
+    const doctor = await Doctor.findByIdAndUpdate(req.params.id, updates, {
+      new: true,
+      runValidators: true,
+    });
+    if (!doctor) return res.status(404).json({ error: "Doctor not found" });
     res.json(doctor);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -202,10 +230,10 @@ export const updateDoctor = async (req, res) => {
 export const deleteDoctor = async (req, res) => {
   try {
     const doctor = await Doctor.findByIdAndDelete(req.params.id);
-    if (!doctor) return res.status(404).json({ error: 'Doctor not found' });
+    if (!doctor) return res.status(404).json({ error: "Doctor not found" });
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -214,7 +242,9 @@ export const reorderDoctors = async (req, res) => {
   try {
     const { doctors } = req.body;
     if (!Array.isArray(doctors)) {
-      return res.status(400).json({ error: 'doctors must be an array of { id, sortIndex }' });
+      return res
+        .status(400)
+        .json({ error: "doctors must be an array of { id, sortIndex }" });
     }
 
     const updates = doctors.map((doc) => ({
@@ -227,11 +257,11 @@ export const reorderDoctors = async (req, res) => {
     if (updates.length > 0) {
       await Doctor.bulkWrite(updates);
     }
-    
+
     res.json({ ok: true });
   } catch (error) {
-    console.error('Error reordering doctors:', error);
-    res.status(500).json({ error: 'An internal error occurred.' });
+    console.error("Error reordering doctors:", error);
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -241,26 +271,35 @@ export const reorderDoctors = async (req, res) => {
 export const createSpeciality = async (req, res) => {
   try {
     const { name, slug, department_display_name } = req.body;
-    if (!name || !slug) return res.status(400).json({ error: 'Name and slug are required' });
-    
-    const spec = await Speciality.create({ name, slug, department_display_name });
+    if (!name || !slug)
+      return res.status(400).json({ error: "Name and slug are required" });
+
+    const spec = await Speciality.create({
+      name,
+      slug,
+      department_display_name,
+    });
     res.status(201).json(spec);
   } catch (error) {
     if (error.code === 11000) {
-      return res.status(400).json({ error: 'A department with this name or slug already exists' });
+      return res
+        .status(400)
+        .json({ error: "A department with this name or slug already exists" });
     }
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
 // PUT /api/cms/specialities/:id
 export const updateSpeciality = async (req, res) => {
   try {
-    const spec = await Speciality.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!spec) return res.status(404).json({ error: 'Speciality not found' });
+    const spec = await Speciality.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!spec) return res.status(404).json({ error: "Speciality not found" });
     res.json(spec);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -269,14 +308,17 @@ export const deleteSpeciality = async (req, res) => {
   try {
     const specId = req.params.id;
     const spec = await Speciality.findByIdAndDelete(specId);
-    if (!spec) return res.status(404).json({ error: 'Speciality not found' });
+    if (!spec) return res.status(404).json({ error: "Speciality not found" });
 
     // Cascade delete: Remove all doctors in this speciality
     await Doctor.deleteMany({ speciality: specId });
-    
-    res.json({ ok: true, message: 'Department and associated doctors removed' });
+
+    res.json({
+      ok: true,
+      message: "Department and associated doctors removed",
+    });
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -286,28 +328,30 @@ export const getAllDesignations = async (req, res) => {
     const list = await Designation.find().sort({ name: 1 });
     res.json(list);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
 export const createDesignation = async (req, res) => {
   try {
     const { name } = req.body;
-    if (!name) return res.status(400).json({ error: 'Name is required' });
+    if (!name) return res.status(400).json({ error: "Name is required" });
     const desig = await Designation.create({ name });
     res.status(201).json(desig);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
 export const updateDesignation = async (req, res) => {
   try {
-    const desig = await Designation.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!desig) return res.status(404).json({ error: 'Designation not found' });
+    const desig = await Designation.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!desig) return res.status(404).json({ error: "Designation not found" });
     res.json(desig);
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
@@ -316,6 +360,6 @@ export const deleteDesignation = async (req, res) => {
     await Designation.findByIdAndDelete(req.params.id);
     res.json({ ok: true });
   } catch (error) {
-    res.status(500).json({ error: 'An internal error occurred.' });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };

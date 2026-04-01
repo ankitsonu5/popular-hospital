@@ -1,9 +1,10 @@
-import type { Metadata } from 'next';
-import { DoctorsSearch } from '@/components/DoctorsSearch';
+import type { Metadata } from "next";
+import { DoctorsSearch } from "@/components/DoctorsSearch";
 
 export const metadata: Metadata = {
-  title: 'Find Doctors',
-  description: 'Search and book doctors by speciality and branch at Popular Hospital. View profiles, qualifications, and consultation fees.',
+  title: "Find Doctors",
+  description:
+    "Search and book doctors by speciality and branch at Popular Hospital. View profiles, qualifications, and consultation fees.",
 };
 
 export default function DoctorsPage() {
@@ -13,7 +14,8 @@ export default function DoctorsPage() {
         Find a Doctor
       </h1>
       <p className="max-w-2xl text-gray-500 text-lg sm:text-xl leading-relaxed font-medium">
-        Search by speciality, branch, or name. Click on a doctor to book an appointment.
+        Search by speciality, branch, or name. Click on a doctor to book an
+        appointment.
       </p>
       <DoctorsSearch />
     </div>

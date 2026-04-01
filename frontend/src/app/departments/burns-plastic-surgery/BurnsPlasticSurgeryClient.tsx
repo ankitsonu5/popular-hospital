@@ -1,72 +1,78 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import DoctorSlider from '@/components/DoctorSlider';
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import DoctorSlider from "@/components/DoctorSlider";
 
 /* ─── Data (exact from original page) ─── */
 
 const burnsCauses = [
-  'Hot liquids (scalds)',
-  'Hot solids (contact burns)',
-  'Flames (flame burns)',
+  "Hot liquids (scalds)",
+  "Hot solids (contact burns)",
+  "Flames (flame burns)",
 ];
 
 const burnsClassifications = [
-  'First-degree (superficial) burns: First-degree burns affect only the outer layer of skin, the epidermis',
-  'Second-degree (partial thickness) burns',
-  'Third-degree (full thickness) burns',
+  "First-degree (superficial) burns: First-degree burns affect only the outer layer of skin, the epidermis",
+  "Second-degree (partial thickness) burns",
+  "Third-degree (full thickness) burns",
   "Fourth-degree burns: (Extend beneath the subcutaneous tissues)",
   'The size of a burn can be quickly estimated by using the "rule of nines."',
-  'During a burn evaluation we examine the wound and figure out an estimated percentage of total body surface area (TBSA) that has been burned.',
-  'We at Popular hospital treat burn case having 20% of total body surface area only',
+  "During a burn evaluation we examine the wound and figure out an estimated percentage of total body surface area (TBSA) that has been burned.",
+  "We at Popular hospital treat burn case having 20% of total body surface area only",
 ];
 
 const procedures = [
-  'Aesthetic plastic surgery',
-  'Reconstructive surgery',
-  'Craniofacial surgery',
-  'Reconstructive microsurgery',
-  'Paediatric plastic surgery',
-  'Laser surgery',
-  'Hand surgery',
-  'Lymphatic surgery (Filarial surgery)',
-  'Body contouring surgery (LIPOSUCTION)',
-  'Breast Reconstruction: Reduction & Augmentation',
-  'Genital surgery: Hypospadias, Reconstruction',
-  'Peripheral nerve surgery',
-  'Burn reconstructive surgery',
-  'Sex change surgery',
+  "Aesthetic plastic surgery",
+  "Reconstructive surgery",
+  "Craniofacial surgery",
+  "Reconstructive microsurgery",
+  "Paediatric plastic surgery",
+  "Laser surgery",
+  "Hand surgery",
+  "Lymphatic surgery (Filarial surgery)",
+  "Body contouring surgery (LIPOSUCTION)",
+  "Breast Reconstruction: Reduction & Augmentation",
+  "Genital surgery: Hypospadias, Reconstruction",
+  "Peripheral nerve surgery",
+  "Burn reconstructive surgery",
+  "Sex change surgery",
 ];
 
 const doctors = [
   {
-    name: 'Dr A.K Pradhan',
-    qualifications: 'MBBS, MS, MCh (Plastic Surgery)',
-    designation: 'Consultant Plastic Surgeon',
-    slug: 'dr-ak-pradhan',
-    image: '',
+    name: "Dr A.K Pradhan",
+    qualifications: "MBBS, MS, MCh (Plastic Surgery)",
+    designation: "Consultant Plastic Surgeon",
+    slug: "dr-ak-pradhan",
+    image: "",
   },
   {
-    name: 'Dr Sudhir Singh',
-    qualifications: 'MBBS, MS, MCh (Plastic Surgery)',
-    designation: 'Consultant Plastic Surgeon',
-    slug: 'dr-sudhir-singh',
-    image: '',
+    name: "Dr Sudhir Singh",
+    qualifications: "MBBS, MS, MCh (Plastic Surgery)",
+    designation: "Consultant Plastic Surgeon",
+    slug: "dr-sudhir-singh",
+    image: "",
   },
   {
-    name: 'Dr Deepak Agrahari',
-    qualifications: 'MBBS, MS, MCh (Plastic Surgery)',
-    designation: 'Consultant Plastic Surgeon',
-    slug: 'dr-deepak-agrahari',
-    image: '',
+    name: "Dr Deepak Agrahari",
+    qualifications: "MBBS, MS, MCh (Plastic Surgery)",
+    designation: "Consultant Plastic Surgeon",
+    slug: "dr-deepak-agrahari",
+    image: "",
   },
 ];
 
 /* ─── Sub-Components ─── */
 
-const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
+const SectionHeader = ({
+  title,
+  highlight,
+}: {
+  title: string;
+  highlight?: string;
+}) => (
   <div className="mb-6">
     <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
       {title} <span className="text-blue-600">{highlight}</span>
@@ -80,7 +86,9 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">›</span>
+    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
+      ›
+    </span>
     <span className="leading-relaxed">{text}</span>
   </li>
 );
@@ -88,10 +96,8 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function BurnsPlasticSurgeryClient() {
-
   return (
     <main className="min-h-screen bg-white">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -118,14 +124,34 @@ export default function BurnsPlasticSurgeryClient() {
                 href="/doctors"
                 className="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30 flex items-center gap-2"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
                 Book Appointment
               </Link>
               <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
                 </svg>
                 Get a Call Back
               </button>
@@ -138,20 +164,25 @@ export default function BurnsPlasticSurgeryClient() {
       <section className="py-16 bg-gray-50/50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
-              <SectionHeader title="Department of Burns &amp;" highlight="Plastic Surgery" />
+              <SectionHeader
+                title="Department of Burns &amp;"
+                highlight="Plastic Surgery"
+              />
 
               {/* Burns */}
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-blue-600 mb-2">Burns</h3>
                 <div className="text-gray-800 leading-relaxed text-base md:text-lg font-medium text-justify space-y-4">
                   <p>
-                    A burn is an injury to the skin or other organic tissue primarily caused by heat ordue to radiation, radioactivity, electricity, friction or contact with chemicals.
+                    A burn is an injury to the skin or other organic tissue
+                    primarily caused by heat ordue to radiation, radioactivity,
+                    electricity, friction or contact with chemicals.
                   </p>
                   <p>
-                    Thermal (heat) burns occur when some or all of the cells in the skin or other tissues are destroyed by:
+                    Thermal (heat) burns occur when some or all of the cells in
+                    the skin or other tissues are destroyed by:
                   </p>
                 </div>
                 <ul className="mt-4">
@@ -160,20 +191,20 @@ export default function BurnsPlasticSurgeryClient() {
                   ))}
                 </ul>
               </div>
-
             </div>
-
 
             {/* ── Right Doctor Card ── */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <DoctorSlider doctors={doctors} departmentName="Burns & Plastic Surgery" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Burns & Plastic Surgery"
+                />
               </div>
             </div>
           </div>
 
           <div className="mt-20 space-y-24">
-            
             {/* Classifications Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
@@ -184,7 +215,12 @@ export default function BurnsPlasticSurgeryClient() {
                   ))}
                 </ul>
               </div>
-              <div className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)' }}>
+              <div
+                className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl"
+                style={{
+                  clipPath: "polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)",
+                }}
+              >
                 <Image
                   src="/images/departments-images/AdobeStock_222372294.jpeg"
                   alt="Burns Classification"
@@ -196,7 +232,12 @@ export default function BurnsPlasticSurgeryClient() {
 
             {/* Plastic Surgery Detailed Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="order-2 md:order-1 relative h-[450px] rounded-[3rem] overflow-hidden shadow-2xl" style={{ clipPath: 'polygon(0% 0, 90% 0%, 100% 100%, 10% 100%)' }}>
+              <div
+                className="order-2 md:order-1 relative h-[450px] rounded-[3rem] overflow-hidden shadow-2xl"
+                style={{
+                  clipPath: "polygon(0% 0, 90% 0%, 100% 100%, 10% 100%)",
+                }}
+              >
                 <Image
                   src="/images/departments-images/plastic_surgery.png"
                   alt="Plastic Surgery"
@@ -208,15 +249,26 @@ export default function BurnsPlasticSurgeryClient() {
                 <SectionHeader title="Plastic" highlight="Surgery" />
                 <div className="space-y-4 text-gray-700 text-base leading-relaxed text-justify">
                   <p>
-                    Plastic surgery is a surgical speciality which involves reconstruction, restoration, or alteration of the human body. Plastic Surgery is the art of treating with aims to improve the appearance of the human body or improve the functioning of a part of the body.
+                    Plastic surgery is a surgical speciality which involves
+                    reconstruction, restoration, or alteration of the human
+                    body. Plastic Surgery is the art of treating with aims to
+                    improve the appearance of the human body or improve the
+                    functioning of a part of the body.
                   </p>
                   <div className="bg-blue-50/50 p-6 rounded-2xl border-l-4 border-blue-600">
                     <p className="font-semibold text-blue-900 italic text-base">
-                      At Popular Hospital we have a team of highly qualified and dedicated plastic surgeons to deliver the best care at an affordable price with the proverbial best in latest technology.
+                      At Popular Hospital we have a team of highly qualified and
+                      dedicated plastic surgeons to deliver the best care at an
+                      affordable price with the proverbial best in latest
+                      technology.
                     </p>
                   </div>
                   <p className="text-base">
-                    We work both independently and in Conjunction with many other Surgical Services including: ENT, General Surgery, Surgical Oncology, Orthopedics, Urology, Gynecology and Neurosurgery for giving comprehensive care to all the patients.
+                    We work both independently and in Conjunction with many
+                    other Surgical Services including: ENT, General Surgery,
+                    Surgical Oncology, Orthopedics, Urology, Gynecology and
+                    Neurosurgery for giving comprehensive care to all the
+                    patients.
                   </p>
                 </div>
               </div>
@@ -229,7 +281,9 @@ export default function BurnsPlasticSurgeryClient() {
       <section className="py-16 bg-[#0b1c43]">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="text-center mb-12">
-            <span className="text-blue-300 font-bold tracking-widest text-xs uppercase mb-3 block">Advanced Treatments</span>
+            <span className="text-blue-300 font-bold tracking-widest text-xs uppercase mb-3 block">
+              Advanced Treatments
+            </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white font-heading">
               Our <span className="text-blue-400">Procedures</span>
             </h2>
@@ -245,16 +299,14 @@ export default function BurnsPlasticSurgeryClient() {
                 className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-5 py-4 hover:bg-white/10 hover:border-blue-400/40 transition-all duration-300 group flex items-center gap-4"
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-blue-400 flex-shrink-0 group-hover:bg-white group-hover:shadow-[0_0_8px_2px_rgba(96,165,250,0.6)] transition-all duration-300" />
-                <p className="text-blue-50 font-medium text-sm leading-snug group-hover:text-white transition-colors">{item}</p>
+                <p className="text-blue-50 font-medium text-sm leading-snug group-hover:text-white transition-colors">
+                  {item}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-
     </main>
   );
 }
-
-

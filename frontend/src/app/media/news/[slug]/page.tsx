@@ -3,9 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-
 import { fetchNews, fetchNewsItem, getImageUrl } from "@/lib/api";
-
 
 /* ───────────────── static params ───────────────── */
 export async function generateStaticParams() {
@@ -28,7 +26,6 @@ export async function generateMetadata({
   };
 }
 
-
 /* ───────────────── page component ───────────────── */
 export default async function NewsDetailPage({
   params,
@@ -44,7 +41,6 @@ export default async function NewsDetailPage({
   const relatedArticles = allNews
     .filter((a) => a.slug !== article.slug)
     .slice(0, 3);
-
 
   return (
     <main className="min-h-screen bg-white">
@@ -66,17 +62,13 @@ export default async function NewsDetailPage({
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage:
-              "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
             backgroundSize: "24px 24px",
           }}
         />
         <div className="relative z-10 max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           {/* Breadcrumb */}
-          <nav
-            className="mb-6 text-sm text-white/60"
-            aria-label="Breadcrumb"
-          >
+          <nav className="mb-6 text-sm text-white/60" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
@@ -88,14 +80,11 @@ export default async function NewsDetailPage({
               News
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-white/80">
-              {article.title}
-            </span>
+            <span className="text-white/80">{article.title}</span>
           </nav>
 
           {/* Date */}
           <div className="flex flex-wrap items-center gap-3 mb-5">
-
             <span className="flex items-center gap-1.5 text-white/70 text-sm">
               <svg
                 className="w-4 h-4"
@@ -139,20 +128,24 @@ export default async function NewsDetailPage({
 
           {/* Rich Text Body */}
           <div className="prose prose-teal prose-lg max-w-none text-gray-700 leading-relaxed">
-            <div dangerouslySetInnerHTML={{ 
-              __html: Array.isArray(article.content) ? article.content.join('') : (article.content || '') 
-            }} />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: Array.isArray(article.content)
+                  ? article.content.join("")
+                  : article.content || "",
+              }}
+            />
           </div>
         </article>
-
-
 
         {/* ─── Share & Actions Strip ─── */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-100">
           <div className="flex items-center gap-3">
             {article.author && (
               <>
-                <span className="text-sm font-medium text-gray-500">Source:</span>
+                <span className="text-sm font-medium text-gray-500">
+                  Source:
+                </span>
                 <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
                   {article.author}
                 </span>
@@ -196,7 +189,9 @@ export default async function NewsDetailPage({
               >
                 <div className="relative w-full h-48 bg-gray-200 overflow-hidden">
                   <Image
-                    src={getImageUrl(related.image) || "/about-section-image.png"} // 2. Update existing 'Image' src attributes to use 'getImageUrl(article.image)'. (Corrected for related.image)
+                    src={
+                      getImageUrl(related.image) || "/about-section-image.png"
+                    } // 2. Update existing 'Image' src attributes to use 'getImageUrl(article.image)'. (Corrected for related.image)
                     alt={related.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"

@@ -73,9 +73,7 @@
     "title": "the blog popular hospital",
     "slug": "the-blog-popular-hospital",
     "excerpt": "this is the paragraph of the website",
-    "content": [
-      "this is the paragraph of the website"
-    ],
+    "content": ["this is the paragraph of the website"],
     "image": "/uploads/blogs/1772257773485-son-shine.png",
     "author": "popularhospital-admin",
     "date": "February 28, 2026",

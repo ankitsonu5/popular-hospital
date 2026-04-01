@@ -137,8 +137,12 @@ button {
 }
 
 @keyframes driveRight {
-  0% { transform: translateX(-100vw); }
-  100% { transform: translateX(100vw); }
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
 }
 
 .animate-drive {
@@ -146,8 +150,12 @@ button {
 }
 
 @keyframes progress {
-  from { width: 0%; }
-  to { width: 100%; }
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes fade-in-up {
@@ -198,7 +206,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF6600; /* hospital-orange */
+  background: #ff6600; /* hospital-orange */
 }
 
 /* Firefox scrollbar support */
@@ -210,22 +218,36 @@ button {
 /* ───────────────────────────────────────────────────────────────── */
 /* RICH TEXT (PROSE) STYLING FOR BLOG CONTENT                        */
 /* ───────────────────────────────────────────────────────────────── */
-.prose h1, .prose h2, .prose h3, .prose h4 {
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
   @apply text-hospital-navy font-bold mb-6 mt-10;
 }
-.prose h1 { @apply text-4xl lg:text-5xl; }
-.prose h2 { @apply text-3xl lg:text-4xl border-b pb-3 border-gray-100; }
-.prose h3 { @apply text-2xl lg:text-3xl; }
+.prose h1 {
+  @apply text-4xl lg:text-5xl;
+}
+.prose h2 {
+  @apply text-3xl lg:text-4xl border-b pb-3 border-gray-100;
+}
+.prose h3 {
+  @apply text-2xl lg:text-3xl;
+}
 
 .prose p {
   @apply mb-5 text-gray-700 leading-relaxed;
 }
 
-.prose ul, .prose ol {
+.prose ul,
+.prose ol {
   @apply mb-6 space-y-2 pl-5;
 }
-.prose ul { @apply list-disc; }
-.prose ol { @apply list-decimal; }
+.prose ul {
+  @apply list-disc;
+}
+.prose ol {
+  @apply list-decimal;
+}
 
 .prose img {
   @apply max-w-full h-auto my-6 transition-all duration-300;
@@ -234,10 +256,12 @@ button {
 }
 
 /* Float support for editor images */
-.prose img[style*="float: left"], .prose .alignleft {
+.prose img[style*="float: left"],
+.prose .alignleft {
   @apply float-left mr-8 mb-4 rounded-xl;
 }
-.prose img[style*="float: right"], .prose .alignright {
+.prose img[style*="float: right"],
+.prose .alignright {
   @apply float-right ml-8 mb-4 rounded-xl;
 }
 .prose .aligncenter {
@@ -262,7 +286,8 @@ button {
 .prose table {
   @apply w-full border-collapse border border-gray-100 my-8 overflow-hidden rounded-xl;
 }
-.prose th, .prose td {
+.prose th,
+.prose td {
   @apply border border-gray-100 p-4 text-left;
 }
 .prose th {

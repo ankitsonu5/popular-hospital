@@ -1,77 +1,99 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import DoctorSlider from '@/components/DoctorSlider';
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import DoctorSlider from "@/components/DoctorSlider";
 
 /* ─── Data (exact from original page) ─── */
 
 const features = [
-  { title: 'Keyhole Surgery', icon: 'scope', desc: 'Advanced laparoscopic procedures.' },
-  { title: 'Trauma Care', icon: 'plus', desc: '24/7 emergency surgical support.' },
-  { title: 'Hernia Center', icon: 'shield', desc: 'Expert mesh & non-mesh repair.' },
-  { title: 'Laser Proctology', icon: 'laser', desc: 'Painless treatment for piles & fissures.' },
+  {
+    title: "Keyhole Surgery",
+    icon: "scope",
+    desc: "Advanced laparoscopic procedures.",
+  },
+  {
+    title: "Trauma Care",
+    icon: "plus",
+    desc: "24/7 emergency surgical support.",
+  },
+  {
+    title: "Hernia Center",
+    icon: "shield",
+    desc: "Expert mesh & non-mesh repair.",
+  },
+  {
+    title: "Laser Proctology",
+    icon: "laser",
+    desc: "Painless treatment for piles & fissures.",
+  },
 ];
 
 const uspList = [
-  'Abdominal surgeries such as gallbladder excision, advanced laparoscopy appendectomy, intestinal surgery (colon/laparoscopic surgery), obstruction & perforation',
-  'All kinds of hernias - Treated by both open and laparoscopic surgery, depending on the patient\'s condition. Anorectal diseases - Such as abscesses, fistula, tissue anomalies, prolapse, hydrocele',
-  'LASER Surgery for Fistula, Fissure Piles & Pilonidalsinus',
-  'Trauma Surgery and care',
-  'Stapled Haemorrhoidectomy for piles & prolapse with many benefits to the patient such as minimal blood loss, less pain and early recovery',
-  'Tumours Diagnostics and treatment of soft tissues, treatment for cysts and tumours of the salivary glands, thyroid, parathyroid, adrenal, breast, lipoma and tumours of the abdomen',
-  'Breast lump and abscess',
-  'Benign breast diseases',
-  'Diseases of the veins such as varicose veins',
+  "Abdominal surgeries such as gallbladder excision, advanced laparoscopy appendectomy, intestinal surgery (colon/laparoscopic surgery), obstruction & perforation",
+  "All kinds of hernias - Treated by both open and laparoscopic surgery, depending on the patient's condition. Anorectal diseases - Such as abscesses, fistula, tissue anomalies, prolapse, hydrocele",
+  "LASER Surgery for Fistula, Fissure Piles & Pilonidalsinus",
+  "Trauma Surgery and care",
+  "Stapled Haemorrhoidectomy for piles & prolapse with many benefits to the patient such as minimal blood loss, less pain and early recovery",
+  "Tumours Diagnostics and treatment of soft tissues, treatment for cysts and tumours of the salivary glands, thyroid, parathyroid, adrenal, breast, lipoma and tumours of the abdomen",
+  "Breast lump and abscess",
+  "Benign breast diseases",
+  "Diseases of the veins such as varicose veins",
 ];
 
 const procedures = [
-  'Gallstone Disease – Laparoscopic Cholecystectomy',
-  'Hernia Laparoscopic/Open Hernia Repair with Mesh',
-  'Appendicitis - Laparoscopic Appendectomy',
-  'Reflux Disease, Reflux Gastritis, Hiatus Hernia – Laparoscopic Repair',
-  'Diagnostic Laparoscopy',
-  'Thyroid and Parathyroid Tumour – Thyroidectomy/Parathyroidectomy',
-  'Fissure or Anal Pain',
-  'Piles Minimally Invasive Surgery/Stapler Surgery for Piles',
-  'Rectal Prolapse – Laparoscopic Rectopexy',
-  'Liver Abscess',
-  'Trauma/Accidental Injury',
-  'Acute Intestinal Perforation/Rupture',
-  'Acute Intestinal Obstruction',
-  'Torsion Testis',
-  'Varicocele Surgery (Laparoscopic/Open)',
-  'Vasectomy',
+  "Gallstone Disease – Laparoscopic Cholecystectomy",
+  "Hernia Laparoscopic/Open Hernia Repair with Mesh",
+  "Appendicitis - Laparoscopic Appendectomy",
+  "Reflux Disease, Reflux Gastritis, Hiatus Hernia – Laparoscopic Repair",
+  "Diagnostic Laparoscopy",
+  "Thyroid and Parathyroid Tumour – Thyroidectomy/Parathyroidectomy",
+  "Fissure or Anal Pain",
+  "Piles Minimally Invasive Surgery/Stapler Surgery for Piles",
+  "Rectal Prolapse – Laparoscopic Rectopexy",
+  "Liver Abscess",
+  "Trauma/Accidental Injury",
+  "Acute Intestinal Perforation/Rupture",
+  "Acute Intestinal Obstruction",
+  "Torsion Testis",
+  "Varicocele Surgery (Laparoscopic/Open)",
+  "Vasectomy",
 ];
 
 const doctors = [
   {
-    name: 'Dr A.K Kaushik',
-    qualifications: 'MBBS, MS (General Surgery) IMS, BHU',
-    designation: 'Head, Department of General Surgery',
-    slug: 'dr-ak-kaushik',
-    image: '/images/departments_doctor/dr_ak_kaushik.png',
+    name: "Dr A.K Kaushik",
+    qualifications: "MBBS, MS (General Surgery) IMS, BHU",
+    designation: "Head, Department of General Surgery",
+    slug: "dr-ak-kaushik",
+    image: "/images/departments_doctor/dr_ak_kaushik.png",
   },
   {
-    name: 'Dr R.K Singh',
-    qualifications: 'MBBS, MS, FIAGES, FSG',
-    designation: 'Consultant Surgeon',
-    slug: 'dr-rk-singh',
-    image: '',
+    name: "Dr R.K Singh",
+    qualifications: "MBBS, MS, FIAGES, FSG",
+    designation: "Consultant Surgeon",
+    slug: "dr-rk-singh",
+    image: "",
   },
   {
-    name: 'Dr. Abhishek',
-    qualifications: 'M.B.B.S, M.S. - General Surgery, FIAGES',
-    designation: 'Consultant Surgeon',
-    slug: 'dr-abhishek',
-    image: '',
+    name: "Dr. Abhishek",
+    qualifications: "M.B.B.S, M.S. - General Surgery, FIAGES",
+    designation: "Consultant Surgeon",
+    slug: "dr-abhishek",
+    image: "",
   },
 ];
 
 /* ─── Sub-Components ─── */
 
-const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
+const SectionHeader = ({
+  title,
+  highlight,
+}: {
+  title: string;
+  highlight?: string;
+}) => (
   <div className="mb-6">
     <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
       {title} <span className="text-blue-600">{highlight}</span>
@@ -85,7 +107,9 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">›</span>
+    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
+      ›
+    </span>
     <span className="leading-relaxed">{text}</span>
   </li>
 );
@@ -93,10 +117,8 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function GeneralSurgeryClient() {
-
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -136,17 +158,38 @@ export default function GeneralSurgeryClient() {
       <section className="py-16 bg-white">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
-              <SectionHeader title="Department of General &amp;" highlight="Laproscopic Surgery" />
+              <SectionHeader
+                title="Department of General &amp;"
+                highlight="Laproscopic Surgery"
+              />
               <div className="space-y-4 text-gray-800 text-base md:text-lg font-medium leading-relaxed mb-10 text-justify">
                 <p>
-                  The Department of General and Laparoscopic Surgery at Popular Hospital is manned 24x7 by an experienced and dedicated team of consultants that aim to provide modern surgical treatment and advice to the patients. The department is committed to the principles and practices of &apos;Safe Surgery Saves Lives&apos; to provide ethical &amp; evidence-based surgical options to the patients.
+                  The Department of General and Laparoscopic Surgery at Popular
+                  Hospital is manned 24x7 by an experienced and dedicated team
+                  of consultants that aim to provide modern surgical treatment
+                  and advice to the patients. The department is committed to the
+                  principles and practices of &apos;Safe Surgery Saves
+                  Lives&apos; to provide ethical &amp; evidence-based surgical
+                  options to the patients.
                 </p>
                 <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
                   <p>
-                    Laparoscopic Surgery is a technique wherein surgical procedures like removal of gallbladder can be successfully done with small keyhole incisions in place of opening up of the abdomen with large incision. Carbon dioxide gas is used to inflate the abdomen so as to open up space for putting in instruments and then performing required surgical procedures. Patients are mobilised the same evening and discharged the very next day. The benefits of Laparoscopic surgery are early return to work, less pain, faster recovery &amp; better cosmetics. With a dedicated and experienced team doing evidence-based surgical procedures, the outcomes are excellent. Safety in surgery to reduce or eliminate complications during treatment is the main motto of the consultants.
+                    Laparoscopic Surgery is a technique wherein surgical
+                    procedures like removal of gallbladder can be successfully
+                    done with small keyhole incisions in place of opening up of
+                    the abdomen with large incision. Carbon dioxide gas is used
+                    to inflate the abdomen so as to open up space for putting in
+                    instruments and then performing required surgical
+                    procedures. Patients are mobilised the same evening and
+                    discharged the very next day. The benefits of Laparoscopic
+                    surgery are early return to work, less pain, faster recovery
+                    &amp; better cosmetics. With a dedicated and experienced
+                    team doing evidence-based surgical procedures, the outcomes
+                    are excellent. Safety in surgery to reduce or eliminate
+                    complications during treatment is the main motto of the
+                    consultants.
                   </p>
                 </div>
               </div>
@@ -155,10 +198,12 @@ export default function GeneralSurgeryClient() {
             {/* ── Right Doctor Card ── */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <DoctorSlider doctors={doctors} departmentName="Laparoscopy & General Surgery" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Laparoscopy & General Surgery"
+                />
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -167,10 +212,12 @@ export default function GeneralSurgeryClient() {
       <section className="py-16 bg-gray-50">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-
             {/* Left: USP List */}
             <div>
-              <SectionHeader title="Usp Of General &amp;" highlight="Laproscopic Surgery Department" />
+              <SectionHeader
+                title="Usp Of General &amp;"
+                highlight="Laproscopic Surgery Department"
+              />
               <ul className="mt-2">
                 {uspList.map((item, idx) => (
                   <ListItem key={idx} text={item} />
@@ -179,7 +226,10 @@ export default function GeneralSurgeryClient() {
             </div>
 
             {/* Right: Image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '420px' }}>
+            <div
+              className="relative rounded-2xl overflow-hidden shadow-lg group"
+              style={{ minHeight: "420px" }}
+            >
               <Image
                 src="/images/departments-images/laparoscopic.jpeg"
                 alt="Laparoscopic Surgery"
@@ -188,7 +238,6 @@ export default function GeneralSurgeryClient() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
             </div>
-
           </div>
         </div>
       </section>
@@ -197,9 +246,11 @@ export default function GeneralSurgeryClient() {
       <section className="py-16 bg-white">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-
             {/* Left: Image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-lg group" style={{ minHeight: '440px' }}>
+            <div
+              className="relative rounded-2xl overflow-hidden shadow-lg group"
+              style={{ minHeight: "440px" }}
+            >
               <Image
                 src="/images/departments-images/general_surgery.png"
                 alt="General Surgery Procedures"
@@ -213,7 +264,8 @@ export default function GeneralSurgeryClient() {
             <div>
               <SectionHeader title="Our" highlight="Procedures" />
               <p className="text-gray-500 text-sm mb-6">
-                Comprehensive surgical solutions for a wide range of abdominal and general surgical conditions.
+                Comprehensive surgical solutions for a wide range of abdominal
+                and general surgical conditions.
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
                 {procedures.map((item, idx) => (
@@ -221,12 +273,9 @@ export default function GeneralSurgeryClient() {
                 ))}
               </ul>
             </div>
-
           </div>
         </div>
       </section>
-
-
     </main>
   );
 }

@@ -1,8 +1,8 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 const createTransporter = () => {
   return nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_APP_PASSWORD,
@@ -11,13 +11,29 @@ const createTransporter = () => {
 };
 
 export const sendContactEmail = async (contactData) => {
-  const { name, email, phone, date, timing, department, location, message, age, country, isInternational } = contactData;
+  const {
+    name,
+    email,
+    phone,
+    date,
+    timing,
+    department,
+    location,
+    message,
+    age,
+    country,
+    isInternational,
+  } = contactData;
 
   const transporter = createTransporter();
 
   const formattedDate = date
-    ? new Date(date).toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
-    : 'Not specified';
+    ? new Date(date).toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
+    : "Not specified";
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -57,7 +73,7 @@ export const sendContactEmail = async (contactData) => {
         <div class="header">
           <h1>Popular Hospitals</h1>
           <p>Excellence in Healthcare</p>
-          <div class="status-badge">${isInternational ? 'International Inquiry' : 'New Appointment Request'}</div>
+          <div class="status-badge">${isInternational ? "International Inquiry" : "New Appointment Request"}</div>
         </div>
         
         <div class="content">
@@ -81,32 +97,36 @@ export const sendContactEmail = async (contactData) => {
             </div>
             <div class="info-row">
               <div class="info-label">Timing Slot</div>
-              <div class="info-value">${timing || 'Anytime'}</div>
+              <div class="info-value">${timing || "Anytime"}</div>
             </div>
             <div class="info-row">
               <div class="info-label">Department</div>
-              <div class="info-value">${department || 'General'}</div>
+              <div class="info-value">${department || "General"}</div>
             </div>
             <div class="info-row">
               <div class="info-label">Branch</div>
-              <div class="info-value">${location || 'Main Branch'}</div>
+              <div class="info-value">${location || "Main Branch"}</div>
             </div>
-            ${isInternational ? `
+            ${
+              isInternational
+                ? `
             <div class="info-row">
               <div class="info-label">Age</div>
-              <div class="info-value">${age || 'N/A'}</div>
+              <div class="info-value">${age || "N/A"}</div>
             </div>
             <div class="info-row">
               <div class="info-label">Country</div>
-              <div class="info-value">${country || 'N/A'}</div>
+              <div class="info-value">${country || "N/A"}</div>
             </div>
-            ` : ''}
+            `
+                : ""
+            }
           </div>
           
           <div class="message-section">
             <span class="section-label">Personal Message</span>
             <div class="message-content">
-              ${message ? message : 'No specific requirements mentioned by the patient.'}
+              ${message ? message : "No specific requirements mentioned by the patient."}
             </div>
           </div>
         </div>
@@ -126,7 +146,7 @@ export const sendContactEmail = async (contactData) => {
     from: `"${name} (via Popular Hospital)" <${process.env.GMAIL_USER}>`,
     to: process.env.GMAIL_USER,
     replyTo: email,
-    subject: `${isInternational ? '🌍 ' : '📋 '}New ${isInternational ? 'International Inquiry' : 'Appointment Request'} from ${name} — Popular Hospitals`,
+    subject: `${isInternational ? "🌍 " : "📋 "}New ${isInternational ? "International Inquiry" : "Appointment Request"} from ${name} — Popular Hospitals`,
     html: htmlContent,
   };
 
@@ -134,7 +154,16 @@ export const sendContactEmail = async (contactData) => {
 };
 
 export const sendApplicationEmail = async (applicationData) => {
-  const { name, email, mobile, gender, nationality, address, location, resumeUrl } = applicationData;
+  const {
+    name,
+    email,
+    mobile,
+    gender,
+    nationality,
+    address,
+    location,
+    resumeUrl,
+  } = applicationData;
 
   const transporter = createTransporter();
 
@@ -194,19 +223,19 @@ export const sendApplicationEmail = async (applicationData) => {
             </div>
             <div class="info-row">
               <div class="info-label">Gender</div>
-              <div class="info-value">${gender || 'N/A'}</div>
+              <div class="info-value">${gender || "N/A"}</div>
             </div>
             <div class="info-row">
               <div class="info-label">Nationality</div>
-              <div class="info-value">${nationality || 'N/A'}</div>
+              <div class="info-value">${nationality || "N/A"}</div>
             </div>
             <div class="info-row">
               <div class="info-label">Address</div>
-              <div class="info-value">${address || 'N/A'}</div>
+              <div class="info-value">${address || "N/A"}</div>
             </div>
             <div class="info-row">
               <div class="info-label">Location (City)</div>
-              <div class="info-value">${location || 'N/A'}</div>
+              <div class="info-value">${location || "N/A"}</div>
             </div>
           </div>
         </div>
@@ -237,13 +266,13 @@ export const sendBookingEmail = async (booking) => {
   const transporter = createTransporter();
 
   const patientName = booking.patient_name;
-  const patientEmail = booking.patient_email || 'Not provided';
+  const patientEmail = booking.patient_email || "Not provided";
   const patientPhone = booking.patient_phone;
-  const doctorName = booking.doctor?.name || 'Assigned Doctor';
-  const branchName = booking.branch?.name || 'Hospital Branch';
+  const doctorName = booking.doctor?.name || "Assigned Doctor";
+  const branchName = booking.branch?.name || "Hospital Branch";
   const slotDate = booking.slot_date;
   const slotTime = booking.slot_time;
-  const notes = booking.notes || 'No additional notes provided';
+  const notes = booking.notes || "No additional notes provided";
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -338,7 +367,7 @@ export const sendBookingEmail = async (booking) => {
   `;
 
   const mailOptions = {
-    from: '"Online Bookings System" <' + process.env.GMAIL_USER + '>',
+    from: '"Online Bookings System" <' + process.env.GMAIL_USER + ">",
     to: process.env.GMAIL_USER,
     subject: `🗓️ New Booking: ${patientName} for ${doctorName} (${slotDate})`,
     html: htmlContent,

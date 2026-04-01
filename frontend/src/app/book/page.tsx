@@ -1,9 +1,10 @@
-import type { Metadata } from 'next';
-import { BookingForm } from '@/components/BookingForm';
+import type { Metadata } from "next";
+import { BookingForm } from "@/components/BookingForm";
 
 export const metadata: Metadata = {
-  title: 'Book Appointment',
-  description: 'Book doctor appointment or OPD at Popular Hospital online. Choose doctor, branch, date and time.',
+  title: "Book Appointment",
+  description:
+    "Book doctor appointment or OPD at Popular Hospital online. Choose doctor, branch, date and time.",
 };
 
 export default function BookPage({

@@ -11,8 +11,7 @@ export const mediaCoverageItems = [
   },
   {
     slug: "dr-akshat-good-rank-cet",
-    title:
-      "Congratulations to Dr. Akshat for securing a good rank in CET",
+    title: "Congratulations to Dr. Akshat for securing a good rank in CET",
     excerpt:
       "Dr. Akshat Kaushik has once again made the Popular Hospital family proud by securing an excellent rank in the CET examination. His dedication to academic excellence continues to inspire young medical professionals across the region.",
     image: "/about-section-image.png",
@@ -59,8 +58,7 @@ export const mediaCoverageItems = [
   },
   {
     slug: "successful-knee-transplant",
-    title:
-      "Successful B/L Knee Transplant of A Couple At Popular Hospital",
+    title: "Successful B/L Knee Transplant of A Couple At Popular Hospital",
     excerpt:
       "In a remarkable medical achievement, Popular Hospital successfully performed bilateral knee transplant surgery on a couple simultaneously. The procedure was carried out by a team of expert orthopedic surgeons, and both patients have recovered well and are now leading active lives.",
     image: "/about-section-image.png",

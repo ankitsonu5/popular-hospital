@@ -1,16 +1,20 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 dotenv.config();
 
-const MONGODB_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/popular-hospital';
+const MONGODB_URI =
+  process.env.MONGO_URI || "mongodb://localhost:27017/popular-hospital";
 
-const contactSchema = new mongoose.Schema({
-  name: String,
-  isInternational: Boolean,
-  createdAt: Date
-}, { strict: false });
+const contactSchema = new mongoose.Schema(
+  {
+    name: String,
+    isInternational: Boolean,
+    createdAt: Date,
+  },
+  { strict: false },
+);
 
-const Contact = mongoose.model('Contact', contactSchema);
+const Contact = mongoose.model("Contact", contactSchema);
 
 async function check() {
   await mongoose.connect(MONGODB_URI);

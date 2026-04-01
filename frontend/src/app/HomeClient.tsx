@@ -3,32 +3,253 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { fetchBranches, fetchNews, fetchEvents, getImageUrl, fetchSpecialities, type Branch, type NewsItem, type EventItem, type Speciality } from "@/lib/api";
+import {
+  fetchBranches,
+  fetchNews,
+  fetchEvents,
+  getImageUrl,
+  fetchSpecialities,
+  type Branch,
+  type NewsItem,
+  type EventItem,
+  type Speciality,
+} from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const DynamicTestimonials = dynamic(() => import('@/components/home/Testimonials'), {
-  ssr: false, // Client side interactivity only needed
-  loading: () => <div className="h-[600px] w-full bg-gray-50 animate-pulse rounded-xl" />
-});
+const DynamicTestimonials = dynamic(
+  () => import("@/components/home/Testimonials"),
+  {
+    ssr: false, // Client side interactivity only needed
+    loading: () => (
+      <div className="h-[600px] w-full bg-gray-50 animate-pulse rounded-xl" />
+    ),
+  },
+);
 
-const DynamicLocationSlider = dynamic(() => import('@/components/home/LocationSlider'), {
-  ssr: false,
-  loading: () => <div className="h-[520px] w-full bg-[#f5f5f7] animate-pulse" />
-});
+const DynamicLocationSlider = dynamic(
+  () => import("@/components/home/LocationSlider"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[520px] w-full bg-[#f5f5f7] animate-pulse" />
+    ),
+  },
+);
 
-const DynamicEmergencyServices = dynamic(() => import('@/components/home/EmergencyServices'), {
-  ssr: false,
-  loading: () => <div className="h-[600px] w-full bg-slate-50 animate-pulse" />
-});
+const DynamicEmergencyServices = dynamic(
+  () => import("@/components/home/EmergencyServices"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[600px] w-full bg-slate-50 animate-pulse" />
+    ),
+  },
+);
 
-const DynamicInternationalPatients = dynamic(() => import('@/components/home/InternationalPatients'), {
-  ssr: false,
-  loading: () => <div className="h-[600px] w-full bg-[#f8fafc] animate-pulse" />
-});
+const DynamicInternationalPatients = dynamic(
+  () => import("@/components/home/InternationalPatients"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[600px] w-full bg-[#f8fafc] animate-pulse" />
+    ),
+  },
+);
 
 const COUNTRIES = [
-  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Republic of the)", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Republic of Korea", "Republic of Moldova", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syrian Arab Republic", "Tajikistan", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Türkiye", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United Republic of Tanzania", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Viet Nam", "Yemen", "Zambia", "Zimbabwe"
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Antigua and Barbuda",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei Darussalam",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cabo Verde",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Central African Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Comoros",
+  "Congo (Republic of the)",
+  "Costa Rica",
+  "Côte d'Ivoire",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czechia",
+  "Denmark",
+  "Djibouti",
+  "Dominica",
+  "Dominican Republic",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Estonia",
+  "Eswatini",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Grenada",
+  "Guatemala",
+  "Guinea",
+  "Guinea-Bissau",
+  "Guyana",
+  "Haiti",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kiribati",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Marshall Islands",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Micronesia",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar",
+  "Namibia",
+  "Nauru",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Korea",
+  "North Macedonia",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palau",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Republic of Korea",
+  "Republic of Moldova",
+  "Romania",
+  "Russian Federation",
+  "Rwanda",
+  "Saint Kitts and Nevis",
+  "Saint Lucia",
+  "Saint Vincent and the Grenadines",
+  "Samoa",
+  "San Marino",
+  "Sao Tome and Principe",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Seychelles",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "South Africa",
+  "South Sudan",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syrian Arab Republic",
+  "Tajikistan",
+  "Thailand",
+  "Timor-Leste",
+  "Togo",
+  "Tonga",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Türkiye",
+  "Turkmenistan",
+  "Tuvalu",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United Republic of Tanzania",
+  "United States of America",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Venezuela",
+  "Viet Nam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe",
 ];
 
 interface HomeClientProps {
@@ -38,11 +259,17 @@ interface HomeClientProps {
   specialities: Speciality[];
 }
 
-export default function HomeClient({ latestNews, latestEvents, branches, specialities }: HomeClientProps) {
+export default function HomeClient({
+  latestNews,
+  latestEvents,
+  branches,
+  specialities,
+}: HomeClientProps) {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringAwards, setIsHoveringAwards] = useState(false);
-  const [isInternationalModalOpen, setIsInternationalModalOpen] = useState(false);
+  const [isInternationalModalOpen, setIsInternationalModalOpen] =
+    useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -58,7 +285,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
   });
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
-  const [formError, setFormError] = useState('');
+  const [formError, setFormError] = useState("");
 
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -66,25 +293,25 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const slides = [
-    { 
-      type: 'image', 
-      src: '/images/slide_images/slide_one.png?v=update',
-      mobileSrc: '/images/slide_images/slide_one_mobile.png?v=update'
+    {
+      type: "image",
+      src: "/images/slide_images/slide_one.png?v=update",
+      mobileSrc: "/images/slide_images/slide_one_mobile.png?v=update",
     },
-    { 
-      type: 'image', 
-      src: '/images/slide_images/slide_three.png?v=update',
-      mobileSrc: '/images/slide_images/slide_three_mobile.png?v=update'
+    {
+      type: "image",
+      src: "/images/slide_images/slide_three.png?v=update",
+      mobileSrc: "/images/slide_images/slide_three_mobile.png?v=update",
     },
-    { 
-      type: 'image', 
-      src: '/images/slide_images/slide_two.png?v=update',
-      mobileSrc: '/images/slide_images/slide_two_mobile.png?v=update'
+    {
+      type: "image",
+      src: "/images/slide_images/slide_two.png?v=update",
+      mobileSrc: "/images/slide_images/slide_two_mobile.png?v=update",
     },
   ];
 
@@ -98,7 +325,8 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
   // No video logic needed
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const prevSlide = () =>
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -120,30 +348,28 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
 
   return (
     <>
-      <section 
-        className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[64px] sm:mt-[80px] md:mt-0 h-[480px] sm:h-[calc(100dvh-80px)] md:h-[100dvh] min-h-[480px] sm:min-h-[calc(100dvh-80px)] md:min-h-[100dvh]" 
-      >
+      <section className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[64px] sm:mt-[80px] md:mt-0 h-[480px] sm:h-[calc(100dvh-80px)] md:h-[100dvh] min-h-[480px] sm:min-h-[calc(100dvh-80px)] md:min-h-[100dvh]">
         {/* Slider Background */}
         <div className="absolute inset-0 z-0 bg-white">
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"}`}
             >
-                <div className="relative w-full h-full">
-                  <Image
-                    src={isMobile ? (slide.mobileSrc || slide.src) : slide.src}
-                    alt={`Hospital Slide ${index + 1}`}
-                    fill
-                    className="object-cover object-top transition-transform duration-[10000ms]"
-                    style={{ transform: 'scale(1)' }}
-                    priority={index === 0}
-                    loading={index === 0 ? undefined : 'lazy'}
-                    sizes="100vw"
-                  />
-                  {/* Very subtle gradient for text shadow if needed */}
-                  <div className="absolute inset-0 bg-black/10 z-10" />
-                </div>
+              <div className="relative w-full h-full">
+                <Image
+                  src={isMobile ? slide.mobileSrc || slide.src : slide.src}
+                  alt={`Hospital Slide ${index + 1}`}
+                  fill
+                  className="object-cover object-top transition-transform duration-[10000ms]"
+                  style={{ transform: "scale(1)" }}
+                  priority={index === 0}
+                  loading={index === 0 ? undefined : "lazy"}
+                  sizes="100vw"
+                />
+                {/* Very subtle gradient for text shadow if needed */}
+                <div className="absolute inset-0 bg-black/10 z-10" />
+              </div>
             </div>
           ))}
         </div>
@@ -165,12 +391,15 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
             <ChevronRight className="w-5 h-5 sm:w-10 sm:h-10 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
-
       </section>
 
       {/* Standalone Notification Ticker */}
       <section className="relative w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-y border-[#1e3a8a]/30 group cursor-pointer transition-colors hover:bg-[#0e2455] z-20">
-        <Link href="/updates" className="absolute inset-0 z-40" aria-label="View all updates"></Link>
+        <Link
+          href="/updates"
+          className="absolute inset-0 z-40"
+          aria-label="View all updates"
+        ></Link>
         <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
           <div className="flex items-center gap-2 text-[#E85222] font-bold tracking-widest text-xs uppercase font-heading">
             <span className="w-2 h-2 rounded-full bg-[#E85222] animate-pulse"></span>
@@ -179,9 +408,14 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
         </div>
         <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-32">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            <div
+              key={i}
+              className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+            >
               <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">New</span>
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">
+                  New
+                </span>
                 OPD timings for Cardiology have been updated to 9 AM - 5 PM.
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
@@ -204,44 +438,65 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
           <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
             <SimpleCard
               href="/our-locations"
-              title="Our Branches"  
+              title="Our Branches"
               isFirst={true}
               variant="blue"
             />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/book" title="Book an Appointment" variant="green" />
+            <SimpleCard
+              href="/book"
+              title="Book an Appointment"
+              variant="green"
+            />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/admin-login" title="Doctors Login" variant="blue" />
+            <SimpleCard
+              href="/doctors"
+              title="Find Your Doctor"
+              variant="blue"
+            />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/patient-reports" title="Patient Report" isLast={true} variant="green" />
+            <SimpleCard
+              href="/patient-reports"
+              title="Patient Report"
+              isLast={true}
+              variant="green"
+            />
           </div>
         </div>
       </section>
 
-
-
-
       {/* About Section */}
-      <section className="relative mt-12 md:mt-20 py-16 sm:py-24 bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] overflow-hidden" aria-labelledby="about-us">
+      <section
+        className="relative mt-12 md:mt-20 py-16 sm:py-24 bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] overflow-hidden"
+        aria-labelledby="about-us"
+      >
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-hospital-teal/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#E85222]/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
-        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">   
+        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Left Side - Text Content */}
             <div className="flex flex-col justify-center space-y-8">
-              <div>                
+              <div>
                 <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black font-heading leading-tight tracking-tight text-[#0b1c43] mb-6 drop-shadow-sm">
-                 About <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#1e3a8a]">Popular Hospital</span>
+                  About{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#1e3a8a]">
+                    Popular Hospital
+                  </span>
                 </h2>
-                
+
                 <p className="text-gray-600 text-[17px] sm:text-[19px] leading-relaxed font-medium">
-                  <span className="text-[#0b1c43] font-bold">POPULAR HOSPITAL</span> (a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia.
+                  <span className="text-[#0b1c43] font-bold">
+                    POPULAR HOSPITAL
+                  </span>{" "}
+                  (a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi
+                  Super Speciality Hospital that redefines standards of
+                  excellence in healthcare delivery by bringing together the
+                  best of infrastructure, technology, training, education and
+                  medical intelligentsia.
                 </p>
               </div>
-
-
 
               {/* Action Area */}
               {/* Action Area */}
@@ -253,28 +508,62 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
                   <span className="relative flex items-center gap-2 sm:gap-3 whitespace-nowrap">
-                    Discover More<span className="hidden sm:inline"> About Us</span>
+                    Discover More
+                    <span className="hidden sm:inline"> About Us</span>
                     <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-[#E85222] transition-colors shadow-sm shrink-0">
-                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                      <svg
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={3}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </div>
                   </span>
                 </Link>
-                
+
                 {/* Contact Info (Circular Button on Mobile, Full Box on Desktop) */}
-                <a href="tel:+917800001895" className="flex items-center justify-center sm:justify-start gap-4 bg-white sm:px-6 w-12 h-12 sm:w-auto sm:h-auto sm:py-3 rounded-full shadow-md border border-gray-100 hover:shadow-lg transition-shadow shrink-0 group">
-                   <div className="w-full h-full sm:w-10 sm:h-10 rounded-full sm:bg-hospital-teal/10 flex items-center justify-center text-hospital-teal group-hover:bg-hospital-teal group-hover:text-white sm:group-hover:bg-hospital-teal/10 sm:group-hover:text-hospital-teal transition-colors shrink-0">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                   </div>
-                   <div className="hidden sm:flex flex-col justify-center items-start min-w-0">
-                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">24/7 Helpline</p>
-                      <div className="flex items-center justify-start gap-2 w-full">
-                         <span className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] tracking-tight">+91-7800001895</span>
-                         <span className="text-gray-300 font-bold text-[14px] shrink-0">/</span>
-                         <span className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] tracking-tight shrink-0">96</span>
-                      </div>
-                   </div>
+                <a
+                  href="tel:+917800001895"
+                  className="flex items-center justify-center sm:justify-start gap-4 bg-white sm:px-6 w-12 h-12 sm:w-auto sm:h-auto sm:py-3 rounded-full shadow-md border border-gray-100 hover:shadow-lg transition-shadow shrink-0 group"
+                >
+                  <div className="w-full h-full sm:w-10 sm:h-10 rounded-full sm:bg-hospital-teal/10 flex items-center justify-center text-hospital-teal group-hover:bg-hospital-teal group-hover:text-white sm:group-hover:bg-hospital-teal/10 sm:group-hover:text-hospital-teal transition-colors shrink-0">
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="hidden sm:flex flex-col justify-center items-start min-w-0">
+                    <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">
+                      24/7 Helpline
+                    </p>
+                    <div className="flex items-center justify-start gap-2 w-full">
+                      <span className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] tracking-tight">
+                        +91-7800001895
+                      </span>
+                      <span className="text-gray-300 font-bold text-[14px] shrink-0">
+                        /
+                      </span>
+                      <span className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] tracking-tight shrink-0">
+                        96
+                      </span>
+                    </div>
+                  </div>
                 </a>
               </div>
             </div>
@@ -284,7 +573,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
               <div className="relative group">
                 {/* Main Image Frame (Reduced hover glow expansion) */}
                 <div className="absolute -inset-4 bg-gradient-to-tr from-hospital-teal/30 to-[#E85222]/30 rounded-[3rem] blur-2xl transition-all duration-500 opacity-40"></div>
-                
+
                 <div className="relative rounded-[2.5rem] overflow-hidden w-full aspect-square border-[8px] border-white group-hover:-translate-y-0.5 transition-transform duration-500 bg-gray-100">
                   <Image
                     src="/about-section-image.png"
@@ -294,29 +583,35 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
-                  
+
                   {/* Subtle Light Reflection Inner Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-                  
+
                   {/* Inner Overlay Gradient for depth (More subtle) */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
-
-                
               </div>
             </div>
           </div>
         </div>
       </section>
 
-
       {/* Why Popular Hospital Section */}
-      <section className="relative py-24 bg-white overflow-hidden" aria-labelledby="why-popular">
+      <section
+        className="relative py-24 bg-white overflow-hidden"
+        aria-labelledby="why-popular"
+      >
         {/* Decorative Grid Lines Background */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: "linear-gradient(to right, #0b1c43 1px, transparent 1px), linear-gradient(to bottom, #0b1c43 1px, transparent 1px)", backgroundSize: "60px 60px" }}></div>
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.02]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #0b1c43 1px, transparent 1px), linear-gradient(to bottom, #0b1c43 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        ></div>
 
         <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
-          
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8 relative z-10">
             <div className="max-w-3xl">
@@ -325,14 +620,14 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0b1c43] font-heading leading-[1.15] tracking-tight">
                 Why <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">Popular Hospital</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
+                  Popular Hospital
+                </span>
               </h2>
             </div>
-
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
-
             {/* Left Column - Main Promo Image */}
             <div className="lg:col-span-4 relative h-full min-h-[500px] lg:min-h-[auto] rounded-[2.5rem] overflow-hidden group shadow-2xl">
               <div className="absolute inset-0 bg-[#0b1c43]"></div>
@@ -345,128 +640,253 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                 priority
                 sizes="(max-width: 1024px) 100vw, 33vw"
               />
-              
+
               {/* Overlays */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43] via-[#0b1c43]/60 to-transparent"></div>
-              
+
               <div className="absolute inset-0 p-4 sm:p-5 md:p-8 flex flex-col justify-end">
-                 {/* Content Inside Image */}
-                 <div className="bg-white/10 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-8 border border-white/20 transform transition-transform duration-500 group-hover:-translate-y-2 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-                    <p className="flex items-center gap-2 text-hospital-teal font-bold tracking-widest text-[10px] sm:text-xs uppercase mb-3">
-                       <span className="w-2 h-2 rounded-full bg-hospital-teal animate-ping"></span>
-                       24/7 Emergency Support
-                    </p>
-                    <div className="text-white font-black mb-5 sm:mb-6 flex items-center gap-3 sm:gap-4 drop-shadow-lg flex-nowrap whitespace-nowrap">
-                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#FF6B00] to-[#d1451a] flex items-center justify-center shrink-0 shadow-lg">
-                          <svg className="w-5 h-5 sm:w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                       </div>
-                       <div className="flex flex-col justify-center gap-0.5">
-                          <a href="tel:+917800001895" className="text-[18px] min-[370px]:text-[20px] sm:text-[22px] tracking-tight hover:text-[#E85222] transition-colors leading-none">+91-7800001895</a>
-                          <a href="tel:+917800001896" className="text-[18px] min-[370px]:text-[20px] sm:text-[22px] tracking-tight hover:text-[#E85222] transition-colors leading-none">+91-7800001896</a>
-                       </div>
+                {/* Content Inside Image */}
+                <div className="bg-white/10 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-8 border border-white/20 transform transition-transform duration-500 group-hover:-translate-y-2 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+                  <p className="flex items-center gap-2 text-hospital-teal font-bold tracking-widest text-[10px] sm:text-xs uppercase mb-3">
+                    <span className="w-2 h-2 rounded-full bg-hospital-teal animate-ping"></span>
+                    24/7 Emergency Support
+                  </p>
+                  <div className="text-white font-black mb-5 sm:mb-6 flex items-center gap-3 sm:gap-4 drop-shadow-lg flex-nowrap whitespace-nowrap">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#FF6B00] to-[#d1451a] flex items-center justify-center shrink-0 shadow-lg">
+                      <svg
+                        className="w-5 h-5 sm:w-6 h-6 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                        />
+                      </svg>
                     </div>
-                    <div className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 mt-1 sm:mt-2 relative">
-                       <div>
-                          <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">32<span className="text-[#E85222]">+</span></p>
-                          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">Years Exp</p>
-                       </div>
-                       <div>
-                          <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">50<span className="text-hospital-teal">+</span></p>
-                          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">Specialists</p>
-                       </div>
+                    <div className="flex flex-col justify-center gap-0.5">
+                      <a
+                        href="tel:+917800001895"
+                        className="text-[18px] min-[370px]:text-[20px] sm:text-[22px] tracking-tight hover:text-[#E85222] transition-colors leading-none"
+                      >
+                        +91-7800001895
+                      </a>
+                      <a
+                        href="tel:+917800001896"
+                        className="text-[18px] min-[370px]:text-[20px] sm:text-[22px] tracking-tight hover:text-[#E85222] transition-colors leading-none"
+                      >
+                        +91-7800001896
+                      </a>
                     </div>
-                 </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 mt-1 sm:mt-2 relative">
+                    <div>
+                      <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">
+                        32<span className="text-[#E85222]">+</span>
+                      </p>
+                      <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">
+                        Years Exp
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">
+                        50<span className="text-hospital-teal">+</span>
+                      </p>
+                      <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">
+                        Specialists
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            
+
             <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               {[
                 {
                   title: "Exceptional healthcare services",
-                  fullDesc: "We provide top-notch healthcare services, backed by highly experienced doctors and cutting-edge medical technology.",
+                  fullDesc:
+                    "We provide top-notch healthcare services, backed by highly experienced doctors and cutting-edge medical technology.",
                   bgImage: "/images/banners/exceptional-healthcare.jpg",
-                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                  icon: (
+                    <svg
+                      className="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                      />
+                    </svg>
+                  ),
                 },
                 {
                   title: "Multi Super specialty hospital",
-                  fullDesc: "Our hospital offers a comprehensive range of specialties, including cardiology, neurology, gastroenterology, orthopedics, and more, ensuring that we meet the diverse healthcare needs of our patients.",
+                  fullDesc:
+                    "Our hospital offers a comprehensive range of specialties, including cardiology, neurology, gastroenterology, orthopedics, and more, ensuring that we meet the diverse healthcare needs of our patients.",
                   bgImage: "/images/banners/multi-specialty-hospital.jpg",
-                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                  icon: (
+                    <svg
+                      className="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      />
+                    </svg>
+                  ),
                 },
                 {
                   title: "Compassionate Care",
-                  fullDesc: "We believe that healthcare is not just about treating illnesses, but also about providing compassionate care to our patients. Our staff is trained to provide personalized care, making our patients feel comfortable and cared for during their hospital stay.",
+                  fullDesc:
+                    "We believe that healthcare is not just about treating illnesses, but also about providing compassionate care to our patients. Our staff is trained to provide personalized care, making our patients feel comfortable and cared for during their hospital stay.",
                   bgImage: "/images/banners/compassionate-care.jpg",
-                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                  icon: (
+                    <svg
+                      className="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                      />
+                    </svg>
+                  ),
                 },
                 {
                   title: "State-of-the-art facilities",
-                  fullDesc: "Our hospital is equipped with the latest diagnostic tools and equipment, ensuring accurate and timely diagnosis of illnesses. We also have a fully equipped operation theatre, intensive care unit, and emergency department, providing 24/7 medical care to our patients.",
+                  fullDesc:
+                    "Our hospital is equipped with the latest diagnostic tools and equipment, ensuring accurate and timely diagnosis of illnesses. We also have a fully equipped operation theatre, intensive care unit, and emergency department, providing 24/7 medical care to our patients.",
                   bgImage: "/images/banners/art.jpg",
-                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  icon: (
+                    <svg
+                      className="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                  ),
                 },
                 {
-                  title: "Patient-centric approach",
-                  fullDesc: "We prioritize our patients' needs and comfort, ensuring that they receive the best possible care and treatment throughout their hospital stay.",
+                  title: "Patient-Centric",
+                  fullDesc:
+                    "We prioritize our patients' needs and comfort, ensuring that they receive the best possible care and treatment throughout their hospital stay.",
                   bgImage: "/images/banners/patient-centric-approach.jpg",
-                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                  icon: (
+                    <svg
+                      className="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                      />
+                    </svg>
+                  ),
                 },
                 {
                   title: "Trusted healthcare provider",
-                  fullDesc: "With over 30 years of experience, we have earned a reputation as a trusted healthcare provider in the community. We are committed to maintaining the highest standards of healthcare and strive to exceed our patients' expectations.",
+                  fullDesc:
+                    "With over 30 years of experience, we have earned a reputation as a trusted healthcare provider in the community. We are committed to maintaining the highest standards of healthcare and strive to exceed our patients' expectations.",
                   bgImage: "/images/banners/trusted-healthcare-provider.jpg",
-                  icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                  icon: (
+                    <svg
+                      className="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                  ),
                 },
               ].map((feature, idx) => (
-                <div key={idx} className="group relative bg-white p-6 sm:p-0 rounded-[2rem] border-2 border-hospital-teal/20 sm:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 pointer-events-auto cursor-default overflow-hidden h-auto sm:h-[210px] md:h-[230px]">
-                   
-                   {/* Background Image (Desktop Only - Full Preview) */}
-                   <div className="absolute inset-0 hidden sm:block pointer-events-none">
-                      <Image 
-                        src={feature.bgImage} 
-                        alt={feature.title} 
-                        fill 
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 640px) 0vw, 400px"
-                      />
-                   </div>
+                <div
+                  key={idx}
+                  className="group relative bg-white p-6 sm:p-0 rounded-[2rem] border-2 border-hospital-teal/20 sm:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 pointer-events-auto cursor-default overflow-hidden h-auto sm:h-[210px] md:h-[230px]"
+                >
+                  {/* Background Image (Desktop Only - Full Preview) */}
+                  <div className="absolute inset-0 hidden sm:block pointer-events-none">
+                    <Image
+                      src={feature.bgImage}
+                      alt={feature.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 0vw, 400px"
+                    />
+                  </div>
 
-                   {/* Desktop Bottom Overlay (Icon + Title) */}
-                   <div className="hidden sm:flex absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent items-center gap-4 z-10 transition-all duration-500 sm:group-hover:opacity-0 sm:group-hover:translate-y-10">
-                      <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0 text-white border border-white/20">
-                         {feature.icon}
+                  {/* Desktop Bottom Overlay (Icon + Title) */}
+                  <div className="hidden sm:flex absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent items-center gap-4 z-10 transition-all duration-500 sm:group-hover:opacity-0 sm:group-hover:translate-y-10">
+                    <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0 text-white border border-white/20">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-[17px] font-bold text-white font-heading leading-tight drop-shadow-lg">
+                      {feature.title}
+                    </h3>
+                  </div>
+
+                  {/* Mobile Content + Desktop Hover Paragraph */}
+                  <div className="relative z-10 flex flex-col h-full items-start sm:p-8">
+                    {/* Mobile only: Icon and Heading */}
+                    <div className="sm:hidden w-full flex flex-col">
+                      <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0 text-hospital-teal mb-4 border border-hospital-teal/10">
+                        {feature.icon}
                       </div>
-                      <h3 className="text-[17px] font-bold text-white font-heading leading-tight drop-shadow-lg">{feature.title}</h3>
-                   </div>
+                      <h3 className="text-[18px] font-bold text-[#0b1c43] font-heading">
+                        {feature.title}
+                      </h3>
+                    </div>
 
-                   {/* Mobile Content + Desktop Hover Paragraph */}
-                   <div className="relative z-10 flex flex-col h-full items-start sm:p-8">
-                     {/* Mobile only: Icon and Heading */}
-                     <div className="sm:hidden w-full flex flex-col">
-                        <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0 text-hospital-teal mb-4 border border-hospital-teal/10">
-                           {feature.icon}
-                        </div>
-                        <h3 className="text-[18px] font-bold text-[#0b1c43] font-heading">{feature.title}</h3>
-                     </div>
+                    {/* Mobile Paragraph */}
+                    <div className="sm:hidden mt-3">
+                      <p className="text-[#0b1c43] font-semibold text-[14px] leading-relaxed">
+                        {feature.fullDesc}
+                      </p>
+                    </div>
 
-                     {/* Mobile Paragraph */}
-                     <div className="sm:hidden mt-3">
-                        <p className="text-[#0b1c43] font-semibold text-[14px] leading-relaxed">
-                           {feature.fullDesc}
-                        </p>
-                     </div>
-
-                     {/* Desktop Hover Description (Covers entire card) */}
-                     <div className="hidden sm:flex absolute inset-0 p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 h-full w-full items-center bg-white z-20">
-                        <p className="text-[#0b1c43] font-bold text-[15px] leading-relaxed">
-                           {feature.fullDesc}
-                        </p>
-                     </div>
-                   </div>
+                    {/* Desktop Hover Description (Covers entire card) */}
+                    <div className="hidden sm:flex absolute inset-0 p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 h-full w-full items-center bg-white z-20">
+                      <p className="text-[#0b1c43] font-bold text-[15px] leading-relaxed">
+                        {feature.fullDesc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
-
           </div>
         </div>
       </section>
@@ -488,67 +908,159 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[
-              { title: "Cardiology", desc: "Comprehensive heart care including diagnostics and surgery.", image: "/images/departments-images/cardiology.jpeg", href: "/departments/cardiology" },
-              { title: "Neuro Surgery", desc: "Advanced surgical treatments for brain and spine disorders.", image: "/images/departments-images/neuro-surgery.jpeg", href: "/departments/neurosurgery" },
-              { title: "Gastroenterology", desc: "Expert care for digestive system and liver heath.", image: "/images/departments-images/gastroenterology.jpeg", href: "/departments/gastroenterology" },
-              { title: "Nephrology", desc: "Specialized kidney care and dialysis services.", image: "/images/departments-images/AdobeStock_1010757604.jpeg", href: "/departments/nephrology" },
-              { title: "Oncology", desc: "Comprehensive cancer diagnosis and treatment.", image: "/images/departments-images/oncology.jpeg", href: "/departments/oncology" },
-              { title: "Urology", desc: "Treatment for urinary tract and male reproductive system.", image: "/images/departments-images/urology.jpeg", href: "/departments/urology" },
-              { title: "Burns & Plastic Surgery", desc: "Reconstructive and cosmetic surgery services.", image: "/images/departments-images/AdobeStock_222372294.jpeg", href: "/departments/burns-plastic-surgery" },
-              { title: "Laparoscopic & General Surgery", desc: "Department of Laparoscopic & General Surgery", image: "/images/departments-images/laparoscopic.jpeg", href: "/departments/general-surgery" },
-              { title: "Obstetrics and Gynecology", desc: "Care for pregnancy, childbirth, and women's health.", image: "/images/departments-images/gynecology.jpeg", href: "/departments/gynaecology" },
-              { title: "Paediatrics", desc: "Medical care for infants, children, and adolescents.", image: "/images/departments-images/paediatrics.jpeg", href: "/departments/pediatrics" },
-              { title: "Orthopaedic", desc: "Treatment for bones, joints, ligaments, and nerves.", image: "/images/departments-images/orthopaedic.jpeg", href: "/departments/orthopedics" },
-              { title: "General Medicine", desc: "Primary care for overall health and wellbeing.", image: "/images/departments-images/general-medicine.jpeg", href: "/departments/general-medicine" },
-              { title: "ENT", desc: "Ear, Nose, and Throat diagnostics and surgery.", image: "/images/departments-images/ent.jpeg", href: "/departments/ent" },
-              { title: "Ophthalmology", desc: "Advanced eye care and vision surgery.", image: "/images/departments-images/ophthalmology.jpeg", href: "/departments/ophthalmology" },
-              { title: "Dental Care", desc: "Comprehensive dentistry and oral surgeries.", image: "/images/departments-images/dental-care.jpeg", href: "/departments/dental" },
-              { title: "Pulmonology", desc: "Respiratory and lung health specialists.", image: "/images/departments-images/pulmonology.jpeg", href: "/departments/respiratory" },
-            ].slice(0, 8).map((service, idx) => (
-              <div
-                key={service.title}
-                className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden"
-              >
-                {/* Image Section */}
-                <div className="w-full h-48 relative flex-shrink-0 bg-gray-100">
-                  {service.image && (
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  )}
-                </div>
-
-                {/* Content Section */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="mb-4">
-                    <span className="text-[13px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal">
-                      Department of
-                    </span>
-                    <h3 className="text-2xl font-bold text-[#1d1d1f] mb-3 font-heading leading-tight">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-500 text-base leading-relaxed font-medium line-clamp-3">
-                      {service.desc}
-                    </p>
+              {
+                title: "Cardiology",
+                desc: "Comprehensive heart care including diagnostics and surgery.",
+                image: "/images/departments-images/cardiology.jpeg",
+                href: "/departments/cardiology",
+              },
+              {
+                title: "Neuro Surgery",
+                desc: "Advanced surgical treatments for brain and spine disorders.",
+                image: "/images/departments-images/neuro-surgery.jpeg",
+                href: "/departments/neurosurgery",
+              },
+              {
+                title: "Gastroenterology",
+                desc: "Expert care for digestive system and liver heath.",
+                image: "/images/departments-images/gastroenterology.jpeg",
+                href: "/departments/gastroenterology",
+              },
+              {
+                title: "Nephrology",
+                desc: "Specialized kidney care and dialysis services.",
+                image: "/images/departments-images/AdobeStock_1010757604.jpeg",
+                href: "/departments/nephrology",
+              },
+              {
+                title: "Oncology",
+                desc: "Comprehensive cancer diagnosis and treatment.",
+                image: "/images/departments-images/oncology.jpeg",
+                href: "/departments/oncology",
+              },
+              {
+                title: "Urology",
+                desc: "Treatment for urinary tract and male reproductive system.",
+                image: "/images/departments-images/urology.jpeg",
+                href: "/departments/urology",
+              },
+              {
+                title: "Burns & Plastic Surgery",
+                desc: "Reconstructive and cosmetic surgery services.",
+                image: "/images/departments-images/AdobeStock_222372294.jpeg",
+                href: "/departments/burns-plastic-surgery",
+              },
+              {
+                title: "Laparoscopic & General Surgery",
+                desc: "Department of Laparoscopic & General Surgery",
+                image: "/images/departments-images/laparoscopic.jpeg",
+                href: "/departments/general-surgery",
+              },
+              {
+                title: "Obstetrics and Gynecology",
+                desc: "Care for pregnancy, childbirth, and women's health.",
+                image: "/images/departments-images/gynecology.jpeg",
+                href: "/departments/gynaecology",
+              },
+              {
+                title: "Paediatrics",
+                desc: "Medical care for infants, children, and adolescents.",
+                image: "/images/departments-images/paediatrics.jpeg",
+                href: "/departments/pediatrics",
+              },
+              {
+                title: "Orthopaedic",
+                desc: "Treatment for bones, joints, ligaments, and nerves.",
+                image: "/images/departments-images/orthopaedic.jpeg",
+                href: "/departments/orthopedics",
+              },
+              {
+                title: "General Medicine",
+                desc: "Primary care for overall health and wellbeing.",
+                image: "/images/departments-images/general-medicine.jpeg",
+                href: "/departments/general-medicine",
+              },
+              {
+                title: "ENT",
+                desc: "Ear, Nose, and Throat diagnostics and surgery.",
+                image: "/images/departments-images/ent.jpeg",
+                href: "/departments/ent",
+              },
+              {
+                title: "Ophthalmology",
+                desc: "Advanced eye care and vision surgery.",
+                image: "/images/departments-images/ophthalmology.jpeg",
+                href: "/departments/ophthalmology",
+              },
+              {
+                title: "Dental Care",
+                desc: "Comprehensive dentistry and oral surgeries.",
+                image: "/images/departments-images/dental-care.jpeg",
+                href: "/departments/dental",
+              },
+              {
+                title: "Pulmonology",
+                desc: "Respiratory and lung health specialists.",
+                image: "/images/departments-images/pulmonology.jpeg",
+                href: "/departments/respiratory",
+              },
+            ]
+              .slice(0, 8)
+              .map((service, idx) => (
+                <div
+                  key={service.title}
+                  className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden"
+                >
+                  {/* Image Section */}
+                  <div className="w-full h-48 relative flex-shrink-0 bg-gray-100">
+                    {service.image && (
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    )}
                   </div>
 
-                  <div className="mt-auto flex justify-end">
-                    <Link
-                      href={service.href}
-                      className="w-10 h-10 rounded-full bg-[#E85222] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#d14011]"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
+                  {/* Content Section */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="mb-4">
+                      <span className="text-[13px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal">
+                        Department of
+                      </span>
+                      <h3 className="text-2xl font-bold text-[#1d1d1f] mb-3 font-heading leading-tight">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-500 text-base leading-relaxed font-medium line-clamp-3">
+                        {service.desc}
+                      </p>
+                    </div>
+
+                    <div className="mt-auto flex justify-end">
+                      <Link
+                        href={service.href}
+                        className="w-10 h-10 rounded-full bg-[#E85222] flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all shadow-lg group-hover:bg-[#d14011]"
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
 
           <div className="mt-16 text-center">
@@ -558,16 +1070,24 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
             >
               <span>View all departments</span>
               <div className="w-8 h-8 rounded-full bg-[#0066cc]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                <svg className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </div>
             </Link>
           </div>
         </div>
       </section>
-
-
 
       {/* Popular Hospital Model of Care Section */}
       <section
@@ -578,8 +1098,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
         <div
           className="absolute inset-0 opacity-[0.4]"
           style={{
-            backgroundImage:
-              "radial-gradient(#9ca3af 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(#9ca3af 1px, transparent 1px)",
             backgroundSize: "24px 24px",
           }}
         ></div>
@@ -769,7 +1288,6 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
         </div>
       </section>
 
-
       {/* Patients Speak Testimonial Section (Dynamically Loaded) */}
       <DynamicTestimonials />
 
@@ -880,10 +1398,15 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {latestNews.map((article) => (
-              <article key={article.slug} className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col">
+              <article
+                key={article.slug}
+                className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col"
+              >
                 <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden shrink-0">
                   <Image
-                    src={getImageUrl(article.image) || "/about-section-image.png"}
+                    src={
+                      getImageUrl(article.image) || "/about-section-image.png"
+                    }
                     alt={article.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -895,7 +1418,8 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     {article.title}
                   </h3>
                   <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2 flex-1">
-                    {article.excerpt || "Read more about this article inside..."}
+                    {article.excerpt ||
+                      "Read more about this article inside..."}
                   </p>
                   <Link
                     href={`/news/${article.slug}`}
@@ -958,7 +1482,6 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
         <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div className="max-w-2xl">
-
               <h2
                 id="latest-events"
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] font-heading"
@@ -970,14 +1493,16 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {latestEvents.map((event) => (
-              <article 
-                key={event.slug} 
+              <article
+                key={event.slug}
                 className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col h-full"
               >
                 {/* Event Image Container */}
                 <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden shrink-0">
                   <Image
-                    src={getImageUrl(event.thumbnail) || "/about-section-image.png"}
+                    src={
+                      getImageUrl(event.thumbnail) || "/about-section-image.png"
+                    }
                     alt={event.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -991,7 +1516,9 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     <div className="w-[1.5px] h-6 bg-gray-100"></div>
                     <div className="flex flex-col">
                       <p className="text-[#1e3a8a] font-bold text-xs uppercase tracking-wider leading-none">
-                        {new Date(event.date).toLocaleString('default', { month: 'short' })}
+                        {new Date(event.date).toLocaleString("default", {
+                          month: "short",
+                        })}
                       </p>
                       <p className="text-[#E85222] font-semibold text-[10px] mt-1 leading-none">
                         {new Date(event.date).getFullYear()}
@@ -1005,9 +1532,10 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     {event.title}
                   </h3>
                   <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2 flex-1">
-                    {event.description?.replace(/<[^>]*>/g, '') || "Experience our latest medical workshops and community health programs..."}
+                    {event.description?.replace(/<[^>]*>/g, "") ||
+                      "Experience our latest medical workshops and community health programs..."}
                   </p>
-                  
+
                   <Link
                     href={`/media/events/${event.slug}`}
                     className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base mt-auto w-max group/btn"
@@ -1057,11 +1585,9 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
         </div>
       </section>
 
-
       {/* Cashless Empanelment Section */}
       <section className="py-14 sm:py-16 bg-white border-t border-gray-100">
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-
           {/* Heading */}
           <div className="text-center mb-10">
             <h2 className="text-3xl sm:text-4xl font-black text-[#0b1c43] font-heading tracking-tight">
@@ -1075,14 +1601,35 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
             {[
               { src: "/images/cashless_empanelment/AAI.png", alt: "AAI" },
               { src: "/images/cashless_empanelment/NCL.png", alt: "NCL" },
-              { src: "/images/cashless_empanelment/Indian_oil.png", alt: "Indian Oil" },
-              { src: "/images/cashless_empanelment/SBI_general.png", alt: "SBI General Insurance" },
-              { src: "/images/cashless_empanelment/paramount_health.png", alt: "Paramount Health" },
-              { src: "/images/cashless_empanelment/pmjay.png", alt: "PM-JAY Ayushman Bharat" },
+              {
+                src: "/images/cashless_empanelment/Indian_oil.png",
+                alt: "Indian Oil",
+              },
+              {
+                src: "/images/cashless_empanelment/SBI_general.png",
+                alt: "SBI General Insurance",
+              },
+              {
+                src: "/images/cashless_empanelment/paramount_health.png",
+                alt: "Paramount Health",
+              },
+              {
+                src: "/images/cashless_empanelment/pmjay.png",
+                alt: "PM-JAY Ayushman Bharat",
+              },
               { src: "/images/cashless_empanelment/BHEL.png", alt: "BHEL" },
-              { src: "/images/cashless_empanelment/hindalco.png", alt: "Hindalco" },
-              { src: "/images/cashless_empanelment/iffco-tokio.png", alt: "IFFCO-Tokio" },
-              { src: "/images/cashless_empanelment/vidal_health.png", alt: "Vidal Health" },
+              {
+                src: "/images/cashless_empanelment/hindalco.png",
+                alt: "Hindalco",
+              },
+              {
+                src: "/images/cashless_empanelment/iffco-tokio.png",
+                alt: "IFFCO-Tokio",
+              },
+              {
+                src: "/images/cashless_empanelment/vidal_health.png",
+                alt: "Vidal Health",
+              },
             ].map((logo) => (
               <div
                 key={logo.alt}
@@ -1108,12 +1655,21 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
             >
               <span>View All Partners</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </Link>
           </div>
-
         </div>
       </section>
 
@@ -1132,52 +1688,65 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-4xl">
               Explore detailed answers to commonly asked questions about
               healthcare services, specialist consultations, treatment
-              processes, and patient care at Popular Hospital, one of India&apos;s
-              leading multispeciality hospital networks.
+              processes, and patient care at Popular Hospital, one of
+              India&apos;s leading multispeciality hospital networks.
             </p>
           </div>
 
           <div className="space-y-3 sm:space-y-4">
             {[
               {
-                question: "What medical specialties are available at Popular Hospital?",
-                answer: "Popular Hospital is a multi-specialty facility offering advanced treatment in Cardiology, Neurology, Orthopedics, Nephrology, Urology, Gastroenterology, and General Surgery."
+                question:
+                  "What medical specialties are available at Popular Hospital?",
+                answer:
+                  "Popular Hospital is a multi-specialty facility offering advanced treatment in Cardiology, Neurology, Orthopedics, Nephrology, Urology, Gastroenterology, and General Surgery.",
               },
               {
                 question: "Does the hospital provide 24/7 emergency services?",
-                answer: "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895)."
+                answer:
+                  "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895).",
               },
               {
-                question: "How can I schedule an appointment with a specialist?",
-                answer: "Appointments can be booked via the hospital's official website or by calling our helpline. Physical walk-ins at the reception are also available for OPD consultations."
+                question:
+                  "How can I schedule an appointment with a specialist?",
+                answer:
+                  "Appointments can be booked via the hospital's official website or by calling our helpline. Physical walk-ins at the reception are also available for OPD consultations.",
               },
               {
-                question: "Is cashless treatment available for insured patients?",
-                answer: "Yes, the hospital has tie-ups with major Third Party Administrators (TPAs) and private insurance companies, providing cashless hospitalization for eligible policyholders."
+                question:
+                  "Is cashless treatment available for insured patients?",
+                answer:
+                  "Yes, the hospital has tie-ups with major Third Party Administrators (TPAs) and private insurance companies, providing cashless hospitalization for eligible policyholders.",
               },
               {
-                question: "Does the hospital support the Ayushman Bharat Yojana (PM-JAY)?",
-                answer: "Yes, Popular Hospital is an empanelled provider for the Ayushman Bharat scheme, offering free treatment to eligible cardholders as per government norms."
+                question:
+                  "Does the hospital support the Ayushman Bharat Yojana (PM-JAY)?",
+                answer:
+                  "Yes, Popular Hospital is an empanelled provider for the Ayushman Bharat scheme, offering free treatment to eligible cardholders as per government norms.",
               },
               {
                 question: "What diagnostic facilities are available on-site?",
-                answer: "The hospital features a comprehensive diagnostic wing equipped with MRI, CT Scan, X-ray, Ultrasound, and a fully automated Pathology laboratory for quick and accurate results."
+                answer:
+                  "The hospital features a comprehensive diagnostic wing equipped with MRI, CT Scan, X-ray, Ultrasound, and a fully automated Pathology laboratory for quick and accurate results.",
               },
               {
                 question: "Are there specialized critical care units?",
-                answer: "Yes, the facility includes state-of-the-art Intensive Care Units (ICU), Neonatal ICUs (NICU), and Pediatric ICUs (PICU) for patients requiring constant monitoring."
+                answer:
+                  "Yes, the facility includes state-of-the-art Intensive Care Units (ICU), Neonatal ICUs (NICU), and Pediatric ICUs (PICU) for patients requiring constant monitoring.",
               },
               {
                 question: "Where is Popular Hospital located in Varanasi?",
-                answer: "The hospital is located at Kakarmatta, near DLW Ground, Varanasi, Uttar Pradesh. It is well-connected and accessible from all major parts of the city."
+                answer:
+                  "The hospital is located at Kakarmatta, near DLW Ground, Varanasi, Uttar Pradesh. It is well-connected and accessible from all major parts of the city.",
               },
             ].map((faq, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-xl border transition-all duration-300 ${openFaqIndex === index
-                  ? "border-[#E85222]/40 shadow-md"
-                  : "border-[#d0e3f0] shadow-sm hover:shadow-md"
-                  }`}
+                className={`bg-white rounded-xl border transition-all duration-300 ${
+                  openFaqIndex === index
+                    ? "border-[#E85222]/40 shadow-md"
+                    : "border-[#d0e3f0] shadow-sm hover:shadow-md"
+                }`}
               >
                 <button
                   onClick={() =>
@@ -1186,18 +1755,22 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                   className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4 transition-colors"
                   aria-expanded={openFaqIndex === index}
                 >
-                  <span className={`text-sm sm:text-base font-bold transition-colors ${openFaqIndex === index ? 'text-[#E85222]' : 'text-[#1a3a5c]'}`}>
+                  <span
+                    className={`text-sm sm:text-base font-bold transition-colors ${openFaqIndex === index ? "text-[#E85222]" : "text-[#1a3a5c]"}`}
+                  >
                     {faq.question}
                   </span>
                   <div
-                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index
-                      ? "border-[#E85222] bg-[#E85222] rotate-45"
-                      : "border-[#2a7a8c] bg-white"
-                      }`}
+                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                      openFaqIndex === index
+                        ? "border-[#E85222] bg-[#E85222] rotate-45"
+                        : "border-[#2a7a8c] bg-white"
+                    }`}
                   >
                     <svg
-                      className={`w-5 h-5 transition-colors duration-300 ${openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
-                        }`}
+                      className={`w-5 h-5 transition-colors duration-300 ${
+                        openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
+                      }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1212,10 +1785,11 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                   </div>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${openFaqIndex === index
-                    ? "max-h-[500px] opacity-100"
-                    : "max-h-0 opacity-0"
-                    }`}
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaqIndex === index
+                      ? "max-h-[500px] opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
                 >
                   <div className="px-5 sm:px-6 pb-5 pt-0">
                     <div className="pt-3 border-t border-gray-100">
@@ -1231,13 +1805,23 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
 
           {/* View All FAQs Link */}
           <div className="mt-10 text-center">
-            <Link 
-              href="/faqs" 
+            <Link
+              href="/faqs"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#1a3a5c] text-white rounded-full font-bold hover:bg-[#2a7a8c] transition-all hover:scale-105 shadow-lg shadow-slate-200"
             >
               <span>View All Frequently Asked Questions</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
               </svg>
             </Link>
           </div>
@@ -1245,10 +1829,12 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-20 sm:py-24 bg-gray-50" aria-labelledby="contact-us">
+      <section
+        className="py-20 sm:py-24 bg-gray-50"
+        aria-labelledby="contact-us"
+      >
         <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.8fr] gap-12 lg:gap-16 items-start">
-            
             {/* Left Column - Brand Quote & Info (Refined Modern Style) */}
             <div className="flex flex-col gap-10 order-2 lg:order-1">
               {/* Branding Block from Image */}
@@ -1256,27 +1842,38 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                 <div className="relative z-10">
                   <h2 className="text-4xl sm:text-5xl lg:text-5xl font-black italic leading-[1.15] tracking-tight mb-8 font-heading">
                     Committed To Build A<br />
-                    <span className="text-[#E85222]">Positive, Safe, Patient</span><br />
+                    <span className="text-[#E85222]">
+                      Positive, Safe, Patient
+                    </span>
+                    <br />
                     Focused Culture.
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl font-medium">
-                    Today the hospital is recognised as a world renowned institution, not only providing outstanding care and treatment, our goal is to deliver quality care in a respectful & compassionate manner. We strive to be the first and best choice for healthcare.
+                    Today the hospital is recognised as a world renowned
+                    institution, not only providing outstanding care and
+                    treatment, our goal is to deliver quality care in a
+                    respectful & compassionate manner. We strive to be the first
+                    and best choice for healthcare.
                   </p>
 
                   <div className="flex flex-col sm:flex-row items-center gap-6 mb-16">
-                    <Link 
+                    <Link
                       href="/doctors"
                       className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-3.5 bg-[#E85222] text-white rounded-xl text-lg font-bold hover:bg-[#d1451a] transition-all duration-300 shadow-lg shadow-[#E85222]/20"
                     >
                       Find a Doctor
                     </Link>
 
-                    <Link 
+                    <Link
                       href="#international-patients"
                       className="w-full sm:w-auto flex flex-col items-center justify-center px-8 py-3 border-2 border-white/20 hover:border-[#E85222] text-white rounded-xl transition-all duration-300 group bg-white/5 backdrop-blur-sm"
                     >
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#E85222] group-hover:text-white mb-0.5">For International Patients</span>
-                      <span className="text-xs font-bold whitespace-nowrap">Send Your Inquiry to Assist You</span>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#E85222] group-hover:text-white mb-0.5">
+                        For International Patients
+                      </span>
+                      <span className="text-xs font-bold whitespace-nowrap">
+                        Send Your Inquiry to Assist You
+                      </span>
                     </Link>
                   </div>
 
@@ -1287,9 +1884,12 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                       "Home medicine review",
                       "High Quality Care",
                       "Desensitisation injections",
-                      "Health Assessments"
+                      "Health Assessments",
                     ].map((service) => (
-                      <div key={service} className="flex items-center gap-4 group cursor-default">
+                      <div
+                        key={service}
+                        className="flex items-center gap-4 group cursor-default"
+                      >
                         <div className="w-2.5 h-2.5 rounded-full bg-hospital-teal shadow-[0_0_10px_rgba(45,212,191,0.5)] group-hover:scale-125 transition-transform"></div>
                         <span className="text-xl font-bold tracking-tight italic font-heading opacity-90 group-hover:opacity-100 transition-opacity">
                           {service}
@@ -1303,8 +1903,18 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
               {/* Simplified Connect With Us Box */}
               <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-xl shadow-gray-200/50 flex flex-col sm:flex-row items-center gap-8 group">
                 <div className="flex-shrink-0 w-20 h-20 bg-pink-50 rounded-xl flex items-center justify-center text-[#E85222] group-hover:scale-110 transition-transform duration-500">
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <svg
+                    className="w-10 h-10"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
                   </svg>
                 </div>
                 <div className="flex-1 text-center sm:text-left">
@@ -1314,14 +1924,17 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
                       <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
-                        <span className="text-[#E85222] mr-2">CALL:</span> +91-7800001896
+                        <span className="text-[#E85222] mr-2">CALL:</span>{" "}
+                        +91-7800001896
                       </p>
                       <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
-                        <span className="text-[#E85222] mr-2">CALL:</span> +91-7800001895
+                        <span className="text-[#E85222] mr-2">CALL:</span>{" "}
+                        +91-7800001895
                       </p>
                     </div>
                     <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
-                      <span className="text-[#E85222] mr-2">EMAIL:</span> info@popularhospitals.in
+                      <span className="text-[#E85222] mr-2">EMAIL:</span>{" "}
+                      info@popularhospitals.in
                     </p>
                   </div>
                 </div>
@@ -1341,13 +1954,15 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                 onSubmit={async (e) => {
                   e.preventDefault();
                   setFormSubmitting(true);
-                  setFormError('');
+                  setFormError("");
                   setFormSuccess(false);
                   try {
-                    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5100';
+                    const API_URL =
+                      process.env.NEXT_PUBLIC_API_URL ||
+                      "http://localhost:5100";
                     const res = await fetch(`${API_URL}/api/contacts`, {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({
                         name: formData.name,
                         email: formData.email,
@@ -1361,12 +1976,27 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                       }),
                     });
                     const data = await res.json();
-                    if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+                    if (!res.ok)
+                      throw new Error(data.error || "Something went wrong.");
                     setFormSuccess(true);
-                    setFormData({ name: '', email: '', phone: '', date: '', timing: '', department: '', location: '', message: '', agreeTerms: false });
+                    setFormData({
+                      name: "",
+                      email: "",
+                      phone: "",
+                      date: "",
+                      timing: "",
+                      department: "",
+                      location: "",
+                      message: "",
+                      agreeTerms: false,
+                    });
                     setTimeout(() => setFormSuccess(false), 5000);
                   } catch (err: unknown) {
-                    setFormError(err instanceof Error ? err.message : 'Submission failed. Please try again.');
+                    setFormError(
+                      err instanceof Error
+                        ? err.message
+                        : "Submission failed. Please try again.",
+                    );
                   } finally {
                     setFormSubmitting(false);
                   }
@@ -1379,13 +2009,23 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     type="text"
                     required
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     placeholder="Name"
                     className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -1396,12 +2036,18 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     placeholder="Email"
                     className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                       <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                     </svg>
@@ -1414,12 +2060,18 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     type="tel"
                     required
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                     placeholder="Phone"
                     className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all placeholder:text-gray-400"
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 004.815 4.815l.773-1.548a1 1 0 011.06-.539l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
                   </div>
@@ -1432,14 +2084,18 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                       type="date"
                       required
                       value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, date: e.target.value })
+                      }
                       className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-400"
                     />
                   </div>
                   <div className="relative">
                     <select
                       value={formData.timing}
-                      onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, timing: e.target.value })
+                      }
                       className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
                     >
                       <option value="">Select Timing</option>
@@ -1449,8 +2105,18 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                       <option value="15:00-17:00">3:00 PM - 5:00 PM</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -1461,7 +2127,9 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                   <div className="relative">
                     <select
                       value={formData.department}
-                      onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, department: e.target.value })
+                      }
                       className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
                     >
                       <option value="">Department</option>
@@ -1472,15 +2140,27 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                       ))}
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                   </div>
                   <div className="relative">
                     <select
                       value={formData.location}
-                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, location: e.target.value })
+                      }
                       className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all text-gray-500 pr-10"
                     >
                       <option value="">Location</option>
@@ -1491,8 +2171,18 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                       ))}
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -1503,7 +2193,9 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                   <textarea
                     rows={4}
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
                     placeholder="Message"
                     className="w-full rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm focus:border-[#E85222] focus:ring-4 focus:ring-[#E85222]/10 focus:outline-none transition-all resize-none placeholder:text-gray-400"
                   />
@@ -1516,24 +2208,61 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     type="checkbox"
                     required
                     checked={formData.agreeTerms}
-                    onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, agreeTerms: e.target.checked })
+                    }
                     className="w-5 h-5 rounded border-gray-300 text-[#E85222] focus:ring-0 accent-[#E85222] cursor-pointer"
                   />
-                  <label htmlFor="agreeTerms" className="text-sm font-medium text-gray-600 cursor-pointer">
-                    I agree with the <Link href="/terms" className="text-[#E85222] hover:underline">terms and conditions</Link>.
+                  <label
+                    htmlFor="agreeTerms"
+                    className="text-sm font-medium text-gray-600 cursor-pointer"
+                  >
+                    I agree with the{" "}
+                    <Link
+                      href="/terms"
+                      className="text-[#E85222] hover:underline"
+                    >
+                      terms and conditions
+                    </Link>
+                    .
                   </label>
                 </div>
 
                 {/* Success/Error Toast */}
                 {formSuccess && (
                   <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-xl text-green-800 text-sm font-medium">
-                    <svg className="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Your appointment request has been submitted! We will confirm within 2 hours.
+                    <svg
+                      className="w-5 h-5 text-green-500 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Your appointment request has been submitted! We will confirm
+                    within 2 hours.
                   </div>
                 )}
                 {formError && (
                   <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium">
-                    <svg className="w-5 h-5 text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <svg
+                      className="w-5 h-5 text-red-500 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
                     {formError}
                   </div>
                 )}
@@ -1546,12 +2275,42 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                 >
                   {formSubmitting ? (
                     <>
-                      <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
+                      <svg
+                        className="w-5 h-5 animate-spin"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                        />
+                      </svg>
                       <span>Sending...</span>
                     </>
                   ) : (
                     <>
-                      <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                      <svg
+                        className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
                       <span>Send Message Now</span>
                     </>
                   )}
@@ -1563,18 +2322,23 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
       </section>
 
       {/* Awards & Recognitions Section */}
-      <section 
+      <section
         className="py-16 sm:py-20 bg-[#F8FAFC] relative overflow-hidden group/section border-t border-gray-100"
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
-          setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+          setMousePosition({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+          });
         }}
         onMouseEnter={() => setIsHoveringAwards(true)}
         onMouseLeave={() => setIsHoveringAwards(false)}
       >
-        <Link href="/about/awards-recognition" className="block relative cursor-pointer">
+        <Link
+          href="/about/awards-recognition"
+          className="block relative cursor-pointer"
+        >
           <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-10">
-            
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading tracking-tight inline-flex items-center gap-4">
                 Awards & <span className="text-[#1D4ED8]">Recognitions</span>
@@ -1587,26 +2351,35 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1fr] gap-12 lg:gap-20 items-center">
-              
               {/* Left Column - Chairman Profile */}
               <div className="flex flex-col items-center">
                 <div className="relative">
                   <div className="absolute inset-0 bg-[#1D4ED8]/5 rounded-full scale-[1.15] blur-2xl group-hover/section:bg-[#1D4ED8]/10 transition-colors" />
-                  
-                  <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-4 border border-blue-100 shadow-2xl bg-white overflow-hidden ring-12 ring-blue-50/50">
-                    <div className="relative w-full h-full rounded-full overflow-hidden scale-95">
+
+                  <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 border border-blue-100 shadow-2xl bg-white overflow-hidden ring-12 ring-blue-50/50">
+                    <div className="relative w-full h-full rounded-full overflow-hidden">
                       <Image
                         src="/images/dr_ak_kaushik.png"
                         alt="DR. A.K. KAUSHIK"
                         fill
-                        className="object-contain transform group-hover/section:scale-[1.02] transition-transform duration-700"
+                        className="object-cover transform group-hover/section:scale-[1.02] transition-transform duration-700"
                       />
                     </div>
                   </div>
 
                   <div className="absolute top-0 right-0 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center p-3">
-                    <svg className="w-full h-full text-[#1D4ED8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-full h-full text-[#1D4ED8]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -1616,7 +2389,8 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     DR. A.K.KAUSHIK
                   </h3>
                   <p className="mt-6 text-gray-500 font-bold leading-relaxed tracking-wide uppercase text-sm">
-                    Chairman & Director<br />
+                    Chairman & Director
+                    <br />
                     Popular Group of Hospitals
                   </p>
                 </div>
@@ -1625,7 +2399,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
               {/* Right Column - Awards Gallery Grid */}
               <div className="flex flex-col gap-6">
                 <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                  <div className="relative h-44 sm:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award1.png"
                       alt="Hospital Award"
@@ -1634,7 +2408,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     />
                   </div>
 
-                  <div className="relative h-44 sm:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award2.png"
                       alt="Medical Achievement"
@@ -1643,7 +2417,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     />
                   </div>
 
-                  <div className="relative h-56 sm:h-72 col-span-2 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-48 sm:h-60 col-span-2 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award3.png"
                       alt="Hospital Recognition Ceremony"
@@ -1666,21 +2440,33 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
           </div>
 
           {/* Mouse Follower Title (Desktop only) */}
-          <div 
-             className="fixed md:absolute pointer-events-none z-[100] transition-opacity duration-300 hidden lg:block"
-             style={{
-                left: `${mousePosition.x}px`,
-                top: `${mousePosition.y}px`,
-                opacity: isHoveringAwards ? 1 : 0,
-                transform: `translate(-50%, -50%)`,
-             }}
+          <div
+            className="fixed md:absolute pointer-events-none z-[100] transition-opacity duration-300 hidden lg:block"
+            style={{
+              left: `${mousePosition.x}px`,
+              top: `${mousePosition.y}px`,
+              opacity: isHoveringAwards ? 1 : 0,
+              transform: `translate(-50%, -50%)`,
+            }}
           >
-             <div className="bg-[#E85222] text-white px-6 py-2.5 rounded-full whitespace-nowrap shadow-2xl flex items-center gap-3 scale-90 group-hover/section:scale-100 transition-transform duration-300">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em]">Click to view detailed</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
-                </svg>
-             </div>
+            <div className="bg-[#E85222] text-white px-6 py-2.5 rounded-full whitespace-nowrap shadow-2xl flex items-center gap-3 scale-90 group-hover/section:scale-100 transition-transform duration-300">
+              <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+                Click to view detailed
+              </span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={3}
+                  d="M14 5l7 7-7 7"
+                />
+              </svg>
+            </div>
           </div>
         </Link>
       </section>
@@ -1693,87 +2479,140 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
       {/* ─── Why We Are The Best Section (Achievements) ─── */}
       <section className="relative overflow-hidden bg-[#0b3c8a] py-20 sm:py-24 text-white">
         {/* Background Pattern: Hexagonal "Nut" Pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.1] transition-opacity duration-1000"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='173.2' viewBox='0 0 200 173.2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L150 0 L200 86.6 L150 173.2 L50 173.2 L0 86.6 Z' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E")`,
-            backgroundSize: '100px 86.6px'
+            backgroundSize: "100px 86.6px",
           }}
         />
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 sm:px-8 lg:px-12 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-16 font-heading max-w-[1200px] mx-auto leading-tight italic">
-            Popular Hospital Is The Best Hospital In Varanasi. <span className="text-[#FF6B00] not-italic ml-2 xl:whitespace-nowrap">Here&apos;s The Reason Why?</span>
+            Popular Hospital Is The Best Hospital In Varanasi.{" "}
+            <span className="text-[#FF6B00] not-italic ml-2 xl:whitespace-nowrap">
+              Here&apos;s The Reason Why?
+            </span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:max-w-5xl mx-auto border border-white/20 rounded-3xl overflow-hidden shadow-2xl bg-white/5 backdrop-blur-sm">
-             {/* Stat 1: Patients */}
-             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
-                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
-                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 12h2l1-4 2 8 1-4h2" />
-                   </svg>
+            {/* Stat 1: Patients */}
+            <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
+              <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                <svg
+                  className="w-16 h-16 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M8 12h2l1-4 2 8 1-4h2"
+                  />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">
+                  Lacs of Happy
                 </div>
-                <div className="text-left">
-                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Lacs of Happy</div>
-                   <div className="text-lg sm:text-xl font-medium text-white/80">Patients</div>
+                <div className="text-lg sm:text-xl font-medium text-white/80">
+                  Patients
                 </div>
-             </div>
+              </div>
+            </div>
 
-             {/* Stat 2: Doctors */}
-             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b border-white/10 group hover:bg-white/10 transition-all duration-300">
-                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
-                   <svg className="w-16 h-16 text-white" stroke="currentColor" fill="none" strokeWidth={1.5} viewBox="0 0 24 24">
-                      <path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                      <circle cx="10" cy="7" r="4" />
-                      <path d="M14 11h2a2 2 0 012 2v6" />
-                   </svg>
+            {/* Stat 2: Doctors */}
+            <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b border-white/10 group hover:bg-white/10 transition-all duration-300">
+              <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                <svg
+                  className="w-16 h-16 text-white"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                  <circle cx="10" cy="7" r="4" />
+                  <path d="M14 11h2a2 2 0 012 2v6" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">
+                  Excellent Team of
                 </div>
-                <div className="text-left">
-                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Excellent Team of</div>
-                   <div className="text-lg sm:text-xl font-medium text-white/80">Qualified Doctors</div>
+                <div className="text-lg sm:text-xl font-medium text-white/80">
+                  Qualified Doctors
                 </div>
-             </div>
+              </div>
+            </div>
 
-             {/* Stat 3: Beds */}
-             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
-                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
-                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                      <path d="M3 7v11m18-11v11M3 13h18M5 8h14M7 9v4m10-4v4" />
-                   </svg>
+            {/* Stat 3: Beds */}
+            <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
+              <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                <svg
+                  className="w-16 h-16 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M3 7v11m18-11v11M3 13h18M5 8h14M7 9v4m10-4v4" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-5xl sm:text-6xl font-black font-heading leading-tight text-[#FF6B00] mb-1">
+                  <Counter target={450} duration={2000} />
                 </div>
-                <div className="text-left">
-                   <div className="text-5xl sm:text-6xl font-black font-heading leading-tight text-[#FF6B00] mb-1">
-                      <Counter target={450} duration={2000} />
-                   </div>
-                   <div className="text-lg sm:text-xl font-bold tracking-[0.1em] text-white/80 uppercase">Beds</div>
+                <div className="text-lg sm:text-xl font-bold tracking-[0.1em] text-white/80 uppercase">
+                  Beds
                 </div>
-             </div>
+              </div>
+            </div>
 
-             {/* Stat 4: Locations */}
-             <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 group hover:bg-white/10 transition-all duration-300">
-                <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
-                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <circle cx="12" cy="11" r="3" strokeWidth={1.5} />
-                   </svg>
+            {/* Stat 4: Locations */}
+            <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 group hover:bg-white/10 transition-all duration-300">
+              <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                <svg
+                  className="w-16 h-16 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <circle cx="12" cy="11" r="3" strokeWidth={1.5} />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">
+                  Convenient Multiple
                 </div>
-                <div className="text-left">
-                   <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">Convenient Multiple</div>
-                   <div className="text-lg sm:text-xl font-medium text-white/80">Locations</div>
+                <div className="text-lg sm:text-xl font-medium text-white/80">
+                  Locations
                 </div>
-             </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-
-
     </>
   );
 }
 
-function Counter({ target, duration = 2000 }: { target: number; duration?: number }) {
+function Counter({
+  target,
+  duration = 2000,
+}: {
+  target: number;
+  duration?: number;
+}) {
   const [count, setCount] = useState(0);
   const elementRef = useRef<HTMLDivElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
@@ -1785,7 +2624,7 @@ function Counter({ target, duration = 2000 }: { target: number; duration?: numbe
           setHasStarted(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (elementRef.current) observer.observe(elementRef.current);
@@ -1815,19 +2654,20 @@ function SimpleCard({
   title,
   isFirst = false,
   isLast = false,
-  variant = 'blue',
+  variant = "blue",
 }: {
   href: string;
   title: string;
   isFirst?: boolean;
   isLast?: boolean;
-  variant?: 'blue' | 'green';
+  variant?: "blue" | "green";
 }) {
-  const isBlue = variant === 'blue';
+  const isBlue = variant === "blue";
 
   // Mobile styles matching the reference image (Blue/Green cards)
-  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${isBlue ? 'bg-[#E0EEF7]' : 'bg-[#E4F5E6]'
-    }`;
+  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${
+    isBlue ? "bg-[#E0EEF7]" : "bg-[#E4F5E6]"
+  }`;
 
   // Desktop styles maintaining the original white bar look
   const desktopClasses = `md:bg-white md:rounded-none md:shadow-none md:min-h-0 md:p-0 md:flex-row md:items-center md:justify-center md:gap-1 lg:gap-3 md:px-2 lg:px-4 md:py-1.5 lg:py-3 md:w-auto md:flex-1 md:min-w-0 md:border-r md:border-gray-100 md:last:border-0 md:hover:bg-[#FBF8ED]`;
@@ -1839,18 +2679,86 @@ function SimpleCard({
     >
       {/* Mobile Icon & Content */}
       <div className="flex flex-col items-start gap-2 md:hidden">
-        <div className={`p-2 rounded-full ${isBlue ? 'bg-white/50' : 'bg-white/50'} text-gray-800`}>
+        <div
+          className={`p-2 rounded-full ${isBlue ? "bg-white/50" : "bg-white/50"} text-gray-800`}
+        >
           {/* Icons based on title for mobile */}
-          {title.includes('Login') ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" /></svg>
-          ) : title.includes('Appointment') ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-          ) : title.includes('Report') ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-          ) : title.includes('Departments') ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          {title.includes("Login") ? (
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+              />
+            </svg>
+          ) : title.includes("Appointment") ? (
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+          ) : title.includes("Report") ? (
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+          ) : title.includes("Departments") ? (
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
           ) : (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
           )}
         </div>
         <span className="text-sm font-bold font-heading uppercase tracking-wider text-gray-900">
@@ -1866,7 +2774,19 @@ function SimpleCard({
       {/* Mobile "Learn More" */}
       <div className="md:hidden flex items-center gap-2 text-xs font-bold text-gray-900 mt-2">
         Learn More
-        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        <svg
+          className="w-3.5 h-3.5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M17 8l4 4m0 0l-4 4m4-4H3"
+          />
+        </svg>
       </div>
 
       {/* Desktop Arrow Circle */}
@@ -1911,4 +2831,3 @@ function QuickCard({
     </Link>
   );
 }
-  

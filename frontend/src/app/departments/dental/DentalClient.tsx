@@ -1,17 +1,33 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import DoctorSlider from '@/components/DoctorSlider';
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import DoctorSlider from "@/components/DoctorSlider";
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
 const features = [
-  { title: "Painless Procedures", icon: "sparkle", desc: "Advanced anesthesia and gentle techniques for anxiety-free care." },
-  { title: "Precision Technology", icon: "scope", desc: "Digital X-rays and intra-oral cameras for accurate diagnoses." },
-  { title: "Specialized Care", icon: "shield", desc: "Expert treatment for complex dental and maxillofacial conditions." },
-  { title: "Radiological Support", icon: "tech", desc: "Superior diagnostic amenities including Dentascan and OPG." },
+  {
+    title: "Painless Procedures",
+    icon: "sparkle",
+    desc: "Advanced anesthesia and gentle techniques for anxiety-free care.",
+  },
+  {
+    title: "Precision Technology",
+    icon: "scope",
+    desc: "Digital X-rays and intra-oral cameras for accurate diagnoses.",
+  },
+  {
+    title: "Specialized Care",
+    icon: "shield",
+    desc: "Expert treatment for complex dental and maxillofacial conditions.",
+  },
+  {
+    title: "Radiological Support",
+    icon: "tech",
+    desc: "Superior diagnostic amenities including Dentascan and OPG.",
+  },
 ];
 
 const surgeryList = [
@@ -23,22 +39,28 @@ const surgeryList = [
   "Pediatric dentistry",
   "Child dentistry is emphasized to condense the incidence of dental ailments in adults.",
   "Periodontics",
-  "Services such as to strengthen the Gums, Gingival Flap Surgeries , bone Grafts, Depigmentation, Frenectomy etc"
+  "Services such as to strengthen the Gums, Gingival Flap Surgeries , bone Grafts, Depigmentation, Frenectomy etc",
 ];
 
 const doctors = [
   {
-    name: 'Dr Hena Kauser',
-    qualifications: 'BDS',
-    designation: 'Consultant Dentist',
-    slug: 'dr-hena-kauser',
-    image: '', // Placeholder as per backend and uploaded image
+    name: "Dr Hena Kauser",
+    qualifications: "BDS",
+    designation: "Consultant Dentist",
+    slug: "dr-hena-kauser",
+    image: "", // Placeholder as per backend and uploaded image
   },
 ];
 
 /* ─── Sub-Components ─── */
 
-const SectionHeader = ({ title, highlight }: { title: string; highlight?: string }) => (
+const SectionHeader = ({
+  title,
+  highlight,
+}: {
+  title: string;
+  highlight?: string;
+}) => (
   <div className="mb-6">
     <h2 className="text-2xl md:text-3xl font-bold text-[#0b1c43] font-heading leading-tight">
       {title} <span className="text-cyan-600 font-bold">{highlight}</span>
@@ -52,7 +74,9 @@ const SectionHeader = ({ title, highlight }: { title: string; highlight?: string
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-3 text-gray-800 mb-3 group text-base md:text-lg font-medium">
-    <span className="text-cyan-600 mt-1.5 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">›</span>
+    <span className="text-cyan-600 mt-1.5 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">
+      ›
+    </span>
     <span className="leading-relaxed">{text}</span>
   </li>
 );
@@ -60,10 +84,8 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function DentalClient() {
-
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0e7490] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -82,7 +104,7 @@ export default function DentalClient() {
               Department of
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Comprehensive <br />
+              Comprehensive <br />
               <span className="text-cyan-300">Dental Care</span>
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -104,27 +126,37 @@ export default function DentalClient() {
       <section className="py-16 bg-white min-h-screen">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
             {/* ── Left Content (Following Image structure) ── */}
             <div className="lg:col-span-8">
               <SectionHeader title="Department of" highlight="Dental" />
               <div className="space-y-6 text-gray-800 text-base md:text-lg leading-relaxed mb-12 font-medium text-justify">
                 <div className="bg-cyan-50/50 p-6 rounded-xl border-l-4 border-cyan-500">
                   <p>
-                    The department is operational with state of the art dental equipments harmonizing International standards to deliver quality treatment to the patients. This multi sphere dental unit with a high quality, specialized dental care with excellence and comfort soothing atmosphere for patients will offer the full range of services as follows:
+                    The department is operational with state of the art dental
+                    equipments harmonizing International standards to deliver
+                    quality treatment to the patients. This multi sphere dental
+                    unit with a high quality, specialized dental care with
+                    excellence and comfort soothing atmosphere for patients will
+                    offer the full range of services as follows:
                   </p>
                 </div>
               </div>
 
               <div className="mt-12 animate-fade-in">
-                <SectionHeader title="Oral and Maxillofacial" highlight="Surgery" />
+                <SectionHeader
+                  title="Oral and Maxillofacial"
+                  highlight="Surgery"
+                />
                 <div className="flex flex-col gap-1 mt-8">
                   {surgeryList.map((item, idx) => (
                     <ListItem key={idx} text={item} />
                   ))}
                 </div>
                 <div className="bg-gray-50 p-5 rounded-xl border border-gray-100 mt-10">
-                    <p className="text-gray-600 italic font-medium">Craniofacial Surgeries are done in collaboration with department of plastic surgery</p>
+                  <p className="text-gray-600 italic font-medium">
+                    Craniofacial Surgeries are done in collaboration with
+                    department of plastic surgery
+                  </p>
                 </div>
               </div>
 
@@ -133,7 +165,7 @@ export default function DentalClient() {
                 <div className="flex flex-col lg:flex-row items-center gap-16">
                   <div className="lg:w-5/12 w-full order-2 lg:order-1">
                     <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px] border-[12px] border-white group">
-                      <Image 
+                      <Image
                         src="/images/departments-images/root-canal-treatment.jpg"
                         alt="Dental Radiology"
                         fill
@@ -148,10 +180,14 @@ export default function DentalClient() {
                       DIGITAL RADIOLOGICAL SUPPORT:
                     </h3>
                     <p className="text-gray-800 text-base md:text-lg leading-relaxed text-justify font-medium mb-6 text-justify">
-                        The department is backed by exceptional diagnostic amenities such as a cordless digital Intra oral periapical radiographs. Orthopantomograph and Dentascan thereby ensuring flawless management of dental ailments.
+                      The department is backed by exceptional diagnostic
+                      amenities such as a cordless digital Intra oral periapical
+                      radiographs. Orthopantomograph and Dentascan thereby
+                      ensuring flawless management of dental ailments.
                     </p>
                     <p className="text-gray-800 text-base md:text-lg leading-relaxed text-justify font-medium text-justify">
-                        The department of dentistry at Sahara Hospital practices everything about dentistry under one roof.
+                      The department of dentistry at Sahara Hospital practices
+                      everything about dentistry under one roof.
                     </p>
                   </div>
                 </div>
@@ -164,12 +200,9 @@ export default function DentalClient() {
                 <DoctorSlider doctors={doctors} departmentName="Dental" />
               </div>
             </div>
-
           </div>
         </div>
       </section>
-
-
     </main>
   );
 }

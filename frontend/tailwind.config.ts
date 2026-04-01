@@ -1,43 +1,41 @@
-import type { Config } from 'tailwindcss';
-import typography from '@tailwindcss/typography';
+import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
+          500: "#0ea5e9",
+          600: "#0284c7",
+          700: "#0369a1",
+          800: "#075985",
+          900: "#0c4a6e",
         },
         hospital: {
-          teal: '#0d9488',
-          navy: '#1e3a5f',
-          white: '#fafafa',
+          teal: "#0d9488",
+          navy: "#1e3a5f",
+          white: "#fafafa",
         },
       },
       fontFamily: {
-        sans: ['var(--font-lato)'],
-        heading: ['var(--font-montserrat)'],
-        display: ['var(--font-montserrat)'],
+        sans: ["var(--font-lato)"],
+        heading: ["var(--font-montserrat)"],
+        display: ["var(--font-montserrat)"],
       },
     },
   },
-  plugins: [
-    typography,
-  ],
+  plugins: [typography],
 };
 
 export default config;

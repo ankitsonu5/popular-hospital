@@ -1,9 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const branchSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
-    slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
     city: { type: String, required: true },
     heading: { type: String, default: null },
     title: { type: String, default: null },
@@ -25,8 +31,8 @@ const branchSchema = new mongoose.Schema(
     facilities: { type: String, default: null },
     order: { type: Number, default: 0 },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-const Branch = mongoose.model('Branch', branchSchema);
+const Branch = mongoose.model("Branch", branchSchema);
 export default Branch;

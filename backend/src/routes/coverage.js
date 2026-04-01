@@ -1,8 +1,8 @@
-import { Router } from 'express';
-import { getAllCoverage } from '../controllers/coverageController.js';
+import { Router } from "express";
+import { getAllCoverage } from "../controllers/coverageController.js";
 
 const router = Router();
 
-router.get('/', getAllCoverage);
+router.get("/", getAllCoverage);
 
 export default router;

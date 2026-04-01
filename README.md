@@ -73,8 +73,8 @@ cd backend && npm run db:seed && cd ..
 npm run dev
 ```
 
-- Frontend: http://localhost:3000  
-- Backend API: http://localhost:4000  
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:4000
 
 **Option B – Run separately:**
 
@@ -90,8 +90,8 @@ Ensure the backend is running before using booking, doctor search, or CMS (front
 
 ### 4. CMS (admin)
 
-1. Open http://localhost:3000/admin  
-2. Log in with key: **popular-hospital-cms-dev**  
+1. Open http://localhost:3000/admin
+2. Log in with key: **popular-hospital-cms-dev**
 3. Use **Branches**, **Doctors**, **Bookings**, and **Content** to manage the site.
 
 ## Environment (optional)
