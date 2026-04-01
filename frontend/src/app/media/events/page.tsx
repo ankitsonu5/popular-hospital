@@ -22,30 +22,30 @@ export default function EventsListingPage() {
   return (
     <main className="min-h-screen bg-[#f8fafc]">
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] py-20 sm:py-24 overflow-hidden">
+      <section className="relative bg-[#0b1c43] py-8 sm:py-10 lg:py-12 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/news-sm-inner.jpg" alt="" fill className="object-cover opacity-40" priority />
           <div className="absolute inset-0 bg-black/40 z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/90 via-[#0b1c43]/40 to-transparent z-10" />
         </div>
         
-        <div className="relative z-10 max-w-[1366px] mx-auto px-6 sm:px-8 lg:px-12 text-center sm:text-left">
-          <nav className="mb-6 text-[11px] text-white/50 uppercase tracking-[0.2em]" aria-label="Breadcrumb">
+        <div className="relative z-10 max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+          <nav className="mb-4 text-xs sm:text-sm text-white/60" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span className="mx-2">/</span>
             <span className="text-white">Events</span>
           </nav>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-none">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
             Hospital <span className="text-[#00B4D8]">Events</span>
           </h1>
-          <p className="mt-6 text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed mx-auto sm:mx-0">
+          <p className="mt-2 text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed">
             Capturing the spirit of healthcare through our community outreach, medical camps, and organizational milestones.
           </p>
         </div>
       </section>
 
       {/* ─── Events Grid ─── */}
-      <section className="max-w-[1366px] mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24">
+      <section className="max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-16 sm:py-20">
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
              <Loader2 className="w-12 h-12 animate-spin text-indigo-600" />

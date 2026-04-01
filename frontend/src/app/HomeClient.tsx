@@ -211,7 +211,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/book" title="Book an Appointment" variant="green" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard href="/doctors" title="Find Your Doctor" variant="blue" />
+            <SimpleCard href="/admin-login" title="Doctors Login" variant="blue" />
             <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
             <SimpleCard href="/patient-reports" title="Patient Report" isLast={true} variant="green" />
           </div>
@@ -406,7 +406,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                   icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 },
                 {
-                  title: "Patient-Centric",
+                  title: "Patient-centric approach",
                   fullDesc: "We prioritize our patients' needs and comfort, ensuring that they receive the best possible care and treatment throughout their hospital stay.",
                   bgImage: "/images/banners/patient-centric-approach.jpg",
                   icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
@@ -1593,13 +1593,13 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                 <div className="relative">
                   <div className="absolute inset-0 bg-[#1D4ED8]/5 rounded-full scale-[1.15] blur-2xl group-hover/section:bg-[#1D4ED8]/10 transition-colors" />
                   
-                  <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 border border-blue-100 shadow-2xl bg-white overflow-hidden ring-12 ring-blue-50/50">
-                    <div className="relative w-full h-full rounded-full overflow-hidden">
+                  <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-4 border border-blue-100 shadow-2xl bg-white overflow-hidden ring-12 ring-blue-50/50">
+                    <div className="relative w-full h-full rounded-full overflow-hidden scale-95">
                       <Image
                         src="/images/dr_ak_kaushik.png"
                         alt="DR. A.K. KAUSHIK"
                         fill
-                        className="object-cover transform group-hover/section:scale-[1.02] transition-transform duration-700"
+                        className="object-contain transform group-hover/section:scale-[1.02] transition-transform duration-700"
                       />
                     </div>
                   </div>
@@ -1625,7 +1625,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
               {/* Right Column - Awards Gallery Grid */}
               <div className="flex flex-col gap-6">
                 <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-44 sm:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award1.png"
                       alt="Hospital Award"
@@ -1634,7 +1634,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     />
                   </div>
 
-                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-44 sm:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award2.png"
                       alt="Medical Achievement"
@@ -1643,7 +1643,7 @@ export default function HomeClient({ latestNews, latestEvents, branches, special
                     />
                   </div>
 
-                  <div className="relative h-48 sm:h-60 col-span-2 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-56 sm:h-72 col-span-2 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award3.png"
                       alt="Hospital Recognition Ceremony"

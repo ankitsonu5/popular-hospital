@@ -298,7 +298,7 @@ export function Header() {
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link href="/services/wellness-packages" className="hover:text-white/80 transition-colors whitespace-nowrap">Wellness Packages</Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
-              <Link href="/services/health-packages" className="hover:text-white/80 transition-colors whitespace-nowrap">Health Packages</Link>
+              <Link href="/services/health-packages" className="hover:text-white/80 transition-colors whitespace-nowrap">Health-fit Card</Link>
             </div>
             <div className="flex items-center justify-center sm:justify-end gap-x-6 w-full sm:w-auto mt-1 sm:mt-0">
                <div className="flex items-center gap-2">
@@ -625,7 +625,7 @@ export function Header() {
                   onClick={() => setMenuOpen(false)}
                 >
                   <Activity className="w-5 h-5 text-gray-400" />
-                  Health Packages
+                  Health-fit Card
                 </Link>
               </div>
             </div>
