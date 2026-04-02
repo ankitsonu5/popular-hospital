@@ -264,39 +264,6 @@ export default function InterventionalRadiologyClient() {
                   departmentName="Interventional Radiology"
                 />
 
-                <div className="bg-gray-50 border border-gray-200 p-8 rounded-2xl max-w-sm mx-auto shadow-inner">
-                  <h4 className="text-lg font-bold text-[#0b1c43] mb-4 uppercase tracking-wider border-b border-gray-200 pb-2">
-                    Quick Info
-                  </h4>
-                  <ul className="space-y-4">
-                    {[
-                      "Board-certified Radiologists",
-                      "Expert Image Interpretation",
-                      "Collaborative Multi-speciality Care",
-                      "Advanced Imaging Technology",
-                    ].map((info, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-center gap-3 text-gray-700 font-bold text-sm"
-                      >
-                        <svg
-                          className="w-4 h-4 text-blue-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={3}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {info}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
           </div>

@@ -27,6 +27,21 @@ const procedures = [
   "Andrology & Male Infertility including Penile Prosthesis, Artificial Urinary Sphincter, Testicular Prosthesis, VVA and VEA etc.",
 ];
 
+const urologyCategories = [
+  {
+    id: "hospital-options",
+    title: "Options at Popular Hospital",
+    image: "/images/departments-images/urology.webp",
+    services: hospitalOptions,
+  },
+  {
+    id: "our-procedures",
+    title: "Our Procedures",
+    image: "/images/departments-images/urology_two.webp",
+    services: procedures,
+  },
+];
+
 const doctors = [
   {
     name: "Dr Dinesh Singh",
@@ -83,6 +98,8 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function UrologyClient() {
+  const [selectedCategory, setSelectedCategory] = useState(urologyCategories[0]);
+
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO ═══════ */}
@@ -182,78 +199,101 @@ export default function UrologyClient() {
         </div>
       </section>
 
-      {/* ═══════ OPTIONS AT POPULAR HOSPITAL ═══════ */}
-      <section className="py-14 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading">
-              Options at <span className="text-blue-600">Popular Hospital</span>
+
+      {/* ═══════ INTERACTIVE UROLOGICAL CARE SECTION ═══════ */}
+      <div className="mt-24 pt-20 border-t border-gray-100 bg-[#fafafa] -mx-4 px-4 pb-20">
+        <div className="mx-auto w-full max-w-[1366px] px-6 md:px-8 lg:px-4">
+          {/* Main Heading */}
+          <div className="text-center mb-20 max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#333] mb-8 font-heading leading-tight italic">
+              &quot;Advanced Urological Services & Clinical Excellence&quot;
             </h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
-              <div className="w-2 h-2 rounded-full bg-blue-600" />
-              <div className="h-[2px] w-12 bg-gray-300" />
-            </div>
+            <div className="w-24 h-1 bg-[#E85222] mx-auto" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {hospitalOptions.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 flex items-start gap-4 group"
-              >
-                <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-[#0b1c43] transition-colors">
-                  <svg
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-fade-in">
+            {/* Left Sidebar (Categories) */}
+            <div className="lg:col-span-4 order-2 lg:order-1">
+              <div className="flex flex-col border-t border-gray-200">
+                {urologyCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`flex items-center justify-between py-6 px-5 border-b border-gray-200 transition-all duration-300 group ${
+                      selectedCategory.id === cat.id
+                        ? "text-[#E85222] font-bold bg-white shadow-sm"
+                        : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
+                    }`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <p className="text-gray-700 font-medium text-sm leading-snug pt-1">
-                  {item}
-                </p>
+                    <span className="text-left text-xl leading-snug">{cat.title}</span>
+                    <span
+                      className={`transition-transform duration-300 ${
+                        selectedCategory.id === cat.id
+                          ? "translate-x-0"
+                          : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                      }`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* ═══════ PROCEDURES ═══════ */}
-      <section className="py-20 bg-[#f8fafc]">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-blue-600 font-heading mb-4">
-              Our Procedures
-            </h2>
-            <div className="flex items-center justify-center gap-1">
-              <div className="w-2 h-2 rounded-full bg-blue-600" />
-              <div className="h-[2px] w-16 bg-gray-200" />
+            {/* Middle Circular Image */}
+            <div className="lg:col-span-4 flex justify-center order-1 lg:order-2 mb-10 lg:mb-0">
+              <div className="relative group">
+                <div className="absolute inset-[-20px] rounded-full border-2 border-dashed border-gray-300 animate-[spin_20s_linear_infinite] group-hover:border-[#E85222]/50 transition-colors" />
+                <div className="absolute inset-[-10px] rounded-full border border-gray-200" />
+                <div className="relative w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full overflow-hidden border-8 border-white shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                  <Image
+                    key={selectedCategory.id}
+                    src={selectedCategory.image}
+                    alt="Urological Care Illustration"
+                    fill
+                    className="object-cover transition-opacity duration-500 animate-fade-in"
+                  />
+                  <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors" />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content Area */}
+            <div className="lg:col-span-4 order-3">
+              <div className="animate-fade-in pl-4 lg:pl-10 text-justify">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-8 h-[2px] bg-[#E85222]" />
+                  <h3 className="text-xl font-bold text-[#333] italic">
+                    {selectedCategory.id === "hospital-options" ? "Surgical Specialties" : "Diagnostic & Procedural Care"}
+                  </h3>
+                </div>
+                <ul className="space-y-4">
+                  {selectedCategory.services.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-4 group">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E85222] flex-shrink-0 group-hover:scale-150 transition-transform" />
+                      <span className="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
-            {procedures.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-50 flex items-start gap-6 hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="w-10 h-10 rounded-md bg-[#0b1c43] flex items-center justify-center flex-shrink-0 text-white font-bold text-lg">
-                  {idx + 1}
-                </div>
-                <p className="text-gray-700 text-[15px] leading-relaxed pt-1 font-medium">
-                  {item}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

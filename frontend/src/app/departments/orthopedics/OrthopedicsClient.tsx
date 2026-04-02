@@ -62,6 +62,45 @@ const spineSurgeries = [
   "Kyphoplasty",
 ];
 
+const treatmentCategories = [
+  {
+    id: "replacement",
+    title: "Replacement Services",
+    image: "/images/departments-images/orthopedics.jpg",
+    services: replacementServices,
+  },
+  {
+    id: "arthroscopy",
+    title: "Arthroscopy & Sports Injury",
+    image: "/images/departments-images/advance_orthopedics.jpg",
+    services: arthroscopyServices,
+  },
+  {
+    id: "limb",
+    title: "Limb Reconstruction",
+    image: "/images/departments-images/orthopaedic.jpeg",
+    services: limbReconstruction,
+  },
+  {
+    id: "trauma",
+    title: "Trauma",
+    image: "/images/departments-images/trauma_ortho.webp",
+    services: traumaServices,
+  },
+  {
+    id: "pediatric",
+    title: "Pediatric Orthopedics",
+    image: "/images/departments-images/pediatric_orthopedics.jpg",
+    services: pediatricOrthopedics,
+  },
+  {
+    id: "spine",
+    title: "Spine surgeries",
+    image: "/images/departments-images/spine-surgery.jpg",
+    services: spineSurgeries,
+  },
+];
+
 const doctors = [
   {
     name: "Dr Md Akhtar Ali Ansari",
@@ -112,8 +151,12 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function OrthopedicsClient() {
+  const [selectedCategory, setSelectedCategory] = useState(
+    treatmentCategories[0]
+  );
+
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
+    <div className="bg-white">
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -180,179 +223,100 @@ export default function OrthopedicsClient() {
         </div>
       </section>
 
-      {/* ═══════ REPLACEMENT SERVICES ═══════ */}
-      <section className="py-16 bg-white">
+      {/* ═══════ TREATMENTS INTERACTIVE SECTION ═══════ */}
+      <section className="py-20 bg-[#fafafa]">
         <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* List Left */}
-            <div className="lg:col-span-7">
-              <SectionHeader title="Replacement" highlight="Services:" />
-              <ul className="space-y-1 mt-4">
-                {replacementServices.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-            {/* Image Right (Blob Shape) */}
-            <div className="lg:col-span-5 h-[400px] relative">
-              <div className="absolute inset-0 bg-blue-50 rounded-[40%_60%_70%_30%/_50%_40%_60%_50%] opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-[40%_60%_70%_30%/_50%_40%_60%_50%] border-4 border-white shadow-2xl">
-                <Image
-                  src="/images/departments-images/orthopedics.jpg"
-                  alt="Orthopedic Replacement"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#333] mb-4 font-heading">
+              Treatments
+            </h2>
           </div>
-        </div>
-      </section>
 
-      {/* ═══════ ARTHROSCOPY & SPORTS INJURY ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Image Left (Blob Shape) */}
-            <div className="lg:col-span-6 h-[400px] relative order-2 lg:order-1">
-              <div className="absolute inset-0 bg-blue-50 rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] border-4 border-white shadow-2xl">
-                <Image
-                  src="/images/departments-images/advance_orthopedics.jpg"
-                  alt="Arthroscopy"
-                  fill
-                  className="object-cover"
-                />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Sidebar */}
+            <div className="lg:col-span-3 order-2 lg:order-1">
+              <div className="flex flex-col border-t border-gray-200">
+                {treatmentCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`flex items-center justify-between py-5 px-4 border-b border-gray-200 transition-all duration-300 group ${
+                      selectedCategory.id === cat.id
+                        ? "text-[#E85222] font-bold bg-white shadow-sm"
+                        : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
+                    }`}
+                  >
+                    <span className="text-left text-lg">{cat.title}</span>
+                    <span
+                      className={`transition-transform duration-300 ${
+                        selectedCategory.id === cat.id
+                          ? "translate-x-0"
+                          : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                      }`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                ))}
               </div>
             </div>
-            {/* List Right */}
-            <div className="lg:col-span-6 order-1 lg:order-2">
-              <SectionHeader title="Arthroscopy &" highlight="Sports Injury" />
-              <ul className="space-y-1 mt-4">
-                {arthroscopyServices.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ═══════ LIMB RECONSTRUCTION ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* List Left */}
-            <div className="lg:col-span-7">
-              <SectionHeader title="Limb" highlight="Reconstruction:" />
-              <ul className="space-y-1 mt-4">
-                {limbReconstruction.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-            {/* Image Right (Blob Shape) */}
-            <div className="lg:col-span-5 h-[400px] relative">
-              <div className="absolute inset-0 bg-blue-50 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] border-4 border-white shadow-2xl">
-                <Image
-                  src="/images/departments-images/orthopaedic.jpeg"
-                  alt="Limb Reconstruction"
-                  fill
-                  className="object-cover"
-                />
+            {/* Middle Circular Image */}
+            <div className="lg:col-span-5 flex justify-center order-1 lg:order-2 mb-10 lg:mb-0">
+              <div className="relative group">
+                {/* Decorative Dashed Rings */}
+                <div className="absolute inset-[-20px] rounded-full border-2 border-dashed border-gray-300 animate-[spin_20s_linear_infinite] group-hover:border-[#E85222]/50 transition-colors" />
+                <div className="absolute inset-[-10px] rounded-full border border-gray-200" />
+                
+                {/* Main Circular Image */}
+                <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden border-8 border-white shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                  <Image
+                    key={selectedCategory.id}
+                    src={selectedCategory.image}
+                    alt={selectedCategory.title}
+                    fill
+                    className="object-cover transition-opacity duration-500 animate-fade-in"
+                  />
+                  <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors" />
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ═══════ TRAUMA ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Image Left (Blob Shape) */}
-            <div className="lg:col-span-6 h-[400px] relative order-2 lg:order-1">
-              <div className="absolute inset-0 bg-blue-50 rounded-[40%_60%_70%_30%/_50%_40%_60%_50%] opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-[40%_60%_70%_30%/_50%_40%_60%_50%] border-4 border-white shadow-2xl">
-                <Image
-                  src="/images/departments-images/trauma_ortho.webp"
-                  alt="Trauma Care"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            {/* List Right */}
-            <div className="lg:col-span-6 order-1 lg:order-2">
-              <SectionHeader title="Trauma:" highlight="" />
-              <ul className="space-y-1 mt-4">
-                {traumaServices.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════ PEDIATRIC ORTHOPEDICS ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* List Left */}
-            <div className="lg:col-span-7">
-              <SectionHeader title="Pediatric" highlight="Orthopedics:" />
-              <ul className="space-y-1 mt-4">
-                {pediatricOrthopedics.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-            {/* Image Right (Blob Shape) */}
-            <div className="lg:col-span-5 h-[400px] relative">
-              <div className="absolute inset-0 bg-blue-50 rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] border-4 border-white shadow-2xl">
-                <Image
-                  src="/images/departments-images/pediatric_orthopedics.jpg"
-                  alt="Pediatric Orthopedics"
-                  fill
-                  className="object-cover"
-                />
+            {/* Right Content */}
+            <div className="lg:col-span-4 order-3">
+              <div className="animate-fade-in pl-0 lg:pl-10">
+                <h3 className="text-2xl font-bold text-[#333] mb-6 flex items-center gap-3">
+                  <span className="w-8 h-[2px] bg-[#E85222]" />
+                  {selectedCategory.title}
+                </h3>
+                <ul className="space-y-4">
+                  {selectedCategory.services.map((service, idx) => (
+                    <li key={idx} className="flex items-start gap-3 group">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E85222] flex-shrink-0 group-hover:scale-150 transition-transform" />
+                      <span className="text-gray-700 text-lg leading-relaxed font-medium">
+                        {service}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ═══════ SPINE SURGERIES ═══════ */}
-      <section className="py-16 bg-white border-b border-gray-100 mb-20">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Image Left (Blob Shape) */}
-            <div className="lg:col-span-6 h-[400px] relative order-2 lg:order-1">
-              <div className="absolute inset-0 bg-blue-50 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] border-4 border-white shadow-2xl">
-                <Image
-                  src="/images/departments-images/spine-surgery.jpg"
-                  alt="Spine Surgeries"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            {/* List Right */}
-            <div className="lg:col-span-6 order-1 lg:order-2">
-              <SectionHeader title="Spine" highlight="surgeries:" />
-              <ul className="space-y-1 mt-4">
-                {spineSurgeries.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+    </div>
   );
 }
