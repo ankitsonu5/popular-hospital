@@ -77,7 +77,7 @@ export default function AwardsRecognitionPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ─── Simple & Clean Hero Section ─── */}
-      <div className="bg-[#0b1c43] text-white py-10 md:py-12 relative overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center">
+      <div className="bg-[#0b1c43] text-white py-8 md:py-10 xl:py-6 relative overflow-hidden min-h-[150px] md:min-h-[200px] xl:min-h-[150px] flex flex-col justify-center">
         {/* Subtle Background Pattern */}
         <div
           className="absolute inset-0 opacity-[0.05] pointer-events-none"
@@ -86,12 +86,12 @@ export default function AwardsRecognitionPage() {
             backgroundSize: "32px 32px",
           }}
         />
-        <div className="relative z-10 mx-auto max-w-[1366px] px-6 sm:px-12 text-center">
-          <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-black font-heading tracking-tight leading-tight mb-6 text-white drop-shadow-md">
+        <div className="relative z-10 mx-auto max-w-5xl px-6 sm:px-12 text-center">
+          <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-2xl font-black font-heading tracking-tight leading-tight mb-6 text-white drop-shadow-md uppercase">
             The Face: Dr. A.K. Kaushik - A Healthcare{" "}
             <span className="text-[#00B4D8]">ICON</span>
           </h1>
-          <div className="w-24 h-1.5 bg-hospital-orange rounded-full mx-auto mb-8"></div>
+          <div className="w-24 h-1 bg-hospital-orange rounded-full mx-auto mb-8"></div>
 
           {/* Share Button */}
           <button
@@ -106,7 +106,7 @@ export default function AwardsRecognitionPage() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-12 py-10 md:py-16 space-y-16">
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-12 py-10 md:py-16 xl:py-12 space-y-16">
         {/* Section 1: Profile Card (Simple Square Layout) */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
           <div className="w-full lg:w-[45%]">
@@ -178,7 +178,7 @@ export default function AwardsRecognitionPage() {
                 Profile Summary
               </h2>
 
-              <div className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
+              <div className="text-gray-700 text-lg md:text-xl xl:text-[15px] leading-relaxed mb-8">
                 <p>
                   &quot;The single greatest asset and the primary de-risking
                   factor of this investment is the promoter himself,{" "}

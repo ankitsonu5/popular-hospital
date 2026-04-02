@@ -10,7 +10,7 @@ export default function VisionMissionPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ─── Clean Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
+      <section className="relative bg-[#0b1c43] overflow-hidden min-h-[150px] md:min-h-[200px] xl:min-h-[150px] flex flex-col justify-center py-8 xl:py-6">
         <div className="absolute inset-0">
           <Image
             src="/images/about_popular/vision_mission.webp"
@@ -27,7 +27,7 @@ export default function VisionMissionPage() {
               Our Foundation
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-white tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-3xl font-bold font-heading text-white tracking-tight leading-tight">
             Vision & Mission
           </h1>
           <p className="mt-6 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
@@ -38,7 +38,7 @@ export default function VisionMissionPage() {
       </section>
 
       {/* ─── Mission & Vision Section (Themed) ─── */}
-      <section className="relative py-24 md:py-32 bg-[#f8fafc] overflow-hidden">
+      <section className="relative py-20 md:py-24 xl:py-12 bg-[#f8fafc] overflow-hidden">
         {/* Subtle Grid Background */}
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -51,8 +51,8 @@ export default function VisionMissionPage() {
         {/* Bottom Right Decorative Swoosh */}
         <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-[#005696]/10 to-transparent rounded-tl-[100%] pointer-events-none translate-x-1/4 translate-y-1/4" />
 
-        <div className="max-w-[1366px] mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+        <div className="max-w-[1366px] xl:max-w-5xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 xl:gap-12 items-start">
             {/* Mission Card */}
             <div className="group">
               <div className="flex items-center gap-4 mb-6">
@@ -68,11 +68,11 @@ export default function VisionMissionPage() {
                     <circle cx="12" cy="12" r="2" fill="currentColor" />
                   </svg>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-black font-heading text-[#056b46] tracking-tight uppercase">
+                <h2 className="text-3xl md:text-4xl xl:text-2xl font-black font-heading text-[#056b46] tracking-tight uppercase">
                   MISSION
                 </h2>
               </div>
-              <p className="text-2xl md:text-3xl font-bold text-gray-800 leading-[1.3] font-heading">
+              <p className="text-2xl md:text-3xl xl:text-lg font-bold text-gray-800 leading-[1.3] font-heading">
                 "To be the Preferred Destination for all patients for Quality
                 Health Care Services."
               </p>
@@ -102,11 +102,11 @@ export default function VisionMissionPage() {
                     />
                   </svg>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-black font-heading text-[#005696] tracking-tight uppercase">
+                <h2 className="text-3xl md:text-4xl xl:text-2xl font-black font-heading text-[#005696] tracking-tight uppercase">
                   VISION
                 </h2>
               </div>
-              <p className="text-2xl md:text-3xl font-bold text-gray-800 leading-[1.3] font-heading">
+              <p className="text-2xl md:text-3xl xl:text-lg font-bold text-gray-800 leading-[1.3] font-heading">
                 "To Provide Quality Health Care Services to Every Patient at
                 Affordable Cost."
               </p>
@@ -116,14 +116,14 @@ export default function VisionMissionPage() {
       </section>
 
       {/* ─── Contact Section ─── */}
-      <section className="py-20 bg-white relative overflow-hidden">
-        <div className="max-w-[1366px] mx-auto px-6 relative z-10 text-center">
+      <section className="py-20 xl:py-12 bg-white relative overflow-hidden">
+        <div className="max-w-[1366px] xl:max-w-5xl mx-auto px-6 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-hospital-orange/10 border border-hospital-orange/20 mb-8">
             <span className="text-sm font-bold text-hospital-orange tracking-widest uppercase">
               Immediate Assistance
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black font-heading text-[#0b1c43] mb-12">
+          <h2 className="text-3xl md:text-5xl xl:text-2xl font-black font-heading text-[#0b1c43] mb-8 xl:mb-6">
             Reach Out to Us <br className="hidden md:block" /> Anytime
           </h2>
 
@@ -150,7 +150,7 @@ export default function VisionMissionPage() {
               <span className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-1">
                 Reception
               </span>
-              <span className="text-2xl md:text-3xl font-black text-[#0b1c43]">
+              <span className="text-xl md:text-2xl xl:text-lg font-black text-[#0b1c43]">
                 +91-7800001895
               </span>
             </a>
@@ -179,7 +179,7 @@ export default function VisionMissionPage() {
               <span className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-1">
                 Emergency
               </span>
-              <span className="text-2xl md:text-3xl font-black text-[#0b1c43]">
+              <span className="text-xl md:text-2xl xl:text-lg font-black text-[#0b1c43]">
                 +91-7800001896
               </span>
             </a>

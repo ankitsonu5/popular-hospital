@@ -28,7 +28,7 @@ export default function MDDeskPage() {
   return (
     <div className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] xl:min-h-[180px] flex flex-col justify-center py-10 xl:py-8">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/from_chairman's_desk.png"
@@ -43,14 +43,14 @@ export default function MDDeskPage() {
           <span className="text-hospital-orange font-bold text-xs uppercase tracking-[0.3em] mb-3 block">
             Perspective
           </span>
-          <h1 className="text-3xl md:text-5xl font-black font-heading mb-4 text-white uppercase tracking-tight">
+          <h1 className="text-3xl md:text-5xl xl:text-4xl font-black font-heading mb-4 text-white uppercase tracking-tight">
             From MD's Desk
           </h1>
           <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full"></div>
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1366px] px-4 py-16 lg:py-24">
+      <div className="mx-auto w-full max-w-[1366px] xl:max-w-5xl px-4 py-16 lg:py-24 xl:py-12">
         <div className="bg-white relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* Left Column: MD Info & Photo */}
@@ -67,13 +67,12 @@ export default function MDDeskPage() {
                   />
                 </div>
                 <div className="bg-[#1e5eb2] p-8 rounded-3xl border border-blue-400/20 shadow-xl text-white">
-                  <h2 className="text-2xl md:text-3xl font-black font-heading mb-2 uppercase tracking-tight">
+                  <h2 className="text-2xl md:text-3xl xl:text-xl font-black font-heading mb-2 uppercase tracking-tight">
                     {mdData.name}
                   </h2>
                   <p className="text-yellow-400 font-bold text-sm tracking-widest uppercase mb-4">
                     {mdData.role}
                   </p>
-
                   <div className="space-y-1 text-xs md:text-sm font-medium uppercase opacity-90 leading-snug">
                     <p>POPULAR GROUP OF</p>
                     <p>HOSPITALS & ACADEMICS</p>
@@ -86,8 +85,8 @@ export default function MDDeskPage() {
 
             {/* Right Column: Text Content Area */}
             <div className="lg:col-span-7 relative pt-2">
-              <div className="mt-8 mb-6">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic">
+              <div className="mt-8 mb-6 xl:mt-4">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl font-black text-[#0b1c43] font-heading leading-tight italic">
                   A Commitment to <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
                     Clinical Excellence
@@ -99,7 +98,7 @@ export default function MDDeskPage() {
                 {mdData.message.map((para, i) => (
                   <p
                     key={i}
-                    className="text-lg md:text-xl text-gray-600 leading-relaxed font-normal text-justify"
+                    className="text-lg md:text-xl xl:text-[15px] text-gray-600 leading-relaxed font-normal text-justify"
                   >
                     {para}
                   </p>

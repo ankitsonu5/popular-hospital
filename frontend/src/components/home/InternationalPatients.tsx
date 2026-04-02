@@ -267,7 +267,7 @@ export default function InternationalPatients({
   };
 
   return (
-    <section className="relative py-12 sm:py-20 lg:py-24 bg-[#F8FAFC] overflow-hidden">
+    <section className="relative py-12 sm:py-20 lg:py-24 xl:py-16 bg-[#F8FAFC] overflow-hidden">
       {/* Mobile Only Background Image */}
       <div className="absolute inset-0 z-0 lg:hidden">
         <Image
@@ -281,20 +281,20 @@ export default function InternationalPatients({
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white lg:text-[#0b1c43] font-heading tracking-tight mb-3 sm:mb-4 drop-shadow-md lg:drop-shadow-none">
+        <div className="text-center mb-8 sm:mb-12 xl:mb-10">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-3xl font-black text-white lg:text-[#0b1c43] font-heading tracking-tight mb-3 sm:mb-4 drop-shadow-md lg:drop-shadow-none">
             For International Patients
           </h2>
-          <p className="text-sm sm:text-base font-bold text-[#FF6B00] uppercase tracking-wider drop-shadow-md lg:drop-shadow-none">
+          <p className="text-sm sm:text-base xl:text-xs xl:sm:text-sm font-bold text-[#FF6B00] uppercase tracking-wider drop-shadow-md lg:drop-shadow-none">
             Send Your Inquiry to Assist You
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20 xl:gap-14">
           {/* Form Side */}
-          <div className="w-full lg:w-[480px] shrink-0">
+          <div className="w-full lg:w-[480px] xl:w-[420px] shrink-0">
             <div className="bg-[#333333] lg:bg-[#333333] p-1 shadow-2xl rounded-sm">
-              <div className="bg-[#333333] px-6 py-8 sm:px-10 sm:py-12">
+              <div className="bg-[#333333] px-6 py-8 sm:px-10 sm:py-12 xl:px-8 xl:py-10">
                 <h3 className="text-2xl font-black text-white text-center mb-8 sm:mb-10 font-heading tracking-tight">
                   Book An Appointment
                 </h3>
@@ -309,7 +309,7 @@ export default function InternationalPatients({
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full bg-white px-5 py-3.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none"
+                      className="w-full bg-white px-5 py-3.5 xl:py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none"
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
                       <svg
@@ -335,7 +335,7 @@ export default function InternationalPatients({
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full bg-white px-5 py-3.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none"
+                      className="w-full bg-white px-5 py-3.5 xl:py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none"
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
                       <svg
@@ -358,7 +358,7 @@ export default function InternationalPatients({
                       onChange={(e) =>
                         setFormData({ ...formData, contact: e.target.value })
                       }
-                      className="w-full bg-white px-5 py-3.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none"
+                      className="w-full bg-white px-5 py-3.5 xl:py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none"
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
                       <svg
@@ -379,7 +379,7 @@ export default function InternationalPatients({
                       onChange={(e) =>
                         setFormData({ ...formData, age: e.target.value })
                       }
-                      className="w-full bg-white px-5 py-3.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none"
+                      className="w-full bg-white px-5 py-3.5 xl:py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none"
                     />
                   </div>
 
@@ -390,7 +390,7 @@ export default function InternationalPatients({
                       onChange={(e) =>
                         setFormData({ ...formData, country: e.target.value })
                       }
-                      className="w-full bg-white px-5 py-3.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none appearance-none text-gray-500"
+                      className="w-full bg-white px-5 py-3.5 xl:py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none appearance-none text-gray-500"
                     >
                       <option value="">-Select Country-</option>
                       {COUNTRIES.map((country) => (
@@ -423,7 +423,7 @@ export default function InternationalPatients({
                       onChange={(e) =>
                         setFormData({ ...formData, department: e.target.value })
                       }
-                      className="w-full bg-white px-5 py-3.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none appearance-none text-gray-500"
+                      className="w-full bg-white px-5 py-3.5 xl:py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 border-none rounded-none appearance-none text-gray-500"
                     >
                       <option value="">Department</option>
                       {specialities.map((spec) => (
@@ -460,7 +460,7 @@ export default function InternationalPatients({
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full bg-[#FF6B00] text-white font-bold py-4 mt-6 hover:bg-[#e66000] transition-colors uppercase tracking-[0.2em] text-sm shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-[#FF6B00] text-white font-bold py-4 xl:py-3.5 mt-6 xl:mt-4 hover:bg-[#e66000] transition-colors uppercase tracking-[0.2em] text-sm shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {submitting ? "Submitting..." : "Submit Now"}
                   </button>
@@ -470,7 +470,7 @@ export default function InternationalPatients({
           </div>
 
           {/* Desktop Only Side Image */}
-          <div className="relative hidden lg:block flex-1 w-full h-[600px] overflow-hidden rounded-2xl shadow-xl">
+          <div className="relative hidden lg:block flex-1 w-full h-[600px] xl:h-[520px] overflow-hidden rounded-2xl shadow-xl">
             <Image
               src="/images/international_patients.png?v=2"
               alt="International Patient Inquiry"

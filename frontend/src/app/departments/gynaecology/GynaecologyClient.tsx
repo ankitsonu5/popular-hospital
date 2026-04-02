@@ -168,7 +168,7 @@ export default function GynaecologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#831843] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#831843] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/obstetrics_banner.png"
@@ -179,12 +179,12 @@ export default function GynaecologyClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#831843] via-[#831843]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-pink-500/20 text-pink-100 text-sm font-semibold mb-6 border border-pink-400/30 backdrop-blur-sm">
               Centre of Excellence for Women
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
               Nurturing Life,
               <br />
               <span className="text-pink-300">Empowering You</span>
@@ -205,8 +205,8 @@ export default function GynaecologyClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO + DOCTOR SIDEBAR ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-white text-justify">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -214,7 +214,7 @@ export default function GynaecologyClient() {
                 title="Department of"
                 highlight="Obstetrics and Gynaecology"
               />
-              <div className="space-y-4 text-gray-800 text-base md:text-lg leading-relaxed mb-12 font-medium text-justify">
+              <div className="space-y-4 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-12 font-medium text-justify">
                 <p>
                   The Obstetrics and Gynaecology Department of Popular Hospital
                   offers world level women health care services involving unborn
@@ -263,8 +263,8 @@ export default function GynaecologyClient() {
       </section>
 
       {/* ═══════ FACILITIES SECTION ═══════ */}
-      <section className="py-24 bg-white border-b border-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-24 xl:py-12 bg-white border-b border-gray-50">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-5 order-2 lg:order-1">
               <SectionHeader title="Department" highlight="Facilities" />
@@ -291,8 +291,8 @@ export default function GynaecologyClient() {
       </section>
 
       {/* ═══════ OBSTETRICS SECTION ═══════ */}
-      <section className="py-20 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-20 xl:py-12 bg-gray-50">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div
               className="relative rounded-2xl overflow-hidden shadow-lg group order-2 lg:order-1"
@@ -320,8 +320,8 @@ export default function GynaecologyClient() {
       </section>
 
       {/* ═══════ GYNAECOLOGY EXPERTISE ═══════ */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-20 xl:py-12 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <SectionHeader title="Gynaecology" />

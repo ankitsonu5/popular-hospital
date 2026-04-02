@@ -104,7 +104,7 @@ export default function ENTClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#1e1b4b] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#1e1b4b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/ent_banner.png"
@@ -115,12 +115,12 @@ export default function ENTClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1e1b4b] via-[#1e1b4b]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-amber-500/20 text-amber-100 text-sm font-semibold mb-6 border border-amber-400/30 backdrop-blur-sm">
               Centre for ENT & Head-Neck Surgery
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
               Precision Care for <br />
               <span className="text-amber-400">Ear, Nose & Throat</span>
             </h1>
@@ -140,13 +140,13 @@ export default function ENTClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO + DOCTOR SIDEBAR (Text Focus) ═══════ */}
-      <section className="py-16 bg-white min-h-screen">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-white min-h-screen">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content (Following Image structure) ── */}
             <div className="lg:col-span-8">
               <SectionHeader title="Department of" highlight="ENT" />
-              <p className="text-base md:text-lg font-medium text-gray-800 leading-relaxed text-justify">
+              <p className="text-base md:text-lg xl:text-[15px] font-medium text-gray-800 leading-relaxed text-justify">
                 The Department of ENT provides a wide range of surgical as well
                 as medical services for the disorders related to ear, nose &
                 throat. The highly skilled team of ENT specialists uses the
@@ -177,8 +177,8 @@ export default function ENTClient() {
       </section>
 
       {/* ═══════ COMMON DISEASES SECTION (Full 1366px width) ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="animate-fade-in grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className="md:col-span-7">
               <SectionHeader
@@ -207,8 +207,8 @@ export default function ENTClient() {
       </section>
 
       {/* ═══════ WHAT WE OFFER SECTION (Full 1366px width) ═══════ */}
-      <section className="py-16 bg-gray-50/30">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-gray-50/30">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="animate-fade-in grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className="md:col-span-5 relative h-[500px] w-full group order-2 md:order-1">
               <div className="absolute inset-0 bg-amber-50 rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] opacity-50 transition-transform group-hover:scale-105 duration-700" />

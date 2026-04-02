@@ -117,7 +117,7 @@ export default function CSRPage() {
   return (
     <main className="min-h-screen bg-white font-sans overflow-x-hidden">
       {/* ─── Hero Section ─── */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
@@ -129,9 +129,9 @@ export default function CSRPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/80 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-6">
           <div className="animate-fade-in-up max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
               Social <br />
               <span className="text-blue-400">Responsibility</span>
             </h1>
@@ -140,13 +140,13 @@ export default function CSRPage() {
       </section>
 
       {/* ─── Intro Section ─── */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6 text-center">
+      <section className="py-20 xl:py-12 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-6 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] mb-8 font-heading">
+            <h2 className="text-3xl md:text-4xl xl:text-2xl font-bold text-[#0b1c43] mb-8 xl:mb-6 font-heading uppercase tracking-tight">
               Our Mission for a Better World
             </h2>
-            <p className="text-gray-600 text-lg md:text-xl leading-relaxed mb-10 text-justify md:text-center">
+            <p className="text-gray-600 text-lg md:text-xl xl:text-[15px] leading-relaxed mb-10 text-justify md:text-center">
               Our mission is to not only treat illnesses but also to foster a
               healthier, more equitable world through our comprehensive social
               responsibility initiatives. With a strong commitment to community
@@ -212,13 +212,13 @@ export default function CSRPage() {
       </section>
 
       {/* ─── Programs Grid ─── */}
-      <section className="py-24 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
+      <section className="py-24 xl:py-16 bg-gray-50">
+        <div className="mx-auto w-full max-w-5xl px-6">
           <div className="text-center mb-16">
             <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-3 block">
               Outreach
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#0b1c43] font-heading">
+            <h2 className="text-3xl md:text-5xl xl:text-2xl font-bold text-[#0b1c43] font-heading uppercase tracking-tight">
               Our Community Programs
             </h2>
             <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full" />
@@ -228,7 +228,7 @@ export default function CSRPage() {
             {outreachPrograms.map((program, idx) => (
               <div
                 key={idx}
-                className="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 group border border-gray-100 hover:-translate-y-2"
+                className="bg-white p-10 xl:p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 group border border-gray-100 hover:-translate-y-2"
               >
                 <div
                   className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-transform group-hover:rotate-12 ${program.color}`}
@@ -248,7 +248,7 @@ export default function CSRPage() {
       </section>
 
       {/* ─── Stats Section ─── */}
-      <section className="py-24 bg-[#0b1c43] relative overflow-hidden">
+      <section className="py-24 xl:py-12 bg-[#0b1c43] relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <svg width="100%" height="100%">
             <pattern
@@ -267,14 +267,14 @@ export default function CSRPage() {
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
-        <div className="mx-auto w-full max-w-[1366px] px-6 relative z-10">
+        <div className="mx-auto w-full max-w-5xl px-6 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center text-white">
             {stats.map((stat, idx) => (
               <div key={idx} className="group">
                 <div className="text-4xl mb-6 transform group-hover:scale-125 transition-transform duration-300">
                   {stat.icon}
                 </div>
-                <div className="text-5xl font-black mb-2 font-heading text-blue-400">
+                <div className="text-5xl xl:text-3xl font-black mb-2 font-heading text-blue-400">
                   {stat.value}
                 </div>
                 <div className="text-blue-100 font-bold uppercase tracking-widest text-sm">
@@ -287,8 +287,8 @@ export default function CSRPage() {
       </section>
 
       {/* ─── Commitment Section ─── */}
-      <section className="py-32 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
+      <section className="py-32 xl:py-20 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
               <span className="text-blue-600 font-bold uppercase tracking-[0.2em] text-xs mb-4 block">
@@ -335,9 +335,9 @@ export default function CSRPage() {
       </section>
 
       {/* ─── CTA Section ─── */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="bg-gradient-to-br from-[#0b1c43] to-[#042d55] rounded-[3rem] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl">
+      <section className="py-24 xl:py-16 bg-gray-50 border-t border-gray-100">
+        <div className="mx-auto w-full max-w-5xl px-6">
+          <div className="bg-gradient-to-br from-[#0b1c43] to-[#042d55] rounded-[3rem] p-12 md:p-24 xl:p-16 text-center text-white relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -mr-20 -mt-20" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -ml-20 -mb-20" />
 

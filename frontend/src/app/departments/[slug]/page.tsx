@@ -238,7 +238,7 @@ export default async function ServicePage({
             className="object-cover object-center opacity-70"
           />
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mx-auto max-w-7xl xl:max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
           <nav
             className="flex mb-8 text-sm text-gray-400 font-medium overflow-x-auto whitespace-nowrap scrollbar-hide"
             aria-label="Breadcrumb"
@@ -260,7 +260,7 @@ export default async function ServicePage({
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight mb-4">
                 {service.title}
               </h1>
-              <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
+              <p className="text-xl xl:text-lg text-gray-300 max-w-3xl leading-relaxed">
                 {service.description}
               </p>
             </div>
@@ -268,7 +268,7 @@ export default async function ServicePage({
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+      <div className="mx-auto max-w-7xl xl:max-w-5xl px-4 sm:px-6 lg:px-8 py-16 xl:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-8 space-y-12">
@@ -289,7 +289,7 @@ export default async function ServicePage({
                 Overview
               </h2>
               <div className="prose prose-slate max-w-none">
-                <p className="text-gray-600 text-lg leading-relaxed mb-10">
+                <p className="text-gray-600 text-lg xl:text-base leading-relaxed mb-10">
                   {service.longDescription}
                 </p>
 

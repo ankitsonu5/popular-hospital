@@ -90,7 +90,7 @@ export default function GastroenterologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/gastroenterology.png"
@@ -102,12 +102,12 @@ export default function GastroenterologyClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Centre for Digestive & Liver Diseases
             </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading break-words">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading break-words">
               Gastroenterology <br className="hidden md:block" />
               <span className="text-blue-300">Excellence</span>
             </h1>
@@ -127,8 +127,8 @@ export default function GastroenterologyClient() {
       </section>
 
       {/* ═══════ CONTENT SECTION ═══════ */}
-      <section className="py-16 bg-gray-50/50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-gray-50/50">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content */}
             <div className="lg:col-span-8">
@@ -136,7 +136,7 @@ export default function GastroenterologyClient() {
                 title="Department of"
                 highlight="Gastroenterology"
               />
-              <div className="prose prose-blue max-w-none text-gray-800 space-y-4 mb-10 leading-relaxed text-base md:text-lg font-medium text-justify">
+              <div className="prose prose-blue max-w-none text-gray-800 space-y-4 mb-10 leading-relaxed text-base md:text-lg xl:text-[15px] font-medium text-justify">
                 <p>
                   The Dept. of Gastroenterology and liver services has the input
                   of the best medical and surgical gastroenterologists.

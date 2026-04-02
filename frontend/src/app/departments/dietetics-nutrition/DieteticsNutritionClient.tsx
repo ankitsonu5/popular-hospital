@@ -103,7 +103,7 @@ export default function DieteticsNutritionClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#064e3b] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#064e3b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/dietetics_nutrition.png"
@@ -115,12 +115,12 @@ export default function DieteticsNutritionClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#064e3b] via-[#064e3b]/90 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-emerald-500/20 text-emerald-200 text-sm font-semibold mb-6 border border-emerald-400/30 backdrop-blur-sm">
               Nourishing Health Professionally
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
               Dietetics & <br />
               <span className="text-emerald-400">Nutrition</span>
             </h1>
@@ -140,8 +140,8 @@ export default function DieteticsNutritionClient() {
       </section>
 
       {/* ═══════ CONTENT SECTION ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content (8 cols) */}
             <div className="lg:col-span-8">
@@ -149,7 +149,7 @@ export default function DieteticsNutritionClient() {
                 title="Department of"
                 highlight="Dietetics & Nutrition"
               />
-              <div className="space-y-6 text-gray-800 text-base md:text-lg leading-relaxed mb-12 font-medium text-justify">
+              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-12 font-medium text-justify">
                 <p>
                   The Dietetics & Nutrition department at Popular Hospital
                   focuses on the prevention and management of diseases through
@@ -216,8 +216,8 @@ export default function DieteticsNutritionClient() {
       </section>
 
       {/* ═══════ DIET PLANS SECTION ═══════ */}
-      <section className="py-16 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-gray-50">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <SectionHeader title="Specialized" highlight="Dietary Plans" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {dietPlans.map((plan, idx) => (

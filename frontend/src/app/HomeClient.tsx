@@ -467,19 +467,19 @@ export default function HomeClient({
 
       {/* About Section */}
       <section
-        className="relative mt-12 md:mt-20 py-16 sm:py-24 bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] overflow-hidden"
+        className="relative mt-12 md:mt-20 py-16 sm:py-24 xl:py-16 bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] overflow-hidden"
         aria-labelledby="about-us"
       >
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-hospital-teal/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#E85222]/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
-        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <div className="relative mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Left Side - Text Content */}
             <div className="flex flex-col justify-center space-y-8">
               <div>
-                <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black font-heading leading-tight tracking-tight text-[#0b1c43] mb-6 drop-shadow-sm">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-black font-heading leading-tight tracking-tight text-[#0b1c43] mb-6 xl:mb-4 drop-shadow-sm">
                   About{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#1e3a8a]">
                     Popular Hospital
@@ -611,14 +611,14 @@ export default function HomeClient({
           }}
         ></div>
 
-        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="relative mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-12">
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8 relative z-10">
             <div className="max-w-3xl">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-12 h-[3px] bg-gradient-to-r from-[#E85222] to-hospital-teal rounded-full"></span>
               </div>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0b1c43] font-heading leading-[1.15] tracking-tight">
+              <h2 className="text-4xl sm:text-5xl font-black text-[#0b1c43] font-heading leading-[1.15] tracking-tight">
                 Why <br className="hidden md:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
                   Popular Hospital
@@ -896,12 +896,12 @@ export default function HomeClient({
         className="py-20 bg-[#f5f5f7]" // Apple-like light gray background
         aria-labelledby="our-services"
       >
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="mb-16">
+        <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="mb-12 xl:mb-10">
             <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
               Excellence in Care
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] font-heading tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-heading tracking-tight">
               Our Departments.
             </h2>
           </div>
@@ -1012,7 +1012,7 @@ export default function HomeClient({
                   className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden"
                 >
                   {/* Image Section */}
-                  <div className="w-full h-48 relative flex-shrink-0 bg-gray-100">
+                  <div className="w-full h-48 xl:h-40 relative flex-shrink-0 bg-gray-100">
                     {service.image && (
                       <Image
                         src={service.image}
@@ -1025,15 +1025,15 @@ export default function HomeClient({
                   </div>
 
                   {/* Content Section */}
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="mb-4">
-                      <span className="text-[13px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal">
+                  <div className="p-6 xl:p-5 flex flex-col flex-grow">
+                    <div className="mb-4 xl:mb-3">
+                      <span className="text-[13px] xl:text-[12px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal">
                         Department of
                       </span>
-                      <h3 className="text-2xl font-bold text-[#1d1d1f] mb-3 font-heading leading-tight">
+                      <h3 className="text-2xl xl:text-xl font-bold text-[#1d1d1f] mb-3 xl:mb-2 font-heading leading-tight">
                         {service.title}
                       </h3>
-                      <p className="text-gray-500 text-base leading-relaxed font-medium line-clamp-3">
+                      <p className="text-gray-500 text-base xl:text-sm leading-relaxed font-medium line-clamp-3">
                         {service.desc}
                       </p>
                     </div>
@@ -1299,7 +1299,7 @@ export default function HomeClient({
 
       {/* Appointment Booking Banner */}
       <section
-        className="py-12 sm:py-16 bg-[#0b1c43] relative overflow-hidden"
+        className="py-12 sm:py-16 xl:py-12 bg-[#0b1c43] relative overflow-hidden"
         aria-labelledby="appointment-banner"
       >
         {/* Background Image with High Visibility for striking look */}
@@ -1313,13 +1313,13 @@ export default function HomeClient({
           <div className="absolute inset-0 bg-[#0b1c43]/40 mix-blend-multiply" />
         </div>
 
-        <div className="mx-auto w-full max-w-[1920px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+        <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-8 md:px-12 lg:px-16 relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 xl:gap-12">
             {/* Left Side - Icon, Heading, and Description */}
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 flex-1">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 xl:gap-5 flex-1">
               {/* Calendar with Stethoscope Icon */}
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 xl:w-16 xl:h-16 flex items-center justify-center relative">
                   <svg
                     className="w-full h-full text-[#FFAB73]"
                     fill="none"
@@ -1346,11 +1346,11 @@ export default function HomeClient({
               <div className="flex-1">
                 <h2
                   id="appointment-banner"
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 font-heading"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-4xl font-bold text-white mb-3 xl:mb-2 font-heading"
                 >
                   Book for an Appointments
                 </h2>
-                <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl">
+                <p className="text-sm sm:text-base md:text-lg xl:text-base text-gray-200 leading-relaxed max-w-2xl">
                   We are delighted to announce that our doors are open, and we
                   are now accepting appointments to serve you better.
                 </p>
@@ -1361,11 +1361,11 @@ export default function HomeClient({
             <div className="flex-shrink-0">
               <Link
                 href="/book"
-                className="inline-flex items-center gap-2 px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-full border border-[#FFAB73] bg-transparent text-white font-medium hover:bg-[#FFAB73]/10 transition-colors font-heading text-sm sm:text-base md:text-lg"
+                className="inline-flex items-center gap-2 px-6 sm:px-8 md:px-10 xl:px-8 py-3 sm:py-3.5 md:py-4 xl:py-3 rounded-full border border-[#FFAB73] bg-transparent text-white font-medium hover:bg-[#FFAB73]/10 transition-colors font-heading text-sm sm:text-base md:text-lg xl:text-base"
               >
                 <span>Make Appointment</span>
                 <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 text-[#FFAB73]"
+                  className="w-5 h-5 sm:w-6 sm:h-6 xl:w-5 xl:h-5 text-[#FFAB73]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1388,10 +1388,10 @@ export default function HomeClient({
         className="py-16 sm:py-20 bg-gray-50"
         aria-labelledby="latest-news"
       >
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <h2
             id="latest-news"
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 font-heading"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-bold text-[#1e3a8a] mb-12 xl:mb-10 font-heading"
           >
             Latest News & Articles
           </h2>
@@ -1402,7 +1402,7 @@ export default function HomeClient({
                 key={article.slug}
                 className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col"
               >
-                <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden shrink-0">
+                <div className="relative w-full h-48 sm:h-56 lg:h-64 xl:h-52 bg-gray-200 overflow-hidden shrink-0">
                   <Image
                     src={
                       getImageUrl(article.image) || "/about-section-image.png"
@@ -1413,11 +1413,11 @@ export default function HomeClient({
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-heading leading-tight line-clamp-2">
+                <div className="p-6 xl:p-5 flex flex-col flex-1">
+                  <h3 className="text-xl sm:text-2xl xl:text-xl font-bold text-gray-900 mb-3 xl:mb-2 font-heading leading-tight line-clamp-2">
                     {article.title}
                   </h3>
-                  <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2 flex-1">
+                  <p className="text-gray-600 text-sm sm:text-base xl:text-sm mb-4 leading-relaxed line-clamp-2 flex-1">
                     {article.excerpt ||
                       "Read more about this article inside..."}
                   </p>
@@ -1479,12 +1479,12 @@ export default function HomeClient({
         <div className="absolute top-0 right-0 w-96 h-96 bg-hospital-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#E85222]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="relative mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 xl:mb-10 gap-6">
             <div className="max-w-2xl">
               <h2
                 id="latest-events"
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] font-heading"
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-bold text-[#1e3a8a] font-heading"
               >
                 Latest Events
               </h2>
@@ -1498,7 +1498,7 @@ export default function HomeClient({
                 className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col h-full"
               >
                 {/* Event Image Container */}
-                <div className="relative w-full h-48 sm:h-56 lg:h-64 bg-gray-200 overflow-hidden shrink-0">
+                <div className="relative w-full h-48 sm:h-56 lg:h-64 xl:h-52 bg-gray-200 overflow-hidden shrink-0">
                   <Image
                     src={
                       getImageUrl(event.thumbnail) || "/about-section-image.png"
@@ -1527,11 +1527,11 @@ export default function HomeClient({
                   </div>
                 </div>
 
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-heading leading-tight line-clamp-2">
+                <div className="p-6 xl:p-5 flex flex-col flex-1">
+                  <h3 className="text-xl sm:text-2xl xl:text-xl font-bold text-gray-900 mb-3 xl:mb-2 font-heading leading-tight line-clamp-2">
                     {event.title}
                   </h3>
-                  <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed line-clamp-2 flex-1">
+                  <p className="text-gray-600 text-sm sm:text-base xl:text-sm mb-4 leading-relaxed line-clamp-2 flex-1">
                     {event.description?.replace(/<[^>]*>/g, "") ||
                       "Experience our latest medical workshops and community health programs..."}
                   </p>
@@ -1586,11 +1586,11 @@ export default function HomeClient({
       </section>
 
       {/* Cashless Empanelment Section */}
-      <section className="py-14 sm:py-16 bg-white border-t border-gray-100">
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <section className="py-14 xl:py-10 bg-white border-t border-gray-100">
+        <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           {/* Heading */}
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0b1c43] font-heading tracking-tight">
+          <div className="text-center mb-10 xl:mb-8">
+            <h2 className="text-3xl sm:text-4xl xl:text-3xl font-black text-[#0b1c43] font-heading tracking-tight">
               Cashless <span className="text-hospital-teal">Empanelment</span>
             </h2>
             <div className="w-16 h-1 bg-[#E85222] mx-auto mt-4 rounded-full" />
@@ -1633,7 +1633,7 @@ export default function HomeClient({
             ].map((logo) => (
               <div
                 key={logo.alt}
-                className="group flex items-center justify-center bg-white border border-gray-100 rounded-2xl p-4 w-full h-[140px] shadow-sm hover:shadow-md hover:border-hospital-teal/30 transition-all duration-300"
+                className="group flex items-center justify-center bg-white border border-gray-100 rounded-2xl p-4 xl:p-3 w-full h-[140px] xl:h-[110px] shadow-sm hover:shadow-md hover:border-hospital-teal/30 transition-all duration-300"
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -1674,14 +1674,14 @@ export default function HomeClient({
       </section>
 
       <section
-        className="py-16 sm:py-20 bg-[#EFF6FF]"
+        className="py-16 sm:py-20 xl:py-14 bg-[#EFF6FF]"
         aria-labelledby="faq-section"
       >
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          <div className="mb-10">
+        <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+          <div className="mb-10 xl:mb-8">
             <h2
               id="faq-section"
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1e3a8a] mb-4 font-heading"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-3xl font-bold text-[#1e3a8a] mb-4 xl:mb-2 font-heading"
             >
               Frequently Asked Questions - Popular Hospital
             </h2>
@@ -1748,13 +1748,13 @@ export default function HomeClient({
                     : "border-[#d0e3f0] shadow-sm hover:shadow-md"
                 }`}
               >
-                <button
-                  onClick={() =>
-                    setOpenFaqIndex(openFaqIndex === index ? null : index)
-                  }
-                  className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4 transition-colors"
-                  aria-expanded={openFaqIndex === index}
-                >
+                  <button
+                    onClick={() =>
+                      setOpenFaqIndex(openFaqIndex === index ? null : index)
+                    }
+                    className="w-full px-5 sm:px-6 xl:px-5 py-4 sm:py-5 xl:py-4 flex items-center justify-between text-left gap-4 transition-colors"
+                    aria-expanded={openFaqIndex === index}
+                  >
                   <span
                     className={`text-sm sm:text-base font-bold transition-colors ${openFaqIndex === index ? "text-[#E85222]" : "text-[#1a3a5c]"}`}
                   >
@@ -1830,17 +1830,17 @@ export default function HomeClient({
 
       {/* Contact Us Section */}
       <section
-        className="py-20 sm:py-24 bg-gray-50"
+        className="py-20 sm:py-24 xl:py-16 bg-gray-50"
         aria-labelledby="contact-us"
       >
-        <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.8fr] gap-12 lg:gap-16 items-start">
             {/* Left Column - Brand Quote & Info (Refined Modern Style) */}
             <div className="flex flex-col gap-10 order-2 lg:order-1">
               {/* Branding Block from Image */}
               <div className="bg-[#0b1c43] text-white rounded-3xl p-10 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden transition-all duration-500 hover:shadow-[#0b1c43]/20">
                 <div className="relative z-10">
-                  <h2 className="text-4xl sm:text-5xl lg:text-5xl font-black italic leading-[1.15] tracking-tight mb-8 font-heading">
+                  <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-4xl font-black italic leading-[1.15] tracking-tight mb-8 xl:mb-6 font-heading">
                     Committed To Build A<br />
                     <span className="text-[#E85222]">
                       Positive, Safe, Patient
@@ -1942,11 +1942,11 @@ export default function HomeClient({
             </div>
 
             {/* Right Column - Contact Form */}
-            <div className="bg-[#FFFAF5] rounded-3xl border border-[#F3E6D8] p-8 sm:p-10 lg:p-12 shadow-sm order-1 lg:order-2 self-stretch">
+            <div className="bg-[#FFFAF5] rounded-3xl border border-[#F3E6D8] p-8 sm:p-10 lg:p-12 xl:p-8 shadow-sm order-1 lg:order-2 self-stretch">
               <p className="text-[#0b1c43] text-md sm:text-md font-medium mb-1 leading-relaxed">
                 We will confirm your appointment within 2 hours
               </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5x1 font-black text-[#0b1c43] mb-10 font-heading tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5x1 xl:text-3xl font-black text-[#0b1c43] mb-10 xl:mb-6 font-heading tracking-tight">
                 Request An Appointment
               </h2>
 
@@ -2477,7 +2477,7 @@ export default function HomeClient({
       </div>
 
       {/* ─── Why We Are The Best Section (Achievements) ─── */}
-      <section className="relative overflow-hidden bg-[#0b3c8a] py-20 sm:py-24 text-white">
+      <section className="relative overflow-hidden bg-[#0b3c8a] py-20 sm:py-24 xl:py-16 text-white">
         {/* Background Pattern: Hexagonal "Nut" Pattern */}
         <div
           className="absolute inset-0 opacity-[0.1] transition-opacity duration-1000"
@@ -2486,8 +2486,8 @@ export default function HomeClient({
             backgroundSize: "100px 86.6px",
           }}
         />
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 sm:px-8 lg:px-12 text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-16 font-heading max-w-[1200px] mx-auto leading-tight italic">
+        <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-12 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-bold mb-16 xl:mb-12 font-heading max-w-[1200px] mx-auto leading-tight italic">
             Popular Hospital Is The Best Hospital In Varanasi.{" "}
             <span className="text-[#FF6B00] not-italic ml-2 xl:whitespace-nowrap">
               Here&apos;s The Reason Why?
@@ -2496,8 +2496,8 @@ export default function HomeClient({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:max-w-5xl mx-auto border border-white/20 rounded-3xl overflow-hidden shadow-2xl bg-white/5 backdrop-blur-sm">
             {/* Stat 1: Patients */}
-            <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 border-b md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
-              <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+            <div className="flex items-center gap-6 sm:gap-10 p-10 lg:p-14 xl:p-10 border-b md:border-r border-white/10 group hover:bg-white/10 transition-all duration-300">
+              <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 xl:w-16 xl:h-16 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
                 <svg
                   className="w-16 h-16 text-white"
                   fill="none"
@@ -2522,7 +2522,7 @@ export default function HomeClient({
                 <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">
                   Lacs of Happy
                 </div>
-                <div className="text-lg sm:text-xl font-medium text-white/80">
+                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80">
                   Patients
                 </div>
               </div>
@@ -2544,10 +2544,10 @@ export default function HomeClient({
                 </svg>
               </div>
               <div className="text-left">
-                <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">
+                <div className="text-xl sm:text-2xl xl:text-xl font-bold font-heading leading-tight text-white mb-1">
                   Excellent Team of
                 </div>
-                <div className="text-lg sm:text-xl font-medium text-white/80">
+                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80">
                   Qualified Doctors
                 </div>
               </div>
@@ -2594,7 +2594,7 @@ export default function HomeClient({
                 <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">
                   Convenient Multiple
                 </div>
-                <div className="text-lg sm:text-xl font-medium text-white/80">
+                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80">
                   Locations
                 </div>
               </div>
@@ -2670,7 +2670,7 @@ function SimpleCard({
   }`;
 
   // Desktop styles maintaining the original white bar look
-  const desktopClasses = `md:bg-white md:rounded-none md:shadow-none md:min-h-0 md:p-0 md:flex-row md:items-center md:justify-center md:gap-1 lg:gap-3 md:px-2 lg:px-4 md:py-1.5 lg:py-3 md:w-auto md:flex-1 md:min-w-0 md:border-r md:border-gray-100 md:last:border-0 md:hover:bg-[#FBF8ED]`;
+  const desktopClasses = `md:bg-white md:rounded-none md:shadow-none md:min-h-0 md:p-0 md:flex-row md:items-center md:justify-center md:gap-1 lg:gap-3 xl:gap-2 md:px-2 lg:px-4 xl:px-3 md:py-1.5 lg:py-3 xl:py-2 md:w-auto md:flex-1 md:min-w-0 md:border-r md:border-gray-100 md:last:border-0 md:hover:bg-[#FBF8ED]`;
 
   return (
     <Link
@@ -2767,7 +2767,7 @@ function SimpleCard({
       </div>
 
       {/* Desktop Title */}
-      <span className="hidden md:block text-sm lg:text-lg font-medium font-heading whitespace-nowrap text-gray-800 group-hover:text-gray-900">
+      <span className="hidden md:block text-sm lg:text-lg xl:text-base font-medium font-heading whitespace-nowrap text-gray-800 group-hover:text-gray-900">
         {title}
       </span>
 
@@ -2790,9 +2790,9 @@ function SimpleCard({
       </div>
 
       {/* Desktop Arrow Circle */}
-      <div className="hidden md:flex flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full border-2 border-gray-800 items-center justify-center bg-white group-hover:bg-hospital-teal group-hover:border-hospital-teal group-hover:text-white transition-all">
+      <div className="hidden md:flex flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 xl:w-8 xl:h-8 rounded-full border-2 border-gray-800 items-center justify-center bg-white group-hover:bg-hospital-teal group-hover:border-hospital-teal group-hover:text-white transition-all">
         <svg
-          className="w-4 h-4 lg:w-5 lg:h-5"
+          className="w-4 h-4 lg:w-5 lg:h-5 xl:w-4 xl:h-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

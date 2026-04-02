@@ -158,7 +158,7 @@ export default function OrthopedicsClient() {
   return (
     <div className="bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/orthopedics_banner.png"
@@ -169,12 +169,12 @@ export default function OrthopedicsClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-sm font-semibold mb-6 border border-white/30 backdrop-blur-sm uppercase tracking-wider">
               Centre for Bone & Joint Care
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
               Restoring Mobility, <br />
               <span className="text-blue-100">Rebuilding Lives</span>
             </h1>
@@ -194,8 +194,8 @@ export default function OrthopedicsClient() {
       </section>
 
       {/* ═══════ TOP SECTION: INTRO + DOCTOR ═══════ */}
-      <section className="py-12 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
+      <section className="py-12 xl:py-10 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -203,7 +203,7 @@ export default function OrthopedicsClient() {
                 title="Department of"
                 highlight="Orthopedics & Joint Replacement"
               />
-              <div className="space-y-6 text-gray-700 text-sm md:text-[15px] leading-relaxed mb-12 text-justify font-medium">
+              <div className="space-y-6 text-gray-700 text-sm md:text-[15px] xl:text-[14px] leading-relaxed mb-12 text-justify font-medium">
                 {introParagraphs.map((para, idx) => (
                   <p key={idx}>{para}</p>
                 ))}
@@ -224,8 +224,8 @@ export default function OrthopedicsClient() {
       </section>
 
       {/* ═══════ TREATMENTS INTERACTIVE SECTION ═══════ */}
-      <section className="py-20 bg-[#fafafa] overflow-hidden">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
+      <section className="py-20 xl:py-12 bg-[#fafafa] overflow-hidden">
+        <div className="mx-auto w-full max-w-5xl px-6">
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-[#333] mb-4 font-heading">

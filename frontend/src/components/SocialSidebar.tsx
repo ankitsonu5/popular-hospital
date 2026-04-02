@@ -71,7 +71,7 @@ const SocialSidebar = () => {
       {/* Vertical "Book an Appointment" Button */}
       <a
         href="/book"
-        className="bg-[#E85222] text-white py-6 px-2.5 flex flex-col items-center justify-center gap-4 hover:pr-5 transition-all duration-300 group relative overflow-hidden"
+        className="bg-[#E85222] text-white py-4 xl:py-4 px-2.5 flex flex-col items-center justify-center gap-4 hover:pr-5 transition-all duration-300 group relative overflow-hidden"
         aria-label="Book an Appointment"
       >
         <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors"></div>
@@ -79,7 +79,7 @@ const SocialSidebar = () => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
-          className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:scale-110"
+          className="w-5 h-5 xl:w-4 xl:h-4 relative z-10 transition-transform duration-300 group-hover:scale-110"
         >
           <path
             strokeLinecap="round"
@@ -88,7 +88,7 @@ const SocialSidebar = () => {
             d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
           />
         </svg>
-        <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.2em] whitespace-nowrap [writing-mode:vertical-rl] rotate-180">
+        <span className="relative z-10 text-[11px] xl:text-[10px] font-black uppercase tracking-[0.15em] xl:tracking-[0.1em] whitespace-nowrap [writing-mode:vertical-rl] rotate-180">
           BOOK AN APPOINTMENT
         </span>
       </a>
@@ -100,14 +100,14 @@ const SocialSidebar = () => {
           href={social.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${social.color} text-white p-2.5 hover:pr-6 transition-all duration-300 flex items-center justify-center group relative overflow-hidden opacity-100 group-hover/sidebar:opacity-60 hover:!opacity-100`}
+          className={`${social.color} text-white p-2.5 xl:p-2 hover:pr-6 transition-all duration-300 flex items-center justify-center group relative overflow-hidden opacity-100 group-hover/sidebar:opacity-60 hover:!opacity-100`}
           aria-label={social.name}
         >
           {/* Subtle light effect on hover */}
           <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors"></div>
           <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
             {React.cloneElement(social.icon as React.ReactElement, {
-              className: "w-4 h-4",
+              className: "w-4 h-4 xl:w-3.5 xl:h-3.5",
             })}
           </span>
         </a>

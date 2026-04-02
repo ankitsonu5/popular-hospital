@@ -124,7 +124,7 @@ const SectionHeader = ({
 );
 
 const ContentBlock = ({ text }: { text: string }) => (
-  <p className="text-gray-700 text-base md:text-lg leading-relaxed text-justify font-medium mb-6">
+  <p className="text-gray-700 text-base md:text-lg xl:text-[15px] leading-relaxed text-justify font-medium mb-6">
     {text}
   </p>
 );
@@ -157,7 +157,7 @@ export default function InterventionalRadiologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/radiology_banner.png"
@@ -168,12 +168,12 @@ export default function InterventionalRadiologyClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Super-Speciality Care
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
               Interventional <br />
               <span className="text-blue-400">Radiology</span>
             </h1>
@@ -193,8 +193,8 @@ export default function InterventionalRadiologyClient() {
       </section>
 
       {/* ═══════ MAIN CONTENT AREA ═══════ */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
+      <section className="py-20 xl:py-12 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Left Content */}
             <div className="lg:col-span-8">
@@ -271,9 +271,9 @@ export default function InterventionalRadiologyClient() {
       </section>
 
       {/* ═══════ MAJOR PROCEDURES ═══════ */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
+      <section className="py-24 xl:py-12 bg-gray-50 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none" />
-        <div className="mx-auto w-full max-w-[1366px] px-6 relative z-10">
+        <div className="mx-auto w-full max-w-5xl px-6 relative z-10">
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
               MAJOR <span className="text-blue-600 font-bold">PROCEDURES</span>

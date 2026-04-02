@@ -176,7 +176,7 @@ const ContentBlock = ({
       {title}
     </h3>
     {text && (
-      <p className="text-gray-700 text-base md:text-lg leading-relaxed text-justify font-medium mb-4 whitespace-pre-line">
+      <p className="text-gray-700 text-base md:text-lg xl:text-[15px] leading-relaxed text-justify font-medium mb-4 whitespace-pre-line">
         {text}
       </p>
     )}
@@ -204,7 +204,7 @@ export default function PainManagementClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/pain_management_banner.png"
@@ -215,12 +215,12 @@ export default function PainManagementClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#334155] via-[#334155]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Specialized Care
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
               Pain <span className="text-blue-400">Medicine</span>
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -239,8 +239,8 @@ export default function PainManagementClient() {
       </section>
 
       {/* ═══════ MAIN CONTENT AREA ═══════ */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-20 xl:py-12 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Left Content */}
             <div className="lg:col-span-8">

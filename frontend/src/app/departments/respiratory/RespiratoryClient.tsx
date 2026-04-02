@@ -171,7 +171,7 @@ export default function RespiratoryClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] w-full bg-[#164e63] overflow-hidden flex items-center py-6 md:py-8">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#164e63] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/respiratory_medicine.png"
@@ -183,12 +183,12 @@ export default function RespiratoryClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#164e63] via-[#164e63]/90 to-transparent" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-cyan-500/20 text-cyan-100 text-xs md:text-sm font-bold mb-4 border border-cyan-400/30 backdrop-blur-sm uppercase tracking-wider">
               Centre for Advanced Pulmonology
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-[1.1] font-heading">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl font-bold text-white mb-4 leading-[1.1] font-heading">
               Department of{" "}
               <span className="text-cyan-400">
                 Pulmonology & Chest/Respiratory Medicine Department
@@ -210,8 +210,8 @@ export default function RespiratoryClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO SECTION ═══════ */}
-      <section className="py-16 bg-white min-h-screen">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-white min-h-screen">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -219,7 +219,7 @@ export default function RespiratoryClient() {
                 title="Department of"
                 highlight="Pulmonology & Chest/Respiratory Medicine Department"
               />
-              <div className="space-y-6 text-gray-800 text-base md:text-lg leading-relaxed mb-12 font-medium text-justify">
+              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-12 font-medium text-justify">
                 <p>
                   Our Respiratory medicine Department is dedicated to providing
                   exceptional care of chest, lungs, and your Sleep Disorder that
@@ -248,7 +248,7 @@ export default function RespiratoryClient() {
                       <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center flex-shrink-0 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white transition-all shadow-lg">
                         <span className="font-bold text-sm">0{idx + 1}</span>
                       </div>
-                      <p className="text-gray-800 text-base md:text-lg leading-relaxed text-justify font-medium pt-1">
+                      <p className="text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed text-justify font-medium pt-1">
                         <span className="font-bold text-[#0b1c43] block mb-1 uppercase tracking-tight">
                           {item.title}
                         </span>{" "}

@@ -124,11 +124,11 @@ function EmpanelmentSection({
   bgGradientTo,
 }: SectionProps) {
   return (
-    <section className="mb-16 last:mb-0">
+    <section className="mb-16 last:mb-0 xl:mb-12">
       {/* Section heading */}
-      <div className="text-center mb-10">
+      <div className="text-center mb-10 xl:mb-6">
         <h2
-          className={`text-2xl md:text-3xl font-bold font-heading ${accentColor}`}
+          className={`text-2xl md:text-3xl xl:text-xl font-bold font-heading ${accentColor}`}
         >
           {title}
         </h2>
@@ -138,11 +138,11 @@ function EmpanelmentSection({
       </div>
 
       {/* Cards grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-3">
         {items.map((name) => (
           <div
             key={name}
-            className={`group relative bg-white rounded-xl border ${borderColor} px-5 py-4 text-center
+            className={`group relative bg-white rounded-xl border ${borderColor} px-5 py-4 xl:py-2.5 text-center
               transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5
               hover:border-transparent`}
           >
@@ -150,7 +150,7 @@ function EmpanelmentSection({
             <div
               className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-[0.04] transition-opacity duration-300 bg-gradient-to-br ${bgGradientFrom} ${bgGradientTo}`}
             />
-            <span className="relative text-sm font-semibold text-gray-700 uppercase tracking-wide leading-snug">
+            <span className="relative text-sm xl:text-[13px] font-semibold text-gray-700 uppercase tracking-wide leading-snug">
               {name}
             </span>
           </div>
@@ -166,7 +166,7 @@ export default function CashlessEmpanelmentPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10 md:py-12">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[150px] md:min-h-[200px] xl:min-h-[150px] flex flex-col justify-center py-8 md:py-10 xl:py-6">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/cashless_empanelment.png"
@@ -177,11 +177,11 @@ export default function CashlessEmpanelmentPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
         </div>
-        <div className="relative z-10 text-center px-6 sm:px-4 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading mb-4 text-white">
+        <div className="relative z-10 text-center px-6 sm:px-4 max-w-4xl mx-auto font-heading uppercase tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-2xl font-bold mb-4 text-white">
             Cashless Empanelment
           </h1>
-          <p className="text-sm sm:text-base md:text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
+          <p className="text-sm sm:text-base md:text-xl xl:text-base text-blue-100 leading-relaxed max-w-2xl mx-auto font-light normal-case tracking-normal">
             Popular Hospital is proudly empanelled with leading Government
             bodies, PSUs, Private Corporates, and International TPAs — ensuring
             hassle-free cashless treatment for you and your family.
@@ -190,7 +190,7 @@ export default function CashlessEmpanelmentPage() {
       </div>
 
       {/* ─── Logo Marquee Slider ─── */}
-      <div className="w-full bg-white py-12 overflow-hidden relative border-y border-gray-100">
+      <div className="w-full bg-white py-12 xl:py-8 overflow-hidden relative border-y border-gray-100">
         <div className="flex animate-scroll-left whitespace-nowrap pause-scroll">
           {[
             "AAI.png",
@@ -215,7 +215,7 @@ export default function CashlessEmpanelmentPage() {
           ].map((logo, index) => (
             <div
               key={index}
-              className="flex-shrink-0 mx-8 md:mx-16 w-32 md:w-48 h-16 md:h-24 relative flex items-center justify-center"
+              className="flex-shrink-0 mx-8 md:mx-16 w-32 md:w-36 xl:w-32 h-16 md:h-20 xl:h-16 relative flex items-center justify-center"
             >
               <Image
                 src={`/images/cashless_empanelment/${logo}`}
@@ -229,7 +229,7 @@ export default function CashlessEmpanelmentPage() {
       </div>
 
       {/* Content */}
-      <div className="mx-auto w-full max-w-[1366px] px-4 py-16">
+      <div className="mx-auto w-full max-w-5xl px-4 py-16 xl:py-12">
         {/* Government & PSU Houses */}
         <EmpanelmentSection
           title="Government & PSU Houses"
@@ -409,7 +409,7 @@ export default function CashlessEmpanelmentPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-[#0b1c43] to-[#1a3a6b] rounded-2xl p-8 md:p-12 text-white text-center">
+        <div className="mt-16 xl:mt-12 bg-gradient-to-r from-[#0b1c43] to-[#1a3a6b] rounded-2xl p-8 md:p-12 xl:p-10 text-white text-center">
           <h3 className="text-2xl md:text-3xl font-bold font-heading mb-4">
             Can&apos;t find your organization?
           </h3>

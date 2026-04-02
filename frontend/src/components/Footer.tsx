@@ -4,7 +4,7 @@ import Image from "next/image";
 export function Footer() {
   return (
     <footer className="bg-[#0b1c43]">
-      <div className="bg-[#0b1c43] text-white rounded-t-[2.5rem] px-6 pt-12 pb-8 sm:px-10 sm:pt-16 sm:pb-10 md:px-16 lg:pt-20 lg:pb-12 mx-auto max-w-[1366px] relative overflow-hidden">
+      <div className="bg-[#0b1c43] text-white rounded-t-[2.5rem] px-6 pt-12 pb-8 sm:px-10 sm:pt-16 sm:pb-10 md:px-16 lg:pt-20 lg:pb-12 mx-auto max-w-[1280px] relative overflow-hidden">
         {/* Decorative Background Pattern */}
         <div
           className="absolute inset-0 opacity-[0.05] pointer-events-none z-0"
@@ -30,7 +30,7 @@ export function Footer() {
               />
             </Link>
 
-            <div className="space-y-6 text-[17px] text-gray-200">
+            <div className="space-y-6 text-[15px] text-gray-200">
               <div>
                 <h4 className="text-lg font-semibold text-white mb-2">
                   Locations:
@@ -86,7 +86,7 @@ export function Footer() {
           {/* Column 2: Community */}
           <div>
             <h3 className="text-xl font-bold font-heading mb-6">Community</h3>
-            <ul className="space-y-3 text-[17px] text-gray-200">
+            <ul className="space-y-3 text-[15px] text-gray-200">
               <li>
                 <Link
                   href="/doctors"
@@ -141,7 +141,7 @@ export function Footer() {
           {/* Column 3: About */}
           <div>
             <h3 className="text-xl font-bold font-heading mb-6">Quick Links</h3>
-            <ul className="space-y-3 text-[17px] text-gray-200">
+            <ul className="space-y-3 text-[15px] text-gray-200">
               <li>
                 <Link
                   href="/book"

@@ -7,7 +7,7 @@ export default function EmergencyServices() {
   return (
     <section
       id="emergency-services"
-      className="py-24 bg-slate-50 relative overflow-hidden"
+      className="py-24 xl:py-16 bg-slate-50 relative overflow-hidden"
       aria-labelledby="24-7-services"
     >
       {/* Subtle Background Elements */}
@@ -17,7 +17,7 @@ export default function EmergencyServices() {
       </div>
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col items-center justify-center mb-16 text-center">
+        <div className="flex flex-col items-center justify-center mb-16 xl:mb-12 text-center">
           {/* Header Lockup */}
           <div className="relative inline-block mb-6">
             <div className="flex items-center justify-center gap-4">
@@ -34,7 +34,7 @@ export default function EmergencyServices() {
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1e3a8a] font-heading tracking-tight">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-5xl font-extrabold text-[#1e3a8a] font-heading tracking-tight">
                 24x7 Services
               </h2>
             </div>
@@ -133,7 +133,7 @@ export default function EmergencyServices() {
           ].map((service, idx) => (
             <div
               key={service.title}
-              className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-auto md:h-[360px] overflow-hidden"
+              className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-auto md:h-[360px] xl:h-[320px] overflow-hidden"
             >
               {/* IMAGE BACKGROUND (Default Desktop) */}
               <div className="absolute inset-0 hidden md:block z-0 pointer-events-none">
@@ -157,12 +157,12 @@ export default function EmergencyServices() {
               </div>
 
               {/* CONTENT AREA */}
-              <div className="relative z-10 flex-grow flex flex-col p-6 sm:p-8">
+              <div className="relative z-10 flex-grow flex flex-col p-6 sm:p-8 xl:p-6">
                 {/* DEFAULT BOTTOM TITLE (Desktop Only) */}
-                <div className="hidden md:flex absolute bottom-0 left-0 right-0 p-8 items-center gap-4 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-10">
-                  <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
+                <div className="hidden md:flex absolute bottom-0 left-0 right-0 p-8 xl:p-6 items-center gap-4 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-10">
+                  <div className="w-10 h-10 xl:w-9 xl:h-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
                     <svg
-                      className="w-6 h-6"
+                      className="w-6 h-6 xl:w-5 xl:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -170,16 +170,16 @@ export default function EmergencyServices() {
                       {service.icon}
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-white font-heading capitalize drop-shadow-lg">
+                  <h3 className="text-2xl xl:text-xl font-bold text-white font-heading capitalize drop-shadow-lg">
                     {service.title}
                   </h3>
                 </div>
 
                 {/* HOVER OVERLAY (Desktop) / STATIC CONTENT (Mobile) */}
-                <div className="md:absolute md:inset-0 md:bg-white md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 md:p-8 flex flex-col md:items-center md:justify-center md:text-center z-20">
-                  <div className="hidden md:flex w-16 h-16 rounded-full bg-[#f0f9ff] items-center justify-center mb-6 border border-gray-100 text-[#1e3a8a]">
+                <div className="md:absolute md:inset-0 md:bg-white md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 md:p-8 xl:p-6 flex flex-col md:items-center md:justify-center md:text-center z-20">
+                  <div className="hidden md:flex w-16 h-16 xl:w-12 xl:h-12 rounded-full bg-[#f0f9ff] items-center justify-center mb-6 xl:mb-4 border border-gray-100 text-[#1e3a8a]">
                     <svg
-                      className="w-8 h-8"
+                      className="w-8 h-8 xl:w-6 xl:h-6"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

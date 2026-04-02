@@ -116,9 +116,9 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-slate-900/40" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-6">
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-3xl font-black text-white mb-4 font-heading tracking-tight">
               Our Departments
             </h1>
             <nav
@@ -136,8 +136,8 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-[1440px]">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 xl:py-12">
+        <div className="mx-auto w-full max-w-6xl xl:max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {services.map((service, idx) => (
               <div

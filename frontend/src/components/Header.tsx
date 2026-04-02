@@ -438,8 +438,8 @@ export function Header() {
         />
 
         {/* Top Bar */}
-        <div className="hidden md:block bg-gradient-to-r from-[#214181] via-[#2E59A8] to-[#214181] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-3 sm:py-4">
-          <div className="max-w-[1366px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[14px] sm:text-[17px] font-medium">
+        <div className="hidden md:block bg-gradient-to-r from-[#214181] via-[#2E59A8] to-[#214181] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-1.5 sm:py-2.5">
+          <div className="max-w-[1280px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[14px] sm:text-[15px] font-medium">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
               <Link
                 href="/online-payment"
@@ -546,8 +546,8 @@ export function Header() {
         </div>
 
         {/* Brand & Desktop Nav */}
-        <div className="relative mx-auto w-full max-w-[1366px] px-6 sm:px-8 lg:px-12">
-          <div className="flex h-16 sm:h-20 items-center justify-between gap-2">
+        <div className="relative mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-12">
+          <div className="flex h-16 sm:h-[72px] items-center justify-between gap-2">
             <Link
               href="/"
               className={`flex items-center transition-all duration-300 ${
@@ -578,7 +578,7 @@ export function Header() {
                     <>
                       <button
                         type="button"
-                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[14.5px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
+                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
                           scrolled || !isTransparentPage
                             ? isMenuItemActive(item) ||
                               activeDropdown === item.label
@@ -616,10 +616,10 @@ export function Header() {
                       >
                         <div className="pt-2">
                           {item.label === "Departments" ? (
-                            <div className="w-[820px] min-[1366px]:w-[960px] rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
+                            <div className="w-[820px] min-[1366px]:w-[860px] rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
                               <div className="flex">
                                 {/* Left Side */}
-                                <div className="flex-1 p-6 border-r border-gray-100">
+                                <div className="flex-1 p-6 xl:p-5 border-r border-gray-100">
                                   <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest mb-4 pb-2 border-b-2 border-hospital-teal/20">
                                     Super Specialties
                                   </h3>
@@ -630,7 +630,7 @@ export function Header() {
                                       <Link
                                         key={subItem.label}
                                         href={subItem.href}
-                                        className="text-[14.5px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 rounded-lg transition-all"
+                                        className="text-[14.5px] xl:text-[13.5px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 xl:p-1.5 rounded-lg transition-all"
                                         onClick={() => setActiveDropdown(null)}
                                       >
                                         {subItem.label}
@@ -639,7 +639,7 @@ export function Header() {
                                   </div>
                                 </div>
                                 {/* Right Side */}
-                                <div className="flex-1 p-6">
+                                <div className="flex-1 p-6 xl:p-5">
                                   <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest mb-4 pb-2 border-b-2 border-hospital-teal/20">
                                     Specialties
                                   </h3>
@@ -649,7 +649,7 @@ export function Header() {
                                         <Link
                                           key={subItem.label}
                                           href={subItem.href}
-                                          className="text-[14.5px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 rounded-lg transition-all"
+                                          className="text-[14.5px] xl:text-[13.5px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 xl:p-1.5 rounded-lg transition-all"
                                           onClick={() =>
                                             setActiveDropdown(null)
                                           }
@@ -663,7 +663,7 @@ export function Header() {
                               </div>
                             </div>
                           ) : item.label === "Services" ? (
-                            <div className="w-[600px] p-6 rounded-xl bg-white shadow-xl border border-gray-100">
+                            <div className="w-[600px] xl:w-[520px] p-6 xl:p-5 rounded-xl bg-white shadow-xl border border-gray-100">
                               <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest mb-4 pb-2 border-b border-gray-100">
                                 Our Services
                               </h3>
@@ -672,7 +672,7 @@ export function Header() {
                                   <Link
                                     key={dropdownItem.label}
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-3 p-2.5 text-[15px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-gray-50 rounded-xl transition-all"
+                                    className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-gray-50 rounded-xl transition-all"
                                     onClick={() => setActiveDropdown(null)}
                                   >
                                     <span className="opacity-70">
@@ -692,7 +692,7 @@ export function Header() {
                                   )}
                                   <Link
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-4 px-6 py-3 text-[15px] font-bold text-gray-700 hover:bg-gray-50 hover:text-hospital-teal transition-all"
+                                    className="flex items-center gap-4 px-6 py-3 xl:px-5 xl:py-2.5 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:bg-gray-50 hover:text-hospital-teal transition-all"
                                     onClick={() => setActiveDropdown(null)}
                                   >
                                     <span className="opacity-70">
@@ -710,7 +710,7 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href || "#"}
-                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[14.5px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
+                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
                         scrolled || !isTransparentPage
                           ? isMenuItemActive(item) && item.label !== "Home"
                             ? "text-hospital-teal"

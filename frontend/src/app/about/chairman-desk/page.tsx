@@ -8,7 +8,7 @@ const chairmanData = {
   extra: "INSTITUTE OF MEDICAL SCIENCES, BHU, VARANASI",
   image: "/images/dr_ak_kaushik.png",
   message: [
-    "With ever changing trends in medical care Popular Hospital has also evolved in the last four decades. Popular Hospital today is a comprehensive superspecialty hospital with tertiary care services. We aim to provide excellent nursing care which is the backbone of good health care. We have a team of dedicated and highly skilled doctors who are committed towards their services to mankind. A good service can only be rendered when ample individual attention is given to cater to the health concerns. On this Popular Hospital built on, which was sound, and however tough the going got, we never compromised on this. Popular Hospital is a hospital of experienced and ethical physicians with a clear vision and with their sincere effort it has been possible for us to mountain standards comparable with those of renowned hospitals in the city.",
+    "With ever changing trends in medical care Popular Hospital has also evolved in the last four decades. Popular Hospital today is a comprehensive superspecialty hospital with tertiary care services. We aim to provide excellent nursing care which is the backbone of good health care. We have a team of dedicated and highly skilled doctors who are committed towards their services to mankind. A good service can only be rendered when ample individu al attention is given to cater to the health concerns. On this Popular Hospital built on, which was sound, and however tough the going got, we never compromised on this. Popular Hospital is a hospital of experienced and ethical physicians with a clear vision and with their sincere effort it has been possible for us to mountain standards comparable with those of renowned hospitals in the city.",
     "The task before me is a daunting and demanding task to ensure that the accreditation status of all our training programmes is regained and maintained. In the recent past the Hospital has given priority to improving the quality and standard of service In the coming year, the Popular Hospital will focus on two initiatives to improve patient care services: Making the hospital more patient-friendly (through SMS reminders to patients, walk ins for those patients who need to be seen urgently, courtesy and better rapport with patients and their relatives). Maximizing effective use of resources (through higher turnover and decreased waiting time for consultations / procedures / surgery, utilization management, shorter length of hospital stay and day care).",
     "In keeping with its tertiary-care character, the hospital has expanded and upgraded its critical care facilities and high-tech equipments. The various specialities and sub-specialities have also continuously improved our in-house capacity and have made Varanasi largely sufficient in terms of medical care. I hope that, with the dedication of our staff, Popular Hospital will work towards a higher level of excellence, keep abreast with the ever changing medical technology, in the Varanasi.",
   ],
@@ -24,7 +24,7 @@ export default function ChairmanDeskPage() {
   return (
     <div className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[150px] md:min-h-[200px] xl:min-h-[150px] flex flex-col justify-center py-8 xl:py-6">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/from_chairman's_desk.png"
@@ -39,16 +39,16 @@ export default function ChairmanDeskPage() {
           <span className="text-hospital-orange font-bold text-xs uppercase tracking-[0.3em] mb-3 block">
             Foundation
           </span>
-          <h1 className="text-3xl md:text-5xl font-black font-heading mb-4 text-white uppercase tracking-tight">
+          <h1 className="text-3xl md:text-5xl xl:text-2xl font-black font-heading mb-3 text-white uppercase tracking-tight">
             From Chairman's Desk
           </h1>
           <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full"></div>
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1366px] px-4 py-16 lg:py-24">
+      <div className="mx-auto w-full max-w-[1366px] xl:max-w-5xl px-4 py-12 lg:py-16 xl:py-10">
         <div className="bg-white relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
             {/* Left Column: Chairman Info & Photo */}
             <div className="lg:col-span-5 mb-10 lg:mb-0">
               <div className="space-y-6 sticky top-24">
@@ -62,7 +62,7 @@ export default function ChairmanDeskPage() {
                   />
                 </div>
                 <div className="bg-[#1e5eb2] p-8 rounded-3xl border border-blue-400/20 shadow-xl text-white">
-                  <h2 className="text-2xl md:text-3xl font-black font-heading mb-2 uppercase tracking-tight">
+                  <h2 className="text-2xl md:text-3xl xl:text-xl font-black font-heading mb-2 uppercase tracking-tight">
                     {chairmanData.name}
                   </h2>
                   <p className="text-yellow-400 font-bold text-sm tracking-widest uppercase mb-4">
@@ -80,8 +80,8 @@ export default function ChairmanDeskPage() {
 
             {/* Right Column: Text Content Area */}
             <div className="lg:col-span-7 relative pt-2">
-              <div className="mb-8">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic">
+              <div className="mb-6 xl:mb-4">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl font-black text-[#0b1c43] font-heading leading-tight italic">
                   A Vision for Excellence <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
                     in Modern Healthcare
@@ -93,7 +93,7 @@ export default function ChairmanDeskPage() {
                 {chairmanData.message.map((para, i) => (
                   <p
                     key={i}
-                    className="text-[17px] md:text-lg text-gray-600 leading-relaxed font-normal text-justify"
+                    className="text-[17px] md:text-lg xl:text-[15px] text-gray-600 leading-relaxed font-normal text-justify"
                   >
                     {para}
                   </p>

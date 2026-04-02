@@ -97,7 +97,7 @@ export default function OphthalmologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0f172a] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0f172a] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/ophthalmology_banner.png"
@@ -108,12 +108,12 @@ export default function OphthalmologyClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#0f172a]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Centre for Comprehensive Eye Care
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
               Restoring Vision, <br />
               <span className="text-blue-400">Enhancing Life</span>
             </h1>
@@ -133,8 +133,8 @@ export default function OphthalmologyClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO SECTION ═══════ */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-4">
+      <section className="py-16 xl:py-10 bg-white">
+        <div className="mx-auto w-full max-w-5xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -145,7 +145,7 @@ export default function OphthalmologyClient() {
                 />
               </div>
 
-              <div className="space-y-6 text-gray-800 text-base md:text-lg leading-relaxed font-medium text-justify">
+              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed font-medium text-justify">
                 <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
                   <p>
                     The Ophthalmology Department is designed to provide a
