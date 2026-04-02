@@ -67,7 +67,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col overflow-x-hidden">
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>

@@ -156,7 +156,7 @@ export default function OrthopedicsClient() {
   );
 
   return (
-    <div className="bg-white">
+    <div className="bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -224,7 +224,7 @@ export default function OrthopedicsClient() {
       </section>
 
       {/* ═══════ TREATMENTS INTERACTIVE SECTION ═══════ */}
-      <section className="py-20 bg-[#fafafa]">
+      <section className="py-20 bg-[#fafafa] overflow-hidden">
         <div className="mx-auto w-full max-w-[1366px] px-6">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -297,7 +297,7 @@ export default function OrthopedicsClient() {
 
             {/* Right Content */}
             <div className="lg:col-span-4 order-3">
-              <div className="animate-fade-in pl-0 lg:pl-10">
+              <div className="animate-fade-in pl-4 lg:pl-10">
                 <h3 className="text-2xl font-bold text-[#333] mb-6 flex items-center gap-3">
                   <span className="w-8 h-[2px] bg-[#E85222]" />
                   {selectedCategory.title}

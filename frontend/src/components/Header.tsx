@@ -432,18 +432,18 @@ export function Header() {
       >
         {/* Gradient Overlay */}
         <div
-          className={`hidden xl:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${
+          className={`hidden lg:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${
             scrolled || !isTransparentPage ? "opacity-0" : "opacity-100"
           }`}
         />
 
         {/* Top Bar */}
-        <div className="hidden md:block bg-[#2E59A8] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-3 sm:py-4">
+        <div className="hidden md:block bg-gradient-to-r from-[#214181] via-[#2E59A8] to-[#214181] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-3 sm:py-4">
           <div className="max-w-[1366px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[14px] sm:text-[17px] font-medium">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
               <Link
                 href="/online-payment"
-                className="flex items-center gap-2 hover:text-white/80 transition-colors whitespace-nowrap"
+                className="flex items-center gap-2 hover:text-white/80 transition-colors"
               >
                 <svg
                   className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px]"
@@ -463,21 +463,21 @@ export function Header() {
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link
                 href="/second-opinion"
-                className="hover:text-white/80 transition-colors whitespace-nowrap"
+                className="hover:text-white/80 transition-colors"
               >
                 Second opinion
               </Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link
                 href="/services/wellness-packages"
-                className="hover:text-white/80 transition-colors whitespace-nowrap"
+                className="hover:text-white/80 transition-colors"
               >
                 Wellness Packages
               </Link>
               <div className="w-[1px] h-4 sm:h-5 bg-white/30 hidden sm:block"></div>
               <Link
                 href="/services/health-packages"
-                className="hover:text-white/80 transition-colors whitespace-nowrap"
+                className="hover:text-white/80 transition-colors"
               >
                 Health Packages
               </Link>
@@ -776,9 +776,9 @@ export function Header() {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden transition-all duration-300 ease-in-out z-[100] shadow-2xl ${
+          className={`absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden transition-all duration-300 ease-in-out z-[999] shadow-2xl ${
             menuOpen
-              ? "max-h-[calc(100dvh-120px)] opacity-100 overflow-y-auto overscroll-contain pb-10"
+              ? "max-h-[calc(100vh-80px)] opacity-100 overflow-y-auto overscroll-contain pb-20"
               : "max-h-0 opacity-0 pointer-events-none overflow-hidden"
           }`}
         >

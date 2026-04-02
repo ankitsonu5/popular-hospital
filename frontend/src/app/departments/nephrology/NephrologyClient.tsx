@@ -114,7 +114,7 @@ export default function NephrologyClient() {
   const [selectedCategory, setSelectedCategory] = useState(renalCategories[0]);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
@@ -232,7 +232,7 @@ export default function NephrologyClient() {
       </section>
 
       {/* ═══════ INTERACTIVE RENAL CARE SECTION ═══════ */}
-      <div className="mt-24 pt-20 border-t border-gray-100 bg-[#fafafa] -mx-4 px-4 pb-20">
+      <div className="mt-24 pt-20 border-t border-gray-100 bg-[#fafafa] -mx-4 px-4 pb-20 overflow-hidden">
         <div className="mx-auto w-full max-w-[1366px] px-6 md:px-8 lg:px-4">
           {/* Main Heading */}
           <div className="text-center mb-20 max-w-5xl mx-auto">
