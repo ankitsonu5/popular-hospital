@@ -15,8 +15,14 @@ interface ComponentCoverageItem {
   excerpt?: string;
 }
 
-export default function MediaCoverageClient({ items }: { items: ComponentCoverageItem[] }) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+export default function MediaCoverageClient({
+  items,
+}: {
+  items: ComponentCoverageItem[];
+}) {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null,
+  );
 
   const openLightbox = (index: number) => {
     setSelectedImageIndex(index);
@@ -28,23 +34,29 @@ export default function MediaCoverageClient({ items }: { items: ComponentCoverag
     document.body.style.overflow = "unset";
   }, []);
 
-  const nextImage = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    if (selectedImageIndex !== null) {
-      setSelectedImageIndex((prev) => 
-        prev !== null ? (prev + 1) % items.length : null
-      );
-    }
-  }, [selectedImageIndex, items.length]);
+  const nextImage = useCallback(
+    (e?: React.MouseEvent) => {
+      e?.stopPropagation();
+      if (selectedImageIndex !== null) {
+        setSelectedImageIndex((prev) =>
+          prev !== null ? (prev + 1) % items.length : null,
+        );
+      }
+    },
+    [selectedImageIndex, items.length],
+  );
 
-  const prevImage = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    if (selectedImageIndex !== null) {
-      setSelectedImageIndex((prev) => 
-        prev !== null ? (prev - 1 + items.length) % items.length : null
-      );
-    }
-  }, [selectedImageIndex, items.length]);
+  const prevImage = useCallback(
+    (e?: React.MouseEvent) => {
+      e?.stopPropagation();
+      if (selectedImageIndex !== null) {
+        setSelectedImageIndex((prev) =>
+          prev !== null ? (prev - 1 + items.length) % items.length : null,
+        );
+      }
+    },
+    [selectedImageIndex, items.length],
+  );
 
   // Handle Keyboard Arrows & Escape
   useEffect(() => {
@@ -82,9 +94,9 @@ export default function MediaCoverageClient({ items }: { items: ComponentCoverag
                   />
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-[#1e3a8a]/0 group-hover:bg-[#1e3a8a]/10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                     <span className="bg-[#1e3a8a] text-white px-4 py-2 rounded-full text-xs font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
-                        View Clipping
-                     </span>
+                    <span className="bg-[#1e3a8a] text-white px-4 py-2 rounded-full text-xs font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+                      View Clipping
+                    </span>
                   </div>
                 </div>
 
@@ -93,8 +105,18 @@ export default function MediaCoverageClient({ items }: { items: ComponentCoverag
                   {/* Source + Date Row */}
                   <div className="flex items-center justify-between mb-2.5">
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#1e3a8a]/10 text-[#1e3a8a] text-[10px] font-bold uppercase tracking-wider">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                      <svg
+                        className="w-3 h-3"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                        />
                       </svg>
                       {item.source}
                     </span>
@@ -108,13 +130,13 @@ export default function MediaCoverageClient({ items }: { items: ComponentCoverag
                     {item.title}
                   </h2>
                   <div className="mt-3 flex items-center justify-between">
-                     <Link 
-                        href={`/media/coverage/${item.slug}`} 
-                        onClick={(e) => e.stopPropagation()} 
-                        className="text-[11px] font-bold text-[#1e3a8a] hover:underline flex items-center gap-1"
-                     >
-                        Read Details <span>→</span>
-                     </Link>
+                    <Link
+                      href={`/media/coverage/${item.slug}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[11px] font-bold text-[#1e3a8a] hover:underline flex items-center gap-1"
+                    >
+                      Read Details <span>→</span>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -125,13 +147,16 @@ export default function MediaCoverageClient({ items }: { items: ComponentCoverag
 
       {/* ─── Lightbox Modal ─── */}
       {selectedImageIndex !== null && (
-        <div 
+        <div
           className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 sm:p-8 backdrop-blur-sm animate-in fade-in duration-300"
           onClick={closeLightbox}
         >
           {/* Close Button */}
-          <button 
-            onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              closeLightbox();
+            }}
             className="absolute top-6 right-6 text-white/70 hover:text-white p-2 bg-white/10 hover:bg-white/20 rounded-full transition-all z-[110]"
           >
             <X className="w-6 h-6" />
@@ -140,13 +165,13 @@ export default function MediaCoverageClient({ items }: { items: ComponentCoverag
           {/* Controls */}
           {items.length > 1 && (
             <>
-              <button 
+              <button
                 onClick={prevImage}
                 className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-3 hover:bg-white/10 rounded-full transition-all z-[110]"
               >
                 <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10" />
               </button>
-              <button 
+              <button
                 onClick={nextImage}
                 className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-3 hover:bg-white/10 rounded-full transition-all z-[110]"
               >
@@ -155,7 +180,7 @@ export default function MediaCoverageClient({ items }: { items: ComponentCoverag
             </>
           )}
 
-          <div 
+          <div
             className="w-full h-full flex flex-col items-center justify-center gap-6 max-w-5xl mx-auto"
             onClick={(e) => e.stopPropagation()}
           >
@@ -167,14 +192,20 @@ export default function MediaCoverageClient({ items }: { items: ComponentCoverag
                 className="w-full h-full object-contain drop-shadow-2xl select-none animate-in zoom-in-95 duration-300"
               />
             </div>
-            
+
             {/* Caption */}
             <div className="text-center text-white max-w-3xl space-y-2 px-4 animate-in slide-in-from-bottom-4 duration-500">
               <div className="flex items-center justify-center gap-3">
-                <span className="bg-[#1e3a8a] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">{items[selectedImageIndex].source}</span>
-                <span className="text-white/50 text-xs font-medium">{items[selectedImageIndex].date}</span>
+                <span className="bg-[#1e3a8a] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                  {items[selectedImageIndex].source}
+                </span>
+                <span className="text-white/50 text-xs font-medium">
+                  {items[selectedImageIndex].date}
+                </span>
               </div>
-              <h3 className="text-lg sm:text-2xl font-bold leading-tight drop-shadow-md">{items[selectedImageIndex].title}</h3>
+              <h3 className="text-lg sm:text-2xl font-bold leading-tight drop-shadow-md">
+                {items[selectedImageIndex].title}
+              </h3>
               <p className="text-white/40 text-[11px] uppercase tracking-widest pt-2">
                 Image {selectedImageIndex + 1} of {items.length}
               </p>
