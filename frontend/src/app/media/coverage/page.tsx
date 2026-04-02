@@ -110,62 +110,6 @@ export default function MediaCoveragePage() {
           ))}
         </div>
       </section>
-
-      {/* ─── Lightbox Modal ─── */}
-      {selectedImageIndex !== null && (
-        <div className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 sm:p-8 backdrop-blur-sm animate-in fade-in duration-300">
-          {/* Close Button */}
-          <button
-            onClick={closeLightbox}
-            className="absolute top-6 right-6 text-white/70 hover:text-white p-2 bg-white/10 hover:bg-white/20 rounded-full transition-all z-[110]"
-          >
-            <X className="w-6 h-6" />
-          </button>
-
-          {/* Controls */}
-          <button
-            onClick={prevImage}
-            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-3 hover:bg-white/10 rounded-full transition-all z-[110]"
-          >
-            <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10" />
-          </button>
-          <button
-            onClick={nextImage}
-            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-3 hover:bg-white/10 rounded-full transition-all z-[110]"
-          >
-            <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10" />
-          </button>
-
-          <div className="w-full h-full flex flex-col items-center justify-center gap-6 max-w-5xl mx-auto">
-            {/* Image Container */}
-            <div className="relative w-full flex-1 max-h-[75vh] group">
-              <img
-                src={getImageUrl(items[selectedImageIndex].image)}
-                alt={items[selectedImageIndex].title}
-                className="w-full h-full object-contain drop-shadow-2xl select-none animate-in zoom-in-95 duration-300"
-              />
-            </div>
-
-            {/* Caption */}
-            <div className="text-center text-white max-w-3xl space-y-2 px-4 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="flex items-center justify-center gap-3">
-                <span className="bg-teal-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
-                  {items[selectedImageIndex].source}
-                </span>
-                <span className="text-white/50 text-xs font-medium">
-                  {items[selectedImageIndex].date}
-                </span>
-              </div>
-              <h3 className="text-lg sm:text-2xl font-bold leading-tight">
-                {items[selectedImageIndex].title}
-              </h3>
-              <p className="text-white/40 text-[11px] uppercase tracking-widest pt-2">
-                Image {selectedImageIndex + 1} of {items.length}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
