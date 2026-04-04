@@ -238,14 +238,6 @@ const doctors = [
     experience_years: 14,
     consultation_fee: 550,
   },
-  {
-    name: "Raveendra",
-    slug: "raveendra",
-    speciality: "dermatology",
-    qualification: "MBBS, MD (Dermatology)",
-    experience_years: 14,
-    consultation_fee: 550,
-  },
 ];
 
 for (const d of doctors) {
@@ -266,7 +258,7 @@ const content = [
       "Quality healthcare with compassion. Book appointments, find doctors, and visit our branches across the city.",
   },
   { key: "footer_phone", value: "+91-7800001895" },
-  { key: "footer_email", value: "info@popularhospital.com" },
+  { key: "footer_email", value: "info@popularhospital.in" },
 ];
 
 for (const c of content) {
@@ -331,13 +323,20 @@ const newsArticles = [
 
 // Seed news by slug (upsert) to avoid deleting user-uploaded news
 for (const n of newsArticles) {
-  await News.findOneAndUpdate({ slug: n.slug }, n, { upsert: true });
+  const normalizedNews = {
+    ...n,
+    content: Array.isArray(n.content) ? n.content.join("\n\n") : n.content,
+  };
+  await News.findOneAndUpdate({ slug: n.slug }, normalizedNews, {
+    upsert: true,
+  });
 }
 console.log("✅ News articles seeded (upserted 3 articles)");
 
 // ──────────── Admin User ────────────
-const adminEmail = "admin@popularhospital.com";
-const adminPassword = "password123";
+await AdminUser.deleteOne({ email: "admin@popularhospital.com" });
+const adminEmail = "admin@popularhospital.in";
+const adminPassword = "adminpl@2026";
 const hashed = await bcrypt.hash(adminPassword, 10);
 await AdminUser.findOneAndUpdate(
   { email: adminEmail },
@@ -348,7 +347,6 @@ await AdminUser.findOneAndUpdate(
   },
   { upsert: true },
 );
-console.log("✅ Admin user seeded (admin@popularhospital.com / password123)");
 
 console.log("\n🎉 Seed completed successfully!");
 await mongoose.disconnect();

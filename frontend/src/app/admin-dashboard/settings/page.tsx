@@ -42,7 +42,7 @@ export default function SettingsPage() {
               {user?.name || "Admin"}
             </h3>
             <p className="text-sm text-gray-500">
-              {user?.email || "admin@popularhospital.com"}
+              {user?.email || "admin@popularhospital.in"}
             </p>
           </div>
         </div>
