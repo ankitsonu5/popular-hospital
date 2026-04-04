@@ -1,5 +1,5 @@
 export const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5100";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser: use Next.js rewrite /api-backend -> backend
@@ -17,29 +17,21 @@ export const getImageUrl = (path: string) => {
   if (path.startsWith("http")) return path;
 
   // Ensure we have a leading slash
-  let normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
 
-  // Special case: if database contains /uploads/images/... but images are in public/images/...
-  if (normalizedPath.startsWith("/uploads/images")) {
-    normalizedPath = normalizedPath.replace("/uploads", "");
+  // If the path already includes /uploads
+  if (normalizedPath.startsWith("/uploads")) {
+    if (typeof window !== "undefined") return normalizedPath;
+    // On server, we need the internal API base URL to fetch the image metadata if optimizing
+    return `${apiBaseUrl}${normalizedPath}`;
   }
 
   // If the path points to /images (local public asset)
   if (normalizedPath.startsWith("/images")) {
-    return normalizedPath; // Always use local path for public assets
+    return normalizedPath;
   }
 
-  // If the path already includes /uploads, keep it as is
-  if (normalizedPath.startsWith("/uploads")) {
-    if (typeof window !== "undefined") return normalizedPath;
-    return `${apiBaseUrl}${normalizedPath}`;
-  }
-
-  // Otherwise, assume it's an uploaded file that needs the prefix
-  if (normalizedPath && !normalizedPath.startsWith("/")) {
-    normalizedPath = "/" + normalizedPath;
-  }
-
+  // Otherwise, assume it needs the /uploads prefix
   if (typeof window !== "undefined") return `/uploads${normalizedPath}`;
   return `${apiBaseUrl}/uploads${normalizedPath}`;
 };

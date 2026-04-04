@@ -26,4 +26,5 @@ export const allCategories = [
   "Endocrinology Center in Varanasi",
   "Nephrology Specialist Center in Varanasi",
   "Neuro Surgery Center in Varanasi",
+  "Laparoscopic Surgeon in Varanasi",
 ];
