@@ -4,7 +4,6 @@ import connectDB from "./config/db.js";
 import Branch from "./models/Branch.js";
 import Speciality from "./models/Speciality.js";
 import Doctor from "./models/Doctor.js";
-import SiteContent from "./models/SiteContent.js";
 import AdminUser from "./models/AdminUser.js";
 import News from "./models/News.js";
 import bcrypt from "bcryptjs";
@@ -201,7 +200,7 @@ const doctors = [
   {
     name: "Dr. Rajesh Kumar",
     slug: "dr-rajesh-kumar",
-    speciality: "general-physician",
+    speciality: "general-medicine",
     qualification: "MBBS, MD (Medicine)",
     experience_years: 15,
     consultation_fee: 500,
@@ -250,21 +249,6 @@ for (const d of doctors) {
 console.log("✅ Doctors seeded");
 
 // ──────────── Site Content ────────────
-const content = [
-  { key: "hero_title", value: "Your Health, Our Priority" },
-  {
-    key: "hero_subtitle",
-    value:
-      "Quality healthcare with compassion. Book appointments, find doctors, and visit our branches across the city.",
-  },
-  { key: "footer_phone", value: "+91-7800001895" },
-  { key: "footer_email", value: "info@popularhospital.in" },
-];
-
-for (const c of content) {
-  await SiteContent.findOneAndUpdate({ key: c.key }, c, { upsert: true });
-}
-console.log("✅ Site content seeded");
 
 // ──────────── News ────────────
 const newsArticles = [
@@ -283,7 +267,6 @@ const newsArticles = [
     ],
     image: "/news-1.png",
     author: "Dr. A.K. Kaushik",
-    authorRole: "Chairman, Popular Group of Hospital",
   },
   {
     slug: "importance-of-regular-health-checkups",
@@ -300,7 +283,6 @@ const newsArticles = [
     ],
     image: "/b-1.png",
     author: "Dr. Kiran Kaushik",
-    authorRole: "MD, Popular Group of Hospital",
   },
   {
     slug: "managing-better-stress-for-better-mental-health",
@@ -317,7 +299,6 @@ const newsArticles = [
     ],
     image: "/b-2.png",
     author: "Dr. Priya Sharma",
-    authorRole: "Head of Psychiatry, Popular Hospital",
   },
 ];
 
@@ -335,8 +316,11 @@ console.log("✅ News articles seeded (upserted 3 articles)");
 
 // ──────────── Admin User ────────────
 await AdminUser.deleteOne({ email: "admin@popularhospital.com" });
-const adminEmail = "admin@popularhospital.in";
-const adminPassword = "adminpl@2026";
+const adminEmail = process.env.ADMIN_EMAIL;
+const adminPassword = process.env.ADMIN_PASSWORD;
+if (!adminEmail || !adminPassword) {
+  throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD must be set in .env");
+}
 const hashed = await bcrypt.hash(adminPassword, 10);
 await AdminUser.findOneAndUpdate(
   { email: adminEmail },
