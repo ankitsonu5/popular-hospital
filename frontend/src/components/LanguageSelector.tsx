@@ -8,6 +8,14 @@ declare global {
     gtranslate_settings: any;
     doGTranslate: (lang_pair: string) => void;
     googleTranslateElementInit: () => void;
+    google?: {
+      translate?: {
+        TranslateElement: new (
+          options: Record<string, unknown>,
+          elementId: string,
+        ) => unknown;
+      };
+    };
   }
 }
 
@@ -29,12 +37,40 @@ const languages = [
 // Helper: trigger the hidden Google Translate combo box to change language
 function triggerGoogleTranslate(langCode: string): boolean {
   const combo = document.querySelector(".goog-te-combo") as HTMLSelectElement;
-  if (combo && combo.options && combo.options.length > 0) {
-    combo.value = langCode;
-    combo.dispatchEvent(new Event("change", { bubbles: true }));
-    return true;
+  if (!combo) return false;
+
+  // Google injects the combobox early with only 1 option ("Select Language").
+  // If we try to set a value before the real languages are populated, it fails.
+  if (langCode !== "en") {
+    const hasLang = Array.from(combo.options).some((opt) => opt.value === langCode);
+    if (!hasLang) return false; // Not fully populated yet, trigger retry
+  } else {
+    // For English, we just need the combo to be present
+    if (combo.options.length === 0) return false;
   }
-  return false;
+
+  if (langCode === "en") {
+    // Setting value to empty string tells Google Translate to restore original content
+    combo.value = "";
+  } else {
+    combo.value = langCode;
+  }
+  
+  combo.dispatchEvent(new Event("change", { bubbles: true }));
+  return true;
+}
+
+function setGoogleTranslateCookie(langCode: string) {
+  const value = `/en/${langCode}`;
+  const hostname = window.location.hostname;
+  const cookieBase = "path=/; max-age=31536000";
+
+  document.cookie = `googtrans=${value}; ${cookieBase}`;
+  document.cookie = `googtrans=${value}; domain=${hostname}; ${cookieBase}`;
+
+  if (hostname.includes(".")) {
+    document.cookie = `googtrans=${value}; domain=.${hostname}; ${cookieBase}`;
+  }
 }
 
 // Helper: retry triggering until the combo is ready (max ~6 seconds)
@@ -51,15 +87,28 @@ function triggerWithRetry(langCode: string) {
 
 // Helper: load the Google Translate script once
 function loadGoogleTranslate(includedLangs: string) {
-  if (document.getElementById("google-translate-script")) return;
-
   // Create hidden container element
   if (!document.getElementById("google_translate_element")) {
     const el = document.createElement("div");
     el.id = "google_translate_element";
-    el.style.display = "none";
+    el.setAttribute("aria-hidden", "true");
+    el.style.position = "fixed";
+    el.style.left = "-9999px";
+    el.style.top = "0";
+    el.style.width = "1px";
+    el.style.height = "1px";
+    el.style.overflow = "hidden";
+    el.style.opacity = "0";
+    el.style.pointerEvents = "none";
     document.body.appendChild(el);
   }
+
+  if (window.google?.translate?.TranslateElement) {
+    window.googleTranslateElementInit();
+    return;
+  }
+
+  if (document.getElementById("google-translate-script")) return;
 
   window.googleTranslateElementInit = function () {
     new (window as any).google.translate.TranslateElement(
@@ -76,7 +125,8 @@ function loadGoogleTranslate(includedLangs: string) {
   const script = document.createElement("script");
   script.id = "google-translate-script";
   script.src =
-    "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  script.async = true;
   script.onerror = () => {
     // Remove on failure so we can retry next time
     script.remove();
@@ -86,13 +136,12 @@ function loadGoogleTranslate(includedLangs: string) {
   document.body.appendChild(script);
 }
 
-// Helper: clear Google Translate cookies and reload to restore English
+// Helper: clear Google Translate cookies to restore English
 function resetToEnglish() {
   const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   document.cookie = `googtrans=; ${expiry}`;
   document.cookie = `googtrans=; ${expiry} domain=${window.location.hostname}`;
   document.cookie = `googtrans=; ${expiry} domain=.${window.location.hostname}`;
-  window.location.reload();
 }
 
 const LanguageSelector = ({
@@ -109,13 +158,15 @@ const LanguageSelector = ({
   const includedLangs = languages.map((l) => l.code).join(",");
 
   useEffect(() => {
+    loadGoogleTranslate(includedLangs);
+
     // Sync UI state with saved preference
     const savedLang = localStorage.getItem("user-language") || "en";
     setCurrentLang(savedLang);
 
     if (savedLang !== "en") {
       // Script already loaded on a previous visit — load and re-apply
-      loadGoogleTranslate(includedLangs);
+      setGoogleTranslateCookie(savedLang);
       // Wait slightly for the element to init, then trigger
       const timeout = setTimeout(() => triggerWithRetry(savedLang), 800);
       return () => clearTimeout(timeout);
@@ -146,13 +197,14 @@ const LanguageSelector = ({
     localStorage.setItem("user-language", code);
 
     if (code === "en") {
-      // Restore original English — must reload after clearing cookies
+      // Restore original English: Clear cookies and reload to restore the clean, default React DOM
       resetToEnglish();
+      window.location.reload();
       return;
     }
 
-    // Non-English: load script if needed, then trigger translation
-    loadGoogleTranslate(includedLangs);
+    // Non-English: trigger translation immediately without reload
+    setGoogleTranslateCookie(code);
     triggerWithRetry(code);
   };
 
@@ -229,21 +281,24 @@ const LanguageSelector = ({
       )}
 
       <style jsx global>{`
-        #google_translate_element,
-        .skiptranslate,
-        iframe[id=":1.container"] {
-          display: none !important;
-          visibility: hidden !important;
+        #google_translate_element {
+          position: fixed !important;
+          left: -9999px !important;
+          top: 0 !important;
+          width: 1px !important;
+          height: 1px !important;
+          overflow: hidden !important;
           opacity: 0 !important;
           pointer-events: none !important;
-          height: 0 !important;
-          width: 0 !important;
         }
         body {
           top: 0 !important;
         }
         .goog-te-banner-frame {
           display: none !important;
+        }
+        .goog-te-gadget {
+          font-size: 0 !important;
         }
       `}</style>
     </div>

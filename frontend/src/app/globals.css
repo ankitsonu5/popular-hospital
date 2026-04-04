@@ -216,6 +216,40 @@ button {
 }
 
 /* ───────────────────────────────────────────────────────────────── */
+/* HIDE DEFAULT GOOGLE TRANSLATE NATIVE WIDGET AND TOOLTIPS          */
+/* ───────────────────────────────────────────────────────────────── */
+body, html {
+  top: 0px !important;
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+iframe.skiptranslate,
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+body > .skiptranslate {
+  display: none !important;
+}
+.VIpgJd-Zvi9od-ORHb-OEVmcd,
+.VIpgJd-Zvi9od-aZ2wEe-wOHMyf,
+.VIpgJd-Zvi9od-aZ2wEe-OiiCO,
+.VIpgJd-Zvi9od-ORHb {
+  display: none !important;
+}
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+#goog-gt-tt,
+.goog-te-spinner-pos {
+  display: none !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* ───────────────────────────────────────────────────────────────── */
 /* RICH TEXT (PROSE) STYLING FOR BLOG CONTENT                        */
 /* ───────────────────────────────────────────────────────────────── */
 .prose h1,
@@ -289,41 +323,6 @@ button {
 .prose th,
 .prose td {
   @apply border border-gray-100 p-4 text-left;
-}
-.prose th {
-  @apply bg-gray-50 font-bold text-hospital-navy;
-}
-
-/* ───────────────────────────────────────────────────────────────── */
-/* HIDE DEFAULT GOOGLE TRANSLATE NATIVE WIDGET AND TOOLTIPS          */
-/* ───────────────────────────────────────────────────────────────── */
-.skiptranslate.goog-te-gadget {
-  display: none !important;
-}
-.goog-te-banner-frame.skiptranslate {
-  display: none !important;
-}
-.goog-tooltip,
-.goog-tooltip:hover {
-  display: none !important;
-}
-body {
-  top: 0px !important;
-}
-#goog-gt-tt,
-.goog-te-spinner-pos {
-  display: none !important;
-}
-.goog-text-highlight {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-/* ───────────────────────────────────────────────────────────────── */
-/* HIDE TINY CLOUD WARNING                                           */
-/* ───────────────────────────────────────────────────────────────── */
-.tox-notifications-container {
   display: none !important;
 }
 

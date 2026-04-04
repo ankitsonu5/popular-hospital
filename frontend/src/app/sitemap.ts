@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // About Pages
     {
-      url: `${BASE}/about/our-story`,
+      url: `${BASE}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
@@ -119,7 +119,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${BASE}/services/womens-health-special`,
+      url: `${BASE}/services/wellness-packages/well-woman-executive-health-checkup`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { mediaCoverageItems } from "@/data/mediaCoverage";
+import { fetchCoverage } from "@/lib/api";
+import MediaCoverageClient from "./MediaCoverageClient";
 
 export const metadata: Metadata = {
   title: "Media Coverage – Popular Hospital",
@@ -10,7 +11,18 @@ export const metadata: Metadata = {
 };
 
 /* ───────────────── page component ───────────────── */
-export default function MediaCoveragePage() {
+export default async function MediaCoveragePage() {
+  const mediaCoverageItems = await fetchCoverage();
+
+  // Convert API data to match ComponentCoverageItem if needed, although they match mostly
+  const formattedItems = mediaCoverageItems.map(item => ({
+    slug: item.slug || "",
+    title: item.title,
+    image: item.image,
+    date: item.date,
+    source: item.source,
+  }));
+
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* ─── Hero Section ─── */}
@@ -51,65 +63,8 @@ export default function MediaCoveragePage() {
         </div>
       </section>
 
-      {/* ─── Coverage Grid ─── */}
-      <section className="max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-16 sm:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-          {mediaCoverageItems.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/media/coverage/${item.slug}`}
-              className="group relative h-full"
-            >
-              {/* Card */}
-              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border-2 border-[#1e3a8a]/10 hover:border-[#1e3a8a]/40 h-full flex flex-col">
-                {/* Newspaper Clipping Image */}
-                <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-[#1e3a8a]/0 group-hover:bg-[#1e3a8a]/10 transition-colors duration-300" />
-                </div>
-
-                {/* Caption */}
-                <div className="p-4 border-l-4 border-[#1e3a8a] flex-1 flex flex-col">
-                  {/* Source + Date Row */}
-                  <div className="flex items-center justify-between mb-2.5">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#1e3a8a]/10 text-[#1e3a8a] text-[10px] font-bold uppercase tracking-wider">
-                      <svg
-                        className="w-3 h-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-                        />
-                      </svg>
-                      {item.source}
-                    </span>
-                    <span className="text-[10px] text-gray-400 font-medium">
-                      {item.date}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h2 className="text-sm font-bold text-[#1e3a8a] leading-snug group-hover:text-[#E85222] transition-colors line-clamp-3 flex-1">
-                    {item.title}
-                  </h2>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {/* ─── Coverage Grid (Client with Lightbox) ─── */}
+      <MediaCoverageClient items={formattedItems} />
     </main>
   );
 }

@@ -1,0 +1,60 @@
+
+> popular-hospital-frontend@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 4.6s
+ ○ Compiling / ...
+ ✓ Compiled / in 15.4s (643 modules)
+ ✓ Compiled in 969ms (326 modules)
+ GET / 200 in 17316ms
+ GET / 200 in 645ms
+ GET / 200 in 116ms
+ ✓ Compiled in 3.8s (643 modules)
+ ✓ Compiled in 3s (643 modules)
+ ○ Compiling /admin-dashboard/settings ...
+ ✓ Compiled /admin-dashboard/settings in 5s (694 modules)
+ GET /admin-dashboard/settings 200 in 5969ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1045ms (695 modules)
+ GET /_next/static/css/app/layout.css?v=1775281141961 404 in 1366ms
+ GET /_next/static/chunks/main-app.js?v=1775281141961 404 in 1361ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 1342ms
+ GET /_next/static/chunks/app/layout.js 404 in 51ms
+ GET / 200 in 179ms
+ GET /_next/static/css/app/layout.css?v=1775281199566 404 in 145ms
+ GET /_next/static/chunks/main-app.js?v=1775281199566 404 in 161ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 161ms
+ GET /_next/static/chunks/app/layout.js 404 in 161ms
+ GET /_next/static/chunks/app/page.js 404 in 160ms
+ GET / 200 in 509ms
+ GET /_next/static/css/app/layout.css?v=1775281215595 404 in 310ms
+ GET /_next/static/chunks/main-app.js?v=1775281215595 404 in 269ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 269ms
+ GET /_next/static/chunks/app/layout.js 404 in 269ms
+ GET /_next/static/chunks/app/page.js 404 in 302ms
+ GET / 200 in 108ms
+ GET /_next/static/css/app/layout.css?v=1775281219154 404 in 93ms
+ GET /_next/static/chunks/main-app.js?v=1775281219154 404 in 145ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 145ms
+ GET /_next/static/chunks/app/layout.js 404 in 146ms
+ GET /_next/static/chunks/app/page.js 404 in 146ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1328ms (895 modules)
+ GET / 404 in 1491ms
+ GET / 200 in 280ms
+ GET /_next/static/css/app/layout.css?v=1775281271758 404 in 71ms
+ GET /_next/static/chunks/main-app.js?v=1775281271758 404 in 183ms
+ GET /_next/static/chunks/app/page.js 404 in 182ms
+ GET /_next/static/chunks/app/layout.js 404 in 183ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 183ms
+ GET / 200 in 116ms
+ GET /_next/static/css/app/layout.css?v=1775281274850 404 in 161ms
+ GET /_next/static/chunks/main-app.js?v=1775281274850 404 in 167ms
+ GET /_next/static/chunks/app/layout.js 404 in 166ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 168ms
+ GET /_next/static/chunks/app/page.js 404 in 168ms
+ ✓ Compiled in 2s (908 modules)

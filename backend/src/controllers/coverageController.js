@@ -30,6 +30,16 @@ export const getAllCoverage = async (req, res) => {
   }
 };
 
+export const getCoverageBySlug = async (req, res) => {
+  try {
+    const item = await Coverage.findOne({ slug: req.params.slug, isActive: true });
+    if (!item) return res.status(404).json({ error: "Coverage item not found" });
+    res.json(item);
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
 // Admin Methods
 export const getAdminCoverage = async (req, res) => {
   try {
@@ -42,7 +52,7 @@ export const getAdminCoverage = async (req, res) => {
 
 export const createCoverage = async (req, res) => {
   try {
-    const { title, date, source, isActive } = req.body;
+    const { title, date, source, isActive, excerpt, content } = req.body;
 
     // Normalize files
     const files = req.files || [];
@@ -59,13 +69,16 @@ export const createCoverage = async (req, res) => {
         ? `/uploads/coverage/${filesObj.image[0].filename}`
         : req.body.image || "";
 
-    const item = await Coverage.create({
+    const item = new Coverage({
       title,
       image: imagePath,
       date,
       source,
+      excerpt: excerpt || "",
+      content: content || "",
       isActive: isActive !== "false" && isActive !== false,
     });
+    await item.save(); // Utilizing .save() properly triggers the pre-save hook for slug generation
     res.status(201).json(item);
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
@@ -74,14 +87,19 @@ export const createCoverage = async (req, res) => {
 
 export const updateCoverage = async (req, res) => {
   try {
-    const { title, date, source, isActive } = req.body;
+    const { title, date, source, isActive, excerpt, content } = req.body;
 
     const updates = {
       title,
       date,
       source,
+      excerpt: excerpt !== undefined ? excerpt : undefined,
+      content: content !== undefined ? content : undefined,
       isActive: isActive !== "false" && isActive !== false,
     };
+
+    // Remove undefined values
+    Object.keys(updates).forEach(key => updates[key] === undefined && delete updates[key]);
 
     // Normalize files
     const files = req.files || [];

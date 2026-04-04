@@ -27,7 +27,7 @@ const sitemapData = [
       </svg>
     ),
     links: [
-      { name: "Our Story", href: "/about/our-story" },
+      { name: "Our Story", href: "/about" },
       { name: "Our Vision & Mission", href: "/about/vision-mission" },
       { name: "From Chairman's Desk", href: "/about/chairman-desk" },
       { name: "From MD's Desk", href: "/about/md-desk" },
@@ -199,9 +199,9 @@ const sitemapData = [
       { name: "Media Coverage", href: "/media/coverage" },
       { name: "Hospital Events", href: "/media/events" },
       { name: "Patient Stories", href: "/stories" },
-      { name: "Video Gallery", href: "/media/videos" },
+      { name: "Refund Policy", href: "/refund-policy" },
       { name: "Terms of Use", href: "/terms" },
-      { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Payment Policy", href: "/payment-policy" },
     ],
   },
 ];
