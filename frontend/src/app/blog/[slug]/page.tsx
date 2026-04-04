@@ -28,10 +28,21 @@ export async function generateMetadata({
   const article = await fetchBlogItem(slug);
 
   if (!article) return { title: "Article Not Found" };
+  const title = article.metaTitle || `${article.title} – Popular Hospital Blog`;
+  const description = article.metaDescription || article.excerpt || article.title;
+  
   return {
-    title: article.metaTitle || `${article.title} – Popular Hospital Blog`,
-    description: article.metaDescription || article.excerpt || article.title,
+    title,
+    description,
     keywords: article.metaKeywords || "",
+    alternates: {
+      canonical: article.canonicalUrl || `https://popularhospital.in/blog/${slug}`,
+    },
+    openGraph: {
+      title: article.ogTitle || title,
+      description: article.ogDescription || description,
+      images: [getImageUrl(article.image)],
+    },
   };
 }
 

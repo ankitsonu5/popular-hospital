@@ -11,6 +11,13 @@ import {
   Image as ImageIcon,
   Sparkles,
   Eye,
+  CheckCircle2,
+  AlertCircle,
+  Link as LinkIcon,
+  Clock,
+  Share2,
+  Copy,
+  Check,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -37,45 +44,31 @@ const normalizeEditorHtml = (html: string) => {
 };
 
 const CATEGORIES = [
-  "Best Cancer Specialist Hospital",
-  "best cancer specialist hospital in India",
-  "best cardiology hospital",
-  "Best Cardiology Hospital in India",
-  "best dental hospital in India",
-  "Best Eye Specialist Doctors in India",
+  "Best Cancer Specialist Hospital in Varanasi",
+  "Best Cardiology Hospital in Varanasi",
+  "Best Dental Hospital in Varanasi",
+  "Best Eye Specialist Hospital in Varanasi",
   "Best Gynaecologist in Varanasi",
-  "best Gynecologist in Varanasi",
-  "Best Heart Hospital in Uttar Pradesh",
-  "Best Joint Replacement Surgery Hospital",
+  "Best Heart Hospital in Varanasi",
+  "Best Joint Replacement Hospital in Varanasi",
   "Best Medicine Doctor in Varanasi",
-  "best microbiology lab in India",
-  "Best Neuro Department in India",
-  "Best Neurological Hospital in India",
-  "best neurology hospital in India",
+  "Best Microbiology Lab in Varanasi",
   "Best Neurology Hospital in Varanasi",
-  "best ortho hospital in India",
-  "Best Plastic Surgeons in Uttar Pradesh",
-  "Best Plastic Surgery Hospital in India",
-  "Best Plastic Surgery Hospital in Uttar Pradesh",
-  "Best Urologist Hospital",
-  "Gastroenterology",
-  "Orthopaedic in Varanasi",
-  "Cardiology",
-  "Neurology",
-  "Orthopedics",
-  "ENT Care",
-  "Pediatrics",
-  "Emergency Care",
-  "Blood Banks",
-  "Cardiology Hospital",
-  "Critical Care & ICU",
-  "Endocrinology Center",
-  "ENT Specialist Center",
-  "General Surgery Center",
-  "Hospitals",
-  "Nephrology Specialist Center",
-  "Neuro Surgery Center",
-  "Orthopedic Center",
+  "Best Orthopedic Hospital in Varanasi",
+  "Best Plastic Surgery Hospital in Varanasi",
+  "Best Urologist Hospital in Varanasi",
+  "Gastroenterology in Varanasi",
+  "Cardiology in Varanasi",
+  "Neurology in Varanasi",
+  "Orthopedics in Varanasi",
+  "ENT Care in Varanasi",
+  "Pediatrics in Varanasi",
+  "Emergency Care in Varanasi",
+  "Blood Bank in Varanasi",
+  "Critical Care & ICU in Varanasi",
+  "Endocrinology Center in Varanasi",
+  "Nephrology Specialist Center in Varanasi",
+  "Neuro Surgery Center in Varanasi",
 ];
 
 function BlogActionForm() {
@@ -91,8 +84,12 @@ function BlogActionForm() {
     slug: "",
     excerpt: "",
     content: "",
-    date: "",
-    dateIso: "",
+    date: new Date().toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }),
+    dateIso: new Date().toISOString().split("T")[0],
     author: "popularhospital-admin",
     category: "",
     isUncategorized: false,
@@ -101,6 +98,10 @@ function BlogActionForm() {
     metaDescription: "",
     metaKeywords: "",
     focusKeyword: "",
+    canonicalUrl: "",
+    ogTitle: "",
+    ogDescription: "",
+    readingTime: 0,
     imageAlt: "",
     image: "",
   });
@@ -108,6 +109,14 @@ function BlogActionForm() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
   const [keywordInput, setKeywordInput] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    const url = `https://popularhospital.in/blog/${formData.slug}`;
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const addTag = (tag: string) => {
     const trimmed = tag.trim().replace(/,$/, "");
@@ -131,6 +140,56 @@ function BlogActionForm() {
     const newTags = currentTags.filter((_, i) => i !== index).join(", ");
     setFormData({ ...formData, focusKeyword: newTags, metaKeywords: newTags });
   };
+
+  useEffect(() => {
+    const textContent = formData.content.replace(/<[^>]*>?/gm, "");
+    const wordCount = textContent.split(/\s+/).filter(word => word.length > 0).length;
+    const estimatedTime = Math.max(1, Math.ceil(wordCount / 200));
+    setFormData(prev => {
+      if (prev.readingTime !== estimatedTime) {
+        return { ...prev, readingTime: estimatedTime };
+      }
+      return prev;
+    });
+  }, [formData.content]);
+
+  const getSeoScore = () => {
+    let score = 0;
+    const checks = [];
+    const keywords = formData.focusKeyword.toLowerCase().split(",").map(k => k.trim()).filter(Boolean);
+    const contentText = formData.content.replace(/<[^>]*>?/gm, "").toLowerCase();
+    
+    if (formData.title.length >= 40 && formData.title.length <= 60) {
+      score += 25;
+      checks.push({ label: "Title length is optimal (40-60 chars)", passed: true });
+    } else {
+      checks.push({ label: "Title length should be 40-60 chars", passed: false });
+    }
+
+    if (formData.metaDescription.length >= 120 && formData.metaDescription.length <= 160) {
+      score += 25;
+      checks.push({ label: "Meta description length is optimal (120-160 chars)", passed: true });
+    } else {
+      checks.push({ label: "Meta description length should be 120-160 chars", passed: false });
+    }
+
+    if (keywords.length > 0 && keywords.some(k => formData.title.toLowerCase().includes(k))) {
+      score += 25;
+      checks.push({ label: "Focus keyword found in title", passed: true });
+    } else {
+      checks.push({ label: "Focus keyword not found in title", passed: false });
+    }
+
+    if (keywords.length > 0 && keywords.some(k => contentText.includes(k))) {
+      score += 25;
+      checks.push({ label: "Focus keyword used in content", passed: true });
+    } else {
+      checks.push({ label: "Focus keyword not found in content", passed: false });
+    }
+
+    return { score, checks };
+  };
+  const seoFeedback = getSeoScore();
 
   useEffect(() => {
     if (editId) {
@@ -197,12 +256,16 @@ function BlogActionForm() {
         body: submitData,
       });
 
-      if (!res.ok) throw new Error("Failed to save blog post");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to save blog post");
+      }
+
       alert(editId ? "Post updated!" : "Post launched!");
       if (window.opener || window.history.length === 1) window.close();
       router.push("/admin-dashboard/media-blog/blog");
     } catch (err: any) {
-      alert(err.message);
+      alert(`Error: ${err.message}`);
     } finally {
       setIsSaving(false);
     }
@@ -363,8 +426,12 @@ function BlogActionForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-4">
-                    Detailed Article Content *
+                  <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-4">
+                    <span>Detailed Article Content *</span>
+                    <span className="flex items-center gap-1.5 text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded-md border border-gray-200 shadow-sm">
+                      <Clock className="w-3.5 h-3.5" />
+                      ~{formData.readingTime} min read
+                    </span>
                   </label>
                   <div className="rounded-xl overflow-hidden border border-gray-200 min-h-[700px]">
                     <Editor
@@ -538,9 +605,82 @@ function BlogActionForm() {
                         metaDescription: e.target.value,
                       })
                     }
-                    className="w-full px-4 py-2 rounded-lg bg-gray-50 text-xs font-medium border border-gray-200 resize-none"
+                    className="w-full px-4 py-2 rounded-lg bg-gray-50 text-xs font-medium border border-gray-200 resize-none focus:border-blue-500 outline-none"
                     placeholder="Search excerpt..."
                   />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1 flex items-center gap-1 mt-2">
+                    <LinkIcon className="w-3 h-3" /> Canonical URL
+                  </label>
+                  <input
+                    value={formData.canonicalUrl}
+                    onChange={(e) => setFormData({ ...formData, canonicalUrl: e.target.value })}
+                    className="w-full px-4 py-2 rounded-lg bg-gray-50 text-xs font-semibold border border-gray-200 outline-none focus:border-blue-500"
+                    placeholder="https://example.com/blog/..."
+                  />
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-gray-100">
+                  <div className="flex items-center justify-between mb-4">
+                    <label className="text-[10px] font-bold text-gray-400 uppercase">Live SEO Score</label>
+                    <span className={`text-[10px] font-bold px-2 py-1 rounded-md ${seoFeedback.score >= 80 ? 'bg-green-100 text-green-700' : seoFeedback.score >= 50 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
+                      {seoFeedback.score}/100
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-100 rounded-full h-1.5 mb-4 overflow-hidden">
+                    <div className={`h-1.5 rounded-full transition-all ${seoFeedback.score >= 80 ? 'bg-green-500' : seoFeedback.score >= 50 ? 'bg-amber-500' : 'bg-red-500'}`} style={{ width: `${seoFeedback.score}%` }}></div>
+                  </div>
+                  <ul className="space-y-2">
+                    {seoFeedback.checks.map((check, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs">
+                        {check.passed ? (
+                          <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                        ) : (
+                          <AlertCircle className="w-4 h-4 text-gray-300 shrink-0" />
+                        )}
+                        <span className={check.passed ? 'text-gray-700 font-medium' : 'text-gray-400'}>{check.label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-gray-100">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <Share2 className="w-4 h-4 text-blue-500" />
+                      <label className="text-[10px] font-bold text-gray-400 uppercase">Social Media Preview</label>
+                    </div>
+                    {formData.slug && (
+                      <button
+                        type="button"
+                        onClick={handleCopyLink}
+                        className="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 hover:text-blue-700 transition-colors bg-blue-50 px-2 py-1 rounded-md"
+                      >
+                        {copied ? (
+                          <><Check className="w-3 h-3" /> Copied!</>
+                        ) : (
+                          <><Copy className="w-3 h-3" /> Copy Link</>
+                        )}
+                      </button>
+                    )}
+                  </div>
+                  
+                  <div className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
+                    <div className="h-32 bg-gray-100 relative">
+                      {imagePreview ? (
+                         <Image src={imagePreview} alt="og-preview" fill className="object-cover" unoptimized/>
+                      ) : (
+                         <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold uppercase">No Image</div>
+                      )}
+                    </div>
+                    <div className="p-3 bg-gray-50/50">
+                      <div className="text-[10px] text-gray-500 uppercase tracking-wide mb-1 font-bold">popularhospital.in</div>
+                      <div className="text-sm font-bold text-gray-900 line-clamp-1 break-all">{formData.title || "Social Title Preview"}</div>
+                      <div className="text-[11px] text-gray-500 line-clamp-2 mt-1 break-all leading-tight">{formData.metaDescription || "Social Media description preview will appear here..."}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 export const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5100";
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser: use Next.js rewrite /api-backend -> backend
@@ -416,6 +416,10 @@ export interface BlogItem {
   metaKeywords?: string;
   focusKeyword?: string;
   imageAlt?: string;
+  canonicalUrl?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  readingTime?: number;
 }
 export async function fetchCareers(): Promise<CareerItem[]> {
   try {

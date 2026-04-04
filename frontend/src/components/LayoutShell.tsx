@@ -52,6 +52,8 @@ export default function LayoutShell({
     pathname.startsWith("/admin-login") ||
     pathname.startsWith("/admin-dashboard");
 
+  const isBlogDetailRoute = pathname.startsWith("/blog/") && pathname.split("/").length === 3;
+
   if (isAdminRoute) {
     return (
       <main className="flex-1">
@@ -69,7 +71,7 @@ export default function LayoutShell({
       >
         Skip to main content
       </a>
-      <LoadingScreen />
+      {!isBlogDetailRoute && <LoadingScreen />}
       <Header />
       <SocialSidebar />
       <main

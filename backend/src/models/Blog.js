@@ -40,6 +40,10 @@ const blogSchema = new mongoose.Schema(
     metaDescription: { type: String, default: "" },
     metaKeywords: { type: String, default: "" },
     focusKeyword: { type: String, default: "" }, // For SEO analysis hint
+    canonicalUrl: { type: String, default: "" },
+    ogTitle: { type: String, default: "" },
+    ogDescription: { type: String, default: "" },
+    readingTime: { type: Number, default: 0 },
     comments: [commentSchema],
   },
   { timestamps: true },

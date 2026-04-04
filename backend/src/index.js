@@ -101,7 +101,13 @@ app.use("/api/contacts", contactsRouter);
 app.use("/api/applications", applicationsRouter);
 
 // Serve uploads (static files)
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "../uploads"), {
+    maxAge: "1d", // Cache for 1 day for better loading speed
+    immutable: true,
+  }),
+);
 
 // Direct Blog Image Upload for TinyMCE
 import { upload, uploadBlogImage } from "./controllers/blogController.js";

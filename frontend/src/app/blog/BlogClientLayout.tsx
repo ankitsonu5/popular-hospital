@@ -139,6 +139,7 @@ export default function BlogClientLayout({
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 40vw"
+                    priority={articles.indexOf(post) < 2}
                   />
                   <div className="absolute inset-0 bg-gradient-to-tr from-[#1a3a5c]/40 to-transparent z-10 opacity-60"></div>
                   {post.category && (

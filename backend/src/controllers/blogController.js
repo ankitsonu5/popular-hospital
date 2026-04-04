@@ -205,6 +205,10 @@ export const createBlog = async (req, res) => {
       metaKeywords,
       focusKeyword,
       imageAlt,
+      canonicalUrl,
+      ogTitle,
+      ogDescription,
+      readingTime,
     } = req.body;
 
     const imagePath = req.file
@@ -223,7 +227,11 @@ export const createBlog = async (req, res) => {
       content: normalizedContent,
       contentImages: extractContentImages(normalizedContent),
       author: author || "popularhospital-admin",
-      date,
+      date: date || new Date().toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      }),
       image: imagePath,
       imageAlt: imageAlt || title,
       category:
@@ -235,6 +243,10 @@ export const createBlog = async (req, res) => {
         metaDescription !== undefined ? metaDescription : excerpt || "",
       metaKeywords: finalMetaKeywords,
       focusKeyword: finalFocusKeyword,
+      canonicalUrl: canonicalUrl || "",
+      ogTitle: ogTitle || "",
+      ogDescription: ogDescription || "",
+      readingTime: Number(readingTime) || 0,
     });
 
     res.status(201).json(blog);
@@ -263,6 +275,10 @@ export const updateBlog = async (req, res) => {
       metaKeywords,
       focusKeyword,
       imageAlt,
+      canonicalUrl,
+      ogTitle,
+      ogDescription,
+      readingTime,
     } = req.body;
 
     const finalFocusKeyword = focusKeyword || "";
@@ -287,6 +303,10 @@ export const updateBlog = async (req, res) => {
       metaKeywords: finalMetaKeywords,
       focusKeyword: finalFocusKeyword,
       imageAlt: imageAlt || title,
+      canonicalUrl: canonicalUrl || "",
+      ogTitle: ogTitle || "",
+      ogDescription: ogDescription || "",
+      readingTime: Number(readingTime) || 0,
     };
 
     if (req.file) {
