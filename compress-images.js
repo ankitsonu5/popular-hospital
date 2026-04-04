@@ -42,9 +42,15 @@ for (const imgPath of images) {
 
   try {
     if (ext === ".jpg" || ext === ".jpeg") {
-      execSync(`convert "${imgPath}" -quality 82 -strip -interlace Plane "${tmp}"`, { stdio: "pipe" });
+      execSync(
+        `convert "${imgPath}" -quality 82 -strip -interlace Plane "${tmp}"`,
+        { stdio: "pipe" },
+      );
     } else if (ext === ".png") {
-      execSync(`convert "${imgPath}" -strip -define png:compression-level=9 "${tmp}"`, { stdio: "pipe" });
+      execSync(
+        `convert "${imgPath}" -strip -define png:compression-level=9 "${tmp}"`,
+        { stdio: "pipe" },
+      );
     } else if (ext === ".webp") {
       execSync(`cwebp -q 82 -m 6 "${imgPath}" -o "${tmp}"`, { stdio: "pipe" });
     }
@@ -56,15 +62,21 @@ for (const imgPath of images) {
         const saved = before - after;
         totalSaved += saved;
         totalFiles++;
-        console.log(`✓ ${path.relative(PUBLIC_DIR, imgPath)} | ${formatMB(before)} → ${formatMB(after)} | saved ${formatMB(saved)}`);
+        console.log(
+          `✓ ${path.relative(PUBLIC_DIR, imgPath)} | ${formatMB(before)} → ${formatMB(after)} | saved ${formatMB(saved)}`,
+        );
       } else {
         fs.unlinkSync(tmp);
-        console.log(`- ${path.relative(PUBLIC_DIR, imgPath)} | already optimized`);
+        console.log(
+          `- ${path.relative(PUBLIC_DIR, imgPath)} | already optimized`,
+        );
       }
     }
   } catch (e) {
     if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
-    console.log(`✗ ${path.relative(PUBLIC_DIR, imgPath)} | error: ${e.message.slice(0, 60)}`);
+    console.log(
+      `✗ ${path.relative(PUBLIC_DIR, imgPath)} | error: ${e.message.slice(0, 60)}`,
+    );
   }
 }
 

@@ -329,27 +329,26 @@ export default function RespiratoryClient() {
           <div className="mt-32 space-y-12">
             <div className="space-y-8 text-gray-800 text-lg md:text-xl 2xl:text-2xl leading-relaxed font-bold text-justify max-w-4xl mx-auto text-center">
               <p>
-                At our Respiratory Department, patient-centered care is our
-                top priority. We strive to create a comfortable and supportive
+                At our Respiratory Department, patient-centered care is our top
+                priority. We strive to create a comfortable and supportive
                 environment where you can openly discuss your concerns.
               </p>
             </div>
 
-              <div className="p-10 border border-cyan-600/20 rounded-[3rem] bg-gradient-to-br from-cyan-50/50 to-white shadow-lg max-w-4xl mx-auto">
-                <p className="mb-8 text-center text-lg 2xl:text-xl font-medium text-gray-700">
-                  Take the first step towards better respiratory health today.
-                  Contact our Respiratory Department to schedule an
-                  appointment.
-                </p>
-                <div className="h-[1px] w-32 bg-gradient-to-r from-transparent via-cyan-200 to-transparent mx-auto mb-8" />
-                <p className="text-center text-[#0b1c43] font-bold text-xl md:text-2xl leading-tight">
-                  Breathe freely with the Respiratory Department at{" "}
-                  <span className="text-[#E85222]">Popular Hospital</span>.
-                </p>
-                <p className="text-center text-cyan-600 font-extrabold text-2xl md:text-3xl mt-6 uppercase tracking-[0.15em]">
-                  Breathe Easy. Live Fully.
-                </p>
-              </div>
+            <div className="p-10 border border-cyan-600/20 rounded-[3rem] bg-gradient-to-br from-cyan-50/50 to-white shadow-lg max-w-4xl mx-auto">
+              <p className="mb-8 text-center text-lg 2xl:text-xl font-medium text-gray-700">
+                Take the first step towards better respiratory health today.
+                Contact our Respiratory Department to schedule an appointment.
+              </p>
+              <div className="h-[1px] w-32 bg-gradient-to-r from-transparent via-cyan-200 to-transparent mx-auto mb-8" />
+              <p className="text-center text-[#0b1c43] font-bold text-xl md:text-2xl leading-tight">
+                Breathe freely with the Respiratory Department at{" "}
+                <span className="text-[#E85222]">Popular Hospital</span>.
+              </p>
+              <p className="text-center text-cyan-600 font-extrabold text-2xl md:text-3xl mt-6 uppercase tracking-[0.15em]">
+                Breathe Easy. Live Fully.
+              </p>
+            </div>
           </div>
         </div>
       </section>

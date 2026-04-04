@@ -29,14 +29,16 @@ export async function generateMetadata({
 
   if (!article) return { title: "Article Not Found" };
   const title = article.metaTitle || `${article.title} – Popular Hospital Blog`;
-  const description = article.metaDescription || article.excerpt || article.title;
-  
+  const description =
+    article.metaDescription || article.excerpt || article.title;
+
   return {
     title,
     description,
     keywords: article.metaKeywords || "",
     alternates: {
-      canonical: article.canonicalUrl || `https://popularhospital.in/blog/${slug}`,
+      canonical:
+        article.canonicalUrl || `https://popularhospital.in/blog/${slug}`,
     },
     openGraph: {
       title: article.ogTitle || title,

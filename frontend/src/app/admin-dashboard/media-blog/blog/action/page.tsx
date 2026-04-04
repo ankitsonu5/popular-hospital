@@ -144,9 +144,11 @@ function BlogActionForm() {
 
   useEffect(() => {
     const textContent = formData.content.replace(/<[^>]*>?/gm, "");
-    const wordCount = textContent.split(/\s+/).filter(word => word.length > 0).length;
+    const wordCount = textContent
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
     const estimatedTime = Math.max(1, Math.ceil(wordCount / 200));
-    setFormData(prev => {
+    setFormData((prev) => {
       if (prev.readingTime !== estimatedTime) {
         return { ...prev, readingTime: estimatedTime };
       }
@@ -157,35 +159,62 @@ function BlogActionForm() {
   const getSeoScore = () => {
     let score = 0;
     const checks = [];
-    const keywords = formData.focusKeyword.toLowerCase().split(",").map(k => k.trim()).filter(Boolean);
-    const contentText = formData.content.replace(/<[^>]*>?/gm, "").toLowerCase();
-    
+    const keywords = formData.focusKeyword
+      .toLowerCase()
+      .split(",")
+      .map((k) => k.trim())
+      .filter(Boolean);
+    const contentText = formData.content
+      .replace(/<[^>]*>?/gm, "")
+      .toLowerCase();
+
     if (formData.title.length >= 40 && formData.title.length <= 60) {
       score += 25;
-      checks.push({ label: "Title length is optimal (40-60 chars)", passed: true });
+      checks.push({
+        label: "Title length is optimal (40-60 chars)",
+        passed: true,
+      });
     } else {
-      checks.push({ label: "Title length should be 40-60 chars", passed: false });
+      checks.push({
+        label: "Title length should be 40-60 chars",
+        passed: false,
+      });
     }
 
-    if (formData.metaDescription.length >= 120 && formData.metaDescription.length <= 160) {
+    if (
+      formData.metaDescription.length >= 120 &&
+      formData.metaDescription.length <= 160
+    ) {
       score += 25;
-      checks.push({ label: "Meta description length is optimal (120-160 chars)", passed: true });
+      checks.push({
+        label: "Meta description length is optimal (120-160 chars)",
+        passed: true,
+      });
     } else {
-      checks.push({ label: "Meta description length should be 120-160 chars", passed: false });
+      checks.push({
+        label: "Meta description length should be 120-160 chars",
+        passed: false,
+      });
     }
 
-    if (keywords.length > 0 && keywords.some(k => formData.title.toLowerCase().includes(k))) {
+    if (
+      keywords.length > 0 &&
+      keywords.some((k) => formData.title.toLowerCase().includes(k))
+    ) {
       score += 25;
       checks.push({ label: "Focus keyword found in title", passed: true });
     } else {
       checks.push({ label: "Focus keyword not found in title", passed: false });
     }
 
-    if (keywords.length > 0 && keywords.some(k => contentText.includes(k))) {
+    if (keywords.length > 0 && keywords.some((k) => contentText.includes(k))) {
       score += 25;
       checks.push({ label: "Focus keyword used in content", passed: true });
     } else {
-      checks.push({ label: "Focus keyword not found in content", passed: false });
+      checks.push({
+        label: "Focus keyword not found in content",
+        passed: false,
+      });
     }
 
     return { score, checks };
@@ -430,8 +459,8 @@ function BlogActionForm() {
                   <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-4">
                     <span>Detailed Article Content *</span>
                     <span className="flex items-center gap-1.5 text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded-md border border-gray-200 shadow-sm">
-                      <Clock className="w-3.5 h-3.5" />
-                      ~{formData.readingTime} min read
+                      <Clock className="w-3.5 h-3.5" />~{formData.readingTime}{" "}
+                      min read
                     </span>
                   </label>
                   <div className="rounded-xl overflow-hidden border border-gray-200 min-h-[700px]">
@@ -617,7 +646,9 @@ function BlogActionForm() {
                   </label>
                   <input
                     value={formData.canonicalUrl}
-                    onChange={(e) => setFormData({ ...formData, canonicalUrl: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, canonicalUrl: e.target.value })
+                    }
                     className="w-full px-4 py-2 rounded-lg bg-gray-50 text-xs font-semibold border border-gray-200 outline-none focus:border-blue-500"
                     placeholder="https://example.com/blog/..."
                   />
@@ -625,13 +656,20 @@ function BlogActionForm() {
 
                 <div className="mt-6 pt-6 border-t border-gray-100">
                   <div className="flex items-center justify-between mb-4">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase">Live SEO Score</label>
-                    <span className={`text-[10px] font-bold px-2 py-1 rounded-md ${seoFeedback.score >= 80 ? 'bg-green-100 text-green-700' : seoFeedback.score >= 50 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
+                    <label className="text-[10px] font-bold text-gray-400 uppercase">
+                      Live SEO Score
+                    </label>
+                    <span
+                      className={`text-[10px] font-bold px-2 py-1 rounded-md ${seoFeedback.score >= 80 ? "bg-green-100 text-green-700" : seoFeedback.score >= 50 ? "bg-amber-100 text-amber-700" : "bg-red-100 text-red-700"}`}
+                    >
                       {seoFeedback.score}/100
                     </span>
                   </div>
                   <div className="w-full bg-gray-100 rounded-full h-1.5 mb-4 overflow-hidden">
-                    <div className={`h-1.5 rounded-full transition-all ${seoFeedback.score >= 80 ? 'bg-green-500' : seoFeedback.score >= 50 ? 'bg-amber-500' : 'bg-red-500'}`} style={{ width: `${seoFeedback.score}%` }}></div>
+                    <div
+                      className={`h-1.5 rounded-full transition-all ${seoFeedback.score >= 80 ? "bg-green-500" : seoFeedback.score >= 50 ? "bg-amber-500" : "bg-red-500"}`}
+                      style={{ width: `${seoFeedback.score}%` }}
+                    ></div>
                   </div>
                   <ul className="space-y-2">
                     {seoFeedback.checks.map((check, idx) => (
@@ -641,7 +679,15 @@ function BlogActionForm() {
                         ) : (
                           <AlertCircle className="w-4 h-4 text-gray-300 shrink-0" />
                         )}
-                        <span className={check.passed ? 'text-gray-700 font-medium' : 'text-gray-400'}>{check.label}</span>
+                        <span
+                          className={
+                            check.passed
+                              ? "text-gray-700 font-medium"
+                              : "text-gray-400"
+                          }
+                        >
+                          {check.label}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -651,7 +697,9 @@ function BlogActionForm() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <Share2 className="w-4 h-4 text-blue-500" />
-                      <label className="text-[10px] font-bold text-gray-400 uppercase">Social Media Preview</label>
+                      <label className="text-[10px] font-bold text-gray-400 uppercase">
+                        Social Media Preview
+                      </label>
                     </div>
                     {formData.slug && (
                       <button
@@ -660,26 +708,45 @@ function BlogActionForm() {
                         className="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 hover:text-blue-700 transition-colors bg-blue-50 px-2 py-1 rounded-md"
                       >
                         {copied ? (
-                          <><Check className="w-3 h-3" /> Copied!</>
+                          <>
+                            <Check className="w-3 h-3" /> Copied!
+                          </>
                         ) : (
-                          <><Copy className="w-3 h-3" /> Copy Link</>
+                          <>
+                            <Copy className="w-3 h-3" /> Copy Link
+                          </>
                         )}
                       </button>
                     )}
                   </div>
-                  
+
                   <div className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
                     <div className="h-32 bg-gray-100 relative">
                       {imagePreview ? (
-                         <Image src={imagePreview} alt="og-preview" fill className="object-cover" unoptimized/>
+                        <Image
+                          src={imagePreview}
+                          alt="og-preview"
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
                       ) : (
-                         <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold uppercase">No Image</div>
+                        <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold uppercase">
+                          No Image
+                        </div>
                       )}
                     </div>
                     <div className="p-3 bg-gray-50/50">
-                      <div className="text-[10px] text-gray-500 uppercase tracking-wide mb-1 font-bold">popularhospital.in</div>
-                      <div className="text-sm font-bold text-gray-900 line-clamp-1 break-all">{formData.title || "Social Title Preview"}</div>
-                      <div className="text-[11px] text-gray-500 line-clamp-2 mt-1 break-all leading-tight">{formData.metaDescription || "Social Media description preview will appear here..."}</div>
+                      <div className="text-[10px] text-gray-500 uppercase tracking-wide mb-1 font-bold">
+                        popularhospital.in
+                      </div>
+                      <div className="text-sm font-bold text-gray-900 line-clamp-1 break-all">
+                        {formData.title || "Social Title Preview"}
+                      </div>
+                      <div className="text-[11px] text-gray-500 line-clamp-2 mt-1 break-all leading-tight">
+                        {formData.metaDescription ||
+                          "Social Media description preview will appear here..."}
+                      </div>
                     </div>
                   </div>
                 </div>

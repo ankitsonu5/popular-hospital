@@ -165,7 +165,6 @@ export default function OphthalmologyClient() {
                   price.
                 </p>
               </div>
-
             </div>
 
             {/* ── Right Column (Doctor Sidebar) ── */}

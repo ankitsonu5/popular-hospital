@@ -42,7 +42,9 @@ function triggerGoogleTranslate(langCode: string): boolean {
   // Google injects the combobox early with only 1 option ("Select Language").
   // If we try to set a value before the real languages are populated, it fails.
   if (langCode !== "en") {
-    const hasLang = Array.from(combo.options).some((opt) => opt.value === langCode);
+    const hasLang = Array.from(combo.options).some(
+      (opt) => opt.value === langCode,
+    );
     if (!hasLang) return false; // Not fully populated yet, trigger retry
   } else {
     // For English, we just need the combo to be present
@@ -55,7 +57,7 @@ function triggerGoogleTranslate(langCode: string): boolean {
   } else {
     combo.value = langCode;
   }
-  
+
   combo.dispatchEvent(new Event("change", { bubbles: true }));
   return true;
 }
@@ -118,7 +120,7 @@ function loadGoogleTranslate(includedLangs: string) {
         autoDisplay: false,
         multilanguagePage: true,
       },
-      "google_translate_element"
+      "google_translate_element",
     );
   };
 

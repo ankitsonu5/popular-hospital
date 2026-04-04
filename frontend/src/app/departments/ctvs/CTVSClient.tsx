@@ -294,7 +294,9 @@ export default function CTVSClient() {
           <div className="space-y-6 mt-6 max-w-none text-justify">
             {services.slice(0, 2).map((service, idx) => (
               <div key={idx} className="flex items-start gap-2">
-                <span className="text-blue-600 mt-1 flex-shrink-0 font-bold">›</span>
+                <span className="text-blue-600 mt-1 flex-shrink-0 font-bold">
+                  ›
+                </span>
                 <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium">
                   <span className="font-bold text-[#0b1c43]">
                     {service.title}
@@ -316,7 +318,9 @@ export default function CTVSClient() {
 
             {services.slice(2).map((service, idx) => (
               <div key={`post-${idx}`} className="flex items-start gap-2 mt-6">
-                <span className="text-blue-600 mt-1 flex-shrink-0 font-bold">›</span>
+                <span className="text-blue-600 mt-1 flex-shrink-0 font-bold">
+                  ›
+                </span>
                 <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium">
                   <span className="font-bold text-[#0b1c43]">
                     {service.title}

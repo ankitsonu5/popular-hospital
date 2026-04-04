@@ -33,13 +33,15 @@ export default function AboutPage() {
             {/* Left Side: Headings */}
             <div className="flex flex-col justify-center">
               <h2 className="flex items-center text-xl sm:text-2xl xl:text-lg 2xl:text-3xl font-black text-[#1e3a8a] mb-4 xl:mb-3 2xl:mb-6 uppercase tracking-wider font-heading">
-                <span className="mr-3 text-2xl xl:text-lg 2xl:text-3xl">🏥</span>
+                <span className="mr-3 text-2xl xl:text-lg 2xl:text-3xl">
+                  🏥
+                </span>
                 WELCOME TO POPULAR HOSPITAL
               </h2>
               <p className="text-gray-900 font-bold italic text-lg sm:text-xl md:text-2xl xl:text-lg 2xl:text-2xl leading-relaxed font-heading">
-                POPULAR HOSPITAL 
+                POPULAR HOSPITAL
                 <span className="font-semibold italic text-base md:text-lg xl:text-sm 2xl:text-lg">
-                   (a Unit of POPULAR MEDICARE LTD)
+                  (a Unit of POPULAR MEDICARE LTD)
                 </span>
                 , one of Varanasi's best Multi Super Speciality Hospital that
                 redefines standards of excellence in healthcare delivery by

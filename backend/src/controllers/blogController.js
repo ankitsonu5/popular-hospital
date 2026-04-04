@@ -227,11 +227,13 @@ export const createBlog = async (req, res) => {
       content: normalizedContent,
       contentImages: extractContentImages(normalizedContent),
       author: author || "popularhospital-admin",
-      date: date || new Date().toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      }),
+      date:
+        date ||
+        new Date().toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }),
       image: imagePath,
       imageAlt: imageAlt || title,
       category:
