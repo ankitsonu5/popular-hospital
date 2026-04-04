@@ -71,8 +71,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-2xl md:text-3xl font-bold text-[#1e1b4b] font-heading leading-tight">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#1e1b4b] font-heading leading-tight">
       {title} <span className="text-blue-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -97,7 +97,7 @@ export default function OphthalmologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0f172a] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0f172a] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/ophthalmology_banner.png"
@@ -108,12 +108,12 @@ export default function OphthalmologyClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#0f172a]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Centre for Comprehensive Eye Care
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Restoring Vision, <br />
               <span className="text-blue-400">Enhancing Life</span>
             </h1>
@@ -133,8 +133,8 @@ export default function OphthalmologyClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO SECTION ═══════ */}
-      <section className="py-16 xl:py-10 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -145,7 +145,7 @@ export default function OphthalmologyClient() {
                 />
               </div>
 
-              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed font-medium text-justify">
+              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
                 <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
                   <p>
                     The Ophthalmology Department is designed to provide a
@@ -166,81 +166,6 @@ export default function OphthalmologyClient() {
                 </p>
               </div>
 
-              <div className="mt-24">
-                <div className="mb-8">
-                  <h3 className="text-[#1e1b4b] font-bold text-2xl mb-2 flex items-center gap-2 uppercase tracking-tight">
-                    <span className="w-8 h-1 bg-blue-600 rounded-full" />
-                    Out Patient Procedures:
-                  </h3>
-                  <p className="text-gray-500 text-sm font-medium mb-8 ml-10 italic">
-                    Advanced diagnostic services for precision eye care
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 group/list">
-                  {outpatientProcedures.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 flex items-start gap-4 group"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-[#0f172a] transition-colors shadow-blue-600/20 shadow-lg">
-                        <svg
-                          className="w-5 h-5 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-gray-700 font-bold text-sm leading-snug pt-1">
-                        {item}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-32">
-                <div className="flex flex-col lg:flex-row items-start gap-16">
-                  <div className="lg:w-7/12">
-                    <h3 className="text-[#1e1b4b] font-bold text-2xl mb-10 flex items-center gap-2 uppercase tracking-tight">
-                      <span className="w-8 h-1 bg-blue-600 rounded-full" />
-                      Specialised Programmes:
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-                      {specialisedProgrammes.map((item, idx) => (
-                        <div
-                          key={idx}
-                          className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex items-start gap-4 group"
-                        >
-                          <div className="w-9 h-9 rounded-lg bg-[#0f172a] flex items-center justify-center flex-shrink-0 text-white font-bold text-sm group-hover:bg-blue-600 transition-colors shadow-lg">
-                            {idx + 1}
-                          </div>
-                          <p className="text-gray-800 font-bold text-sm leading-relaxed pt-1">
-                            {item}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="lg:w-5/12 w-full">
-                    <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px] border-[12px] border-white group">
-                      <Image
-                        src="/images/departments-images/ophthalmology_advance.jpg"
-                        alt="Specialised Eye Care"
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* ── Right Column (Doctor Sidebar) ── */}
@@ -250,6 +175,84 @@ export default function OphthalmologyClient() {
                   doctors={doctors}
                   departmentName="Ophthalmology"
                 />
+              </div>
+            </div>
+          </div>
+
+          {/* ── Out Patient Procedures (Full Width below) ── */}
+          <div className="mt-32">
+            <div className="mb-10 text-center lg:text-left">
+              <h3 className="text-[#1e1b4b] font-bold text-2xl 2xl:text-4xl mb-3 flex items-center justify-center lg:justify-start gap-3 uppercase tracking-tight">
+                <span className="w-12 h-1 bg-blue-600 rounded-full" />
+                Out Patient Procedures:
+              </h3>
+              <p className="text-gray-500 text-base font-medium ml-0 lg:ml-15 italic">
+                Advanced diagnostic services for precision eye care
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {outpatientProcedures.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="bg-gray-50 border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-4 group"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-[#0f172a] transition-colors shadow-blue-600/20 shadow-lg">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <p className="text-gray-700 font-bold text-sm 2xl:text-base leading-snug">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Specialised Programmes (Full Width below) ── */}
+          <div className="mt-32 border-t border-gray-100 pt-32">
+            <div className="flex flex-col lg:flex-row items-center gap-16">
+              <div className="lg:w-1/2 w-full">
+                <div className="relative rounded-[3rem] overflow-hidden shadow-2xl h-[450px] 2xl:h-[550px] border-[12px] border-white group">
+                  <Image
+                    src="/images/departments-images/ophthalmology_advance.jpg"
+                    alt="Specialised Eye Care"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </div>
+              <div className="lg:w-1/2 w-full">
+                <h3 className="text-[#1e1b4b] font-bold text-2xl 2xl:text-4xl mb-12 flex items-center gap-3 uppercase tracking-tight">
+                  <span className="w-12 h-1 bg-blue-600 rounded-full" />
+                  Specialised Programmes:
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {specialisedProgrammes.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-white border border-gray-100 rounded-xl p-5 2xl:p-6 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex items-start gap-4 group"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-[#0f172a] flex items-center justify-center flex-shrink-0 text-white font-bold text-sm group-hover:bg-blue-600 transition-colors shadow-lg">
+                        {idx + 1}
+                      </div>
+                      <p className="text-gray-800 font-bold text-sm 2xl:text-base leading-relaxed pt-1">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

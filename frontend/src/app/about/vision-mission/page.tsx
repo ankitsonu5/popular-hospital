@@ -51,7 +51,7 @@ export default function VisionMissionPage() {
         {/* Bottom Right Decorative Swoosh */}
         <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-[#005696]/10 to-transparent rounded-tl-[100%] pointer-events-none translate-x-1/4 translate-y-1/4" />
 
-        <div className="max-w-[1366px] xl:max-w-5xl mx-auto px-6 relative z-10">
+        <div className="max-w-[1366px] xl:max-w-5xl min-[1920px]:max-w-[1366px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 xl:gap-12 items-start">
             {/* Mission Card */}
             <div className="group">
@@ -117,7 +117,7 @@ export default function VisionMissionPage() {
 
       {/* ─── Contact Section ─── */}
       <section className="py-20 xl:py-12 bg-white relative overflow-hidden">
-        <div className="max-w-[1366px] xl:max-w-5xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-[1366px] xl:max-w-5xl min-[1920px]:max-w-[1366px] mx-auto px-6 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-hospital-orange/10 border border-hospital-orange/20 mb-8">
             <span className="text-sm font-bold text-hospital-orange tracking-widest uppercase">
               Immediate Assistance

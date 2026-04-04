@@ -94,8 +94,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
       {title} <span className="text-blue-600">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -106,7 +106,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
       ›
     </span>
@@ -120,7 +120,7 @@ export default function GeneralSurgeryClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/genral_surgery.png"
@@ -131,12 +131,12 @@ export default function GeneralSurgeryClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
               Department of
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Laparoscopy & General Surgery
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -155,8 +155,8 @@ export default function GeneralSurgeryClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO + DOCTOR SIDEBAR ═══════ */}
-      <section className="py-16 xl:py-10 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -164,7 +164,7 @@ export default function GeneralSurgeryClient() {
                 title="Department of General &amp;"
                 highlight="Laproscopic Surgery"
               />
-              <div className="space-y-4 text-gray-800 text-base md:text-lg xl:text-[15px] font-medium leading-relaxed mb-10 text-justify">
+              <div className="space-y-4 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium leading-relaxed mb-10 text-justify">
                 <p>
                   The Department of General and Laparoscopic Surgery at Popular
                   Hospital is manned 24x7 by an experienced and dedicated team
@@ -209,65 +209,59 @@ export default function GeneralSurgeryClient() {
       </section>
 
       {/* ═══════ USP SECTION ═══════ */}
-      <section className="py-16 xl:py-10 bg-gray-50">
-        <div className="mx-auto w-full max-w-5xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Left: USP List */}
-            <div>
-              <SectionHeader
-                title="Usp Of General &amp;"
-                highlight="Laproscopic Surgery Department"
-              />
-              <ul className="mt-2">
-                {uspList.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-
-            {/* Right: Image */}
-            <div
-              className="relative rounded-2xl overflow-hidden shadow-lg group"
-              style={{ minHeight: "420px" }}
-            >
+      <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left: Image */}
+            <div className="lg:col-span-5 relative w-full h-[400px] 2xl:h-[500px] rounded-[2rem] overflow-hidden shadow-2xl group">
               <Image
                 src="/images/departments-images/laparoscopic.jpeg"
                 alt="Laparoscopic Surgery"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/40 via-transparent to-transparent" />
+            </div>
+
+            {/* Right: USP List */}
+            <div className="lg:col-span-7">
+              <SectionHeader
+                title="Usp Of General &amp;"
+                highlight="Laproscopic Surgery Department"
+              />
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mt-6">
+                {uspList.map((item, idx) => (
+                  <ListItem key={idx} text={item} />
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
       {/* ═══════ PROCEDURES ═══════ */}
-      <section className="py-16 xl:py-10 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Left: Image */}
-            <div
-              className="relative rounded-2xl overflow-hidden shadow-lg group"
-              style={{ minHeight: "440px" }}
-            >
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+             {/* Left: Image */}
+            <div className="lg:col-span-5 relative w-full h-[400px] 2xl:h-[500px] rounded-[2rem] overflow-hidden shadow-2xl group">
               <Image
                 src="/images/departments-images/general_surgery.png"
                 alt="General Surgery Procedures"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/40 via-transparent to-transparent" />
             </div>
 
             {/* Right: List */}
-            <div>
+            <div className="lg:col-span-7">
               <SectionHeader title="Our" highlight="Procedures" />
-              <p className="text-gray-500 text-sm mb-6">
+              <p className="text-gray-500 text-sm 2xl:text-base mb-8">
                 Comprehensive surgical solutions for a wide range of abdominal
                 and general surgical conditions.
               </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                 {procedures.map((item, idx) => (
                   <ListItem key={idx} text={item} />
                 ))}

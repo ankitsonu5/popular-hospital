@@ -326,3 +326,157 @@ body {
 .tox-notifications-container {
   display: none !important;
 }
+
+/* ───────────────────────────────────────────────────────────────── */
+/* 1920px SCREEN OPTIMIZATIONS                                      */
+/* ───────────────────────────────────────────────────────────────── */
+@media (min-width: 1920px) {
+  /* Subtle zoom for specific pages */
+  .is-zoom-page {
+    zoom: 1.05;
+  }
+
+  /* Banner/Hero Section Optimization - Exclude Updates Ticker */
+  section.relative.bg-\[\#0b1c43\].overflow-hidden:not(.updates-ticker),
+  div.relative.bg-\[\#0b1c43\].overflow-hidden:not(.updates-ticker) {
+    min-height: 280px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  
+  /* Hero Action Cards Scaling for 1920px */
+  .home-action-card {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+    gap: 2rem !important;
+  }
+  .home-action-card span {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+  }
+  .home-action-card svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  /* Banner Title Scaling */
+  section.relative.bg-\[\#0b1c43\].overflow-hidden h1,
+  div.relative.bg-\[\#0b1c43\].overflow-hidden h1 {
+    font-size: 42px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Navbar Link Scaling (Desktop Base) */
+  nav.hidden.xl\:flex button, 
+  nav.hidden.xl\:flex a {
+    font-size: 15.5px !important;
+    padding-left: 0.95rem !important;
+    padding-right: 0.95rem !important;
+  }
+
+  /* Logo Scaling & Background for 1920px */
+  .header-logo-link {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease-out !important;
+  }
+  .header-logo-link.header-logo-with-bg {
+    background: white !important;
+    padding: 0 1.65rem !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+  }
+  .header-logo-link img {
+    height: 48px !important;
+    width: auto !important;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────── */
+/* LOGO WHITE BACKGROUND: Tablet & Desktop (transparent header)      */
+/* ───────────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .header-logo-link {
+    transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
+  }
+
+  /* Jab header transparent ho (scroll nahi hua, homepage par) */
+  .header-logo-link.header-logo-with-bg {
+    background: white;
+    padding: 4px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+  }
+
+  /* Jab scroll ho jaye aur header white ho - white bg hat jaaye */
+  .header-logo-link:not(.header-logo-with-bg) {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* 1920px ke liye override (existing block ko yahan continue karte hain) */
+@media (min-width: 1920px) {
+
+  /* Services Dropdown Scaling */
+  .header-services-dropdown {
+    width: 680px !important;
+    padding: 1.75rem !important;
+  }
+  .header-services-dropdown a {
+    padding: 1rem 1.25rem !important;
+    font-size: 15.5px !important;
+  }
+  .header-services-dropdown a svg {
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+  }
+  .header-services-dropdown h3 {
+    font-size: 14px !important;
+    margin-bottom: 1.5rem !important;
+    letter-spacing: 0.2em !important;
+  }
+
+  /* Standard Dropdown Scaling (Media & Blog, About) */
+  .header-standard-dropdown {
+    width: 320px !important;
+    padding: 0.75rem 0 !important;
+  }
+  .header-standard-dropdown a {
+    padding: 1rem 1.75rem !important;
+    font-size: 15.5px !important;
+    gap: 1.5rem !important;
+  }
+  .header-standard-dropdown a svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  /* Compact Social Sidebar for 1920px */
+  .social-sidebar-container a[href="/book"] {
+    padding-top: 1.45rem !important;
+    padding-bottom: 1.45rem !important;
+    width: 42px !important;
+  }
+  .social-sidebar-container a[href="/book"] svg {
+    width: 18px !important;
+    height: 18px !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .social-sidebar-container a[href="/book"] span {
+    font-size: 11px !important;
+    letter-spacing: 0.1em !important;
+  }
+  .social-sidebar-container a:not([href="/book"]) {
+    padding: 0.95rem 0.75rem !important;
+  }
+  .social-sidebar-container a:not([href="/book"]) svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}

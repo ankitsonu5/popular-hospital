@@ -67,7 +67,7 @@ const SocialSidebar = () => {
   ];
 
   return (
-    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-[999] hidden md:flex flex-col gap-px overflow-hidden rounded-l-2xl shadow-2xl group/sidebar">
+    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-[999] hidden md:flex flex-col gap-px overflow-hidden rounded-l-2xl shadow-2xl group/sidebar social-sidebar-container">
       {/* Vertical "Book an Appointment" Button */}
       <a
         href="/book"

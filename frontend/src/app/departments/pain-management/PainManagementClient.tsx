@@ -150,8 +150,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-8 flex flex-col items-center">
-    <h2 className="text-2xl md:text-3xl font-bold text-[#1e293b] font-heading leading-tight uppercase tracking-wide flex items-center gap-4">
+  <div className="mb-8 2xl:mb-12 flex flex-col items-center">
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#1e293b] font-heading leading-tight uppercase tracking-wide flex items-center gap-4">
       {title} <span className="text-[#3b82f6] font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-4 w-full">
@@ -171,12 +171,12 @@ const ContentBlock = ({
   text?: string;
   bullets?: string[];
 }) => (
-  <div className="mb-10 group">
-    <h3 className="text-xl md:text-2xl font-bold text-[#3b82f6] mb-4 group-hover:text-blue-700 transition-colors tracking-tight leading-tight">
+  <div className="mb-10 2xl:mb-14 group">
+    <h3 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-[#3b82f6] mb-4 group-hover:text-blue-700 transition-colors tracking-tight leading-tight">
       {title}
     </h3>
     {text && (
-      <p className="text-gray-700 text-base md:text-lg xl:text-[15px] leading-relaxed text-justify font-medium mb-4 whitespace-pre-line">
+      <p className="text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed text-justify font-medium mb-4 whitespace-pre-line">
         {text}
       </p>
     )}
@@ -185,9 +185,9 @@ const ContentBlock = ({
         {bullets.map((bullet, idx) => (
           <li
             key={idx}
-            className="flex items-start gap-3 text-gray-700 font-medium text-base md:text-lg"
+            className="flex items-start gap-3 text-gray-700 font-medium text-base md:text-lg 2xl:text-xl"
           >
-            <span className="text-gray-900 mt-1.5 font-bold flex-shrink-0 text-xl leading-none">
+            <span className="text-gray-900 mt-1.5 font-bold flex-shrink-0 text-xl 2xl:text-2xl leading-none">
               •
             </span>
             <span>{bullet}</span>
@@ -204,7 +204,7 @@ export default function PainManagementClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/pain_management_banner.png"
@@ -215,12 +215,12 @@ export default function PainManagementClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#334155] via-[#334155]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Specialized Care
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Pain <span className="text-blue-400">Medicine</span>
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -239,8 +239,8 @@ export default function PainManagementClient() {
       </section>
 
       {/* ═══════ MAIN CONTENT AREA ═══════ */}
-      <section className="py-20 xl:py-12 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-20 xl:py-12 2xl:py-24 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Left Content */}
             <div className="lg:col-span-8">

@@ -96,8 +96,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
       {title} <span className="text-blue-600">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -108,7 +108,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform">
       ›
     </span>
@@ -122,7 +122,7 @@ export default function CTVSClient() {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/cardiothoracic_banner.png"
@@ -134,12 +134,12 @@ export default function CTVSClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1.5 px-4 rounded-full bg-rose-500/20 text-rose-100 text-xs md:text-sm font-bold mb-6 border border-rose-400/30 backdrop-blur-sm uppercase tracking-wider">
               Department of
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-[1.1] font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading">
               Cardiothoracic & <br className="hidden md:block" />
               Vascular Surgery
             </h1>
@@ -185,8 +185,8 @@ export default function CTVSClient() {
       </section>
 
       {/* ═══════ CONTENT SECTION ═══════ */}
-      <section className="py-16 xl:py-10 bg-gray-50/50">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50/50">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content (8 cols) */}
             <div className="lg:col-span-8">
@@ -194,7 +194,7 @@ export default function CTVSClient() {
                 title="Department of"
                 highlight="Cardiothoracic & Vascular Surgery (CTVS)"
               />
-              <div className="prose prose-blue max-w-none text-gray-800 space-y-4 mb-10 leading-relaxed text-base md:text-lg xl:text-[15px] font-medium text-justify">
+              <div className="prose prose-blue max-w-none text-gray-800 space-y-4 mb-10 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-xl font-medium text-justify">
                 <p>
                   Welcome to the Cardiothoracic and Vascular Surgery (CTVS)
                   Department at Popular Hospital. We are proud to offer
@@ -288,46 +288,50 @@ export default function CTVSClient() {
       </section>
 
       {/* ═══════ OUR SERVICES SECTION ═══════ */}
-      <section className="py-20 xl:py-12 bg-white overflow-hidden">
-        <div className="mx-auto w-full max-w-5xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
-            <div className="order-2 lg:order-1">
-              <SectionHeader title="Our" highlight="Services:" />
-              <div className="space-y-6 mt-6">
-                {services.map((service, idx) => (
-                  <div key={idx} className="flex items-start gap-2">
-                    <span className="text-blue-600 mt-1 font-bold">›</span>
-                    <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] font-medium">
-                      <span className="font-bold text-[#0b1c43]">
-                        {service.title}
-                      </span>{" "}
-                      {service.content}
-                    </p>
-                  </div>
-                ))}
+      <section className="py-20 xl:py-12 2xl:py-24 bg-white overflow-hidden">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <SectionHeader title="Our" highlight="Services:" />
+          <div className="space-y-6 mt-6 max-w-none text-justify">
+            {services.slice(0, 2).map((service, idx) => (
+              <div key={idx} className="flex items-start gap-2">
+                <span className="text-blue-600 mt-1 flex-shrink-0 font-bold">›</span>
+                <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium">
+                  <span className="font-bold text-[#0b1c43]">
+                    {service.title}
+                  </span>{" "}
+                  {service.content}
+                </p>
               </div>
+            ))}
+
+            <div className="relative w-full max-w-5xl mx-auto aspect-[16/7] md:aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl border-4 border-white my-10 2xl:my-14 group">
+              <Image
+                src="/images/departments-images/cardiothoracic_vascular_surgery.jpeg"
+                alt="CTVS Procedures"
+                fill
+                className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/30 to-transparent" />
             </div>
 
-            <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-rose-50 rounded-3xl" />
-                <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
-                  <Image
-                    src="/images/departments-images/cardiothoracic_vascular_surgery.jpeg"
-                    alt="CTVS Procedures"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+            {services.slice(2).map((service, idx) => (
+              <div key={`post-${idx}`} className="flex items-start gap-2 mt-6">
+                <span className="text-blue-600 mt-1 flex-shrink-0 font-bold">›</span>
+                <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium">
+                  <span className="font-bold text-[#0b1c43]">
+                    {service.title}
+                  </span>{" "}
+                  {service.content}
+                </p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ═══════ WHY CHOOSE US SECTION ═══════ */}
-      <section className="py-20 xl:py-12 bg-gray-50 overflow-hidden">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-20 xl:py-12 2xl:py-24 bg-gray-50 overflow-hidden">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
             <div className="mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-square max-w-md mx-auto">
@@ -356,13 +360,13 @@ export default function CTVSClient() {
       </section>
 
       {/* ═══════ SURGEONS SECTION ═══════ */}
-      <section className="py-20 xl:py-12 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-20 xl:py-12 2xl:py-24 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <SectionHeader
             title="CTVS"
             highlight="Surgeons at Popular Hospital"
           />
-          <div className="prose prose-blue max-w-none text-gray-800 space-y-4 leading-relaxed text-base md:text-lg xl:text-[15px] font-medium text-justify">
+          <div className="prose prose-blue max-w-none text-gray-800 space-y-4 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-xl font-medium text-justify">
             <p>
               CTVS surgeons are highly trained specialists who possess extensive
               knowledge of cardiovascular and thoracic anatomy and are skilled

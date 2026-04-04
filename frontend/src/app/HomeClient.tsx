@@ -394,7 +394,7 @@ export default function HomeClient({
       </section>
 
       {/* Standalone Notification Ticker */}
-      <section className="relative w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-y border-[#1e3a8a]/30 group cursor-pointer transition-colors hover:bg-[#0e2455] z-20">
+      <section className="relative w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-y border-[#1e3a8a]/30 group cursor-pointer transition-colors hover:bg-[#0e2455] z-20 updates-ticker">
         <Link
           href="/updates"
           className="absolute inset-0 z-40"
@@ -474,7 +474,7 @@ export default function HomeClient({
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-hospital-teal/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#E85222]/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
-        <div className="relative mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <div className="relative mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Left Side - Text Content */}
             <div className="flex flex-col justify-center space-y-8">
@@ -611,7 +611,7 @@ export default function HomeClient({
           }}
         ></div>
 
-        <div className="relative mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="relative mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8 relative z-10">
             <div className="max-w-3xl">
@@ -896,7 +896,7 @@ export default function HomeClient({
         className="py-20 bg-[#f5f5f7]" // Apple-like light gray background
         aria-labelledby="our-services"
       >
-        <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="mb-12 xl:mb-10">
             <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
               Excellence in Care
@@ -1587,7 +1587,7 @@ export default function HomeClient({
 
       {/* Cashless Empanelment Section */}
       <section className="py-14 xl:py-10 bg-white border-t border-gray-100">
-        <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <div className="mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           {/* Heading */}
           <div className="text-center mb-10 xl:mb-8">
             <h2 className="text-3xl sm:text-4xl xl:text-3xl font-black text-[#0b1c43] font-heading tracking-tight">

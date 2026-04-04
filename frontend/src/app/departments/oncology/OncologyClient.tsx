@@ -44,8 +44,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
       {title} <span className="text-blue-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -56,7 +56,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">
       ›
     </span>
@@ -70,7 +70,7 @@ export default function OncologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/oncology.png"
@@ -82,12 +82,12 @@ export default function OncologyClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Centre for Comprehensive Cancer Care
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Oncology <br />
               <span className="text-blue-300">Excellence</span>
             </h1>
@@ -107,13 +107,13 @@ export default function OncologyClient() {
       </section>
 
       {/* ═══════ INTRO + DOCTOR SECTION ═══════ */}
-      <section className="py-16 xl:py-10 bg-gray-50/50">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50/50">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content */}
             <div className="lg:col-span-8">
               <SectionHeader title="Department of" highlight="Oncology" />
-              <div className="text-gray-700 space-y-6 mb-10 leading-relaxed text-[1.05rem] xl:text-[15px] text-justify font-medium">
+              <div className="text-gray-700 space-y-6 mb-10 leading-relaxed text-[1.05rem] xl:text-[15px] 2xl:text-lg text-justify font-medium">
                 <p>
                   Oncology: Clinical oncology consists of three primary
                   disciplines:
@@ -212,8 +212,8 @@ export default function OncologyClient() {
       </section>
 
       {/* ═══════ FULL-WIDTH SERVICES SECTION ═══════ */}
-      <section className="py-24 xl:py-12 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-24 xl:py-12 2xl:py-24 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="space-y-32">
             {/* Surgical Oncology Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">

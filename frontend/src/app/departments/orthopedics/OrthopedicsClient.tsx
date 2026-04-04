@@ -128,8 +128,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
       {title} <span className="text-blue-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -140,7 +140,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
       ›
     </span>
@@ -158,7 +158,7 @@ export default function OrthopedicsClient() {
   return (
     <div className="bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/orthopedics_banner.png"
@@ -169,12 +169,12 @@ export default function OrthopedicsClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-sm font-semibold mb-6 border border-white/30 backdrop-blur-sm uppercase tracking-wider">
               Centre for Bone & Joint Care
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Restoring Mobility, <br />
               <span className="text-blue-100">Rebuilding Lives</span>
             </h1>
@@ -194,8 +194,8 @@ export default function OrthopedicsClient() {
       </section>
 
       {/* ═══════ TOP SECTION: INTRO + DOCTOR ═══════ */}
-      <section className="py-12 xl:py-10 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-6">
+      <section className="py-12 xl:py-10 2xl:py-20 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -203,7 +203,7 @@ export default function OrthopedicsClient() {
                 title="Department of"
                 highlight="Orthopedics & Joint Replacement"
               />
-              <div className="space-y-6 text-gray-700 text-sm md:text-[15px] xl:text-[14px] leading-relaxed mb-12 text-justify font-medium">
+              <div className="space-y-6 text-gray-700 text-sm md:text-[15px] xl:text-[14px] 2xl:text-lg leading-relaxed mb-12 text-justify font-medium">
                 {introParagraphs.map((para, idx) => (
                   <p key={idx}>{para}</p>
                 ))}
@@ -224,11 +224,11 @@ export default function OrthopedicsClient() {
       </section>
 
       {/* ═══════ TREATMENTS INTERACTIVE SECTION ═══════ */}
-      <section className="py-20 xl:py-12 bg-[#fafafa] overflow-hidden">
-        <div className="mx-auto w-full max-w-5xl px-6">
+      <section className="py-20 xl:py-12 2xl:py-24 bg-[#fafafa] overflow-hidden">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#333] mb-4 font-heading">
+            <h2 className="text-4xl md:text-5xl 2xl:text-6xl font-bold text-[#333] mb-4 font-heading">
               Treatments
             </h2>
           </div>
@@ -248,7 +248,7 @@ export default function OrthopedicsClient() {
                         : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
                     }`}
                   >
-                    <span className="text-left text-lg">{cat.title}</span>
+                    <span className="text-left text-lg 2xl:text-xl">{cat.title}</span>
                     <span
                       className={`transition-transform duration-300 ${
                         selectedCategory.id === cat.id
@@ -282,7 +282,7 @@ export default function OrthopedicsClient() {
                 <div className="absolute inset-[-10px] rounded-full border border-gray-200" />
                 
                 {/* Main Circular Image */}
-                <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden border-8 border-white shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] 2xl:w-[500px] 2xl:h-[500px] rounded-full overflow-hidden border-8 border-white shadow-2xl transition-transform duration-500 group-hover:scale-105">
                   <Image
                     key={selectedCategory.id}
                     src={selectedCategory.image}
@@ -297,8 +297,8 @@ export default function OrthopedicsClient() {
 
             {/* Right Content */}
             <div className="lg:col-span-4 order-3">
-              <div className="animate-fade-in pl-4 lg:pl-10">
-                <h3 className="text-2xl font-bold text-[#333] mb-6 flex items-center gap-3">
+              <div className="animate-fade-in pl-4 lg:pl-10 2xl:pl-16">
+                <h3 className="text-2xl 2xl:text-4xl font-bold text-[#333] mb-6 flex items-center gap-3">
                   <span className="w-8 h-[2px] bg-[#E85222]" />
                   {selectedCategory.title}
                 </h3>
@@ -306,7 +306,7 @@ export default function OrthopedicsClient() {
                   {selectedCategory.services.map((service, idx) => (
                     <li key={idx} className="flex items-start gap-3 group">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E85222] flex-shrink-0 group-hover:scale-150 transition-transform" />
-                      <span className="text-gray-700 text-lg leading-relaxed font-medium">
+                      <span className="text-gray-700 text-lg 2xl:text-2xl leading-relaxed font-medium">
                         {service}
                       </span>
                     </li>

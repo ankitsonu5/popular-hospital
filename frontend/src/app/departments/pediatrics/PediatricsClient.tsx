@@ -90,8 +90,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
       {title} <span className="text-blue-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -102,7 +102,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
       ›
     </span>
@@ -158,7 +158,7 @@ export default function PediatricsClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/neonatology_banner.png"
@@ -170,12 +170,12 @@ export default function PediatricsClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
               Department of
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Pediatrics & Neonatology
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -220,8 +220,8 @@ export default function PediatricsClient() {
       </section>
 
       {/* ═══════ TOP SECTION: INTRO + DOCTOR ═══════ */}
-      <section className="py-12 xl:py-10 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-6">
+      <section className="py-12 xl:py-10 2xl:py-20 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -229,10 +229,13 @@ export default function PediatricsClient() {
                 title="Department of"
                 highlight="Pediatrics And Neonatology"
               />
-              <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] leading-relaxed mb-12 text-justify">
-                {introParagraphs.map((para, idx) => (
-                  <p key={idx}>{para}</p>
-                ))}
+              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium leading-relaxed mb-12 text-justify">
+                <p>{introParagraphs[0]}</p>
+                <p>{introParagraphs[1]}</p>
+                <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
+                  <p>{introParagraphs[2]}</p>
+                </div>
+                <p>{introParagraphs[3]}</p>
               </div>
             </div>
 
@@ -250,8 +253,8 @@ export default function PediatricsClient() {
       </section>
 
       {/* ═══════ SERVICE OFFERED SECTION ═══════ */}
-      <section className="py-16 xl:py-10 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-6">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* List Left */}
             <div className="lg:col-span-7">
@@ -279,13 +282,13 @@ export default function PediatricsClient() {
       </section>
 
       {/* ═══════ PEDIATRIC INDOOR SERVICES ═══════ */}
-      <section className="py-24 xl:py-12 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-6">
+      <section className="py-24 xl:py-12 2xl:py-24 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Image Left (Blob Shape) */}
+            {/* Image Left */}
             <div className="lg:col-span-6 h-[550px] relative order-2 lg:order-1">
-              <div className="absolute inset-0 bg-blue-50 rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-[70%_30%_30%_70%/_50%_60%_40%_50%] border-4 border-white shadow-2xl">
+              <div className="absolute inset-0 bg-blue-50 rounded-2xl opacity-50" />
+              <div className="w-full h-full relative overflow-hidden rounded-2xl border-4 border-white shadow-2xl">
                 <Image
                   src="/images/departments-images/pediatric_opd_realistic.png"
                   alt="Indoor Services"
@@ -308,12 +311,12 @@ export default function PediatricsClient() {
       </section>
 
       {/* ═══════ HIGHLIGHTS SECTION ═══════ */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
+      <section className="py-24 2xl:py-32 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             {/* List Left */}
             <div className="lg:col-span-6">
-              <h2 className="text-3xl font-bold text-[#3b82f6] font-heading mb-6">
+              <h2 className="text-3xl 2xl:text-4xl font-bold text-[#3b82f6] font-heading mb-6">
                 Highlights
               </h2>
               <ul className="space-y-4">
@@ -322,10 +325,10 @@ export default function PediatricsClient() {
                 ))}
               </ul>
             </div>
-            {/* Image Right (Blob Shape) */}
+            {/* Image Right */}
             <div className="lg:col-span-6 h-[400px] relative">
-              <div className="absolute inset-0 bg-blue-50 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] border-4 border-white shadow-2xl">
+              <div className="absolute inset-0 bg-blue-50 rounded-2xl opacity-50" />
+              <div className="w-full h-full relative overflow-hidden rounded-2xl border-4 border-white shadow-2xl group">
                 <Image
                   src="/images/departments-images/neonatology.jpeg"
                   alt="Pediatrics Highlights"

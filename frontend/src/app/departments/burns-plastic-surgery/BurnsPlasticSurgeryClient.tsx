@@ -73,8 +73,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
       {title} <span className="text-blue-600">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -85,7 +85,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
       ›
     </span>
@@ -99,7 +99,7 @@ export default function BurnsPlasticSurgeryClient() {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/plastic_surgery.png"
@@ -111,12 +111,12 @@ export default function BurnsPlasticSurgeryClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
               Department of
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Burns &amp; Plastic Surgery
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -161,8 +161,8 @@ export default function BurnsPlasticSurgeryClient() {
       </section>
 
       {/* ═══════ CONTENT + DOCTOR SIDEBAR ═══════ */}
-      <section className="py-16 xl:py-10 bg-gray-50/50">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50/50">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -174,7 +174,7 @@ export default function BurnsPlasticSurgeryClient() {
               {/* Burns */}
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-blue-600 mb-2">Burns</h3>
-                <div className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] font-medium text-justify space-y-4">
+                <div className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium text-justify space-y-4">
                   <p>
                     A burn is an injury to the skin or other organic tissue
                     primarily caused by heat ordue to radiation, radioactivity,
@@ -247,7 +247,7 @@ export default function BurnsPlasticSurgeryClient() {
               </div>
               <div className="order-1 md:order-2">
                 <SectionHeader title="Plastic" highlight="Surgery" />
-                <div className="space-y-4 text-gray-700 text-base xl:text-[15px] leading-relaxed text-justify">
+                <div className="space-y-4 text-gray-700 text-base xl:text-[15px] 2xl:text-lg leading-relaxed text-justify">
                   <p>
                     Plastic surgery is a surgical speciality which involves
                     reconstruction, restoration, or alteration of the human
@@ -256,14 +256,14 @@ export default function BurnsPlasticSurgeryClient() {
                     functioning of a part of the body.
                   </p>
                   <div className="bg-blue-50/50 p-6 rounded-2xl border-l-4 border-blue-600">
-                    <p className="font-semibold text-blue-900 italic text-base">
+                    <p className="font-semibold text-blue-900 italic text-base 2xl:text-lg">
                       At Popular Hospital we have a team of highly qualified and
                       dedicated plastic surgeons to deliver the best care at an
                       affordable price with the proverbial best in latest
                       technology.
                     </p>
                   </div>
-                  <p className="text-base">
+                  <p className="text-base 2xl:text-lg">
                     We work both independently and in Conjunction with many
                     other Surgical Services including: ENT, General Surgery,
                     Surgical Oncology, Orthopedics, Urology, Gynecology and
@@ -278,8 +278,8 @@ export default function BurnsPlasticSurgeryClient() {
       </section>
 
       {/* ═══════ PROCEDURES ═══════ */}
-      <section className="py-16 xl:py-12 bg-[#0b1c43]">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-16 xl:py-12 2xl:py-24 bg-[#0b1c43]">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="text-center mb-12">
             <span className="text-blue-300 font-bold tracking-widest text-xs uppercase mb-3 block">
               Advanced Treatments
@@ -299,7 +299,7 @@ export default function BurnsPlasticSurgeryClient() {
                 className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-5 py-4 hover:bg-white/10 hover:border-blue-400/40 transition-all duration-300 group flex items-center gap-4"
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-blue-400 flex-shrink-0 group-hover:bg-white group-hover:shadow-[0_0_8px_2px_rgba(96,165,250,0.6)] transition-all duration-300" />
-                <p className="text-blue-50 font-medium text-sm leading-snug group-hover:text-white transition-colors">
+                <p className="text-blue-50 font-medium text-sm 2xl:text-base leading-snug group-hover:text-white transition-colors">
                   {item}
                 </p>
               </div>

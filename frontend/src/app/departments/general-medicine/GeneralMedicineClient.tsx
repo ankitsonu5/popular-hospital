@@ -121,8 +121,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-2xl md:text-3xl font-bold text-[#1e1b4b] font-heading leading-tight">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#1e1b4b] font-heading leading-tight">
       {title} <span className="text-indigo-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -138,7 +138,7 @@ export default function GeneralMedicineClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#1e1b4b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#1e1b4b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/general_medicine.png"
@@ -149,12 +149,12 @@ export default function GeneralMedicineClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1e1b4b] via-[#1e1b4b]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/20 text-indigo-200 text-sm font-semibold mb-6 border border-indigo-400/30 backdrop-blur-sm">
               Department of
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               General <br />
               <span className="text-indigo-400">Medicine</span>
             </h1>
@@ -174,8 +174,8 @@ export default function GeneralMedicineClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO + DOCTOR SIDEBAR (Grid Based like Uploaded Image) ═══════ */}
-      <section className="py-16 xl:py-10 bg-white min-h-screen">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white min-h-screen">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content (Following Image structure) ── */}
             <div className="lg:col-span-8">
@@ -183,7 +183,7 @@ export default function GeneralMedicineClient() {
                 title="Department of"
                 highlight="General Medicine"
               />
-              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-16 font-medium text-justify">
+              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed mb-16 font-medium text-justify">
                 <div className="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600">
                   <p>
                     The department of Medicine initially covered all specialties
@@ -200,20 +200,6 @@ export default function GeneralMedicineClient() {
                 </div>
               </div>
 
-              {/* Loop through transcribed sections from the image */}
-              <div className="space-y-16">
-                {medicalServices.map((service, idx) => (
-                  <div key={idx} className="animate-fade-in group">
-                    <SectionHeader
-                      title={service.title}
-                      highlight={service.highlight}
-                    />
-                    <p className="text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed text-justify font-medium">
-                      {service.content}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* ── Right Doctor Sidebar ── */}
@@ -224,6 +210,26 @@ export default function GeneralMedicineClient() {
                   departmentName="General Medicine"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* ── Medical Services Sections ── */}
+          <div className="mt-20 space-y-16 border-t border-gray-100 pt-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20">
+              {medicalServices.map((service, idx) => (
+                <div key={idx} className="animate-fade-in group">
+                  <SectionHeader
+                    title={service.title}
+                    highlight={service.highlight}
+                  />
+                  <div className="relative">
+                    <div className="absolute -left-4 top-0 bottom-0 w-1 bg-indigo-100 rounded-full group-hover:bg-indigo-600 transition-colors" />
+                    <p className="text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed text-justify font-medium pl-2">
+                      {service.content}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

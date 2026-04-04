@@ -25,7 +25,7 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
 
   return (
     <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12 relative">
+      <div className="mx-auto max-w-[1440px] min-[1920px]:max-w-[1366px] px-6 sm:px-8 lg:px-12 relative">
         <div className="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
           <div className="max-w-4xl">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-5xl font-bold text-[#1e3a8a] tracking-tight font-heading leading-tight">

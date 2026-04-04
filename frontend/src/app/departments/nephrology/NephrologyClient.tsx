@@ -89,7 +89,7 @@ const SectionHeader = ({
   highlight?: string;
 }) => (
   <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
       {title} <span className="text-blue-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -100,7 +100,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">
       ›
     </span>
@@ -116,7 +116,7 @@ export default function NephrologyClient() {
   return (
     <div className="bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/nephrology.png"
@@ -128,12 +128,12 @@ export default function NephrologyClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Centre for Kidney Care & Dialysis
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Nephrology <br />
               <span className="text-blue-300">Excellence</span>
             </h1>
@@ -153,13 +153,13 @@ export default function NephrologyClient() {
       </section>
 
       {/* ═══════ MAIN CONTENT ═══════ */}
-      <section className="py-12 xl:py-8">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-12 xl:py-8 2xl:py-16">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Left Content Area */}
             <div className="lg:col-span-8">
               {/* Intro Paragraph */}
-              <div className="prose prose-blue max-w-none text-gray-700 mb-16 xl:mb-10 leading-relaxed text-lg font-medium xl:text-[15px]">
+              <div className="prose prose-blue max-w-none text-gray-700 mb-16 xl:mb-10 2xl:mb-16 leading-relaxed text-lg font-medium xl:text-[15px] 2xl:text-lg">
                 <p>
                   Nephrology is a medical super speciality that deals with the
                   functioning of diseases related to the kidney. Kidneys are the
@@ -174,7 +174,7 @@ export default function NephrologyClient() {
               </div>
 
               {/* Department Description Block - Screenshot 1 Style */}
-              <div className="text-gray-700 leading-relaxed text-lg font-medium xl:text-[15px] text-justify mb-24 xl:mb-12 border-t border-gray-100 pt-16 xl:pt-10">
+              <div className="text-gray-700 leading-relaxed text-lg font-medium xl:text-[15px] 2xl:text-lg text-justify mb-24 xl:mb-12 2xl:mb-20 border-t border-gray-100 pt-16 xl:pt-10 2xl:pt-16">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                   {/* Left Column */}
                   <div>
@@ -232,10 +232,10 @@ export default function NephrologyClient() {
       </section>
 
       {/* ═══════ INTERACTIVE RENAL CARE SECTION ═══════ */}
-      <div className="mt-24 pt-20 xl:mt-12 xl:pt-12 border-t border-gray-100 bg-[#fafafa] -mx-4 px-4 pb-20 xl:pb-12 overflow-hidden">
-        <div className="mx-auto w-full max-w-5xl px-6 md:px-8 lg:px-4">
+      <div className="mt-24 pt-20 xl:mt-12 xl:pt-12 2xl:mt-24 2xl:pt-20 border-t border-gray-100 bg-[#fafafa] -mx-4 px-4 pb-20 xl:pb-12 2xl:pb-20 overflow-hidden">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 md:px-8 lg:px-4">
           {/* Main Heading */}
-          <div className="text-center mb-20 max-w-5xl mx-auto">
+          <div className="text-center mb-20 max-w-5xl 2xl:max-w-7xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#333] mb-8 font-heading leading-tight italic">
               &quot;Comprehensive Kidney Care & Professional Excellence&quot;
             </h2>

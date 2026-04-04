@@ -75,8 +75,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
       {title} <span className="text-blue-600">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -87,7 +87,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
       ›
     </span>
@@ -103,7 +103,7 @@ export default function UrologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/urology.png"
@@ -115,12 +115,12 @@ export default function UrologyClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
               Department of
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Urology
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -139,8 +139,8 @@ export default function UrologyClient() {
       </section>
 
       {/* ═══════ CONTENT + DOCTOR SIDEBAR ═══════ */}
-      <section className="py-16 xl:py-10 bg-gray-50/50">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50/50">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
             <div className="lg:col-span-8">
@@ -151,7 +151,7 @@ export default function UrologyClient() {
                 <h3 className="text-xl font-bold text-blue-600 mb-2">
                   What Is Urology?
                 </h3>
-                <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] font-medium text-justify">
+                <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium text-justify">
                   Urology is a surgical speciality which deals with diseases of
                   the male and female urinary Tract and of the male reproductive
                   organs. The Department of Urology at Popular Hospital is at
@@ -166,7 +166,7 @@ export default function UrologyClient() {
                 <h3 className="text-xl font-bold text-blue-600 mb-2">
                   What Are Kidney Stones?
                 </h3>
-                <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] font-medium text-justify mb-4">
+                <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium text-justify mb-4">
                   Kidney stones are small, hard deposits that form inside your
                   kidneys. The stones are made of mineral and acid salts. Kidney
                   stones have many causes and can affect any part of your
@@ -175,7 +175,7 @@ export default function UrologyClient() {
                   minerals to crystallize and stick together.
                 </p>
                 <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
-                  <p className="text-gray-800 leading-relaxed text-base md:text-lg font-medium text-justify">
+                  <p className="text-gray-800 leading-relaxed text-base md:text-lg 2xl:text-xl font-medium text-justify">
                     <strong className="text-[#0b1c43]">
                       Percutaneous nephrolithotomy:
                     </strong>{" "}
@@ -201,10 +201,10 @@ export default function UrologyClient() {
 
 
       {/* ═══════ INTERACTIVE UROLOGICAL CARE SECTION ═══════ */}
-      <div className="mt-24 xl:mt-12 pt-20 xl:pt-12 border-t border-gray-100 bg-[#fafafa] -mx-4 px-4 pb-20 xl:pb-12 overflow-hidden">
-        <div className="mx-auto w-full max-w-5xl px-6 md:px-8 lg:px-4">
+      <div className="mt-24 xl:mt-12 pt-20 xl:pt-12 2xl:mt-24 2xl:pt-20 border-t border-gray-100 bg-[#fafafa] -mx-4 px-4 pb-20 xl:pb-12 2xl:pb-20 overflow-hidden">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 md:px-8 lg:px-4">
           {/* Main Heading */}
-          <div className="text-center mb-20 max-w-5xl mx-auto">
+          <div className="text-center mb-20 max-w-5xl 2xl:max-w-7xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#333] mb-8 font-heading leading-tight italic">
               &quot;Advanced Urological Services & Clinical Excellence&quot;
             </h2>
@@ -283,7 +283,7 @@ export default function UrologyClient() {
                   {selectedCategory.services.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-4 group">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E85222] flex-shrink-0 group-hover:scale-150 transition-transform" />
-                      <span className="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
+                      <span className="text-gray-700 text-base md:text-lg 2xl:text-xl leading-relaxed font-medium">
                         {item}
                       </span>
                     </li>

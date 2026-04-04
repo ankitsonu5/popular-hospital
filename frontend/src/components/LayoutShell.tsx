@@ -9,6 +9,39 @@ import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
 
+const ZOOM_PATHS = [
+  "/about",
+  "/about/vision-mission",
+  "/about/chairman-desk",
+  "/about/md-desk",
+  "/about/leadership",
+  "/about/awards-recognition",
+  "/about/csr",
+  "/about/cashless-empanelment",
+  "/doctors",
+  "/departments/cardiology",
+  "/departments/ctvs",
+  "/departments/neurosurgery",
+  "/departments/nephrology",
+  "/departments/gastroenterology",
+  "/departments/oncology",
+  "/departments/burns-plastic-surgery",
+  "/departments/interventional-radiology",
+  "/departments/pediatric-surgery",
+  "/departments/general-surgery",
+  "/departments/gynaecology",
+  "/departments/pediatrics",
+  "/departments/orthopedics",
+  "/departments/general-medicine",
+  "/departments/ent",
+  "/departments/dietetics-nutrition",
+  "/departments/ophthalmology",
+  "/departments/dental",
+  "/departments/respiratory",
+  "/departments/pain-management",
+  "/departments/psychiatry",
+];
+
 export default function LayoutShell({
   children,
 }: {
@@ -41,7 +74,7 @@ export default function LayoutShell({
       <SocialSidebar />
       <main
         id="main-content"
-        className="flex-1 pb-[70px] md:pb-0"
+        className={`flex-1 pb-[70px] md:pb-0 ${ZOOM_PATHS.includes(pathname) ? "is-zoom-page" : ""}`}
         tabIndex={-1}
       >
         {children}

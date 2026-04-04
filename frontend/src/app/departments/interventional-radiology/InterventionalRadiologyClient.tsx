@@ -113,7 +113,7 @@ const SectionHeader = ({
   highlight?: string;
 }) => (
   <div className="mb-8">
-    <h2 className="text-2xl md:text-3xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
       {title} <span className="text-blue-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -124,7 +124,7 @@ const SectionHeader = ({
 );
 
 const ContentBlock = ({ text }: { text: string }) => (
-  <p className="text-gray-700 text-base md:text-lg xl:text-[15px] leading-relaxed text-justify font-medium mb-6">
+  <p className="text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed text-justify font-medium mb-6">
     {text}
   </p>
 );
@@ -138,7 +138,7 @@ const ListItem = ({
   boldTitle?: string;
   desc?: string;
 }) => (
-  <li className="flex items-start gap-3 text-gray-700 font-medium text-base md:text-lg mb-4">
+  <li className="flex items-start gap-3 text-gray-700 font-medium text-base md:text-lg 2xl:text-xl mb-4">
     <span className="text-blue-500 mt-1.5 font-bold flex-shrink-0 text-xl leading-none">
       ›
     </span>
@@ -157,7 +157,7 @@ export default function InterventionalRadiologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/radiology_banner.png"
@@ -168,12 +168,12 @@ export default function InterventionalRadiologyClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Super-Speciality Care
             </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Interventional <br />
               <span className="text-blue-400">Radiology</span>
             </h1>
@@ -193,8 +193,8 @@ export default function InterventionalRadiologyClient() {
       </section>
 
       {/* ═══════ MAIN CONTENT AREA ═══════ */}
-      <section className="py-20 xl:py-12 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-6">
+      <section className="py-20 xl:py-12 2xl:py-24 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Left Content */}
             <div className="lg:col-span-8">
@@ -216,44 +216,6 @@ export default function InterventionalRadiologyClient() {
                 ))}
               </div>
 
-              {/* Who is an Radiologist */}
-              <div className="mb-16">
-                <SectionHeader
-                  title="Who is an"
-                  highlight="Interventional Radiologist?"
-                />
-                <div className="flex flex-col md:flex-row gap-10 items-center">
-                  <div className="flex-1">
-                    <ContentBlock text={radiologistSection.text} />
-                  </div>
-                  <div className="w-full md:w-1/3 relative aspect-square rounded-2xl overflow-hidden shadow-2xl border border-gray-100 group">
-                    <Image
-                      src="/images/departments-images/radiology.jpeg"
-                      alt="Radiologist at work"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Advantages section */}
-              <div className="mb-16">
-                <SectionHeader title="What are the" highlight="Advantages?" />
-                <p className="text-gray-800 text-lg mb-8 font-bold italic text-justify">
-                  {advantagesSection.intro}
-                </p>
-                <ul className="grid grid-cols-1 gap-1">
-                  {advantagesSection.items.map((item, idx) => (
-                    <ListItem
-                      key={idx}
-                      boldTitle={item.title}
-                      desc={item.desc}
-                    />
-                  ))}
-                </ul>
-              </div>
             </div>
 
             {/* Right Sidebar - Doctor Slider */}
@@ -267,15 +229,59 @@ export default function InterventionalRadiologyClient() {
               </div>
             </div>
           </div>
+
+          {/* Full Width Sections */}
+          <div className="mt-16 space-y-16">
+            {/* Who is an Radiologist */}
+            <div>
+              <SectionHeader
+                title="Who is an"
+                highlight="Interventional Radiologist?"
+              />
+              <div className="flex flex-col md:flex-row gap-10 items-center">
+                <div className="flex-1">
+                  <ContentBlock text={radiologistSection.text} />
+                </div>
+                <div className="w-full md:w-1/3 relative aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-gray-100 group">
+                  <Image
+                    src="/images/departments-images/radiology.jpeg"
+                    alt="Radiologist at work"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </div>
+            </div>
+
+            {/* Advantages section */}
+            <div>
+              <SectionHeader title="What are the" highlight="Advantages?" />
+              <p className="text-gray-800 text-lg 2xl:text-xl mb-8 font-bold italic text-justify">
+                {advantagesSection.intro}
+              </p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {advantagesSection.items.map((item, idx) => (
+                  <ListItem
+                    key={idx}
+                    boldTitle={item.title}
+                    desc={item.desc}
+                  />
+                ))}
+              </ul>
+            </div>
+          </div>
+
+
         </div>
       </section>
 
       {/* ═══════ MAJOR PROCEDURES ═══════ */}
-      <section className="py-24 xl:py-12 bg-gray-50 relative overflow-hidden">
+      <section className="py-24 xl:py-12 2xl:py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none" />
-        <div className="mx-auto w-full max-w-5xl px-6 relative z-10">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 relative z-10">
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
+            <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
               MAJOR <span className="text-blue-600 font-bold">PROCEDURES</span>
             </h2>
             <div className="flex items-center gap-2 mt-2">
@@ -298,7 +304,7 @@ export default function InterventionalRadiologyClient() {
             </div>
 
             <div className="flex-1">
-              <p className="text-gray-800 text-base md:text-lg mb-10 font-bold text-justify leading-relaxed italic">
+              <p className="text-gray-800 text-base md:text-lg 2xl:text-xl mb-10 font-bold text-justify leading-relaxed italic">
                 {proceduresSection.intro}
               </p>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
@@ -307,7 +313,7 @@ export default function InterventionalRadiologyClient() {
                     <span className="text-blue-600 font-bold mt-1.5 transition-transform group-hover:translate-x-1">
                       ›
                     </span>
-                    <span className="text-gray-700 text-base leading-relaxed font-bold">
+                    <span className="text-gray-700 text-base 2xl:text-lg leading-relaxed font-bold">
                       {item}
                     </span>
                   </li>

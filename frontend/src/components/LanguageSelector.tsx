@@ -7,6 +7,7 @@ declare global {
   interface Window {
     gtranslate_settings: any;
     doGTranslate: (lang_pair: string) => void;
+    googleTranslateElementInit: () => void;
   }
 }
 
@@ -25,6 +26,75 @@ const languages = [
   { code: "pa", label: "Punjabi", native: "ਪੰਜਾਬੀ", flag: "IN" },
 ];
 
+// Helper: trigger the hidden Google Translate combo box to change language
+function triggerGoogleTranslate(langCode: string): boolean {
+  const combo = document.querySelector(".goog-te-combo") as HTMLSelectElement;
+  if (combo && combo.options && combo.options.length > 0) {
+    combo.value = langCode;
+    combo.dispatchEvent(new Event("change", { bubbles: true }));
+    return true;
+  }
+  return false;
+}
+
+// Helper: retry triggering until the combo is ready (max ~6 seconds)
+function triggerWithRetry(langCode: string) {
+  if (triggerGoogleTranslate(langCode)) return;
+  let attempts = 0;
+  const interval = setInterval(() => {
+    attempts++;
+    if (triggerGoogleTranslate(langCode) || attempts > 20) {
+      clearInterval(interval);
+    }
+  }, 300);
+}
+
+// Helper: load the Google Translate script once
+function loadGoogleTranslate(includedLangs: string) {
+  if (document.getElementById("google-translate-script")) return;
+
+  // Create hidden container element
+  if (!document.getElementById("google_translate_element")) {
+    const el = document.createElement("div");
+    el.id = "google_translate_element";
+    el.style.display = "none";
+    document.body.appendChild(el);
+  }
+
+  window.googleTranslateElementInit = function () {
+    new (window as any).google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+        includedLanguages: includedLangs,
+        autoDisplay: false,
+        multilanguagePage: true,
+      },
+      "google_translate_element"
+    );
+  };
+
+  const script = document.createElement("script");
+  script.id = "google-translate-script";
+  script.src =
+    "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  script.onerror = () => {
+    // Remove on failure so we can retry next time
+    script.remove();
+    const el = document.getElementById("google-translate-script");
+    if (el) el.remove();
+  };
+  document.body.appendChild(script);
+}
+
+// Helper: clear Google Translate cookies and reload to restore English
+function resetToEnglish() {
+  const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = `googtrans=; ${expiry}`;
+  document.cookie = `googtrans=; ${expiry} domain=${window.location.hostname}`;
+  document.cookie = `googtrans=; ${expiry} domain=.${window.location.hostname}`;
+  window.location.reload();
+}
+
 const LanguageSelector = ({
   scrolled,
   isTransparentPage,
@@ -36,49 +106,28 @@ const LanguageSelector = ({
   const [currentLang, setCurrentLang] = useState("en");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const includedLangs = languages.map((l) => l.code).join(",");
+
   useEffect(() => {
-    // 1. Sync UI state with saved preference OR default to English
-    const savedLang = localStorage.getItem("user-language");
-    if (savedLang && savedLang !== "en") {
-      setCurrentLang(savedLang);
-      loadGoogleTranslate();
+    // Sync UI state with saved preference
+    const savedLang = localStorage.getItem("user-language") || "en";
+    setCurrentLang(savedLang);
+
+    if (savedLang !== "en") {
+      // Script already loaded on a previous visit — load and re-apply
+      loadGoogleTranslate(includedLangs);
+      // Wait slightly for the element to init, then trigger
+      const timeout = setTimeout(() => triggerWithRetry(savedLang), 800);
+      return () => clearTimeout(timeout);
     } else {
-      setCurrentLang("en");
-      // Ensure no google cookie exists which might force a translation on English
-      document.cookie =
-        "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" +
-        window.location.hostname;
+      // Make sure no stale translation cookie forces a foreign language
+      const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `googtrans=; ${expiry}`;
+      document.cookie = `googtrans=; ${expiry} domain=${window.location.hostname}`;
     }
+  }, [includedLangs]);
 
-    // 2. Defining official translation helper
-    if (!(window as any).doGTranslate) {
-      (window as any).doGTranslate = (lang: string) => {
-        if (!lang) return;
-
-        const trigger = () => {
-          const combo = document.querySelector(
-            ".goog-te-combo",
-          ) as HTMLSelectElement;
-          if (combo && combo.options && combo.options.length > 0) {
-            combo.value = lang;
-            combo.dispatchEvent(new Event("change", { bubbles: true }));
-            return true;
-          }
-          return false;
-        };
-
-        if (!trigger()) {
-          let attempts = 0;
-          const interval = setInterval(() => {
-            if (trigger() || attempts > 20) clearInterval(interval);
-            attempts++;
-          }, 300);
-        }
-      };
-    }
-
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
@@ -91,59 +140,20 @@ const LanguageSelector = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const loadGoogleTranslate = () => {
-    if (document.getElementById("google-translate-script")) return;
-
-    // Create the hidden element if it doesn't exist
-    if (!document.getElementById("google_translate_element")) {
-      const el = document.createElement("div");
-      el.id = "google_translate_element";
-      el.style.display = "none";
-      document.body.appendChild(el);
-    }
-
-    (window as any).googleTranslateElementInit = function () {
-      new (window as any).google.translate.TranslateElement(
-        {
-          pageLanguage: "en",
-          includedLanguages: languages.map((l) => l.code).join(","),
-          autoDisplay: false,
-          multilanguagePage: true,
-        },
-        "google_translate_element",
-      );
-    };
-
-    const script = document.createElement("script");
-    script.id = "google-translate-script";
-    script.src =
-      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    document.body.appendChild(script);
-  };
-
   const handleLanguageChange = (code: string) => {
     setCurrentLang(code);
     setIsOpen(false);
-
-    // Save preference to localStorage so we don't clear the cookie next time
     localStorage.setItem("user-language", code);
 
-    if (code !== "en") {
-      loadGoogleTranslate();
-    } else {
-      // If switching back to English
-      document.cookie =
-        "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" +
-        window.location.hostname;
-      // Also trigger official translation to clear existing translation if script is loaded
+    if (code === "en") {
+      // Restore original English — must reload after clearing cookies
+      resetToEnglish();
+      return;
     }
 
-    // Trigger official Google Translate
-    if ((window as any).doGTranslate) {
-      (window as any).doGTranslate(code);
-    }
+    // Non-English: load script if needed, then trigger translation
+    loadGoogleTranslate(includedLangs);
+    triggerWithRetry(code);
   };
 
   const isDark = scrolled || !isTransparentPage;

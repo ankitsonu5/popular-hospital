@@ -16,7 +16,7 @@ export default function EmergencyServices() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl translate-y-1/2 mix-blend-multiply"></div>
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="mx-auto w-full max-w-7xl min-[1920px]:max-w-[1366px] px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center justify-center mb-16 xl:mb-12 text-center">
           {/* Header Lockup */}
           <div className="relative inline-block mb-6">

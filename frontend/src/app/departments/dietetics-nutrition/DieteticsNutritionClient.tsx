@@ -79,8 +79,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#064e3b] font-heading">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#064e3b] font-heading">
       {title} <span className="text-emerald-600">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -91,7 +91,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-emerald-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
       ›
     </span>
@@ -103,7 +103,7 @@ export default function DieteticsNutritionClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#064e3b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#064e3b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/dietetics_nutrition.png"
@@ -115,12 +115,12 @@ export default function DieteticsNutritionClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#064e3b] via-[#064e3b]/90 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-emerald-500/20 text-emerald-200 text-sm font-semibold mb-6 border border-emerald-400/30 backdrop-blur-sm">
               Nourishing Health Professionally
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Dietetics & <br />
               <span className="text-emerald-400">Nutrition</span>
             </h1>
@@ -139,102 +139,21 @@ export default function DieteticsNutritionClient() {
         </div>
       </section>
 
-      {/* ═══════ CONTENT SECTION ═══════ */}
-      <section className="py-16 xl:py-10 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      {/* ═══════ CONTENT SECTION (Only Doctor Appointment) ═══════ */}
+      <section className="py-16 xl:py-20 bg-white min-h-[600px]">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left Content (8 cols) */}
-            <div className="lg:col-span-8">
-              <SectionHeader
-                title="Department of"
-                highlight="Dietetics & Nutrition"
-              />
-              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-12 font-medium text-justify">
-                <p>
-                  The Dietetics & Nutrition department at Popular Hospital
-                  focuses on the prevention and management of diseases through
-                  professional nutritional guidance. Our clinical nutritionists
-                  work closely with the medical team to provide nutrition
-                  therapy for patients across all specialties.
-                </p>
-                <div className="bg-emerald-50 p-6 rounded-xl border-l-4 border-emerald-600">
-                  <p>
-                    We understand that every individual is unique. Our expert
-                    dietitians create personalized, evidence-based nutrition
-                    plans tailored to your lifestyle, medical history, and
-                    health goals, ensuring optimal recovery and long-term
-                    wellness.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                {features.map((feature, idx) => (
-                  <div
-                    key={idx}
-                    className="flex gap-4 p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-emerald-200 transition-colors group"
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                      <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d={feature.icon}
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-1">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed text-sm">
-                        {feature.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Sidebar - Doctor Card with Slider */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit">
+            {/* Empty Left Column to maintain position */}
+            <div className="hidden lg:block lg:col-span-8"></div>
+            
+            <div className="lg:col-span-4 flex justify-center lg:justify-end">
+              <div className="w-full max-w-sm">
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Dietetics & Nutrition"
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════ DIET PLANS SECTION ═══════ */}
-      <section className="py-16 xl:py-10 bg-gray-50">
-        <div className="mx-auto w-full max-w-5xl px-4">
-          <SectionHeader title="Specialized" highlight="Dietary Plans" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {dietPlans.map((plan, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100"
-              >
-                <h3 className="text-2xl font-bold text-[#064e3b] mb-6">
-                  {plan.title}
-                </h3>
-                <ul className="space-y-4">
-                  {plan.items.map((item, i) => (
-                    <ListItem key={i} text={item} />
-                  ))}
-                </ul>
-              </div>
-            ))}
           </div>
         </div>
       </section>

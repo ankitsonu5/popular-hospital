@@ -547,13 +547,13 @@ export function Header() {
 
         {/* Brand & Desktop Nav */}
         <div className="relative mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-12">
-          <div className="flex h-16 sm:h-[72px] items-center justify-between gap-2">
+          <div className="flex h-16 sm:h-16 items-center justify-between gap-2">
             <Link
               href="/"
-              className={`flex items-center transition-all duration-300 ${
+              className={`flex items-center transition-all duration-300 header-logo-link ${
                 scrolled || !isTransparentPage
                   ? ""
-                  : "md:bg-white/90 md:backdrop-blur-sm md:rounded-lg md:px-3 md:py-1"
+                  : "md:px-3 md:py-1 header-logo-with-bg"
               }`}
             >
               <Image
@@ -663,19 +663,19 @@ export function Header() {
                               </div>
                             </div>
                           ) : item.label === "Services" ? (
-                            <div className="w-[600px] xl:w-[520px] p-6 xl:p-5 rounded-xl bg-white shadow-xl border border-gray-100">
+                            <div className="w-[600px] min-[1366px]:w-[640px] p-6 xl:p-5 rounded-xl bg-white shadow-xl border border-gray-100 header-services-dropdown">
                               <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest mb-4 pb-2 border-b border-gray-100">
                                 Our Services
                               </h3>
-                              <div className="grid grid-cols-2 gap-2">
+                              <div className="grid grid-cols-2 gap-x-6 gap-y-2">
                                 {item.dropdown?.map((dropdownItem) => (
                                   <Link
                                     key={dropdownItem.label}
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-gray-50 rounded-xl transition-all"
+                                    className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-gray-50 rounded-xl transition-all whitespace-nowrap"
                                     onClick={() => setActiveDropdown(null)}
                                   >
-                                    <span className="opacity-70">
+                                    <span className="opacity-70 flex-shrink-0">
                                       {getIcon(dropdownItem.label)}
                                     </span>
                                     <span>{dropdownItem.label}</span>
@@ -684,7 +684,7 @@ export function Header() {
                               </div>
                             </div>
                           ) : (
-                            <div className="w-72 rounded-xl bg-white py-2 shadow-xl border border-gray-100">
+                            <div className="w-72 rounded-xl bg-white py-2 shadow-xl border border-gray-100 header-standard-dropdown">
                               {item.dropdown.map((dropdownItem, idx) => (
                                 <div key={dropdownItem.label}>
                                   {dropdownItem.separator && idx > 0 && (
@@ -742,7 +742,7 @@ export function Header() {
                   className={`p-2 rounded-lg transition-all duration-300 ${
                     scrolled || !isTransparentPage
                       ? "text-gray-600 hover:bg-gray-100"
-                      : "text-gray-600 hover:bg-gray-100 md:bg-white/90 md:backdrop-blur-sm md:text-gray-600 md:shadow-sm"
+                      : "text-gray-600 hover:bg-gray-100"
                   }`}
                   onClick={() => setMenuOpen(!menuOpen)}
                 >

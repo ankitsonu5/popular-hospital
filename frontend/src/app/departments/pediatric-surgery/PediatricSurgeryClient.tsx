@@ -43,8 +43,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-6">
-    <h2 className="text-3xl font-bold text-[#0b1c43] font-heading">
+  <div className="mb-6 2xl:mb-8">
+    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
       {title} <span className="text-blue-600">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -58,7 +58,7 @@ export default function PediatricSurgeryClient() {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/pediatric_surgery.png"
@@ -70,12 +70,12 @@ export default function PediatricSurgeryClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
               Department of
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
               Pediatric Surgery
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -94,8 +94,8 @@ export default function PediatricSurgeryClient() {
       </section>
 
       {/* ─── Intro + Doctor Cards Section ─── */}
-      <section className="py-16 xl:py-10 text-justify">
-        <div className="mx-auto w-full max-w-5xl px-6">
+      <section className="py-16 xl:py-10 2xl:py-20 text-justify">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Intro Left */}
             <div className="lg:col-span-8">
@@ -103,7 +103,7 @@ export default function PediatricSurgeryClient() {
                 title="Department of"
                 highlight="Pediatric Surgery"
               />
-              <div className="space-y-4 text-gray-700 text-base leading-relaxed xl:text-[15px] text-justify">
+              <div className="space-y-4 text-gray-700 text-base leading-relaxed xl:text-[15px] 2xl:text-lg text-justify">
                 <p>
                   Pediatric Surgery is a specialization in medicine dealing with
                   surgery of infants, children, and adolescents. It covers a
@@ -148,7 +148,7 @@ export default function PediatricSurgeryClient() {
             {/* Knowing Section */}
             <div className="max-w-4xl">
               <SectionHeader title="Knowing a" highlight="Pediatric Surgeon?" />
-              <p className="text-gray-700 text-base leading-relaxed text-justify font-medium">
+              <p className="text-gray-700 text-base 2xl:text-lg leading-relaxed text-justify font-medium">
                 A pediatric surgeon is a uniquely qualified provider whose
                 expertise consists of conducting surgeries that are specific to
                 children. Those caregivers learn the physical or emotional
@@ -166,7 +166,7 @@ export default function PediatricSurgeryClient() {
                   title="Pediatric Surgery at"
                   highlight="Popular Hospital"
                 />
-                <p className="text-gray-700 text-base mb-4 leading-relaxed font-semibold">
+                <p className="text-gray-700 text-base 2xl:text-lg mb-4 leading-relaxed font-semibold">
                   At Popular Hospital, pediatric surgery offers several
                   benefits, including:
                 </p>
@@ -203,7 +203,7 @@ export default function PediatricSurgeryClient() {
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <span className="text-blue-600 font-bold mt-1">›</span>
-                      <p className="text-gray-700 text-base leading-relaxed text-justify font-medium">
+                      <p className="text-gray-700 text-base 2xl:text-lg leading-relaxed text-justify font-medium">
                         <span className="font-bold text-blue-600 uppercase tracking-tight">
                           {item.title}:
                         </span>{" "}
@@ -260,7 +260,7 @@ export default function PediatricSurgeryClient() {
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <span className="text-blue-600 font-bold mt-1">›</span>
-                      <p className="text-gray-700 text-base leading-relaxed text-justify font-medium">
+                      <p className="text-gray-700 text-base 2xl:text-lg leading-relaxed text-justify font-medium">
                         <span className="font-bold text-blue-600">
                           {item.title}:
                         </span>{" "}
@@ -270,7 +270,7 @@ export default function PediatricSurgeryClient() {
                   ))}
                   <li className="flex items-start gap-2 pt-6 border-t border-gray-100">
                     <span className="text-blue-600 font-bold mt-1">›</span>
-                    <p className="text-gray-700 text-base leading-relaxed text-justify font-medium">
+                    <p className="text-gray-700 text-base 2xl:text-lg leading-relaxed text-justify font-medium">
                       <span className="font-bold text-[#0b1c43]">
                         Conclusion:
                       </span>{" "}

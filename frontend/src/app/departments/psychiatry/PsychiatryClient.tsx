@@ -63,8 +63,8 @@ const SectionHeader = ({
   title: string;
   highlight?: string;
 }) => (
-  <div className="mb-8">
-    <h2 className="text-2xl md:text-3xl font-bold text-[#2e1065] font-heading leading-tight uppercase tracking-wide">
+  <div className="mb-8 2xl:mb-12">
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#2e1065] font-heading leading-tight uppercase tracking-wide">
       {title} <span className="text-violet-600 font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
@@ -75,7 +75,7 @@ const SectionHeader = ({
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-3 text-gray-700 mb-3 group text-base md:text-lg font-medium">
+  <li className="flex items-start gap-3 text-gray-800 mb-3 group text-base md:text-lg 2xl:text-xl font-medium">
     <span className="text-violet-600 mt-1.5 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">
       ›
     </span>
@@ -101,12 +101,12 @@ export default function PsychiatryClient() {
             priority
           />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1.5 px-4 rounded-full bg-violet-500/20 text-violet-200 text-xs md:text-sm font-bold mb-6 border border-violet-400/30 backdrop-blur-sm uppercase tracking-wider">
               Compassionate Mental Healthcare
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-[1.1] font-heading">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading">
               Psychiatry <br className="hidden md:block" />
               <span className="text-violet-300">Department</span>
             </h1>
@@ -126,8 +126,8 @@ export default function PsychiatryClient() {
       </section>
 
       {/* ═══════ MAIN CONTENT AREA ═══════ */}
-      <section className="py-20 xl:py-12 bg-white min-h-screen">
-        <div className="mx-auto w-full max-w-5xl px-4">
+      <section className="py-20 xl:py-12 2xl:py-24 bg-white min-h-screen">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Left Content */}
             <div className="lg:col-span-8">
@@ -136,7 +136,7 @@ export default function PsychiatryClient() {
                   title="Welcome to the"
                   highlight="Psychiatry Department"
                 />
-                <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-10 font-medium text-justify">
+                <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed mb-10 font-medium text-justify">
                   <p>
                     Welcome to the Psychiatry Department at Popular Hospital,
                     Varanasi! Our expert team of psychiatrists and psychologists
@@ -150,7 +150,7 @@ export default function PsychiatryClient() {
 
               <div className="mb-16">
                 <SectionHeader title="Our" highlight="Services" />
-                <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-8 font-medium text-justify">
+                <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed mb-8 font-medium text-justify">
                   <p>
                     <span className="font-bold text-[#2e1065]">
                       Psychiatric Evaluation and Diagnosis:
@@ -171,7 +171,7 @@ export default function PsychiatryClient() {
 
               <div className="mb-16">
                 <SectionHeader title="Individual" highlight="Therapy" />
-                <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-6 font-medium text-justify">
+                <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed mb-6 font-medium text-justify">
                   <p>
                     We provide individual therapy using evidence-based
                     approaches such as cognitive-behavioral therapy (CBT),
@@ -185,7 +185,7 @@ export default function PsychiatryClient() {
 
               <div className="mb-16">
                 <SectionHeader title="Family" highlight="Therapy" />
-                <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] leading-relaxed mb-10 font-medium text-justify">
+                <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed mb-10 font-medium text-justify">
                   <p>
                     We understand the role of family in the therapeutic process.
                     Our family therapy sessions aim to address dynamics,
@@ -196,7 +196,7 @@ export default function PsychiatryClient() {
                 </div>
               </div>
 
-              <div className="bg-violet-50 p-8 rounded-2xl border border-violet-100 text-gray-800 text-base md:text-lg leading-relaxed font-bold text-justify">
+              <div className="bg-violet-50 p-8 2xl:p-12 rounded-2xl border border-violet-100 text-gray-800 text-base md:text-lg 2xl:text-xl leading-relaxed font-bold text-justify">
                 <p>
                   At Popular Hospital, our Psychiatry Department is devoted to
                   offering personalized and empathetic care in a welcoming,
@@ -211,41 +211,6 @@ export default function PsychiatryClient() {
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit py-10">
                 <DoctorSlider doctors={doctors} departmentName="Psychiatry" />
-
-                <div className="mt-12 w-full max-w-sm mx-auto bg-violet-50/50 p-8 rounded-2xl border border-violet-100">
-                  <h4 className="text-lg font-bold text-[#2e1065] mb-6 uppercase tracking-wider border-b border-violet-200 pb-2">
-                    Care Highlights
-                  </h4>
-                  <ul className="space-y-4">
-                    {[
-                      "Empathetic & Caring Environment",
-                      "Multidisciplinary Team Approach",
-                      "Personalized Treatment Plans",
-                      "Supportive & Non-Judgmental",
-                      "Evidence-Based Therapies",
-                    ].map((b, i) => (
-                      <li
-                        key={i}
-                        className="flex items-center gap-3 text-gray-700 font-bold text-sm"
-                      >
-                        <svg
-                          className="w-5 h-5 text-violet-500"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={3}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -261,8 +226,8 @@ export default function PsychiatryClient() {
             backgroundSize: "24px 24px",
           }}
         ></div>
-        <div className="mx-auto w-full max-w-5xl px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading leading-tight">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-bold text-white mb-8 font-heading leading-tight">
             Your Path to <br className="hidden md:block" /> Emotional Well-being
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-6">

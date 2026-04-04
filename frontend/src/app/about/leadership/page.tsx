@@ -19,7 +19,7 @@ export default function LeadershipPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] xl:min-h-[180px] flex flex-col justify-center py-10 xl:py-8">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] xl:min-h-[180px] 2xl:min-h-[300px] flex flex-col justify-center py-10 xl:py-8 2xl:py-16">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/leadership.png"
@@ -30,24 +30,24 @@ export default function LeadershipPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/60 via-[#0b1c43]/40 to-[#0b1c43]" />
         </div>
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl xl:text-2xl font-bold font-heading mb-4 text-white uppercase tracking-tight">
+        <div className="relative z-10 text-center px-4 max-w-4xl 2xl:max-w-6xl mx-auto">
+          <h1 className="text-4xl md:text-5xl xl:text-2xl 2xl:text-5xl font-bold font-heading mb-4 text-white uppercase tracking-tight">
             Leadership Team
           </h1>
-          <p className="text-lg md:text-xl xl:text-base text-blue-100 leading-relaxed max-w-2xl mx-auto font-light">
+          <p className="text-lg md:text-xl xl:text-base 2xl:text-xl text-blue-100 leading-relaxed max-w-2xl 2xl:max-w-4xl mx-auto font-light">
             Meet the visionaries guiding Popular Hospital towards a healthier
             future.
           </p>
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-5xl px-4 py-16 xl:py-12">
+      <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 py-16 xl:py-12 2xl:py-24">
         {/* Intro */}
-        <div className="text-center max-w-3xl mx-auto mb-20 xl:mb-12">
-          <h2 className="text-3xl font-bold text-[#0b1c43] mb-4 font-heading xl:text-2xl">
+        <div className="text-center max-w-3xl 2xl:max-w-5xl mx-auto mb-20 xl:mb-12 2xl:mb-24">
+          <h2 className="text-3xl font-bold text-[#0b1c43] mb-4 font-heading xl:text-2xl 2xl:text-4xl">
             Guiding with Purpose
           </h2>
-          <p className="text-gray-600 leading-relaxed text-lg xl:text-[15px]">
+          <p className="text-gray-600 leading-relaxed text-lg xl:text-[15px] 2xl:text-xl">
             Our leadership team includes experienced experts from both medical
             and management fields, all working together with a shared focus on
             providing high-quality treatment and putting patients first.
@@ -55,7 +55,7 @@ export default function LeadershipPage() {
         </div>
 
         {/* Leaders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-6 2xl:gap-10">
           {leaders.map((leader, index) => (
             <div
               key={index}
@@ -72,10 +72,10 @@ export default function LeadershipPage() {
               </div>
               <div className="p-6 text-center relative bg-white flex-1 flex flex-col justify-end">
                 {/* Name & Role */}
-                <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading uppercase tracking-tight xl:text-lg">
+                <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading uppercase tracking-tight xl:text-lg 2xl:text-2xl">
                   {leader.name}
                 </h3>
-                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">
+                <p className="text-gray-500 text-[10px] 2xl:text-xs font-bold uppercase tracking-widest">
                   {leader.role}
                 </p>
               </div>
@@ -83,7 +83,7 @@ export default function LeadershipPage() {
           ))}
 
           {/* Quote Box */}
-          <div className="lg:col-span-2 bg-[#0b1c43] rounded-2xl overflow-hidden shadow-sm relative flex flex-col items-center justify-center p-12 xl:p-8 text-center h-[100%] aspect-[auto] lg:aspect-[auto] md:col-span-2 mt-8 md:mt-0">
+          <div className="lg:col-span-2 bg-[#0b1c43] rounded-2xl overflow-hidden shadow-sm relative flex flex-col items-center justify-center p-12 xl:p-8 2xl:p-16 text-center h-[100%] aspect-[auto] lg:aspect-[auto] md:col-span-2 mt-8 md:mt-0">
             {/* Large Background Quote Mark */}
             <span className="absolute -top-6 -left-2 text-[200px] text-white/5 font-serif leading-none select-none">
               "
@@ -91,10 +91,10 @@ export default function LeadershipPage() {
 
             <div className="relative z-10 w-full flex flex-col items-center">
               <div className="w-16 h-1 bg-[#E85222] rounded-full mb-8"></div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl font-bold text-white leading-tight font-heading mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-bold text-white leading-tight font-heading mb-6">
                 "Our every employee is a leader of our hospital."
               </h2>
-              <p className="text-blue-200 text-sm xl:text-xs tracking-[0.2em] uppercase font-bold">
+              <p className="text-blue-200 text-sm xl:text-xs 2xl:text-sm tracking-[0.2em] uppercase font-bold">
                 - The Popular Hospital Philosophy
               </p>
             </div>

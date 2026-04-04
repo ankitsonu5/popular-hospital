@@ -50,12 +50,12 @@ export default function MDDeskPage() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1366px] xl:max-w-5xl px-4 py-16 lg:py-24 xl:py-12">
+      <div className="mx-auto w-full max-w-[1366px] xl:max-w-5xl min-[1920px]:max-w-[1366px] px-4 py-16 lg:py-24 xl:py-12">
         <div className="bg-white relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* Left Column: MD Info & Photo */}
             <div className="lg:col-span-5 mb-10 lg:mb-0">
-              <div className="space-y-6 sticky top-24">
+              <div className="space-y-6 sticky top-24 w-[85%] md:w-3/4 lg:w-[90%] xl:w-[85%] mx-auto">
                 <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
                   <Image
                     src={mdData.image}
@@ -85,8 +85,8 @@ export default function MDDeskPage() {
 
             {/* Right Column: Text Content Area */}
             <div className="lg:col-span-7 relative pt-2">
-              <div className="mt-8 mb-6 xl:mt-4">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl font-black text-[#0b1c43] font-heading leading-tight italic">
+              <div className="mt-8 mb-6 xl:mt-4 2xl:mb-8 text-left">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic">
                   A Commitment to <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
                     Clinical Excellence
@@ -98,7 +98,7 @@ export default function MDDeskPage() {
                 {mdData.message.map((para, i) => (
                   <p
                     key={i}
-                    className="text-lg md:text-xl xl:text-[15px] text-gray-600 leading-relaxed font-normal text-justify"
+                    className="text-lg md:text-xl xl:text-[15px] 2xl:text-xl text-gray-600 leading-relaxed font-normal text-justify"
                   >
                     {para}
                   </p>
