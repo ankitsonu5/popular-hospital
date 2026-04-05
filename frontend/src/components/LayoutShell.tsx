@@ -50,7 +50,8 @@ export default function LayoutShell({
   const pathname = usePathname();
   const isAdminRoute =
     pathname.startsWith("/admin-login") ||
-    pathname.startsWith("/admin-dashboard");
+    pathname.startsWith("/admin-dashboard") ||
+    pathname.startsWith("/reset-admin-password");
 
   const isBlogDetailRoute =
     pathname.startsWith("/blog/") && pathname.split("/").length === 3;

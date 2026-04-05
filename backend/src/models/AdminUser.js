@@ -11,6 +11,8 @@ const adminUserSchema = new mongoose.Schema(
     },
     password_hash: { type: String, required: true },
     name: { type: String, default: null },
+    resetPasswordToken: { type: String, default: null },
+    resetPasswordExpires: { type: Date, default: null },
   },
   { timestamps: true },
 );

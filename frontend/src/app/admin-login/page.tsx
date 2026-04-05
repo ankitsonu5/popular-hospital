@@ -11,34 +11,48 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api-backend/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const text = await res.text();
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch (e) {
-        throw new Error(
-          "Server returned an invalid response. Please check if the backend is running.",
-        );
+      if (isForgotPassword) {
+        const res = await fetch("/api-backend/auth/forgot-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Failed to send reset link");
+        setSuccess(data.message || "Password reset link sent to your email.");
+      } else {
+        const res = await fetch("/api-backend/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+        const text = await res.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          throw new Error(
+            "Server returned an invalid response. Please check if the backend is running.",
+          );
+        }
+
+        if (!res.ok) throw new Error(data.error || "Login failed");
+
+        localStorage.setItem("admin_token", data.token);
+        localStorage.setItem("admin_user", JSON.stringify(data.user));
+        router.push("/admin-dashboard");
       }
-
-      if (!res.ok) throw new Error(data.error || "Login failed");
-
-      localStorage.setItem("admin_token", data.token);
-      localStorage.setItem("admin_user", JSON.stringify(data.user));
-      router.push("/admin-dashboard");
     } catch (err: any) {
       setError(err.message || "Invalid credentials");
     } finally {
@@ -85,10 +99,10 @@ export default function AdminLoginPage() {
             <Shield className="w-8 h-8" />
           </div>
           <h2 className="text-3xl font-black text-[#0b1c43] tracking-tight">
-            Admin Portal.
+            {isForgotPassword ? "Reset Password." : "Admin Portal."}
           </h2>
           <p className="text-gray-500 mt-2 text-base font-medium">
-            Access your secure management board
+            {isForgotPassword ? "Enter your email to receive a secure reset link" : "Access your secure management board"}
           </p>
         </div>
 
@@ -114,6 +128,18 @@ export default function AdminLoginPage() {
           </div>
         )}
 
+        {/* Success Message */}
+        {success && (
+          <div className="mb-8 p-4 rounded-2xl bg-green-50 border border-green-100 flex items-center gap-3 animate-fade-in-up">
+            <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p className="text-[13px] font-bold text-green-700">{success}</p>
+          </div>
+        )}
+
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email */}
@@ -130,7 +156,6 @@ export default function AdminLoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@popularhospital.in"
                 required
                 className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium"
               />
@@ -139,44 +164,52 @@ export default function AdminLoginPage() {
           </div>
 
           {/* Password */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between px-1">
-              <label
-                htmlFor="password"
-                className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
-              >
-                Security Password
-              </label>
-              <button
-                type="button"
-                className="text-[10px] font-bold text-[#0d9488] uppercase tracking-wider hover:opacity-70"
-              >
-                Forgot Key?
-              </button>
+          {!isForgotPassword && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between px-1">
+                <label
+                  htmlFor="password"
+                  className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
+                >
+                  Security Password
+                </label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsForgotPassword(true);
+                    setEmail("");
+                    setError("");
+                    setSuccess("");
+                  }}
+                  className="text-[10px] font-bold text-[#0d9488] uppercase tracking-wider hover:opacity-70"
+                >
+                  Forgot Key?
+                </button>
+              </div>
+              <div className="relative group">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter security password"
+                  required={!isForgotPassword}
+                  className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium pr-12"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
             </div>
-            <div className="relative group">
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter security password"
-                required
-                className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium pr-12"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
-              >
-                {showPassword ? (
-                  <EyeOff className="w-5 h-5" />
-                ) : (
-                  <Eye className="w-5 h-5" />
-                )}
-              </button>
-            </div>
-          </div>
+          )}
 
           {/* Submit */}
           <div className="pt-2">
@@ -194,10 +227,24 @@ export default function AdminLoginPage() {
               ) : (
                 <>
                   <LogIn className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  Secure Sign In
+                  {isForgotPassword ? "Send Reset Link" : "Secure Sign In"}
                 </>
               )}
             </button>
+            {isForgotPassword && (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsForgotPassword(false);
+                  setEmail("");
+                  setError("");
+                  setSuccess("");
+                }}
+                className="w-full mt-4 text-xs font-bold text-[#0b1c43]/60 hover:text-[#0b1c43] transition-colors"
+              >
+                Back to Login
+              </button>
+            )}
           </div>
         </form>
 

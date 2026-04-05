@@ -375,3 +375,138 @@ export const sendBookingEmail = async (booking) => {
 
   await transporter.sendMail(mailOptions);
 };
+
+export const sendPasswordResetEmail = async (email, resetUrl) => {
+  const transporter = createTransporter();
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; color: #1c1e21; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.05); }
+        .header { background: #0b1c43; padding: 40px 20px; text-align: center; color: #ffffff; }
+        .header h1 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+        .header p { margin: 10px 0 0; font-size: 14px; opacity: 0.8; font-weight: 500; }
+        .content { padding: 40px; text-align: center; }
+        .section-label { font-size: 11px; font-weight: 800; color: #8d949e; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+        .message-content { background: #ffffff; font-size: 16px; line-height: 1.7; color: #4a5568; margin-bottom: 30px; text-align: left; }
+        .reset-button { display: inline-block; background: #0d9488; color: white; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-weight: bold; font-size: 16px; transition: background 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .reset-button:hover { background: #0f766e; }
+        .footer { background: #fafbfc; padding: 30px; text-align: center; border-top: 1px solid #f0f2f5; }
+        .footer p { margin: 0; font-size: 12px; color: #8a94a6; line-height: 1.5; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Popular Hospitals</h1>
+          <p>Admin Portal Security</p>
+        </div>
+        
+        <div class="content">
+          <span class="section-label">Password Reset Request</span>
+          <div class="message-content">
+            <p>Hello Administator,</p>
+            <p>We received a request to reset your secure admin password. Please click the button below to set a new password for your account.</p>
+            <p>If you did not request a password reset, you can safely ignore this email. Your current password will remain unchanged.</p>
+          </div>
+          
+          <a href="${resetUrl}" class="reset-button">Set New Password</a>
+          
+          <div class="message-content" style="margin-top: 30px; font-size: 13px; color: #718096; background: #f7fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #cbd5e0;">
+            <p style="margin: 0;"><strong>Link not working?</strong> Copy and paste the following URL into your browser:</p>
+            <p style="margin: 10px 0 0; word-break: break-all;">${resetUrl}</p>
+          </div>
+        </div>
+        
+        <div class="footer">
+          <p>
+            This is an automated notification from the <strong>Popular Hospitals Website</strong>.<br/>
+            This link will expire in 10 minutes for your security.
+          </p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  const mailOptions = {
+    from: '"Popular Hospital Admin" <' + process.env.GMAIL_USER + '>',
+    to: email,
+    subject: `🔒 Admin Password Reset — Popular Hospitals`,
+    html: htmlContent,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
+export const sendPasswordResetSuccessEmail = async (email) => {
+  const transporter = createTransporter();
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; color: #1c1e21; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.05); }
+        .header { background: #0b1c43; padding: 40px 20px; text-align: center; color: #ffffff; }
+        .header h1 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+        .header p { margin: 10px 0 0; font-size: 14px; opacity: 0.8; font-weight: 500; }
+        .content { padding: 40px; text-align: center; }
+        .icon { display: inline-block; background: #10b981; color: white; width: 64px; height: 64px; border-radius: 50%; line-height: 64px; font-size: 32px; margin-bottom: 20px; font-weight: bold; }
+        .message-content { background: #ffffff; font-size: 16px; line-height: 1.7; color: #4a5568; margin-bottom: 30px; text-align: left; }
+        .warning-box { margin-top: 30px; font-size: 13px; color: #9b2c2c; background: #fff5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #f56565; text-align: left; }
+        .footer { background: #fafbfc; padding: 30px; text-align: center; border-top: 1px solid #f0f2f5; }
+        .footer p { margin: 0; font-size: 12px; color: #8a94a6; line-height: 1.5; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Popular Hospitals</h1>
+          <p>Admin Portal Security</p>
+        </div>
+        
+        <div class="content">
+          <div class="icon">✓</div>
+          <h2 style="margin-top: 0; color: #0b1c43;">Password Changed Successfully</h2>
+          
+          <div class="message-content">
+            <p>Hello Administrator,</p>
+            <p>This is a confirmation that the password for your Popular Hospitals Admin account has just been successfully changed.</p>
+            <p>You can now use your new password to log in to the admin dashboard.</p>
+          </div>
+          
+          <div class="warning-box">
+            <p style="margin: 0; font-weight: bold;">Did you not make this change?</p>
+            <p style="margin: 5px 0 0;">If you did not authorize this change, please immediately contact the IT support desk or the server administrator to secure your account.</p>
+          </div>
+        </div>
+        
+        <div class="footer">
+          <p>
+            This is an automated notification from the <strong>Popular Hospitals Website</strong>.<br/>
+            Security alert generated automatically.
+          </p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  const mailOptions = {
+    from: '"Popular Hospital Security" <' + process.env.GMAIL_USER + '>',
+    to: email,
+    subject: `✅ Security Alert: Admin Password Changed Successfully`,
+    html: htmlContent,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
