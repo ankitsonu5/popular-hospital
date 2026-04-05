@@ -172,8 +172,15 @@ export default function AwardsRecognitionPage() {
 
                   {/* Footer Group List Styling */}
                   <div className="flex flex-col gap-2.5 px-2">
-                    {["POPULAR GROUP OF HOSPITALS", "POPULAR INSTITUTE OF MEDICAL FOUNDATION", "NIRAAMAYA DIAGNOSTICS"].map((item, idx) => (
-                      <p key={idx} className="text-[10px] md:text-xs lg:text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                    {[
+                      "POPULAR GROUP OF HOSPITALS",
+                      "POPULAR INSTITUTE OF MEDICAL FOUNDATION",
+                      "NIRAAMAYA DIAGNOSTICS",
+                    ].map((item, idx) => (
+                      <p
+                        key={idx}
+                        className="text-[10px] md:text-xs lg:text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2"
+                      >
                         <span className="w-1 h-1 rounded-full bg-slate-300"></span>
                         {item}
                       </p>
@@ -191,21 +198,40 @@ export default function AwardsRecognitionPage() {
 
               <div className="text-slate-600 font-medium text-lg md:text-xl lg:text-[15px] leading-relaxed mb-12 italic border-l-4 border-blue-100 pl-6 py-2">
                 <p>
-                  &quot;The single greatest asset and the primary de-risking factor of this investment is the promoter himself, 
-                  <span className="font-bold text-slate-900 not-italic ml-1">Dr. A.K. Kaushik</span>. 
-                  He is a pioneer in General, Laparoscopic, Laser & Minimal Invasive Surgery in the region.&quot;
+                  &quot;The single greatest asset and the primary de-risking
+                  factor of this investment is the promoter himself,
+                  <span className="font-bold text-slate-900 not-italic ml-1">
+                    Dr. A.K. Kaushik
+                  </span>
+                  . He is a pioneer in General, Laparoscopic, Laser & Minimal
+                  Invasive Surgery in the region.&quot;
                 </p>
               </div>
 
               {/* Info Grid of Boxes with borders as per reference image */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4">
                 {[
-                  { label: "QUALIFICATIONS", val: "MBBS, MS (General Surgery) IMS-BHU" },
-                  { label: "SPECIALIZATION", val: "General, Laparoscopic, and Laser Surgery" },
-                  { label: "AFFILIATIONS", val: "AMASI, IAGES, Hernia Society of India" },
-                  { label: "KEY AWARDS", val: "Kashi Ratna, CNBC Healthcare, Sunbeam" },
+                  {
+                    label: "QUALIFICATIONS",
+                    val: "MBBS, MS (General Surgery) IMS-BHU",
+                  },
+                  {
+                    label: "SPECIALIZATION",
+                    val: "General, Laparoscopic, and Laser Surgery",
+                  },
+                  {
+                    label: "AFFILIATIONS",
+                    val: "AMASI, IAGES, Hernia Society of India",
+                  },
+                  {
+                    label: "KEY AWARDS",
+                    val: "Kashi Ratna, CNBC Healthcare, Sunbeam",
+                  },
                 ].map((point, i) => (
-                  <div key={i} className="p-6 md:p-5 bg-slate-50/30 rounded-2xl border border-slate-100 transition-colors hover:bg-white hover:shadow-lg hover:shadow-blue-500/5 hover:border-blue-100 group">
+                  <div
+                    key={i}
+                    className="p-6 md:p-5 bg-slate-50/30 rounded-2xl border border-slate-100 transition-colors hover:bg-white hover:shadow-lg hover:shadow-blue-500/5 hover:border-blue-100 group"
+                  >
                     <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] mb-2 group-hover:text-blue-400 transition-colors">
                       {point.label}
                     </h4>

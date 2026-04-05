@@ -98,7 +98,9 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function UrologyClient() {
-  const [selectedCategory, setSelectedCategory] = useState(urologyCategories[0]);
+  const [selectedCategory, setSelectedCategory] = useState(
+    urologyCategories[0],
+  );
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
@@ -199,7 +201,6 @@ export default function UrologyClient() {
         </div>
       </section>
 
-
       {/* ═══════ INTERACTIVE UROLOGICAL CARE SECTION ═══════ */}
       <div className="mt-24 xl:mt-12 pt-20 xl:pt-12 2xl:mt-24 2xl:pt-20 border-t border-gray-100 bg-[#fafafa] -mx-4 px-4 pb-20 xl:pb-12 2xl:pb-20 overflow-hidden">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 md:px-8 lg:px-4">
@@ -226,7 +227,9 @@ export default function UrologyClient() {
                         : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
                     }`}
                   >
-                    <span className="text-left text-xl leading-snug">{cat.title}</span>
+                    <span className="text-left text-xl leading-snug">
+                      {cat.title}
+                    </span>
                     <span
                       className={`transition-transform duration-300 ${
                         selectedCategory.id === cat.id
@@ -276,7 +279,9 @@ export default function UrologyClient() {
                 <div className="flex items-center gap-3 mb-6">
                   <span className="w-8 h-[2px] bg-[#E85222]" />
                   <h3 className="text-xl font-bold text-[#333] italic">
-                    {selectedCategory.id === "hospital-options" ? "Surgical Specialties" : "Diagnostic & Procedural Care"}
+                    {selectedCategory.id === "hospital-options"
+                      ? "Surgical Specialties"
+                      : "Diagnostic & Procedural Care"}
                   </h3>
                 </div>
                 <ul className="space-y-4">

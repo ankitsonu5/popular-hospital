@@ -37,7 +37,8 @@ const renalCategories = [
   },
   {
     id: "renal-management",
-    title: "The Department Professionals Are Capable Of Diligently Evaluating And Managing All Types Of Renal Diseases Like:",
+    title:
+      "The Department Professionals Are Capable Of Diligently Evaluating And Managing All Types Of Renal Diseases Like:",
     image: "/images/departments-images/nephrologist_img_two.webp",
     services: [
       "Acute (sudden onset) renal diseases",
@@ -257,7 +258,9 @@ export default function NephrologyClient() {
                         : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
                     }`}
                   >
-                    <span className="text-left text-lg leading-snug">{cat.title}</span>
+                    <span className="text-left text-lg leading-snug">
+                      {cat.title}
+                    </span>
                     <span
                       className={`transition-transform duration-300 ${
                         selectedCategory.id === cat.id
@@ -307,7 +310,9 @@ export default function NephrologyClient() {
                 <div className="flex items-center gap-3 mb-6">
                   <span className="w-8 h-[2px] bg-[#E85222]" />
                   <h3 className="text-xl font-bold text-[#333] italic">
-                    {selectedCategory.id === "signs-symptoms" ? "Health Indicators" : "Clinical Management"}
+                    {selectedCategory.id === "signs-symptoms"
+                      ? "Health Indicators"
+                      : "Clinical Management"}
                   </h3>
                 </div>
                 <ul className="space-y-4">

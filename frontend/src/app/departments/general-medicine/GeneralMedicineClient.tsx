@@ -199,7 +199,6 @@ export default function GeneralMedicineClient() {
                   </p>
                 </div>
               </div>
-
             </div>
 
             {/* ── Right Doctor Sidebar ── */}

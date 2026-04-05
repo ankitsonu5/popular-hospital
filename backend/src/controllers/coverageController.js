@@ -32,8 +32,12 @@ export const getAllCoverage = async (req, res) => {
 
 export const getCoverageBySlug = async (req, res) => {
   try {
-    const item = await Coverage.findOne({ slug: req.params.slug, isActive: true });
-    if (!item) return res.status(404).json({ error: "Coverage item not found" });
+    const item = await Coverage.findOne({
+      slug: req.params.slug,
+      isActive: true,
+    });
+    if (!item)
+      return res.status(404).json({ error: "Coverage item not found" });
     res.json(item);
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
@@ -99,7 +103,9 @@ export const updateCoverage = async (req, res) => {
     };
 
     // Remove undefined values
-    Object.keys(updates).forEach(key => updates[key] === undefined && delete updates[key]);
+    Object.keys(updates).forEach(
+      (key) => updates[key] === undefined && delete updates[key],
+    );
 
     // Normalize files
     const files = req.files || [];

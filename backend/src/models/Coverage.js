@@ -21,10 +21,11 @@ coverageSchema.pre("save", async function (next) {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)+/g, "");
-    
+
     let slug = baseSlug || "coverage";
     let count = 1;
-    const CoverageModel = mongoose.models.Coverage || mongoose.model("Coverage", coverageSchema);
+    const CoverageModel =
+      mongoose.models.Coverage || mongoose.model("Coverage", coverageSchema);
     while (await CoverageModel.exists({ _id: { $ne: this._id }, slug })) {
       slug = `${baseSlug || "coverage"}-${count++}`;
     }

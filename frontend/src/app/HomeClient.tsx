@@ -1748,13 +1748,13 @@ export default function HomeClient({
                     : "border-[#d0e3f0] shadow-sm hover:shadow-md"
                 }`}
               >
-                  <button
-                    onClick={() =>
-                      setOpenFaqIndex(openFaqIndex === index ? null : index)
-                    }
-                    className="w-full px-5 sm:px-6 xl:px-5 py-4 sm:py-5 xl:py-4 flex items-center justify-between text-left gap-4 transition-colors"
-                    aria-expanded={openFaqIndex === index}
-                  >
+                <button
+                  onClick={() =>
+                    setOpenFaqIndex(openFaqIndex === index ? null : index)
+                  }
+                  className="w-full px-5 sm:px-6 xl:px-5 py-4 sm:py-5 xl:py-4 flex items-center justify-between text-left gap-4 transition-colors"
+                  aria-expanded={openFaqIndex === index}
+                >
                   <span
                     className={`text-sm sm:text-base font-bold transition-colors ${openFaqIndex === index ? "text-[#E85222]" : "text-[#1a3a5c]"}`}
                   >

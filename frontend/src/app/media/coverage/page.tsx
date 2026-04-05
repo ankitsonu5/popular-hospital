@@ -15,7 +15,7 @@ export default async function MediaCoveragePage() {
   const mediaCoverageItems = await fetchCoverage();
 
   // Convert API data to match ComponentCoverageItem if needed, although they match mostly
-  const formattedItems = mediaCoverageItems.map(item => ({
+  const formattedItems = mediaCoverageItems.map((item) => ({
     slug: item.slug || "",
     title: item.title,
     image: item.image,

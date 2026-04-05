@@ -29,35 +29,46 @@ async function migrate() {
       let newCat = oldCat;
 
       // 1. Remove non-Varanasi locations
-      newCat = newCat.replace(/\bin India\b/gi, "")
-                     .replace(/\bin Uttar Pradesh\b/gi, "")
-                     .replace(/\bin Varanasi\b/gi, "")
-                     .trim();
+      newCat = newCat
+        .replace(/\bin India\b/gi, "")
+        .replace(/\bin Uttar Pradesh\b/gi, "")
+        .replace(/\bin Varanasi\b/gi, "")
+        .trim();
 
       // 2. Map to standardized names if they match keywords
       const lower = newCat.toLowerCase();
-      
+
       if (lower.includes("cardiology")) newCat = "Best Cardiology Hospital";
       else if (lower.includes("ortho")) newCat = "Best Orthopedic Hospital";
       else if (lower.includes("neuro")) newCat = "Best Neurology Hospital";
       else if (lower.includes("gastro")) newCat = "Gastroenterology";
-      else if (lower.includes("cancer")) newCat = "Best Cancer Specialist Hospital";
+      else if (lower.includes("cancer"))
+        newCat = "Best Cancer Specialist Hospital";
       else if (lower.includes("dental")) newCat = "Best Dental Hospital";
       else if (lower.includes("eye")) newCat = "Best Eye Specialist Hospital";
-      else if (lower.includes("gynaecologist") || lower.includes("gynecologist")) newCat = "Best Gynaecologist";
+      else if (
+        lower.includes("gynaecologist") ||
+        lower.includes("gynecologist")
+      )
+        newCat = "Best Gynaecologist";
       else if (lower.includes("heart")) newCat = "Best Heart Hospital";
-      else if (lower.includes("joint replacement")) newCat = "Best Joint Replacement Hospital";
-      else if (lower.includes("medicine doctor")) newCat = "Best Medicine Doctor";
+      else if (lower.includes("joint replacement"))
+        newCat = "Best Joint Replacement Hospital";
+      else if (lower.includes("medicine doctor"))
+        newCat = "Best Medicine Doctor";
       else if (lower.includes("microbiology")) newCat = "Best Microbiology Lab";
-      else if (lower.includes("plastic surgery")) newCat = "Best Plastic Surgery Hospital";
+      else if (lower.includes("plastic surgery"))
+        newCat = "Best Plastic Surgery Hospital";
       else if (lower.includes("urologist")) newCat = "Best Urologist Hospital";
       else if (lower.includes("ent")) newCat = "ENT Care";
       else if (lower.includes("pediatrics")) newCat = "Pediatrics";
       else if (lower.includes("emergency")) newCat = "Emergency Care";
       else if (lower.includes("blood bank")) newCat = "Blood Bank";
-      else if (lower.includes("critical care") || lower.includes("icu")) newCat = "Critical Care & ICU";
+      else if (lower.includes("critical care") || lower.includes("icu"))
+        newCat = "Critical Care & ICU";
       else if (lower.includes("endocrinology")) newCat = "Endocrinology Center";
-      else if (lower.includes("nephrology")) newCat = "Nephrology Specialist Center";
+      else if (lower.includes("nephrology"))
+        newCat = "Nephrology Specialist Center";
 
       // 3. Append Varanasi suffix
       newCat = `${newCat} in Varanasi`;

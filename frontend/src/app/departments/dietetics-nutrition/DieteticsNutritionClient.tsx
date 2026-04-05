@@ -145,7 +145,7 @@ export default function DieteticsNutritionClient() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Empty Left Column to maintain position */}
             <div className="hidden lg:block lg:col-span-8"></div>
-            
+
             <div className="lg:col-span-4 flex justify-center lg:justify-end">
               <div className="w-full max-w-sm">
                 <DoctorSlider

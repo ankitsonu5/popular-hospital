@@ -215,7 +215,6 @@ export default function InterventionalRadiologyClient() {
                   <ContentBlock key={idx} text={item.text} />
                 ))}
               </div>
-
             </div>
 
             {/* Right Sidebar - Doctor Slider */}
@@ -225,7 +224,6 @@ export default function InterventionalRadiologyClient() {
                   doctors={doctors}
                   departmentName="Interventional Radiology"
                 />
-
               </div>
             </div>
           </div>
@@ -262,17 +260,11 @@ export default function InterventionalRadiologyClient() {
               </p>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {advantagesSection.items.map((item, idx) => (
-                  <ListItem
-                    key={idx}
-                    boldTitle={item.title}
-                    desc={item.desc}
-                  />
+                  <ListItem key={idx} boldTitle={item.title} desc={item.desc} />
                 ))}
               </ul>
             </div>
           </div>
-
-
         </div>
       </section>
 

@@ -13,7 +13,7 @@ async function check() {
     await mongoose.connect(process.env.MONGO_URI);
     const blogs = await Blog.find({}).sort({ createdAt: -1 }).limit(5);
     console.log("Recent Blogs:");
-    blogs.forEach(b => {
+    blogs.forEach((b) => {
       console.log(`- Title: ${b.title}`);
       console.log(`  Image Path in DB: "${b.image}"`);
       console.log(`  CreatedAt: ${b.createdAt}`);

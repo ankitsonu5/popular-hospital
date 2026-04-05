@@ -49,7 +49,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com https://www.gstatic.com data:",
               "img-src 'self' data: blob: https: http://localhost:5100 https://www.gstatic.com http://www.gstatic.com https://translate.google.com http://translate.google.com https://translate-pa.googleapis.com https://img.youtube.com https://i.ytimg.com https://s.ytimg.com",
               "media-src 'self' blob: https:",
-              "connect-src 'self' http://localhost:5100 https://*.popularhospital.com https://translate.googleapis.com http://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com http://translate.google.com",
+              "connect-src 'self' http://localhost:5100 http://185.207.250.253:5100 https://*.popularhospital.com https://translate.googleapis.com http://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com http://translate.google.com",
               "frame-src 'self' https://translate.google.com http://translate.google.com https://translate.googleapis.com http://translate.googleapis.com https://translate-pa.googleapis.com https://www.youtube.com https://youtube.com",
               "frame-ancestors 'self'",
               "object-src 'none'",

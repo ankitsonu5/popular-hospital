@@ -152,7 +152,7 @@ const ListItem = ({ text }: { text: string }) => (
 
 export default function OrthopedicsClient() {
   const [selectedCategory, setSelectedCategory] = useState(
-    treatmentCategories[0]
+    treatmentCategories[0],
   );
 
   return (
@@ -248,7 +248,9 @@ export default function OrthopedicsClient() {
                         : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
                     }`}
                   >
-                    <span className="text-left text-lg 2xl:text-xl">{cat.title}</span>
+                    <span className="text-left text-lg 2xl:text-xl">
+                      {cat.title}
+                    </span>
                     <span
                       className={`transition-transform duration-300 ${
                         selectedCategory.id === cat.id
@@ -280,7 +282,7 @@ export default function OrthopedicsClient() {
                 {/* Decorative Dashed Rings */}
                 <div className="absolute inset-[-20px] rounded-full border-2 border-dashed border-gray-300 animate-[spin_20s_linear_infinite] group-hover:border-[#E85222]/50 transition-colors" />
                 <div className="absolute inset-[-10px] rounded-full border border-gray-200" />
-                
+
                 {/* Main Circular Image */}
                 <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] 2xl:w-[500px] 2xl:h-[500px] rounded-full overflow-hidden border-8 border-white shadow-2xl transition-transform duration-500 group-hover:scale-105">
                   <Image
