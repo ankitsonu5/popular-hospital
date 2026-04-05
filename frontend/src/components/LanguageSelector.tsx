@@ -136,12 +136,40 @@ function loadGoogleTranslate(includedLangs: string) {
   document.body.appendChild(script);
 }
 
+// Helper: extract root domain for cookie setting/clearing
+function getRootDomain() {
+  const hostname = window.location.hostname;
+  const parts = hostname.split(".");
+  // If it's an IP address or localhost, just return the hostname
+  if (parts.length === 1 || hostname.match(/^[0-9.]+$/)) {
+    return hostname;
+  }
+  // Extract trailing root domain (e.g., example.com from www.example.com)
+  return parts.slice(-2).join(".");
+}
+
 // Helper: clear Google Translate cookies to restore English
 function resetToEnglish() {
+  const hostname = window.location.hostname;
+  const rootDomain = getRootDomain();
+  
+  // Set to /en/en temporarily to flush Google's state before clearing
+  document.cookie = `googtrans=/en/en; path=/; domain=${hostname}`;
+  document.cookie = `googtrans=/en/en; path=/; domain=.${hostname}`;
+  document.cookie = `googtrans=/en/en; path=/; domain=${rootDomain}`;
+  document.cookie = `googtrans=/en/en; path=/; domain=.${rootDomain}`;
+  
   const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  
+  // Clear on exact hostname
   document.cookie = `googtrans=; ${expiry}`;
-  document.cookie = `googtrans=; ${expiry} domain=${window.location.hostname}`;
-  document.cookie = `googtrans=; ${expiry} domain=.${window.location.hostname}`;
+  document.cookie = `googtrans=; ${expiry} domain=${hostname}`;
+  // Clear on wildcard hostname
+  document.cookie = `googtrans=; ${expiry} domain=.${hostname}`;
+  // Clear on root domain
+  document.cookie = `googtrans=; ${expiry} domain=${rootDomain}`;
+  // Clear on wildcard root domain
+  document.cookie = `googtrans=; ${expiry} domain=.${rootDomain}`;
 }
 
 const LanguageSelector = ({
@@ -172,9 +200,7 @@ const LanguageSelector = ({
       return () => clearTimeout(timeout);
     } else {
       // Make sure no stale translation cookie forces a foreign language
-      const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `googtrans=; ${expiry}`;
-      document.cookie = `googtrans=; ${expiry} domain=${window.location.hostname}`;
+      resetToEnglish();
     }
   }, [includedLangs]);
 
