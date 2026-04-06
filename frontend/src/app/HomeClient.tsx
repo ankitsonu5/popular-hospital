@@ -1957,10 +1957,8 @@ export default function HomeClient({
                   setFormError("");
                   setFormSuccess(false);
                   try {
-                    const API_URL =
-                      process.env.NEXT_PUBLIC_API_URL ||
-                      "http://localhost:5100";
-                    const res = await fetch(`${API_URL}/api/contacts`, {
+                    const API_URL = "/api-backend";
+                    const res = await fetch(`${API_URL}/contacts`, {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({

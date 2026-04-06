@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { getImageUrl } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+const API_URL = "/api-backend";
 
 function PressActionForm() {
   const router = useRouter();
@@ -37,7 +37,7 @@ function PressActionForm() {
     if (editId) {
       const fetchPress = async () => {
         try {
-          const res = await fetch(`${API_URL}/api/cms/coverage`, {
+          const res = await fetch(`${API_URL}/cms/coverage`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
             },
@@ -82,8 +82,8 @@ function PressActionForm() {
 
     try {
       const url = editId
-        ? `${API_URL}/api/cms/coverage/${editId}`
-        : `${API_URL}/api/cms/coverage`;
+        ? `${API_URL}/cms/coverage/${editId}`
+        : `${API_URL}/cms/coverage`;
       const method = editId ? "PUT" : "POST";
       const res = await fetch(url, {
         method,

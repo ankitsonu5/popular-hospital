@@ -12,7 +12,7 @@ const Editor = dynamic(() => import("@/components/TinyMCEEditor"), {
   ),
 });
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+const API_URL = "/api-backend";
 
 interface CareerItem {
   _id: string;
@@ -306,7 +306,7 @@ function CareerActionForm() {
                         "undo redo | blocks | bold italic forecolor | image link media | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
                       content_style:
                         "body { font-family:Inter,Arial,sans-serif; font-size:14px; color: #1f2937; }",
-                      images_upload_url: `${API_URL}/api/blog-image-direct`,
+                      images_upload_url: `${API_URL}/blog-image-direct`,
                       branding: false,
                       statusbar: false,
                       images_upload_handler: (blobInfo: any) =>
@@ -317,7 +317,7 @@ function CareerActionForm() {
                             blobInfo.blob(),
                             blobInfo.filename(),
                           );
-                          fetch(`${API_URL}/api/blog-image-direct`, {
+                          fetch(`${API_URL}/blog-image-direct`, {
                             method: "POST",
                             headers: {
                               Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
