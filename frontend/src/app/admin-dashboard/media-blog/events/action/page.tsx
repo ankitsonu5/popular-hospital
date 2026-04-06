@@ -16,7 +16,7 @@ import {
 import { getImageUrl } from "@/lib/api";
 import Image from "next/image";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+const API_URL = "/api-backend";
 
 function EventsActionForm() {
   const router = useRouter();
@@ -45,7 +45,7 @@ function EventsActionForm() {
     if (editId) {
       const fetchEvent = async () => {
         try {
-          const res = await fetch(`${API_URL}/api/cms/events`, {
+          const res = await fetch(`${API_URL}/cms/events`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
             },
@@ -99,8 +99,8 @@ function EventsActionForm() {
 
     try {
       const url = editId
-        ? `${API_URL}/api/cms/events/${editId}`
-        : `${API_URL}/api/cms/events`;
+        ? `${API_URL}/cms/events/${editId}`
+        : `${API_URL}/cms/events`;
       const method = editId ? "PUT" : "POST";
       const res = await fetch(url, {
         method,

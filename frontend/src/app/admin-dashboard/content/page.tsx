@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Save, Loader2, FileText, Plus, Trash2 } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+const API_URL = "/api-backend";
 
 export default function ContentPage() {
   const [content, setContent] = useState<Record<string, string>>({});
@@ -18,7 +18,7 @@ export default function ContentPage() {
   });
 
   useEffect(() => {
-    fetch(`${API_URL}/api/cms/content`, { headers: getHeaders() })
+    fetch(`${API_URL}/cms/content`, { headers: getHeaders() })
       .then((r) => r.json())
       .then((data) => {
         if (typeof data === "object") setContent(data);
@@ -30,7 +30,7 @@ export default function ContentPage() {
   const handleSave = async (key: string, value: string) => {
     setSavingKey(key);
     try {
-      await fetch(`${API_URL}/api/cms/content`, {
+      await fetch(`${API_URL}/cms/content`, {
         method: "POST",
         headers: getHeaders(),
         body: JSON.stringify({ key, value }),
@@ -45,7 +45,7 @@ export default function ContentPage() {
     if (!newKey.trim()) return;
     setSavingKey("__new__");
     try {
-      await fetch(`${API_URL}/api/cms/content`, {
+      await fetch(`${API_URL}/cms/content`, {
         method: "POST",
         headers: getHeaders(),
         body: JSON.stringify({ key: newKey, value: newValue }),

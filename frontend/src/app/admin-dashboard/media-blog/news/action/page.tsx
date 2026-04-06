@@ -21,7 +21,7 @@ const Editor = dynamic(() => import("@/components/TinyMCEEditor"), {
 });
 import { getImageUrl } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+const API_URL = "/api-backend";
 
 function NewsActionForm() {
   const router = useRouter();
@@ -77,7 +77,7 @@ function NewsActionForm() {
     if (editId) {
       const fetchNews = async () => {
         try {
-          const res = await fetch(`${API_URL}/api/cms/news`, {
+          const res = await fetch(`${API_URL}/cms/news`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
             },
@@ -117,8 +117,8 @@ function NewsActionForm() {
 
     try {
       const url = editId
-        ? `${API_URL}/api/cms/news/${editId}`
-        : `${API_URL}/api/cms/news`;
+        ? `${API_URL}/cms/news/${editId}`
+        : `${API_URL}/cms/news`;
       const method = editId ? "PUT" : "POST";
 
       const res = await fetch(url, {
@@ -313,7 +313,7 @@ function NewsActionForm() {
                           "undo redo | blocks | bold italic underline | image link table | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
                         content_style:
                           "body { font-family:Inter,Helvetica,Arial,sans-serif; font-size:16px }",
-                        images_upload_url: `${API_URL}/api/blog-image-direct`,
+                        images_upload_url: `${API_URL}/blog-image-direct`,
                         branding: false,
                         statusbar: false,
                         images_upload_handler: (blobInfo: any) =>
@@ -324,7 +324,7 @@ function NewsActionForm() {
                               blobInfo.blob(),
                               blobInfo.filename(),
                             );
-                            fetch(`${API_URL}/api/blog-image-direct`, {
+                            fetch(`${API_URL}/blog-image-direct`, {
                               method: "POST",
                               headers: {
                                 Authorization: `Bearer ${localStorage.getItem("admin_token")}`,

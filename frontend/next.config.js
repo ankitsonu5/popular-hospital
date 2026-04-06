@@ -15,6 +15,10 @@ const nextConfig = {
       { protocol: "http", hostname: "localhost", port: "5100" },
       { protocol: "http", hostname: "127.0.0.1", port: "5100" },
       { protocol: "https", hostname: "*.popularhospital.com" },
+      { protocol: "https", hostname: "*.popularhospital.in" },
+      { protocol: "https", hostname: "popularhospital.in" },
+      { protocol: "https", hostname: "popularhospital.com" },
+      { protocol: "https", hostname: "api.popularhospital.in" },
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "img.youtube.com" },
       { protocol: "https", hostname: "i.ytimg.com" },
@@ -76,6 +80,32 @@ const nextConfig = {
       {
         source: "/videos/(.*)",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "popularhospitals.in",
+          },
+        ],
+        destination: "https://www.popularhospital.in/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.popularhospitals.in",
+          },
+        ],
+        destination: "https://www.popularhospital.in/:path*",
+        permanent: true,
       },
     ];
   },

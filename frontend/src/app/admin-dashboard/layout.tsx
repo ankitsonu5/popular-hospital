@@ -25,7 +25,7 @@ import {
   Mail,
 } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+const API_URL = "/api-backend";
 
 const sidebarItems = [
   { label: "Dashboard", href: "/admin-dashboard", icon: LayoutDashboard },

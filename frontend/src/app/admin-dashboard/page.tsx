@@ -13,7 +13,7 @@ import {
   Clock,
 } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+const API_URL = "/api-backend";
 
 interface Stats {
   doctors: number;
@@ -42,12 +42,12 @@ export default function AdminDashboardPage() {
     };
 
     Promise.all([
-      fetch(`${API_URL}/api/branches`, { headers }).then((r) => r.json()),
-      fetch(`${API_URL}/api/doctors`, { headers }).then((r) => r.json()),
-      fetch(`${API_URL}/api/doctors/specialities`, { headers }).then((r) =>
+      fetch(`${API_URL}/branches`, { headers }).then((r) => r.json()),
+      fetch(`${API_URL}/doctors`, { headers }).then((r) => r.json()),
+      fetch(`${API_URL}/doctors/specialities`, { headers }).then((r) =>
         r.json(),
       ),
-      fetch(`${API_URL}/api/cms/bookings`, { headers })
+      fetch(`${API_URL}/cms/bookings`, { headers })
         .then((r) => r.json())
         .catch(() => []),
     ])

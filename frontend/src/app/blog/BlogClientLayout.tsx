@@ -132,19 +132,19 @@ export default function BlogClientLayout({
                 className="bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col md:flex-row group border border-slate-100"
               >
                 {/* Image Container */}
-                <div className="md:w-2/5 relative h-[250px] md:h-auto overflow-hidden">
+                <div className="md:w-[48%] relative aspect-[3/2] overflow-hidden shrink-0">
                   <Image
                     src={getImageUrl(post.image) || "/about-section-image.png"}
                     alt={post.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     priority={articles.indexOf(post) < 2}
                   />
                   <div className="absolute inset-0 bg-gradient-to-tr from-[#1a3a5c]/40 to-transparent z-10 opacity-60"></div>
                   {post.category && (
-                    <div className="absolute top-6 left-6 z-20">
-                      <span className="bg-[#E85222] text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg">
+                    <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 z-20">
+                      <span className="bg-[#E85222] text-white px-3 py-1.5 rounded-full text-xs md:text-sm font-bold shadow-lg">
                         {post.category}
                       </span>
                     </div>
@@ -152,9 +152,9 @@ export default function BlogClientLayout({
                 </div>
 
                 {/* Content */}
-                <div className="md:w-3/5 p-8 md:p-10 flex flex-col justify-between">
+                <div className="md:w-[52%] p-6 md:p-8 flex flex-col justify-center">
                   <div>
-                    <div className="flex items-center gap-4 text-gray-400 text-sm mb-4 font-medium flex-wrap">
+                    <div className="flex items-center gap-4 text-gray-400 text-xs md:text-sm mb-3 font-medium flex-wrap">
                       <span className="flex items-center gap-1.5 whitespace-nowrap">
                         <svg
                           className="w-4 h-4 text-[#E85222]"
@@ -188,11 +188,11 @@ export default function BlogClientLayout({
                         {post.author || "Hospital Admin"}
                       </span>
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-black text-[#1a3a5c] mb-6 leading-tight group-hover:text-[#E85222] transition-colors line-clamp-2">
+                    <h2 className="text-xl md:text-2xl font-black text-[#1a3a5c] mb-3 leading-tight group-hover:text-[#E85222] transition-colors line-clamp-2">
                       <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                     </h2>
                     <div
-                      className="text-gray-600 text-lg leading-relaxed mb-8 line-clamp-3"
+                      className="text-gray-600 text-sm md:text-base leading-relaxed mb-6 line-clamp-2"
                       dangerouslySetInnerHTML={{
                         __html: Array.isArray(post.excerpt)
                           ? post.excerpt.join(" ")
@@ -203,11 +203,11 @@ export default function BlogClientLayout({
 
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-2 text-[#E85222] font-black uppercase tracking-widest text-sm group/btn"
+                    className="inline-flex items-center gap-2 text-[#E85222] font-black uppercase tracking-widest text-xs md:text-sm group/btn mt-auto"
                   >
                     Read Full Story
                     <svg
-                      className="w-5 h-5 transform group-hover/btn:translate-x-2 transition-transform"
+                      className="w-4 h-4 md:w-5 md:h-5 transform group-hover/btn:translate-x-2 transition-transform"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

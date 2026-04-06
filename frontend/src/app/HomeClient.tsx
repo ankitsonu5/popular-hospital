@@ -1402,7 +1402,7 @@ export default function HomeClient({
                 key={article.slug}
                 className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col"
               >
-                <div className="relative w-full h-48 sm:h-56 lg:h-64 xl:h-52 bg-gray-200 overflow-hidden shrink-0">
+                <div className="relative w-full aspect-[3/2] bg-gray-200 overflow-hidden shrink-0">
                   <Image
                     src={
                       getImageUrl(article.image) || "/about-section-image.png"
