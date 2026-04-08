@@ -192,15 +192,15 @@ export function DoctorsSearch() {
           </p>
         </div>
       ) : (
-        <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-1 pb-8">
+        <ul className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-0 sm:px-1 pb-8">
           {doctors.map((doc) => (
             <li key={doc.id} className="h-full">
               <Link
                 href={`/doctors/${doc.slug}`}
-                className="group relative block h-full rounded-[2.5rem] bg-white p-4 border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-1"
+                className="group relative block h-full rounded-[2rem] sm:rounded-[2.5rem] bg-white p-3.5 sm:p-4 border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-1"
               >
                 {/* Image Container with balanced rounding */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] bg-[#f1f5f9] mb-6">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.5rem] sm:rounded-[1.75rem] bg-[#f1f5f9] mb-5 sm:mb-6">
                   {doc.image_url ? (
                     <Image
                       src={getImageUrl(doc.image_url)}
@@ -222,34 +222,34 @@ export function DoctorsSearch() {
                 </div>
 
                 {/* Content Section */}
-                <div className="px-3 pb-6">
-                  <h3 className="text-[22px] font-black text-[#4285f4] tracking-tight whitespace-nowrap overflow-hidden text-ellipsis mb-1">
+                <div className="px-1 sm:px-3 pb-4 sm:pb-6 min-w-0">
+                  <h3 className="text-[18px] sm:text-[22px] font-black text-[#4285f4] tracking-tight break-words leading-tight mb-2">
                     {doc.name}
                   </h3>
 
                   {doc.designation && (
-                    <p className="text-[12px] font-bold text-[#0d9488] uppercase tracking-wider mb-1">
+                    <p className="text-[11px] sm:text-[12px] font-bold text-[#0d9488] uppercase tracking-wider mb-1 break-words">
                       {typeof doc.designation === "object"
                         ? doc.designation.name
                         : doc.designation || "-"}
                     </p>
                   )}
 
-                  <p className="text-[14px] font-bold text-gray-600 leading-tight mb-1 line-clamp-1">
+                  <p className="text-[13px] sm:text-[14px] font-bold text-gray-600 leading-tight mb-1 line-clamp-2">
                     {(doc.qualification || "")
                       .replace(/\s*\([^)]*\)\s*$/, "")
                       .trim() || "Highly Qualified Physician"}
                   </p>
 
-                  <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-6">
+                  <p className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-[0.18em] sm:tracking-widest mb-5 sm:mb-6 break-words">
                     DEPARTMENT OF{" "}
                     {doc.speciality?.department_display_name ||
                       doc.speciality?.name ||
                       "Medical Science"}
                   </p>
                   {/* Footer with stats and button */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1.5 text-gray-900">
+                  <div className="flex flex-col gap-3 min-[380px]:flex-row min-[380px]:items-center min-[380px]:justify-between">
+                    <div className="flex items-center gap-1.5 text-gray-900 min-w-0">
                       <svg
                         className="w-5 h-5 text-gray-400"
                         fill="none"
@@ -264,7 +264,7 @@ export function DoctorsSearch() {
                         />
                       </svg>
                       {doc.experience_years && (
-                        <span className="text-lg font-bold">
+                        <span className="text-base sm:text-lg font-bold">
                           {doc.experience_years}
                           <span className="text-sm text-gray-400 font-medium ml-1">
                             Years Exp.
@@ -273,7 +273,7 @@ export function DoctorsSearch() {
                       )}
                     </div>
 
-                    <div className="bg-[#f1f5f9] px-5 py-3 rounded-2xl font-bold text-gray-900 flex items-center gap-1 hover:bg-[#e2e8f0] transition-colors">
+                    <div className="w-full min-[380px]:w-auto bg-[#f1f5f9] px-4 sm:px-5 py-3 rounded-2xl font-bold text-gray-900 flex items-center justify-center gap-1 hover:bg-[#e2e8f0] transition-colors">
                       View <span className="text-xl leading-none">+</span>
                     </div>
                   </div>
