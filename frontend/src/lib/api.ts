@@ -1,8 +1,8 @@
 export const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100";
+  process.env.NEXT_PUBLIC_API_URL || "";
 
 const getBaseUrl = () => {
-  if (typeof window !== "undefined") return ""; // browser: use Next.js rewrite /api-backend -> backend
+  if (typeof window !== "undefined") return ""; // browser: use relative paths or Next.js rewrites
   return apiBaseUrl;
 };
 
@@ -18,17 +18,20 @@ export const getImageUrl = (path: string, absolute = false) => {
 
   // Ensure we have a leading slash
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  
-  const finalPath = normalizedPath.startsWith("/uploads") 
-    ? normalizedPath 
-    : normalizedPath.startsWith("/images") 
-      ? normalizedPath 
+
+  const finalPath = normalizedPath.startsWith("/uploads")
+    ? normalizedPath
+    : normalizedPath.startsWith("/images")
+      ? normalizedPath
       : `/uploads${normalizedPath}`;
 
-  // ALWAYS return the absolute URL to avoid Next.js local proxy rewrite issues with next/image,
-  // and to ensure Client and Server rendering strictly match (avoiding React Hydration errors).
-  // This relies on remotePatterns correctly being configured in next.config.js.
-  return `${apiBaseUrl}${finalPath}`;
+  // Use absolute URL only if requested or if we are on the server and have a base URL
+  if (absolute || (typeof window === "undefined" && apiBaseUrl)) {
+    return `${apiBaseUrl}${finalPath}`;
+  }
+
+  // DEFAULT: Return relative path to let Next.js rewrites handle it
+  return finalPath;
 };
 
 export async function fetchBranches(): Promise<Branch[]> {

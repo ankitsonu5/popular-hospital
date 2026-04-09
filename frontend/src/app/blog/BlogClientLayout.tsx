@@ -108,12 +108,8 @@ export default function BlogClientLayout({
             <span className="text-white">Blog</span>
           </nav>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
-            Popular Hospital <span className="text-[#00B4D8]">Health Blog</span>
+            Popular Hospital <span className="text-white">Blog</span>
           </h1>
-          <p className="mt-2 text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed">
-            Insightful articles, health maintenance tips, and latest medical
-            breakthroughs delivered by our expert medical team.
-          </p>
         </div>
       </section>
 

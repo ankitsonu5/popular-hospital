@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { getImageUrl } from "@/lib/api";
 
 function SortableDoctorRow({ doc, onEdit, onDelete, isDragEnabled }: any) {
   const {
@@ -73,11 +74,7 @@ function SortableDoctorRow({ doc, onEdit, onDelete, isDragEnabled }: any) {
           <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 font-bold text-xs shrink-0 overflow-hidden border border-gray-100">
             {doc.image_url ? (
               <img
-                src={
-                  doc.image_url.startsWith("http")
-                    ? doc.image_url
-                    : doc.image_url
-                }
+                src={getImageUrl(doc.image_url)}
                 alt={doc.name}
                 className="w-full h-full object-cover"
               />
@@ -294,13 +291,7 @@ export default function DoctorsPage() {
       },
     });
     setSelectedFile(null);
-    setImagePreview(
-      doc.image_url
-        ? doc.image_url.startsWith("http")
-          ? doc.image_url
-          : doc.image_url
-        : null,
-    );
+    setImagePreview(doc.image_url ? getImageUrl(doc.image_url) : null);
     setShowForm(true);
   };
 

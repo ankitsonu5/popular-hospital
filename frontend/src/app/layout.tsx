@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { apiBaseUrl } from "@/lib/api";
 import LayoutShell from "@/components/LayoutShell";
 
 export const viewport: Viewport = {
@@ -59,7 +60,7 @@ export default function RootLayout({
     <html lang="en" className="overflow-x-hidden">
       <head>
         {/* DNS Prefetch for API and uploads */}
-        <link rel="dns-prefetch" href="//localhost:5100" />
+        {apiBaseUrl && <link rel="dns-prefetch" href={apiBaseUrl} />}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
