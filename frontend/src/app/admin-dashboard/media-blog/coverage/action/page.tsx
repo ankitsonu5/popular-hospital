@@ -30,8 +30,10 @@ function PressActionForm() {
     isActive: true,
   });
 
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>("");
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<
+    { src: string; isExisting: boolean; path?: string }[]
+  >([]);
 
   useEffect(() => {
     if (editId) {
@@ -51,7 +53,16 @@ function PressActionForm() {
                 ? new Date(item.date).toISOString().split("T")[0]
                 : "",
             });
-            if (item.image) setImagePreview(getImageUrl(item.image));
+            // Load existing gallery images (or fallback to single image)
+            const existingImages: { src: string; isExisting: boolean; path: string }[] = [];
+            if (item.gallery && item.gallery.length > 0) {
+              item.gallery.forEach((img: string) => {
+                existingImages.push({ src: getImageUrl(img), isExisting: true, path: img });
+              });
+            } else if (item.image) {
+              existingImages.push({ src: getImageUrl(item.image), isExisting: true, path: item.image });
+            }
+            setImagePreviews(existingImages);
           }
         } catch (err) {
           console.error(err);
@@ -73,12 +84,16 @@ function PressActionForm() {
     submitData.append("source", formData.source);
     submitData.append("isActive", String(formData.isActive));
 
-    if (imageFile) {
-      submitData.append("image", imageFile);
-    } else if (editId && imagePreview) {
-      const path = imagePreview.split(`${API_URL}`).pop();
-      if (path) submitData.append("image", path);
-    }
+    // Append new image files
+    imageFiles.forEach((file) => {
+      submitData.append("gallery", file);
+    });
+
+    // Append existing image paths that were kept
+    const existingPaths = imagePreviews
+      .filter((p) => p.isExisting && p.path)
+      .map((p) => p.path!);
+    submitData.append("existingGallery", JSON.stringify(existingPaths));
 
     try {
       const url = editId
@@ -265,37 +280,82 @@ function PressActionForm() {
                 <div className="space-y-4">
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Press Clipping Photo *
+                    <span className="text-xs text-gray-400 font-normal ml-2">
+                      (Multiple images allowed)
+                    </span>
                   </label>
-                  <div className="relative aspect-[3/4] sm:aspect-video lg:aspect-[4/3] rounded-2xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group shadow-inner">
-                    {imagePreview ? (
-                      <>
-                        <img
-                          src={imagePreview}
-                          className="w-full h-full object-contain p-4 transition-transform duration-700 hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <label className="cursor-pointer bg-white text-gray-900 px-6 py-2.5 rounded-xl font-bold text-xs uppercase shadow-lg">
-                            Replace Clipping
-                          </label>
+
+                  {/* Image Previews Grid */}
+                  {imagePreviews.length > 0 && (
+                    <div className="grid grid-cols-2 gap-3">
+                      {imagePreviews.map((preview, index) => (
+                        <div
+                          key={index}
+                          className="relative aspect-[4/3] rounded-xl overflow-hidden border border-gray-200 group"
+                        >
+                          <img
+                            src={preview.src}
+                            className="w-full h-full object-cover"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const newPreviews = imagePreviews.filter(
+                                (_, i) => i !== index,
+                              );
+                              setImagePreviews(newPreviews);
+                              // Remove from new files if it's not an existing image
+                              if (!preview.isExisting) {
+                                const newFileIndex = imagePreviews
+                                  .slice(0, index)
+                                  .filter((p) => !p.isExisting).length;
+                                setImageFiles((prev) =>
+                                  prev.filter((_, i) => i !== newFileIndex),
+                                );
+                              }
+                            }}
+                            className="absolute top-2 right-2 w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                          {index === 0 && (
+                            <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-blue-600 text-white text-[9px] font-bold uppercase rounded-full">
+                              Main
+                            </span>
+                          )}
                         </div>
-                      </>
-                    ) : (
-                      <div className="text-center">
-                        <Camera className="w-10 h-10 text-gray-300 mx-auto mb-2" />
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                          Scan or Photo of Publication
-                        </p>
-                      </div>
-                    )}
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Upload Button */}
+                  <div className="relative aspect-[3/4] sm:aspect-video lg:aspect-[4/3] rounded-2xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden transition-all hover:bg-gray-100 group shadow-inner">
+                    <div className="text-center">
+                      <Camera className="w-10 h-10 text-gray-300 mx-auto mb-2" />
+                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                        {imagePreviews.length > 0
+                          ? "Add More Photos"
+                          : "Scan or Photo of Publication"}
+                      </p>
+                      <p className="text-[9px] text-gray-300 mt-1">
+                        Select multiple files at once
+                      </p>
+                    </div>
                     <input
                       type="file"
                       accept="image/*"
+                      multiple
                       onChange={(e) => {
-                        const f = e.target.files?.[0];
-                        if (f) {
-                          setImageFile(f);
-                          setImagePreview(URL.createObjectURL(f));
+                        const files = Array.from(e.target.files || []);
+                        if (files.length > 0) {
+                          setImageFiles((prev) => [...prev, ...files]);
+                          const newPreviews = files.map((f) => ({
+                            src: URL.createObjectURL(f),
+                            isExisting: false,
+                          }));
+                          setImagePreviews((prev) => [...prev, ...newPreviews]);
                         }
+                        e.target.value = "";
                       }}
                       className="absolute inset-0 opacity-0 cursor-pointer"
                     />

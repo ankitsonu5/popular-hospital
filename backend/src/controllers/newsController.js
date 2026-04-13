@@ -17,7 +17,10 @@ const storage = multer.diskStorage({
   },
 });
 
-export const uploadNews = multer({ storage });
+export const uploadNews = multer({
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB max
+});
 
 // GET /api/news (Public)
 export const getAllNews = async (req, res) => {

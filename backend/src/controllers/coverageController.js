@@ -16,7 +16,10 @@ const storage = multer.diskStorage({
   },
 });
 
-export const uploadCoverage = multer({ storage });
+export const uploadCoverage = multer({
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB per file
+});
 
 // Public Methods
 export const getAllCoverage = async (req, res) => {
@@ -68,21 +71,33 @@ export const createCoverage = async (req, res) => {
         }, {})
       : files;
 
-    const imagePath =
-      filesObj.image && filesObj.image.length > 0
-        ? `/uploads/coverage/${filesObj.image[0].filename}`
-        : req.body.image || "";
+    // Build gallery from uploaded files
+    const gallery = [];
+    if (filesObj.gallery && filesObj.gallery.length > 0) {
+      filesObj.gallery.forEach((f) => {
+        gallery.push(`/uploads/coverage/${f.filename}`);
+      });
+    }
+
+    // Fallback: single image field (backward compat)
+    if (gallery.length === 0 && filesObj.image && filesObj.image.length > 0) {
+      gallery.push(`/uploads/coverage/${filesObj.image[0].filename}`);
+    }
+
+    // Main image is the first gallery image
+    const imagePath = gallery.length > 0 ? gallery[0] : req.body.image || "";
 
     const item = new Coverage({
       title,
       image: imagePath,
+      gallery,
       date,
       source,
       excerpt: excerpt || "",
       content: content || "",
       isActive: isActive !== "false" && isActive !== false,
     });
-    await item.save(); // Utilizing .save() properly triggers the pre-save hook for slug generation
+    await item.save();
     res.status(201).json(item);
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
@@ -117,11 +132,34 @@ export const updateCoverage = async (req, res) => {
         }, {})
       : files;
 
-    // Handle Image
-    if (filesObj.image && filesObj.image.length > 0) {
-      updates.image = `/uploads/coverage/${filesObj.image[0].filename}`;
-    } else if (req.body.image) {
-      updates.image = req.body.image;
+    // Build gallery: existing images kept by frontend + newly uploaded files
+    const gallery = [];
+
+    // Parse existing gallery paths sent by frontend
+    if (req.body.existingGallery) {
+      try {
+        const existing = JSON.parse(req.body.existingGallery);
+        if (Array.isArray(existing)) {
+          gallery.push(...existing);
+        }
+      } catch (_) {}
+    }
+
+    // Add newly uploaded gallery files
+    if (filesObj.gallery && filesObj.gallery.length > 0) {
+      filesObj.gallery.forEach((f) => {
+        gallery.push(`/uploads/coverage/${f.filename}`);
+      });
+    }
+
+    // Fallback: single image field (backward compat)
+    if (gallery.length === 0 && filesObj.image && filesObj.image.length > 0) {
+      gallery.push(`/uploads/coverage/${filesObj.image[0].filename}`);
+    }
+
+    if (gallery.length > 0) {
+      updates.gallery = gallery;
+      updates.image = gallery[0]; // First image is the main image
     }
 
     const item = await Coverage.findByIdAndUpdate(req.params.id, updates, {
