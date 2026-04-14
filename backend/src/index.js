@@ -28,6 +28,7 @@ import updatesRouter from "./routes/updates.js";
 import careersRouter from "./routes/careers.js";
 import contactsRouter from "./routes/contacts.js";
 import applicationsRouter from "./routes/applications.js";
+import heroBannersRouter from "./routes/heroBanners.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -99,6 +100,7 @@ app.use("/api/updates", updatesRouter);
 app.use("/api/careers", careersRouter);
 app.use("/api/contacts", contactsRouter);
 app.use("/api/applications", applicationsRouter);
+app.use("/api/hero-banners", heroBannersRouter);
 
 // Serve uploads (static files)
 app.use(

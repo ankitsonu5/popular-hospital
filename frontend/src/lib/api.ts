@@ -3,7 +3,7 @@ export const apiBaseUrl =
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser: use relative paths or Next.js rewrites
-  return apiBaseUrl;
+  return apiBaseUrl || process.env.BACKEND_API_URL || "http://localhost:5100";
 };
 
 export const api = (path: string) => {
@@ -485,4 +485,24 @@ export interface UpdateItem {
   isImportant: boolean;
   isActive: boolean;
   pdfUrl?: string;
+}
+
+export interface HeroBanner {
+  _id: string;
+  type: "image" | "video";
+  desktopMediaUrl: string;
+  mobileMediaUrl: string;
+  order: number;
+  isActive: boolean;
+}
+
+export async function fetchHeroBanners(): Promise<HeroBanner[]> {
+  try {
+    const res = await fetch(api("/hero-banners"), { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error("Failed to fetch hero banners:", e);
+    return [];
+  }
 }

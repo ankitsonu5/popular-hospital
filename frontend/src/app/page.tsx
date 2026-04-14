@@ -5,6 +5,7 @@ import {
   fetchBranches,
   fetchEvents,
   fetchSpecialities,
+  fetchHeroBanners,
 } from "@/lib/api";
 
 export const metadata: Metadata = {
@@ -14,12 +15,13 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [newsData, branchesData, eventsData, specialitiesData] =
+  const [newsData, branchesData, eventsData, specialitiesData, bannersData] =
     await Promise.all([
       fetchNews(),
       fetchBranches(),
       fetchEvents(),
       fetchSpecialities(),
+      fetchHeroBanners(),
     ]);
 
   return (
@@ -28,6 +30,7 @@ export default async function HomePage() {
       branches={branchesData}
       latestEvents={eventsData.slice(0, 3)}
       specialities={specialitiesData}
+      heroBanners={bannersData}
     />
   );
 }

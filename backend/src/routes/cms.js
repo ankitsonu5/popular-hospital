@@ -1,5 +1,13 @@
 import { Router } from "express";
 import {
+  getAllBanners,
+  createBanner,
+  updateBanner,
+  deleteBanner,
+  reorderBanners,
+  uploadBannerFiles,
+} from "../controllers/heroBannerController.js";
+import {
   getAllBranches,
   createBranch,
   updateBranch,
@@ -191,5 +199,26 @@ router.get("/events", getAdminEvents);
 router.post("/events", uploadEvent.any(), createEvent);
 router.put("/events/:id", uploadEvent.any(), updateEvent);
 router.delete("/events/:id", deleteEvent);
+
+// Hero Banners CRUD
+router.get("/hero-banners", getAllBanners);
+router.put("/hero-banners/reorder", reorderBanners);
+router.post(
+  "/hero-banners",
+  uploadBannerFiles.fields([
+    { name: "desktopMedia", maxCount: 1 },
+    { name: "mobileMedia", maxCount: 1 },
+  ]),
+  createBanner,
+);
+router.put(
+  "/hero-banners/:id",
+  uploadBannerFiles.fields([
+    { name: "desktopMedia", maxCount: 1 },
+    { name: "mobileMedia", maxCount: 1 },
+  ]),
+  updateBanner,
+);
+router.delete("/hero-banners/:id", deleteBanner);
 
 export default router;

@@ -23,6 +23,7 @@ import {
   Bell,
   Briefcase,
   Mail,
+  MonitorPlay,
 } from "lucide-react";
 
 const API_URL = "/api-backend";
@@ -47,6 +48,11 @@ const sidebarItems = [
     target: "_blank",
   },
   { label: "Departments", href: "/admin-dashboard/departments", icon: Users },
+  {
+    label: "Manage Content",
+    href: "/admin-dashboard/content-manage",
+    icon: MonitorPlay,
+  },
   { label: "Site Content", href: "/admin-dashboard/content", icon: FileText },
   {
     label: "Media & Blog",

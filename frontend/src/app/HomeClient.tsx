@@ -13,6 +13,7 @@ import {
   type NewsItem,
   type EventItem,
   type Speciality,
+  type HeroBanner,
 } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -257,6 +258,7 @@ interface HomeClientProps {
   latestEvents: EventItem[];
   branches: Branch[];
   specialities: Speciality[];
+  heroBanners: HeroBanner[];
 }
 
 export default function HomeClient({
@@ -264,6 +266,7 @@ export default function HomeClient({
   latestEvents,
   branches,
   specialities,
+  heroBanners,
 }: HomeClientProps) {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -297,25 +300,16 @@ export default function HomeClient({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const slides = [
-    {
-      type: "image",
-      src: "/images/slide_images/slide_one.png?v=update",
-      mobileSrc: "/images/slide_images/slide_one_mobile.png?v=update",
-    },
-    {
-      type: "image",
-      src: "/images/slide_images/slide_three.png?v=update",
-      mobileSrc: "/images/slide_images/slide_three_mobile.png?v=update",
-    },
-    {
-      type: "image",
-      src: "/images/slide_images/slide_two.png?v=update",
-      mobileSrc: "/images/slide_images/slide_two_mobile.png?v=update",
-    },
-  ];
+  const slides = heroBanners && heroBanners.length > 0 
+    ? heroBanners.map(b => ({
+        type: b.type,
+        src: getImageUrl(b.desktopMediaUrl),
+        mobileSrc: getImageUrl(b.mobileMediaUrl),
+      }))
+    : [];
 
   useEffect(() => {
+    if (slides.length <= 1) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 10000);
@@ -324,9 +318,14 @@ export default function HomeClient({
 
   // No video logic needed
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () =>
+  const nextSlide = () => {
+    if (slides.length === 0) return;
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+  const prevSlide = () => {
+    if (slides.length === 0) return;
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -357,16 +356,29 @@ export default function HomeClient({
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"}`}
             >
               <div className="relative w-full h-full">
-                <Image
-                  src={isMobile ? slide.mobileSrc || slide.src : slide.src}
-                  alt={`Hospital Slide ${index + 1}`}
-                  fill
-                  className="object-cover object-top transition-transform duration-[10000ms]"
-                  style={{ transform: "scale(1)" }}
-                  priority={index === 0}
-                  loading={index === 0 ? undefined : "lazy"}
-                  sizes="100vw"
-                />
+                {slide.type === "video" ? (
+                  <video
+                    src={isMobile ? slide.mobileSrc || slide.src : slide.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="object-cover object-center w-full h-full"
+                    style={{ pointerEvents: "none" }}
+                  />
+                ) : (
+                  <Image
+                    src={isMobile ? slide.mobileSrc || slide.src : slide.src}
+                    alt={`Hospital Slide ${index + 1}`}
+                    fill
+                    className="object-cover object-top transition-transform duration-[10000ms]"
+                    style={{ transform: "scale(1)" }}
+                    priority={index === 0}
+                    loading={index === 0 ? undefined : "lazy"}
+                    sizes="100vw"
+                    unoptimized
+                  />
+                )}
                 {/* Very subtle gradient for text shadow if needed */}
                 <div className="absolute inset-0 bg-black/10 z-10" />
               </div>
