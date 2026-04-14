@@ -149,6 +149,31 @@ function SortableBannerRow({ banner, onEdit, onDelete }: any) {
 
 const API_URL = "/api-backend";
 
+// Keep in sync with backend multer `limits.fileSize` in heroBannerController.js
+const MAX_FILE_SIZE_MB = 50;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
+const formatBytes = (bytes: number) => {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+};
+
+const validateMediaFile = (file: File, type: "image" | "video", label: string) => {
+  // 1) size check
+  if (file.size > MAX_FILE_SIZE_BYTES) {
+    return `${label} file is ${formatBytes(file.size)} — maximum allowed is ${MAX_FILE_SIZE_MB} MB. Please compress and try again.`;
+  }
+  // 2) mime check
+  if (type === "image" && !file.type.startsWith("image/")) {
+    return `${label} file must be an image (you selected ${file.type || "unknown"}).`;
+  }
+  if (type === "video" && !file.type.startsWith("video/")) {
+    return `${label} file must be a video (you selected ${file.type || "unknown"}).`;
+  }
+  return null;
+};
+
 export default function ManageContentPage() {
   const [banners, setBanners] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -272,32 +297,51 @@ export default function ManageContentPage() {
     if (mobileFile) data.append("mobileMedia", mobileFile);
 
     try {
-      if (editingId) {
-        await fetch(`${API_URL}/cms/hero-banners/${editingId}`, {
-          method: "PUT",
-          headers: getHeaders(),
-          body: data,
-        });
-        toast.success("Banner updated successfully");
-      } else {
-        // Find highest order to append
-        const newOrder = banners.length;
-        data.append("order", newOrder.toString());
-        
-        await fetch(`${API_URL}/cms/hero-banners`, {
-          method: "POST",
-          headers: getHeaders(),
-          body: data,
-        });
-        toast.success("Banner created successfully");
+      const res = editingId
+        ? await fetch(`${API_URL}/cms/hero-banners/${editingId}`, {
+            method: "PUT",
+            headers: getHeaders(),
+            body: data,
+          })
+        : await (async () => {
+            // Find highest order to append
+            const newOrder = banners.length;
+            data.append("order", newOrder.toString());
+            return fetch(`${API_URL}/cms/hero-banners`, {
+              method: "POST",
+              headers: getHeaders(),
+              body: data,
+            });
+          })();
+
+      if (!res.ok) {
+        // Try to surface a useful error message
+        let msg = `Upload failed (HTTP ${res.status})`;
+        if (res.status === 413) {
+          msg =
+            "File too large — server rejected the upload. Try a smaller video/image.";
+        } else {
+          try {
+            const err = await res.json();
+            if (err?.error) msg = err.error;
+          } catch {
+            /* non-JSON body, keep default */
+          }
+        }
+        toast.error(msg);
+        setIsSaving(false);
+        return;
       }
 
+      toast.success(
+        editingId ? "Banner updated successfully" : "Banner created successfully",
+      );
       setShowForm(false);
       setEditingId(null);
       resetForm();
       fetchBanners();
     } catch (error) {
-      toast.error("An error occurred");
+      toast.error("Network error — please check your connection and try again");
     }
     setIsSaving(false);
   };
@@ -424,18 +468,33 @@ export default function ManageContentPage() {
                   Desktop File Upload
                 </label>
                 <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Recommended Size: 1920x1080px (16:9)
+                  Recommended Size: 1920x1080px (16:9) · Max {MAX_FILE_SIZE_MB} MB
                 </p>
                 <input
                   type="file"
                   accept={formData.type === "video" ? "video/*" : "image/*"}
                   onChange={(e) => {
-                    if (e.target.files && e.target.files[0]) {
-                      setDesktopFile(e.target.files[0]);
+                    const f = e.target.files?.[0];
+                    if (!f) return;
+                    const err = validateMediaFile(
+                      f,
+                      formData.type as "image" | "video",
+                      "Desktop",
+                    );
+                    if (err) {
+                      toast.error(err);
+                      e.target.value = "";
+                      return;
                     }
+                    setDesktopFile(f);
                   }}
                   className="w-full text-sm text-gray-700 border-2 border-gray-200 rounded-xl px-3 py-2 outline-none focus:border-[#0d9488] transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#0d9488]/10 file:text-[#0d9488] hover:file:bg-[#0d9488]/20"
                 />
+                {desktopFile && (
+                  <p className="text-[11px] text-gray-500 mt-1">
+                    Selected: {desktopFile.name} ({formatBytes(desktopFile.size)})
+                  </p>
+                )}
               </div>
 
               <div>
@@ -443,18 +502,33 @@ export default function ManageContentPage() {
                   Mobile File Upload
                 </label>
                 <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Recommended Size: 768x1366px (Vertical)
+                  Recommended Size: 768x1366px (Vertical) · Max {MAX_FILE_SIZE_MB} MB
                 </p>
                 <input
                   type="file"
                   accept={formData.type === "video" ? "video/*" : "image/*"}
                   onChange={(e) => {
-                    if (e.target.files && e.target.files[0]) {
-                      setMobileFile(e.target.files[0]);
+                    const f = e.target.files?.[0];
+                    if (!f) return;
+                    const err = validateMediaFile(
+                      f,
+                      formData.type as "image" | "video",
+                      "Mobile",
+                    );
+                    if (err) {
+                      toast.error(err);
+                      e.target.value = "";
+                      return;
                     }
+                    setMobileFile(f);
                   }}
                   className="w-full text-sm text-gray-700 border-2 border-gray-200 rounded-xl px-3 py-2 outline-none focus:border-[#0d9488] transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#0d9488]/10 file:text-[#0d9488] hover:file:bg-[#0d9488]/20"
                 />
+                {mobileFile && (
+                  <p className="text-[11px] text-gray-500 mt-1">
+                    Selected: {mobileFile.name} ({formatBytes(mobileFile.size)})
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center gap-3 mt-4">

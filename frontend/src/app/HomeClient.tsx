@@ -8,6 +8,7 @@ import {
   fetchNews,
   fetchEvents,
   getImageUrl,
+  getMediaUrl,
   fetchSpecialities,
   type Branch,
   type NewsItem,
@@ -303,8 +304,8 @@ export default function HomeClient({
   const slides = heroBanners && heroBanners.length > 0 
     ? heroBanners.map(b => ({
         type: b.type,
-        src: getImageUrl(b.desktopMediaUrl),
-        mobileSrc: getImageUrl(b.mobileMediaUrl),
+        src: getMediaUrl(b.desktopMediaUrl),
+        mobileSrc: getMediaUrl(b.mobileMediaUrl),
       }))
     : [];
 

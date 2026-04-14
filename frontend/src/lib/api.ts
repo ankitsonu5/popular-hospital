@@ -34,6 +34,15 @@ export const getImageUrl = (path: string, absolute = false) => {
   return finalPath;
 };
 
+// For VIDEO files: always use relative path through Next.js rewrite proxy
+// This ensures proper HTTPS streaming without mixed-content issues
+export const getMediaUrl = (path: string) => {
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return normalizedPath.startsWith("/uploads") ? normalizedPath : `/uploads${normalizedPath}`;
+};
+
 export async function fetchBranches(): Promise<Branch[]> {
   try {
     const res = await fetch(api("/branches"), { next: { revalidate: 60 } });
@@ -498,7 +507,7 @@ export interface HeroBanner {
 
 export async function fetchHeroBanners(): Promise<HeroBanner[]> {
   try {
-    const res = await fetch(api("/hero-banners"), { next: { revalidate: 60 } });
+    const res = await fetch(api("/hero-banners"), { cache: "no-store" });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {

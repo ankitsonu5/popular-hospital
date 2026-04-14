@@ -24,7 +24,12 @@ const storage = multer.diskStorage({
   },
 });
 
-export const uploadBannerFiles = multer({ storage });
+export const uploadBannerFiles = multer({
+  storage,
+  limits: {
+    fileSize: 50 * 1024 * 1024, // 50 MB per file (image or short video)
+  },
+});
 
 // Helper function to delete old file
 const deleteFile = (filePath) => {

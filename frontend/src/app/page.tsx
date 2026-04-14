@@ -8,6 +8,9 @@ import {
   fetchHeroBanners,
 } from "@/lib/api";
 
+// Always fetch fresh data so new banners appear immediately after admin upload
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Popular Hospital | Finest Patient Care in Varanasi",
   description:
