@@ -301,13 +301,28 @@ export default function HomeClient({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const slides = heroBanners && heroBanners.length > 0 
+  // ─── COMBINED SLIDES (Hardcoded Video + DB Banners) ──────────
+  const dbSlides = heroBanners && heroBanners.length > 0 
     ? heroBanners.map(b => ({
         type: b.type,
         src: getMediaUrl(b.desktopMediaUrl),
         mobileSrc: getMediaUrl(b.mobileMediaUrl),
       }))
     : [];
+
+  const slides = [
+    {
+      type: "video" as const,
+      src: "/videos/hero.mp4",
+      mobileSrc: "/videos/hero.mp4",
+    },
+    ...dbSlides
+  ];
+  // ─────────────────────────────────────────────────────────────
+
+
+
+
 
   useEffect(() => {
     if (slides.length <= 1) return;
