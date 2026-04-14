@@ -301,24 +301,17 @@ export default function HomeClient({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // ─── COMBINED SLIDES (Hardcoded Video + DB Banners) ──────────
-  const dbSlides = heroBanners && heroBanners.length > 0 
-    ? heroBanners.map(b => ({
-        type: b.type,
-        src: getMediaUrl(b.desktopMediaUrl),
-        mobileSrc: getMediaUrl(b.mobileMediaUrl),
-      }))
-    : [];
-
+  // ─── ONLY HARDCODED VIDEO (DB Banners disabled for now) ─────
+  // Humne DB banners ko frontend se hata diya hai, sirf video chalega.
   const slides = [
     {
       type: "video" as const,
       src: "/videos/hero.mp4",
       mobileSrc: "/videos/hero.mp4",
     },
-    ...dbSlides
   ];
   // ─────────────────────────────────────────────────────────────
+
 
 
 
@@ -418,6 +411,13 @@ export default function HomeClient({
           >
             <ChevronRight className="w-5 h-5 sm:w-10 sm:h-10 group-hover:translate-x-1 transition-transform" />
           </button>
+        </div>
+
+        {/* Main Slogan Overlay on Video */}
+        <div className="absolute inset-x-0 bottom-24 sm:bottom-32 md:bottom-40 lg:bottom-48 z-20 text-center px-4 pointer-events-none">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading tracking-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2">
+            आपका स्वास्थ्य, हमारी प्राथमिकता
+          </h2>
         </div>
       </section>
 
