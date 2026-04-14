@@ -1423,6 +1423,7 @@ export default function HomeClient({
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    unoptimized
                   />
                 </div>
                 <div className="p-6 xl:p-5 flex flex-col flex-1">
@@ -1519,6 +1520,7 @@ export default function HomeClient({
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    unoptimized
                   />
                   {/* Date Badge */}
                   <div className="absolute top-4 left-4 bg-white px-4 py-2.5 rounded-xl shadow-md border-l-4 border-[#E85222] flex items-center gap-3">

@@ -14,6 +14,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "http", hostname: "localhost", port: "5100" },
       { protocol: "http", hostname: "127.0.0.1", port: "5100" },
+      { protocol: "http", hostname: "185.207.250.253", port: "5100" },
       { protocol: "https", hostname: "*.popularhospital.com" },
       { protocol: "https", hostname: "*.popularhospital.in" },
       { protocol: "https", hostname: "popularhospital.in" },

@@ -25,12 +25,12 @@ export const getImageUrl = (path: string, absolute = false) => {
       ? normalizedPath
       : `/uploads${normalizedPath}`;
 
-  // Use absolute URL only if requested or if we are on the server and have a base URL
-  if (absolute || (typeof window === "undefined" && apiBaseUrl)) {
+  // Only return absolute URL when explicitly requested
+  // Default: always return relative path so Next.js rewrites handle it
+  if (absolute && apiBaseUrl) {
     return `${apiBaseUrl}${finalPath}`;
   }
 
-  // DEFAULT: Return relative path to let Next.js rewrites handle it
   return finalPath;
 };
 

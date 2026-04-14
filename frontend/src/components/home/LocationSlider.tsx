@@ -127,6 +127,7 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
                 fill
                 className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
                 sizes="(max-width: 768px) 85vw, (max-width: 1280px) 380px, 400px"
+                unoptimized
               />
             </div>
           ))}

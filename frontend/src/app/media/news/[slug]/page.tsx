@@ -122,6 +122,7 @@ export default async function NewsDetailPage({
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 priority
+                unoptimized
               />
             </div>
           </div>
@@ -191,11 +192,12 @@ export default async function NewsDetailPage({
                   <Image
                     src={
                       getImageUrl(related.image) || "/about-section-image.png"
-                    } // 2. Update existing 'Image' src attributes to use 'getImageUrl(article.image)'. (Corrected for related.image)
+                    }
                     alt={related.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    unoptimized
                   />
                   {/* Category Badge removed */}
                 </div>
