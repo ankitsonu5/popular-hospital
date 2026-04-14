@@ -1,6 +1,7 @@
 import Update from "../models/Update.js";
 import multer from "multer";
 import fs from "fs";
+import path from "path";
 
 // Setup Multer Storage for Updates (PDFs)
 const storage = multer.diskStorage({
@@ -12,7 +13,14 @@ const storage = multer.diskStorage({
     cb(null, dir);
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname.replace(/\s+/g, "-")}`);
+    const ext = path.extname(file.originalname);
+    const base = path
+      .basename(file.originalname, ext)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 60);
+    cb(null, `${Date.now()}-${base || "file"}${ext.toLowerCase()}`);
   },
 });
 
