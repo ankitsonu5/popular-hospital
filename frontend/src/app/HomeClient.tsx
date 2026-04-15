@@ -293,9 +293,56 @@ export default function HomeClient({
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const [formError, setFormError] = useState("");
+  const [experienceCount, setExperienceCount] = useState(0);
+  const [specialistsCount, setSpecialistsCount] = useState(0);
+  const [hasStartedWhyCounter, setHasStartedWhyCounter] = useState(false);
 
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const whyPopularRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const node = whyPopularRef.current;
+    if (!node || hasStartedWhyCounter) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasStartedWhyCounter(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [hasStartedWhyCounter]);
+
+  useEffect(() => {
+    if (!hasStartedWhyCounter) return;
+
+    const durationMs = 1600;
+    const frameMs = 16;
+    const totalFrames = Math.ceil(durationMs / frameMs);
+    let frame = 0;
+
+    const timer = window.setInterval(() => {
+      frame += 1;
+      const progress = Math.min(frame / totalFrames, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      setExperienceCount(Math.round(32 * eased));
+      setSpecialistsCount(Math.round(50 * eased));
+
+      if (progress >= 1) {
+        window.clearInterval(timer);
+      }
+    }, frameMs);
+
+    return () => window.clearInterval(timer);
+  }, [hasStartedWhyCounter]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -304,8 +351,6 @@ export default function HomeClient({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // ─── ONLY HARDCODED VIDEO (DB Banners disabled for now) ─────
-  // Humne DB banners ko frontend se hata diya hai, sirf video chalega.
   const slides = heroBanners
     .filter((banner) => banner.desktopMediaUrl)
     .map((banner) => ({
@@ -644,6 +689,7 @@ export default function HomeClient({
 
       {/* Why Popular Hospital Section */}
       <section
+        ref={whyPopularRef}
         className="relative py-24 bg-white overflow-hidden"
         aria-labelledby="why-popular"
       >
@@ -731,7 +777,8 @@ export default function HomeClient({
                   <div className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 mt-1 sm:mt-2 relative">
                     <div>
                       <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">
-                        32<span className="text-[#E85222]">+</span>
+                        {experienceCount}
+                        <span className="text-[#E85222]">+</span>
                       </p>
                       <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">
                         Years Exp
@@ -739,7 +786,8 @@ export default function HomeClient({
                     </div>
                     <div>
                       <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">
-                        50<span className="text-hospital-teal">+</span>
+                        {specialistsCount}
+                        <span className="text-hospital-teal">+</span>
                       </p>
                       <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">
                         Specialists

@@ -4,13 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import type { PatientStory } from "@/lib/api";
-import { fallbackPatientStories } from "@/lib/patientStoriesFallback";
 import {
   getStoryThumbnailUrl,
   getVideoEmbedUrl,
-  getVideoPlatform,
   getPatientStoryLabel,
   getPatientStoryModalLayout,
+  getYoutubeId,
 } from "@/lib/patientStories";
 
 function TestimonialCard({
@@ -27,8 +26,6 @@ function TestimonialCard({
   onOpen: (story: PatientStory) => void;
 }) {
   const thumbnailUrl = getStoryThumbnailUrl(story.thumbnailUrl, story.videoUrl);
-  const isDirectVideo =
-    getVideoPlatform(story.videoUrl) === "direct" && !story.thumbnailUrl;
 
   return (
     <button
@@ -36,23 +33,13 @@ function TestimonialCard({
       className={`relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full bg-gray-900 ${className}`}
       aria-label={`Play ${getPatientStoryLabel(index)}`}
     >
-      {isDirectVideo ? (
-        <video
-          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-          preload="metadata"
-          muted
-          playsInline
-          src={`${story.videoUrl}#t=0.1`}
-        />
-      ) : (
-        <Image
-          src={thumbnailUrl}
-          alt={story.name}
-          fill
-          className="object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 20vw"
-        />
-      )}
+      <Image
+        src={thumbnailUrl}
+        alt={story.name}
+        fill
+        className="object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, 20vw"
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
       <div className="absolute inset-0 flex items-center justify-center">
         <div
@@ -85,9 +72,12 @@ export default function Testimonials({
     : null;
 
   const displayStories = useMemo(() => {
-    const source = stories && stories.length > 0 ? stories : fallbackPatientStories;
-    return source.slice(0, 7);
+    return (stories || []).slice(0, 7);
   }, [stories]);
+
+  if (displayStories.length === 0) {
+    return null;
+  }
 
   const openStory = (story: PatientStory) => {
     setSelectedStory(story);
@@ -117,9 +107,11 @@ export default function Testimonials({
         </div>
 
         <div className="mx-auto w-full max-w-[1766px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 relative z-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading tracking-tight mb-16 inline-flex items-center gap-4">
-            Patients <span className="text-[#1e3a8a]">Speak</span>
-            <div className="w-12 h-1 bg-[#E85222] rounded-full mt-2" />
+          <h2
+            id="patients-speak"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 lg:mb-20 text-center font-heading"
+          >
+            Patients Speak
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
@@ -258,13 +250,12 @@ export default function Testimonials({
               <div
                 className={`relative w-full ${modalLayout?.frameClassName || "aspect-video"} ${modalLayout?.frameWrapperClassName || ""}`}
               >
-                {getVideoPlatform(selectedStory.videoUrl) === "direct" ? (
-                  <video
-                    src={selectedStory.videoUrl}
-                    className="absolute inset-0 w-full h-full"
-                    controls
-                    autoPlay
-                  />
+                {!getYoutubeId(selectedStory.videoUrl) ? (
+                  <div className="flex h-full items-center justify-center bg-white px-6 text-center">
+                    <p className="text-sm font-semibold text-gray-700">
+                      Only YouTube links are supported.
+                    </p>
+                  </div>
                 ) : (
                   <iframe
                     src={getVideoEmbedUrl(selectedStory.videoUrl) || selectedStory.videoUrl}

@@ -4,13 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { PatientStory } from "@/lib/api";
-import { fallbackPatientStories } from "@/lib/patientStoriesFallback";
 import {
   getStoryThumbnailUrl,
   getVideoEmbedUrl,
-  getVideoPlatform,
   getPatientStoryLabel,
   getPatientStoryModalLayout,
+  getYoutubeId,
 } from "@/lib/patientStories";
 
 export default function StoriesPage({
@@ -19,8 +18,10 @@ export default function StoriesPage({
   stories: PatientStory[];
 }) {
   const [selectedStory, setSelectedStory] = useState<PatientStory | null>(null);
-
-  const displayStories = stories.length > 0 ? stories : fallbackPatientStories;
+  const selectedPlatform = selectedStory && getYoutubeId(selectedStory.videoUrl)
+    ? "youtube"
+    : null;
+  const displayStories = stories;
 
   const openStory = (story: PatientStory) => {
     setSelectedStory(story);
@@ -86,31 +87,24 @@ export default function StoriesPage({
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {displayStories.map((story, index) => {
-            const thumbnailUrl = getStoryThumbnailUrl(
-              story.thumbnailUrl,
-              story.videoUrl,
-            );
-            const isDirectVideo =
-              getVideoPlatform(story.videoUrl) === "direct" && !story.thumbnailUrl;
-
-            return (
-              <button
-                key={story._id}
-                onClick={() => openStory(story)}
-                className="relative group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 text-left flex flex-col h-full"
-              >
-                <div className="relative aspect-[16/9] w-full bg-gray-200 overflow-hidden">
-                  {isDirectVideo ? (
-                    <video
-                      src={story.videoUrl}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      muted
-                      preload="metadata"
-                      playsInline
-                    />
-                  ) : (
+        {displayStories.length === 0 ? (
+          <div className="rounded-3xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center text-gray-500">
+            No patient stories are available right now.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {displayStories.map((story, index) => {
+              const thumbnailUrl = getStoryThumbnailUrl(
+                story.thumbnailUrl,
+                story.videoUrl,
+              );
+              return (
+                <button
+                  key={story._id}
+                  onClick={() => openStory(story)}
+                  className="relative group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 text-left flex flex-col h-full"
+                >
+                  <div className="relative aspect-[16/9] w-full bg-gray-200 overflow-hidden">
                     <Image
                       src={thumbnailUrl}
                       alt={story.name}
@@ -119,37 +113,37 @@ export default function StoriesPage({
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
-                  )}
 
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
 
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-md border border-white/60 flex items-center justify-center transform group-hover:scale-110 transition-all shadow-xl">
-                      <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center transition-colors group-hover:bg-white group-hover:text-[#0b1c43]">
-                        <svg
-                          className="w-6 h-6 text-white transition-colors group-hover:text-[#0b1c43] ml-1"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-md border border-white/60 flex items-center justify-center transform group-hover:scale-110 transition-all shadow-xl">
+                        <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center transition-colors group-hover:bg-white group-hover:text-[#0b1c43]">
+                          <svg
+                            className="w-6 h-6 text-white transition-colors group-hover:text-[#0b1c43] ml-1"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="p-5 border-t border-gray-50 bg-white space-y-1">
-                  <p className="text-[#0b1c43] text-sm font-bold tracking-tight">
-                    {getPatientStoryLabel(index)}
-                  </p>
-                  {story.title ? (
-                    <p className="text-sm text-gray-500 line-clamp-2">{story.title}</p>
-                  ) : null}
-                </div>
-              </button>
-            );
-          })}
-        </div>
+                  <div className="p-5 border-t border-gray-50 bg-white space-y-1">
+                    <p className="text-[#0b1c43] text-sm font-bold tracking-tight">
+                      {getPatientStoryLabel(index)}
+                    </p>
+                    {story.title ? (
+                      <p className="text-sm text-gray-500 line-clamp-2">{story.title}</p>
+                    ) : null}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
       </section>
 
       {selectedStory ? (
@@ -183,13 +177,12 @@ export default function StoriesPage({
             <div
               className={`relative w-full ${modalLayout?.frameClassName || "aspect-video"} ${modalLayout?.frameWrapperClassName || ""}`}
             >
-              {getVideoPlatform(selectedStory.videoUrl) === "direct" ? (
-                <video
-                  src={selectedStory.videoUrl}
-                  className="absolute inset-0 w-full h-full"
-                  controls
-                  autoPlay
-                />
+              {!getYoutubeId(selectedStory.videoUrl) ? (
+                <div className="flex h-full items-center justify-center bg-white px-6 text-center">
+                  <p className="text-sm font-semibold text-gray-700">
+                    Only YouTube links are supported.
+                  </p>
+                </div>
               ) : (
                 <iframe
                   src={getVideoEmbedUrl(selectedStory.videoUrl) || selectedStory.videoUrl}

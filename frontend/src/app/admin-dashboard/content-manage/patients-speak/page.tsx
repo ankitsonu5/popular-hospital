@@ -31,7 +31,7 @@ import {
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { getImageUrl, type PatientStory } from "@/lib/api";
-import { getPatientStoryLabel } from "@/lib/patientStories";
+import { getPatientStoryLabel, getYoutubeId } from "@/lib/patientStories";
 
 const API_URL = "/api-backend";
 const MAX_FILE_SIZE_MB = 10;
@@ -287,6 +287,11 @@ export default function PatientStoriesManagePage() {
       return;
     }
 
+    if (!getYoutubeId(formData.videoUrl.trim())) {
+      toast.error("Only YouTube links are supported.");
+      return;
+    }
+
     if (!editingStory && !thumbnailFile) {
       toast.error("Thumbnail image is required");
       return;
@@ -348,7 +353,7 @@ export default function PatientStoriesManagePage() {
             Manage Patients Speak
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Add YouTube, Facebook or Instagram links with custom thumbnails. Drag to reorder cards.
+            Add YouTube links with custom thumbnails. Drag to reorder cards.
           </p>
         </div>
         <button
@@ -483,11 +488,11 @@ export default function PatientStoriesManagePage() {
                   onChange={(e) =>
                     setFormData((current) => ({ ...current, videoUrl: e.target.value }))
                   }
-                  placeholder="https://youtube.com/... or Instagram/Facebook link"
+                  placeholder="https://youtube.com/watch?v=..."
                   className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
                 />
                 <p className="text-[11px] text-gray-500 mt-1">
-                  YouTube, Facebook, Instagram or direct video URL supported.
+                  Only YouTube links are supported.
                 </p>
               </div>
 

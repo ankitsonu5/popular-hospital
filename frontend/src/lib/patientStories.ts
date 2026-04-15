@@ -12,9 +12,34 @@ export function getYoutubeId(url: string) {
 }
 
 export function getInstagramPath(url: string) {
-  const match = url.match(/instagram\.com\/(reel|p|tv)\/([^/?#]+)/i);
-  if (!match) return null;
-  return { type: match[1], id: match[2] };
+  if (!url) return null;
+
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.toLowerCase();
+
+    if (!host.includes("instagram.com")) return null;
+
+    const segments = parsed.pathname.split("/").filter(Boolean);
+    if (segments.length === 0) return null;
+
+    let type = segments[0]?.toLowerCase();
+    let id = segments[1];
+
+    if (type === "share" && segments.length >= 3) {
+      type = segments[1]?.toLowerCase();
+      id = segments[2];
+    }
+
+    if (type === "reels") type = "reel";
+
+    if (!id) return null;
+    if (!["reel", "p", "tv"].includes(type)) return null;
+
+    return { type, id };
+  } catch {
+    return null;
+  }
 }
 
 export function isDirectVideoUrl(url: string) {
@@ -37,7 +62,7 @@ export function getVideoEmbedUrl(url: string) {
 
   const instagram = getInstagramPath(url);
   if (instagram) {
-    return `https://www.instagram.com/${instagram.type}/${instagram.id}/embed/?autoplay=1`;
+    return `https://www.instagram.com/${instagram.type}/${instagram.id}/embed/captioned/`;
   }
 
   if (/facebook\.com|fb\.watch/i.test(url)) {
@@ -52,10 +77,10 @@ export function getPatientStoryModalLayout(url: string) {
 
   if (platform === "instagram") {
     return {
-      shellClassName: "max-w-[760px]",
+      shellClassName: "max-w-[430px]",
       shellSurfaceClassName: "bg-[#0f1419] shadow-none overflow-hidden border border-white/10",
       frameClassName:
-        "w-full max-w-[740px] h-[640px] max-h-[82vh]",
+        "w-full h-[80vh] max-h-[820px] min-h-[560px]",
       frameWrapperClassName:
         "mx-auto bg-[#0f1419] overflow-hidden",
       iframeClassName: "w-full h-full border-0",
