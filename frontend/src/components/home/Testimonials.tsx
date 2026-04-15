@@ -107,12 +107,19 @@ export default function Testimonials({
         </div>
 
         <div className="mx-auto w-full max-w-[1766px] px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 relative z-10">
-          <h2
-            id="patients-speak"
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 lg:mb-20 text-center font-heading"
-          >
-            Patients Speak
-          </h2>
+          <div className="mb-12 lg:mb-20 text-center">
+            <h2
+              id="patients-speak"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] text-center font-heading"
+            >
+              Patients Speak
+            </h2>
+            <div className="mt-4 inline-flex items-center justify-center gap-2">
+              <span className="h-[3px] w-6 rounded-full bg-[#ffb088]" />
+              <span className="h-[5px] w-10 rounded-full bg-[#E85222] shadow-[0_2px_10px_rgba(232,82,34,0.35)]" />
+              <span className="h-[3px] w-6 rounded-full bg-[#ffb088]" />
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
             <div className="flex flex-col justify-center">

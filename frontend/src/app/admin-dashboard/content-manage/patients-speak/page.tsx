@@ -30,8 +30,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { getImageUrl, type PatientStory } from "@/lib/api";
-import { getPatientStoryLabel, getYoutubeId } from "@/lib/patientStories";
+import { type PatientStory } from "@/lib/api";
+import {
+  getPatientStoryLabel,
+  getStoryThumbnailUrl,
+  getYoutubeId,
+} from "@/lib/patientStories";
 
 const API_URL = "/api-backend";
 const MAX_FILE_SIZE_MB = 10;
@@ -102,7 +106,7 @@ function SortableStoryRow({
       <td className="py-3.5 px-4">
         <div className="relative h-16 w-28 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
           <Image
-            src={getImageUrl(story.thumbnailUrl)}
+            src={getStoryThumbnailUrl(story.thumbnailUrl, story.videoUrl)}
             alt={story.name}
             fill
             className="object-cover"
@@ -289,11 +293,6 @@ export default function PatientStoriesManagePage() {
 
     if (!getYoutubeId(formData.videoUrl.trim())) {
       toast.error("Only YouTube links are supported.");
-      return;
-    }
-
-    if (!editingStory && !thumbnailFile) {
-      toast.error("Thumbnail image is required");
       return;
     }
 
@@ -501,7 +500,7 @@ export default function PatientStoriesManagePage() {
                   Thumbnail Upload
                 </label>
                 <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Recommended Size: 1280x720px · Max {MAX_FILE_SIZE_MB} MB
+                  Optional. Recommended Size: 1280x720px · Max {MAX_FILE_SIZE_MB} MB
                 </p>
                 <input
                   type="file"
@@ -515,9 +514,13 @@ export default function PatientStoriesManagePage() {
                   </p>
                 ) : editingStory ? (
                   <p className="text-[11px] text-gray-500 mt-1">
-                    Keep current thumbnail or upload a replacement.
+                    Keep current thumbnail, or use the YouTube thumbnail by default if no custom one is saved.
                   </p>
-                ) : null}
+                ) : (
+                  <p className="text-[11px] text-gray-500 mt-1">
+                    If you do not upload a thumbnail, the YouTube video thumbnail will be used by default.
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center gap-3 mt-4">

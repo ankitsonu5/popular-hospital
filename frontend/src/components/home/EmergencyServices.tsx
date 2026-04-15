@@ -38,10 +38,12 @@ export default function EmergencyServices() {
                 24x7 Services
               </h2>
             </div>
+            <div className="mt-4 inline-flex items-center justify-center gap-2 w-full">
+              <span className="h-[3px] w-6 rounded-full bg-[#ffb088]" />
+              <span className="h-[5px] w-10 rounded-full bg-[#E85222] shadow-[0_2px_10px_rgba(232,82,34,0.35)]" />
+              <span className="h-[3px] w-6 rounded-full bg-[#ffb088]" />
+            </div>
           </div>
-
-          {/* Clean Divider */}
-          <div className="w-24 h-1.5 bg-[#E85222] rounded-full mx-auto mb-8 shadow-sm"></div>
 
           {/* Subtitle */}
           <p className="text-slate-600 text-lg sm:text-xl max-w-3xl mx-auto font-medium leading-relaxed">

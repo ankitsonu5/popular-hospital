@@ -104,12 +104,6 @@ export const createPatientStory = async (req, res) => {
       ? `/uploads/patient-stories/${req.file.filename}`
       : thumbnailUrl?.trim() || "";
 
-    if (!resolvedThumbnailUrl) {
-      return res.status(400).json({
-        error: "Thumbnail image or thumbnail URL is required",
-      });
-    }
-
     const story = await PatientStory.create({
       title: title?.trim() || "",
       name: name.trim(),

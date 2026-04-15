@@ -470,7 +470,7 @@ export default function InternationalPatients({
           </div>
 
           {/* Desktop Only Side Image */}
-          <div className="relative hidden lg:block flex-1 w-full h-[600px] xl:h-[520px] overflow-hidden rounded-2xl shadow-xl">
+          <div className="relative hidden lg:block flex-1 w-full max-w-[720px] xl:max-w-[660px] h-[600px] xl:h-[520px] overflow-hidden rounded-2xl shadow-xl mx-auto">
             <Image
               src="/images/international_patients.png?v=2"
               alt="International Patient Inquiry"
