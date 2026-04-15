@@ -88,6 +88,14 @@ import {
   deleteCareer,
   getCareerById,
 } from "../controllers/careerController.js";
+import {
+  getAllPatientStories,
+  createPatientStory,
+  updatePatientStory,
+  deletePatientStory,
+  reorderPatientStories,
+  uploadPatientStoryThumbnail,
+} from "../controllers/patientStoryController.js";
 import { cmsAuth } from "../middleware/auth.js";
 
 const router = Router();
@@ -220,5 +228,20 @@ router.put(
   updateBanner,
 );
 router.delete("/hero-banners/:id", deleteBanner);
+
+// Patient Stories CRUD
+router.get("/patient-stories", getAllPatientStories);
+router.put("/patient-stories/reorder", reorderPatientStories);
+router.post(
+  "/patient-stories",
+  uploadPatientStoryThumbnail.single("thumbnail"),
+  createPatientStory,
+);
+router.put(
+  "/patient-stories/:id",
+  uploadPatientStoryThumbnail.single("thumbnail"),
+  updatePatientStory,
+);
+router.delete("/patient-stories/:id", deletePatientStory);
 
 export default router;

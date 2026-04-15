@@ -83,9 +83,9 @@ export const createBanner = async (req, res) => {
       mobileMediaUrl = `/uploads/banners/${req.files.mobileMedia[0].filename}`;
     }
 
-    if (!desktopMediaUrl || !mobileMediaUrl) {
+    if (!desktopMediaUrl) {
       return res.status(400).json({
-        error: "Both desktopMedia and mobileMedia files are required",
+        error: "Desktop media file is required",
       });
     }
 

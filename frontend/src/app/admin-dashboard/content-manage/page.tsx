@@ -99,19 +99,25 @@ function SortableBannerRow({ banner, onEdit, onDelete }: any) {
         <div className="flex flex-col gap-2">
           <p className="text-xs font-bold text-gray-500 uppercase">Mobile Media</p>
           <div className="h-16 w-16 bg-gray-100 rounded overflow-hidden border border-gray-200 relative">
-            {banner.type === "video" ? (
-              <video
-                src={getImageUrl(banner.mobileMediaUrl)}
-                className="w-full h-full object-cover"
-                muted
-                preload="metadata"
-              />
+            {banner.mobileMediaUrl ? (
+              banner.type === "video" ? (
+                <video
+                  src={getImageUrl(banner.mobileMediaUrl)}
+                  className="w-full h-full object-cover"
+                  muted
+                  preload="metadata"
+                />
+              ) : (
+                <img
+                  src={getImageUrl(banner.mobileMediaUrl)}
+                  alt="Mobile Banner"
+                  className="w-full h-full object-cover"
+                />
+              )
             ) : (
-              <img
-                src={getImageUrl(banner.mobileMediaUrl)}
-                alt="Mobile Banner"
-                className="w-full h-full object-cover"
-              />
+              <div className="flex h-full w-full items-center justify-center text-[10px] font-semibold uppercase tracking-wide text-gray-400">
+                Desktop
+              </div>
             )}
           </div>
         </div>
@@ -283,8 +289,8 @@ export default function ManageContentPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!editingId && (!desktopFile || !mobileFile)) {
-      toast.error("Please select both Mobile and Desktop media files.");
+    if (!editingId && !desktopFile) {
+      toast.error("Please select a desktop media file.");
       return;
     }
 
@@ -351,10 +357,10 @@ export default function ManageContentPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-            Manage Homepage Hero Banners
+            Manage Hero Content
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Drag and drop to reorder the banners. Ensure sizes match requirements.
+            Manage homepage hero banners here. Drag and drop to reorder active slides.
           </p>
         </div>
         <button
@@ -502,7 +508,7 @@ export default function ManageContentPage() {
                   Mobile File Upload
                 </label>
                 <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Recommended Size: 768x1366px (Vertical) · Max {MAX_FILE_SIZE_MB} MB
+                  Optional. Recommended Size: 768x1366px (Vertical) · Max {MAX_FILE_SIZE_MB} MB
                 </p>
                 <input
                   type="file"
@@ -527,6 +533,11 @@ export default function ManageContentPage() {
                 {mobileFile && (
                   <p className="text-[11px] text-gray-500 mt-1">
                     Selected: {mobileFile.name} ({formatBytes(mobileFile.size)})
+                  </p>
+                )}
+                {!mobileFile && (
+                  <p className="text-[11px] text-gray-500 mt-1">
+                    If left empty, desktop media will be used on mobile.
                   </p>
                 )}
               </div>

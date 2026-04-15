@@ -500,7 +500,7 @@ export interface HeroBanner {
   _id: string;
   type: "image" | "video";
   desktopMediaUrl: string;
-  mobileMediaUrl: string;
+  mobileMediaUrl?: string;
   order: number;
   isActive: boolean;
 }
@@ -512,6 +512,27 @@ export async function fetchHeroBanners(): Promise<HeroBanner[]> {
     return res.json();
   } catch (e) {
     console.error("Failed to fetch hero banners:", e);
+    return [];
+  }
+}
+
+export interface PatientStory {
+  _id: string;
+  title?: string;
+  name: string;
+  videoUrl: string;
+  thumbnailUrl: string;
+  order: number;
+  isActive: boolean;
+}
+
+export async function fetchPatientStories(): Promise<PatientStory[]> {
+  try {
+    const res = await fetch(api("/patient-stories"), { cache: "no-store" });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error("Failed to fetch patient stories:", e);
     return [];
   }
 }

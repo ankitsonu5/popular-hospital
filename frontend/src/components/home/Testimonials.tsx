@@ -1,54 +1,105 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { useMemo, useState } from "react";
+import type { PatientStory } from "@/lib/api";
+import { fallbackPatientStories } from "@/lib/patientStoriesFallback";
+import {
+  getStoryThumbnailUrl,
+  getVideoEmbedUrl,
+  getVideoPlatform,
+  getPatientStoryLabel,
+  getPatientStoryModalLayout,
+} from "@/lib/patientStories";
 
-export default function Testimonials() {
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-  const [areVideosVisible, setAreVideosVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+function TestimonialCard({
+  story,
+  index,
+  className,
+  buttonSize,
+  onOpen,
+}: {
+  story: PatientStory;
+  index: number;
+  className: string;
+  buttonSize: string;
+  onOpen: (story: PatientStory) => void;
+}) {
+  const thumbnailUrl = getStoryThumbnailUrl(story.thumbnailUrl, story.videoUrl);
+  const isDirectVideo =
+    getVideoPlatform(story.videoUrl) === "direct" && !story.thumbnailUrl;
 
-  // Added useEffect for ESC key close
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedVideo(null);
-    };
-    if (typeof window !== "undefined") {
-      window.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("keydown", handleKeyDown);
-      }
-    };
-  }, []);
+  return (
+    <button
+      onClick={() => onOpen(story)}
+      className={`relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full bg-gray-900 ${className}`}
+      aria-label={`Play ${getPatientStoryLabel(index)}`}
+    >
+      {isDirectVideo ? (
+        <video
+          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+          preload="metadata"
+          muted
+          playsInline
+          src={`${story.videoUrl}#t=0.1`}
+        />
+      ) : (
+        <Image
+          src={thumbnailUrl}
+          alt={story.name}
+          fill
+          className="object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 20vw"
+        />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div
+          className={`${buttonSize} rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all`}
+        >
+          <svg
+            className="text-white ml-0.5"
+            width="40%"
+            height="40%"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </div>
+    </button>
+  );
+}
 
-  // Intersection Observer for Lazy Loading Video Thumbnails
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAreVideosVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1, rootMargin: "200px" },
-    );
+export default function Testimonials({
+  stories,
+}: {
+  stories?: PatientStory[];
+}) {
+  const [selectedStory, setSelectedStory] = useState<PatientStory | null>(null);
+  const modalLayout = selectedStory
+    ? getPatientStoryModalLayout(selectedStory.videoUrl)
+    : null;
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const displayStories = useMemo(() => {
+    const source = stories && stories.length > 0 ? stories : fallbackPatientStories;
+    return source.slice(0, 7);
+  }, [stories]);
+
+  const openStory = (story: PatientStory) => {
+    setSelectedStory(story);
+  };
 
   return (
     <>
       <section
-        ref={sectionRef}
         className="py-16 sm:py-24 bg-white relative overflow-hidden group/testimonials"
         aria-labelledby="patients-speak"
       >
-        {/* Background Decorative Patterns */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden select-none">
-          {/* Top-Left Horizontal Pattern */}
           <div
             className="absolute -top-10 -left-10 w-[600px] h-[400px] opacity-[0.4] transition-transform duration-1000 group-hover/testimonials:scale-105"
             style={{
@@ -56,7 +107,6 @@ export default function Testimonials() {
               backgroundSize: "120px 104px",
             }}
           />
-          {/* Right-Side Vertical Pattern (Aligned to the right edge) */}
           <div
             className="absolute top-1/4 -right-12 w-[300px] h-[600px] opacity-[0.5] transition-transform duration-1000 group-hover/testimonials:translate-y-4"
             style={{
@@ -73,270 +123,82 @@ export default function Testimonials() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
-            {/* Column 1: Far Left (Centered Single Card) */}
             <div className="flex flex-col justify-center">
-              <button
-                onClick={() => setSelectedVideo("/videos/testimonial-one.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5] bg-gray-900"
-                aria-label="Play patient testimonial video 1"
-              >
-                {areVideosVisible && (
-                  <video
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                    preload="metadata"
-                    muted
-                    playsInline
-                  >
-                    <source
-                      src="/videos/testimonial-one.mp4#t=0.1"
-                      type="video/mp4"
-                    />
-                  </video>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
-                    <svg
-                      className="w-4 h-4 text-white ml-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
+              {displayStories[0] ? (
+                <TestimonialCard
+                  story={displayStories[0]}
+                  index={0}
+                  onOpen={openStory}
+                  className="aspect-[4/5]"
+                  buttonSize="w-10 h-10"
+                />
+              ) : null}
             </div>
 
-            {/* Column 2: Inner Left (Two Stacked Cards) */}
             <div className="flex flex-col gap-4 lg:gap-6">
-              <button
-                onClick={() => setSelectedVideo("/videos/testimonial-two.mp4")}
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2 bg-gray-800"
-                aria-label="Play patient testimonial video 2"
-              >
-                {areVideosVisible && (
-                  <video
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                    preload="metadata"
-                    muted
-                    playsInline
-                  >
-                    <source
-                      src="/videos/testimonial-two.mp4#t=0.1"
-                      type="video/mp4"
-                    />
-                  </video>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
-                    <svg
-                      className="w-5 h-5 text-white ml-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
-
-              <button
-                onClick={() =>
-                  setSelectedVideo(
-                    "/videos/popular_hospital_happy_pateint_one.mp4",
-                  )
-                }
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2 bg-gray-800"
-                aria-label="Play patient testimonial video 3"
-              >
-                {areVideosVisible && (
-                  <video
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                    preload="metadata"
-                    muted
-                    playsInline
-                  >
-                    <source
-                      src="/videos/popular_hospital_happy_pateint_one.mp4#t=0.1"
-                      type="video/mp4"
-                    />
-                  </video>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
-                    <svg
-                      className="w-5 h-5 text-white ml-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
+              {displayStories[1] ? (
+                <TestimonialCard
+                  story={displayStories[1]}
+                  index={1}
+                  onOpen={openStory}
+                  className="h-[280px] lg:h-1/2"
+                  buttonSize="w-12 h-12"
+                />
+              ) : null}
+              {displayStories[2] ? (
+                <TestimonialCard
+                  story={displayStories[2]}
+                  index={2}
+                  onOpen={openStory}
+                  className="h-[280px] lg:h-1/2"
+                  buttonSize="w-12 h-12"
+                />
+              ) : null}
             </div>
 
-            {/* Column 3: Center (Tall Featured Card) */}
             <div className="h-[400px] lg:h-full">
-              <button
-                onClick={() =>
-                  setSelectedVideo(
-                    "/videos/popular_hospital_happy_pateint_three.mp4",
-                  )
-                }
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-full bg-[#0b1c43]"
-                aria-label="Play featured patient testimonial video"
-              >
-                {areVideosVisible && (
-                  <video
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                    preload="metadata"
-                    muted
-                    playsInline
-                  >
-                    <source
-                      src="/videos/popular_hospital_happy_pateint_three.mp4#t=0.1"
-                      type="video/mp4"
-                    />
-                  </video>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/60 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] group-hover:border-[#E85222] transition-all duration-300 shadow-2xl relative z-10">
-                    <svg
-                      className="w-8 h-8 text-white ml-1"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
+              {displayStories[3] ? (
+                <TestimonialCard
+                  story={displayStories[3]}
+                  index={3}
+                  onOpen={openStory}
+                  className="h-full"
+                  buttonSize="w-20 h-20 border-2"
+                />
+              ) : null}
             </div>
 
-            {/* Column 4: Inner Right (Two Stacked Cards) */}
             <div className="flex flex-col gap-4 lg:gap-6">
-              <button
-                onClick={() =>
-                  setSelectedVideo(
-                    "/videos/popular_hospital_happy_pateint_four.mp4",
-                  )
-                }
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2 bg-gray-800"
-                aria-label="Play patient testimonial video 4"
-              >
-                {areVideosVisible && (
-                  <video
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                    preload="metadata"
-                    muted
-                    playsInline
-                  >
-                    <source
-                      src="/videos/popular_hospital_happy_pateint_four.mp4#t=0.1"
-                      type="video/mp4"
-                    />
-                  </video>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
-                    <svg
-                      className="w-5 h-5 text-white ml-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
-
-              <button
-                onClick={() =>
-                  setSelectedVideo(
-                    "/videos/popular_hospital_happy_pateint_five.mp4",
-                  )
-                }
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full h-1/2 bg-gray-800"
-                aria-label="Play patient testimonial video 5"
-              >
-                {areVideosVisible && (
-                  <video
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                    preload="metadata"
-                    muted
-                    playsInline
-                  >
-                    <source
-                      src="/videos/popular_hospital_happy_pateint_five.mp4#t=0.1"
-                      type="video/mp4"
-                    />
-                  </video>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-100 group-hover:bg-[#E85222] transition-all">
-                    <svg
-                      className="w-5 h-5 text-white ml-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
+              {displayStories[4] ? (
+                <TestimonialCard
+                  story={displayStories[4]}
+                  index={4}
+                  onOpen={openStory}
+                  className="h-[280px] lg:h-1/2"
+                  buttonSize="w-12 h-12"
+                />
+              ) : null}
+              {displayStories[5] ? (
+                <TestimonialCard
+                  story={displayStories[5]}
+                  index={5}
+                  onOpen={openStory}
+                  className="h-[280px] lg:h-1/2"
+                  buttonSize="w-12 h-12"
+                />
+              ) : null}
             </div>
 
-            {/* Column 5: Far Right (Centered Single Card) */}
             <div className="flex flex-col justify-center">
-              <button
-                onClick={() =>
-                  setSelectedVideo(
-                    "/videos/popular_hospital_happy_pateint_two.mp4",
-                  )
-                }
-                className="relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full aspect-[4/5] bg-gray-900"
-                aria-label="Play patient testimonial video 6"
-              >
-                {areVideosVisible && (
-                  <video
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                    preload="metadata"
-                    muted
-                    playsInline
-                  >
-                    <source
-                      src="/videos/popular_hospital_happy_pateint_two.mp4#t=0.1"
-                      type="video/mp4"
-                    />
-                  </video>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all">
-                    <svg
-                      className="w-4 h-4 text-white ml-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
+              {displayStories[6] ? (
+                <TestimonialCard
+                  story={displayStories[6]}
+                  index={6}
+                  onOpen={openStory}
+                  className="aspect-[4/5]"
+                  buttonSize="w-10 h-10"
+                />
+              ) : null}
             </div>
           </div>
 
@@ -365,18 +227,17 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Video Modal */}
-        {selectedVideo && (
+        {selectedStory ? (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
-            onClick={() => setSelectedVideo(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
+            onClick={() => setSelectedStory(null)}
           >
             <div
-              className="relative w-full max-w-4xl bg-white rounded-lg overflow-hidden"
+              className={`relative w-full rounded-2xl ${modalLayout?.shellClassName || "max-w-4xl"} ${modalLayout?.shellSurfaceClassName || "bg-white overflow-hidden shadow-2xl"}`}
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                onClick={() => setSelectedVideo(null)}
+                onClick={() => setSelectedStory(null)}
                 className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-gray-100 transition-colors"
                 aria-label="Close video"
               >
@@ -395,19 +256,34 @@ export default function Testimonials() {
                 </svg>
               </button>
               <div
-                className="relative w-full"
-                style={{ paddingBottom: "56.25%" }}
+                className={`relative w-full ${modalLayout?.frameClassName || "aspect-video"} ${modalLayout?.frameWrapperClassName || ""}`}
               >
-                <video
-                  src={selectedVideo}
-                  className="absolute inset-0 w-full h-full"
-                  controls
-                  autoPlay
-                ></video>
+                {getVideoPlatform(selectedStory.videoUrl) === "direct" ? (
+                  <video
+                    src={selectedStory.videoUrl}
+                    className="absolute inset-0 w-full h-full"
+                    controls
+                    autoPlay
+                  />
+                ) : (
+                  <iframe
+                    src={getVideoEmbedUrl(selectedStory.videoUrl) || selectedStory.videoUrl}
+                    className={
+                      modalLayout?.iframeClassName || "absolute inset-0 w-full h-full"
+                    }
+                    style={
+                      modalLayout?.useAbsoluteIframe === false
+                        ? undefined
+                        : { position: "absolute", inset: 0 }
+                    }
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                )}
               </div>
             </div>
           </div>
-        )}
+        ) : null}
       </section>
     </>
   );

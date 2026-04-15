@@ -50,8 +50,14 @@ const sidebarItems = [
   { label: "Departments", href: "/admin-dashboard/departments", icon: Users },
   {
     label: "Manage Content",
-    href: "/admin-dashboard/content-manage",
     icon: MonitorPlay,
+    subItems: [
+      { label: "Hero Content", href: "/admin-dashboard/content-manage" },
+      {
+        label: "Patients Speak",
+        href: "/admin-dashboard/content-manage/patients-speak",
+      },
+    ],
   },
   { label: "Site Content", href: "/admin-dashboard/content", icon: FileText },
   {
@@ -77,11 +83,15 @@ export default function AdminDashboardLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [mediaBlogOpen, setMediaBlogOpen] = useState(false);
+  const [manageContentOpen, setManageContentOpen] = useState(false);
 
   // Auto-open dropdown if we are currently inside media-blog route
   useEffect(() => {
     if (pathname.includes("/media-blog")) {
       setMediaBlogOpen(true);
+    }
+    if (pathname.includes("/content-manage")) {
+      setManageContentOpen(true);
     }
   }, [pathname]);
 
@@ -144,7 +154,11 @@ export default function AdminDashboardLayout({
   };
 
   const currentPage =
-    sidebarItems.find((item) => pathname === item.href)?.label || "Dashboard";
+    sidebarItems.find((item) => pathname === item.href)?.label ||
+    sidebarItems
+      .flatMap((item) => item.subItems || [])
+      .find((sub) => pathname === sub.href)?.label ||
+    "Dashboard";
   const isActionPage = pathname.includes("/action");
 
   if (isActionPage) {
@@ -195,11 +209,25 @@ export default function AdminDashboardLayout({
               const Icon = item.icon;
 
               if (item.subItems) {
-                const isActiveGroup = pathname.includes("/media-blog");
+                const isMediaBlogGroup = item.label === "Media & Blog";
+                const isManageContentGroup = item.label === "Manage Content";
+                const isActiveGroup = isMediaBlogGroup
+                  ? pathname.includes("/media-blog")
+                  : pathname.includes("/content-manage");
+                const isOpen = isMediaBlogGroup
+                  ? mediaBlogOpen
+                  : manageContentOpen;
+
                 return (
                   <div key={item.label} className="space-y-1">
                     <button
-                      onClick={() => setMediaBlogOpen(!mediaBlogOpen)}
+                      onClick={() => {
+                        if (isMediaBlogGroup) {
+                          setMediaBlogOpen(!mediaBlogOpen);
+                          return;
+                        }
+                        setManageContentOpen(!manageContentOpen);
+                      }}
                       className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-all
                         ${
                           isActiveGroup
@@ -214,13 +242,13 @@ export default function AdminDashboardLayout({
                         />
                         <span>{item.label}</span>
                       </div>
-                      {mediaBlogOpen ? (
+                      {isOpen ? (
                         <ChevronDown className="w-4 h-4 text-white/40" />
                       ) : (
                         <ChevronRight className="w-4 h-4 text-white/40" />
                       )}
                     </button>
-                    {mediaBlogOpen && (
+                    {isOpen && (
                       <div className="pl-11 pr-3 space-y-1 mt-1">
                         {item.subItems.map((sub) => {
                           const isSubActive = pathname === sub.href;

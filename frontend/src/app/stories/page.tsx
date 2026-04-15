@@ -1,5 +1,8 @@
 import { Metadata } from "next";
 import StoriesClient from "./StoriesClient";
+import { fetchPatientStories } from "@/lib/api";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Patient Stories | Popular Hospital",
@@ -7,6 +10,7 @@ export const metadata: Metadata = {
     "Hear directly from our patients about their experiences and successful recovery journeys at Popular Hospital.",
 };
 
-export default function StoriesPage() {
-  return <StoriesClient />;
+export default async function StoriesPage() {
+  const stories = await fetchPatientStories();
+  return <StoriesClient stories={stories} />;
 }

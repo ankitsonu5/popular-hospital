@@ -15,6 +15,7 @@ import {
   type EventItem,
   type Speciality,
   type HeroBanner,
+  type PatientStory,
 } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -260,6 +261,7 @@ interface HomeClientProps {
   branches: Branch[];
   specialities: Speciality[];
   heroBanners: HeroBanner[];
+  patientStories: PatientStory[];
 }
 
 export default function HomeClient({
@@ -268,6 +270,7 @@ export default function HomeClient({
   branches,
   specialities,
   heroBanners,
+  patientStories,
 }: HomeClientProps) {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -303,19 +306,32 @@ export default function HomeClient({
 
   // ─── ONLY HARDCODED VIDEO (DB Banners disabled for now) ─────
   // Humne DB banners ko frontend se hata diya hai, sirf video chalega.
-  const slides = [
-    {
-      type: "video" as const,
-      src: "/videos/hero.mp4",
-      mobileSrc: "/videos/hero.mp4",
-    },
-  ];
+  const slides = heroBanners
+    .filter((banner) => banner.desktopMediaUrl)
+    .map((banner) => ({
+      id: banner._id,
+      type: banner.type,
+      src:
+        banner.type === "video"
+          ? getMediaUrl(banner.desktopMediaUrl)
+          : getImageUrl(banner.desktopMediaUrl),
+      mobileSrc:
+        banner.type === "video"
+          ? getMediaUrl(banner.mobileMediaUrl || banner.desktopMediaUrl)
+          : getImageUrl(banner.mobileMediaUrl || banner.desktopMediaUrl),
+    }));
   // ─────────────────────────────────────────────────────────────
 
 
 
 
 
+
+  useEffect(() => {
+    if (currentSlide >= slides.length && slides.length > 0) {
+      setCurrentSlide(0);
+    }
+  }, [currentSlide, slides.length]);
 
   useEffect(() => {
     if (slides.length <= 1) return;
@@ -361,7 +377,7 @@ export default function HomeClient({
         <div className="absolute inset-0 z-0 bg-white">
           {slides.map((slide, index) => (
             <div
-              key={index}
+              key={slide.id}
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"}`}
             >
               <div className="relative w-full h-full">
@@ -396,22 +412,24 @@ export default function HomeClient({
         </div>
 
         {/* Navigation Arrows */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 flex justify-between px-4 sm:px-20 lg:px-24 pointer-events-none">
-          <button
-            onClick={prevSlide}
-            className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center hover:bg-[#E85222] transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group shadow-2xl"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-5 h-5 sm:w-10 sm:h-10 group-hover:-translate-x-1 transition-transform" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-[#E85222] text-white flex items-center justify-center hover:bg-[#d1451a] shadow-xl transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-5 h-5 sm:w-10 sm:h-10 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+        {slides.length > 1 && (
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 flex justify-between px-4 sm:px-20 lg:px-24 pointer-events-none">
+            <button
+              onClick={prevSlide}
+              className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center hover:bg-[#E85222] transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group shadow-2xl"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-10 sm:h-10 group-hover:-translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-[#E85222] text-white flex items-center justify-center hover:bg-[#d1451a] shadow-xl transition-all pointer-events-auto transform hover:scale-110 active:scale-95 group"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-10 sm:h-10 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        )}
 
         {/* Main Slogan Overlay on Video */}
         <div className="absolute inset-x-0 bottom-24 sm:bottom-32 md:bottom-40 lg:bottom-48 z-20 text-center px-4 pointer-events-none">
@@ -930,7 +948,7 @@ export default function HomeClient({
               Excellence in Care
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-heading tracking-tight">
-              Our Departments.
+              Our Departments
             </h2>
           </div>
 
@@ -1317,7 +1335,7 @@ export default function HomeClient({
       </section>
 
       {/* Patients Speak Testimonial Section (Dynamically Loaded) */}
-      <DynamicTestimonials />
+      <DynamicTestimonials stories={patientStories} />
 
       {/* Our Locations Section - Dynamically Loaded */}
       <DynamicLocationSlider branches={branches} />

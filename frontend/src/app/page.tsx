@@ -6,6 +6,7 @@ import {
   fetchEvents,
   fetchSpecialities,
   fetchHeroBanners,
+  fetchPatientStories,
 } from "@/lib/api";
 
 // Always fetch fresh data so new banners appear immediately after admin upload
@@ -18,13 +19,21 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [newsData, branchesData, eventsData, specialitiesData, bannersData] =
+  const [
+    newsData,
+    branchesData,
+    eventsData,
+    specialitiesData,
+    bannersData,
+    patientStoriesData,
+  ] =
     await Promise.all([
       fetchNews(),
       fetchBranches(),
       fetchEvents(),
       fetchSpecialities(),
       fetchHeroBanners(),
+      fetchPatientStories(),
     ]);
 
   return (
@@ -34,6 +43,7 @@ export default async function HomePage() {
       latestEvents={eventsData.slice(0, 3)}
       specialities={specialitiesData}
       heroBanners={bannersData}
+      patientStories={patientStoriesData.slice(0, 7)}
     />
   );
 }
