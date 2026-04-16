@@ -299,9 +299,11 @@ export default function PatientStoriesManagePage() {
       return;
     }
 
-    const platform = getVideoPlatform(formData.videoUrl.trim());
-    if (platform !== "youtube" && platform !== "facebook") {
-      toast.error("Only YouTube or Facebook video links are supported.");
+    const url = formData.videoUrl.trim();
+    const platform = getVideoPlatform(url);
+    const isInstagram = /instagram\.com/i.test(url);
+    if (!["youtube", "facebook", "instagram"].includes(platform) && !isInstagram) {
+      toast.error("Only YouTube, Facebook, or Instagram links are supported.");
       return;
     }
 
@@ -361,7 +363,7 @@ export default function PatientStoriesManagePage() {
             Manage Patients Speak
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Add YouTube or Facebook links with custom thumbnails. Drag to reorder cards.
+            Add YouTube, Facebook, or Instagram links with custom thumbnails. Drag to reorder cards.
           </p>
         </div>
         <button
@@ -496,11 +498,11 @@ export default function PatientStoriesManagePage() {
                   onChange={(e) =>
                     setFormData((current) => ({ ...current, videoUrl: e.target.value }))
                   }
-                  placeholder="https://youtube.com/watch?v=... or https://facebook.com/..."
+                  placeholder="YouTube, Facebook, or Instagram link..."
                   className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
                 />
                 <p className="text-[11px] text-gray-500 mt-1">
-                  YouTube or Facebook video links are supported.
+                  YouTube, Facebook, or Instagram links are supported.
                 </p>
               </div>
 

@@ -72,7 +72,13 @@ const isFacebookUrl = (value) => {
   return /facebook\.com|fb\.watch/i.test(value);
 };
 
-const isSupportedVideoUrl = (value) => isYoutubeUrl(value) || isFacebookUrl(value);
+const isInstagramUrl = (value) => {
+  if (!isValidUrl(value)) return false;
+  return /instagram\.com/i.test(value);
+};
+
+const isSupportedVideoUrl = (value) =>
+  isYoutubeUrl(value) || isFacebookUrl(value) || isInstagramUrl(value);
 
 export const getActivePatientStories = async (req, res) => {
   try {
@@ -104,7 +110,7 @@ export const createPatientStory = async (req, res) => {
     }
 
     if (!videoUrl?.trim() || !isSupportedVideoUrl(videoUrl.trim())) {
-      return res.status(400).json({ error: "Only YouTube or Facebook video links are supported" });
+      return res.status(400).json({ error: "Only YouTube, Facebook, or Instagram links are supported" });
     }
 
     const resolvedThumbnailUrl = req.file
@@ -150,7 +156,7 @@ export const updatePatientStory = async (req, res) => {
 
     if (typeof req.body.videoUrl === "string") {
       if (!req.body.videoUrl.trim() || !isSupportedVideoUrl(req.body.videoUrl.trim())) {
-        return res.status(400).json({ error: "Only YouTube or Facebook video links are supported" });
+        return res.status(400).json({ error: "Only YouTube, Facebook, or Instagram links are supported" });
       }
       updates.videoUrl = req.body.videoUrl.trim();
     }
