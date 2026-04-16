@@ -54,13 +54,25 @@ function PressActionForm() {
                 : "",
             });
             // Load existing gallery images (or fallback to single image)
-            const existingImages: { src: string; isExisting: boolean; path: string }[] = [];
+            const existingImages: {
+              src: string;
+              isExisting: boolean;
+              path: string;
+            }[] = [];
             if (item.gallery && item.gallery.length > 0) {
               item.gallery.forEach((img: string) => {
-                existingImages.push({ src: getImageUrl(img), isExisting: true, path: img });
+                existingImages.push({
+                  src: getImageUrl(img),
+                  isExisting: true,
+                  path: img,
+                });
               });
             } else if (item.image) {
-              existingImages.push({ src: getImageUrl(item.image), isExisting: true, path: item.image });
+              existingImages.push({
+                src: getImageUrl(item.image),
+                isExisting: true,
+                path: item.image,
+              });
             }
             setImagePreviews(existingImages);
           }

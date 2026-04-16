@@ -265,9 +265,13 @@ export default function Testimonials({
                   </div>
                 ) : (
                   <iframe
-                    src={getVideoEmbedUrl(selectedStory.videoUrl) || selectedStory.videoUrl}
+                    src={
+                      getVideoEmbedUrl(selectedStory.videoUrl) ||
+                      selectedStory.videoUrl
+                    }
                     className={
-                      modalLayout?.iframeClassName || "absolute inset-0 w-full h-full"
+                      modalLayout?.iframeClassName ||
+                      "absolute inset-0 w-full h-full"
                     }
                     style={
                       modalLayout?.useAbsoluteIframe === false

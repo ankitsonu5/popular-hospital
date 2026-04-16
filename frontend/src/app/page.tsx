@@ -26,15 +26,14 @@ export default async function HomePage() {
     specialitiesData,
     bannersData,
     patientStoriesData,
-  ] =
-    await Promise.all([
-      fetchNews(),
-      fetchBranches(),
-      fetchEvents(),
-      fetchSpecialities(),
-      fetchHeroBanners(),
-      fetchPatientStories(),
-    ]);
+  ] = await Promise.all([
+    fetchNews(),
+    fetchBranches(),
+    fetchEvents(),
+    fetchSpecialities(),
+    fetchHeroBanners(),
+    fetchPatientStories(),
+  ]);
 
   return (
     <HomeClient

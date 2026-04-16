@@ -1,5 +1,4 @@
-export const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "";
+export const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "";
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser: use relative paths or Next.js rewrites
@@ -40,7 +39,9 @@ export const getMediaUrl = (path: string) => {
   if (!path) return "";
   if (path.startsWith("http")) return path;
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return normalizedPath.startsWith("/uploads") ? normalizedPath : `/uploads${normalizedPath}`;
+  return normalizedPath.startsWith("/uploads")
+    ? normalizedPath
+    : `/uploads${normalizedPath}`;
 };
 
 export async function fetchBranches(): Promise<Branch[]> {

@@ -71,11 +71,12 @@ export default async function DoctorPage({ params }: Props) {
     .replace(/\s*\([^)]*\)\s*$/, "")
     .trim();
 
-  const displayDesignation =
-    local?.designation ||
-    (dbDoctor?.designation && typeof dbDoctor.designation === "object"
-      ? dbDoctor.designation.name
-      : dbDoctor?.designation || "");
+  const dbDesignation = dbDoctor?.designation;
+  const dbDesignationStr =
+    typeof dbDesignation === "object"
+      ? dbDesignation.name
+      : (dbDesignation ?? "");
+  const displayDesignation: string = local?.designation || dbDesignationStr;
 
   const displayExperience = local?.experience
     ? local.experience

@@ -3,7 +3,14 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { Eye, EyeOff, KeyRound, Loader2, ShieldCheck, ArrowRight } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  KeyRound,
+  Loader2,
+  ShieldCheck,
+  ArrowRight,
+} from "lucide-react";
 
 function ResetPasswordForm() {
   const router = useRouter();
@@ -21,7 +28,7 @@ function ResetPasswordForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    
+
     if (!token) {
       setError("Invalid or missing reset token.");
       return;
@@ -46,7 +53,7 @@ function ResetPasswordForm() {
         body: JSON.stringify({ token, newPassword: password }),
       });
       const data = await res.json();
-      
+
       if (!res.ok) throw new Error(data.error || "Failed to reset password");
 
       setSuccess(true);
@@ -70,13 +77,15 @@ function ResetPasswordForm() {
           Password Reset!
         </h2>
         <p className="text-gray-500 text-base font-medium mb-8">
-          Your admin password has been successfully updated. Redirecting you to login...
+          Your admin password has been successfully updated. Redirecting you to
+          login...
         </p>
         <button
           onClick={() => router.push("/admin-login")}
           className="w-full h-14 flex items-center justify-center gap-2 bg-[#0b1c43] hover:bg-[#0e2455] text-white rounded-2xl font-bold text-sm transition-all shadow-[0_15px_35px_-10px_rgba(11,28,67,0.4)] hover:shadow-[0_15px_35px_-5px_rgba(11,28,67,0.6)] hover:-translate-y-0.5 active:scale-95 group"
         >
-          Go to Login <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          Go to Login{" "}
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
     );
@@ -107,7 +116,12 @@ function ResetPasswordForm() {
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={3}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </div>
           <p className="text-[13px] font-bold text-red-700">{error}</p>
@@ -135,7 +149,11 @@ function ResetPasswordForm() {
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
             >
-              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              {showPassword ? (
+                <EyeOff className="w-5 h-5" />
+              ) : (
+                <Eye className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -159,7 +177,11 @@ function ResetPasswordForm() {
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
             >
-              {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              {showConfirmPassword ? (
+                <EyeOff className="w-5 h-5" />
+              ) : (
+                <Eye className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -224,7 +246,13 @@ export default function ResetPasswordPage() {
           />
         </div>
 
-        <Suspense fallback={<div className="flex justify-center p-10"><Loader2 className="w-8 h-8 animate-spin text-[#0b1c43]" /></div>}>
+        <Suspense
+          fallback={
+            <div className="flex justify-center p-10">
+              <Loader2 className="w-8 h-8 animate-spin text-[#0b1c43]" />
+            </div>
+          }
+        >
           <ResetPasswordForm />
         </Suspense>
 

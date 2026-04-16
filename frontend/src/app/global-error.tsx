@@ -29,12 +29,22 @@ export default function GlobalError({
         >
           <div style={{ textAlign: "center", maxWidth: "400px" }}>
             <div
-              style={{ fontSize: "3.5rem", fontWeight: 700, color: "#0d9488", marginBottom: "1rem" }}
+              style={{
+                fontSize: "3.5rem",
+                fontWeight: 700,
+                color: "#0d9488",
+                marginBottom: "1rem",
+              }}
             >
               Oops!
             </div>
             <h1
-              style={{ fontSize: "1.5rem", fontWeight: 600, color: "#1f2937", marginBottom: "0.75rem" }}
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: 600,
+                color: "#1f2937",
+                marginBottom: "0.75rem",
+              }}
             >
               Something went wrong
             </h1>
@@ -42,7 +52,14 @@ export default function GlobalError({
               We're sorry, an unexpected error occurred. Please try again or go
               back to the home page.
             </p>
-            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: "0.75rem",
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <button
                 onClick={reset}
                 style={{

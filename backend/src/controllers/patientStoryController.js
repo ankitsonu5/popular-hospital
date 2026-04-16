@@ -110,7 +110,9 @@ export const createPatientStory = async (req, res) => {
     }
 
     if (!videoUrl?.trim() || !isSupportedVideoUrl(videoUrl.trim())) {
-      return res.status(400).json({ error: "Only YouTube, Facebook, or Instagram links are supported" });
+      return res.status(400).json({
+        error: "Only YouTube, Facebook, or Instagram links are supported",
+      });
     }
 
     const resolvedThumbnailUrl = req.file
@@ -155,8 +157,13 @@ export const updatePatientStory = async (req, res) => {
     }
 
     if (typeof req.body.videoUrl === "string") {
-      if (!req.body.videoUrl.trim() || !isSupportedVideoUrl(req.body.videoUrl.trim())) {
-        return res.status(400).json({ error: "Only YouTube, Facebook, or Instagram links are supported" });
+      if (
+        !req.body.videoUrl.trim() ||
+        !isSupportedVideoUrl(req.body.videoUrl.trim())
+      ) {
+        return res.status(400).json({
+          error: "Only YouTube, Facebook, or Instagram links are supported",
+        });
       }
       updates.videoUrl = req.body.videoUrl.trim();
     }
@@ -211,7 +218,9 @@ export const reorderPatientStories = async (req, res) => {
     }
 
     await Promise.all(
-      ids.map((id, index) => PatientStory.findByIdAndUpdate(id, { order: index })),
+      ids.map((id, index) =>
+        PatientStory.findByIdAndUpdate(id, { order: index }),
+      ),
     );
 
     res.json({ ok: true });
