@@ -25,6 +25,13 @@ const securityConfig = {
       legacyHeaders: false,
       message: { error: "Too many requests, please try again later." },
     },
+    admin: {
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 1000, // higher limit for authenticated admin operations
+      standardHeaders: true,
+      legacyHeaders: false,
+      message: { error: "Too many requests, please try again later." },
+    },
     auth: {
       windowMs: 15 * 60 * 1000, // 15 minutes
       max: 7, // 7 login attempts per window

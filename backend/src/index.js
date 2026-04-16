@@ -12,7 +12,7 @@ import {
   xssSanitizer,
   errorHandler,
 } from "./middleware/security.js";
-import { authLimiter } from "./middleware/security.js";
+import { authLimiter, adminLimiter } from "./middleware/security.js";
 
 // Route imports
 import branchesRouter from "./routes/branches.js";
@@ -94,7 +94,7 @@ app.use("/api/bookings", bookingsRouter);
 app.use("/api/opd", opdRouter);
 app.use("/api/auth", authLimiter, authRouter); // Strict rate limit on auth
 app.use("/api/news", newsRouter);
-app.use("/api/blogs", blogRouter);
+app.use("/api/blogs", adminLimiter, blogRouter); // Higher limit for admin blog editor
 app.use("/api/coverage", coverageRouter);
 app.use("/api/events", (await import("./routes/events.js")).default);
 app.use("/api/updates", updatesRouter);
@@ -118,7 +118,7 @@ import { upload, uploadBlogImage } from "./controllers/blogController.js";
 app.post("/api/blog-image-direct", upload.single("file"), uploadBlogImage);
 
 // CMS / Admin Routes (protected by cmsAuth inside the router)
-app.use("/api/cms", cmsRouter);
+app.use("/api/cms", adminLimiter, cmsRouter);
 
 // Health check
 app.get("/api/health", (req, res) => {
