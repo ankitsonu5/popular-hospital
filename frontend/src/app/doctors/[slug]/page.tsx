@@ -69,7 +69,7 @@ export default async function DoctorPage({ params }: Props) {
     .trim();
 
   const displayDesignation =
-    typeof dbDoctor?.designation === "object"
+    dbDoctor?.designation && typeof dbDoctor.designation === "object"
       ? dbDoctor.designation.name
       : dbDoctor?.designation || local?.designation || "";
   const displayExperience = dbDoctor
