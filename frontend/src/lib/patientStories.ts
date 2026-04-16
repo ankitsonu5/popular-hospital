@@ -72,22 +72,38 @@ export function getVideoEmbedUrl(url: string) {
   return null;
 }
 
+export function isFacebookReel(url: string) {
+  return /facebook\.com\/reel\//i.test(url) || /fb\.watch/i.test(url);
+}
+
 export function getPatientStoryModalLayout(url: string) {
   const platform = getVideoPlatform(url);
 
+  // Vertical portrait layout — Instagram (9:16)
   if (platform === "instagram") {
     return {
       shellClassName: "max-w-[430px]",
       shellSurfaceClassName: "bg-[#0f1419] shadow-none overflow-hidden border border-white/10",
-      frameClassName:
-        "w-full h-[80vh] max-h-[820px] min-h-[560px]",
-      frameWrapperClassName:
-        "mx-auto bg-[#0f1419] overflow-hidden",
+      frameClassName: "w-full h-[80vh] max-h-[820px] min-h-[560px]",
+      frameWrapperClassName: "mx-auto bg-[#0f1419] overflow-hidden",
       iframeClassName: "w-full h-full border-0",
       useAbsoluteIframe: false,
     };
   }
 
+  // Facebook Reel — portrait 9:16 container
+  if (platform === "facebook" && isFacebookReel(url)) {
+    return {
+      shellClassName: "max-w-[380px]",
+      shellSurfaceClassName: "bg-black overflow-hidden shadow-2xl",
+      frameClassName: "aspect-[9/16]",
+      frameWrapperClassName: "",
+      iframeClassName: "absolute inset-0 w-full h-full border-0",
+      useAbsoluteIframe: true,
+    };
+  }
+
+  // Landscape layout — Facebook regular videos & YouTube (16:9)
   return {
     shellClassName: "max-w-5xl",
     shellSurfaceClassName: "bg-black overflow-hidden shadow-2xl",
@@ -108,6 +124,7 @@ export function getStoryThumbnailUrl(
   const youtubeId = videoUrl ? getYoutubeId(videoUrl) : null;
   if (youtubeId) return `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
 
+  // Facebook videos don't have an auto-fetchable thumbnail; use default
   return "/images/news-sm-inner.jpg";
 }
 

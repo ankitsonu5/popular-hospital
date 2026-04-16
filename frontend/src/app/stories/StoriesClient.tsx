@@ -10,6 +10,8 @@ import {
   getPatientStoryLabel,
   getPatientStoryModalLayout,
   getYoutubeId,
+  getVideoPlatform,
+  isFacebookReel,
 } from "@/lib/patientStories";
 
 export default function StoriesPage({
@@ -18,12 +20,17 @@ export default function StoriesPage({
   stories: PatientStory[];
 }) {
   const [selectedStory, setSelectedStory] = useState<PatientStory | null>(null);
-  const selectedPlatform = selectedStory && getYoutubeId(selectedStory.videoUrl)
-    ? "youtube"
+  const selectedPlatform = selectedStory
+    ? getVideoPlatform(selectedStory.videoUrl)
     : null;
   const displayStories = stories;
 
   const openStory = (story: PatientStory) => {
+    const platform = getVideoPlatform(story.videoUrl);
+    if (platform === "facebook" || platform === "instagram") {
+      window.open(story.videoUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
     setSelectedStory(story);
   };
 
@@ -177,13 +184,7 @@ export default function StoriesPage({
             <div
               className={`relative w-full ${modalLayout?.frameClassName || "aspect-video"} ${modalLayout?.frameWrapperClassName || ""}`}
             >
-              {!getYoutubeId(selectedStory.videoUrl) ? (
-                <div className="flex h-full items-center justify-center bg-white px-6 text-center">
-                  <p className="text-sm font-semibold text-gray-700">
-                    Only YouTube links are supported.
-                  </p>
-                </div>
-              ) : (
+              {selectedPlatform === "youtube" || selectedPlatform === "instagram" ? (
                 <iframe
                   src={getVideoEmbedUrl(selectedStory.videoUrl) || selectedStory.videoUrl}
                   className={
@@ -197,6 +198,26 @@ export default function StoriesPage({
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
+              ) : selectedPlatform === "facebook" ? (
+                <iframe
+                  src={getVideoEmbedUrl(selectedStory.videoUrl) || selectedStory.videoUrl}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
+                  scrolling="no"
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center bg-white px-6 text-center">
+                  <p className="text-sm font-semibold text-gray-700">
+                    This video format is not supported for inline playback.
+                  </p>
+                </div>
               )}
             </div>
           </div>

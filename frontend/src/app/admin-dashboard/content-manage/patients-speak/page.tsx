@@ -34,6 +34,7 @@ import { type PatientStory } from "@/lib/api";
 import {
   getPatientStoryLabel,
   getStoryThumbnailUrl,
+  getVideoPlatform,
   getYoutubeId,
 } from "@/lib/patientStories";
 
@@ -291,8 +292,9 @@ export default function PatientStoriesManagePage() {
       return;
     }
 
-    if (!getYoutubeId(formData.videoUrl.trim())) {
-      toast.error("Only YouTube links are supported.");
+    const platform = getVideoPlatform(formData.videoUrl.trim());
+    if (platform !== "youtube" && platform !== "facebook") {
+      toast.error("Only YouTube or Facebook video links are supported.");
       return;
     }
 
@@ -352,7 +354,7 @@ export default function PatientStoriesManagePage() {
             Manage Patients Speak
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Add YouTube links with custom thumbnails. Drag to reorder cards.
+            Add YouTube or Facebook links with custom thumbnails. Drag to reorder cards.
           </p>
         </div>
         <button
@@ -487,11 +489,11 @@ export default function PatientStoriesManagePage() {
                   onChange={(e) =>
                     setFormData((current) => ({ ...current, videoUrl: e.target.value }))
                   }
-                  placeholder="https://youtube.com/watch?v=..."
+                  placeholder="https://youtube.com/watch?v=... or https://facebook.com/..."
                   className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
                 />
                 <p className="text-[11px] text-gray-500 mt-1">
-                  Only YouTube links are supported.
+                  YouTube or Facebook video links are supported.
                 </p>
               </div>
 
