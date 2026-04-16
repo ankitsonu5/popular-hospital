@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   DndContext,
   closestCenter,
@@ -173,6 +173,13 @@ export default function PatientStoriesManagePage() {
   const [formData, setFormData] = useState<StoryForm>(defaultForm);
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (showForm && modalRef.current) {
+      modalRef.current.focus({ preventScroll: true });
+    }
+  }, [showForm]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -430,7 +437,7 @@ export default function PatientStoriesManagePage() {
       )}
 
       {showForm ? (
-        <div className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4">
+        <div ref={modalRef} tabIndex={-1} className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 outline-none">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl p-6 sm:p-8 relative">
             <button
               onClick={() => {
