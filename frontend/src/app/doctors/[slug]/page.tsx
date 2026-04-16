@@ -50,41 +50,49 @@ export default async function DoctorPage({ params }: Props) {
   const dbDoctor = await fetchDoctor(slug);
   const local = localDoctors[slug];
 
-  // Merge: DB takes priority, local is the fallback
+  // Merge: local takes priority if available (manual override), otherwise use DB
   const displayName =
-    dbDoctor?.name ??
     local?.name ??
+    dbDoctor?.name ??
     slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
   const displaySpeciality =
+    local?.speciality ??
     dbDoctor?.speciality?.department_display_name ??
     dbDoctor?.speciality?.name ??
     dbDoctor?.speciality_name ??
-    local?.speciality ??
     "Specialist";
+
   const displayQualificationRaw =
-    dbDoctor?.qualification ?? local?.qualifications ?? "";
+    local?.qualifications ?? dbDoctor?.qualification ?? "";
+
   // Cleanup: Remove redundant (Speciality) or (Designation) from qualifications if present in parentheses
   const displayQualification = displayQualificationRaw
     .replace(/\s*\([^)]*\)\s*$/, "")
     .trim();
 
   const displayDesignation =
-    dbDoctor?.designation && typeof dbDoctor.designation === "object"
+    local?.designation ||
+    (dbDoctor?.designation && typeof dbDoctor.designation === "object"
       ? dbDoctor.designation.name
-      : dbDoctor?.designation || local?.designation || "";
-  const displayExperience = dbDoctor
-    ? dbDoctor.experience_years
+      : dbDoctor?.designation || "");
+
+  const displayExperience = local?.experience
+    ? local.experience
+    : dbDoctor?.experience_years
       ? `${dbDoctor.experience_years}+ Years`
-      : null
-    : local?.experience;
-  const displayBio = dbDoctor?.bio ?? local?.bio;
+      : null;
+
+  const displayBio = local?.bio ?? dbDoctor?.bio;
   const displayFee = dbDoctor?.consultation_fee;
   const displayPastHospitals = local?.pastHospitals ?? [];
-  const displayImage = dbDoctor?.image_url
-    ? getImageUrl(dbDoctor.image_url)
-    : local?.image && local.image !== "/images/departments-images/"
+
+  const displayImage =
+    local?.image && local.image !== "/images/departments-images/"
       ? local.image
-      : null;
+      : dbDoctor?.image_url
+        ? getImageUrl(dbDoctor.image_url)
+        : null;
 
   // OPD schedule: use DB opd_timings if available
   const opdBranches = local?.opdTimings ?? [

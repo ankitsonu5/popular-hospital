@@ -59,13 +59,6 @@ const doctors = [
     image: "/images/departments_doctor/dr._alok_c_bhardwaj.jpg",
   },
   {
-    name: "Dr Greeshma Suresh",
-    qualifications: "MBBS, MS, MCh (Pediatric Surgery) IMS, BHU",
-    designation: "Consultant Pediatric Surgeon",
-    slug: "dr-greeshma-suresh",
-    image: "",
-  },
-  {
     name: "Dr Prabhat Kumar",
     qualifications: "MBBS, DCH, DNB (Pediatrics)",
     designation: "Consultant Senior Pediatrician",

@@ -96,6 +96,17 @@ export const localDoctors: Record<string, LocalDoctorDetail> = {
     pastHospitals: [],
     opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
   },
+  "dr-greeshma-suresh": {
+    name: "Dr Greeshma Suresh",
+    qualifications: "MBBS, MS, MCh (Pediatric Surgery) IMS, BHU",
+    designation: "Consultant Pediatric Surgeon",
+    speciality: "Pediatric Surgery",
+    image: "/images/departments_doctor/dr_greeshma.jpeg",
+    bio: "Expert in pediatric surgical procedures, specializing in neonatal and pediatric surgery with a focus on advanced surgical care for infants and children.",
+    experience: "8+ Years",
+    pastHospitals: ["IMS, BHU"],
+    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
+  },
 
   /* ── UROLOGY ── */
   "dr-dinesh-singh": {
