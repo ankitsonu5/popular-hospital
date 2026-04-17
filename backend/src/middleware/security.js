@@ -1,15 +1,9 @@
-import rateLimit from "express-rate-limit";
 import mongoSanitize from "express-mongo-sanitize";
-import securityConfig from "../config/security.js";
 
-// ─── Global Rate Limiter ─────────────────────────────────────
-export const globalLimiter = rateLimit(securityConfig.rateLimit.global);
-
-// ─── Admin Rate Limiter (higher limit for dashboard operations) ──
-export const adminLimiter = rateLimit(securityConfig.rateLimit.admin);
-
-// ─── Strict Auth Rate Limiter ────────────────────────────────
-export const authLimiter = rateLimit(securityConfig.rateLimit.auth);
+// No-op middleware (rate limiting disabled)
+export const globalLimiter = (req, res, next) => next();
+export const adminLimiter = (req, res, next) => next();
+export const authLimiter  = (req, res, next) => next();
 
 // ─── MongoDB Query Sanitizer ─────────────────────────────────
 // Strips $ and . from req.body, req.query, req.params
