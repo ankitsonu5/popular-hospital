@@ -47,8 +47,14 @@ const needsSanitize = (urlPath) => {
 };
 
 const renameOnDisk = (oldRelUrl, newRelUrl) => {
-  const oldAbs = path.join(UPLOADS_ROOT, oldRelUrl.replace(/^\/?uploads\//, ""));
-  const newAbs = path.join(UPLOADS_ROOT, newRelUrl.replace(/^\/?uploads\//, ""));
+  const oldAbs = path.join(
+    UPLOADS_ROOT,
+    oldRelUrl.replace(/^\/?uploads\//, ""),
+  );
+  const newAbs = path.join(
+    UPLOADS_ROOT,
+    newRelUrl.replace(/^\/?uploads\//, ""),
+  );
   if (!fs.existsSync(oldAbs)) {
     console.warn(`  [skip] file missing on disk: ${oldAbs}`);
     return false;
@@ -66,7 +72,9 @@ const renameOnDisk = (oldRelUrl, newRelUrl) => {
     );
   }
   fs.renameSync(oldAbs, finalAbs);
-  console.log(`  renamed: ${path.basename(oldAbs)} -> ${path.basename(finalAbs)}`);
+  console.log(
+    `  renamed: ${path.basename(oldAbs)} -> ${path.basename(finalAbs)}`,
+  );
   return finalRel;
 };
 

@@ -102,7 +102,9 @@ export default function AdminLoginPage() {
             {isForgotPassword ? "Reset Password." : "Admin Portal."}
           </h2>
           <p className="text-gray-500 mt-2 text-base font-medium">
-            {isForgotPassword ? "Enter your email to receive a secure reset link" : "Access your secure management board"}
+            {isForgotPassword
+              ? "Enter your email to receive a secure reset link"
+              : "Access your secure management board"}
           </p>
         </div>
 
@@ -132,8 +134,18 @@ export default function AdminLoginPage() {
         {success && (
           <div className="mb-8 p-4 rounded-2xl bg-green-50 border border-green-100 flex items-center gap-3 animate-fade-in-up">
             <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              <svg
+                className="w-4 h-4 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={3}
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </div>
             <p className="text-[13px] font-bold text-green-700">{success}</p>

@@ -54,7 +54,9 @@ function SortableBannerRow({ banner, onEdit, onDelete }: any) {
       ref={setNodeRef}
       style={style}
       className={`hover:bg-gray-50/50 transition-colors ${
-        isDragging ? "bg-white shadow-xl ring-1 ring-gray-200" : "bg-transparent"
+        isDragging
+          ? "bg-white shadow-xl ring-1 ring-gray-200"
+          : "bg-transparent"
       }`}
     >
       <td className="pl-4 pr-1 py-3.5 w-10">
@@ -76,7 +78,9 @@ function SortableBannerRow({ banner, onEdit, onDelete }: any) {
       </td>
       <td className="py-3.5 px-4">
         <div className="flex flex-col gap-2">
-          <p className="text-xs font-bold text-gray-500 uppercase">Desktop Media</p>
+          <p className="text-xs font-bold text-gray-500 uppercase">
+            Desktop Media
+          </p>
           <div className="h-16 w-32 bg-gray-100 rounded overflow-hidden border border-gray-200 relative">
             {banner.type === "video" ? (
               <video
@@ -97,7 +101,9 @@ function SortableBannerRow({ banner, onEdit, onDelete }: any) {
       </td>
       <td className="py-3.5 px-4">
         <div className="flex flex-col gap-2">
-          <p className="text-xs font-bold text-gray-500 uppercase">Mobile Media</p>
+          <p className="text-xs font-bold text-gray-500 uppercase">
+            Mobile Media
+          </p>
           <div className="h-16 w-16 bg-gray-100 rounded overflow-hidden border border-gray-200 relative">
             {banner.mobileMediaUrl ? (
               banner.type === "video" ? (
@@ -125,7 +131,9 @@ function SortableBannerRow({ banner, onEdit, onDelete }: any) {
       <td className="py-3.5 px-4">
         <span
           className={`inline-flex px-2.5 py-1 rounded-full text-xs font-semibold ${
-            banner.isActive ? "bg-green-50 text-green-700" : "bg-gray-100 text-gray-600"
+            banner.isActive
+              ? "bg-green-50 text-green-700"
+              : "bg-gray-100 text-gray-600"
           }`}
         >
           {banner.isActive ? "Active" : "Hidden"}
@@ -165,7 +173,11 @@ const formatBytes = (bytes: number) => {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 };
 
-const validateMediaFile = (file: File, type: "image" | "video", label: string) => {
+const validateMediaFile = (
+  file: File,
+  type: "image" | "video",
+  label: string,
+) => {
   // 1) size check
   if (file.size > MAX_FILE_SIZE_BYTES) {
     return `${label} file is ${formatBytes(file.size)} — maximum allowed is ${MAX_FILE_SIZE_MB} MB. Please compress and try again.`;
@@ -199,7 +211,7 @@ export default function ManageContentPage() {
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const getHeaders = () => ({
@@ -209,7 +221,9 @@ export default function ManageContentPage() {
   const fetchBanners = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(`${API_URL}/cms/hero-banners`, { headers: getHeaders() });
+      const res = await fetch(`${API_URL}/cms/hero-banners`, {
+        headers: getHeaders(),
+      });
       if (res.ok) {
         const data = await res.json();
         setBanners(data || []);
@@ -340,7 +354,9 @@ export default function ManageContentPage() {
       }
 
       toast.success(
-        editingId ? "Banner updated successfully" : "Banner created successfully",
+        editingId
+          ? "Banner updated successfully"
+          : "Banner created successfully",
       );
       setShowForm(false);
       setEditingId(null);
@@ -360,7 +376,8 @@ export default function ManageContentPage() {
             Manage Hero Content
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Manage homepage hero banners here. Drag and drop to reorder active slides.
+            Manage homepage hero banners here. Drag and drop to reorder active
+            slides.
           </p>
         </div>
         <button
@@ -386,7 +403,9 @@ export default function ManageContentPage() {
               <thead className="bg-gray-50/80 border-b border-gray-100">
                 <tr>
                   <th className="w-10 px-4"></th>
-                  <th className="py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Type</th>
+                  <th className="py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
+                    Type
+                  </th>
                   <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                     Desktop View (1920x1080)
                   </th>
@@ -474,7 +493,8 @@ export default function ManageContentPage() {
                   Desktop File Upload
                 </label>
                 <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Recommended Size: 1920x1080px (16:9) · Max {MAX_FILE_SIZE_MB} MB
+                  Recommended Size: 1920x1080px (16:9) · Max {MAX_FILE_SIZE_MB}{" "}
+                  MB
                 </p>
                 <input
                   type="file"
@@ -498,7 +518,8 @@ export default function ManageContentPage() {
                 />
                 {desktopFile && (
                   <p className="text-[11px] text-gray-500 mt-1">
-                    Selected: {desktopFile.name} ({formatBytes(desktopFile.size)})
+                    Selected: {desktopFile.name} (
+                    {formatBytes(desktopFile.size)})
                   </p>
                 )}
               </div>
@@ -508,7 +529,8 @@ export default function ManageContentPage() {
                   Mobile File Upload
                 </label>
                 <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Optional. Recommended Size: 768x1366px (Vertical) · Max {MAX_FILE_SIZE_MB} MB
+                  Optional. Recommended Size: 768x1366px (Vertical) · Max{" "}
+                  {MAX_FILE_SIZE_MB} MB
                 </p>
                 <input
                   type="file"
@@ -552,7 +574,10 @@ export default function ManageContentPage() {
                   }
                   className="w-4 h-4 text-[#0d9488] rounded border-gray-300 focus:ring-[#0d9488]"
                 />
-                <label htmlFor="isActive" className="text-sm font-medium text-gray-700 cursor-pointer">
+                <label
+                  htmlFor="isActive"
+                  className="text-sm font-medium text-gray-700 cursor-pointer"
+                >
                   Publish (Active on Website)
                 </label>
               </div>

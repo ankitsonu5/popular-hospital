@@ -13,7 +13,10 @@ dotenv.config({ path: path.join(__dirname, "../.env") });
 // Import the model using the actual path
 import HeroBanner from "../src/models/HeroBanner.js";
 
-const frontendImagesPath = path.join(__dirname, "../../frontend/public/images/slide_images");
+const frontendImagesPath = path.join(
+  __dirname,
+  "../../frontend/public/images/slide_images",
+);
 const backendUploadsPath = path.join(__dirname, "../uploads/banners");
 
 const slidesToSeed = [
@@ -41,7 +44,7 @@ async function runSeeder() {
       console.error("MONGO_URI not found");
       process.exit(1);
     }
-    
+
     await mongoose.connect(mongoUri);
     console.log("Connected to MongoDB");
 
@@ -67,7 +70,7 @@ async function runSeeder() {
       } else {
         console.warn(`Warning: Could not find ${srcDesktop}`);
       }
-      
+
       if (fs.existsSync(srcMobile)) {
         fs.copyFileSync(srcMobile, destMobile);
       } else {

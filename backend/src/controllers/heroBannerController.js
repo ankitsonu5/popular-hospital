@@ -163,7 +163,7 @@ export const reorderBanners = async (req, res) => {
     }
 
     const updates = ids.map((id, index) =>
-      HeroBanner.findByIdAndUpdate(id, { order: index })
+      HeroBanner.findByIdAndUpdate(id, { order: index }),
     );
 
     await Promise.all(updates);

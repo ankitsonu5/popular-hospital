@@ -29,8 +29,8 @@ export default function RadiologyVideoSection() {
           Inside the Radiology Lab
         </h3>
         <p className="text-gray-200 text-sm line-clamp-2 max-w-md">
-          Experience how our advanced technology and expert team work
-          together to provide precise diagnostics.
+          Experience how our advanced technology and expert team work together
+          to provide precise diagnostics.
         </p>
       </div>
     </div>

@@ -14,11 +14,7 @@ import {
   isFacebookReel,
 } from "@/lib/patientStories";
 
-export default function StoriesPage({
-  stories,
-}: {
-  stories: PatientStory[];
-}) {
+export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
   const [selectedStory, setSelectedStory] = useState<PatientStory | null>(null);
   const selectedPlatform = selectedStory
     ? getVideoPlatform(selectedStory.videoUrl)
@@ -143,7 +139,9 @@ export default function StoriesPage({
                       {getPatientStoryLabel(index)}
                     </p>
                     {story.title ? (
-                      <p className="text-sm text-gray-500 line-clamp-2">{story.title}</p>
+                      <p className="text-sm text-gray-500 line-clamp-2">
+                        {story.title}
+                      </p>
                     ) : null}
                   </div>
                 </button>
@@ -184,11 +182,16 @@ export default function StoriesPage({
             <div
               className={`relative w-full ${modalLayout?.frameClassName || "aspect-video"} ${modalLayout?.frameWrapperClassName || ""}`}
             >
-              {selectedPlatform === "youtube" || selectedPlatform === "instagram" ? (
+              {selectedPlatform === "youtube" ||
+              selectedPlatform === "instagram" ? (
                 <iframe
-                  src={getVideoEmbedUrl(selectedStory.videoUrl) || selectedStory.videoUrl}
+                  src={
+                    getVideoEmbedUrl(selectedStory.videoUrl) ||
+                    selectedStory.videoUrl
+                  }
                   className={
-                    modalLayout?.iframeClassName || "absolute inset-0 w-full h-full"
+                    modalLayout?.iframeClassName ||
+                    "absolute inset-0 w-full h-full"
                   }
                   style={
                     modalLayout?.useAbsoluteIframe === false
@@ -200,7 +203,10 @@ export default function StoriesPage({
                 />
               ) : selectedPlatform === "facebook" ? (
                 <iframe
-                  src={getVideoEmbedUrl(selectedStory.videoUrl) || selectedStory.videoUrl}
+                  src={
+                    getVideoEmbedUrl(selectedStory.videoUrl) ||
+                    selectedStory.videoUrl
+                  }
                   style={{
                     position: "absolute",
                     inset: 0,

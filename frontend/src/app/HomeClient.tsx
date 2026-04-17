@@ -367,11 +367,6 @@ export default function HomeClient({
     }));
   // ─────────────────────────────────────────────────────────────
 
-
-
-
-
-
   useEffect(() => {
     if (currentSlide >= slides.length && slides.length > 0) {
       setCurrentSlide(0);
@@ -1838,10 +1833,11 @@ export default function HomeClient({
             ].map((faq, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-xl border transition-all duration-300 ${openFaqIndex === index
+                className={`bg-white rounded-xl border transition-all duration-300 ${
+                  openFaqIndex === index
                     ? "border-[#E85222]/40 shadow-md"
                     : "border-[#d0e3f0] shadow-sm hover:shadow-md"
-                  }`}
+                }`}
               >
                 <button
                   onClick={() =>
@@ -1856,14 +1852,16 @@ export default function HomeClient({
                     {faq.question}
                   </span>
                   <div
-                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index
+                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                      openFaqIndex === index
                         ? "border-[#E85222] bg-[#E85222] rotate-45"
                         : "border-[#2a7a8c] bg-white"
-                      }`}
+                    }`}
                   >
                     <svg
-                      className={`w-5 h-5 transition-colors duration-300 ${openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
-                        }`}
+                      className={`w-5 h-5 transition-colors duration-300 ${
+                        openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
+                      }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1878,10 +1876,11 @@ export default function HomeClient({
                   </div>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${openFaqIndex === index
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaqIndex === index
                       ? "max-h-[500px] opacity-100"
                       : "max-h-0 opacity-0"
-                    }`}
+                  }`}
                 >
                   <div className="px-5 sm:px-6 pb-5 pt-0">
                     <div className="pt-3 border-t border-gray-100">
@@ -2755,8 +2754,9 @@ function SimpleCard({
   const isBlue = variant === "blue";
 
   // Mobile styles matching the reference image (Blue/Green cards)
-  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${isBlue ? "bg-[#E0EEF7]" : "bg-[#E4F5E6]"
-    }`;
+  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${
+    isBlue ? "bg-[#E0EEF7]" : "bg-[#E4F5E6]"
+  }`;
 
   // Desktop styles maintaining the original white bar look
   const desktopClasses = `md:bg-white md:rounded-none md:shadow-none md:min-h-0 md:p-0 md:flex-row md:items-center md:justify-center md:gap-1 lg:gap-3 xl:gap-2 md:px-2 lg:px-4 xl:px-3 md:py-1.5 lg:py-3 xl:py-2 md:w-auto md:flex-1 md:min-w-0 md:border-r md:border-gray-100 md:last:border-0 md:hover:bg-[#FBF8ED]`;

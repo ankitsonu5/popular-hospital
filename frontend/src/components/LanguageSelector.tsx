@@ -154,15 +154,15 @@ function getRootDomain() {
 function resetToEnglish() {
   const hostname = window.location.hostname;
   const rootDomain = getRootDomain();
-  
+
   // Set to /en/en temporarily to flush Google's state before clearing
   document.cookie = `googtrans=/en/en; path=/; domain=${hostname}`;
   document.cookie = `googtrans=/en/en; path=/; domain=.${hostname}`;
   document.cookie = `googtrans=/en/en; path=/; domain=${rootDomain}`;
   document.cookie = `googtrans=/en/en; path=/; domain=.${rootDomain}`;
-  
+
   const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  
+
   // Clear on exact hostname
   document.cookie = `googtrans=; ${expiry}`;
   document.cookie = `googtrans=; ${expiry} domain=${hostname}`;

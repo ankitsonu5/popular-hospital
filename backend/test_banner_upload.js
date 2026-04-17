@@ -78,14 +78,18 @@ async function main() {
     console.log("   - file size limit (nginx/cloudflare) for LARGER files");
     console.log("   - frontend not showing real error (fixed in latest code)");
     console.log("\nTry uploading with a larger file to find the real limit:");
-    console.log("   BACKEND_URL=... SIZE_MB=10 node test_banner_upload.js <token>");
+    console.log(
+      "   BACKEND_URL=... SIZE_MB=10 node test_banner_upload.js <token>",
+    );
     process.exit(0);
   } else {
     console.error("\n❌ Upload failed with HTTP", res.status);
     if (res.status === 401) console.error("   -> token expired or invalid");
-    if (res.status === 413) console.error("   -> file too large (multer/nginx/CF limit)");
+    if (res.status === 413)
+      console.error("   -> file too large (multer/nginx/CF limit)");
     if (res.status === 403) console.error("   -> cmsAuth middleware rejected");
-    if (res.status >= 500) console.error("   -> backend crashed — check server logs");
+    if (res.status >= 500)
+      console.error("   -> backend crashed — check server logs");
     process.exit(1);
   }
 }

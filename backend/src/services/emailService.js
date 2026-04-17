@@ -435,7 +435,7 @@ export const sendPasswordResetEmail = async (email, resetUrl) => {
   `;
 
   const mailOptions = {
-    from: '"Popular Hospital Admin" <' + process.env.GMAIL_USER + '>',
+    from: '"Popular Hospital Admin" <' + process.env.GMAIL_USER + ">",
     to: email,
     subject: `🔒 Admin Password Reset — Popular Hospitals`,
     html: htmlContent,
@@ -502,7 +502,7 @@ export const sendPasswordResetSuccessEmail = async (email) => {
   `;
 
   const mailOptions = {
-    from: '"Popular Hospital Security" <' + process.env.GMAIL_USER + '>',
+    from: '"Popular Hospital Security" <' + process.env.GMAIL_USER + ">",
     to: email,
     subject: `✅ Security Alert: Admin Password Changed Successfully`,
     html: htmlContent,

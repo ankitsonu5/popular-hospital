@@ -168,7 +168,6 @@ export default function CareerPage() {
             )}
           </div>
         )}
-
       </div>
 
       {/* Balanced Single Column Fully Scrollable Modal */}

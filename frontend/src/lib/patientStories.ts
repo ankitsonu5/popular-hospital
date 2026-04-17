@@ -3,7 +3,12 @@ import { getImageUrl } from "./api";
 const YOUTUBE_REGEX =
   /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|\&v=)([^#\&\?]*).*/i;
 
-type VideoPlatform = "youtube" | "facebook" | "instagram" | "direct" | "external";
+type VideoPlatform =
+  | "youtube"
+  | "facebook"
+  | "instagram"
+  | "direct"
+  | "external";
 
 export function getYoutubeId(url: string) {
   if (!url) return null;
@@ -83,7 +88,8 @@ export function getPatientStoryModalLayout(url: string) {
   if (platform === "instagram") {
     return {
       shellClassName: "max-w-[430px]",
-      shellSurfaceClassName: "bg-[#0f1419] shadow-none overflow-hidden border border-white/10",
+      shellSurfaceClassName:
+        "bg-[#0f1419] shadow-none overflow-hidden border border-white/10",
       frameClassName: "w-full h-[80vh] max-h-[820px] min-h-[560px]",
       frameWrapperClassName: "mx-auto bg-[#0f1419] overflow-hidden",
       iframeClassName: "w-full h-full border-0",

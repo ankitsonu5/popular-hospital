@@ -120,7 +120,9 @@ function SortableStoryRow({
           <p className="font-semibold text-gray-900">
             {getPatientStoryLabel(index)}
           </p>
-          {story.title ? <p className="text-xs text-gray-500">{story.title}</p> : null}
+          {story.title ? (
+            <p className="text-xs text-gray-500">{story.title}</p>
+          ) : null}
         </div>
       </td>
       <td className="py-3.5 px-4">
@@ -137,7 +139,9 @@ function SortableStoryRow({
       <td className="py-3.5 px-4">
         <span
           className={`inline-flex px-2.5 py-1 rounded-full text-xs font-semibold ${
-            story.isActive ? "bg-green-50 text-green-700" : "bg-gray-100 text-gray-600"
+            story.isActive
+              ? "bg-green-50 text-green-700"
+              : "bg-gray-100 text-gray-600"
           }`}
         >
           {story.isActive ? "Active" : "Hidden"}
@@ -302,7 +306,10 @@ export default function PatientStoriesManagePage() {
     const url = formData.videoUrl.trim();
     const platform = getVideoPlatform(url);
     const isInstagram = /instagram\.com/i.test(url);
-    if (!["youtube", "facebook", "instagram"].includes(platform) && !isInstagram) {
+    if (
+      !["youtube", "facebook", "instagram"].includes(platform) &&
+      !isInstagram
+    ) {
       toast.error("Only YouTube, Facebook, or Instagram links are supported.");
       return;
     }
@@ -344,12 +351,16 @@ export default function PatientStoriesManagePage() {
         throw new Error(error?.error || "Unable to save");
       }
 
-      toast.success(editingStory ? "Patient story updated" : "Patient story created");
+      toast.success(
+        editingStory ? "Patient story updated" : "Patient story created",
+      );
       setShowForm(false);
       resetForm();
       fetchStories();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Failed to save patient story");
+      toast.error(
+        error instanceof Error ? error.message : "Failed to save patient story",
+      );
     } finally {
       setIsSaving(false);
     }
@@ -363,7 +374,8 @@ export default function PatientStoriesManagePage() {
             Manage Patients Speak
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Add YouTube, Facebook, or Instagram links with custom thumbnails. Drag to reorder cards.
+            Add YouTube, Facebook, or Instagram links with custom thumbnails.
+            Drag to reorder cards.
           </p>
         </div>
         <button
@@ -416,7 +428,9 @@ export default function PatientStoriesManagePage() {
                       <SortableStoryRow
                         key={story._id}
                         story={story}
-                        index={stories.findIndex((item) => item._id === story._id)}
+                        index={stories.findIndex(
+                          (item) => item._id === story._id,
+                        )}
                         onEdit={handleEdit}
                         onDelete={handleDelete}
                       />
@@ -439,7 +453,11 @@ export default function PatientStoriesManagePage() {
       )}
 
       {showForm ? (
-        <div ref={modalRef} tabIndex={-1} className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 outline-none">
+        <div
+          ref={modalRef}
+          tabIndex={-1}
+          className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 outline-none"
+        >
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl p-6 sm:p-8 relative">
             <button
               onClick={() => {
@@ -463,7 +481,10 @@ export default function PatientStoriesManagePage() {
                 <input
                   value={formData.title}
                   onChange={(e) =>
-                    setFormData((current) => ({ ...current, title: e.target.value }))
+                    setFormData((current) => ({
+                      ...current,
+                      title: e.target.value,
+                    }))
                   }
                   placeholder="Optional short headline"
                   className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
@@ -478,7 +499,9 @@ export default function PatientStoriesManagePage() {
                   {editingStory
                     ? getPatientStoryLabel(
                         Math.max(
-                          stories.findIndex((item) => item._id === editingStory._id),
+                          stories.findIndex(
+                            (item) => item._id === editingStory._id,
+                          ),
                           0,
                         ),
                       )
@@ -496,7 +519,10 @@ export default function PatientStoriesManagePage() {
                 <input
                   value={formData.videoUrl}
                   onChange={(e) =>
-                    setFormData((current) => ({ ...current, videoUrl: e.target.value }))
+                    setFormData((current) => ({
+                      ...current,
+                      videoUrl: e.target.value,
+                    }))
                   }
                   placeholder="YouTube, Facebook, or Instagram link..."
                   className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
@@ -511,7 +537,8 @@ export default function PatientStoriesManagePage() {
                   Thumbnail Upload
                 </label>
                 <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Optional. Recommended Size: 1280x720px · Max {MAX_FILE_SIZE_MB} MB
+                  Optional. Recommended Size: 1280x720px · Max{" "}
+                  {MAX_FILE_SIZE_MB} MB
                 </p>
                 <input
                   type="file"
@@ -521,15 +548,18 @@ export default function PatientStoriesManagePage() {
                 />
                 {thumbnailFile ? (
                   <p className="text-[11px] text-gray-500 mt-1">
-                    Selected: {thumbnailFile.name} ({formatBytes(thumbnailFile.size)})
+                    Selected: {thumbnailFile.name} (
+                    {formatBytes(thumbnailFile.size)})
                   </p>
                 ) : editingStory ? (
                   <p className="text-[11px] text-gray-500 mt-1">
-                    Keep current thumbnail, or use the YouTube thumbnail by default if no custom one is saved.
+                    Keep current thumbnail, or use the YouTube thumbnail by
+                    default if no custom one is saved.
                   </p>
                 ) : (
                   <p className="text-[11px] text-gray-500 mt-1">
-                    If you do not upload a thumbnail, the YouTube video thumbnail will be used by default.
+                    If you do not upload a thumbnail, the YouTube video
+                    thumbnail will be used by default.
                   </p>
                 )}
               </div>
@@ -540,7 +570,10 @@ export default function PatientStoriesManagePage() {
                   id="patient-story-active"
                   checked={formData.isActive}
                   onChange={(e) =>
-                    setFormData((current) => ({ ...current, isActive: e.target.checked }))
+                    setFormData((current) => ({
+                      ...current,
+                      isActive: e.target.checked,
+                    }))
                   }
                   className="w-4 h-4 text-[#0d9488] rounded border-gray-300 focus:ring-[#0d9488]"
                 />
