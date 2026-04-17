@@ -85,17 +85,6 @@ export const localDoctors: Record<string, LocalDoctorDetail> = {
   },
 
   /* ── PEDIATRIC SURGERY ── */
-  "dr-pediatric-surgeon": {
-    name: "Dr. Pediatric Surgeon",
-    qualifications: "MS, MCh (Pediatric Surgery)",
-    designation: "Sr. Consultant",
-    speciality: "Pediatric Surgery",
-    image: "/images/departments-images/dr-pediatric-surgeon.png",
-    bio: "Specialist in pediatric surgical care with expertise in neonatal surgery, minimally invasive laparoscopic procedures for children, and complex congenital defect corrections.",
-    experience: "12+ Years",
-    pastHospitals: [],
-    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
-  },
   "dr-greeshma-suresh": {
     name: "Dr Greeshma Suresh",
     qualifications: "MBBS, MS, MCh (Pediatric Surgery) IMS, BHU",
@@ -117,32 +106,6 @@ export const localDoctors: Record<string, LocalDoctorDetail> = {
     image: "/images/departments_doctor/dr-dinesh-singh.png",
     bio: "Sr. Consultant Urologist with expertise in laser kidney stone treatment, PCNL, endo-urology, laparoscopic urology, female urology, and male infertility (andrology). Pioneer in minimally invasive urological procedures in the region.",
     experience: "15+ Years",
-    pastHospitals: [],
-    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
-  },
-
-  /* ── ONCOLOGY ── */
-  "dr-oncologist": {
-    name: "Dr. Oncologist",
-    qualifications: "MBBS, MD, DM (Oncology)",
-    designation: "Consultant Oncologist",
-    speciality: "Oncology",
-    image: "/images/departments-images/dr-oncologist.png",
-    bio: "Dedicated cancer specialist with expertise in Medical, Surgical, and Radiation Oncology. Part of a multidisciplinary tumor board delivering personalized cancer treatment plans.",
-    experience: "12+ Years",
-    pastHospitals: [],
-    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
-  },
-
-  /* ── NEPHROLOGY ── */
-  "dr-nephrology-specialist": {
-    name: "Dr. Nephrologist",
-    qualifications: "MBBS, MD, DM (Nephrology)",
-    designation: "Consultant Nephrologist",
-    speciality: "Nephrology",
-    image: "/images/departments-images/dr-nephrology.png",
-    bio: "Specialist in Nephrology with expertise in Hemodialysis, Peritoneal Dialysis, CRRT, and Kidney Transplant evaluation. Dedicated to improving quality of life for patients with kidney disease.",
-    experience: "10+ Years",
     pastHospitals: [],
     opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
   },
@@ -194,6 +157,66 @@ export const localDoctors: Record<string, LocalDoctorDetail> = {
     image: "/images/departments-images/",
     bio: "Thoracic Surgery specialist with experience in minimally invasive lung and chest wall procedures.",
     experience: "8+ Years",
+    pastHospitals: [],
+    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
+  },
+
+  /* ── GENERAL MEDICINE ── */
+  "dr-rajesh-kumar": {
+    name: "Dr. Rajesh Kumar",
+    qualifications: "MBBS, MD (Medicine)",
+    designation: "Consultant",
+    speciality: "General Medicine",
+    bio: "Experienced General Physician with 15+ years of clinical practice. Specializes in diagnosis and management of acute and chronic medical conditions.",
+    experience: "15+ Years",
+    pastHospitals: [],
+    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
+  },
+
+  /* ── CARDIOLOGY ── */
+  "dr-priya-sharma": {
+    name: "Dr. Priya Sharma",
+    qualifications: "MBBS, MD, DM (Cardiology)",
+    designation: "Consultant Cardiologist",
+    speciality: "Cardiology",
+    bio: "Interventional Cardiologist with 12+ years of expertise in managing complex cardiac conditions, echocardiography, and preventive cardiology.",
+    experience: "12+ Years",
+    pastHospitals: [],
+    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
+  },
+
+  /* ── ORTHOPEDICS ── */
+  "dr-amit-patel": {
+    name: "Dr. Amit Patel",
+    qualifications: "MBBS, MS (Orthopedics)",
+    designation: "Consultant Orthopedic Surgeon",
+    speciality: "Orthopedics",
+    bio: "Orthopedic Surgeon with 10+ years of experience in joint replacement, sports injuries, spine surgery, and trauma care.",
+    experience: "10+ Years",
+    pastHospitals: [],
+    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
+  },
+
+  /* ── PEDIATRICS ── */
+  "dr-sneha-reddy": {
+    name: "Dr. Sneha Reddy",
+    qualifications: "MBBS, DCH, MD (Pediatrics)",
+    designation: "Consultant Pediatrician",
+    speciality: "Pediatrics",
+    bio: "Dedicated Pediatrician with 8+ years of experience in child healthcare, neonatal care, vaccination, and management of pediatric diseases.",
+    experience: "8+ Years",
+    pastHospitals: [],
+    opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
+  },
+
+  /* ── DERMATOLOGY ── */
+  "dr-vikram-singh": {
+    name: "Dr. Vikram Singh",
+    qualifications: "MBBS, MD (Dermatology)",
+    designation: "Consultant Dermatologist",
+    speciality: "Dermatology",
+    bio: "Dermatologist with 14+ years of expertise in skin disorders, cosmetology, hair and nail diseases, and advanced dermatological procedures.",
+    experience: "14+ Years",
     pastHospitals: [],
     opdTimings: [{ branch: "Varanasi", schedule: OPD_DEFAULT }],
   },
