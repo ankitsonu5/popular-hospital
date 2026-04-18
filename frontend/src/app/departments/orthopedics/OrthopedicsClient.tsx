@@ -103,7 +103,7 @@ const treatmentCategories = [
 
 const doctors = [
   {
-    name: "Dr Md Akhtar Ali Ansari",
+    name: "Dr. Md Akhtar Ali Ansari",
     qualifications: "MBBS, MS (Orthopedics) AIIMS, New Delhi",
     designation:
       "Specialist in Joint Replacement, Arthroscopy, Spine Surgery & Trauma Care",
@@ -111,7 +111,7 @@ const doctors = [
     image: "/images/departments_doctor/dr_ohd_akhtar_ali_ansari.jpg",
   },
   {
-    name: "Dr Vinit Yadav",
+    name: "Dr. Vinit Yadav",
     qualifications: "MBBS, MS (Orthopedics) IMS, BHU",
     designation: "Consultant Orthopedic Surgeon",
     slug: "dr-vinit-yadav",

@@ -63,14 +63,14 @@ const procedures = [
 
 const doctors = [
   {
-    name: "Dr A.K Kaushik",
+    name: "Dr. A.K Kaushik",
     qualifications: "MBBS, MS (General Surgery) IMS, BHU",
     designation: "Head, Department of General Surgery",
     slug: "dr-ak-kaushik",
     image: "/images/departments_doctor/dr_ak_kaushik.png",
   },
   {
-    name: "Dr R.K Singh",
+    name: "Dr. R.K Singh",
     qualifications: "MBBS, MS, FIAGES, FSG",
     designation: "Consultant Surgeon",
     slug: "dr-rk-singh",

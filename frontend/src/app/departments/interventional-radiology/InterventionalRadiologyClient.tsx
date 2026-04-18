@@ -81,21 +81,21 @@ const proceduresSection = {
 /* ─── Doctors Data ─── */
 const doctors = [
   {
-    name: "Dr Rohan Kumar Singh",
+    name: "Dr. Rohan Kumar Singh",
     qualifications: "MBBS, MD (Radiodiagnosis), FIVIR",
     designation: "Consultant Interventional Radiologist",
     slug: "dr-rohan-kr-singh",
     image: "/images/departments_doctor/dr-rohan-kr-singh.jpg",
   },
   {
-    name: "Dr Omkareshwar Pratap Singh",
+    name: "Dr. Omkareshwar Pratap Singh",
     qualifications: "MBBS, DNB (Radiodiagnosis)",
     designation: "Consultant Radiologist",
     slug: "dr-omkareshwar-pratap-singh",
     image: "",
   },
   {
-    name: "Dr Neha Gupta",
+    name: "Dr. Neha Gupta",
     qualifications: "MBBS, MD (Radiotherapy)",
     designation: "Radiologist / Oncologist",
     slug: "dr-neha-gupta",

@@ -5,11 +5,11 @@ import Link from "next/link";
 
 const doctors = [
   {
-    name: "Dr Greeshma Suresh",
+    name: "Dr. Greeshma Suresh",
     qualifications: "MBBS, MS, MCh (Pediatric Surgery) IMS, BHU",
     designation: "Consultant Pediatric Surgeon",
     slug: "dr-greeshma-suresh",
-    image: "/images/departments_doctor/dr_greeshma.jpeg",
+    image: "/images/departments_doctor/dr_greeshma_suresh.jpg",
   },
 ];
 

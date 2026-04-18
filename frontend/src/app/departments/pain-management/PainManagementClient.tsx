@@ -112,28 +112,28 @@ const cancerSection: ContentItem[] = [
 
 const doctors = [
   {
-    name: "Dr Alisha Raj",
+    name: "Dr. Alisha Raj",
     qualifications: "MBBS, MD (Anaesthesia), PDCC",
     designation: "Consultant Pain Management",
     slug: "dr-alisha-raj",
     image: "", // Placeholder as per backend and uploaded image
   },
   {
-    name: "Dr Rahul Singh",
+    name: "Dr. Rahul Singh",
     qualifications: "MBBS, MD (Anaesthesia), PDCC",
     designation: "Consultant Pain Management",
     slug: "dr-rahul-singh",
     image: "",
   },
   {
-    name: "Dr Sumit Vishwakarma",
+    name: "Dr. Sumit Vishwakarma",
     qualifications: "MBBS, MD (Anaesthesia) IMS, BHU",
     designation: "Consultant Pain Management",
     slug: "dr-sumit-vishwakarma",
     image: "",
   },
   {
-    name: "Dr Vikas Mishra",
+    name: "Dr. Vikas Mishra",
     qualifications: "MBBS, MD (Anaesthesia)",
     designation: "Consultant Pain Management",
     slug: "dr-vikas-mishra",

@@ -54,7 +54,7 @@ const specialisedProgrammes = [
 
 const doctors = [
   {
-    name: "Dr Bhavesh Makkar",
+    name: "Dr. Bhavesh Makkar",
     qualifications: "M.B.B.S, DNB",
     designation: "Consultant Ophthalmologist",
     slug: "dr-bhavesh-makkar",

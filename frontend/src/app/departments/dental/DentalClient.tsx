@@ -44,7 +44,7 @@ const surgeryList = [
 
 const doctors = [
   {
-    name: "Dr Hena Kauser",
+    name: "Dr. Hena Kauser",
     qualifications: "BDS",
     designation: "Consultant Dentist",
     slug: "dr-hena-kauser",

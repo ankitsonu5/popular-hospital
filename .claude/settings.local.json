@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(node src/migrate-real-doctors.js)",
-      "Bash(node --input-type=module -e ' *)"
+      "Bash(node --input-type=module -e ' *)",
+      "Bash(start explorer *)"
     ]
   }
 }

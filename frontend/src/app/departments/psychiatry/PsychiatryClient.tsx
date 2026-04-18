@@ -217,35 +217,6 @@ export default function PsychiatryClient() {
         </div>
       </section>
 
-      {/* ═══════ CALL TO ACTION ═══════ */}
-      <section className="py-24 bg-[#2e1065] overflow-hidden relative">
-        <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            backgroundImage: "radial-gradient(white 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-          }}
-        ></div>
-        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-bold text-white mb-8 font-heading leading-tight">
-            Your Path to <br className="hidden md:block" /> Emotional Well-being
-          </h2>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link
-              href="/doctors"
-              className="bg-[#E85222] text-white hover:bg-orange-600 px-12 py-5 rounded-full font-bold text-lg transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-wide"
-            >
-              Connect with Experts
-            </Link>
-            <a
-              href="tel:+917800001895"
-              className="bg-transparent border-2 border-violet-400/50 text-violet-100 hover:bg-white/10 px-12 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
-            >
-              +91-7800001895 / 96
-            </a>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

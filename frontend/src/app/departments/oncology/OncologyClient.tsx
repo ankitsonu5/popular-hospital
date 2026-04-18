@@ -27,7 +27,7 @@ const diagnosticOncologyServices = [
 
 const doctors = [
   {
-    name: "Dr Ajay Kumar Prajapati",
+    name: "Dr. Ajay Kumar Prajapati",
     qualifications: "MBBS, MS, MCh (Surgical Oncology)",
     designation: "Consultant Surgical Oncology",
     slug: "dr-ajay-kumar-prajapati",

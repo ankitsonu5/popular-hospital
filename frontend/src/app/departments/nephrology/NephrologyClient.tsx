@@ -72,7 +72,7 @@ const conditions = [
 
 const doctors = [
   {
-    name: "Dr Harendra Pratap Singh",
+    name: "Dr. Harendra Pratap Singh",
     qualifications: "MBBS, MD, DM (Nephrology)",
     designation: "Consultant Nephrologist",
     slug: "dr-harendra-pratap-singh",

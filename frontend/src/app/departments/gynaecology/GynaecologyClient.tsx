@@ -103,14 +103,14 @@ const gynaecologyProcedures = [
 
 const doctors = [
   {
-    name: "Dr Kiran Kaushik",
+    name: "Dr. Kiran Kaushik",
     qualifications: "MBBS, MS (OBGY) IMS, BHU",
     designation: "Head Of Department Obstetrics & Gynaecology",
     slug: "dr-kiran-kaushik",
     image: "/images/departments_doctor/kiran.png",
   },
   {
-    name: "Dr Madhavi Paramar",
+    name: "Dr. Madhavi Paramar",
     qualifications: "MBBS, DGO",
     designation:
       "Consultant Obstetrician, Gynaecologist & Infertility Specialist",
@@ -118,7 +118,7 @@ const doctors = [
     image: "/images/departments_doctor/dr_parmar_madhavi.jpg",
   },
   {
-    name: "Dr Priyanka Jaiswal",
+    name: "Dr. Priyanka Jaiswal",
     qualifications: "MBBS, MS (OBGY)",
     designation: "Consultant Laparoscopic Gynaecologist & IVF Specialist",
     slug: "dr-priyanka-jaiswal",

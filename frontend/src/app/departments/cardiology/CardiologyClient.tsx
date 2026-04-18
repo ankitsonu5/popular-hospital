@@ -62,7 +62,7 @@ const doctors = [
     qualifications: "M.B.B.S., MD, PGDCC (Cardiology)",
     designation: "Department of Cardiology",
     slug: "dr-manoj-sharma",
-    image: "/images/departments_doctor/dr-Manoj-Sharma.jpg",
+    image: "/images/departments_doctor/dr_manoj-sharma.jpg",
   },
   {
     name: "Dr. Hari Krishan Srivastava",

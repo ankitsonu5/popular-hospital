@@ -44,14 +44,14 @@ const urologyCategories = [
 
 const doctors = [
   {
-    name: "Dr Dinesh Singh",
+    name: "Dr. Dinesh Singh",
     qualifications: "MBBS, MS, MCh (Urology)",
     designation: "Consultant Urologist",
     slug: "dr-dinesh-singh",
     image: "/images/departments_doctor/dr-dinesh-singh.jpg",
   },
   {
-    name: "Dr Piyush Saini",
+    name: "Dr. Piyush Saini",
     qualifications: "MBBS, MS, MCh (Urology)",
     designation: "Consultant Urologist",
     slug: "dr-piyush-saini",

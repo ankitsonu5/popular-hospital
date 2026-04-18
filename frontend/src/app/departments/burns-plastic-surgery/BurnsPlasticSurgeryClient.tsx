@@ -42,21 +42,21 @@ const procedures = [
 
 const doctors = [
   {
-    name: "Dr A.K Pradhan",
+    name: "Dr. A.K Pradhan",
     qualifications: "MBBS, MS, MCh (Plastic Surgery)",
     designation: "Consultant Plastic Surgeon",
     slug: "dr-ak-pradhan",
-    image: "",
+    image: "/images/departments_doctor/dr_a_k_pradhan.jpg",
   },
   {
-    name: "Dr Sudhir Singh",
+    name: "Dr. Sudhir Singh",
     qualifications: "MBBS, MS, MCh (Plastic Surgery)",
     designation: "Consultant Plastic Surgeon",
     slug: "dr-sudhir-singh",
     image: "",
   },
   {
-    name: "Dr Deepak Agrahari",
+    name: "Dr. Deepak Agrahari",
     qualifications: "MBBS, MS, MCh (Plastic Surgery)",
     designation: "Consultant Plastic Surgeon",
     slug: "dr-deepak-agrahari",

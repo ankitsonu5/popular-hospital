@@ -61,7 +61,7 @@ const whatWeOffer = [
 
 const doctors = [
   {
-    name: "Dr Anshuman Singh",
+    name: "Dr. Anshuman Singh",
     qualifications: "M.B.B.S., MS - Otorhinolaryngology",
     designation: "Consultant ENT Surgeon",
     slug: "dr-anshuman-singh",

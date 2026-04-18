@@ -59,7 +59,7 @@ const doctors = [
     image: "/images/departments_doctor/dr._alok_c_bhardwaj.jpg",
   },
   {
-    name: "Dr Prabhat Kumar",
+    name: "Dr. Prabhat Kumar",
     qualifications: "MBBS, DCH, DNB (Pediatrics)",
     designation: "Consultant Senior Pediatrician",
     slug: "dr-prabhat-kumar",

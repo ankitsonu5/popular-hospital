@@ -33,21 +33,21 @@ const conditions = [
 
 const doctors = [
   {
-    name: "Dr Anirban De",
+    name: "Dr. Anirban De",
     qualifications: "MBBS, MD, DM (Gastroenterology)",
     designation: "Consultant Gastroenterologist",
     slug: "dr-anirban-de",
     image: "/images/departments_doctor/dr_anirban_de.png",
   },
   {
-    name: "Dr R.K Singh",
+    name: "Dr. R.K Singh",
     qualifications: "MBBS, MS, FIAGES, FSG",
     designation: "Consultant Gastrosurgeon",
     slug: "dr-r-k-singh",
     image: "",
   },
   {
-    name: "Dr Mahesh Tiwari",
+    name: "Dr. Mahesh Tiwari",
     qualifications: "MBBS, MS, MCh (Gastrosurgery)",
     designation: "Consultant GI and HPB Surgeon",
     slug: "dr-mahesh-tiwari",
