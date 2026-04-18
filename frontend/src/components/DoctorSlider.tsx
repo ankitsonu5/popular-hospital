@@ -6,10 +6,12 @@ import Link from "next/link";
 
 interface Doctor {
   name: string;
-  qualifications: string;
-  designation: string;
+  qualifications?: string;
+  qualification?: string;
+  designation?: string | { _id: string; name: string };
   slug: string;
-  image: string;
+  image?: string;
+  image_url?: string;
 }
 
 export default function DoctorSlider({
@@ -89,9 +91,9 @@ export default function DoctorSlider({
                 className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center"
               >
                 <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
-                  {doc.image ? (
+                  {doc.image || doc.image_url ? (
                     <Image
-                      src={doc.image}
+                      src={doc.image || doc.image_url || ""}
                       alt={doc.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover/img:scale-105"
@@ -122,7 +124,7 @@ export default function DoctorSlider({
                     {doc.name}
                   </h3>
                   <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">
-                    {doc.qualifications}
+                    {doc.qualifications || doc.qualification}
                   </p>
                   <p className="text-gray-500 text-[10px] mt-3 uppercase tracking-[0.2em] font-black">
                     DEPARTMENT OF {departmentName.toUpperCase()}

@@ -59,17 +59,6 @@ const dietPlans = [
   },
 ];
 
-const doctors = [
-  {
-    name: "Dt. Sakshi Pandey",
-    qualifications: "MSc. (Food Science), CCN, CDE, PGDDN",
-    designation: "Dietition And Center Head",
-    slug: "dietetics-specialist",
-    image:
-      "https://images.unsplash.com/photo-1559839734-2b71f1536780?auto=format&fit=crop&q=80&w=800",
-  },
-];
-
 /* ─── Components ─── */
 
 const SectionHeader = ({
@@ -99,7 +88,7 @@ const ListItem = ({ text }: { text: string }) => (
   </li>
 );
 
-export default function DieteticsNutritionClient() {
+export default function DieteticsNutritionClient({ doctors = [] }: { doctors?: any[] }) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
@@ -115,7 +104,7 @@ export default function DieteticsNutritionClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#064e3b] via-[#064e3b]/90 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl xl:max-w-[1280px] 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-emerald-500/20 text-emerald-200 text-sm font-semibold mb-6 border border-emerald-400/30 backdrop-blur-sm">
               Nourishing Health Professionally
@@ -139,12 +128,26 @@ export default function DieteticsNutritionClient() {
         </div>
       </section>
 
-      {/* ═══════ CONTENT SECTION (Only Doctor Appointment) ═══════ */}
-      <section className="py-16 xl:py-20 bg-white min-h-[600px]">
-        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+      {/* ═══════ CONTENT SECTION ═══════ */}
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white min-h-[600px]">
+        <div className="mx-auto w-full max-w-5xl xl:max-w-[1280px] 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Empty Left Column to maintain position */}
-            <div className="hidden lg:block lg:col-span-8"></div>
+            {/* Content Left */}
+            <div className="lg:col-span-8 space-y-8 text-gray-700">
+              <div>
+                <h2 className="text-2xl 2xl:text-3xl font-bold text-[#064e3b] mb-4">
+                  Comprehensive Dietetics & Nutrition Care
+                </h2>
+                <div className="space-y-4 text-base xl:text-[15px] 2xl:text-lg leading-relaxed text-justify">
+                  <p>
+                    At Popular Hospital, Varanasi, our Department of Dietetics and Nutrition is dedicated to improving overall health and accelerating recovery through personalized, science-based nutritional strategies. We believe that proper nutrition is a cornerstone of medical treatment and disease prevention, playing a crucial role in healing and maintaining a high quality of life.
+                  </p>
+                  <p>
+                    Led by Dt. Sakshi Pandey, an expert in Food Science and Clinical Nutrition, our department offers comprehensive dietary management customized to each patient’s unique medical history, lifestyle, and health goals. From weight management to complex therapeutic diets, we provide evidence-based guidance to help you make sustainable and healthy food choices.
+                  </p>
+                </div>
+              </div>
+            </div>
 
             <div className="lg:col-span-4 flex justify-center lg:justify-end">
               <div className="w-full max-w-sm">
@@ -154,6 +157,69 @@ export default function DieteticsNutritionClient() {
                 />
               </div>
             </div>
+          </div>
+
+          <div className="mt-16 xl:mt-24 space-y-16 xl:space-y-20">
+              <div>
+                <SectionHeader title="Our Specialized" highlight="Nutrition Services" />
+                <p className="mb-4 text-base xl:text-[15px] 2xl:text-lg">We offer a wide range of specialized nutritional services designed to cater to diverse health requirements:</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 xl:gap-6">
+                  {features.map((feature, idx) => (
+                    <div key={idx} className="bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 p-5 xl:p-6 flex flex-col hover:translate-y-[-4px] transition-all duration-300">
+                      <div className="flex items-center gap-3 xl:gap-4 mb-4 xl:mb-5">
+                        <div className="w-10 h-10 xl:w-12 xl:h-12 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+                          <svg className="w-5 h-5 xl:w-6 xl:h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={feature.icon}></path></svg>
+                        </div>
+                        <h4 className="font-bold text-[#064e3b] text-[17px] xl:text-[18px] leading-snug">{feature.title}</h4>
+                      </div>
+                      <p className="text-[15px] xl:text-[16px] text-gray-600 font-medium">{feature.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <SectionHeader title="Comprehensive" highlight="Diet Plans" />
+                <p className="mb-5 font-semibold text-[17px] xl:text-[18px] text-[#064e3b]">Our expert dietitians formulate personalized diet plans across various categories:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-5">
+                  {dietPlans.map((plan, idx) => (
+                    <div key={idx} className="bg-gray-50 rounded-xl border border-gray-100 p-5">
+                      <h4 className="font-bold text-emerald-700 text-[16px] xl:text-[17px] mb-4 border-b border-gray-200 pb-2">{plan.title}</h4>
+                      <ul className="space-y-3">
+                        {plan.items.map((item, itemIdx) => (
+                          <li key={itemIdx} className="flex items-start gap-2">
+                             <div className="mt-1 flex-shrink-0 w-4 h-4 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                               <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
+                             </div>
+                             <span className="text-[14px] xl:text-[15px] text-gray-700 font-medium">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <SectionHeader title="Why Choose Popular Hospital" highlight="for Nutrition?" />
+                <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-20">
+                  {[
+                    "Highly qualified and experienced dietitians",
+                    "Evidence-based customized meal plans",
+                    "Continuous monitoring and follow-up support",
+                    "Holistic approach integrating lifestyle modifications",
+                    "Coordination with your primary healthcare providers"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
+                      </div>
+                      <p className="text-base xl:text-[15px] 2xl:text-lg font-medium">{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
           </div>
         </div>
       </section>

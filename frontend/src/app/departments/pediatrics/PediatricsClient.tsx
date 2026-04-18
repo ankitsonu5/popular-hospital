@@ -52,10 +52,10 @@ const highlights = [
 
 const doctors = [
   {
-    name: "Dr Alok C Bhardwajs",
+    name: "Dr. Alok C. Bhardwaj",
     qualifications: "MBBS, MD (Pediatrics) IMS, BHU",
     designation: "HEAD, DEPARTMENT OF PEDIATRICS",
-    slug: "dr-alok-c-bhardwajs",
+    slug: "dr-alok-c-bhardwaj",
     image: "/images/departments_doctor/dr._alok_c_bhardwaj.jpg",
   },
   {
@@ -64,13 +64,6 @@ const doctors = [
     designation: "Consultant Senior Pediatrician",
     slug: "dr-prabhat-kumar",
     image: "/images/departments_doctor/dr_prabhat_kumar.png",
-  },
-  {
-    name: "Dr Rajesh Kumar Singh",
-    qualifications: "MBBS, MD, IAP Fellowship in Neonatology",
-    designation: "Consultant Pediatrician",
-    slug: "dr-rajesh-kumar-singh",
-    image: "",
   },
 ];
 

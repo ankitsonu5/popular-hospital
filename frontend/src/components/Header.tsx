@@ -105,6 +105,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
       href: "/departments/interventional-radiology",
     },
     { label: "Pediatric Surgery", href: "/departments/pediatric-surgery" },
+    { label: "Pediatric Cardiology", href: "/departments/pediatric-cardiology" },
   ],
   Specialties: [
     {
