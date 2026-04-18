@@ -84,7 +84,6 @@ export default function PediatricCardiologyClient() {
               </div>
 
               <div>
-                <SectionHeader title="Meet Our Specialist -" highlight="Dr Rajesh Kumar Singh" />
                 <p className="font-bold text-blue-600 uppercase tracking-wide mb-4 text-sm 2xl:text-base">
                   Pediatric Cardiologist and Intensivist
                 </p>
@@ -133,7 +132,7 @@ export default function PediatricCardiologyClient() {
                     {/* Doctor Image */}
                     <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
                       <Image
-                        src="/images/departments_doctor/dr-rajesh-kumar-singh.jpg"
+                        src="/images/departments_doctor/dr_rajesh_kumar_singh.png"
                         alt="Dr Rajesh Kumar Singh"
                         fill
                         className="object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
