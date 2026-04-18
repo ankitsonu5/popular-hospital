@@ -152,7 +152,7 @@ export default function PediatricCardiologyClient() {
                     {/* Doctor Info */}
                     <div className="text-center">
                       <h3 className="text-xl font-bold text-[#3b82f6] mb-1 font-heading">
-                        Dr Rajesh Kumar Singh
+                        Dr. Rajesh Kumar Singh
                       </h3>
                       <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">
                         MBBS, MD (Pediatrics), FNB (Pediatric Cardiology)
