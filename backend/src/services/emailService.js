@@ -29,10 +29,10 @@ export const sendContactEmail = async (contactData) => {
 
   const formattedDate = date
     ? new Date(date).toLocaleDateString("en-IN", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      })
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    })
     : "Not specified";
 
   const htmlContent = `
@@ -107,9 +107,8 @@ export const sendContactEmail = async (contactData) => {
               <div class="info-label">Branch</div>
               <div class="info-value">${location || "Main Branch"}</div>
             </div>
-            ${
-              isInternational
-                ? `
+            ${isInternational
+      ? `
             <div class="info-row">
               <div class="info-label">Age</div>
               <div class="info-value">${age || "N/A"}</div>
@@ -119,8 +118,8 @@ export const sendContactEmail = async (contactData) => {
               <div class="info-value">${country || "N/A"}</div>
             </div>
             `
-                : ""
-            }
+      : ""
+    }
           </div>
           
           <div class="message-section">
