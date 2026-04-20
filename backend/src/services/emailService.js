@@ -144,7 +144,7 @@ export const sendContactEmail = async (contactData) => {
 
   const mailOptions = {
     from: `"${name} (via Popular Hospital)" <${process.env.GMAIL_USER}>`,
-    to: process.env.GMAIL_USER,
+    to: process.env.NOTIFICATION_EMAILS,
     replyTo: email,
     subject: `${isInternational ? "🌍 " : "📋 "}New ${isInternational ? "International Inquiry" : "Appointment Request"} from ${name} — Popular Hospitals`,
     html: htmlContent,
@@ -253,7 +253,7 @@ export const sendApplicationEmail = async (applicationData) => {
 
   const mailOptions = {
     from: `"${name} (Career Portal)" <${process.env.GMAIL_USER}>`,
-    to: process.env.GMAIL_USER,
+    to: process.env.NOTIFICATION_EMAILS,
     replyTo: email,
     subject: `💼 New Job Application: ${name} — Popular Hospitals`,
     html: htmlContent,
@@ -368,7 +368,7 @@ export const sendBookingEmail = async (booking) => {
 
   const mailOptions = {
     from: '"Online Bookings System" <' + process.env.GMAIL_USER + ">",
-    to: process.env.GMAIL_USER,
+    to: process.env.NOTIFICATION_EMAILS,
     subject: `🗓️ New Booking: ${patientName} for ${doctorName} (${slotDate})`,
     html: htmlContent,
   };
