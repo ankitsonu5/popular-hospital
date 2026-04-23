@@ -24,6 +24,7 @@ import {
   Briefcase,
   Mail,
   MonitorPlay,
+  PhoneIncoming,
 } from "lucide-react";
 
 const API_URL = "/api-backend";
@@ -47,6 +48,7 @@ const sidebarItems = [
     icon: Mail,
     target: "_blank",
   },
+  { label: "Call Backs", href: "/admin-dashboard/callback-requests", icon: PhoneIncoming },
   { label: "Departments", href: "/admin-dashboard/departments", icon: Users },
   {
     label: "Manage Content",
@@ -139,12 +141,24 @@ export default function AdminDashboardLayout({
     },
   );
 
+  const { data: newCallbacks } = useSWR(
+    user ? "/api-backend/callback-requests?status=new" : null,
+    fetcher,
+    {
+      refreshInterval: 15000,
+      revalidateOnFocus: true,
+    },
+  );
+
   const unreadCount = Array.isArray(newContacts) ? newContacts.length : 0;
   const unreadAppsCount = Array.isArray(newApplications)
     ? newApplications.length
     : 0;
   const unreadBookingsCount = Array.isArray(newBookings)
     ? newBookings.length
+    : 0;
+  const unreadCallbacksCount = Array.isArray(newCallbacks)
+    ? newCallbacks.length
     : 0;
 
   const handleLogout = () => {
@@ -309,6 +323,9 @@ export default function AdminDashboardLayout({
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
                     )}
                     {item.label === "Bookings" && unreadBookingsCount > 0 && (
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
+                    )}
+                    {item.label === "Call Backs" && unreadCallbacksCount > 0 && (
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
                     )}
                     {isActive && (

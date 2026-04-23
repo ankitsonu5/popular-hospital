@@ -30,6 +30,7 @@ import contactsRouter from "./routes/contacts.js";
 import applicationsRouter from "./routes/applications.js";
 import heroBannersRouter from "./routes/heroBanners.js";
 import patientStoriesRouter from "./routes/patientStories.js";
+import callbackRequestsRouter from "./routes/callbackRequests.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -103,6 +104,7 @@ app.use("/api/contacts", contactsRouter);
 app.use("/api/applications", applicationsRouter);
 app.use("/api/hero-banners", heroBannersRouter);
 app.use("/api/patient-stories", patientStoriesRouter);
+app.use("/api/callback-requests", callbackRequestsRouter);
 
 // Serve uploads (static files)
 app.use(

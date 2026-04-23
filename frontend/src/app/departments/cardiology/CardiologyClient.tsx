@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DoctorSlider from "@/components/DoctorSlider";
 
 /* ─── Data ─── */
@@ -58,19 +58,19 @@ const preventiveList = [
 
 const doctors = [
   {
-    name: "Dr. Manoj Sharma",
-    qualifications: "M.B.B.S., MD, PGDCC (Cardiology)",
-    designation: "Department of Cardiology",
-    slug: "dr-manoj-sharma",
-    image: "/images/departments_doctor/dr_manoj-sharma.jpg",
-  },
-  {
     name: "Dr. Hari Krishan Srivastava",
     qualifications: "M.B.B.S., M.D., DM (Cardiology)",
     designation: "Head, Department of Cardiology",
     slug: "dr-hari-krishan-srivastava",
     image: "/images/departments_doctor/dr-Hari-Krishan-Srivastava.jpg",
   },
+  {
+    name: "Dr. Manoj Sharma",
+    qualifications: "M.B.B.S., MD, PGDCC (Cardiology)",
+    designation: "Department of Cardiology",
+    slug: "dr-manoj-sharma",
+    image: "/images/departments_doctor/dr_manoj-sharma.jpg",
+  }
 ];
 
 /* ─── Components ─── */
@@ -105,7 +105,26 @@ const ListItem = ({ text }: { text: string }) => (
 /* ─── Page ─── */
 
 export default function CardiologyPage() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [showCallModal, setShowCallModal] = useState(false);
+  const [callForm, setCallForm] = useState({ name: "", phone: "" });
+  const [callStatus, setCallStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleCallBackSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setCallStatus("loading");
+    try {
+      const res = await fetch("/api-backend/callback-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: callForm.name, phone: callForm.phone, department: "Cardiology" }),
+      });
+      if (!res.ok) throw new Error();
+      setCallStatus("success");
+      setCallForm({ name: "", phone: "" });
+    } catch {
+      setCallStatus("error");
+    }
+  };
 
   return (
     <main className="min-h-screen bg-white">
@@ -132,7 +151,7 @@ export default function CardiologyPage() {
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/doctors"
+                href="/book"
                 className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
               >
                 <svg
@@ -150,7 +169,10 @@ export default function CardiologyPage() {
                 </svg>
                 Book An Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+              <button
+                onClick={() => { setShowCallModal(true); setCallStatus("idle"); }}
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
+              >
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -294,6 +316,70 @@ export default function CardiologyPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══════ GET A CALL BACK MODAL ═══════ */}
+      {showCallModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative">
+            <button
+              onClick={() => setShowCallModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold"
+            >
+              ×
+            </button>
+            <h3 className="text-2xl font-bold text-[#0b1c43] mb-2 font-heading">Get a Call Back</h3>
+            <p className="text-gray-500 text-sm mb-6">Our team will call you shortly.</p>
+
+            {callStatus === "success" ? (
+              <div className="text-center py-6">
+                <div className="text-green-500 text-5xl mb-3">✓</div>
+                <p className="text-gray-700 font-semibold">Thank you! We will call you back soon.</p>
+                <button
+                  onClick={() => setShowCallModal(false)}
+                  className="mt-4 bg-[#e11d48] text-white px-6 py-2 rounded-full font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleCallBackSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={callForm.name}
+                    onChange={(e) => setCallForm({ ...callForm, name: e.target.value })}
+                    placeholder="Your full name"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#e11d48] focus:ring-2 focus:ring-rose-100 focus:outline-none transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    required
+                    value={callForm.phone}
+                    onChange={(e) => setCallForm({ ...callForm, phone: e.target.value })}
+                    placeholder="Your phone number"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#e11d48] focus:ring-2 focus:ring-rose-100 focus:outline-none transition-all"
+                  />
+                </div>
+                {callStatus === "error" && (
+                  <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={callStatus === "loading"}
+                  className="w-full bg-[#e11d48] hover:bg-rose-700 disabled:opacity-60 text-white py-3 rounded-full font-semibold transition-all"
+                >
+                  {callStatus === "loading" ? "Submitting..." : "Request Call Back"}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
