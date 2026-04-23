@@ -1,4 +1,5 @@
 import CallbackRequest from "../models/CallbackRequest.js";
+import { sendCallbackEmail } from "../services/emailService.js";
 
 // POST /api/callback-requests — public
 export const createCallbackRequest = async (req, res) => {
@@ -18,6 +19,10 @@ export const createCallbackRequest = async (req, res) => {
       name: String(name).trim().substring(0, 200),
       phone: String(phone).trim().substring(0, 20),
       department: department ? String(department).trim() : "",
+    });
+
+    sendCallbackEmail(request).catch((err) => {
+      console.error("[CALLBACK EMAIL]", err.message);
     });
 
     res.status(201).json({

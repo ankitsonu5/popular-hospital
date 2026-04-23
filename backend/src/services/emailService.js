@@ -375,6 +375,91 @@ export const sendBookingEmail = async (booking) => {
   await transporter.sendMail(mailOptions);
 };
 
+export const sendCallbackEmail = async (callbackData) => {
+  const { name, phone, department } = callbackData;
+
+  const transporter = createTransporter();
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; color: #1c1e21; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.05); }
+        .header { background: #0b1c43; padding: 40px 20px; text-align: center; color: #ffffff; }
+        .header h1 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+        .header p { margin: 10px 0 0; font-size: 14px; opacity: 0.8; font-weight: 500; }
+        .status-badge { display: inline-block; background: #e11d48; color: white; padding: 6px 16px; border-radius: 50px; font-size: 12px; font-weight: 700; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .content { padding: 40px; }
+        .section-label { font-size: 11px; font-weight: 800; color: #8d949e; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+        .info-card { background: #f7f8fa; border-radius: 16px; padding: 0; margin-bottom: 30px; border: 1px solid #edf0f2; overflow: hidden; }
+        .info-row { padding: 16px 24px; border-bottom: 1px solid #edf0f2; display: flex; align-items: center; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { width: 130px; font-size: 11px; font-weight: 700; color: #8a94a6; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+        .info-value { font-size: 14px; font-weight: 600; color: #1a1f36; word-break: break-all; }
+        .phone-link { color: #e11d48; text-decoration: none; font-size: 20px; font-weight: 800; display: block; text-align: center; margin: 20px 0; padding: 16px; background: #fff5f7; border-radius: 12px; border: 2px solid #fecdd3; }
+        .footer { background: #fafbfc; padding: 30px; text-align: center; border-top: 1px solid #f0f2f5; }
+        .footer p { margin: 0; font-size: 12px; color: #8a94a6; line-height: 1.5; }
+        .footer a { color: #0b1c43; font-weight: 700; text-decoration: none; }
+        @media only screen and (max-width: 600px) {
+          .container { margin: 0; border-radius: 0; }
+          .content { padding: 25px; }
+          .info-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+          .info-label { width: 100%; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Popular Hospitals</h1>
+          <p>Excellence in Healthcare</p>
+          <div class="status-badge">📞 New Call Back Request</div>
+        </div>
+
+        <div class="content">
+          <span class="section-label">Patient Details</span>
+          <div class="info-card">
+            <div class="info-row">
+              <div class="info-label">Full Name</div>
+              <div class="info-value">${name}</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Phone Number</div>
+              <div class="info-value">${phone}</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Department</div>
+              <div class="info-value">${department || "Not specified"}</div>
+            </div>
+          </div>
+
+          <a href="tel:${phone}" class="phone-link">📞 Call Now: ${phone}</a>
+        </div>
+
+        <div class="footer">
+          <p>
+            This is an automated notification from the <strong>Popular Hospitals Website</strong>.
+          </p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  const mailOptions = {
+    from: `"Popular Hospital Website" <${process.env.GMAIL_USER}>`,
+    to: "popularhospitalhelpline@gmail.com",
+    subject: `📞 New Call Back Request: ${name} (${department || "General"}) — Popular Hospitals`,
+    html: htmlContent,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
 export const sendPasswordResetEmail = async (email, resetUrl) => {
   const transporter = createTransporter();
 
