@@ -71,7 +71,10 @@ export default function GmailContactsPage() {
   const [activeTab, setActiveTab] = useState<"primary" | "unread" | "read">(
     "primary",
   );
+  const [currentPage, setCurrentPage] = useState(1);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+
+  const PAGE_SIZE = 10;
 
   const fetchContacts = useCallback(async () => {
     setLoading(true);
@@ -93,6 +96,10 @@ export default function GmailContactsPage() {
   useEffect(() => {
     fetchContacts();
   }, [fetchContacts]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, activeTab]);
 
   const markAsRead = async (contact: Contact) => {
     if (contact.status === "read") return;
@@ -156,6 +163,11 @@ export default function GmailContactsPage() {
         : c.status === (activeTab === "unread" ? "new" : "read");
     return matchSearch && matchTab;
   });
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const pageStart = filtered.length > 0 ? (currentPage - 1) * PAGE_SIZE : 0;
+  const pageEnd = Math.min(pageStart + PAGE_SIZE, filtered.length);
+  const paginatedContacts = filtered.slice(pageStart, pageEnd);
 
   return (
     <div className="flex flex-col h-[calc(100vh-120px)] bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden font-sans">
@@ -222,13 +234,21 @@ export default function GmailContactsPage() {
           </div>
           <div className="flex items-center text-gray-500">
             <span className="text-xs mr-4 hidden sm:inline">
-              {filtered.length > 0 ? `1-${filtered.length}` : "0"} of{" "}
-              {contacts.length}
+              {filtered.length > 0 ? `${pageStart + 1}-${pageEnd}` : "0"} of{" "}
+              {filtered.length}
             </span>
-            <button className="p-1 hover:bg-gray-100 rounded">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="p-1 hover:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+            >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button className="p-1 hover:bg-gray-100 rounded">
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage >= totalPages}
+              className="p-1 hover:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+            >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -274,7 +294,7 @@ export default function GmailContactsPage() {
               </div>
             ) : (
               <div className="flex flex-col divide-y divide-gray-50">
-                {filtered.map((contact) => {
+                {paginatedContacts.map((contact) => {
                   const isNew = contact.status === "new";
                   return (
                     <div

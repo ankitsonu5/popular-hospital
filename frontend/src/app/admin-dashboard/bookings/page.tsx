@@ -55,7 +55,10 @@ export default function BookingsAdminPage() {
   const [selected, setSelected] = useState<Booking | null>(null);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+
+  const PAGE_SIZE = 10;
 
   const fetchBookings = useCallback(async () => {
     setLoading(true);
@@ -106,6 +109,10 @@ export default function BookingsAdminPage() {
     fetchBookings();
   }, [fetchBookings]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search]);
+
   const updateStatus = async (booking: Booking, newStatus: string) => {
     try {
       const token = localStorage.getItem("admin_token");
@@ -149,6 +156,11 @@ export default function BookingsAdminPage() {
       (b.branch && b.branch.name.toLowerCase().includes(search.toLowerCase()))
     );
   });
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const pageStart = filtered.length > 0 ? (currentPage - 1) * PAGE_SIZE : 0;
+  const pageEnd = Math.min(pageStart + PAGE_SIZE, filtered.length);
+  const paginatedBookings = filtered.slice(pageStart, pageEnd);
 
   return (
     <div className="flex flex-col h-[calc(100vh-120px)] bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden font-sans">
@@ -218,13 +230,21 @@ export default function BookingsAdminPage() {
           </div>
           <div className="flex items-center text-gray-500">
             <span className="text-xs mr-4 hidden sm:inline">
-              {filtered.length > 0 ? `1-${filtered.length}` : "0"} of{" "}
-              {bookings.length}
+              {filtered.length > 0 ? `${pageStart + 1}-${pageEnd}` : "0"} of{" "}
+              {filtered.length}
             </span>
-            <button className="p-1 hover:bg-gray-100 rounded">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="p-1 hover:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+            >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button className="p-1 hover:bg-gray-100 rounded">
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage >= totalPages}
+              className="p-1 hover:bg-gray-100 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+            >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -362,7 +382,7 @@ export default function BookingsAdminPage() {
               <p className="text-sm mt-1">Try adjusting your search criteria</p>
             </div>
           ) : (
-            filtered.map((booking) => (
+            paginatedBookings.map((booking) => (
               <div
                 key={booking._id}
                 onClick={() => handleSelect(booking)}
