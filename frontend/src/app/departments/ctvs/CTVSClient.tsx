@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 // import DoctorSlider from '@/components/DoctorSlider';
+import GetCallBackButton from "@/components/GetCallBackButton";
 
 /* ─── Data ─── */
 
@@ -145,7 +146,7 @@ export default function CTVSClient() {
             </h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/doctors"
+                href="/book"
                 className="bg-rose-600 hover:bg-rose-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-rose-500/30 flex items-center justify-center gap-2 text-center"
               >
                 <svg
@@ -163,7 +164,10 @@ export default function CTVSClient() {
                 </svg>
                 Book An Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2">
+              <GetCallBackButton
+                department="Cardiothoracic & Vascular Surgery (CTVS)"
+                className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2"
+              >
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -178,7 +182,7 @@ export default function CTVSClient() {
                   />
                 </svg>
                 Get a Call Back
-              </button>
+              </GetCallBackButton>
             </div>
           </div>
         </div>
@@ -250,7 +254,7 @@ export default function CTVSClient() {
                 <div className="relative pt-6">
                   {/* Floating Appointment Button */}
                   <Link
-                    href="/doctors"
+                    href="/book"
                     className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-rose-600 hover:bg-rose-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap uppercase"
                   >
                     SCHEDULE AN APPOINTMENT

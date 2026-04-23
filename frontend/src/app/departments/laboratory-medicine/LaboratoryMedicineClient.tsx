@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import DoctorSlider from "@/components/DoctorSlider";
+import GetCallBackButton from "@/components/GetCallBackButton";
 
 const doctors = [
   {
@@ -86,7 +87,7 @@ export default function LaboratoryMedicineClient() {
             </h1>
             <div className="flex flex-wrap gap-4 mt-8">
               <Link
-                href="/doctors"
+                href="/book"
                 className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 <svg

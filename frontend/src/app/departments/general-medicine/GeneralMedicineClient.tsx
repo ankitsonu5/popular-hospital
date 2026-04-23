@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import DoctorSlider from "@/components/DoctorSlider";
+import GetCallBackButton from "@/components/GetCallBackButton";
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
@@ -160,14 +161,17 @@ export default function GeneralMedicineClient() {
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/doctors"
+                href="/book"
                 className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
+              <GetCallBackButton
+                department="General Medicine"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
+              >
                 Get a Call Back
-              </button>
+              </GetCallBackButton>
             </div>
           </div>
         </div>

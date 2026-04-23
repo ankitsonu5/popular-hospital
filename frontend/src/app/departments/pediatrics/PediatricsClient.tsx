@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import DoctorSlider from "@/components/DoctorSlider";
+import GetCallBackButton from "@/components/GetCallBackButton";
 
 /* ─── Data (Transcribed from previous turn + General Surgery Theme) ─── */
 
@@ -166,7 +167,7 @@ export default function PediatricsClient() {
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/doctors"
+                href="/book"
                 className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
               >
                 <svg
@@ -184,7 +185,10 @@ export default function PediatricsClient() {
                 </svg>
                 Book An Appointment
               </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2">
+              <GetCallBackButton
+                department="Pediatrics & Neonatology"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
+              >
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -199,7 +203,7 @@ export default function PediatricsClient() {
                   />
                 </svg>
                 Get a Call Back
-              </button>
+              </GetCallBackButton>
             </div>
           </div>
         </div>
