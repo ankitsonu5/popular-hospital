@@ -57,7 +57,7 @@ const doctors = [
     qualifications: "MBBS, MD (Pediatrics) IMS, BHU",
     designation: "HEAD, DEPARTMENT OF PEDIATRICS",
     slug: "dr-alok-c-bhardwaj",
-    image: "/images/departments_doctor/dr._alok_c_bhardwaj.jpg",
+    image: "/images/departments_doctor/alok_c_bharwaj.jpg",
   },
   {
     name: "Dr. Prabhat Kumar",

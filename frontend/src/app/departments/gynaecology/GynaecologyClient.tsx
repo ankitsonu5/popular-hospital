@@ -116,7 +116,7 @@ const doctors = [
     designation:
       "Consultant Obstetrician, Gynaecologist & Infertility Specialist",
     slug: "dr-madhavi-paramar",
-    image: "/images/departments_doctor/dr_parmar_madhavi.jpg",
+    image: "/images/departments_doctor/madhvi_parmar.jpg",
   },
   {
     name: "Dr. Priyanka Jaiswal",

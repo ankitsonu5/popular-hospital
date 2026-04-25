@@ -90,19 +90,11 @@ const medicalServices = [
 
 const doctors = [
   {
-    name: "Dr. K.P Singh",
-    qualifications:
-      "MBBS, MD, (Respiratory Medicine) Dip. Card MNCCP, MICS, MICAI, MIES, MERS",
-    designation: "Senior Consultant Pulmonologist",
-    slug: "dr-kp-singh",
-    image: "/images/departments_doctor/dr_k_p_singh.png",
-  },
-  {
     name: "Dr. P.K Tiwari",
     qualifications: "MBBS, MD (Internal Medicine) IMS, BHU",
     designation: "Senior Consultant Physician",
     slug: "dr-pk-tiwari",
-    image: "",
+    image: "/images/departments_doctor/dr_pk_tiwari.jpg",
   },
   {
     name: "Dr. Sandesh M Raykar",

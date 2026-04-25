@@ -164,66 +164,66 @@ export default function DieteticsNutritionClient({ doctors = [] }: { doctors?: a
           </div>
 
           <div className="mt-16 xl:mt-24 space-y-16 xl:space-y-20">
-              <div>
-                <SectionHeader title="Our Specialized" highlight="Nutrition Services" />
-                <p className="mb-4 text-base xl:text-[15px] 2xl:text-lg">We offer a wide range of specialized nutritional services designed to cater to diverse health requirements:</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 xl:gap-6">
-                  {features.map((feature, idx) => (
-                    <div key={idx} className="bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 p-5 xl:p-6 flex flex-col hover:translate-y-[-4px] transition-all duration-300">
-                      <div className="flex items-center gap-3 xl:gap-4 mb-4 xl:mb-5">
-                        <div className="w-10 h-10 xl:w-12 xl:h-12 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
-                          <svg className="w-5 h-5 xl:w-6 xl:h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={feature.icon}></path></svg>
-                        </div>
-                        <h4 className="font-bold text-[#064e3b] text-[17px] xl:text-[18px] leading-snug">{feature.title}</h4>
-                      </div>
-                      <p className="text-[15px] xl:text-[16px] text-gray-600 font-medium">{feature.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div>
+              <SectionHeader title="Our Specialized" highlight="Nutrition Services" />
+              <p className="mb-4 text-base xl:text-[15px] 2xl:text-lg">We offer a wide range of specialized nutritional services designed to cater to diverse health requirements:</p>
 
-              <div>
-                <SectionHeader title="Comprehensive" highlight="Diet Plans" />
-                <p className="mb-5 font-semibold text-[17px] xl:text-[18px] text-[#064e3b]">Our expert dietitians formulate personalized diet plans across various categories:</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-5">
-                  {dietPlans.map((plan, idx) => (
-                    <div key={idx} className="bg-gray-50 rounded-xl border border-gray-100 p-5">
-                      <h4 className="font-bold text-emerald-700 text-[16px] xl:text-[17px] mb-4 border-b border-gray-200 pb-2">{plan.title}</h4>
-                      <ul className="space-y-3">
-                        {plan.items.map((item, itemIdx) => (
-                          <li key={itemIdx} className="flex items-start gap-2">
-                             <div className="mt-1 flex-shrink-0 w-4 h-4 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-                               <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
-                             </div>
-                             <span className="text-[14px] xl:text-[15px] text-gray-700 font-medium">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <SectionHeader title="Why Choose Popular Hospital" highlight="for Nutrition?" />
-                <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-20">
-                  {[
-                    "Highly qualified and experienced dietitians",
-                    "Evidence-based customized meal plans",
-                    "Continuous monitoring and follow-up support",
-                    "Holistic approach integrating lifestyle modifications",
-                    "Coordination with your primary healthcare providers"
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 xl:gap-6">
+                {features.map((feature, idx) => (
+                  <div key={idx} className="bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 p-5 xl:p-6 flex flex-col hover:translate-y-[-4px] transition-all duration-300">
+                    <div className="flex items-center gap-3 xl:gap-4 mb-4 xl:mb-5">
+                      <div className="w-10 h-10 xl:w-12 xl:h-12 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+                        <svg className="w-5 h-5 xl:w-6 xl:h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={feature.icon}></path></svg>
                       </div>
-                      <p className="text-base xl:text-[15px] 2xl:text-lg font-medium">{item}</p>
-                    </li>
-                  ))}
-                </ul>
+                      <h4 className="font-bold text-[#064e3b] text-[17px] xl:text-[18px] leading-snug">{feature.title}</h4>
+                    </div>
+                    <p className="text-[15px] xl:text-[16px] text-gray-600 font-medium">{feature.desc}</p>
+                  </div>
+                ))}
               </div>
+            </div>
+
+            <div>
+              <SectionHeader title="Comprehensive" highlight="Diet Plans" />
+              <p className="mb-5 font-semibold text-[17px] xl:text-[18px] text-[#064e3b]">Our expert dietitians formulate personalized diet plans across various categories:</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-5">
+                {dietPlans.map((plan, idx) => (
+                  <div key={idx} className="bg-gray-50 rounded-xl border border-gray-100 p-5">
+                    <h4 className="font-bold text-emerald-700 text-[16px] xl:text-[17px] mb-4 border-b border-gray-200 pb-2">{plan.title}</h4>
+                    <ul className="space-y-3">
+                      {plan.items.map((item, itemIdx) => (
+                        <li key={itemIdx} className="flex items-start gap-2">
+                          <div className="mt-1 flex-shrink-0 w-4 h-4 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                            <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
+                          </div>
+                          <span className="text-[14px] xl:text-[15px] text-gray-700 font-medium">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <SectionHeader title="Why Choose Popular Hospital" highlight="for Nutrition?" />
+              <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-20">
+                {[
+                  "Highly qualified and experienced dietitians",
+                  "Evidence-based customized meal plans",
+                  "Continuous monitoring and follow-up support",
+                  "Holistic approach integrating lifestyle modifications",
+                  "Coordination with your primary healthcare providers"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
+                    </div>
+                    <p className="text-base xl:text-[15px] 2xl:text-lg font-medium">{item}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

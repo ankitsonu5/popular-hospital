@@ -119,21 +119,21 @@ const doctors = [
     qualifications: "MBBS, MD (Respiratory Medicine), Dip Card",
     designation: "Sr. Consultant Pulmonologist",
     slug: "dr-kp-singh",
-    image: "/images/departments_doctor/dr_k_p_singh.png",
+    image: "/images/departments_doctor/dr_k_p_singh.jpg",
   },
   {
     name: "Dr. Shailendra Shivhare",
     qualifications: "MBBS, MD (Respiratory Medicine)",
     designation: "Consultant Pulmonologist",
     slug: "dr-shailendra-shivhare",
-    image: "/uploads/doctors/1742444391694-dr-shailendra-shivhare.jpg",
+    image: "/images/departments_doctor/dr_sailendra shivhare.jpg",
   },
   {
     name: "Dr. Vikas Jaiswal",
     qualifications: "MBBS, DTCD, DNB (Respiratory Medicine)",
     designation: "Consultant Pulmonologist",
     slug: "dr-vikas-jaiswal",
-    image: "/uploads/doctors/1742795458316-dr-vikas-jaiswal.jpg",
+    image: "/images/departments_doctor/dr_vikas_jaiswal.jpg",
   },
 ];
 

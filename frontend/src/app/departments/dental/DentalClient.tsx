@@ -46,10 +46,10 @@ const surgeryList = [
 const doctors = [
   {
     name: "Dr. Hena Kauser",
-    qualifications: "BDS",
+    qualifications: "BDS, MPH",
     designation: "Consultant Dentist",
     slug: "dr-hena-kauser",
-    image: "", // Placeholder as per backend and uploaded image
+    image: "/images/departments_doctor/dr_heena_kauser.jpg", // Placeholder as per backend and uploaded image
   },
 ];
 

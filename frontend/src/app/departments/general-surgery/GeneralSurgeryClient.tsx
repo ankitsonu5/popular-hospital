@@ -71,18 +71,11 @@ const doctors = [
     image: "/images/departments_doctor/dr_ak_kaushik.png",
   },
   {
-    name: "Dr. R.K Singh",
-    qualifications: "MBBS, MS, FIAGES, FSG",
-    designation: "Consultant Surgeon",
-    slug: "dr-rk-singh",
-    image: "",
-  },
-  {
-    name: "Dr. Abhishek",
+    name: "Dr. Abhishek Kumar",
     qualifications: "M.B.B.S, M.S. - General Surgery, FIAGES",
     designation: "Consultant Surgeon",
     slug: "dr-abhishek",
-    image: "",
+    image: "/images/departments_doctor/dr_abhishek_kumar.jpg",
   },
 ];
 

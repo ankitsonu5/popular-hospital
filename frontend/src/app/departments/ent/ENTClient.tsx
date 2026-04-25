@@ -62,11 +62,11 @@ const whatWeOffer = [
 
 const doctors = [
   {
-    name: "Dr. Anshuman Singh",
+    name: "Dr. Sandeep Dubey",
     qualifications: "M.B.B.S., MS - Otorhinolaryngology",
     designation: "Consultant ENT Surgeon",
-    slug: "dr-anshuman-singh",
-    image: "", // Placeholder as per backend and uploaded image
+    slug: "dr-sandeep-dubey",
+    image: "",
   },
 ];
 

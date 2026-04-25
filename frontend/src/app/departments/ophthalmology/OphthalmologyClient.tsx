@@ -55,11 +55,11 @@ const specialisedProgrammes = [
 
 const doctors = [
   {
-    name: "Dr. Bhavesh Makkar",
-    qualifications: "M.B.B.S, DNB",
+    name: "Dr. Gunjan Rana",
+    qualifications: "M.B.B.S, MS(Ophthalmology)",
     designation: "Consultant Ophthalmologist",
-    slug: "dr-bhavesh-makkar",
-    image: "", // Placeholder as per backend and uploaded image
+    slug: "dr-gunjan-rana",
+    image: "/images/departments_doctor/", // Placeholder as per backend and uploaded image
   },
 ];
 

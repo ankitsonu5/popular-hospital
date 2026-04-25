@@ -34,6 +34,13 @@ const conditions = [
 
 const doctors = [
   {
+    name: "Dr. Mahesh Tiwari",
+    qualifications: "MBBS, MS, MCh (Gastrosurgery)",
+    designation: "Consultant GI and HPB Surgeon",
+    slug: "dr-mahesh-tiwari",
+    image: "/images/departments_doctor/dr_mahesh_tiwari.png",
+  },
+  {
     name: "Dr. Anirban De",
     qualifications: "MBBS, MD, DM (Gastroenterology)",
     designation: "Consultant Gastroenterologist",
@@ -46,13 +53,6 @@ const doctors = [
     designation: "Consultant Gastrosurgeon",
     slug: "dr-r-k-singh",
     image: "",
-  },
-  {
-    name: "Dr. Mahesh Tiwari",
-    qualifications: "MBBS, MS, MCh (Gastrosurgery)",
-    designation: "Consultant GI and HPB Surgeon",
-    slug: "dr-mahesh-tiwari",
-    image: "/images/departments_doctor/dr_mahesh_tiwari.png",
   },
 ];
 
