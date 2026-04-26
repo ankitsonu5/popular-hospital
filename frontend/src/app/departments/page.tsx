@@ -98,6 +98,12 @@ const services = [
     image: "/images/departments-images/pulmonology.jpeg",
     href: "/departments/respiratory",
   },
+  {
+    title: "Advanced Diabetic Foot Unit",
+    desc: "Expert care for diabetic foot wounds, ulcers, and limb salvage.",
+    image: "/images/departments-images/AdobeStock_222372294.jpeg",
+    href: "/departments/diabetic-foot",
+  },
 ];
 
 export default function ServicesPage() {

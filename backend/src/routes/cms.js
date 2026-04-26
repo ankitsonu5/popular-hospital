@@ -24,11 +24,13 @@ import {
   createSpeciality,
   updateSpeciality,
   deleteSpeciality,
+  getAllSpecialities,
   getAllDesignations,
   createDesignation,
   updateDesignation,
   deleteDesignation,
   reorderDoctors,
+  uploadSpecialityBanner,
 } from "../controllers/doctorController.js";
 import {
   getAllBookings,
@@ -135,8 +137,9 @@ router.put("/doctors/:id", uploadDoctor.single("image"), updateDoctor);
 router.delete("/doctors/:id", deleteDoctor);
 
 // Specialities (Departments) CRUD
-router.post("/specialities", createSpeciality);
-router.put("/specialities/:id", updateSpeciality);
+router.get("/specialities", getAllSpecialities);
+router.post("/specialities", uploadSpecialityBanner.single("banner_image"), createSpeciality);
+router.put("/specialities/:id", uploadSpecialityBanner.single("banner_image"), updateSpeciality);
 router.delete("/specialities/:id", deleteSpeciality);
 
 // Designations CRUD

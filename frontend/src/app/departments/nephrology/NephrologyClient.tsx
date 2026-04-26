@@ -77,7 +77,7 @@ const doctors = [
     qualifications: "MBBS, MD, DM (Nephrology)",
     designation: "Consultant Nephrologist",
     slug: "dr-harendra-pratap-singh",
-    image: "/images/departments_doctor/dr_harendra_pratap_singh.png",
+    image: "/images/departments_doctor/harendra_pratap.jpg",
   },
 ];
 

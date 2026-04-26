@@ -59,7 +59,7 @@ const doctors = [
     qualifications: "M.B.B.S, MS(Ophthalmology)",
     designation: "Consultant Ophthalmologist",
     slug: "dr-gunjan-rana",
-    image: "/images/departments_doctor/", // Placeholder as per backend and uploaded image
+    image: "/images/departments_doctor/dr_gunjan_rana.jpg", // Placeholder as per backend and uploaded image
   },
 ];
 

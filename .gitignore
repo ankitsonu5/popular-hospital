@@ -40,3 +40,4 @@ next-env.d.ts
 .antigravityignore
 .agent/
 .cursor/
+.claude

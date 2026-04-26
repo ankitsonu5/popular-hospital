@@ -56,14 +56,7 @@ const doctors = [
     qualifications: "MBBS, MS, MCh (Urology)",
     designation: "Consultant Urologist",
     slug: "dr-piyush-saini",
-    image: "/images/departments_doctor/dr_piyush_saini.png",
-  },
-  {
-    name: "Dr. Shasank shekhar Tripathi",
-    qualifications: "MBBS, MS, MCh (Urology)",
-    designation: "Consultant Urologist",
-    slug: "dr-shasank-shekhar-tripathi",
-    image: "",
+    image: "/images/departments_doctor/dr_piyush_saini.jpg",
   },
 ];
 

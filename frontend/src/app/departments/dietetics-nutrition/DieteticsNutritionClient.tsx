@@ -3,9 +3,27 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+
+const doctors = [
+  {
+    name: "Dt. Sakshi Pandey",
+    qualifications: "MSc. (Food Science), CCN, CDE, PGDDN",
+    designation: "Dietitian",
+    slug: "dt-sakshi-pandey",
+    image:
+      "/images/departments_doctor/dt_sakshi_pandey.jpg",
+  },
+  {
+    name: "Dt. Sayeda Eram Fatma",
+    qualifications: "MSc. (DFSM)",
+    designation: "Clinical Dietitian",
+    slug: "dt-sayeda-eram-fatma",
+    image:
+      "",
+  },
+];
 
 const features = [
   {
@@ -89,7 +107,7 @@ const ListItem = ({ text }: { text: string }) => (
   </li>
 );
 
-export default function DieteticsNutritionClient({ doctors = [] }: { doctors?: any[] }) {
+export default function DieteticsNutritionClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}

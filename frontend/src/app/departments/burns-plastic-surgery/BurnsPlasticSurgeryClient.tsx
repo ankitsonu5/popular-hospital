@@ -54,14 +54,14 @@ const doctors = [
     qualifications: "MBBS, MS, MCh (Plastic Surgery)",
     designation: "Consultant Plastic Surgeon",
     slug: "dr-sudhir-singh",
-    image: "",
+    image: "/images/departments_doctor/dr_sudhir_singh.jpg",
   },
   {
     name: "Dr. Deepak Agrahari",
     qualifications: "MBBS, MS, MCh (Plastic Surgery)",
     designation: "Consultant Plastic Surgeon",
     slug: "dr-deepak-agrahari",
-    image: "",
+    image: "/images/departments_doctor/dr_deepak_agrahari.jpg",
   },
 ];
 

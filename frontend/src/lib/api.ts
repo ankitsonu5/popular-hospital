@@ -116,6 +116,19 @@ export async function fetchSpecialities(): Promise<Speciality[]> {
   }
 }
 
+export async function fetchDepartment(slug: string): Promise<Department | null> {
+  try {
+    const res = await fetch(api(`/doctors/specialities/${slug}`), {
+      next: { revalidate: 30 },
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (e) {
+    console.error("Failed to fetch department:", e);
+    return null;
+  }
+}
+
 export async function fetchOpdSlots(
   doctorId: string,
   branchId: string,
@@ -326,6 +339,37 @@ export interface Speciality {
   name: string;
   slug: string;
   department_display_name?: string;
+  category?: "super_specialty" | "specialty";
+}
+
+export interface UspItem {
+  title: string;
+  content: string;
+}
+
+export interface ListSection {
+  title: string;
+  highlight?: string;
+  items: string[];
+  image?: string;
+  layout?: "default" | "image-right" | "image-left" | "two-col";
+}
+
+export interface Department {
+  _id: string;
+  name: string;
+  slug: string;
+  department_display_name?: string;
+  category?: "super_specialty" | "specialty";
+  banner_image?: string;
+  banner_color?: string;
+  banner_subtitle?: string;
+  description?: string;
+  usp_items?: UspItem[];
+  lists?: ListSection[];
+  meta_title?: string;
+  meta_description?: string;
+  sortIndex?: number;
 }
 
 export interface Doctor {

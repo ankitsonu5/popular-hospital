@@ -87,48 +87,31 @@ const menuItems: MenuItem[] = [
 const specialtiesContent: Record<string, { label: string; href: string }[]> = {
   "Super Specialties": [
     { label: "Cardiology", href: "/departments/cardiology" },
-    {
-      label: "Cardiothoracic & Vascular Surgery (CTVS)",
-      href: "/departments/ctvs",
-    },
+    { label: "Cardiothoracic & Vascular Surgery (CTVS)", href: "/departments/ctvs" },
     { label: "Neurosurgery", href: "/departments/neurosurgery" },
     { label: "Gastroenterology", href: "/departments/gastroenterology" },
     { label: "Nephrology", href: "/departments/nephrology" },
     { label: "Oncology", href: "/departments/oncology" },
     { label: "Urology", href: "/departments/urology" },
-    {
-      label: "Burns & Plastic Surgery",
-      href: "/departments/burns-plastic-surgery",
-    },
-    {
-      label: "Interventional Radiology",
-      href: "/departments/interventional-radiology",
-    },
+    { label: "Burns & Plastic Surgery", href: "/departments/burns-plastic-surgery" },
+    { label: "Interventional Radiology", href: "/departments/interventional-radiology" },
     { label: "Pediatric Surgery", href: "/departments/pediatric-surgery" },
     { label: "Pediatric Cardiology", href: "/departments/pediatric-cardiology" },
   ],
   Specialties: [
-    {
-      label: "Laparoscopy & General Surgery",
-      href: "/departments/general-surgery",
-    },
+    { label: "Laparoscopy & General Surgery", href: "/departments/general-surgery" },
     { label: "Obstetrics & Gynaecology", href: "/departments/gynaecology" },
     { label: "Pediatrics And Neonatology", href: "/departments/pediatrics" },
-    {
-      label: "Orthopedics & Joint Replacement",
-      href: "/departments/orthopedics",
-    },
+    { label: "Orthopedics & Joint Replacement", href: "/departments/orthopedics" },
     { label: "General Medicine", href: "/departments/general-medicine" },
     { label: "ENT", href: "/departments/ent" },
-    {
-      label: "Dietetics & Nutrition",
-      href: "/departments/dietetics-nutrition",
-    },
+    { label: "Dietetics & Nutrition", href: "/departments/dietetics-nutrition" },
     { label: "Ophthalmology", href: "/departments/ophthalmology" },
     { label: "Dental", href: "/departments/dental" },
     { label: "Respiratory Medicine", href: "/departments/respiratory" },
     { label: "Pain Medicine", href: "/departments/pain-management" },
     { label: "Psychiatry Department", href: "/departments/psychiatry" },
+    { label: "Advanced Diabetic Foot Unit", href: "/departments/diabetic-foot" },
   ],
 };
 
@@ -193,11 +176,13 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
   const isMenuItemActive = (item: MenuItem) => {
     if (item.href === pathname) return true;
     if (item.dropdown) {
       if (item.dropdown.some((d) => d.href === pathname)) return true;
       if (item.label === "Departments") {
+        if (pathname.startsWith("/departments")) return true;
         return Object.values(specialtiesContent)
           .flat()
           .some((s) => s.href === pathname);

@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import DieteticsNutritionClient from "./DieteticsNutritionClient";
-import { fetchDoctors } from "@/lib/api";
 
 export const metadata: Metadata = {
   title: "Dietetics & Nutrition | Popular Hospital",
@@ -9,6 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default async function DieteticsNutritionPage() {
-  const doctors = await fetchDoctors({ speciality: "dietetics-nutrition" });
-  return <DieteticsNutritionClient doctors={doctors} />;
+  return <DieteticsNutritionClient />;
 }

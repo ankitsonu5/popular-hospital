@@ -316,6 +316,8 @@ export default function DoctorsPage() {
         );
       } else if (key === "opd_timings") {
         data.append(key, JSON.stringify(value));
+      } else if (key === "image_url" && selectedFile) {
+        // Skip old image_url when a new file is selected — let backend use the new upload
       } else {
         data.append(key, value?.toString() || "");
       }
@@ -328,25 +330,38 @@ export default function DoctorsPage() {
       const headers = {
         Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
       };
+      let res;
       if (editingId) {
-        await fetch(`${API_URL}/cms/doctors/${editingId}`, {
+        res = await fetch(`${API_URL}/cms/doctors/${editingId}`, {
           method: "PUT",
           headers,
           body: data,
         });
       } else {
-        await fetch(`${API_URL}/cms/doctors`, {
+        res = await fetch(`${API_URL}/cms/doctors`, {
           method: "POST",
           headers,
           body: data,
         });
       }
+
+      if (!res.ok) {
+        const errText = await res.text();
+        let errMsg = `Server error ${res.status}`;
+        try { errMsg = JSON.parse(errText)?.error || errMsg; } catch {}
+        toast.error(`Failed to save: ${errMsg}`);
+        setIsSaving(false);
+        return;
+      }
+
+      toast.success(editingId ? "Doctor updated successfully!" : "Doctor added successfully!");
       setShowForm(false);
       setEditingId(null);
       resetForm();
       fetchData();
     } catch (e) {
       console.error(e);
+      toast.error("Network error. Please try again.");
     }
     setIsSaving(false);
   };

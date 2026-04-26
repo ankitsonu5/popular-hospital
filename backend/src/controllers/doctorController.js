@@ -28,6 +28,26 @@ const storage = multer.diskStorage({
 
 export const uploadDoctor = multer({ storage });
 
+// Multer for department banner images
+const bannerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = "uploads/departments";
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const base = path
+      .basename(file.originalname, ext)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 60);
+    cb(null, `${Date.now()}-${base || "file"}${ext.toLowerCase()}`);
+  },
+});
+export const uploadSpecialityBanner = multer({ storage: bannerStorage });
+
 // GET /api/doctors
 export const getAllDoctors = async (req, res) => {
   try {
@@ -105,8 +125,19 @@ export const getAllDoctors = async (req, res) => {
 // GET /api/doctors/specialities
 export const getAllSpecialities = async (req, res) => {
   try {
-    const list = await Speciality.find().sort({ name: 1 });
+    const list = await Speciality.find().sort({ sortIndex: 1, name: 1 });
     res.json(list);
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+// GET /api/doctors/specialities/:slug
+export const getSpecialityBySlug = async (req, res) => {
+  try {
+    const spec = await Speciality.findOne({ slug: req.params.slug });
+    if (!spec) return res.status(404).json({ error: "Department not found" });
+    res.json(spec);
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
   }
@@ -277,14 +308,25 @@ export const reorderDoctors = async (req, res) => {
 // POST /api/cms/specialities
 export const createSpeciality = async (req, res) => {
   try {
-    const { name, slug, department_display_name } = req.body;
+    const {
+      name, slug, department_display_name, category,
+      banner_color, banner_subtitle, description,
+      usp_items, lists, meta_title, meta_description, sortIndex,
+    } = req.body;
     if (!name || !slug)
       return res.status(400).json({ error: "Name and slug are required" });
 
+    const banner_image = req.file
+      ? `/uploads/departments/${req.file.filename}`
+      : req.body.banner_image || "";
+
     const spec = await Speciality.create({
-      name,
-      slug,
-      department_display_name,
+      name, slug, department_display_name, category,
+      banner_image, banner_color, banner_subtitle, description,
+      usp_items: typeof usp_items === "string" ? JSON.parse(usp_items) : (usp_items || []),
+      lists: typeof lists === "string" ? JSON.parse(lists) : (lists || []),
+      meta_title, meta_description,
+      sortIndex: sortIndex ? parseInt(sortIndex) : 0,
     });
     res.status(201).json(spec);
   } catch (error) {
@@ -300,7 +342,15 @@ export const createSpeciality = async (req, res) => {
 // PUT /api/cms/specialities/:id
 export const updateSpeciality = async (req, res) => {
   try {
-    const spec = await Speciality.findByIdAndUpdate(req.params.id, req.body, {
+    const updates = { ...req.body };
+    if (req.file) updates.banner_image = `/uploads/departments/${req.file.filename}`;
+    if (updates.usp_items && typeof updates.usp_items === "string")
+      updates.usp_items = JSON.parse(updates.usp_items);
+    if (updates.lists && typeof updates.lists === "string")
+      updates.lists = JSON.parse(updates.lists);
+    if (updates.sortIndex) updates.sortIndex = parseInt(updates.sortIndex);
+
+    const spec = await Speciality.findByIdAndUpdate(req.params.id, updates, {
       new: true,
     });
     if (!spec) return res.status(404).json({ error: "Speciality not found" });

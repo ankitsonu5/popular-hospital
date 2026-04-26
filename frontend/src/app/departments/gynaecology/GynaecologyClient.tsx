@@ -108,7 +108,7 @@ const doctors = [
     qualifications: "MBBS, MS (OBGY) IMS, BHU",
     designation: "Head Of Department Obstetrics & Gynaecology",
     slug: "dr-kiran-kaushik",
-    image: "/images/departments_doctor/kiran.png",
+    image: "/images/departments_doctor/dr_kiran_kaushik.png",
   },
   {
     name: "Dr. Madhavi Paramar",
@@ -130,7 +130,7 @@ const doctors = [
     qualifications: "M.B.B.S., MS",
     designation: "Consultant Gynaecologist",
     slug: "dr-srishti-tanya",
-    image: "",
+    image: "/images/departments_doctor/dr._srishti_tanya.jpg",
   },
 ];
 

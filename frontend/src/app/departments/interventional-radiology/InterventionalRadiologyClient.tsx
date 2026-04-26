@@ -95,13 +95,6 @@ const doctors = [
     slug: "dr-omkareshwar-pratap-singh",
     image: "",
   },
-  {
-    name: "Dr. Neha Gupta",
-    qualifications: "MBBS, MD (Radiotherapy)",
-    designation: "Radiologist / Oncologist",
-    slug: "dr-neha-gupta",
-    image: "/images/departments_doctor/dr_neha_gupta.png",
-  },
 ];
 
 /* ─── Sub-Components ─── */

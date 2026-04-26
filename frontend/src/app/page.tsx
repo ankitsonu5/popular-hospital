@@ -13,7 +13,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Popular Hospital | Finest Patient Care in Varanasi",
+  title: "Best Multi Super Speciality Hospital in Varanasi",
   description:
     "Popular Hospital (a Unit of POPULAR MEDICARE LTD) is one of Varanasi's best Super Speciality Institutes offering 24/7 world-class healthcare, expert doctors, and modern infrastructure.",
 };

@@ -355,7 +355,17 @@ export function Footer() {
 
         {/* Footer Bottom */}
         <div className="mt-16 pt-8 border-t border-gray-500/30 text-center text-sm sm:text-base text-gray-300 relative z-10">
-          <p>© 2026 Popular Hospital. All rights reserved.</p>
+          <p>
+            © 2026 Popular Hospital. All rights reserved. made by{" "}
+            <a
+              href="https://sarthaktech.co.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white hover:text-hospital-teal transition-colors"
+            >
+              Sarthak tech
+            </a>
+          </p>
         </div>
       </div>
     </footer>
