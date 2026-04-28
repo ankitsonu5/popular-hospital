@@ -8,6 +8,7 @@ import {
   toggleStarred,
   upload,
 } from "../controllers/applicationController.js";
+import { cmsAuth } from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -21,7 +22,8 @@ router.post(
   submitApplication,
 );
 
-// Admin: Manage applications
+// Admin: Require auth for all read/manage routes
+router.use(cmsAuth);
 router.get("/", getApplications);
 router.get("/:id", getApplicationById);
 router.patch("/:id/read", toggleRead);

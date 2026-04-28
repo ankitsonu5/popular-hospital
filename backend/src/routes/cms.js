@@ -98,11 +98,33 @@ import {
   reorderPatientStories,
   uploadPatientStoryThumbnail,
 } from "../controllers/patientStoryController.js";
-import { cmsAuth } from "../middleware/auth.js";
+import {
+  getPopup,
+  upsertPopup,
+  deletePopup,
+  uploadPopupImage,
+} from "../controllers/popupController.js";
+import { cmsAuth, superAdminOnly } from "../middleware/auth.js";
+import { getCareerAdmin, upsertCareerAdmin, toggleCareerAdmin } from "../controllers/authController.js";
 
 const router = Router();
 
 router.use(cmsAuth);
+
+// Career Admin management (super admin only)
+router.get("/career-admin", superAdminOnly, getCareerAdmin);
+router.put("/career-admin", superAdminOnly, upsertCareerAdmin);
+router.patch("/career-admin/toggle", superAdminOnly, toggleCareerAdmin);
+
+// ── Careers CRUD — accessible by both super_admin AND career_admin ──
+router.get("/careers", getAdminCareers);
+router.get("/careers/:id", getCareerById);
+router.post("/careers", createCareer);
+router.put("/careers/:id", updateCareer);
+router.delete("/careers/:id", deleteCareer);
+
+// ── From here: super_admin only ─────────────────────────────────────
+router.use(superAdminOnly);
 
 // Branches CRUD
 router.get("/branches", getAllBranches);
@@ -198,13 +220,6 @@ router.post("/updates", uploadUpdates.single("pdf"), createUpdate);
 router.put("/updates/:id", uploadUpdates.single("pdf"), updateUpdate);
 router.delete("/updates/:id", deleteUpdate);
 
-// Careers CRUD
-router.get("/careers", getAdminCareers);
-router.get("/careers/:id", getCareerById);
-router.post("/careers", createCareer);
-router.put("/careers/:id", updateCareer);
-router.delete("/careers/:id", deleteCareer);
-
 // Events CRUD
 router.get("/events", getAdminEvents);
 router.post("/events", uploadEvent.any(), createEvent);
@@ -246,5 +261,10 @@ router.put(
   updatePatientStory,
 );
 router.delete("/patient-stories/:id", deletePatientStory);
+
+// Popup
+router.get("/popup", getPopup);
+router.put("/popup", uploadPopupImage.single("image"), upsertPopup);
+router.delete("/popup", deletePopup);
 
 export default router;

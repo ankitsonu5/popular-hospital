@@ -52,7 +52,7 @@ const doctors = [
     qualifications: "MBBS, MS, FIAGES, FSG",
     designation: "Consultant Gastrosurgeon",
     slug: "dr-r-k-singh",
-    image: "",
+    image: "/images/departments_doctor/rohan_kr_singh.png",
   },
 ];
 

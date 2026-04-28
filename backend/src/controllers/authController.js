@@ -8,44 +8,6 @@ import {
   sendPasswordResetSuccessEmail,
 } from "../services/emailService.js";
 
-// In-memory login attempt tracking (use Redis in production cluster)
-const loginAttempts = new Map();
-
-const getAttemptKey = (email) => email.toLowerCase().trim();
-
-const checkLockout = (email) => {
-  const key = getAttemptKey(email);
-  const record = loginAttempts.get(key);
-  if (!record) return false;
-
-  // Check if lockout has expired
-  if (record.lockedUntil && Date.now() > record.lockedUntil) {
-    loginAttempts.delete(key);
-    return false;
-  }
-
-  return record.lockedUntil && Date.now() < record.lockedUntil;
-};
-
-const recordFailedAttempt = (email) => {
-  const key = getAttemptKey(email);
-  const record = loginAttempts.get(key) || { count: 0, lockedUntil: null };
-  record.count += 1;
-
-  if (record.count >= securityConfig.lockout.maxAttempts) {
-    record.lockedUntil = Date.now() + securityConfig.lockout.lockoutDurationMs;
-    console.warn(
-      `[SECURITY] Account locked for ${email} after ${record.count} failed attempts`,
-    );
-  }
-
-  loginAttempts.set(key, record);
-};
-
-const clearAttempts = (email) => {
-  loginAttempts.delete(getAttemptKey(email));
-};
-
 export const loginAdmin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -56,31 +18,22 @@ export const loginAdmin = async (req, res) => {
 
     const sanitizedEmail = email.toLowerCase().trim();
 
-    // Check account lockout
-    if (checkLockout(sanitizedEmail)) {
-      return res.status(429).json({
-        error:
-          "Account temporarily locked due to too many failed attempts. Try again in 15 minutes.",
-      });
-    }
-
     const admin = await AdminUser.findOne({ email: sanitizedEmail });
     if (!admin) {
-      recordFailedAttempt(sanitizedEmail);
       return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    if (admin.isActive === false) {
+      return res.status(403).json({ error: "Account is disabled. Contact the super admin." });
     }
 
     const isMatch = await bcrypt.compare(password, admin.password_hash);
     if (!isMatch) {
-      recordFailedAttempt(sanitizedEmail);
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Successful login — clear attempt counter
-    clearAttempts(sanitizedEmail);
-
     const token = jwt.sign(
-      { id: admin._id, email: admin.email, role: "admin" },
+      { id: admin._id, email: admin.email, role: admin.role || "super_admin" },
       securityConfig.jwt.secret,
       { expiresIn: securityConfig.jwt.accessTokenExpiry },
     );
@@ -91,6 +44,7 @@ export const loginAdmin = async (req, res) => {
         id: admin._id,
         email: admin.email,
         name: admin.name,
+        role: admin.role || "super_admin",
       },
     });
   } catch (error) {
@@ -165,6 +119,64 @@ export const forgotPassword = async (req, res) => {
     res
       .status(500)
       .json({ error: "An error occurred while processing your request." });
+  }
+};
+
+// GET /api/cms/career-admin — super admin only
+export const getCareerAdmin = async (req, res) => {
+  try {
+    const admin = await AdminUser.findOne({ role: "career_admin" }).select("-password_hash -resetPasswordToken -resetPasswordExpires");
+    res.json(admin || null);
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+// PATCH /api/cms/career-admin/toggle — enable / disable career admin
+export const toggleCareerAdmin = async (req, res) => {
+  try {
+    const admin = await AdminUser.findOne({ role: "career_admin" });
+    if (!admin) return res.status(404).json({ error: "No career admin found." });
+    admin.isActive = !admin.isActive;
+    await admin.save();
+    res.json({ ok: true, isActive: admin.isActive });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+// PUT /api/cms/career-admin — create or update career admin credentials
+export const upsertCareerAdmin = async (req, res) => {
+  try {
+    const { email, password, name } = req.body;
+    if (!email) return res.status(400).json({ error: "Email is required." });
+
+    const existing = await AdminUser.findOne({ role: "career_admin" });
+
+    if (existing) {
+      existing.email = email.toLowerCase().trim();
+      if (name) existing.name = name;
+      if (password) {
+        const salt = await bcrypt.genSalt(10);
+        existing.password_hash = await bcrypt.hash(password, salt);
+      }
+      await existing.save();
+      return res.json({ ok: true, email: existing.email });
+    }
+
+    if (!password) return res.status(400).json({ error: "Password is required for new career admin." });
+    const salt = await bcrypt.genSalt(10);
+    const password_hash = await bcrypt.hash(password, salt);
+    const newAdmin = await AdminUser.create({
+      email: email.toLowerCase().trim(),
+      password_hash,
+      name: name || "Career Admin",
+      role: "career_admin",
+    });
+    res.json({ ok: true, email: newAdmin.email });
+  } catch (error) {
+    if (error.code === 11000) return res.status(400).json({ error: "This email is already in use." });
+    res.status(500).json({ error: "An internal error occurred." });
   }
 };
 

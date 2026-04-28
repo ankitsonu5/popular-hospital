@@ -8,6 +8,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
+import PopupBanner from "@/components/PopupBanner";
 
 const ZOOM_PATHS = [
   "/about",
@@ -51,7 +52,8 @@ export default function LayoutShell({
   const isAdminRoute =
     pathname.startsWith("/admin-login") ||
     pathname.startsWith("/admin-dashboard") ||
-    pathname.startsWith("/reset-admin-password");
+    pathname.startsWith("/reset-admin-password") ||
+    pathname.startsWith("/careers/admin");
 
   const isBlogDetailRoute =
     pathname.startsWith("/blog/") && pathname.split("/").length === 3;
@@ -73,7 +75,8 @@ export default function LayoutShell({
       >
         Skip to main content
       </a>
-      {!isBlogDetailRoute && <LoadingScreen />}
+      {pathname === "/" && <LoadingScreen />}
+      <PopupBanner />
       <Header />
       <SocialSidebar />
       <main

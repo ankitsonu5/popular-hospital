@@ -86,7 +86,7 @@ const doctors = [
     qualifications: "MBBS, MD (Radiodiagnosis), FIVIR",
     designation: "Consultant Interventional Radiologist",
     slug: "dr-rohan-kr-singh",
-    image: "/images/departments_doctor/dr-rohan-kr-singh.jpg",
+    image: "",
   },
   {
     name: "Dr. Omkareshwar Pratap Singh",
