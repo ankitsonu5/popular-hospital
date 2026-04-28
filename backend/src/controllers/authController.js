@@ -3,6 +3,12 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import AdminUser from "../models/AdminUser.js";
 import securityConfig from "../config/security.js";
+
+// 4h in ms — matches JWT expiry
+const SESSION_TTL_MS = 4 * 60 * 60 * 1000;
+
+const hasActiveSession = (admin) =>
+  admin.sessionToken && admin.sessionExpires && admin.sessionExpires > new Date();
 import {
   sendPasswordResetEmail,
   sendPasswordResetSuccessEmail,
@@ -30,6 +36,18 @@ export const loginAdmin = async (req, res) => {
     const isMatch = await bcrypt.compare(password, admin.password_hash);
     if (!isMatch) {
       return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    // Single-session enforcement for career_admin
+    if (admin.role === "career_admin" && hasActiveSession(admin)) {
+      return res.status(403).json({ error: "already_logged_in" });
+    }
+
+    // Set session for career_admin
+    if (admin.role === "career_admin") {
+      admin.sessionToken = crypto.randomBytes(32).toString("hex");
+      admin.sessionExpires = new Date(Date.now() + SESSION_TTL_MS);
+      await admin.save();
     }
 
     const token = jwt.sign(
@@ -122,21 +140,67 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
-// GET /api/cms/career-admin — super admin only
-export const getCareerAdmin = async (req, res) => {
+// GET /api/cms/career-admin — all career admins with live session status
+export const getCareerAdmins = async (req, res) => {
   try {
-    const admin = await AdminUser.findOne({ role: "career_admin" }).select("-password_hash -resetPasswordToken -resetPasswordExpires");
-    res.json(admin || null);
+    const admins = await AdminUser.find({ role: "career_admin" })
+      .select("-password_hash -resetPasswordToken -resetPasswordExpires")
+      .sort({ createdAt: -1 });
+    // attach isOnline derived field
+    const result = admins.map((a) => ({
+      ...a.toObject(),
+      isOnline: hasActiveSession(a),
+    }));
+    res.json(result);
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
-// PATCH /api/cms/career-admin/toggle — enable / disable career admin
+// POST /api/cms/career-admin/logout — career admin clears own session
+export const careerAdminLogout = async (req, res) => {
+  try {
+    await AdminUser.findByIdAndUpdate(req.user.id, {
+      $unset: { sessionToken: 1, sessionExpires: 1 },
+    });
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+// DELETE /api/cms/career-admin/:id/session — super admin force-clears one session
+export const forceLogoutCareerAdmin = async (req, res) => {
+  try {
+    const admin = await AdminUser.findOne({ _id: req.params.id, role: "career_admin" });
+    if (!admin) return res.status(404).json({ error: "Career admin not found." });
+    admin.sessionToken = null;
+    admin.sessionExpires = null;
+    await admin.save();
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+// DELETE /api/cms/career-admin/sessions/all — super admin clears ALL career admin sessions
+export const forceLogoutAllCareerAdmins = async (req, res) => {
+  try {
+    await AdminUser.updateMany(
+      { role: "career_admin" },
+      { $unset: { sessionToken: 1, sessionExpires: 1 } },
+    );
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+// PATCH /api/cms/career-admin/:id/toggle — enable / disable a specific career admin
 export const toggleCareerAdmin = async (req, res) => {
   try {
-    const admin = await AdminUser.findOne({ role: "career_admin" });
-    if (!admin) return res.status(404).json({ error: "No career admin found." });
+    const admin = await AdminUser.findOne({ _id: req.params.id, role: "career_admin" });
+    if (!admin) return res.status(404).json({ error: "Career admin not found." });
     admin.isActive = !admin.isActive;
     await admin.save();
     res.json({ ok: true, isActive: admin.isActive });
@@ -145,26 +209,39 @@ export const toggleCareerAdmin = async (req, res) => {
   }
 };
 
-// PUT /api/cms/career-admin — create or update career admin credentials
-export const upsertCareerAdmin = async (req, res) => {
+// PUT /api/cms/career-admin/:id — update specific career admin
+export const updateCareerAdmin = async (req, res) => {
   try {
     const { email, password, name } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required." });
 
-    const existing = await AdminUser.findOne({ role: "career_admin" });
+    const admin = await AdminUser.findOne({ _id: req.params.id, role: "career_admin" });
+    if (!admin) return res.status(404).json({ error: "Career admin not found." });
 
-    if (existing) {
-      existing.email = email.toLowerCase().trim();
-      if (name) existing.name = name;
-      if (password) {
-        const salt = await bcrypt.genSalt(10);
-        existing.password_hash = await bcrypt.hash(password, salt);
-      }
-      await existing.save();
-      return res.json({ ok: true, email: existing.email });
+    const emailLower = email.toLowerCase().trim();
+    const conflict = await AdminUser.findOne({ email: emailLower, _id: { $ne: admin._id } });
+    if (conflict) return res.status(400).json({ error: "This email is already in use." });
+
+    admin.email = emailLower;
+    if (name) admin.name = name;
+    if (password) {
+      const salt = await bcrypt.genSalt(10);
+      admin.password_hash = await bcrypt.hash(password, salt);
     }
+    await admin.save();
+    res.json({ ok: true, email: admin.email });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
 
-    if (!password) return res.status(400).json({ error: "Password is required for new career admin." });
+// POST /api/cms/career-admin — create new career admin
+export const createCareerAdmin = async (req, res) => {
+  try {
+    const { email, password, name } = req.body;
+    if (!email) return res.status(400).json({ error: "Email is required." });
+    if (!password) return res.status(400).json({ error: "Password is required." });
+
     const salt = await bcrypt.genSalt(10);
     const password_hash = await bcrypt.hash(password, salt);
     const newAdmin = await AdminUser.create({
@@ -173,9 +250,20 @@ export const upsertCareerAdmin = async (req, res) => {
       name: name || "Career Admin",
       role: "career_admin",
     });
-    res.json({ ok: true, email: newAdmin.email });
+    res.json({ ok: true, _id: newAdmin._id, email: newAdmin.email, name: newAdmin.name });
   } catch (error) {
     if (error.code === 11000) return res.status(400).json({ error: "This email is already in use." });
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+// DELETE /api/cms/career-admin/:id — remove a career admin
+export const deleteCareerAdmin = async (req, res) => {
+  try {
+    const admin = await AdminUser.findOneAndDelete({ _id: req.params.id, role: "career_admin" });
+    if (!admin) return res.status(404).json({ error: "Career admin not found." });
+    res.json({ ok: true });
+  } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
   }
 };

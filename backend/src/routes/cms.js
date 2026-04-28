@@ -105,16 +105,27 @@ import {
   uploadPopupImage,
 } from "../controllers/popupController.js";
 import { cmsAuth, superAdminOnly } from "../middleware/auth.js";
-import { getCareerAdmin, upsertCareerAdmin, toggleCareerAdmin } from "../controllers/authController.js";
+import {
+  getCareerAdmins, createCareerAdmin, updateCareerAdmin,
+  toggleCareerAdmin, deleteCareerAdmin,
+  careerAdminLogout, forceLogoutCareerAdmin, forceLogoutAllCareerAdmins,
+} from "../controllers/authController.js";
 
 const router = Router();
 
 router.use(cmsAuth);
 
+// Career Admin — self logout (any authenticated career_admin)
+router.post("/career-admin/logout", careerAdminLogout);
+
 // Career Admin management (super admin only)
-router.get("/career-admin", superAdminOnly, getCareerAdmin);
-router.put("/career-admin", superAdminOnly, upsertCareerAdmin);
-router.patch("/career-admin/toggle", superAdminOnly, toggleCareerAdmin);
+router.get("/career-admin", superAdminOnly, getCareerAdmins);
+router.post("/career-admin", superAdminOnly, createCareerAdmin);
+router.put("/career-admin/:id", superAdminOnly, updateCareerAdmin);
+router.patch("/career-admin/:id/toggle", superAdminOnly, toggleCareerAdmin);
+router.delete("/career-admin/sessions/all", superAdminOnly, forceLogoutAllCareerAdmins);
+router.delete("/career-admin/:id/session", superAdminOnly, forceLogoutCareerAdmin);
+router.delete("/career-admin/:id", superAdminOnly, deleteCareerAdmin);
 
 // ── Careers CRUD — accessible by both super_admin AND career_admin ──
 router.get("/careers", getAdminCareers);

@@ -2,102 +2,445 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Shield, LogOut, Key, User, Briefcase, Save, Eye, EyeOff, Loader2 } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
+import {
+  Shield, LogOut, Key, User, Briefcase, Save, Eye, EyeOff,
+  Loader2, Plus, Pencil, Trash2, X, Check, WifiOff, ShieldOff,
+  AlertTriangle, Radio,
+} from "lucide-react";
 
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
 });
 
+interface CareerAdmin {
+  _id: string;
+  email: string;
+  name: string;
+  isActive: boolean;
+  isOnline: boolean;
+}
+
+// ── Custom Confirm Modal ────────────────────────────────────────────────
+function ConfirmModal({
+  message,
+  subMessage,
+  confirmLabel = "Yes, Proceed",
+  variant = "danger",
+  onConfirm,
+  onCancel,
+}: {
+  message: string;
+  subMessage?: string;
+  confirmLabel?: string;
+  variant?: "danger" | "warning";
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  const isDanger = variant === "danger";
+  return (
+    <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-in fade-in zoom-in-95 duration-200">
+        <div className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4
+          ${isDanger ? "bg-red-100" : "bg-amber-100"}`}>
+          <AlertTriangle className={`w-6 h-6 ${isDanger ? "text-red-600" : "text-amber-600"}`} />
+        </div>
+        <h3 className="text-base font-bold text-gray-900 text-center mb-1">{message}</h3>
+        {subMessage && (
+          <p className="text-sm text-gray-500 text-center mb-5">{subMessage}</p>
+        )}
+        {!subMessage && <div className="mb-5" />}
+        <div className="flex gap-3">
+          <button
+            onClick={onCancel}
+            className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+          >
+            No, Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition
+              ${isDanger ? "bg-red-600 hover:bg-red-700" : "bg-amber-500 hover:bg-amber-600"}`}
+          >
+            {confirmLabel}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Edit Modal ──────────────────────────────────────────────────────────
+function EditModal({
+  admin,
+  onClose,
+  onSaved,
+}: {
+  admin: CareerAdmin;
+  onClose: () => void;
+  onSaved: (updated: CareerAdmin) => void;
+}) {
+  const [name, setName] = useState(admin.name);
+  const [email, setEmail] = useState(admin.email);
+  const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      const res = await fetch(`/api-backend/cms/career-admin/${admin._id}`, {
+        method: "PUT",
+        headers: authHeaders(),
+        body: JSON.stringify({ email, name, ...(password ? { password } : {}) }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Save failed");
+      onSaved({ ...admin, email, name });
+      toast.success("Career Admin updated successfully!");
+    } catch (e: any) {
+      toast.error(e.message || "Save failed");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+        <div className="flex items-center justify-between mb-5">
+          <h3 className="font-bold text-gray-900 text-lg">Edit Career Admin</h3>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSave} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email (Login ID)</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password <span className="text-gray-400 font-normal">(leave blank to keep unchanged)</span>
+            </label>
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={admin ? "New password (optional)" : "Set password"}
+                className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
+              />
+              <button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-3 pt-1">
+            <button type="button" onClick={onClose} className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={saving}
+              className="flex-1 flex items-center justify-center gap-2 bg-[#0b1c43] hover:bg-[#0d2257] disabled:opacity-60 text-white rounded-xl px-4 py-2.5 text-sm font-medium transition-colors"
+            >
+              {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+              {saving ? "Saving..." : "Save Changes"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ── Create Form ─────────────────────────────────────────────────────────
+function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const handleCreate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      const res = await fetch("/api-backend/cms/career-admin", {
+        method: "POST",
+        headers: authHeaders(),
+        body: JSON.stringify({ email, name, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Create failed");
+      onCreated({ _id: data._id, email: data.email, name: data.name || name, isActive: true, isOnline: false });
+      toast.success("Career Admin created successfully!");
+      setName(""); setEmail(""); setPassword(""); setOpen(false);
+    } catch (e: any) {
+      toast.error(e.message || "Create failed");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (!open) {
+    return (
+      <button
+        onClick={() => setOpen(true)}
+        className="flex items-center gap-2 bg-[#0b1c43] hover:bg-[#0d2257] text-white rounded-xl px-4 py-2.5 text-sm font-medium transition-colors"
+      >
+        <Plus className="w-4 h-4" /> Add Career Admin
+      </button>
+    );
+  }
+
+  return (
+    <div className="border border-[#0d9488]/30 rounded-xl p-4 bg-[#0d9488]/5 mt-2">
+      <div className="flex items-center justify-between mb-4">
+        <p className="font-semibold text-gray-800 text-sm">New Career Admin</p>
+        <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-white">
+          <X className="w-4 h-4" />
+        </button>
+      </div>
+      <form onSubmit={handleCreate} className="space-y-3">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+          className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] bg-white transition"
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          placeholder="Email (Login ID)"
+          className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] bg-white transition"
+        />
+        <div className="relative">
+          <input
+            type={showPass ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Password"
+            className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] bg-white transition"
+          />
+          <button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+            {showPass ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+          </button>
+        </div>
+        <button
+          type="submit"
+          disabled={saving}
+          className="w-full flex items-center justify-center gap-2 bg-[#0d9488] hover:bg-[#0b7a70] disabled:opacity-60 text-white rounded-lg py-2 text-sm font-medium transition-colors"
+        >
+          {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
+          {saving ? "Creating..." : "Create Career Admin"}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+// ── Main Page ───────────────────────────────────────────────────────────
 export default function SettingsPage() {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
+
+  const [admins, setAdmins] = useState<CareerAdmin[]>([]);
+  const [loadingAdmins, setLoadingAdmins] = useState(true);
+  const [editingAdmin, setEditingAdmin] = useState<CareerAdmin | null>(null);
+  const [togglingId, setTogglingId] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [forceLoggingOutId, setForceLoggingOutId] = useState<string | null>(null);
+  const [loggingOutAll, setLoggingOutAll] = useState(false);
+
+  // Confirm modal state
+  const [confirm, setConfirm] = useState<{
+    message: string;
+    subMessage?: string;
+    confirmLabel?: string;
+    variant?: "danger" | "warning";
+    onConfirm: () => void;
+  } | null>(null);
+
+  const showConfirm = (opts: typeof confirm) => setConfirm(opts);
+  const closeConfirm = () => setConfirm(null);
 
   useEffect(() => {
     const stored = localStorage.getItem("admin_user");
     if (stored) setUser(JSON.parse(stored));
   }, []);
 
-  // Career admin state
-  const [careerAdmin, setCareerAdmin] = useState<{ email: string; name: string; isActive?: boolean } | null>(null);
-  const [caEmail, setCaEmail]   = useState("");
-  const [caName, setCaName]     = useState("");
-  const [caPass, setCaPass]     = useState("");
-  const [showPass, setShowPass] = useState(false);
-  const [caSaving, setCaSaving] = useState(false);
-  const [caToast, setCaToast]   = useState<{ type: "success" | "error"; msg: string } | null>(null);
-
   useEffect(() => {
     fetch("/api-backend/cms/career-admin", { headers: authHeaders() })
       .then((r) => r.json())
-      .then((data) => {
-        if (data && data.email) {
-          setCareerAdmin({ email: data.email, name: data.name || "", isActive: data.isActive !== false });
-          setCaEmail(data.email);
-          setCaName(data.name || "");
-        }
-      })
-      .catch(() => {});
+      .then((data) => setAdmins(Array.isArray(data) ? data : (data && data._id ? [data] : [])))
+      .catch(() => setAdmins([]))
+      .finally(() => setLoadingAdmins(false));
   }, []);
 
-  const showCaToast = (type: "success" | "error", msg: string) => {
-    setCaToast({ type, msg });
-    setTimeout(() => setCaToast(null), 3000);
-  };
-
-  const handleSaveCareerAdmin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!caEmail) return;
-    setCaSaving(true);
+  const handleToggle = async (admin: CareerAdmin) => {
+    setTogglingId(admin._id);
     try {
-      const body: any = { email: caEmail, name: caName };
-      if (caPass) body.password = caPass;
-
-      const res = await fetch("/api-backend/cms/career-admin", {
-        method: "PUT",
-        headers: authHeaders(),
-        body: JSON.stringify(body),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || "Save failed");
-      setCareerAdmin({ email: caEmail, name: caName, isActive: careerAdmin?.isActive !== false });
-      setCaPass("");
-      showCaToast("success", careerAdmin ? "Credentials updated!" : "Career Admin created!");
-    } catch (err: any) {
-      showCaToast("error", err.message || "Save failed");
-    } finally {
-      setCaSaving(false);
-    }
-  };
-
-  const handleToggleCareerAdmin = async () => {
-    try {
-      const res = await fetch("/api-backend/cms/career-admin/toggle", {
+      const res = await fetch(`/api-backend/cms/career-admin/${admin._id}/toggle`, {
         method: "PATCH",
         headers: authHeaders(),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Toggle failed");
-      setCareerAdmin((prev) => prev ? { ...prev, isActive: data.isActive } : prev);
-      showCaToast("success", data.isActive ? "Career Admin enabled" : "Career Admin disabled");
-    } catch (err: any) {
-      showCaToast("error", err.message || "Toggle failed");
+      setAdmins((prev) => prev.map((a) => a._id === admin._id ? { ...a, isActive: data.isActive } : a));
+      toast.success(data.isActive ? `${admin.name} enabled` : `${admin.name} disabled`);
+    } catch (e: any) {
+      toast.error(e.message || "Toggle failed");
+    } finally {
+      setTogglingId(null);
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_user");
-    router.push("/admin-login");
+  const handleDelete = (admin: CareerAdmin) => {
+    showConfirm({
+      message: `Delete "${admin.name}"?`,
+      subMessage: "This action cannot be undone. The admin's access will be permanently removed.",
+      confirmLabel: "Yes, Delete",
+      variant: "danger",
+      onConfirm: async () => {
+        closeConfirm();
+        setDeletingId(admin._id);
+        try {
+          const res = await fetch(`/api-backend/cms/career-admin/${admin._id}`, {
+            method: "DELETE",
+            headers: authHeaders(),
+          });
+          if (!res.ok) throw new Error("Delete failed");
+          setAdmins((prev) => prev.filter((a) => a._id !== admin._id));
+          toast.success(`${admin.name} deleted`);
+        } catch {
+          toast.error("Delete failed, please try again");
+        } finally {
+          setDeletingId(null);
+        }
+      },
+    });
   };
+
+  const handleForceLogout = (admin: CareerAdmin) => {
+    showConfirm({
+      message: `Log out "${admin.name}"?`,
+      subMessage: "Their active session will be terminated. They will need to log in again.",
+      confirmLabel: "Yes, Log Out",
+      variant: "warning",
+      onConfirm: async () => {
+        closeConfirm();
+        setForceLoggingOutId(admin._id);
+        try {
+          const res = await fetch(`/api-backend/cms/career-admin/${admin._id}/session`, {
+            method: "DELETE",
+            headers: authHeaders(),
+          });
+          if (!res.ok) throw new Error("Failed");
+          setAdmins((prev) => prev.map((a) => a._id === admin._id ? { ...a, isOnline: false } : a));
+          toast.success(`${admin.name} logged out`);
+        } catch {
+          toast.error("Logout failed, please try again");
+        } finally {
+          setForceLoggingOutId(null);
+        }
+      },
+    });
+  };
+
+  const handleLogoutAll = () => {
+    const onlineCount = admins.filter((a) => a.isOnline).length;
+    showConfirm({
+      message: "Log out all Career Admins?",
+      subMessage: onlineCount > 0
+        ? `${onlineCount} admin(s) currently online. All their sessions will be cleared.`
+        : "All career admin sessions will be cleared.",
+      confirmLabel: "Yes, Log Out All",
+      variant: "warning",
+      onConfirm: async () => {
+        closeConfirm();
+        setLoggingOutAll(true);
+        try {
+          const res = await fetch("/api-backend/cms/career-admin/sessions/all", {
+            method: "DELETE",
+            headers: authHeaders(),
+          });
+          if (!res.ok) throw new Error("Failed");
+          setAdmins((prev) => prev.map((a) => ({ ...a, isOnline: false })));
+          toast.success("All career admins logged out");
+        } catch {
+          toast.error("Something went wrong, please try again");
+        } finally {
+          setLoggingOutAll(false);
+        }
+      },
+    });
+  };
+
+  const handleLogout = () => {
+    showConfirm({
+      message: "Are you sure you want to log out?",
+      subMessage: "Your session will be cleared.",
+      confirmLabel: "Yes, Log Out",
+      variant: "danger",
+      onConfirm: () => {
+        localStorage.removeItem("admin_token");
+        localStorage.removeItem("admin_user");
+        router.push("/admin-login");
+      },
+    });
+  };
+
+  const onlineAdmins = admins.filter((a) => a.isOnline);
 
   return (
     <div className="space-y-6 max-w-2xl">
-      {caToast && (
-        <div className={`fixed top-6 right-6 z-[200] px-5 py-3 rounded-xl shadow-lg text-white text-sm font-medium
-          ${caToast.type === "success" ? "bg-emerald-500" : "bg-red-500"}`}>
-          {caToast.msg}
-        </div>
+      <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
+
+      {/* Confirm Modal */}
+      {confirm && (
+        <ConfirmModal
+          message={confirm.message}
+          subMessage={confirm.subMessage}
+          confirmLabel={confirm.confirmLabel}
+          variant={confirm.variant}
+          onConfirm={confirm.onConfirm}
+          onCancel={closeConfirm}
+        />
+      )}
+
+      {/* Edit Modal */}
+      {editingAdmin && (
+        <EditModal
+          admin={editingAdmin}
+          onClose={() => setEditingAdmin(null)}
+          onSaved={(updated) => {
+            setAdmins((prev) => prev.map((a) => a._id === updated._id ? updated : a));
+            setEditingAdmin(null);
+          }}
+        />
       )}
 
       <div>
@@ -141,94 +484,172 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Career Admin Credentials */}
+      {/* Career Portal Admins */}
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+
+        {/* Section Header */}
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-10 h-10 rounded-xl bg-[#0d9488]/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-[#0d9488]/10 flex items-center justify-center shrink-0">
             <Briefcase className="w-5 h-5 text-[#0d9488]" />
           </div>
-          <div>
-            <h3 className="font-bold text-gray-900">Career Portal Admin</h3>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-gray-900">Career Portal Admins</h3>
             <p className="text-xs text-gray-500 mt-0.5">
-              {careerAdmin
-                ? careerAdmin.isActive
-                  ? `Active — ${careerAdmin.email}`
-                  : `Disabled — ${careerAdmin.email}`
-                : "No career admin set yet"}
+              {loadingAdmins ? "Loading..." : (
+                <>
+                  {admins.length} admin{admins.length !== 1 ? "s" : ""}
+                  {onlineAdmins.length > 0 && (
+                    <span className="ml-2 text-emerald-600 font-semibold">
+                      · {onlineAdmins.length} currently online
+                    </span>
+                  )}
+                </>
+              )}
             </p>
           </div>
+          {admins.length > 0 && (
+            <button
+              onClick={handleLogoutAll}
+              disabled={loggingOutAll}
+              title="Log out all career admins"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors shrink-0 disabled:opacity-50"
+            >
+              {loggingOutAll ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ShieldOff className="w-3.5 h-3.5" />}
+              Logout All
+            </button>
+          )}
         </div>
 
-        {careerAdmin && (
-          <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50 mb-4">
-            <div>
-              <p className="text-sm font-medium text-gray-700">Access</p>
-              <p className="text-xs text-gray-400 mt-0.5">
-                {careerAdmin.isActive ? "Career admin can log in" : "Login blocked"}
+        {/* Currently Logged In Banner */}
+        {onlineAdmins.length > 0 && (
+          <div className="mb-4 rounded-xl bg-emerald-50 border border-emerald-200 p-3.5">
+            <div className="flex items-center gap-2 mb-2">
+              <Radio className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+              <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide">
+                Currently Logged In
               </p>
             </div>
-            <button
-              type="button"
-              onClick={handleToggleCareerAdmin}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none
-                ${careerAdmin.isActive ? "bg-[#0d9488]" : "bg-gray-300"}`}
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform
-                  ${careerAdmin.isActive ? "translate-x-6" : "translate-x-1"}`}
-              />
-            </button>
+            <div className="space-y-2">
+              {onlineAdmins.map((a) => (
+                <div key={a._id} className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    {a.name?.charAt(0)?.toUpperCase() || "C"}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-emerald-900 truncate">{a.name}</p>
+                    <p className="text-xs text-emerald-600 truncate">{a.email}</p>
+                  </div>
+                  <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Live
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
-        <form onSubmit={handleSaveCareerAdmin} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input
-              type="text"
-              value={caName}
-              onChange={(e) => setCaName(e.target.value)}
-              placeholder="Career Admin"
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
-            />
+        {/* Admin List */}
+        {loadingAdmins ? (
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-6 h-6 animate-spin text-[#0d9488]" />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email (Login ID)</label>
-            <input
-              type="email"
-              value={caEmail}
-              onChange={(e) => setCaEmail(e.target.value)}
-              required
-              placeholder="career@popularhospital.in"
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
-            />
+        ) : admins.length === 0 ? (
+          <div className="text-center py-6 text-gray-400 text-sm border border-dashed border-gray-200 rounded-xl mb-4">
+            No career admins yet. Create one below.
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Password {careerAdmin && <span className="text-gray-400 font-normal">(khali chhoden to change nahi hoga)</span>}
-            </label>
-            <div className="relative">
-              <input
-                type={showPass ? "text" : "password"}
-                value={caPass}
-                onChange={(e) => setCaPass(e.target.value)}
-                placeholder={careerAdmin ? "New password (optional)" : "Set password"}
-                className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
-              />
-              <button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </button>
-            </div>
+        ) : (
+          <div className="space-y-2 mb-4">
+            {admins.map((admin) => (
+              <div
+                key={admin._id}
+                className={`flex items-center gap-3 p-3 rounded-xl border transition-colors
+                  ${admin.isOnline
+                    ? "bg-emerald-50/60 border-emerald-200"
+                    : "bg-gray-50 border-gray-100 hover:bg-gray-100"}`}
+              >
+                {/* Avatar */}
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0
+                  ${admin.isOnline ? "bg-emerald-600" : "bg-gradient-to-br from-[#0d9488] to-[#0b1c43]"}`}>
+                  {admin.name?.charAt(0)?.toUpperCase() || "C"}
+                </div>
+
+                {/* Info */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-semibold text-gray-900 truncate">{admin.name || "Career Admin"}</p>
+                    {admin.isOnline && (
+                      <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
+                        <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                        Online
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-400 truncate">{admin.email}</p>
+                </div>
+
+                {/* Active/Disabled badge */}
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0
+                  ${admin.isActive ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-600"}`}>
+                  {admin.isActive ? "Active" : "Disabled"}
+                </span>
+
+                {/* Toggle active */}
+                <button
+                  onClick={() => handleToggle(admin)}
+                  disabled={togglingId === admin._id}
+                  title={admin.isActive ? "Disable" : "Enable"}
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none shrink-0
+                    ${admin.isActive ? "bg-[#0d9488]" : "bg-gray-300"}
+                    ${togglingId === admin._id ? "opacity-50" : ""}`}
+                >
+                  <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform
+                    ${admin.isActive ? "translate-x-4" : "translate-x-0.5"}`} />
+                </button>
+
+                {/* Force Logout */}
+                <button
+                  onClick={() => handleForceLogout(admin)}
+                  disabled={forceLoggingOutId === admin._id}
+                  title="Force Logout — clear session"
+                  className="p-1.5 rounded-lg transition-colors shrink-0 text-amber-500 hover:text-amber-700 hover:bg-amber-50 disabled:opacity-40"
+                >
+                  {forceLoggingOutId === admin._id
+                    ? <Loader2 className="w-4 h-4 animate-spin" />
+                    : <WifiOff className="w-4 h-4" />}
+                </button>
+
+                {/* Edit */}
+                <button
+                  onClick={() => setEditingAdmin(admin)}
+                  title="Edit"
+                  className="p-1.5 text-gray-400 hover:text-[#0b1c43] hover:bg-white rounded-lg transition-colors shrink-0"
+                >
+                  <Pencil className="w-4 h-4" />
+                </button>
+
+                {/* Delete */}
+                <button
+                  onClick={() => handleDelete(admin)}
+                  disabled={deletingId === admin._id}
+                  title="Delete"
+                  className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
+                >
+                  {deletingId === admin._id
+                    ? <Loader2 className="w-4 h-4 animate-spin" />
+                    : <Trash2 className="w-4 h-4" />}
+                </button>
+              </div>
+            ))}
           </div>
-          <button
-            type="submit"
-            disabled={caSaving}
-            className="flex items-center gap-2 bg-[#0b1c43] hover:bg-[#0d2257] disabled:opacity-60 text-white rounded-xl px-5 py-2.5 text-sm font-medium transition-colors"
-          >
-            {caSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-            {caSaving ? "Saving..." : careerAdmin ? "Update Credentials" : "Create Career Admin"}
-          </button>
-        </form>
+        )}
+
+        {/* Create */}
+        <CreateForm
+          onCreated={(newAdmin) => {
+            setAdmins((prev) => [newAdmin, ...prev]);
+          }}
+        />
       </div>
 
       {/* Logout */}

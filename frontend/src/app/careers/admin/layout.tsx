@@ -51,7 +51,13 @@ export default function CareerAdminLayout({ children }: { children: React.ReactN
   );
   const unreadAppsCount = Array.isArray(newApplications) ? newApplications.length : 0;
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch("/api-backend/cms/career-admin/logout", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
+      });
+    } catch (_) {}
     localStorage.removeItem("admin_token");
     localStorage.removeItem("admin_user");
     router.push("/careers/admin-login");
