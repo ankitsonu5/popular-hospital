@@ -65,8 +65,7 @@ const OnlinePaymentPage = () => {
             src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=2000"
             alt="Secure Online Payment"
             fill
-            className="object-cover"
-            objectPosition="center"
+            className="object-cover object-center"
             priority
           />
           <div className="absolute inset-0 bg-blue-900/40"></div>

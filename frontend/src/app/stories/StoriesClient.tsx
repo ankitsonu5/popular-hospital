@@ -113,7 +113,6 @@ export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
                       alt={story.name}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
 

@@ -2,11 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   compress: true,
-  swcMinify: true,
-  poweredByHeader: false, // Remove X-Powered-By header
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
