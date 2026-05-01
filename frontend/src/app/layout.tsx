@@ -10,6 +10,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://popularhospital.in"),
   title: {
     default:
       "Popular Hospital | Best Multispeciality Hospital - Book Doctor & OPD",

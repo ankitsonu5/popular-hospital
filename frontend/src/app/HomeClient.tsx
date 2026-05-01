@@ -1204,7 +1204,7 @@ export default function HomeClient({
           <div className="lg:hidden flex flex-col items-center gap-12">
             <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border-[8px] border-white shadow-xl overflow-hidden shrink-0">
               <Image
-                src="/images/model-of-care-center.jpg?v=2"
+                src="/images/model-of-care-center.jpg"
                 alt="Model of Care"
                 fill
                 className="object-cover"
@@ -1262,7 +1262,7 @@ export default function HomeClient({
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
               <div className="relative w-[400px] h-[400px] rounded-full overflow-hidden border-[12px] border-white shadow-2xl">
                 <Image
-                  src="/images/model-of-care-center.jpg?v=2"
+                  src="/images/model-of-care-center.jpg"
                   alt="Surgery Team"
                   fill
                   className="object-cover"

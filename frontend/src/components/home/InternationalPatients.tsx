@@ -271,7 +271,7 @@ export default function InternationalPatients({
       {/* Mobile Only Background Image */}
       <div className="absolute inset-0 z-0 lg:hidden">
         <Image
-          src="/images/international_patients.png?v=2"
+          src="/images/international_patients.png"
           alt="International Patients Background"
           fill
           className="object-cover"
@@ -472,7 +472,7 @@ export default function InternationalPatients({
           {/* Desktop Only Side Image */}
           <div className="relative hidden lg:block flex-1 w-full max-w-[720px] xl:max-w-[660px] h-[600px] xl:h-[520px] overflow-hidden rounded-2xl shadow-xl mx-auto">
             <Image
-              src="/images/international_patients.png?v=2"
+              src="/images/international_patients.png"
               alt="International Patient Inquiry"
               fill
               className="object-contain"
