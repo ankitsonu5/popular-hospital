@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Eye, EyeOff, LogIn, Briefcase, Loader2, AlertTriangle } from "lucide-react";
+import { Eye, EyeOff, LogIn, Briefcase, Loader2, AlertTriangle, ShieldOff } from "lucide-react";
 
 export default function CareerAdminLoginPage() {
   const router = useRouter();
@@ -12,6 +12,7 @@ export default function CareerAdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [alreadyLoggedIn, setAlreadyLoggedIn] = useState(false);
+  const [accountDisabled, setAccountDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -42,6 +43,11 @@ export default function CareerAdminLoginPage() {
         return;
       }
 
+      if (res.status === 403 && data.error === "account_disabled") {
+        setAccountDisabled(true);
+        return;
+      }
+
       if (!res.ok) throw new Error(data.error || "Login failed");
 
       if (data.user?.role !== "career_admin") {
@@ -57,6 +63,41 @@ export default function CareerAdminLoginPage() {
       setIsLoading(false);
     }
   };
+
+  if (accountDisabled) {
+    return (
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden p-6 bg-[#0b1c43]">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/auth-bg.png" alt="background" fill className="object-cover opacity-40" priority />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0b1c43]/95 via-[#0b1c43]/85 to-[#0d9488]/60 mix-blend-multiply" />
+          <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
+        </div>
+        <div className="relative z-10 w-full max-w-md text-center">
+          <div className="flex flex-col items-center mb-8 gap-3">
+            <Image src="/logo-horizontal.png" alt="Popular Hospital" width={180} height={48} className="h-10 w-auto object-contain bg-white rounded-lg px-3 py-1" />
+          </div>
+          <div className="bg-red-500/20 backdrop-blur-xl border border-red-400/40 rounded-2xl p-8 shadow-2xl">
+            <div className="flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mx-auto mb-5">
+              <ShieldOff className="w-8 h-8 text-red-400" />
+            </div>
+            <h2 className="text-xl font-bold text-white mb-2">Account Disabled</h2>
+            <p className="text-red-200 text-sm leading-relaxed mb-1">
+              Aapka account disable kar diya gaya hai.
+            </p>
+            <p className="text-white/60 text-xs leading-relaxed mb-6">
+              Login ke liye <span className="text-white font-semibold">Super Admin</span> se sampark karein aur account activate karaayein.
+            </p>
+            <button
+              onClick={() => { setAccountDisabled(false); setError(""); }}
+              className="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-colors border border-white/20"
+            >
+              Back to Login
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (alreadyLoggedIn) {
     return (

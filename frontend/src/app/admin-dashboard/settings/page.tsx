@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import {
   Shield, LogOut, Key, User, Briefcase, Save, Eye, EyeOff,
   Loader2, Plus, Pencil, Trash2, X, Check, WifiOff, ShieldOff,
-  AlertTriangle, Radio,
+  AlertTriangle,
 } from "lucide-react";
 
 const authHeaders = () => ({
@@ -519,35 +519,6 @@ export default function SettingsPage() {
             </button>
           )}
         </div>
-
-        {/* Currently Logged In Banner */}
-        {onlineAdmins.length > 0 && (
-          <div className="mb-4 rounded-xl bg-emerald-50 border border-emerald-200 p-3.5">
-            <div className="flex items-center gap-2 mb-2">
-              <Radio className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
-              <p className="text-xs font-bold text-emerald-700 uppercase tracking-wide">
-                Currently Logged In
-              </p>
-            </div>
-            <div className="space-y-2">
-              {onlineAdmins.map((a) => (
-                <div key={a._id} className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
-                    {a.name?.charAt(0)?.toUpperCase() || "C"}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-emerald-900 truncate">{a.name}</p>
-                    <p className="text-xs text-emerald-600 truncate">{a.email}</p>
-                  </div>
-                  <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Live
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Admin List */}
         {loadingAdmins ? (

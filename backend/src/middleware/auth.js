@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 import securityConfig from "../config/security.js";
+import AdminUser from "../models/AdminUser.js";
 
-export const cmsAuth = (req, res, next) => {
+export const cmsAuth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -13,6 +14,18 @@ export const cmsAuth = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, securityConfig.jwt.secret);
     req.user = decoded;
+
+    // career_admin ke liye har request pe session + active status check
+    if (decoded.role === "career_admin") {
+      const admin = await AdminUser.findById(decoded.id).select("isActive sessionToken sessionExpires");
+      if (!admin || admin.isActive === false) {
+        return res.status(403).json({ error: "account_disabled" });
+      }
+      if (!admin.sessionToken || !admin.sessionExpires || admin.sessionExpires < new Date()) {
+        return res.status(401).json({ error: "session_expired" });
+      }
+    }
+
     return next();
   } catch (err) {
     if (err.name === "TokenExpiredError") {

@@ -106,19 +106,20 @@ export default function AdminDashboardLayout({
   useEffect(() => {
     const token = localStorage.getItem("admin_token");
     const storedUser = localStorage.getItem("admin_user");
-    if (!token) {
+    if (!token || !storedUser) {
       router.push("/admin-login");
       return;
     }
-    if (storedUser) {
-      const parsed = JSON.parse(storedUser);
-      if (parsed.role === "career_admin") {
-        router.replace("/careers/admin");
-        return;
-      }
-      setUser(parsed);
+    const parsed = JSON.parse(storedUser);
+    if (parsed.role !== "super_admin" && parsed.role !== "admin") {
+      // career_admin ya koi aur role — clear karke login pe bhejo
+      localStorage.removeItem("admin_token");
+      localStorage.removeItem("admin_user");
+      router.push("/admin-login");
+      return;
     }
-  }, [router]);
+    setUser(parsed);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetcher = (url: string) =>
     fetch(url, {

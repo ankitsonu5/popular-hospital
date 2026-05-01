@@ -30,7 +30,7 @@ export const loginAdmin = async (req, res) => {
     }
 
     if (admin.isActive === false) {
-      return res.status(403).json({ error: "Account is disabled. Contact the super admin." });
+      return res.status(403).json({ error: "account_disabled" });
     }
 
     const isMatch = await bcrypt.compare(password, admin.password_hash);

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function CareerAdminHome() {
   const router = useRouter();
   useEffect(() => {
-    router.replace("/careers/admin/careers");
+    router.replace("/careers/admin-login");
   }, [router]);
   return null;
 }

@@ -86,14 +86,14 @@ const doctors = [
     qualifications: "MBBS, MD (Radiodiagnosis), FIVIR",
     designation: "Consultant Interventional Radiologist",
     slug: "dr-rohan-kr-singh",
-    image: "",
+    image: "/images/departments_doctor/rohan_kr_singh.jpg",
   },
   {
     name: "Dr. Omkareshwar Pratap Singh",
     qualifications: "MBBS, DNB (Radiodiagnosis)",
     designation: "Consultant Radiologist",
     slug: "dr-omkareshwar-pratap-singh",
-    image: "",
+    image: "/images/departments_doctor/dr_omkareshwar.jpg",
   },
 ];
 
