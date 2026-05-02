@@ -79,7 +79,7 @@ export const createBooking = async (req, res) => {
 // GET /api/bookings
 export const getBookings = async (req, res) => {
   try {
-    const { phone, date } = req.query;
+    const { phone, date, status } = req.query;
     const filter = {};
     if (status) filter.status = status;
     if (phone) filter.patient_phone = String(phone).trim();
