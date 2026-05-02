@@ -106,9 +106,12 @@ const SocialSidebar = () => {
           {/* Subtle light effect on hover */}
           <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors"></div>
           <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-            {React.cloneElement(social.icon as React.ReactElement<{ className: string }>, {
-              className: "w-4 h-4 xl:w-3.5 xl:h-3.5",
-            })}
+            {React.cloneElement(
+              social.icon as React.ReactElement<{ className: string }>,
+              {
+                className: "w-4 h-4 xl:w-3.5 xl:h-3.5",
+              },
+            )}
           </span>
         </a>
       ))}

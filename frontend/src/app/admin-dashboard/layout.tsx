@@ -36,7 +36,11 @@ const sidebarItems = [
     icon: Briefcase,
     subItems: [
       { label: "Careers", href: "/admin-dashboard/careers" },
-      { label: "Job Portal", href: "/admin-dashboard/applications", target: "_blank" },
+      {
+        label: "Job Portal",
+        href: "/admin-dashboard/applications",
+        target: "_blank",
+      },
     ],
   },
   { label: "Bookings", href: "/admin-dashboard/bookings", icon: CalendarCheck },
@@ -46,14 +50,21 @@ const sidebarItems = [
     icon: Mail,
     target: "_blank",
   },
-  { label: "Call Backs", href: "/admin-dashboard/callback-requests", icon: PhoneIncoming },
+  {
+    label: "Call Backs",
+    href: "/admin-dashboard/callback-requests",
+    icon: PhoneIncoming,
+  },
   { label: "Departments", href: "/admin-dashboard/departments", icon: Users },
   {
     label: "Manage Content",
     icon: MonitorPlay,
     subItems: [
       { label: "Hero Content", href: "/admin-dashboard/content-manage" },
-      { label: "Patients Speak", href: "/admin-dashboard/content-manage/patients-speak" },
+      {
+        label: "Patients Speak",
+        href: "/admin-dashboard/content-manage/patients-speak",
+      },
       { label: "Manage Popup", href: "/admin-dashboard/popup" },
     ],
   },
@@ -73,9 +84,15 @@ const sidebarItems = [
 
 // Which path prefixes belong to which dropdown group
 const GROUP_PATHS: Record<string, string[]> = {
-  "Career Portal":  ["/admin-dashboard/careers", "/admin-dashboard/applications"],
-  "Manage Content": ["/admin-dashboard/content-manage", "/admin-dashboard/popup"],
-  "Media & Blog":   ["/admin-dashboard/media-blog"],
+  "Career Portal": [
+    "/admin-dashboard/careers",
+    "/admin-dashboard/applications",
+  ],
+  "Manage Content": [
+    "/admin-dashboard/content-manage",
+    "/admin-dashboard/popup",
+  ],
+  "Media & Blog": ["/admin-dashboard/media-blog"],
 };
 
 export default function AdminDashboardLayout({
@@ -123,7 +140,9 @@ export default function AdminDashboardLayout({
 
   const fetcher = (url: string) =>
     fetch(url, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+      },
     }).then((res) => res.json());
 
   const { data: newContacts } = useSWR(
@@ -147,10 +166,16 @@ export default function AdminDashboardLayout({
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
 
-  const unreadCount         = Array.isArray(newContacts)      ? newContacts.length      : 0;
-  const unreadAppsCount     = Array.isArray(newApplications)  ? newApplications.length  : 0;
-  const unreadBookingsCount = Array.isArray(newBookings)       ? newBookings.length      : 0;
-  const unreadCallbacksCount= Array.isArray(newCallbacks)     ? newCallbacks.length     : 0;
+  const unreadCount = Array.isArray(newContacts) ? newContacts.length : 0;
+  const unreadAppsCount = Array.isArray(newApplications)
+    ? newApplications.length
+    : 0;
+  const unreadBookingsCount = Array.isArray(newBookings)
+    ? newBookings.length
+    : 0;
+  const unreadCallbacksCount = Array.isArray(newCallbacks)
+    ? newCallbacks.length
+    : 0;
 
   const handleLogout = () => {
     localStorage.removeItem("admin_token");
@@ -228,22 +253,26 @@ export default function AdminDashboardLayout({
                     <button
                       onClick={() => toggleGroup(item.label)}
                       className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-all
-                        ${isActiveGroup
-                          ? "bg-white/10 text-white"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
+                        ${
+                          isActiveGroup
+                            ? "bg-white/10 text-white"
+                            : "text-white/60 hover:text-white hover:bg-white/5"
                         }`}
                     >
                       <div className="flex items-center gap-3">
-                        <Icon className={`w-5 h-5 ${isActiveGroup ? "text-[#0d9488]" : ""}`} />
+                        <Icon
+                          className={`w-5 h-5 ${isActiveGroup ? "text-[#0d9488]" : ""}`}
+                        />
                         <span>{item.label}</span>
                         {showBadge && (
                           <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
                         )}
                       </div>
-                      {isOpen
-                        ? <ChevronDown className="w-4 h-4 text-white/40" />
-                        : <ChevronRight className="w-4 h-4 text-white/40" />
-                      }
+                      {isOpen ? (
+                        <ChevronDown className="w-4 h-4 text-white/40" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4 text-white/40" />
+                      )}
                     </button>
 
                     {isOpen && (
@@ -257,12 +286,17 @@ export default function AdminDashboardLayout({
                               key={sub.href}
                               href={sub.href}
                               target={sub.target}
-                              rel={sub.target === "_blank" ? "noopener noreferrer" : undefined}
+                              rel={
+                                sub.target === "_blank"
+                                  ? "noopener noreferrer"
+                                  : undefined
+                              }
                               onClick={() => setSidebarOpen(false)}
                               className={`flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-all
-                                ${isSubActive
-                                  ? "bg-white/15 text-white shadow-sm"
-                                  : "text-white/50 hover:text-white hover:bg-white/5"
+                                ${
+                                  isSubActive
+                                    ? "bg-white/15 text-white shadow-sm"
+                                    : "text-white/50 hover:text-white hover:bg-white/5"
                                 }`}
                             >
                               <span>{sub.label}</span>
@@ -285,15 +319,20 @@ export default function AdminDashboardLayout({
                   key={item.href || item.label}
                   href={item.href || "#"}
                   target={item.target}
-                  rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                  rel={
+                    item.target === "_blank" ? "noopener noreferrer" : undefined
+                  }
                   onClick={() => setSidebarOpen(false)}
                   className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all
-                    ${isActive
-                      ? "bg-white/15 text-white shadow-sm"
-                      : "text-white/60 hover:text-white hover:bg-white/5"
+                    ${
+                      isActive
+                        ? "bg-white/15 text-white shadow-sm"
+                        : "text-white/60 hover:text-white hover:bg-white/5"
                     }`}
                 >
-                  <Icon className={`w-5 h-5 ${isActive ? "text-[#0d9488]" : ""}`} />
+                  <Icon
+                    className={`w-5 h-5 ${isActive ? "text-[#0d9488]" : ""}`}
+                  />
                   <span>{item.label}</span>
                   <div className="flex-1 flex items-center justify-end gap-2">
                     {item.label === "Contacts" && unreadCount > 0 && (
@@ -302,9 +341,10 @@ export default function AdminDashboardLayout({
                     {item.label === "Bookings" && unreadBookingsCount > 0 && (
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
                     )}
-                    {item.label === "Call Backs" && unreadCallbacksCount > 0 && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
-                    )}
+                    {item.label === "Call Backs" &&
+                      unreadCallbacksCount > 0 && (
+                        <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                      )}
                     {isActive && (
                       <ChevronRight className="w-4 h-4 text-white/40" />
                     )}

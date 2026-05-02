@@ -97,13 +97,25 @@ export default async function DoctorPage({ params }: Props) {
         branch: "Varanasi",
         schedule: doctor.opd_timings
           ? [
-              { day: "Monday",    timing: normTiming(doctor.opd_timings.monday) },
-              { day: "Tuesday",   timing: normTiming(doctor.opd_timings.tuesday) },
-              { day: "Wednesday", timing: normTiming(doctor.opd_timings.wednesday) },
-              { day: "Thursday",  timing: normTiming(doctor.opd_timings.thursday) },
-              { day: "Friday",    timing: normTiming(doctor.opd_timings.friday) },
-              { day: "Saturday",  timing: normTiming(doctor.opd_timings.saturday) },
-              { day: "Sunday",    timing: normTiming(doctor.opd_timings.sunday) },
+              { day: "Monday", timing: normTiming(doctor.opd_timings.monday) },
+              {
+                day: "Tuesday",
+                timing: normTiming(doctor.opd_timings.tuesday),
+              },
+              {
+                day: "Wednesday",
+                timing: normTiming(doctor.opd_timings.wednesday),
+              },
+              {
+                day: "Thursday",
+                timing: normTiming(doctor.opd_timings.thursday),
+              },
+              { day: "Friday", timing: normTiming(doctor.opd_timings.friday) },
+              {
+                day: "Saturday",
+                timing: normTiming(doctor.opd_timings.saturday),
+              },
+              { day: "Sunday", timing: normTiming(doctor.opd_timings.sunday) },
             ]
           : doctor.available_days
             ? OPD_DAYS.map((day) => ({
@@ -238,7 +250,9 @@ export default async function DoctorPage({ params }: Props) {
                   <div className="mb-6 pb-6 border-b border-gray-100">
                     <h3 className="text-3xl font-bold text-[#0b1c43]">
                       Department -{" "}
-                      <span className="text-[#3b82f6]">{displaySpeciality}</span>
+                      <span className="text-[#3b82f6]">
+                        {displaySpeciality}
+                      </span>
                     </h3>
                     {displayBio && (
                       <p className="text-gray-500 text-base mt-3 leading-relaxed">

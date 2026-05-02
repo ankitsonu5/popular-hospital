@@ -31,7 +31,9 @@ export const createCallbackRequest = async (req, res) => {
     });
   } catch (error) {
     console.error("[CALLBACK]", error.message);
-    res.status(500).json({ error: "An error occurred while submitting your request." });
+    res
+      .status(500)
+      .json({ error: "An error occurred while submitting your request." });
   }
 };
 

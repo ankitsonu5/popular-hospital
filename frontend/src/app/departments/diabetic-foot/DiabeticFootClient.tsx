@@ -91,26 +91,66 @@ const getIcon = (icon: string) => {
   switch (icon) {
     case "shield":
       return (
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.62-4.02A11.96 11.96 0 0112 2.94a11.96 11.96 0 01-8.62 3.04A12.02 12.02 0 003 9c0 5.59 3.82 10.29 9 11.62 5.18-1.33 9-6.03 9-11.62 0-1.04-.13-2.05-.38-3.02z" />
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 12l2 2 4-4m5.62-4.02A11.96 11.96 0 0112 2.94a11.96 11.96 0 01-8.62 3.04A12.02 12.02 0 003 9c0 5.59 3.82 10.29 9 11.62 5.18-1.33 9-6.03 9-11.62 0-1.04-.13-2.05-.38-3.02z"
+          />
         </svg>
       );
     case "pulse":
       return (
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12h4l3-7 4 14 3-7h4" />
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 12h4l3-7 4 14 3-7h4"
+          />
         </svg>
       );
     case "plus":
       return (
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v14m7-7H5" />
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 5v14m7-7H5"
+          />
         </svg>
       );
     default:
       return (
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.36-1.86M17 20H7m10 0v-2c0-.66-.13-1.28-.36-1.86M7 20H2v-2a3 3 0 015.36-1.86M7 20v-2c0-.66.13-1.28.36-1.86m0 0a5 5 0 019.28 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M17 20h5v-2a3 3 0 00-5.36-1.86M17 20H7m10 0v-2c0-.66-.13-1.28-.36-1.86M7 20H2v-2a3 3 0 015.36-1.86M7 20v-2c0-.66.13-1.28.36-1.86m0 0a5 5 0 019.28 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+          />
         </svg>
       );
   }
@@ -140,7 +180,11 @@ const CheckItem = ({ text }: { text: string }) => (
   <li className="flex gap-3 text-sm font-medium leading-relaxed text-gray-700 sm:text-base">
     <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700">
       <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-        <path fillRule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clipRule="evenodd" />
+        <path
+          fillRule="evenodd"
+          d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z"
+          clipRule="evenodd"
+        />
       </svg>
     </span>
     <span>{text}</span>
@@ -198,19 +242,28 @@ export default function DiabeticFootClient() {
             />
             <div className="space-y-5 text-base font-medium leading-relaxed text-gray-700 sm:text-lg lg:text-[17px]">
               <p>
-                The Advanced Diabetic Foot Unit at Popular Hospital, Varanasi is a
-                dedicated multidisciplinary unit for diabetic foot wounds, ulcers,
-                neuropathy, infection and circulation-related complications.
+                The Advanced Diabetic Foot Unit at Popular Hospital, Varanasi is
+                a dedicated multidisciplinary unit for diabetic foot wounds,
+                ulcers, neuropathy, infection and circulation-related
+                complications.
               </p>
               <p>
-                The care model combines wound management, blood sugar coordination,
-                vascular assessment, pressure offloading and surgical support so that
-                every stage of diabetic foot disease is handled in a planned way.
+                The care model combines wound management, blood sugar
+                coordination, vascular assessment, pressure offloading and
+                surgical support so that every stage of diabetic foot disease is
+                handled in a planned way.
               </p>
             </div>
             <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-              {["Early detection", "Wound healing", "Amputation prevention"].map((item) => (
-                <div key={item} className="rounded-lg border border-blue-100 bg-blue-50 px-4 py-4">
+              {[
+                "Early detection",
+                "Wound healing",
+                "Amputation prevention",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-lg border border-blue-100 bg-blue-50 px-4 py-4"
+                >
                   <p className="text-sm font-black uppercase tracking-wide text-blue-700">
                     {item}
                   </p>
@@ -286,8 +339,8 @@ export default function DiabeticFootClient() {
                 High-risk signs
               </p>
               <p className="mt-2 text-sm font-medium leading-relaxed text-gray-700">
-                Blackening, pus discharge, fever, spreading redness, severe pain or
-                loss of sensation need prompt evaluation.
+                Blackening, pus discharge, fever, spreading redness, severe pain
+                or loss of sensation need prompt evaluation.
               </p>
             </div>
           </div>
@@ -321,8 +374,13 @@ export default function DiabeticFootClient() {
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
             {carePathway.map((item) => (
-              <article key={item.step} className="rounded-xl border border-white/10 bg-white/[0.08] p-5">
-                <p className="mb-5 text-3xl font-black text-blue-200">{item.step}</p>
+              <article
+                key={item.step}
+                className="rounded-xl border border-white/10 bg-white/[0.08] p-5"
+              >
+                <p className="mb-5 text-3xl font-black text-blue-200">
+                  {item.step}
+                </p>
                 <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
                 <p className="text-sm font-medium leading-relaxed text-blue-50">
                   {item.desc}
@@ -388,7 +446,6 @@ export default function DiabeticFootClient() {
           </div>
         </div>
       </section>
-      
     </main>
   );
 }

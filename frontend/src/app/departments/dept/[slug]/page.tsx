@@ -99,8 +99,18 @@ export default async function DepartmentPage({ params }: Props) {
                 href="/book"
                 className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
                 Book An Appointment
               </Link>
@@ -108,8 +118,18 @@ export default async function DepartmentPage({ params }: Props) {
                 department={dept.name}
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
                 </svg>
                 Get a Call Back
               </GetCallBackButton>
@@ -124,7 +144,10 @@ export default async function DepartmentPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content */}
             <div className="lg:col-span-8">
-              <SectionHeader title="Department of" highlight={dept.department_display_name || dept.name} />
+              <SectionHeader
+                title="Department of"
+                highlight={dept.department_display_name || dept.name}
+              />
               {dept.description && (
                 <div
                   className="prose prose-blue max-w-none text-gray-800 space-y-4 mb-10 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-xl font-medium text-justify"
@@ -137,8 +160,12 @@ export default async function DepartmentPage({ params }: Props) {
                 <div className="mt-8 space-y-6">
                   {dept.usp_items!.map((usp, idx) => (
                     <div key={idx} className="border-l-4 border-blue-600 pl-4">
-                      <h4 className="font-bold text-[#0b1c43] text-lg mb-1">{usp.title}</h4>
-                      <p className="text-gray-700 text-base leading-relaxed">{usp.content}</p>
+                      <h4 className="font-bold text-[#0b1c43] text-lg mb-1">
+                        {usp.title}
+                      </h4>
+                      <p className="text-gray-700 text-base leading-relaxed">
+                        {usp.content}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -152,7 +179,10 @@ export default async function DepartmentPage({ params }: Props) {
                   doctors={doctors.map((d) => ({
                     name: d.name,
                     qualifications: d.qualification,
-                    designation: typeof d.designation === "object" ? d.designation?.name : d.designation,
+                    designation:
+                      typeof d.designation === "object"
+                        ? d.designation?.name
+                        : d.designation,
                     slug: d.slug,
                     image_url: d.image_url ? getImageUrl(d.image_url) : "",
                   }))}
@@ -180,19 +210,35 @@ export default async function DepartmentPage({ params }: Props) {
               >
                 <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
                   <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
-                    <div className={isImageLeft ? "order-2 lg:order-2" : "order-2 lg:order-1"}>
-                      <SectionHeader title={section.title} highlight={section.highlight} />
+                    <div
+                      className={
+                        isImageLeft
+                          ? "order-2 lg:order-2"
+                          : "order-2 lg:order-1"
+                      }
+                    >
+                      <SectionHeader
+                        title={section.title}
+                        highlight={section.highlight}
+                      />
                       <ul className="grid grid-cols-1 gap-x-8 mt-6">
                         {section.items.map((item, i) => (
                           <ListItem key={i} text={item} />
                         ))}
                       </ul>
                     </div>
-                    <div className={`${isImageLeft ? "order-1 lg:order-1" : "order-1 lg:order-2"} mb-12 lg:mb-0 relative`}>
+                    <div
+                      className={`${isImageLeft ? "order-1 lg:order-1" : "order-1 lg:order-2"} mb-12 lg:mb-0 relative`}
+                    >
                       <div className="relative w-full aspect-square max-w-md mx-auto">
                         <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
                         <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
-                          <Image src={section.image!} alt={section.title} fill className="object-cover" />
+                          <Image
+                            src={section.image!}
+                            alt={section.title}
+                            fill
+                            className="object-cover"
+                          />
                         </div>
                       </div>
                     </div>
@@ -208,8 +254,13 @@ export default async function DepartmentPage({ params }: Props) {
               className={`py-16 xl:py-10 2xl:py-20 ${isEven ? "bg-white" : "bg-gray-50/50"}`}
             >
               <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-                <SectionHeader title={section.title} highlight={section.highlight} />
-                <ul className={`grid ${section.layout === "two-col" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} gap-x-8 mt-6`}>
+                <SectionHeader
+                  title={section.title}
+                  highlight={section.highlight}
+                />
+                <ul
+                  className={`grid ${section.layout === "two-col" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} gap-x-8 mt-6`}
+                >
                   {section.items.map((item, i) => (
                     <ListItem key={i} text={item} />
                   ))}

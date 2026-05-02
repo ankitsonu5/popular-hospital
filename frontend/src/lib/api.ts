@@ -116,7 +116,9 @@ export async function fetchSpecialities(): Promise<Speciality[]> {
   }
 }
 
-export async function fetchDepartment(slug: string): Promise<Department | null> {
+export async function fetchDepartment(
+  slug: string,
+): Promise<Department | null> {
   try {
     const res = await fetch(api(`/doctors/specialities/${slug}`), {
       next: { revalidate: 30 },

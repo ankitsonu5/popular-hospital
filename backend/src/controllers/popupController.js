@@ -50,7 +50,9 @@ const deleteFile = (filePath) => {
 // GET /api/popup — public, returns active popup or null
 export const getActivePopup = async (req, res) => {
   try {
-    const popup = await Popup.findOne({ isActive: true }).sort({ updatedAt: -1 });
+    const popup = await Popup.findOne({ isActive: true }).sort({
+      updatedAt: -1,
+    });
     res.json(popup || null);
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });

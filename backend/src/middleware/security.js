@@ -3,7 +3,7 @@ import mongoSanitize from "express-mongo-sanitize";
 // No-op middleware (rate limiting disabled)
 export const globalLimiter = (req, res, next) => next();
 export const adminLimiter = (req, res, next) => next();
-export const authLimiter  = (req, res, next) => next();
+export const authLimiter = (req, res, next) => next();
 
 // ─── MongoDB Query Sanitizer ─────────────────────────────────
 // Strips $ and . from req.body, req.query, req.params

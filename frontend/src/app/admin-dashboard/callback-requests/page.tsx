@@ -34,7 +34,11 @@ function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
   const now = new Date();
   if (date.toDateString() === now.toDateString()) {
-    return date.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: false });
+    return date.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
   }
   return date.toLocaleDateString("en-IN", { day: "2-digit", month: "short" });
 }
@@ -82,10 +86,15 @@ export default function CallbackRequestsPage() {
       const token = localStorage.getItem("admin_token");
       await fetch(`${API_URL}/callback-requests/${req._id}/status`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({ status: "read" }),
       });
-      setRequests((prev) => prev.map((r) => (r._id === req._id ? { ...r, status: "read" } : r)));
+      setRequests((prev) =>
+        prev.map((r) => (r._id === req._id ? { ...r, status: "read" } : r)),
+      );
       mutate("/api-backend/callback-requests?status=new");
     } catch (e) {
       console.error(e);
@@ -96,10 +105,13 @@ export default function CallbackRequestsPage() {
     if (!deleteConfirmId) return;
     try {
       const token = localStorage.getItem("admin_token");
-      const res = await fetch(`${API_URL}/callback-requests/${deleteConfirmId}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        `${API_URL}/callback-requests/${deleteConfirmId}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       if (!res.ok) throw new Error("Failed to delete");
       setRequests((prev) => prev.filter((r) => r._id !== deleteConfirmId));
       if (selected?._id === deleteConfirmId) setSelected(null);
@@ -121,8 +133,7 @@ export default function CallbackRequestsPage() {
       r.name.toLowerCase().includes(search.toLowerCase()) ||
       r.phone.includes(search) ||
       r.department.toLowerCase().includes(search.toLowerCase());
-    const matchTab =
-      activeTab === "all" ? true : r.status === activeTab;
+    const matchTab = activeTab === "all" ? true : r.status === activeTab;
     return matchSearch && matchTab;
   });
 
@@ -148,8 +159,14 @@ export default function CallbackRequestsPage() {
               <div className="p-2 hover:bg-gray-100 rounded-md cursor-pointer">
                 <Square className="w-4 h-4 text-gray-400" />
               </div>
-              <button onClick={fetchRequests} className="p-2 hover:bg-gray-100 rounded-md" title="Refresh">
-                <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
+              <button
+                onClick={fetchRequests}
+                className="p-2 hover:bg-gray-100 rounded-md"
+                title="Refresh"
+              >
+                <RefreshCw
+                  className={`w-4 h-4 ${loading ? "animate-spin" : ""}`}
+                />
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-md">
                 <MoreVertical className="w-4 h-4" />
@@ -182,7 +199,8 @@ export default function CallbackRequestsPage() {
           </div>
           <div className="flex items-center text-gray-500">
             <span className="text-xs mr-4 hidden sm:inline">
-              {filtered.length > 0 ? `${pageStart + 1}-${pageEnd}` : "0"} of {filtered.length}
+              {filtered.length > 0 ? `${pageStart + 1}-${pageEnd}` : "0"} of{" "}
+              {filtered.length}
             </span>
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
@@ -262,7 +280,9 @@ export default function CallbackRequestsPage() {
                         <Square className="w-4 h-4 text-gray-300 group-hover:text-gray-400" />
                       </div>
 
-                      <div className={`w-36 sm:w-48 shrink-0 truncate text-sm ${isNew ? "text-gray-900" : "text-gray-700"}`}>
+                      <div
+                        className={`w-36 sm:w-48 shrink-0 truncate text-sm ${isNew ? "text-gray-900" : "text-gray-700"}`}
+                      >
                         {req.name}
                       </div>
 
@@ -285,13 +305,18 @@ export default function CallbackRequestsPage() {
                       </div>
 
                       <div className="w-28 shrink-0 flex items-center justify-end">
-                        <div className={`text-xs group-hover:hidden ${isNew ? "text-gray-900 font-bold" : "text-gray-500"}`}>
+                        <div
+                          className={`text-xs group-hover:hidden ${isNew ? "text-gray-900 font-bold" : "text-gray-500"}`}
+                        >
                           {formatDate(req.createdAt)}
                         </div>
                         <div className="hidden group-hover:flex items-center gap-1 px-1">
                           <button
                             className="p-1.5 hover:bg-red-50 text-red-500 rounded-full"
-                            onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(req._id); }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setDeleteConfirmId(req._id);
+                            }}
                             title="Delete"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -314,12 +339,17 @@ export default function CallbackRequestsPage() {
                 {selected.name.charAt(0).toUpperCase()}
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">{selected.name}</h2>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {selected.name}
+                </h2>
                 <p className="text-sm text-gray-500 mt-0.5">
                   Requested on{" "}
                   {new Date(selected.createdAt).toLocaleString("en-IN", {
-                    day: "2-digit", month: "short", year: "numeric",
-                    hour: "2-digit", minute: "2-digit",
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
                   })}
                 </p>
               </div>
@@ -332,11 +362,17 @@ export default function CallbackRequestsPage() {
 
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 space-y-8">
               <div>
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Patient Name</p>
-                <p className="text-gray-900 font-semibold text-lg">{selected.name}</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                  Patient Name
+                </p>
+                <p className="text-gray-900 font-semibold text-lg">
+                  {selected.name}
+                </p>
               </div>
               <div>
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Phone Number</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                  Phone Number
+                </p>
                 <a
                   href={`tel:${selected.phone}`}
                   className="text-blue-600 font-semibold text-xl hover:underline flex items-center gap-2"
@@ -345,8 +381,12 @@ export default function CallbackRequestsPage() {
                 </a>
               </div>
               <div>
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Department</p>
-                <p className="text-gray-900 font-semibold text-lg">{selected.department || "Not specified"}</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                  Department
+                </p>
+                <p className="text-gray-900 font-semibold text-lg">
+                  {selected.department || "Not specified"}
+                </p>
               </div>
             </div>
 
@@ -376,9 +416,12 @@ export default function CallbackRequestsPage() {
               <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-4 mx-auto">
                 <AlertTriangle className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-center text-gray-900 mb-2">Delete Request</h3>
+              <h3 className="text-lg font-bold text-center text-gray-900 mb-2">
+                Delete Request
+              </h3>
               <p className="text-gray-500 text-sm text-center">
-                Are you sure you want to delete this callback request? This cannot be undone.
+                Are you sure you want to delete this callback request? This
+                cannot be undone.
               </p>
             </div>
             <div className="flex bg-gray-50 border-t border-gray-100">

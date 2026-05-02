@@ -45,7 +45,7 @@ const departments = [
       {
         title: "Non-Invasive cardiology program:-",
         content:
-          "Popular hospital believes in saving life as its vision is to \"Caring for Your Every Breath\", the cardiac department performs all kind of non-invasive Procedure to save patient and give them a healthy and worry free life.",
+          'Popular hospital believes in saving life as its vision is to "Caring for Your Every Breath", the cardiac department performs all kind of non-invasive Procedure to save patient and give them a healthy and worry free life.',
       },
       {
         title: "Round the clock support:-",

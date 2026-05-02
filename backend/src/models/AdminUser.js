@@ -11,7 +11,11 @@ const adminUserSchema = new mongoose.Schema(
     },
     password_hash: { type: String, required: true },
     name: { type: String, default: null },
-    role: { type: String, enum: ["super_admin", "career_admin"], default: "super_admin" },
+    role: {
+      type: String,
+      enum: ["super_admin", "career_admin"],
+      default: "super_admin",
+    },
     isActive: { type: Boolean, default: true },
     sessionToken: { type: String, default: null },
     sessionExpires: { type: Date, default: null },

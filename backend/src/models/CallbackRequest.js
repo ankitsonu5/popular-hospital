@@ -10,5 +10,8 @@ const callbackRequestSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const CallbackRequest = mongoose.model("CallbackRequest", callbackRequestSchema);
+const CallbackRequest = mongoose.model(
+  "CallbackRequest",
+  callbackRequestSchema,
+);
 export default CallbackRequest;

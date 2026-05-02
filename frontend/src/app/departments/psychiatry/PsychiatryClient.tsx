@@ -220,7 +220,6 @@ export default function PsychiatryClient() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }

@@ -8,7 +8,9 @@ import securityConfig from "../config/security.js";
 const SESSION_TTL_MS = 4 * 60 * 60 * 1000;
 
 const hasActiveSession = (admin) =>
-  admin.sessionToken && admin.sessionExpires && admin.sessionExpires > new Date();
+  admin.sessionToken &&
+  admin.sessionExpires &&
+  admin.sessionExpires > new Date();
 import {
   sendPasswordResetEmail,
   sendPasswordResetSuccessEmail,
@@ -172,8 +174,12 @@ export const careerAdminLogout = async (req, res) => {
 // DELETE /api/cms/career-admin/:id/session — super admin force-clears one session
 export const forceLogoutCareerAdmin = async (req, res) => {
   try {
-    const admin = await AdminUser.findOne({ _id: req.params.id, role: "career_admin" });
-    if (!admin) return res.status(404).json({ error: "Career admin not found." });
+    const admin = await AdminUser.findOne({
+      _id: req.params.id,
+      role: "career_admin",
+    });
+    if (!admin)
+      return res.status(404).json({ error: "Career admin not found." });
     admin.sessionToken = null;
     admin.sessionExpires = null;
     await admin.save();
@@ -199,8 +205,12 @@ export const forceLogoutAllCareerAdmins = async (req, res) => {
 // PATCH /api/cms/career-admin/:id/toggle — enable / disable a specific career admin
 export const toggleCareerAdmin = async (req, res) => {
   try {
-    const admin = await AdminUser.findOne({ _id: req.params.id, role: "career_admin" });
-    if (!admin) return res.status(404).json({ error: "Career admin not found." });
+    const admin = await AdminUser.findOne({
+      _id: req.params.id,
+      role: "career_admin",
+    });
+    if (!admin)
+      return res.status(404).json({ error: "Career admin not found." });
     admin.isActive = !admin.isActive;
     await admin.save();
     res.json({ ok: true, isActive: admin.isActive });
@@ -215,12 +225,20 @@ export const updateCareerAdmin = async (req, res) => {
     const { email, password, name } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required." });
 
-    const admin = await AdminUser.findOne({ _id: req.params.id, role: "career_admin" });
-    if (!admin) return res.status(404).json({ error: "Career admin not found." });
+    const admin = await AdminUser.findOne({
+      _id: req.params.id,
+      role: "career_admin",
+    });
+    if (!admin)
+      return res.status(404).json({ error: "Career admin not found." });
 
     const emailLower = email.toLowerCase().trim();
-    const conflict = await AdminUser.findOne({ email: emailLower, _id: { $ne: admin._id } });
-    if (conflict) return res.status(400).json({ error: "This email is already in use." });
+    const conflict = await AdminUser.findOne({
+      email: emailLower,
+      _id: { $ne: admin._id },
+    });
+    if (conflict)
+      return res.status(400).json({ error: "This email is already in use." });
 
     admin.email = emailLower;
     if (name) admin.name = name;
@@ -240,7 +258,8 @@ export const createCareerAdmin = async (req, res) => {
   try {
     const { email, password, name } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required." });
-    if (!password) return res.status(400).json({ error: "Password is required." });
+    if (!password)
+      return res.status(400).json({ error: "Password is required." });
 
     const salt = await bcrypt.genSalt(10);
     const password_hash = await bcrypt.hash(password, salt);
@@ -250,9 +269,15 @@ export const createCareerAdmin = async (req, res) => {
       name: name || "Career Admin",
       role: "career_admin",
     });
-    res.json({ ok: true, _id: newAdmin._id, email: newAdmin.email, name: newAdmin.name });
+    res.json({
+      ok: true,
+      _id: newAdmin._id,
+      email: newAdmin.email,
+      name: newAdmin.name,
+    });
   } catch (error) {
-    if (error.code === 11000) return res.status(400).json({ error: "This email is already in use." });
+    if (error.code === 11000)
+      return res.status(400).json({ error: "This email is already in use." });
     res.status(500).json({ error: "An internal error occurred." });
   }
 };
@@ -260,8 +285,12 @@ export const createCareerAdmin = async (req, res) => {
 // DELETE /api/cms/career-admin/:id — remove a career admin
 export const deleteCareerAdmin = async (req, res) => {
   try {
-    const admin = await AdminUser.findOneAndDelete({ _id: req.params.id, role: "career_admin" });
-    if (!admin) return res.status(404).json({ error: "Career admin not found." });
+    const admin = await AdminUser.findOneAndDelete({
+      _id: req.params.id,
+      role: "career_admin",
+    });
+    if (!admin)
+      return res.status(404).json({ error: "Career admin not found." });
     res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });

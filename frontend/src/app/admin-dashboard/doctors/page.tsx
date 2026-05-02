@@ -348,13 +348,19 @@ export default function DoctorsPage() {
       if (!res.ok) {
         const errText = await res.text();
         let errMsg = `Server error ${res.status}`;
-        try { errMsg = JSON.parse(errText)?.error || errMsg; } catch {}
+        try {
+          errMsg = JSON.parse(errText)?.error || errMsg;
+        } catch {}
         toast.error(`Failed to save: ${errMsg}`);
         setIsSaving(false);
         return;
       }
 
-      toast.success(editingId ? "Doctor updated successfully!" : "Doctor added successfully!");
+      toast.success(
+        editingId
+          ? "Doctor updated successfully!"
+          : "Doctor added successfully!",
+      );
       setShowForm(false);
       setEditingId(null);
       resetForm();

@@ -2,7 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ImagePlus, Trash2, Save, ExternalLink, ToggleLeft, ToggleRight } from "lucide-react";
+import {
+  ImagePlus,
+  Trash2,
+  Save,
+  ExternalLink,
+  ToggleLeft,
+  ToggleRight,
+} from "lucide-react";
 import { getImageUrl } from "@/lib/api";
 
 const API = "/api-backend/cms/popup";
@@ -19,7 +26,10 @@ export default function ManagePopupPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const [toast, setToast] = useState<{ type: "success" | "error"; msg: string } | null>(null);
+  const [toast, setToast] = useState<{
+    type: "success" | "error";
+    msg: string;
+  } | null>(null);
 
   const [preview, setPreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -110,7 +120,8 @@ export default function ManagePopupPage() {
     }
   };
 
-  const currentImage = preview || (popup?.imageUrl ? getImageUrl(popup.imageUrl) : null);
+  const currentImage =
+    preview || (popup?.imageUrl ? getImageUrl(popup.imageUrl) : null);
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
@@ -128,7 +139,8 @@ export default function ManagePopupPage() {
         <div>
           <h2 className="text-lg font-semibold text-gray-900">Popup Banner</h2>
           <p className="text-sm text-gray-500 mt-1">
-            Website load hone par visitor ko ye popup dikhega. Ek hi popup active rehta hai.
+            Website load hone par visitor ko ye popup dikhega. Ek hi popup
+            active rehta hai.
           </p>
         </div>
 
@@ -154,13 +166,17 @@ export default function ManagePopupPage() {
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
                     <ImagePlus className="w-8 h-8 text-white" />
-                    <span className="text-white text-sm font-medium">Image badlein</span>
+                    <span className="text-white text-sm font-medium">
+                      Image badlein
+                    </span>
                   </div>
                 </>
               ) : (
                 <div className="flex flex-col items-center gap-3 text-gray-400 group-hover:text-[#0d9488] transition-colors">
                   <ImagePlus className="w-10 h-10" />
-                  <span className="text-sm font-medium">Image select karein</span>
+                  <span className="text-sm font-medium">
+                    Image select karein
+                  </span>
                   <span className="text-xs">JPG, PNG, WebP — max 10MB</span>
                 </div>
               )}
@@ -173,8 +189,11 @@ export default function ManagePopupPage() {
               onChange={handleFileChange}
             />
             <p className="text-xs text-gray-400 -mt-2">
-              Recommended size: <span className="font-medium text-gray-600">600 × 600 px</span> (square) ya{" "}
-              <span className="font-medium text-gray-600">800 × 600 px</span> (landscape) — JPG/PNG, max 10MB
+              Recommended size:{" "}
+              <span className="font-medium text-gray-600">600 × 600 px</span>{" "}
+              (square) ya{" "}
+              <span className="font-medium text-gray-600">800 × 600 px</span>{" "}
+              (landscape) — JPG/PNG, max 10MB
             </p>
 
             {/* Link URL */}
@@ -198,9 +217,13 @@ export default function ManagePopupPage() {
             {/* Active Toggle */}
             <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-gray-50 border border-gray-100">
               <div>
-                <p className="text-sm font-medium text-gray-800">Popup Active</p>
+                <p className="text-sm font-medium text-gray-800">
+                  Popup Active
+                </p>
                 <p className="text-xs text-gray-500 mt-0.5">
-                  {isActive ? "Visitors ko dikhega" : "Abhi kisi ko nahi dikhega"}
+                  {isActive
+                    ? "Visitors ko dikhega"
+                    : "Abhi kisi ko nahi dikhega"}
                 </p>
               </div>
               <button
@@ -239,7 +262,6 @@ export default function ManagePopupPage() {
           </>
         )}
       </div>
-
     </div>
   );
 }

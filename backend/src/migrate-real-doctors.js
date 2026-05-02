@@ -72,7 +72,9 @@ let skipped = 0;
 for (const d of doctors) {
   const speciality = await Speciality.findOne({ slug: d.specialitySlug });
   if (!speciality) {
-    console.warn(`⚠️  Speciality not found: ${d.specialitySlug} — skipping ${d.name}`);
+    console.warn(
+      `⚠️  Speciality not found: ${d.specialitySlug} — skipping ${d.name}`,
+    );
     skipped++;
     continue;
   }
@@ -101,10 +103,13 @@ for (const d of doctors) {
         },
       },
     },
-    { upsert: true, new: true }
+    { upsert: true, new: true },
   );
 
-  const action = result.createdAt?.getTime() === result.updatedAt?.getTime() ? "inserted" : "updated";
+  const action =
+    result.createdAt?.getTime() === result.updatedAt?.getTime()
+      ? "inserted"
+      : "updated";
   console.log(`✅ ${action}: ${d.name} (${d.specialitySlug})`);
   added++;
 }

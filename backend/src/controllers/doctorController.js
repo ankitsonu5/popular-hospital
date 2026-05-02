@@ -309,9 +309,18 @@ export const reorderDoctors = async (req, res) => {
 export const createSpeciality = async (req, res) => {
   try {
     const {
-      name, slug, department_display_name, category,
-      banner_color, banner_subtitle, description,
-      usp_items, lists, meta_title, meta_description, sortIndex,
+      name,
+      slug,
+      department_display_name,
+      category,
+      banner_color,
+      banner_subtitle,
+      description,
+      usp_items,
+      lists,
+      meta_title,
+      meta_description,
+      sortIndex,
     } = req.body;
     if (!name || !slug)
       return res.status(400).json({ error: "Name and slug are required" });
@@ -321,11 +330,19 @@ export const createSpeciality = async (req, res) => {
       : req.body.banner_image || "";
 
     const spec = await Speciality.create({
-      name, slug, department_display_name, category,
-      banner_image, banner_color, banner_subtitle, description,
-      usp_items: typeof usp_items === "string" ? JSON.parse(usp_items) : (usp_items || []),
-      lists: typeof lists === "string" ? JSON.parse(lists) : (lists || []),
-      meta_title, meta_description,
+      name,
+      slug,
+      department_display_name,
+      category,
+      banner_image,
+      banner_color,
+      banner_subtitle,
+      description,
+      usp_items:
+        typeof usp_items === "string" ? JSON.parse(usp_items) : usp_items || [],
+      lists: typeof lists === "string" ? JSON.parse(lists) : lists || [],
+      meta_title,
+      meta_description,
       sortIndex: sortIndex ? parseInt(sortIndex) : 0,
     });
     res.status(201).json(spec);
@@ -343,7 +360,8 @@ export const createSpeciality = async (req, res) => {
 export const updateSpeciality = async (req, res) => {
   try {
     const updates = { ...req.body };
-    if (req.file) updates.banner_image = `/uploads/departments/${req.file.filename}`;
+    if (req.file)
+      updates.banner_image = `/uploads/departments/${req.file.filename}`;
     if (updates.usp_items && typeof updates.usp_items === "string")
       updates.usp_items = JSON.parse(updates.usp_items);
     if (updates.lists && typeof updates.lists === "string")

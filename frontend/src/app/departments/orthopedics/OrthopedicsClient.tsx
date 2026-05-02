@@ -117,7 +117,7 @@ const doctors = [
       "Specialist in Joint Replacement, Arthroscopy, Spine Surgery & Trauma Care",
     slug: "dr-md-akhtar-ali-ansari",
     image: "/images/departments_doctor/dr_ohd_akhtar_ali_ansari.jpg",
-  }
+  },
 ];
 
 /* ─── Sub-Components ─── */
@@ -246,19 +246,21 @@ export default function OrthopedicsClient() {
                     key={cat.id}
                     type="button"
                     onClick={() => setSelectedCategory(cat)}
-                    className={`flex items-center justify-between py-5 px-4 border-b border-gray-200 transition-all duration-300 group ${selectedCategory.id === cat.id
-                      ? "text-[#E85222] font-bold bg-white shadow-sm"
-                      : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
-                      }`}
+                    className={`flex items-center justify-between py-5 px-4 border-b border-gray-200 transition-all duration-300 group ${
+                      selectedCategory.id === cat.id
+                        ? "text-[#E85222] font-bold bg-white shadow-sm"
+                        : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
+                    }`}
                   >
                     <span className="text-left text-lg 2xl:text-xl">
                       {cat.title}
                     </span>
                     <span
-                      className={`transition-transform duration-300 ${selectedCategory.id === cat.id
-                        ? "translate-x-0"
-                        : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
-                        }`}
+                      className={`transition-transform duration-300 ${
+                        selectedCategory.id === cat.id
+                          ? "translate-x-0"
+                          : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                      }`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

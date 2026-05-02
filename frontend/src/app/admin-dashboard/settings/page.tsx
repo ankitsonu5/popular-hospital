@@ -4,8 +4,22 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import {
-  Shield, LogOut, Key, User, Briefcase, Save, Eye, EyeOff,
-  Loader2, Plus, Pencil, Trash2, X, Check, WifiOff, ShieldOff,
+  Shield,
+  LogOut,
+  Key,
+  User,
+  Briefcase,
+  Save,
+  Eye,
+  EyeOff,
+  Loader2,
+  Plus,
+  Pencil,
+  Trash2,
+  X,
+  Check,
+  WifiOff,
+  ShieldOff,
   AlertTriangle,
 } from "lucide-react";
 
@@ -42,11 +56,17 @@ function ConfirmModal({
   return (
     <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-in fade-in zoom-in-95 duration-200">
-        <div className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4
-          ${isDanger ? "bg-red-100" : "bg-amber-100"}`}>
-          <AlertTriangle className={`w-6 h-6 ${isDanger ? "text-red-600" : "text-amber-600"}`} />
+        <div
+          className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4
+          ${isDanger ? "bg-red-100" : "bg-amber-100"}`}
+        >
+          <AlertTriangle
+            className={`w-6 h-6 ${isDanger ? "text-red-600" : "text-amber-600"}`}
+          />
         </div>
-        <h3 className="text-base font-bold text-gray-900 text-center mb-1">{message}</h3>
+        <h3 className="text-base font-bold text-gray-900 text-center mb-1">
+          {message}
+        </h3>
         {subMessage && (
           <p className="text-sm text-gray-500 text-center mb-5">{subMessage}</p>
         )}
@@ -94,7 +114,11 @@ function EditModal({
       const res = await fetch(`/api-backend/cms/career-admin/${admin._id}`, {
         method: "PUT",
         headers: authHeaders(),
-        body: JSON.stringify({ email, name, ...(password ? { password } : {}) }),
+        body: JSON.stringify({
+          email,
+          name,
+          ...(password ? { password } : {}),
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Save failed");
@@ -112,14 +136,19 @@ function EditModal({
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-bold text-gray-900 text-lg">Edit Career Admin</h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100">
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <form onSubmit={handleSave} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Name
+            </label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -127,7 +156,9 @@ function EditModal({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email (Login ID)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email (Login ID)
+            </label>
             <input
               type="email"
               value={email}
@@ -138,7 +169,10 @@ function EditModal({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Password <span className="text-gray-400 font-normal">(leave blank to keep unchanged)</span>
+              Password{" "}
+              <span className="text-gray-400 font-normal">
+                (leave blank to keep unchanged)
+              </span>
             </label>
             <div className="relative">
               <input
@@ -148,13 +182,25 @@ function EditModal({
                 placeholder={admin ? "New password (optional)" : "Set password"}
                 className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
               />
-              <button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              <button
+                type="button"
+                onClick={() => setShowPass((v) => !v)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                {showPass ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
               </button>
             </div>
           </div>
           <div className="flex gap-3 pt-1">
-            <button type="button" onClick={onClose} className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+            >
               Cancel
             </button>
             <button
@@ -162,7 +208,11 @@ function EditModal({
               disabled={saving}
               className="flex-1 flex items-center justify-center gap-2 bg-[#0b1c43] hover:bg-[#0d2257] disabled:opacity-60 text-white rounded-xl px-4 py-2.5 text-sm font-medium transition-colors"
             >
-              {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+              {saving ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Save className="w-4 h-4" />
+              )}
               {saving ? "Saving..." : "Save Changes"}
             </button>
           </div>
@@ -192,9 +242,18 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Create failed");
-      onCreated({ _id: data._id, email: data.email, name: data.name || name, isActive: true, isOnline: false });
+      onCreated({
+        _id: data._id,
+        email: data.email,
+        name: data.name || name,
+        isActive: true,
+        isOnline: false,
+      });
       toast.success("Career Admin created successfully!");
-      setName(""); setEmail(""); setPassword(""); setOpen(false);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setOpen(false);
     } catch (e: any) {
       toast.error(e.message || "Create failed");
     } finally {
@@ -217,7 +276,10 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
     <div className="border border-[#0d9488]/30 rounded-xl p-4 bg-[#0d9488]/5 mt-2">
       <div className="flex items-center justify-between mb-4">
         <p className="font-semibold text-gray-800 text-sm">New Career Admin</p>
-        <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-white">
+        <button
+          onClick={() => setOpen(false)}
+          className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-white"
+        >
           <X className="w-4 h-4" />
         </button>
       </div>
@@ -245,8 +307,16 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
             placeholder="Password"
             className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] bg-white transition"
           />
-          <button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-            {showPass ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+          <button
+            type="button"
+            onClick={() => setShowPass((v) => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+          >
+            {showPass ? (
+              <EyeOff className="w-3.5 h-3.5" />
+            ) : (
+              <Eye className="w-3.5 h-3.5" />
+            )}
           </button>
         </div>
         <button
@@ -254,7 +324,11 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
           disabled={saving}
           className="w-full flex items-center justify-center gap-2 bg-[#0d9488] hover:bg-[#0b7a70] disabled:opacity-60 text-white rounded-lg py-2 text-sm font-medium transition-colors"
         >
-          {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
+          {saving ? (
+            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+          ) : (
+            <Check className="w-3.5 h-3.5" />
+          )}
           {saving ? "Creating..." : "Create Career Admin"}
         </button>
       </form>
@@ -272,7 +346,9 @@ export default function SettingsPage() {
   const [editingAdmin, setEditingAdmin] = useState<CareerAdmin | null>(null);
   const [togglingId, setTogglingId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [forceLoggingOutId, setForceLoggingOutId] = useState<string | null>(null);
+  const [forceLoggingOutId, setForceLoggingOutId] = useState<string | null>(
+    null,
+  );
   const [loggingOutAll, setLoggingOutAll] = useState(false);
 
   // Confirm modal state
@@ -295,7 +371,9 @@ export default function SettingsPage() {
   useEffect(() => {
     fetch("/api-backend/cms/career-admin", { headers: authHeaders() })
       .then((r) => r.json())
-      .then((data) => setAdmins(Array.isArray(data) ? data : (data && data._id ? [data] : [])))
+      .then((data) =>
+        setAdmins(Array.isArray(data) ? data : data && data._id ? [data] : []),
+      )
       .catch(() => setAdmins([]))
       .finally(() => setLoadingAdmins(false));
   }, []);
@@ -303,14 +381,23 @@ export default function SettingsPage() {
   const handleToggle = async (admin: CareerAdmin) => {
     setTogglingId(admin._id);
     try {
-      const res = await fetch(`/api-backend/cms/career-admin/${admin._id}/toggle`, {
-        method: "PATCH",
-        headers: authHeaders(),
-      });
+      const res = await fetch(
+        `/api-backend/cms/career-admin/${admin._id}/toggle`,
+        {
+          method: "PATCH",
+          headers: authHeaders(),
+        },
+      );
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Toggle failed");
-      setAdmins((prev) => prev.map((a) => a._id === admin._id ? { ...a, isActive: data.isActive } : a));
-      toast.success(data.isActive ? `${admin.name} enabled` : `${admin.name} disabled`);
+      setAdmins((prev) =>
+        prev.map((a) =>
+          a._id === admin._id ? { ...a, isActive: data.isActive } : a,
+        ),
+      );
+      toast.success(
+        data.isActive ? `${admin.name} enabled` : `${admin.name} disabled`,
+      );
     } catch (e: any) {
       toast.error(e.message || "Toggle failed");
     } finally {
@@ -321,17 +408,21 @@ export default function SettingsPage() {
   const handleDelete = (admin: CareerAdmin) => {
     showConfirm({
       message: `Delete "${admin.name}"?`,
-      subMessage: "This action cannot be undone. The admin's access will be permanently removed.",
+      subMessage:
+        "This action cannot be undone. The admin's access will be permanently removed.",
       confirmLabel: "Yes, Delete",
       variant: "danger",
       onConfirm: async () => {
         closeConfirm();
         setDeletingId(admin._id);
         try {
-          const res = await fetch(`/api-backend/cms/career-admin/${admin._id}`, {
-            method: "DELETE",
-            headers: authHeaders(),
-          });
+          const res = await fetch(
+            `/api-backend/cms/career-admin/${admin._id}`,
+            {
+              method: "DELETE",
+              headers: authHeaders(),
+            },
+          );
           if (!res.ok) throw new Error("Delete failed");
           setAdmins((prev) => prev.filter((a) => a._id !== admin._id));
           toast.success(`${admin.name} deleted`);
@@ -347,19 +438,27 @@ export default function SettingsPage() {
   const handleForceLogout = (admin: CareerAdmin) => {
     showConfirm({
       message: `Log out "${admin.name}"?`,
-      subMessage: "Their active session will be terminated. They will need to log in again.",
+      subMessage:
+        "Their active session will be terminated. They will need to log in again.",
       confirmLabel: "Yes, Log Out",
       variant: "warning",
       onConfirm: async () => {
         closeConfirm();
         setForceLoggingOutId(admin._id);
         try {
-          const res = await fetch(`/api-backend/cms/career-admin/${admin._id}/session`, {
-            method: "DELETE",
-            headers: authHeaders(),
-          });
+          const res = await fetch(
+            `/api-backend/cms/career-admin/${admin._id}/session`,
+            {
+              method: "DELETE",
+              headers: authHeaders(),
+            },
+          );
           if (!res.ok) throw new Error("Failed");
-          setAdmins((prev) => prev.map((a) => a._id === admin._id ? { ...a, isOnline: false } : a));
+          setAdmins((prev) =>
+            prev.map((a) =>
+              a._id === admin._id ? { ...a, isOnline: false } : a,
+            ),
+          );
           toast.success(`${admin.name} logged out`);
         } catch {
           toast.error("Logout failed, please try again");
@@ -374,19 +473,23 @@ export default function SettingsPage() {
     const onlineCount = admins.filter((a) => a.isOnline).length;
     showConfirm({
       message: "Log out all Career Admins?",
-      subMessage: onlineCount > 0
-        ? `${onlineCount} admin(s) currently online. All their sessions will be cleared.`
-        : "All career admin sessions will be cleared.",
+      subMessage:
+        onlineCount > 0
+          ? `${onlineCount} admin(s) currently online. All their sessions will be cleared.`
+          : "All career admin sessions will be cleared.",
       confirmLabel: "Yes, Log Out All",
       variant: "warning",
       onConfirm: async () => {
         closeConfirm();
         setLoggingOutAll(true);
         try {
-          const res = await fetch("/api-backend/cms/career-admin/sessions/all", {
-            method: "DELETE",
-            headers: authHeaders(),
-          });
+          const res = await fetch(
+            "/api-backend/cms/career-admin/sessions/all",
+            {
+              method: "DELETE",
+              headers: authHeaders(),
+            },
+          );
           if (!res.ok) throw new Error("Failed");
           setAdmins((prev) => prev.map((a) => ({ ...a, isOnline: false })));
           toast.success("All career admins logged out");
@@ -437,15 +540,21 @@ export default function SettingsPage() {
           admin={editingAdmin}
           onClose={() => setEditingAdmin(null)}
           onSaved={(updated) => {
-            setAdmins((prev) => prev.map((a) => a._id === updated._id ? updated : a));
+            setAdmins((prev) =>
+              prev.map((a) => (a._id === updated._id ? updated : a)),
+            );
             setEditingAdmin(null);
           }}
         />
       )}
 
       <div>
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Settings</h2>
-        <p className="text-sm text-gray-500 mt-1">Manage your admin account settings</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+          Settings
+        </h2>
+        <p className="text-sm text-gray-500 mt-1">
+          Manage your admin account settings
+        </p>
       </div>
 
       {/* Admin Profile */}
@@ -455,30 +564,46 @@ export default function SettingsPage() {
             {user?.name?.charAt(0) || "A"}
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 text-lg">{user?.name || "Admin"}</h3>
-            <p className="text-sm text-gray-500">{user?.email || "admin@popularhospital.in"}</p>
+            <h3 className="font-bold text-gray-900 text-lg">
+              {user?.name || "Admin"}
+            </h3>
+            <p className="text-sm text-gray-500">
+              {user?.email || "admin@popularhospital.in"}
+            </p>
           </div>
         </div>
         <div className="space-y-3 border-t border-gray-100 pt-4">
           <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50">
             <User className="w-5 h-5 text-gray-400" />
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Name</p>
-              <p className="text-sm text-gray-900 font-medium">{user?.name || "Admin"}</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Name
+              </p>
+              <p className="text-sm text-gray-900 font-medium">
+                {user?.name || "Admin"}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50">
             <Key className="w-5 h-5 text-gray-400" />
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Email</p>
-              <p className="text-sm text-gray-900 font-medium">{user?.email || ""}</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Email
+              </p>
+              <p className="text-sm text-gray-900 font-medium">
+                {user?.email || ""}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50">
             <Shield className="w-5 h-5 text-gray-400" />
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Role</p>
-              <p className="text-sm text-gray-900 font-medium">Super Administrator</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Role
+              </p>
+              <p className="text-sm text-gray-900 font-medium">
+                Super Administrator
+              </p>
             </div>
           </div>
         </div>
@@ -486,7 +611,6 @@ export default function SettingsPage() {
 
       {/* Career Portal Admins */}
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-
         {/* Section Header */}
         <div className="flex items-center gap-3 mb-5">
           <div className="w-10 h-10 rounded-xl bg-[#0d9488]/10 flex items-center justify-center shrink-0">
@@ -495,7 +619,9 @@ export default function SettingsPage() {
           <div className="flex-1 min-w-0">
             <h3 className="font-bold text-gray-900">Career Portal Admins</h3>
             <p className="text-xs text-gray-500 mt-0.5">
-              {loadingAdmins ? "Loading..." : (
+              {loadingAdmins ? (
+                "Loading..."
+              ) : (
                 <>
                   {admins.length} admin{admins.length !== 1 ? "s" : ""}
                   {onlineAdmins.length > 0 && (
@@ -514,7 +640,11 @@ export default function SettingsPage() {
               title="Log out all career admins"
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors shrink-0 disabled:opacity-50"
             >
-              {loggingOutAll ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ShieldOff className="w-3.5 h-3.5" />}
+              {loggingOutAll ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <ShieldOff className="w-3.5 h-3.5" />
+              )}
               Logout All
             </button>
           )}
@@ -535,20 +665,26 @@ export default function SettingsPage() {
               <div
                 key={admin._id}
                 className={`flex items-center gap-3 p-3 rounded-xl border transition-colors
-                  ${admin.isOnline
-                    ? "bg-emerald-50/60 border-emerald-200"
-                    : "bg-gray-50 border-gray-100 hover:bg-gray-100"}`}
+                  ${
+                    admin.isOnline
+                      ? "bg-emerald-50/60 border-emerald-200"
+                      : "bg-gray-50 border-gray-100 hover:bg-gray-100"
+                  }`}
               >
                 {/* Avatar */}
-                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0
-                  ${admin.isOnline ? "bg-emerald-600" : "bg-gradient-to-br from-[#0d9488] to-[#0b1c43]"}`}>
+                <div
+                  className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0
+                  ${admin.isOnline ? "bg-emerald-600" : "bg-gradient-to-br from-[#0d9488] to-[#0b1c43]"}`}
+                >
                   {admin.name?.charAt(0)?.toUpperCase() || "C"}
                 </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-gray-900 truncate">{admin.name || "Career Admin"}</p>
+                    <p className="text-sm font-semibold text-gray-900 truncate">
+                      {admin.name || "Career Admin"}
+                    </p>
                     {admin.isOnline && (
                       <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
                         <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
@@ -556,12 +692,16 @@ export default function SettingsPage() {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-gray-400 truncate">{admin.email}</p>
+                  <p className="text-xs text-gray-400 truncate">
+                    {admin.email}
+                  </p>
                 </div>
 
                 {/* Active/Disabled badge */}
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0
-                  ${admin.isActive ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-600"}`}>
+                <span
+                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0
+                  ${admin.isActive ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-600"}`}
+                >
                   {admin.isActive ? "Active" : "Disabled"}
                 </span>
 
@@ -574,8 +714,10 @@ export default function SettingsPage() {
                     ${admin.isActive ? "bg-[#0d9488]" : "bg-gray-300"}
                     ${togglingId === admin._id ? "opacity-50" : ""}`}
                 >
-                  <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform
-                    ${admin.isActive ? "translate-x-4" : "translate-x-0.5"}`} />
+                  <span
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform
+                    ${admin.isActive ? "translate-x-4" : "translate-x-0.5"}`}
+                  />
                 </button>
 
                 {/* Force Logout */}
@@ -585,9 +727,11 @@ export default function SettingsPage() {
                   title="Force Logout — clear session"
                   className="p-1.5 rounded-lg transition-colors shrink-0 text-amber-500 hover:text-amber-700 hover:bg-amber-50 disabled:opacity-40"
                 >
-                  {forceLoggingOutId === admin._id
-                    ? <Loader2 className="w-4 h-4 animate-spin" />
-                    : <WifiOff className="w-4 h-4" />}
+                  {forceLoggingOutId === admin._id ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <WifiOff className="w-4 h-4" />
+                  )}
                 </button>
 
                 {/* Edit */}
@@ -606,9 +750,11 @@ export default function SettingsPage() {
                   title="Delete"
                   className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
                 >
-                  {deletingId === admin._id
-                    ? <Loader2 className="w-4 h-4 animate-spin" />
-                    : <Trash2 className="w-4 h-4" />}
+                  {deletingId === admin._id ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Trash2 className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             ))}
@@ -626,7 +772,9 @@ export default function SettingsPage() {
       {/* Logout */}
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-red-100">
         <h4 className="font-bold text-red-700 mb-2">Danger Zone</h4>
-        <p className="text-sm text-gray-500 mb-4">Logging out will clear your session.</p>
+        <p className="text-sm text-gray-500 mb-4">
+          Logging out will clear your session.
+        </p>
         <button
           onClick={handleLogout}
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-semibold transition-colors"

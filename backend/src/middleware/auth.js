@@ -6,7 +6,9 @@ export const cmsAuth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ error: "Unauthorized: Missing or invalid credentials" });
+    return res
+      .status(401)
+      .json({ error: "Unauthorized: Missing or invalid credentials" });
   }
 
   const token = authHeader.split(" ")[1];
@@ -17,11 +19,17 @@ export const cmsAuth = async (req, res, next) => {
 
     // career_admin ke liye har request pe session + active status check
     if (decoded.role === "career_admin") {
-      const admin = await AdminUser.findById(decoded.id).select("isActive sessionToken sessionExpires");
+      const admin = await AdminUser.findById(decoded.id).select(
+        "isActive sessionToken sessionExpires",
+      );
       if (!admin || admin.isActive === false) {
         return res.status(403).json({ error: "account_disabled" });
       }
-      if (!admin.sessionToken || !admin.sessionExpires || admin.sessionExpires < new Date()) {
+      if (
+        !admin.sessionToken ||
+        !admin.sessionExpires ||
+        admin.sessionExpires < new Date()
+      ) {
         return res.status(401).json({ error: "session_expired" });
       }
     }
@@ -29,7 +37,9 @@ export const cmsAuth = async (req, res, next) => {
     return next();
   } catch (err) {
     if (err.name === "TokenExpiredError") {
-      return res.status(401).json({ error: "Token has expired. Please log in again." });
+      return res
+        .status(401)
+        .json({ error: "Token has expired. Please log in again." });
     }
     return res.status(401).json({ error: "Invalid or expired token" });
   }

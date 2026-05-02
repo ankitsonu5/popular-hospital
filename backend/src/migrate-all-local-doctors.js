@@ -85,9 +85,13 @@ for (const d of doctors) {
     continue;
   }
 
-  const speciality = await Speciality.findOne({ slug: d.specialitySlug }).lean();
+  const speciality = await Speciality.findOne({
+    slug: d.specialitySlug,
+  }).lean();
   if (!speciality) {
-    console.warn(`⚠️  Speciality not found: ${d.specialitySlug} — skipping ${d.name}`);
+    console.warn(
+      `⚠️  Speciality not found: ${d.specialitySlug} — skipping ${d.name}`,
+    );
     skipped++;
     continue;
   }
@@ -109,5 +113,7 @@ for (const d of doctors) {
   added++;
 }
 
-console.log(`\n📊 Done — ${added} added, ${alreadyExists} already existed, ${skipped} skipped`);
+console.log(
+  `\n📊 Done — ${added} added, ${alreadyExists} already existed, ${skipped} skipped`,
+);
 await mongoose.disconnect();

@@ -106,9 +106,14 @@ import {
 } from "../controllers/popupController.js";
 import { cmsAuth, superAdminOnly } from "../middleware/auth.js";
 import {
-  getCareerAdmins, createCareerAdmin, updateCareerAdmin,
-  toggleCareerAdmin, deleteCareerAdmin,
-  careerAdminLogout, forceLogoutCareerAdmin, forceLogoutAllCareerAdmins,
+  getCareerAdmins,
+  createCareerAdmin,
+  updateCareerAdmin,
+  toggleCareerAdmin,
+  deleteCareerAdmin,
+  careerAdminLogout,
+  forceLogoutCareerAdmin,
+  forceLogoutAllCareerAdmins,
 } from "../controllers/authController.js";
 
 const router = Router();
@@ -123,8 +128,16 @@ router.get("/career-admin", superAdminOnly, getCareerAdmins);
 router.post("/career-admin", superAdminOnly, createCareerAdmin);
 router.put("/career-admin/:id", superAdminOnly, updateCareerAdmin);
 router.patch("/career-admin/:id/toggle", superAdminOnly, toggleCareerAdmin);
-router.delete("/career-admin/sessions/all", superAdminOnly, forceLogoutAllCareerAdmins);
-router.delete("/career-admin/:id/session", superAdminOnly, forceLogoutCareerAdmin);
+router.delete(
+  "/career-admin/sessions/all",
+  superAdminOnly,
+  forceLogoutAllCareerAdmins,
+);
+router.delete(
+  "/career-admin/:id/session",
+  superAdminOnly,
+  forceLogoutCareerAdmin,
+);
 router.delete("/career-admin/:id", superAdminOnly, deleteCareerAdmin);
 
 // ── Careers CRUD — accessible by both super_admin AND career_admin ──
@@ -171,8 +184,16 @@ router.delete("/doctors/:id", deleteDoctor);
 
 // Specialities (Departments) CRUD
 router.get("/specialities", getAllSpecialities);
-router.post("/specialities", uploadSpecialityBanner.single("banner_image"), createSpeciality);
-router.put("/specialities/:id", uploadSpecialityBanner.single("banner_image"), updateSpeciality);
+router.post(
+  "/specialities",
+  uploadSpecialityBanner.single("banner_image"),
+  createSpeciality,
+);
+router.put(
+  "/specialities/:id",
+  uploadSpecialityBanner.single("banner_image"),
+  updateSpeciality,
+);
 router.delete("/specialities/:id", deleteSpeciality);
 
 // Designations CRUD

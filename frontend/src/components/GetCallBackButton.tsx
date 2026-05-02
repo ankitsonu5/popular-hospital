@@ -9,10 +9,16 @@ interface Props {
   children?: React.ReactNode;
 }
 
-export default function GetCallBackButton({ department, className, children }: Props) {
+export default function GetCallBackButton({
+  department,
+  className,
+  children,
+}: Props) {
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "" });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -26,7 +32,11 @@ export default function GetCallBackButton({ department, className, children }: P
       const res = await fetch("/api-backend/callback-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, phone: form.phone, department }),
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          department,
+        }),
       });
       if (!res.ok) throw new Error();
       setStatus("success");
@@ -45,13 +55,19 @@ export default function GetCallBackButton({ department, className, children }: P
         >
           ×
         </button>
-        <h3 className="text-2xl font-bold text-[#0b1c43] mb-2 font-heading">Get a Call Back</h3>
-        <p className="text-gray-500 text-sm mb-6">Our team will call you shortly.</p>
+        <h3 className="text-2xl font-bold text-[#0b1c43] mb-2 font-heading">
+          Get a Call Back
+        </h3>
+        <p className="text-gray-500 text-sm mb-6">
+          Our team will call you shortly.
+        </p>
 
         {status === "success" ? (
           <div className="text-center py-6">
             <div className="text-green-500 text-5xl mb-3">✓</div>
-            <p className="text-gray-700 font-semibold">Thank you! We will call you back soon.</p>
+            <p className="text-gray-700 font-semibold">
+              Thank you! We will call you back soon.
+            </p>
             <button
               onClick={() => setShowModal(false)}
               className="mt-4 bg-[#e11d48] text-white px-6 py-2 rounded-full font-semibold"
@@ -62,7 +78,9 @@ export default function GetCallBackButton({ department, className, children }: P
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Name</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Name
+              </label>
               <input
                 type="text"
                 required
@@ -73,7 +91,9 @@ export default function GetCallBackButton({ department, className, children }: P
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Phone Number
+              </label>
               <input
                 type="tel"
                 required
@@ -84,7 +104,9 @@ export default function GetCallBackButton({ department, className, children }: P
               />
             </div>
             {status === "error" && (
-              <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
+              <p className="text-red-500 text-sm">
+                Something went wrong. Please try again.
+              </p>
             )}
             <button
               type="submit"
@@ -102,7 +124,10 @@ export default function GetCallBackButton({ department, className, children }: P
   return (
     <>
       <button
-        onClick={() => { setShowModal(true); setStatus("idle"); }}
+        onClick={() => {
+          setShowModal(true);
+          setStatus("idle");
+        }}
         className={className}
       >
         {children}
