@@ -8,11 +8,11 @@ function cmsFetch(path: string, options: RequestInit = {}) {
   const base =
     typeof window !== "undefined"
       ? "/api-backend/cms"
-      : `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"}/api/cms`;
+      : `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100"}/api/cms`;
   const url =
     typeof window !== "undefined"
       ? `${window.location.origin}/api-backend/cms${path}`
-      : `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"}/api/cms${path}`;
+      : `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5100"}/api/cms${path}`;
   const headers = new Headers(options.headers);
   if (key) headers.set("x-cms-key", key);
   return fetch(url, { ...options, headers });
