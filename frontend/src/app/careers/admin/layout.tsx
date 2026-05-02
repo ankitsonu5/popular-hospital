@@ -23,14 +23,14 @@ export default function CareerAdminLayout({
   const [user, setUser] = useState<any>(null);
 
   const forceLogout = (path = "/careers/admin-login") => {
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_user");
+    localStorage.removeItem("career_admin_token");
+    localStorage.removeItem("career_admin_user");
     router.push(path);
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("admin_token");
-    const storedUser = localStorage.getItem("admin_user");
+    const token = localStorage.getItem("career_admin_token");
+    const storedUser = localStorage.getItem("career_admin_user");
     if (!token || !storedUser) {
       router.push("/careers/admin-login");
       return;
@@ -46,7 +46,7 @@ export default function CareerAdminLayout({
   // Har 20 second pe session validate karo — force logout ya disable hone par redirect
   useEffect(() => {
     const validate = async () => {
-      const token = localStorage.getItem("admin_token");
+      const token = localStorage.getItem("career_admin_token");
       if (!token) return;
       try {
         const res = await fetch("/api-backend/auth/me", {
@@ -65,7 +65,7 @@ export default function CareerAdminLayout({
   const fetcher = async (url: string) => {
     const res = await fetch(url, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+        Authorization: `Bearer ${localStorage.getItem("career_admin_token")}`,
       },
     });
     if (res.status === 401 || res.status === 403) {
@@ -89,12 +89,12 @@ export default function CareerAdminLayout({
       await fetch("/api-backend/cms/career-admin/logout", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+          Authorization: `Bearer ${localStorage.getItem("career_admin_token")}`,
         },
       });
     } catch (_) {}
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_user");
+    localStorage.removeItem("career_admin_token");
+    localStorage.removeItem("career_admin_user");
     router.push("/careers/admin-login");
   };
 

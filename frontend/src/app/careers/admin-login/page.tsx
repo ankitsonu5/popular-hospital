@@ -24,8 +24,8 @@ export default function CareerAdminLoginPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("admin_token");
-    const user = localStorage.getItem("admin_user");
+    const token = localStorage.getItem("career_admin_token");
+    const user = localStorage.getItem("career_admin_user");
     if (token && user) {
       const parsed = JSON.parse(user);
       if (parsed.role === "career_admin") {
@@ -62,8 +62,8 @@ export default function CareerAdminLoginPage() {
         throw new Error("Access denied. Use the main admin login.");
       }
 
-      localStorage.setItem("admin_token", data.token);
-      localStorage.setItem("admin_user", JSON.stringify(data.user));
+      localStorage.setItem("career_admin_token", data.token);
+      localStorage.setItem("career_admin_user", JSON.stringify(data.user));
       router.push("/careers/admin");
     } catch (err: any) {
       setError(err.message || "Invalid credentials");
