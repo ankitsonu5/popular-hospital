@@ -36,8 +36,12 @@ yarn-error.log*
 next-env.d.ts
 
 # Agent specific files (Preview/Dev utilities)
-.gemini/
-.antigravityignore
-.agent/
-.cursor/
-.claude
+
+
+# node_modules
+.next
+dist
+build
+coverage
+.venv
+__pycache__

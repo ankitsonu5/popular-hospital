@@ -11,5 +11,5 @@ export default function ServicesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="departments-font-scope">{children}</div>;
 }

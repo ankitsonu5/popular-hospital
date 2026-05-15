@@ -34,7 +34,7 @@ export default function EmergencyServices() {
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-5xl font-extrabold text-[#1e3a8a] font-heading tracking-tight">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-5xl font-extrabold text-[#1e3a8a] font-jakarta tracking-tight">
                 24x7 Services
               </h2>
             </div>

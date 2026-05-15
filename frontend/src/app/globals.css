@@ -95,6 +95,25 @@ button {
   animation: scroll-right 30s linear infinite;
 }
 
+.font-jakarta {
+  font-family: "Plus Jakarta Sans", var(--font-lato);
+}
+
+.departments-font-scope,
+.departments-font-scope * {
+  font-family: "Plus Jakarta Sans", var(--font-lato) !important;
+}
+
+.about-font-scope,
+.about-font-scope * {
+  font-family: "Plus Jakarta Sans", var(--font-lato) !important;
+}
+
+.locations-font-scope,
+.locations-font-scope * {
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif !important;
+}
+
 .pause-scroll:hover {
   animation-play-state: paused !important;
 }
@@ -193,7 +212,7 @@ button {
 
 /* Custom Browser Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -201,18 +220,18 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #008080; /* hospital-teal */
+  background: #1e3a8a; /* Our Branches blue */
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6600; /* hospital-orange */
+  background: #284a91;
 }
 
 /* Firefox scrollbar support */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #008080 transparent;
+  scrollbar-color: #1e3a8a transparent;
 }
 
 /* ───────────────────────────────────────────────────────────────── */

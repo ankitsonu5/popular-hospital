@@ -6,6 +6,7 @@ const patientStorySchema = new mongoose.Schema(
     name: { type: String, required: true, trim: true },
     videoUrl: { type: String, required: true, trim: true },
     thumbnailUrl: { type: String, trim: true, default: "" },
+    homeThumbnailUrl: { type: String, trim: true, default: "" },
     order: { type: Number, default: 0 },
     isActive: { type: Boolean, default: true },
   },

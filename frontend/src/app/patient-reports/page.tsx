@@ -181,7 +181,7 @@ export default function PatientReportsPage() {
                       href="tel:+917800001895"
                       className="hover:text-[#0d9488] transition-colors"
                     >
-                      +91-7800001895
+                      +91-7800001895 / 96
                     </a>
                     <a
                       href="tel:+917800001896"

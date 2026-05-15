@@ -68,7 +68,7 @@ const doctors = [
     qualifications: "MBBS, MS (General Surgery) IMS, BHU",
     designation: "Head, Department of General Surgery",
     slug: "dr-ak-kaushik",
-    image: "/images/departments_doctor/dr_ak_kaushik.png",
+    image: "/images/departments_doctor/dr_ak_kaushik.jpg",
   },
   {
     name: "Dr. Abhishek Kumar",

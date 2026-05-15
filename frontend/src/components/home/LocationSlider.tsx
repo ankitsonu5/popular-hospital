@@ -24,113 +24,129 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
   };
 
   return (
-    <section id="our-locations" className="py-24 bg-[#f5f5f7] overflow-hidden">
-      <div className="mx-auto max-w-[1440px] min-[1920px]:max-w-[1366px] px-6 sm:px-8 lg:px-12 relative">
-        <div className="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-          <div className="max-w-4xl">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-5xl font-bold text-[#1e3a8a] tracking-tight font-heading leading-tight">
-              Our Branches.{" "}
-              <span className="text-[#6e6e73]">Always within reach.</span>
-            </h2>
-            <p className="sm:hidden mt-4 text-gray-500 font-medium text-sm tracking-wide bg-gray-100/50 inline-block px-3 py-1 rounded-full">
-              Swipe right to see more locations
-            </p>
-          </div>
-
-          <div className="hidden sm:flex gap-4 mb-2">
-            <button
-              onClick={() => scroll("left")}
-              className="w-12 h-12 rounded-full bg-[#d2d2d7] hover:bg-[#86868b] text-white flex items-center justify-center transition-colors shadow-sm"
-              aria-label="Previous locations"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-full bg-[#E85222] hover:bg-[#d1451a] text-white flex items-center justify-center transition-colors shadow-sm"
-              aria-label="Next locations"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-          </div>
+    <section id="our-locations" className="bg-white py-16 sm:py-20 overflow-hidden">
+      <div className="mx-auto max-w-[1440px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 lg:px-12">
+        <div className="mb-8 text-center">
+          <h2 className="font-jakarta text-3xl font-black leading-tight tracking-normal text-[#1e3a8a] sm:text-4xl lg:text-5xl">
+            Our Branches.{" "}
+            <span className="text-[#6e6e73]">Always within reach.</span>
+          </h2>
         </div>
 
-        <div
-          ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar scroll-smooth"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {branches.map((location) => (
-            <div
-              key={location.slug}
-              className="relative flex-shrink-0 w-[85vw] sm:w-[380px] xl:w-[320px] h-[480px] sm:h-[520px] xl:h-[460px] rounded-[32px] overflow-hidden snap-center group transition-transform duration-500 hover:scale-[1.02] shadow-xl border border-gray-100/10"
-            >
-              <div className="absolute inset-0 z-20 p-8 xl:p-6 flex flex-col justify-between">
-                <div>
-                  <span className="text-base xl:text-sm font-semibold tracking-wide uppercase text-[#00B4D8] drop-shadow-sm">
-                    {location.city}
-                  </span>
-                  <h3 className="mt-2 text-3xl xl:text-2xl font-bold leading-tight font-heading text-white drop-shadow-md">
-                    {location.name}
-                  </h3>
-                  <p className="mt-3 text-lg xl:text-base leading-relaxed text-white/80 drop-shadow-sm">
-                    {location.address}
-                  </p>
-                </div>
+        <div className="relative overflow-hidden rounded-lg bg-white px-5 py-6 sm:px-7 lg:min-h-[320px] lg:px-9 lg:py-8">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-full rounded-lg bg-gradient-to-r from-[#203f7d] via-[#284a91] to-[#284a91] lg:w-[43%]" />
 
-                <div className="flex items-center gap-4">
-                  <Link
-                    href={`/locations/${location.slug || ""}`}
-                    className="px-6 py-3 rounded-full font-medium transition-colors bg-white text-black hover:bg-gray-100"
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[300px_1fr] xl:grid-cols-[330px_1fr]">
+            <div className="flex flex-col justify-center text-white">
+              <h3 className="font-jakarta text-2xl font-black leading-tight sm:text-3xl">
+                Our Hospital Network
+              </h3>
+              <p className="mt-4 max-w-[310px] text-sm font-semibold leading-6 text-white/88 sm:text-base">
+                Popular Hospital brings trusted healthcare closer with connected
+                branches for OPD, diagnostics, emergency support, and specialist
+                care.
+              </p>
+              <Link
+                href="/our-locations"
+                className="group mt-6 inline-flex h-14 w-full max-w-[290px] items-center justify-between overflow-hidden rounded bg-[#E85222] pl-6 font-jakarta text-sm font-black text-white shadow-[0_10px_24px_rgba(232,82,34,0.28)] transition hover:bg-[#d8471e] sm:text-base"
+              >
+                Find Hospital Near You
+                <span className="ml-4 flex h-full w-[52px] shrink-0 items-center justify-center bg-[#f05a28] text-white transition group-hover:bg-[#E85222]">
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.4}
                   >
-                    Get Directions
-                  </Link>
-                </div>
-              </div>
-
-              <div className="absolute inset-0 z-10 transition-opacity duration-500">
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
-                <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/50 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-
-              <Image
-                src={
-                  getImageUrl(location.image_one || "") ||
-                  "/about-section-image.png"
-                }
-                alt={location.name || "Branch"}
-                fill
-                className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
-                sizes="(max-width: 768px) 85vw, (max-width: 1280px) 380px, 400px"
-                unoptimized
-              />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
             </div>
-          ))}
+
+            <div className="relative min-w-0">
+              <div className="mb-4 hidden justify-end gap-4 pr-2 sm:flex">
+                <button
+                  onClick={() => scroll("left")}
+                  className="text-[#E85222] transition hover:text-[#c9441c]"
+                  aria-label="Previous locations"
+                >
+                  <svg
+                    className="h-9 w-9"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.4}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m6-6-6 6 6 6" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => scroll("right")}
+                  className="text-[#E85222] transition hover:text-[#c9441c]"
+                  aria-label="Next locations"
+                >
+                  <svg
+                    className="h-9 w-9"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.4}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
+                  </svg>
+                </button>
+              </div>
+
+              <div
+                ref={scrollContainerRef}
+                className="flex gap-5 overflow-x-auto pb-2 pt-1 snap-x snap-mandatory no-scrollbar scroll-smooth lg:-mr-12"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {branches.map((location) => (
+                  <article
+                    key={location.slug}
+                    className="flex h-[276px] w-[76vw] max-w-[250px] flex-shrink-0 flex-col overflow-hidden rounded-xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] snap-center sm:w-[250px]"
+                  >
+                    <div className="relative h-[145px] overflow-hidden bg-slate-100">
+                      <Image
+                        src={
+                          getImageUrl(location.image_one || "") ||
+                          "/about-section-image.png"
+                        }
+                        alt={location.name || "Branch"}
+                        fill
+                        className="object-cover transition-transform duration-500 hover:scale-105"
+                        sizes="250px"
+                        unoptimized
+                      />
+                    </div>
+
+                    <div className="flex flex-1 flex-col px-3.5 py-3">
+                      <h3 className="font-jakarta text-[15px] font-black leading-snug text-[#4a4a4a] line-clamp-2">
+                        {location.name}
+                      </h3>
+                      <p className="mt-1 text-[11px] font-semibold leading-4 text-slate-500 line-clamp-1">
+                        {location.city || location.address}
+                      </p>
+
+                      <Link
+                        href={`/locations/${location.slug || ""}`}
+                        className="mt-auto inline-flex h-9 items-center justify-center rounded bg-[#0b467d] px-3 font-jakarta text-xs font-black text-white transition hover:bg-[#083c72]"
+                      >
+                        Get Direction
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <p className="mt-4 text-center text-xs font-bold text-white/70 sm:hidden">
+                Swipe right to see more locations
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

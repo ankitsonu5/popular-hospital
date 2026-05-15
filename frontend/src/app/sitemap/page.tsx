@@ -28,7 +28,8 @@ const sitemapData = [
     ),
     links: [
       { name: "Our Story", href: "/about" },
-      { name: "Our Vision & Mission", href: "/about/vision-mission" },
+      { name: "Vision 2030", href: "/about/our-vision-2030" },
+      { name: "Our Mission", href: "/about/mission" },
       { name: "From Chairman's Desk", href: "/about/chairman-desk" },
       { name: "From MD's Desk", href: "/about/md-desk" },
       { name: "Leadership Team", href: "/about/leadership" },
@@ -167,7 +168,12 @@ const sitemapData = [
     ),
     links: [
       { name: "Book Appointment", href: "/book" },
-      { name: "Find a Doctor", href: "/doctors" },
+      { name: "Our Doctors", href: "/doctors" },
+      {
+        name: "International Patients",
+        href: "/services/international-patients",
+      },
+      { name: "Free OPD and Offer", href: "/services/free-opd-offer" },
       { name: "Online Payment", href: "/online-payment" },
       { name: "Second Opinion", href: "/second-opinion" },
       { name: "OPD Schedule", href: "/opd" },
@@ -198,7 +204,7 @@ const sitemapData = [
       { name: "Blog Highlights", href: "/blog" },
       { name: "Media Coverage", href: "/media/coverage" },
       { name: "Hospital Events", href: "/media/events" },
-      { name: "Patient Stories", href: "/stories" },
+      { name: "Patients Testimonial", href: "/stories" },
       { name: "Refund Policy", href: "/refund-policy" },
       { name: "Terms of Use", href: "/terms" },
       { name: "Payment Policy", href: "/payment-policy" },

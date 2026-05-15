@@ -103,7 +103,15 @@ export const getAllPatientStories = async (req, res) => {
 
 export const createPatientStory = async (req, res) => {
   try {
-    const { title, name, videoUrl, order, isActive, thumbnailUrl } = req.body;
+    const {
+      title,
+      name,
+      videoUrl,
+      order,
+      isActive,
+      thumbnailUrl,
+      homeThumbnailUrl,
+    } = req.body;
 
     if (!name?.trim()) {
       return res.status(400).json({ error: "Story name is required" });
@@ -115,15 +123,22 @@ export const createPatientStory = async (req, res) => {
       });
     }
 
-    const resolvedThumbnailUrl = req.file
-      ? `/uploads/patient-stories/${req.file.filename}`
+    const thumbnailFile = req.files?.thumbnail?.[0];
+    const homeThumbnailFile = req.files?.homeThumbnail?.[0];
+
+    const resolvedThumbnailUrl = thumbnailFile
+      ? `/uploads/patient-stories/${thumbnailFile.filename}`
       : thumbnailUrl?.trim() || "";
+    const resolvedHomeThumbnailUrl = homeThumbnailFile
+      ? `/uploads/patient-stories/${homeThumbnailFile.filename}`
+      : homeThumbnailUrl?.trim() || "";
 
     const story = await PatientStory.create({
       title: title?.trim() || "",
       name: name.trim(),
       videoUrl: videoUrl.trim(),
       thumbnailUrl: resolvedThumbnailUrl,
+      homeThumbnailUrl: resolvedHomeThumbnailUrl,
       order: Number(order) || 0,
       isActive: isActive !== "false",
     });
@@ -172,14 +187,28 @@ export const updatePatientStory = async (req, res) => {
       updates.thumbnailUrl = req.body.thumbnailUrl.trim();
     }
 
+    if (typeof req.body.homeThumbnailUrl === "string") {
+      updates.homeThumbnailUrl = req.body.homeThumbnailUrl.trim();
+    }
+
     if (req.body.isActive === "true") updates.isActive = true;
     if (req.body.isActive === "false") updates.isActive = false;
 
-    if (req.file) {
+    const thumbnailFile = req.files?.thumbnail?.[0];
+    const homeThumbnailFile = req.files?.homeThumbnail?.[0];
+
+    if (thumbnailFile) {
       if (story.thumbnailUrl?.startsWith("/uploads/")) {
         deleteFile(story.thumbnailUrl);
       }
-      updates.thumbnailUrl = `/uploads/patient-stories/${req.file.filename}`;
+      updates.thumbnailUrl = `/uploads/patient-stories/${thumbnailFile.filename}`;
+    }
+
+    if (homeThumbnailFile) {
+      if (story.homeThumbnailUrl?.startsWith("/uploads/")) {
+        deleteFile(story.homeThumbnailUrl);
+      }
+      updates.homeThumbnailUrl = `/uploads/patient-stories/${homeThumbnailFile.filename}`;
     }
 
     const updatedStory = await PatientStory.findByIdAndUpdate(id, updates, {
@@ -202,6 +231,9 @@ export const deletePatientStory = async (req, res) => {
 
     if (story.thumbnailUrl?.startsWith("/uploads/")) {
       deleteFile(story.thumbnailUrl);
+    }
+    if (story.homeThumbnailUrl?.startsWith("/uploads/")) {
+      deleteFile(story.homeThumbnailUrl);
     }
     await PatientStory.findByIdAndDelete(req.params.id);
     res.json({ ok: true });

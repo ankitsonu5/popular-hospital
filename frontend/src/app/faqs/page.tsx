@@ -18,7 +18,7 @@ const faqs = [
     id: 2,
     question: "Does the hospital provide 24/7 emergency services?",
     answer:
-      "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895).",
+      "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895 / 96).",
   },
   {
     id: 3,

@@ -238,13 +238,29 @@ export default async function DoctorPage({ params }: Props) {
 
                 {/* ──── Right: Details ──── */}
                 <div className="lg:col-span-8 p-10 lg:p-12">
-                  <div className="flex justify-end mb-8">
+                  <div className="mb-8 flex flex-col justify-end gap-3 sm:flex-row">
                     <Link
                       href={`/book?doctor=${doctor.id}`}
-                      className="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3 rounded-md font-bold text-sm tracking-wide shadow transition-all transform hover:scale-105"
+                      className="inline-flex items-center justify-center bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3 rounded-md font-bold text-sm tracking-wide shadow transition-all transform hover:scale-105"
                     >
                       SCHEDULE AN APPOINTMENT
                     </Link>
+                    <a
+                      href="https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-md border border-[#3b82f6]/25 bg-white px-8 py-3 text-sm font-bold tracking-wide text-[#3b82f6] shadow transition-all hover:-translate-y-0.5 hover:border-[#3b82f6] hover:bg-blue-50"
+                    >
+                      <svg
+                        className="h-4 w-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path d="M8 5v14l11-7L8 5z" />
+                      </svg>
+                      DOCTOR&apos;S VIDEO
+                    </a>
                   </div>
 
                   <div className="mb-6 pb-6 border-b border-gray-100">

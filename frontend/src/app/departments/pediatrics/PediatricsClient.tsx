@@ -64,7 +64,7 @@ const doctors = [
     qualifications: "MBBS, DCH, DNB (Pediatrics)",
     designation: "Consultant Senior Pediatrician",
     slug: "dr-prabhat-kumar",
-    image: "/images/departments_doctor/dr_prabhat_kumar.png",
+    image: "/images/departments_doctor/dr_prabhat_kumar.jpg",
   },
 ];
 

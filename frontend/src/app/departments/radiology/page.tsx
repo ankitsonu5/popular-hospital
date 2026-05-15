@@ -449,7 +449,7 @@ export default function RadiologyPage() {
               href="tel:+917800001895"
               className="hover:text-teal-400 transition-colors tracking-tighter text-[#E85222]"
             >
-              +91-7800001895
+              +91-7800001895 / 96
             </a>
             <span className="opacity-30">/</span>
             <a

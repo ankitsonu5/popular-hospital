@@ -284,12 +284,18 @@ router.get("/patient-stories", getAllPatientStories);
 router.put("/patient-stories/reorder", reorderPatientStories);
 router.post(
   "/patient-stories",
-  uploadPatientStoryThumbnail.single("thumbnail"),
+  uploadPatientStoryThumbnail.fields([
+    { name: "thumbnail", maxCount: 1 },
+    { name: "homeThumbnail", maxCount: 1 },
+  ]),
   createPatientStory,
 );
 router.put(
   "/patient-stories/:id",
-  uploadPatientStoryThumbnail.single("thumbnail"),
+  uploadPatientStoryThumbnail.fields([
+    { name: "thumbnail", maxCount: 1 },
+    { name: "homeThumbnail", maxCount: 1 },
+  ]),
   updatePatientStory,
 );
 router.delete("/patient-stories/:id", deletePatientStory);

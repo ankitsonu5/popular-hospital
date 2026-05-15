@@ -112,7 +112,7 @@ export default function DieteticsNutritionClient() {
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#064e3b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/banners/dietetics_nutrition.png"
+            src="/images/banners/dietetics_nutrition.jpg"
             alt="Dietetics and Nutrition Center"
             fill
             className="object-cover object-center opacity-70 mix-blend-overlay"

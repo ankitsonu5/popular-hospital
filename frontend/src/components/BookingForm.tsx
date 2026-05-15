@@ -1,7 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import {
+  ArrowLeft,
+  Building2,
+  CalendarDays,
+  CheckCircle2,
+  Clock3,
+  Mail,
+  MessageSquareText,
+  Phone,
+  Stethoscope,
+  UserRound,
+} from "lucide-react";
 import { fetchDoctors, fetchBranches, createBooking } from "@/lib/api";
 import type { Doctor, Branch } from "@/lib/api";
 import { formatTimeToAmPm } from "@/lib/time";
@@ -79,17 +92,20 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
 
   if (submitted) {
     return (
-      <div className="mx-auto mt-12 max-w-md rounded-xl border border-green-200 bg-green-50 p-8 text-center">
-        <h2 className="text-xl font-semibold text-green-800">
+      <div className="rounded-2xl border border-emerald-200 bg-white p-8 text-center shadow-sm">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <CheckCircle2 className="h-7 w-7" />
+        </div>
+        <h2 className="mt-4 font-jakarta text-2xl font-black text-[#0b1c43]">
           Booking Confirmed
         </h2>
-        <p className="mt-2 text-green-700">
+        <p className="mx-auto mt-2 max-w-md text-sm font-medium leading-6 text-slate-600">
           We have received your appointment request. Our team will confirm
           shortly.
         </p>
         <button
           type="button"
-          className="btn-primary mt-6"
+          className="mt-6 rounded-lg bg-[#E85222] px-5 py-3 text-sm font-extrabold text-white shadow-sm transition hover:bg-[#d1451a]"
           onClick={() => router.push("/")}
         >
           Back to Home
@@ -101,27 +117,37 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto mt-8 max-w-2xl rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8"
+      className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6 lg:p-8"
     >
+      <div className="mb-6 flex flex-col justify-between gap-3 border-b border-slate-100 pb-5 sm:flex-row sm:items-end">
+        <div>
+          <p className="font-jakarta text-xs font-extrabold uppercase tracking-[0.18em] text-[#E85222]">
+            Appointment Details
+          </p>
+          <h2 className="mt-2 font-jakarta text-2xl font-black text-[#0b1c43]">
+            Tell us when you would like to visit
+          </h2>
+        </div>
+        <p className="text-xs font-bold text-slate-500">
+          Fields marked * are required
+        </p>
+      </div>
       {error && (
-        <p className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">
+        <p className="mb-5 rounded-xl border border-red-100 bg-red-50 p-3 text-sm font-semibold text-red-700">
           {error}
         </p>
       )}
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div>
-          <label
-            htmlFor="doctor"
-            className="mb-1 block text-sm font-medium text-gray-700"
-          >
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="space-y-2">
+          <FieldLabel htmlFor="doctor" icon={<Stethoscope />}>
             Doctor *
-          </label>
+          </FieldLabel>
           <select
             id="doctor"
             required
             value={doctorId}
             onChange={(e) => setDoctorId(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
+            className="h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-[#284a91] focus:ring-4 focus:ring-[#284a91]/10"
           >
             <option value="">Select doctor</option>
             {doctors.map((d) => (
@@ -131,19 +157,16 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
             ))}
           </select>
         </div>
-        <div>
-          <label
-            htmlFor="branch"
-            className="mb-1 block text-sm font-medium text-gray-700"
-          >
+        <div className="space-y-2">
+          <FieldLabel htmlFor="branch" icon={<Building2 />}>
             Branch *
-          </label>
+          </FieldLabel>
           <select
             id="branch"
             required
             value={branchId}
             onChange={(e) => setBranchId(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
+            className="h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-[#284a91] focus:ring-4 focus:ring-[#284a91]/10"
           >
             <option value="">Select branch</option>
             {branches.map((b) => (
@@ -153,13 +176,10 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
             ))}
           </select>
         </div>
-        <div>
-          <label
-            htmlFor="slotDate"
-            className="mb-1 block text-sm font-medium text-gray-700"
-          >
+        <div className="space-y-2">
+          <FieldLabel htmlFor="slotDate" icon={<CalendarDays />}>
             Date *
-          </label>
+          </FieldLabel>
           <input
             id="slotDate"
             type="date"
@@ -167,111 +187,125 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
             min={minDate}
             value={slotDate}
             onChange={(e) => setSlotDate(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
+            className="h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-[#284a91] focus:ring-4 focus:ring-[#284a91]/10"
           />
         </div>
-        <div>
-          <label
-            htmlFor="slotTime"
-            className="mb-1 block text-sm font-medium text-gray-700"
-          >
+        <div className="space-y-2">
+          <FieldLabel htmlFor="slotTime" icon={<Clock3 />}>
             Time *
-          </label>
+          </FieldLabel>
           <input
             id="slotTime"
             type="time"
             required
             value={slotTime}
             onChange={(e) => setSlotTime(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
+            className="h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-[#284a91] focus:ring-4 focus:ring-[#284a91]/10"
           />
           {slotTime && (
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="text-xs font-semibold text-slate-500">
               Selected time: {formatTimeToAmPm(slotTime)}
             </p>
           )}
         </div>
       </div>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
-        <div>
-          <label
-            htmlFor="patientName"
-            className="mb-1 block text-sm font-medium text-gray-700"
-          >
-            Your name *
-          </label>
-          <input
-            id="patientName"
-            type="text"
-            required
-            value={patientName}
-            onChange={(e) => setPatientName(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="patientPhone"
-            className="mb-1 block text-sm font-medium text-gray-700"
-          >
-            Phone *
-          </label>
-          <input
-            id="patientPhone"
-            type="tel"
-            required
-            value={patientPhone}
-            onChange={(e) => setPatientPhone(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <label
-            htmlFor="patientEmail"
-            className="mb-1 block text-sm font-medium text-gray-700"
-          >
-            Email
-          </label>
-          <input
-            id="patientEmail"
-            type="email"
-            value={patientEmail}
-            onChange={(e) => setPatientEmail(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <label
-            htmlFor="notes"
-            className="mb-1 block text-sm font-medium text-gray-700"
-          >
-            Notes (optional)
-          </label>
-          <textarea
-            id="notes"
-            rows={2}
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-hospital-teal focus:ring-1 focus:ring-hospital-teal"
-          />
+      <div className="mt-8 border-t border-slate-100 pt-6">
+        <p className="mb-5 font-jakarta text-xs font-extrabold uppercase tracking-[0.18em] text-[#284a91]">
+          Patient Information
+        </p>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-2">
+            <FieldLabel htmlFor="patientName" icon={<UserRound />}>
+              Your name *
+            </FieldLabel>
+            <input
+              id="patientName"
+              type="text"
+              required
+              value={patientName}
+              onChange={(e) => setPatientName(e.target.value)}
+              className="h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-[#284a91] focus:ring-4 focus:ring-[#284a91]/10"
+            />
+          </div>
+          <div className="space-y-2">
+            <FieldLabel htmlFor="patientPhone" icon={<Phone />}>
+              Phone *
+            </FieldLabel>
+            <input
+              id="patientPhone"
+              type="tel"
+              required
+              value={patientPhone}
+              onChange={(e) => setPatientPhone(e.target.value)}
+              className="h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-[#284a91] focus:ring-4 focus:ring-[#284a91]/10"
+            />
+          </div>
+          <div className="space-y-2 sm:col-span-2">
+            <FieldLabel htmlFor="patientEmail" icon={<Mail />}>
+              Email
+            </FieldLabel>
+            <input
+              id="patientEmail"
+              type="email"
+              value={patientEmail}
+              onChange={(e) => setPatientEmail(e.target.value)}
+              className="h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-[#284a91] focus:ring-4 focus:ring-[#284a91]/10"
+            />
+          </div>
+          <div className="space-y-2 sm:col-span-2">
+            <FieldLabel htmlFor="notes" icon={<MessageSquareText />}>
+              Notes (optional)
+            </FieldLabel>
+            <textarea
+              id="notes"
+              rows={3}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-semibold text-slate-800 outline-none transition focus:border-[#284a91] focus:ring-4 focus:ring-[#284a91]/10"
+            />
+          </div>
         </div>
       </div>
-      <div className="mt-8 flex gap-4">
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <button
           type="submit"
           disabled={loading}
-          className="btn-primary disabled:opacity-70"
+          className="inline-flex h-12 items-center justify-center rounded-xl bg-[#E85222] px-6 text-sm font-extrabold text-white shadow-sm transition hover:bg-[#d1451a] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {loading ? "Booking..." : "Confirm Booking"}
         </button>
         <button
           type="button"
-          className="btn-secondary"
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 text-sm font-extrabold text-[#0b1c43] transition hover:border-[#284a91] hover:text-[#284a91]"
           onClick={() => router.back()}
         >
+          <ArrowLeft className="h-4 w-4" />
           Cancel
         </button>
       </div>
     </form>
+  );
+}
+
+function FieldLabel({
+  htmlFor,
+  icon,
+  children,
+}: {
+  htmlFor: string;
+  icon: ReactElement;
+  children: ReactNode;
+}) {
+  return (
+    <label
+      htmlFor={htmlFor}
+      className="flex items-center gap-2 text-sm font-extrabold text-[#0b1c43]"
+      style={{ fontFamily: '"Plus Jakarta Sans", "Segoe UI", sans-serif' }}
+    >
+      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#284a91]/8 text-[#284a91] [&>svg]:h-4 [&>svg]:w-4">
+        {icon}
+      </span>
+      {children}
+    </label>
   );
 }

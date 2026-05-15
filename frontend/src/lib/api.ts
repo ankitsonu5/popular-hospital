@@ -569,6 +569,7 @@ export interface PatientStory {
   name: string;
   videoUrl: string;
   thumbnailUrl: string;
+  homeThumbnailUrl?: string;
   order: number;
   isActive: boolean;
 }

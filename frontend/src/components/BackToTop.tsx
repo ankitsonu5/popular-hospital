@@ -36,11 +36,10 @@ const BackToTop = () => {
     >
       <button
         onClick={scrollToTop}
-        className="flex items-center gap-2 bg-[#e85222] hover:bg-[#d13d10] text-white px-5 py-2 rounded-lg shadow-xl transition-all duration-300 hover:-translate-y-1 group focus:outline-none"
+        className="flex h-11 w-11 items-center justify-center bg-[#e85222] hover:bg-[#d13d10] text-white rounded-full shadow-xl transition-all duration-300 hover:-translate-y-1 group focus:outline-none"
         aria-label="Back to Top"
       >
         <ChevronUp className="w-5 h-5 transition-transform group-hover:-translate-y-0.5" />
-        <span className="text-[15px] font-bold tracking-wide">Back to Top</span>
       </button>
     </div>
   );

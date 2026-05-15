@@ -193,8 +193,11 @@ export function DoctorsSearch() {
         </div>
       ) : (
         <ul className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-0 sm:px-1 pb-8">
-          {doctors.map((doc) => (
-            <li key={doc.id} className="h-full">
+          {doctors.map((doc, index) => (
+            <li
+              key={`${doc._id ?? doc.id ?? doc.slug ?? doc.name}-${index}`}
+              className="h-full"
+            >
               <Link
                 href={`/doctors/${doc.slug}`}
                 className="group relative block h-full rounded-[2rem] sm:rounded-[2.5rem] bg-white p-3.5 sm:p-4 border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-1"

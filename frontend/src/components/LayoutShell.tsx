@@ -12,7 +12,7 @@ import PopupBanner from "@/components/PopupBanner";
 
 const ZOOM_PATHS = [
   "/about",
-  "/about/vision-mission",
+  "/about/mission",
   "/about/chairman-desk",
   "/about/md-desk",
   "/about/leadership",

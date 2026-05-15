@@ -29,22 +29,35 @@ const menuItems: MenuItem[] = [
     label: "About Us",
     dropdown: [
       { label: "Overview", href: "/about" },
-      { label: "Our Vision & Mission", href: "/about/vision-mission" },
+      { label: "Vision 2030", href: "/about/our-vision-2030" },
+      { label: "Our Mission", href: "/about/mission" },
       { label: "From Chairman's Desk", href: "/about/chairman-desk" },
       { label: "From MD's Desk", href: "/about/md-desk" },
       { label: "Leadership Team", href: "/about/leadership" },
       { label: "Awards & Recognition", href: "/about/awards-recognition" },
       {
+        label: "Infrastructure & Technology",
+        href: "/about/infrastructure-technology",
+        separator: true,
+      },
+      {
         label: "Social Responsibility (SR)",
         href: "/about/csr",
-        separator: true,
       },
       { label: "Cashless Empanelment", href: "/about/cashless-empanelment" },
     ],
   },
   {
-    label: "Find Your Doctor",
-    href: "/doctors",
+    label: "Popular Finds",
+    dropdown: [
+      { label: "Our Doctors", href: "/doctors" },
+      { label: "Patients Testimonial", href: "/stories" },
+      {
+        label: "International Patients",
+        href: "/services/international-patients",
+      },
+      { label: "Free OPD and Offer", href: "/services/free-opd-offer" },
+    ],
   },
   {
     label: "Departments",
@@ -122,6 +135,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
       href: "/departments/orthopedics",
     },
     { label: "General Medicine", href: "/departments/general-medicine" },
+    { label: "IVF & Fertility", href: "/departments/ivf-fertility" },
     { label: "ENT", href: "/departments/ent" },
     {
       label: "Dietetics & Nutrition",
@@ -137,6 +151,80 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
       href: "/departments/diabetic-foot",
     },
   ],
+};
+
+const premiumDepartmentLabels = new Set([
+  "Laparoscopy & General Surgery",
+  "Cardiology",
+  "Oncology",
+  "Orthopedics & Joint Replacement",
+  "Neurosurgery",
+  "IVF & Fertility",
+]);
+
+const isPremiumDepartment = (label: string) => premiumDepartmentLabels.has(label);
+
+const popularFindsIconBasePath = "/images/download/popular_finds_icons";
+
+const popularFindsIconMap: Record<string, string> = {
+  "Our Doctors": `${popularFindsIconBasePath}/doctors.svg`,
+  "Patients Testimonial": `${popularFindsIconBasePath}/testimonials.svg`,
+  "International Patients": `${popularFindsIconBasePath}/international-patients.svg`,
+  "Free OPD and Offer": `${popularFindsIconBasePath}/free-opd-offer.svg`,
+};
+
+const servicesIconBasePath = "/images/download/popular_finds_icons";
+
+const servicesIconMap: Record<string, string> = {
+  "Emergency And Trauma Care": `${servicesIconBasePath}/emergency-trauma.svg`,
+  "Blood Bank": `${servicesIconBasePath}/blood-bank.svg`,
+  "Ambulance": `${servicesIconBasePath}/ambulance.svg`,
+  "Wellness Packages": `${servicesIconBasePath}/wellness-packages.svg`,
+  "Preventive Health Check Up": `${servicesIconBasePath}/wellness-packages.svg`,
+  "Pharmacy": `${servicesIconBasePath}/pharmacy.svg`,
+  "Pathological Services": `${servicesIconBasePath}/pathology.svg`,
+  "Radiological Services": `${servicesIconBasePath}/radiology.svg`,
+  "Home Care Services": `${servicesIconBasePath}/home-care.svg`,
+};
+
+const mediaIconBasePath = "/images/download/popular_finds_icons";
+
+const mediaIconMap: Record<string, string> = {
+  "News": `${mediaIconBasePath}/news.svg`,
+  "Blog": `${mediaIconBasePath}/blog.svg`,
+  "Press": `${mediaIconBasePath}/press.svg`,
+  "Events": `${mediaIconBasePath}/events.svg`,
+};
+
+const departmentIconBasePath = "/images/download/pl_icons";
+
+const departmentIconMap: Record<string, string> = {
+  "Cardiology": `${departmentIconBasePath}/cardiology_icon.webp`,
+  "Cardiothoracic & Vascular Surgery (CTVS)":
+    `${departmentIconBasePath}/cardiology_icon.webp`,
+  "Neurosurgery": `${departmentIconBasePath}/nuerosurgery_icon.webp`,
+  "Gastroenterology": `${departmentIconBasePath}/gastroentrology_icon.webp`,
+  "Nephrology": `${departmentIconBasePath}/naprology_icon.webp`,
+  "Oncology": `${departmentIconBasePath}/oncology_icon.webp`,
+  "Urology": `${departmentIconBasePath}/urology_icon.webp`,
+  "Burns & Plastic Surgery": `${departmentIconBasePath}/laparoscopy_icon.webp`,
+  "Interventional Radiology": `${departmentIconBasePath}/laparoscopy_icon.webp`,
+  "Pediatric Surgery": `${departmentIconBasePath}/pediatric_icon.webp`,
+  "Pediatric Cardiology": `${departmentIconBasePath}/pediatric_icon.webp`,
+  "Laparoscopy & General Surgery": `${departmentIconBasePath}/laparoscopy_icon.webp`,
+  "Obstetrics & Gynaecology": `${departmentIconBasePath}/obstetrics_icon.webp`,
+  "Pediatrics And Neonatology": `${departmentIconBasePath}/pediatric_icon.webp`,
+  "Orthopedics & Joint Replacement": `${departmentIconBasePath}/orthopedics_icon.webp`,
+  "General Medicine": `${departmentIconBasePath}/laparoscopy_icon.webp`,
+  "IVF & Fertility": `${departmentIconBasePath}/obstetrics_icon.webp`,
+  "ENT": `${departmentIconBasePath}/ent_icon.webp`,
+  "Dietetics & Nutrition": `${departmentIconBasePath}/gastroentrology_icon.webp`,
+  "Ophthalmology": `${departmentIconBasePath}/ophthalmology_icon.webp`,
+  "Dental": `${departmentIconBasePath}/dental_icon.webp`,
+  "Respiratory Medicine": `${departmentIconBasePath}/laparoscopy_icon.webp`,
+  "Pain Medicine": `${departmentIconBasePath}/orthopedics_icon.webp`,
+  "Psychiatry Department": `${departmentIconBasePath}/psychiatry_icon.webp`,
+  "Advanced Diabetic Foot Unit": `${departmentIconBasePath}/orthopedics_icon.webp`,
 };
 
 const servicesContent: Record<string, { label: string; href: string }[]> = {
@@ -204,6 +292,14 @@ export function Header() {
     if (item.href === pathname) return true;
     if (item.dropdown) {
       if (item.dropdown.some((d) => d.href === pathname)) return true;
+      if (item.label === "Popular Finds") {
+        return (
+          pathname.startsWith("/doctors") ||
+          pathname.startsWith("/stories") ||
+          pathname === "/services/international-patients" ||
+          pathname === "/services/free-opd-offer"
+        );
+      }
       if (item.label === "Departments") {
         if (pathname.startsWith("/departments")) return true;
         return Object.values(specialtiesContent)
@@ -228,7 +324,7 @@ export function Header() {
   };
 
   function getIcon(label: string) {
-    const iconClass = "w-5 h-5 text-gray-600 flex-shrink-0";
+    const iconClass = "w-5 h-5 text-[#E85222] flex-shrink-0";
     if (
       label.includes("Story") ||
       label.includes("Vision") ||
@@ -430,25 +526,101 @@ export function Header() {
     );
   }
 
+  function getDepartmentIcon(label: string) {
+    const iconSrc =
+      departmentIconMap[label] || `${departmentIconBasePath}/cardiology_icon.webp`;
+
+    return (
+      <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#E85222]/10">
+        <Image
+          src={iconSrc}
+          alt=""
+          width={16}
+          height={16}
+          className="h-4 w-4 object-contain"
+        />
+      </span>
+    );
+  }
+
+  function getPopularFindsIcon(label: string) {
+    const iconSrc = popularFindsIconMap[label];
+
+    if (!iconSrc) return getIcon(label);
+
+    return (
+      <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
+        <Image
+          src={iconSrc}
+          alt=""
+          width={24}
+          height={24}
+          className="h-6 w-6 object-contain"
+        />
+      </span>
+    );
+  }
+
+  function getServicesIcon(label: string) {
+    const iconSrc = servicesIconMap[label];
+
+    if (!iconSrc) return getIcon(label);
+
+    return (
+      <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
+        <Image
+          src={iconSrc}
+          alt=""
+          width={24}
+          height={24}
+          className="h-6 w-6 object-contain"
+        />
+      </span>
+    );
+  }
+
+  function getMediaIcon(label: string) {
+    const iconSrc = mediaIconMap[label];
+
+    if (!iconSrc) return getIcon(label);
+
+    return (
+      <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
+        <Image
+          src={iconSrc}
+          alt=""
+          width={24}
+          height={24}
+          className="h-6 w-6 object-contain"
+        />
+      </span>
+    );
+  }
+
   return (
     <>
       <header
-        className={`${pathname === "/" ? "fixed" : "sticky"} top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled || !isTransparentPage
-            ? "bg-white shadow-sm"
-            : "bg-white shadow-sm md:bg-transparent md:shadow-none"
-        }`}
+        className={`${pathname === "/" ? "fixed" : "sticky"} top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || !isTransparentPage
+          ? "bg-white/95 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-white/90"
+          : "bg-white shadow-sm md:bg-transparent md:shadow-none"
+          }`}
       >
         {/* Gradient Overlay */}
         <div
-          className={`hidden lg:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${
-            scrolled || !isTransparentPage ? "opacity-0" : "opacity-100"
-          }`}
+          className={`hidden lg:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${scrolled || !isTransparentPage ? "opacity-0" : "opacity-100"
+            }`}
         />
 
         {/* Top Bar */}
-        <div className="hidden md:block bg-gradient-to-r from-[#214181] via-[#2E59A8] to-[#214181] text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-1.5 sm:py-2.5">
-          <div className="max-w-[1280px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0 text-[14px] sm:text-[15px] font-medium">
+        <div
+          className="hidden md:block text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-1.5 bg-[#284a91]"
+          style={{
+            fontFamily: '"Open Sans", arial, sans-serif',
+            fontSize: "13px",
+            fontWeight: 500,
+          }}
+        >
+          <div className="max-w-[1280px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
               <Link
                 href="/online-payment"
@@ -559,11 +731,10 @@ export function Header() {
           <div className="flex h-16 sm:h-16 items-center justify-between gap-2">
             <Link
               href="/"
-              className={`flex items-center transition-all duration-300 header-logo-link ${
-                scrolled || !isTransparentPage
-                  ? ""
-                  : "md:px-3 md:py-1 header-logo-with-bg"
-              }`}
+              className={`flex items-center transition-all duration-300 header-logo-link ${scrolled || !isTransparentPage
+                ? ""
+                : "md:px-3 md:py-1 header-logo-with-bg"
+                }`}
             >
               <Image
                 src="/logo-horizontal.png"
@@ -575,7 +746,10 @@ export function Header() {
               />
             </Link>
 
-            <nav className="hidden xl:flex xl:items-center xl:flex-1 xl:justify-center xl:gap-0.5">
+            <nav
+              className="hidden xl:flex xl:items-center xl:flex-1 xl:justify-center xl:gap-0.5"
+              style={{ fontFamily: "Montserrat, sans-serif" }}
+            >
               {menuItems.map((item) => (
                 <div
                   key={item.label}
@@ -587,16 +761,15 @@ export function Header() {
                     <>
                       <button
                         type="button"
-                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
-                          scrolled || !isTransparentPage
-                            ? isMenuItemActive(item) ||
-                              activeDropdown === item.label
-                              ? "text-hospital-teal"
-                              : "text-gray-700 hover:text-hospital-teal"
-                            : isMenuItemActive(item) && item.label !== "Home"
-                              ? "text-teal-400"
-                              : "text-white hover:text-gray-200"
-                        }`}
+                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
+                          ? isMenuItemActive(item) ||
+                            activeDropdown === item.label
+                            ? "text-hospital-teal"
+                            : "text-gray-700 hover:text-hospital-teal"
+                          : isMenuItemActive(item) && item.label !== "Home"
+                            ? "text-teal-400"
+                            : "text-white hover:text-gray-200"
+                          }`}
                       >
                         {item.label}
                         <svg
@@ -617,19 +790,18 @@ export function Header() {
                         ref={(el) => {
                           dropdownRefs.current[item.label] = el;
                         }}
-                        className={`absolute top-full z-50 transition-all duration-300 ${
-                          activeDropdown === item.label
-                            ? "opacity-100 translate-y-0 pointer-events-auto visible"
-                            : "opacity-0 -translate-y-2 pointer-events-none invisible"
-                        } ${item.label === "Departments" || item.label === "Services" ? "left-1/2 -translate-x-1/2" : "left-0"}`}
+                        className={`absolute top-full z-50 transition-all duration-300 ${activeDropdown === item.label
+                          ? "opacity-100 translate-y-0 pointer-events-auto visible"
+                          : "opacity-0 -translate-y-2 pointer-events-none invisible"
+                          } ${item.label === "Departments" || item.label === "Services" ? "left-1/2 -translate-x-1/2" : "left-0"}`}
                       >
                         <div className="pt-2">
                           {item.label === "Departments" ? (
-                            <div className="w-[820px] min-[1366px]:w-[860px] rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden">
+                            <div className="w-[820px] min-[1366px]:w-[860px] overflow-hidden rounded-xl bg-white shadow-xl border border-gray-100">
                               <div className="flex">
                                 {/* Left Side */}
-                                <div className="flex-1 p-6 xl:p-5 border-r border-gray-100">
-                                  <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest mb-4 pb-2 border-b-2 border-hospital-teal/20">
+                                <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5 border-r border-gray-100">
+                                  <h3 className="text-hospital-teal font-heading font-bold text-[11px] min-[1440px]:text-xs uppercase tracking-widest mb-3 min-[1440px]:mb-4 pb-2 border-b-2 border-hospital-teal/20">
                                     Super Specialties
                                   </h3>
                                   <div className="flex flex-col gap-0.5">
@@ -639,17 +811,28 @@ export function Header() {
                                       <Link
                                         key={subItem.label}
                                         href={subItem.href}
-                                        className="text-[14.5px] xl:text-[13.5px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 xl:p-1.5 rounded-lg transition-all"
+                                        className={`relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg transition-all ${isPremiumDepartment(subItem.label)
+                                          ? "bg-gradient-to-r from-white via-[#fff7ed] to-[#eef6ff] text-[#0b1c43] shadow-[0_5px_18px_rgba(11,28,67,0.08)] ring-1 ring-[#E85222]/25 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(11,28,67,0.13)] hover:ring-[#E85222]/45 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-[#E85222]"
+                                          : "text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70"
+                                          }`}
                                         onClick={() => setActiveDropdown(null)}
                                       >
-                                        {subItem.label}
+                                        <span className="relative flex items-center gap-2 pl-1">
+                                          {getDepartmentIcon(subItem.label)}
+                                          <span>{subItem.label}</span>
+                                        </span>
+                                        {isPremiumDepartment(subItem.label) && (
+                                          <span className="relative rounded-full border border-[#E85222]/20 bg-white px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#E85222]">
+                                            Featured
+                                          </span>
+                                        )}
                                       </Link>
                                     ))}
                                   </div>
                                 </div>
                                 {/* Right Side */}
-                                <div className="flex-1 p-6 xl:p-5">
-                                  <h3 className="text-hospital-teal font-heading font-bold text-xs uppercase tracking-widest mb-4 pb-2 border-b-2 border-hospital-teal/20">
+                                <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5">
+                                  <h3 className="text-hospital-teal font-heading font-bold text-[11px] min-[1440px]:text-xs uppercase tracking-widest mb-3 min-[1440px]:mb-4 pb-2 border-b-2 border-hospital-teal/20">
                                     Specialties
                                   </h3>
                                   <div className="flex flex-col gap-0.5">
@@ -658,12 +841,23 @@ export function Header() {
                                         <Link
                                           key={subItem.label}
                                           href={subItem.href}
-                                          className="text-[14.5px] xl:text-[13.5px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70 p-2 xl:p-1.5 rounded-lg transition-all"
+                                          className={`relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg transition-all ${isPremiumDepartment(subItem.label)
+                                            ? "bg-gradient-to-r from-white via-[#fff7ed] to-[#eef6ff] text-[#0b1c43] shadow-[0_5px_18px_rgba(11,28,67,0.08)] ring-1 ring-[#E85222]/25 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(11,28,67,0.13)] hover:ring-[#E85222]/45 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-[#E85222]"
+                                            : "text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70"
+                                            }`}
                                           onClick={() =>
                                             setActiveDropdown(null)
                                           }
                                         >
-                                          {subItem.label}
+                                          <span className="relative flex items-center gap-2 pl-1">
+                                            {getDepartmentIcon(subItem.label)}
+                                            <span>{subItem.label}</span>
+                                          </span>
+                                          {isPremiumDepartment(subItem.label) && (
+                                            <span className="relative rounded-full border border-[#E85222]/20 bg-white px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#E85222]">
+                                              Featured
+                                            </span>
+                                          )}
                                         </Link>
                                       ),
                                     )}
@@ -684,8 +878,8 @@ export function Header() {
                                     className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-gray-50 rounded-xl transition-all whitespace-nowrap"
                                     onClick={() => setActiveDropdown(null)}
                                   >
-                                    <span className="opacity-70 flex-shrink-0">
-                                      {getIcon(dropdownItem.label)}
+                                    <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
+                                      {getServicesIcon(dropdownItem.label)}
                                     </span>
                                     <span>{dropdownItem.label}</span>
                                   </Link>
@@ -704,9 +898,15 @@ export function Header() {
                                     className="flex items-center gap-4 px-6 py-3 xl:px-5 xl:py-2.5 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:bg-gray-50 hover:text-hospital-teal transition-all"
                                     onClick={() => setActiveDropdown(null)}
                                   >
-                                    <span className="opacity-70">
-                                      {getIcon(dropdownItem.label)}
-                                    </span>
+                                    {item.label === "Popular Finds" ? (
+                                      getPopularFindsIcon(dropdownItem.label)
+                                    ) : item.label === "Media & Blog" ? (
+                                      getMediaIcon(dropdownItem.label)
+                                    ) : (
+                                      <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FCEDE8] [&>svg]:h-4 [&>svg]:w-4">
+                                        {getIcon(dropdownItem.label)}
+                                      </span>
+                                    )}
                                     <span>{dropdownItem.label}</span>
                                   </Link>
                                 </div>
@@ -719,15 +919,14 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href || "#"}
-                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
-                        scrolled || !isTransparentPage
-                          ? isMenuItemActive(item) && item.label !== "Home"
-                            ? "text-hospital-teal"
-                            : "text-gray-700 hover:text-hospital-teal"
-                          : isMenuItemActive(item) && item.label !== "Home"
-                            ? "text-teal-400"
-                            : "text-white hover:text-gray-200"
-                      }`}
+                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
+                        ? isMenuItemActive(item) && item.label !== "Home"
+                          ? "text-hospital-teal"
+                          : "text-gray-700 hover:text-hospital-teal"
+                        : isMenuItemActive(item) && item.label !== "Home"
+                          ? "text-teal-400"
+                          : "text-white hover:text-gray-200"
+                        }`}
                     >
                       {item.label}
                     </Link>
@@ -748,11 +947,10 @@ export function Header() {
                 <LanguageSelector scrolled={true} isTransparentPage={false} />
                 <button
                   type="button"
-                  className={`p-2 rounded-lg transition-all duration-300 ${
-                    scrolled || !isTransparentPage
-                      ? "text-gray-600 hover:bg-gray-100"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
+                  className={`p-2 rounded-lg transition-all duration-300 ${scrolled || !isTransparentPage
+                    ? "text-gray-600 hover:bg-gray-100"
+                    : "text-gray-600 hover:bg-gray-100"
+                    }`}
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   <svg
@@ -785,24 +983,25 @@ export function Header() {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden transition-all duration-300 ease-in-out z-[999] shadow-2xl ${
-            menuOpen
-              ? "max-h-[calc(100vh-80px)] opacity-100 overflow-y-auto overscroll-contain pb-20"
-              : "max-h-0 opacity-0 pointer-events-none overflow-hidden"
-          }`}
+          className={`absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden transition-all duration-300 ease-in-out z-[999] shadow-2xl ${menuOpen
+            ? "max-h-[calc(100vh-80px)] opacity-100 overflow-y-auto overscroll-contain pb-20"
+            : "max-h-0 opacity-0 pointer-events-none overflow-hidden"
+            }`}
         >
-          <div className="px-4 py-4 space-y-1">
+          <div
+            className="px-4 py-4 space-y-1"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
             {menuItems.map((item) => (
               <div key={item.label}>
                 {item.dropdown ? (
                   <div className="flex flex-col">
                     <button
                       type="button"
-                      className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${
-                        isMenuItemActive(item) && item.label !== "Home"
-                          ? "text-hospital-teal bg-teal-50"
-                          : "text-gray-900"
-                      }`}
+                      className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
+                        ? "text-hospital-teal bg-teal-50"
+                        : "text-gray-900"
+                        }`}
                       onClick={() =>
                         setActiveMobileDropdown(
                           activeMobileDropdown === item.label
@@ -831,75 +1030,80 @@ export function Header() {
                     >
                       {item.label === "Departments" || item.label === "Services"
                         ? item.dropdown.map((dropdownItem) => {
-                            const contentMap =
-                              item.label === "Departments"
-                                ? specialtiesContent
-                                : servicesContent;
-                            const isCategory = contentMap.hasOwnProperty(
-                              dropdownItem.label,
-                            );
+                          const contentMap =
+                            item.label === "Departments"
+                              ? specialtiesContent
+                              : servicesContent;
+                          const isCategory = contentMap.hasOwnProperty(
+                            dropdownItem.label,
+                          );
 
-                            if (isCategory) {
-                              return (
-                                <div key={dropdownItem.label} className="mt-1">
-                                  <button
-                                    type="button"
-                                    className="flex items-center justify-between w-full px-4 py-2 text-sm font-bold text-gray-700 hover:text-hospital-teal"
-                                    onClick={() =>
-                                      setActiveMobileSubCategory(
-                                        activeMobileSubCategory ===
-                                          dropdownItem.label
-                                          ? null
-                                          : dropdownItem.label,
-                                      )
-                                    }
-                                  >
-                                    <span>{dropdownItem.label}</span>
-                                    <svg
-                                      className={`w-3.5 h-3.5 transition-transform ${activeMobileSubCategory === dropdownItem.label ? "rotate-180" : "-rotate-90"}`}
-                                      fill="none"
-                                      stroke="currentColor"
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M19 9l-7 7-7-7"
-                                      />
-                                    </svg>
-                                  </button>
-                                  <div
-                                    className={`pl-4 overflow-hidden transition-all duration-300 ${activeMobileSubCategory === dropdownItem.label ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}
-                                  >
-                                    {contentMap[dropdownItem.label]?.map(
-                                      (subItem) => (
-                                        <Link
-                                          key={subItem.label}
-                                          href={subItem.href}
-                                          className="block px-4 py-2 text-sm font-bold text-gray-600 hover:text-hospital-teal"
-                                          onClick={() => setMenuOpen(false)}
-                                        >
-                                          {subItem.label}
-                                        </Link>
-                                      ),
-                                    )}
-                                  </div>
-                                </div>
-                              );
-                            }
+                          if (isCategory) {
                             return (
-                              <Link
-                                key={dropdownItem.label}
-                                href={dropdownItem.href}
-                                className="block px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-hospital-teal"
-                                onClick={() => setMenuOpen(false)}
-                              >
-                                {dropdownItem.label}
-                              </Link>
+                              <div key={dropdownItem.label} className="mt-1">
+                                <button
+                                  type="button"
+                                  className="flex items-center justify-between w-full px-4 py-2 text-sm font-bold text-gray-700 hover:text-hospital-teal"
+                                  onClick={() =>
+                                    setActiveMobileSubCategory(
+                                      activeMobileSubCategory ===
+                                        dropdownItem.label
+                                        ? null
+                                        : dropdownItem.label,
+                                    )
+                                  }
+                                >
+                                  <span>{dropdownItem.label}</span>
+                                  <svg
+                                    className={`w-3.5 h-3.5 transition-transform ${activeMobileSubCategory === dropdownItem.label ? "rotate-180" : "-rotate-90"}`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M19 9l-7 7-7-7"
+                                    />
+                                  </svg>
+                                </button>
+                                <div
+                                  className={`pl-4 overflow-hidden transition-all duration-300 ${activeMobileSubCategory === dropdownItem.label ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}
+                                >
+                                  {contentMap[dropdownItem.label]?.map(
+                                    (subItem) => (
+                                      <Link
+                                        key={subItem.label}
+                                        href={subItem.href}
+                                        className={`relative mx-2 my-1 flex items-center justify-between gap-2 overflow-hidden rounded-lg px-4 py-2 text-sm font-bold transition-all ${item.label === "Departments" &&
+                                          isPremiumDepartment(subItem.label)
+                                          ? "bg-gradient-to-r from-white via-[#fff7ed] to-[#eef6ff] text-[#0b1c43] shadow-sm ring-1 ring-[#E85222]/25 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-[#E85222]"
+                                          : "text-gray-600 hover:text-hospital-teal"
+                                          }`}
+                                        onClick={() => setMenuOpen(false)}
+                                      >
+                                        <span className="relative flex items-center gap-2 pl-1">
+                                          {item.label === "Departments" &&
+                                            getDepartmentIcon(subItem.label)}
+                                          {item.label === "Services" &&
+                                            getServicesIcon(subItem.label)}
+                                          <span>{subItem.label}</span>
+                                        </span>
+                                        {item.label === "Departments" &&
+                                          isPremiumDepartment(subItem.label) && (
+                                            <span className="relative rounded-full border border-[#E85222]/20 bg-white px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#E85222]">
+                                              Featured
+                                            </span>
+                                          )}
+                                      </Link>
+                                    ),
+                                  )}
+                                </div>
+                              </div>
                             );
-                          })
-                        : item.dropdown.map((dropdownItem) => (
+                          }
+                          return (
                             <Link
                               key={dropdownItem.label}
                               href={dropdownItem.href}
@@ -908,17 +1112,28 @@ export function Header() {
                             >
                               {dropdownItem.label}
                             </Link>
-                          ))}
+                          );
+                        })
+                        : item.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.label}
+                            href={dropdownItem.href}
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-hospital-teal"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            {item.label === "Media & Blog" && getMediaIcon(dropdownItem.label)}
+                            <span>{dropdownItem.label}</span>
+                          </Link>
+                        ))}
                     </div>
                   </div>
                 ) : (
                   <Link
                     href={item.href || "#"}
-                    className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${
-                      isMenuItemActive(item) && item.label !== "Home"
-                        ? "text-hospital-teal bg-teal-50"
-                        : "text-gray-700"
-                    }`}
+                    className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
+                      ? "text-hospital-teal bg-teal-50"
+                      : "text-gray-700"
+                      }`}
                     onClick={() => setMenuOpen(false)}
                   >
                     {item.label}

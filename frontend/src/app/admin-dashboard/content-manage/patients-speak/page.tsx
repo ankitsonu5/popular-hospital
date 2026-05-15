@@ -168,7 +168,6 @@ function SortableStoryRow({
     </tr>
   );
 }
-
 export default function PatientStoriesManagePage() {
   const [stories, setStories] = useState<PatientStory[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -176,6 +175,7 @@ export default function PatientStoriesManagePage() {
   const [editingStory, setEditingStory] = useState<PatientStory | null>(null);
   const [formData, setFormData] = useState<StoryForm>(defaultForm);
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+  const [homeThumbnailFile, setHomeThumbnailFile] = useState<File | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -222,6 +222,7 @@ export default function PatientStoriesManagePage() {
     setEditingStory(null);
     setFormData(defaultForm);
     setThumbnailFile(null);
+    setHomeThumbnailFile(null);
   };
 
   const openCreateForm = () => {
@@ -237,6 +238,7 @@ export default function PatientStoriesManagePage() {
       isActive: story.isActive,
     });
     setThumbnailFile(null);
+    setHomeThumbnailFile(null);
     setShowForm(true);
   };
 
@@ -280,19 +282,30 @@ export default function PatientStoriesManagePage() {
     });
   };
 
-  const handleThumbnailChange = (file?: File) => {
-    if (!file) return;
+  const validateImageFile = (file: File, label: string) => {
     if (!file.type.startsWith("image/")) {
-      toast.error("Thumbnail must be an image file");
-      return;
+      toast.error(`${label} must be an image file`);
+      return false;
     }
     if (file.size > MAX_FILE_SIZE_BYTES) {
       toast.error(
-        `Thumbnail is ${formatBytes(file.size)}. Maximum allowed is ${MAX_FILE_SIZE_MB} MB.`,
+        `${label} is ${formatBytes(file.size)}. Maximum allowed is ${MAX_FILE_SIZE_MB} MB.`,
       );
-      return;
+      return false;
     }
+    return true;
+  };
+
+  const handleThumbnailChange = (file?: File) => {
+    if (!file) return;
+    if (!validateImageFile(file, "Thumbnail")) return;
     setThumbnailFile(file);
+  };
+
+  const handleHomeThumbnailChange = (file?: File) => {
+    if (!file) return;
+    if (!validateImageFile(file, "Home middle thumbnail")) return;
+    setHomeThumbnailFile(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -333,6 +346,9 @@ export default function PatientStoriesManagePage() {
     if (thumbnailFile) {
       data.append("thumbnail", thumbnailFile);
     }
+    if (homeThumbnailFile) {
+      data.append("homeThumbnail", homeThumbnailFile);
+    }
 
     try {
       const res = await fetch(
@@ -351,12 +367,24 @@ export default function PatientStoriesManagePage() {
         throw new Error(error?.error || "Unable to save");
       }
 
+      const savedStory = (await res.json()) as PatientStory;
+      setStories((current) => {
+        if (editingStory) {
+          return current.map((story) =>
+            story._id === savedStory._id ? savedStory : story,
+          );
+        }
+        return [...current, savedStory].sort(
+          (first, second) => first.order - second.order,
+        );
+      });
+
       toast.success(
         editingStory ? "Patient story updated" : "Patient story created",
       );
       setShowForm(false);
       resetForm();
-      fetchStories();
+      await fetchStories();
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Failed to save patient story",
@@ -365,6 +393,14 @@ export default function PatientStoriesManagePage() {
       setIsSaving(false);
     }
   };
+
+  const formStoryIndex = editingStory
+    ? Math.max(
+        stories.findIndex((item) => item._id === editingStory._id),
+        0,
+      )
+    : stories.length;
+  const showHomeThumbnailUpload = formStoryIndex === 3;
 
   return (
     <div className="space-y-6">
@@ -393,33 +429,33 @@ export default function PatientStoriesManagePage() {
       ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50/80 border-b border-gray-100">
-                <tr>
-                  <th className="w-10 px-4"></th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    Thumbnail
-                  </th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    Story
-                  </th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    Video Link
-                  </th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="text-right py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50">
-                <DndContext
-                  sensors={sensors}
-                  collisionDetection={closestCenter}
-                  onDragEnd={handleDragEnd}
-                >
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <table className="w-full text-sm">
+                <thead className="bg-gray-50/80 border-b border-gray-100">
+                  <tr>
+                    <th className="w-10 px-4"></th>
+                    <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Thumbnail
+                    </th>
+                    <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Story
+                    </th>
+                    <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Video Link
+                    </th>
+                    <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Status
+                    </th>
+                    <th className="text-right py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
                   <SortableContext
                     items={stories.map((story) => story._id)}
                     strategy={verticalListSortingStrategy}
@@ -436,18 +472,21 @@ export default function PatientStoriesManagePage() {
                       />
                     ))}
                   </SortableContext>
-                </DndContext>
 
-                {stories.length === 0 ? (
-                  <tr>
-                    <td colSpan={6} className="py-16 text-center text-gray-400">
-                      <ImageIcon className="w-10 h-10 mx-auto mb-3 text-gray-200" />
-                      <p>No patient stories added yet</p>
-                    </td>
-                  </tr>
-                ) : null}
-              </tbody>
-            </table>
+                  {stories.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan={6}
+                        className="py-16 text-center text-gray-400"
+                      >
+                        <ImageIcon className="w-10 h-10 mx-auto mb-3 text-gray-200" />
+                        <p>No patient stories added yet</p>
+                      </td>
+                    </tr>
+                  ) : null}
+                </tbody>
+              </table>
+            </DndContext>
           </div>
         </div>
       )}
@@ -458,7 +497,7 @@ export default function PatientStoriesManagePage() {
           tabIndex={-1}
           className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 outline-none"
         >
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl p-6 sm:p-8 relative">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl max-h-[92vh] overflow-y-auto p-6 sm:p-8 relative">
             <button
               onClick={() => {
                 setShowForm(false);
@@ -497,14 +536,7 @@ export default function PatientStoriesManagePage() {
                 </label>
                 <div className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 bg-gray-50 text-sm font-semibold text-gray-700">
                   {editingStory
-                    ? getPatientStoryLabel(
-                        Math.max(
-                          stories.findIndex(
-                            (item) => item._id === editingStory._id,
-                          ),
-                          0,
-                        ),
-                      )
+                    ? getPatientStoryLabel(formStoryIndex)
                     : getPatientStoryLabel(stories.length)}
                 </div>
                 <p className="text-[11px] text-gray-500 mt-1">
@@ -537,7 +569,7 @@ export default function PatientStoriesManagePage() {
                   Thumbnail Upload
                 </label>
                 <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Optional. Recommended Size: 1280x720px · Max{" "}
+                  Optional. Recommended Size: 1280x720px - Max{" "}
                   {MAX_FILE_SIZE_MB} MB
                 </p>
                 <input
@@ -563,6 +595,42 @@ export default function PatientStoriesManagePage() {
                   </p>
                 )}
               </div>
+
+              {showHomeThumbnailUpload ? (
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    Home Middle Thumbnail
+                  </label>
+                  <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
+                    Optional. Used only for Patient Story 4 on homepage. Best
+                    size: 720x1280px vertical - Max {MAX_FILE_SIZE_MB} MB
+                  </p>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) =>
+                      handleHomeThumbnailChange(e.target.files?.[0])
+                    }
+                    className="w-full text-sm text-gray-700 border-2 border-gray-200 rounded-xl px-3 py-2 outline-none focus:border-[#0d9488] transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#0d9488]/10 file:text-[#0d9488] hover:file:bg-[#0d9488]/20"
+                  />
+                  {homeThumbnailFile ? (
+                    <p className="text-[11px] text-gray-500 mt-1">
+                      Selected: {homeThumbnailFile.name} (
+                      {formatBytes(homeThumbnailFile.size)})
+                    </p>
+                  ) : editingStory?.homeThumbnailUrl ? (
+                    <p className="text-[11px] text-gray-500 mt-1">
+                      Current homepage middle thumbnail will stay unless you
+                      upload a new one.
+                    </p>
+                  ) : (
+                    <p className="text-[11px] text-gray-500 mt-1">
+                      If this is empty, homepage will use the regular thumbnail
+                      for Patient Story 4.
+                    </p>
+                  )}
+                </div>
+              ) : null}
 
               <div className="flex items-center gap-3 mt-4">
                 <input
@@ -619,3 +687,4 @@ export default function PatientStoriesManagePage() {
     </div>
   );
 }
+

@@ -65,7 +65,7 @@ export function Footer() {
                     href="tel:+917800001895"
                     className="text-white hover:text-hospital-teal transition-colors font-bold"
                   >
-                    +91-7800001895
+                    +91-7800001895 / 96
                   </a>
                 </div>
                 <div className="flex items-center gap-2">

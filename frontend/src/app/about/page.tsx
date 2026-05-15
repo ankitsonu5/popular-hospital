@@ -38,7 +38,7 @@ export default function AboutPage() {
                 </span>
                 WELCOME TO POPULAR HOSPITAL
               </h2>
-              <p className="text-gray-900 font-bold italic text-lg sm:text-xl md:text-2xl xl:text-lg 2xl:text-2xl leading-relaxed font-heading">
+              <p className="text-justify text-gray-900 font-bold italic text-lg sm:text-xl md:text-2xl xl:text-lg 2xl:text-2xl leading-relaxed font-heading">
                 POPULAR HOSPITAL
                 <span className="font-semibold italic text-base md:text-lg xl:text-sm 2xl:text-lg">
                   (a Unit of POPULAR MEDICARE LTD)
@@ -62,7 +62,7 @@ export default function AboutPage() {
           </div>
 
           {/* Bottom Section: Paragraphs */}
-          <div className="space-y-6 max-w-5xl 2xl:max-w-7xl text-gray-600 text-[15px] sm:text-[17px] xl:text-[14px] 2xl:text-[18px] leading-relaxed font-medium">
+          <div className="space-y-6 max-w-5xl 2xl:max-w-7xl text-justify text-gray-600 text-[15px] sm:text-[17px] xl:text-[14px] 2xl:text-[18px] leading-relaxed font-medium">
             <p>
               POPULAR HOSPITAL is a 450 bedded Multi Super Speciality Hospital
               in Varanasi providing all kinds of Medical, Surgical &amp;

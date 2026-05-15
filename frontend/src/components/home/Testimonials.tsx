@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import type { PatientStory } from "@/lib/api";
 import {
+  getHomeStoryThumbnailUrl,
   getStoryThumbnailUrl,
   getVideoEmbedUrl,
   getPatientStoryLabel,
@@ -16,39 +17,43 @@ function TestimonialCard({
   story,
   index,
   className,
-  buttonSize,
+  useHomeThumbnail = false,
   onOpen,
 }: {
   story: PatientStory;
   index: number;
   className: string;
-  buttonSize: string;
+  useHomeThumbnail?: boolean;
   onOpen: (story: PatientStory) => void;
 }) {
-  const thumbnailUrl = getStoryThumbnailUrl(story.thumbnailUrl, story.videoUrl);
+  const thumbnailUrl = useHomeThumbnail
+    ? getHomeStoryThumbnailUrl(
+        story.homeThumbnailUrl,
+        story.videoUrl,
+      )
+    : getStoryThumbnailUrl(story.thumbnailUrl, story.videoUrl);
+  const title = story.title || getPatientStoryLabel(index);
 
   return (
     <button
       onClick={() => onOpen(story)}
-      className={`relative group overflow-hidden rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 w-full bg-gray-900 ${className}`}
-      aria-label={`Play ${getPatientStoryLabel(index)}`}
+      className={`relative group w-full overflow-hidden rounded-[14px] bg-gray-900 text-left shadow-[0_14px_34px_rgba(15,23,42,0.14)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(15,23,42,0.18)] ${className}`}
+      aria-label={`Play ${title}`}
     >
       <Image
         src={thumbnailUrl}
-        alt={story.name}
+        alt={title}
         fill
-        className="object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
         sizes="(max-width: 768px) 100vw, 20vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
       <div className="absolute inset-0 flex items-center justify-center">
         <div
-          className={`${buttonSize} rounded-full bg-white/20 backdrop-blur-sm border border-white/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#E85222] transition-all`}
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-white/10 text-white backdrop-blur-[2px] transition-all group-hover:scale-110 group-hover:bg-white/20 sm:h-10 sm:w-10"
         >
           <svg
-            className="text-white ml-0.5"
-            width="40%"
-            height="40%"
+            className="ml-0.5 h-4 w-4 text-white"
             fill="currentColor"
             viewBox="0 0 24 24"
             aria-hidden="true"
@@ -56,6 +61,14 @@ function TestimonialCard({
             <path d="M8 5v14l11-7z" />
           </svg>
         </div>
+      </div>
+      <div className="absolute inset-x-0 bottom-0 px-4 pb-4 text-center text-white">
+        <h3 className="text-sm font-black leading-tight drop-shadow-md line-clamp-2 sm:text-[15px]">
+          {title}
+        </h3>
+        <p className="mt-1 text-[11px] font-extrabold leading-tight text-white/95 drop-shadow-md line-clamp-1">
+          {story.name}
+        </p>
       </div>
     </button>
   );
@@ -110,7 +123,7 @@ export default function Testimonials({
           <div className="mb-12 lg:mb-20 text-center">
             <h2
               id="patients-speak"
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] text-center font-heading"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] text-center font-jakarta"
             >
               Patients Speak
             </h2>
@@ -121,27 +134,25 @@ export default function Testimonials({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 h-auto lg:h-[600px] items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-3 xl:gap-4 h-auto lg:h-[424px] items-stretch">
             <div className="flex flex-col justify-center">
               {displayStories[0] ? (
                 <TestimonialCard
                   story={displayStories[0]}
                   index={0}
                   onOpen={openStory}
-                  className="aspect-[4/5]"
-                  buttonSize="w-10 h-10"
+                  className="aspect-[4/5] lg:h-[224px] lg:aspect-auto"
                 />
               ) : null}
             </div>
 
-            <div className="flex flex-col gap-4 lg:gap-6">
+            <div className="flex flex-col gap-4 lg:gap-3 xl:gap-4">
               {displayStories[1] ? (
                 <TestimonialCard
                   story={displayStories[1]}
                   index={1}
                   onOpen={openStory}
-                  className="h-[280px] lg:h-1/2"
-                  buttonSize="w-12 h-12"
+                  className="h-[280px] lg:h-[196px]"
                 />
               ) : null}
               {displayStories[2] ? (
@@ -149,8 +160,7 @@ export default function Testimonials({
                   story={displayStories[2]}
                   index={2}
                   onOpen={openStory}
-                  className="h-[280px] lg:h-1/2"
-                  buttonSize="w-12 h-12"
+                  className="h-[280px] lg:h-[202px]"
                 />
               ) : null}
             </div>
@@ -161,20 +171,19 @@ export default function Testimonials({
                   story={displayStories[3]}
                   index={3}
                   onOpen={openStory}
+                  useHomeThumbnail
                   className="h-full"
-                  buttonSize="w-20 h-20 border-2"
                 />
               ) : null}
             </div>
 
-            <div className="flex flex-col gap-4 lg:gap-6">
+            <div className="flex flex-col gap-4 lg:gap-3 xl:gap-4">
               {displayStories[4] ? (
                 <TestimonialCard
                   story={displayStories[4]}
                   index={4}
                   onOpen={openStory}
-                  className="h-[280px] lg:h-1/2"
-                  buttonSize="w-12 h-12"
+                  className="h-[280px] lg:h-[218px]"
                 />
               ) : null}
               {displayStories[5] ? (
@@ -182,8 +191,7 @@ export default function Testimonials({
                   story={displayStories[5]}
                   index={5}
                   onOpen={openStory}
-                  className="h-[280px] lg:h-1/2"
-                  buttonSize="w-12 h-12"
+                  className="h-[280px] lg:h-[190px]"
                 />
               ) : null}
             </div>
@@ -194,8 +202,7 @@ export default function Testimonials({
                   story={displayStories[6]}
                   index={6}
                   onOpen={openStory}
-                  className="aspect-[4/5]"
-                  buttonSize="w-10 h-10"
+                  className="aspect-[4/5] lg:h-[224px] lg:aspect-auto"
                 />
               ) : null}
             </div>

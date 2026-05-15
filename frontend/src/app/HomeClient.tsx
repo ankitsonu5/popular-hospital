@@ -255,6 +255,45 @@ const COUNTRIES = [
   "Zimbabwe",
 ];
 
+const CENTRES_OF_EXCELLENCE = [
+  {
+    title: "Cardiology",
+    icon: "/images/pl_icons/cardiology_icon.webp",
+    href: "/departments/cardiology",
+    cardClass: "from-[#f9c4c8] to-[#f3a9ae]",
+  },
+  {
+    title: "Orthopedics",
+    icon: "/images/pl_icons/orthopedics_icon.webp",
+    href: "/departments/orthopedics",
+    cardClass: "from-[#ffefc8] to-[#ffdb82]",
+  },
+  {
+    title: "Oncology",
+    icon: "/images/pl_icons/oncology_icon.webp",
+    href: "/departments/oncology",
+    cardClass: "from-[#c9f3e5] to-[#5fcf8e]",
+  },
+  {
+    title: "Neurology",
+    icon: "/images/pl_icons/nuerosurgery_icon.webp",
+    href: "/departments/neurosurgery",
+    cardClass: "from-[#e4c4f5] to-[#c79bea]",
+  },
+  {
+    title: "Laparoscopic Surgery",
+    icon: "/images/pl_icons/laparoscopy_icon.webp",
+    href: "/departments/general-surgery",
+    cardClass: "from-[#bdeefa] to-[#62cee7]",
+  },
+  {
+    title: "IVF & Fertility",
+    icon: "/images/pl_icons/obstetrics_icon.webp",
+    href: "/departments/ivf-fertility",
+    cardClass: "from-[#d7e8fa] to-[#c6d9ef]",
+  },
+];
+
 interface HomeClientProps {
   latestNews: NewsItem[];
   latestEvents: EventItem[];
@@ -300,9 +339,10 @@ export default function HomeClient({
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const whyPopularRef = useRef<HTMLElement | null>(null);
+  const whyCounterRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const node = whyPopularRef.current;
+    const node = whyCounterRef.current || whyPopularRef.current;
     if (!node || hasStartedWhyCounter) return;
 
     const observer = new IntersectionObserver(
@@ -312,7 +352,7 @@ export default function HomeClient({
           observer.disconnect();
         }
       },
-      { threshold: 0.35 },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
     );
 
     observer.observe(node);
@@ -324,24 +364,28 @@ export default function HomeClient({
     if (!hasStartedWhyCounter) return;
 
     const durationMs = 1600;
-    const frameMs = 16;
-    const totalFrames = Math.ceil(durationMs / frameMs);
-    let frame = 0;
+    let animationFrame = 0;
+    let startTime: number | null = null;
 
-    const timer = window.setInterval(() => {
-      frame += 1;
-      const progress = Math.min(frame / totalFrames, 1);
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / durationMs, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
 
       setExperienceCount(Math.round(32 * eased));
       setSpecialistsCount(Math.round(50 * eased));
 
-      if (progress >= 1) {
-        window.clearInterval(timer);
+      if (progress < 1) {
+        animationFrame = window.requestAnimationFrame(animate);
+      } else {
+        setExperienceCount(32);
+        setSpecialistsCount(50);
       }
-    }, frameMs);
+    };
 
-    return () => window.clearInterval(timer);
+    animationFrame = window.requestAnimationFrame(animate);
+
+    return () => window.cancelAnimationFrame(animationFrame);
   }, [hasStartedWhyCounter]);
 
   useEffect(() => {
@@ -471,16 +515,20 @@ export default function HomeClient({
           </div>
         )}
 
+        <div className="absolute inset-x-0 -bottom-px z-10 h-24 bg-gradient-to-t from-black/70 via-black/35 to-black/0 blur-sm sm:h-28 lg:h-36 xl:h-40 2xl:h-48 pointer-events-none" />
+
         {/* Main Slogan Overlay on Video */}
-        <div className="absolute inset-x-0 bottom-24 sm:bottom-32 md:bottom-40 lg:bottom-48 z-20 text-center px-4 pointer-events-none">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading tracking-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2">
-            आपका स्वास्थ्य, हमारी प्राथमिकता
+        <div className="absolute inset-x-0 bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-14 xl:bottom-16 min-[1366px]:bottom-[72px] min-[1440px]:bottom-20 2xl:bottom-[88px] z-20 text-center px-4 pointer-events-none">
+          <h2
+            className="relative z-10 text-[18px] min-[390px]:text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] min-[1440px]:text-[56px] 2xl:text-[64px] font-black font-jakarta tracking-normal text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2 leading-[1.08]"
+          >
+            आपके हर श्वांस के रक्षक
           </h2>
         </div>
       </section>
 
       {/* Standalone Notification Ticker */}
-      <section className="relative w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-y border-[#1e3a8a]/30 group cursor-pointer transition-colors hover:bg-[#0e2455] z-20 updates-ticker">
+      <section className="relative w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-b border-[#1e3a8a]/30 group cursor-pointer transition-colors hover:bg-[#0e2455] z-20 updates-ticker">
         <Link
           href="/updates"
           className="absolute inset-0 z-40"
@@ -519,41 +567,75 @@ export default function HomeClient({
       </section>
 
       {/* Action Cards Section */}
-      <section className="relative mt-12 sm:mt-16 md:-mt-28 lg:-mt-32 xl:-mt-40 2xl:-mt-48 z-30 pb-0 md:pb-10">
-        <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-6xl 2xl:max-w-[1600px]">
-          <div className="grid grid-cols-2 gap-4 md:flex md:items-stretch md:bg-white md:rounded-full md:overflow-hidden md:shadow-xl md:gap-0">
-            <SimpleCard
-              href="/our-locations"
-              title="Our Branches"
-              isFirst={true}
-              variant="blue"
-            />
-            <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard
-              href="/book"
-              title="Book an Appointment"
-              variant="green"
-            />
-            <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard
-              href="/doctors"
-              title="Find Your Doctor"
-              variant="blue"
-            />
-            <div className="hidden md:block w-px bg-gray-200 self-stretch"></div>
-            <SimpleCard
-              href="/patient-reports"
-              title="Patient Report"
-              isLast={true}
-              variant="green"
-            />
+      <section className="relative z-30 overflow-hidden bg-gradient-to-br from-[#f8fafc] via-white to-[#eef6fb] py-12 sm:py-16">
+        <div className="absolute left-0 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-[#E85222]/10 blur-3xl" />
+        <div className="absolute right-12 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#1e3a8a]/10 blur-3xl" />
+        <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-[1240px] 2xl:max-w-[1600px]">
+          <div className="grid grid-cols-2 gap-4 md:hidden">
+            <SimpleCard href="/our-locations" title="Our Branches" isFirst={true} variant="blue" />
+            <SimpleCard href="/book" title="Book an Appointment" variant="green" />
+            <SimpleCard href="/doctors" title="Find Your Doctor" variant="blue" />
+            <SimpleCard href="/patient-reports" title="Patient Report" isLast={true} variant="green" />
+          </div>
+
+          <div className="mt-5 grid grid-cols-3 gap-3 px-2 md:hidden">
+            <TrustBadge value="32+" label="Years Legacy" tone="orange" />
+            <TrustBadge value="100000+" label="Surgeries" tone="blue" />
+            <TrustBadge value="450+" label="Beds" tone="orange" />
+          </div>
+
+          <div className="hidden md:grid md:grid-cols-[1.2fr_0.9fr] md:items-stretch md:gap-8 lg:gap-10">
+            <div className="grid grid-cols-2 gap-4">
+              <SimpleCard
+                href="/book"
+                title="Book an Appointment"
+                description="With country's leading experts"
+                variant="green"
+              />
+              <SimpleCard
+                href="/our-locations"
+                title="Hospitals"
+                description="Health needs under one roof"
+                variant="blue"
+              />
+              <SimpleCard
+                href="/departments"
+                title="Specialities"
+                description="Our expertise in Healthcare"
+                variant="purple"
+              />
+              <SimpleCard
+                href="/doctors"
+                title="Doctors"
+                description="Top experts for your health"
+                variant="orange"
+              />
+            </div>
+
+            <div className="relative overflow-hidden rounded-2xl border border-white/80 bg-white/75 p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/70 backdrop-blur">
+              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#E85222]/12 blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-12 left-10 h-44 w-44 rounded-full bg-[#1e3a8a]/10 blur-2xl" />
+              <div className="relative mb-5">
+                <p className="font-jakarta text-xs font-extrabold uppercase tracking-[0.18em] text-[#E85222]">
+                  Popular Hospital
+                </p>
+                <h3 className="mt-2 font-jakarta text-2xl font-black leading-tight text-[#1e3a8a]">
+                  Trusted care, proven outcomes
+                </h3>
+              </div>
+              <div className="relative grid w-full grid-cols-3 gap-3">
+                <TrustBadge value="32+" label="Years Legacy" tone="orange" />
+                <TrustBadge value="100000+" label="Surgeries" tone="blue" />
+                <TrustBadge value="450+" label="Beds" tone="orange" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
       <section
-        className="relative mt-12 md:mt-20 py-16 sm:py-24 xl:py-16 bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] overflow-hidden"
+        className="relative py-16 sm:py-24 xl:py-16 bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] overflow-hidden"
         aria-labelledby="about-us"
       >
         {/* Decorative Background Elements */}
@@ -565,14 +647,14 @@ export default function HomeClient({
             {/* Left Side - Text Content */}
             <div className="flex flex-col justify-center space-y-8">
               <div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-black font-heading leading-tight tracking-tight text-[#0b1c43] mb-6 xl:mb-4 drop-shadow-sm">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-black font-jakarta leading-tight tracking-tight text-[#1e3a8a] mb-6 xl:mb-4 drop-shadow-sm">
                   About{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#1e3a8a]">
+                  <span className="text-[#E85222]">
                     Popular Hospital
                   </span>
                 </h2>
 
-                <p className="text-gray-600 text-[17px] sm:text-[19px] leading-relaxed font-medium">
+                <p className="text-gray-600 text-[17px] sm:text-[19px] leading-relaxed font-medium font-jakarta">
                   <span className="text-[#0b1c43] font-bold">
                     POPULAR HOSPITAL
                   </span>{" "}
@@ -617,7 +699,7 @@ export default function HomeClient({
                 {/* Contact Info (Circular Button on Mobile, Full Box on Desktop) */}
                 <a
                   href="tel:+917800001895"
-                  className="flex items-center justify-center sm:justify-start gap-4 bg-white sm:px-6 w-12 h-12 sm:w-auto sm:h-auto sm:py-3 rounded-full shadow-md border border-gray-100 hover:shadow-lg transition-shadow shrink-0 group"
+                  className="hidden sm:flex items-center justify-center sm:justify-start gap-4 bg-white sm:px-6 w-12 h-12 sm:w-auto sm:h-auto sm:py-3 rounded-full shadow-md border border-gray-100 hover:shadow-lg transition-shadow shrink-0 group"
                 >
                   <div className="w-full h-full sm:w-10 sm:h-10 rounded-full sm:bg-hospital-teal/10 flex items-center justify-center text-hospital-teal group-hover:bg-hospital-teal group-hover:text-white sm:group-hover:bg-hospital-teal/10 sm:group-hover:text-hospital-teal transition-colors shrink-0">
                     <svg
@@ -655,27 +737,50 @@ export default function HomeClient({
             </div>
 
             {/* Right Side - Image with Floating Elements */}
-            <div className="relative mt-16 lg:mt-0 lg:ml-12">
-              <div className="relative group">
-                {/* Main Image Frame (Reduced hover glow expansion) */}
-                <div className="absolute -inset-4 bg-gradient-to-tr from-hospital-teal/30 to-[#E85222]/30 rounded-[3rem] blur-2xl transition-all duration-500 opacity-40"></div>
-
-                <div className="relative rounded-[2.5rem] overflow-hidden w-full aspect-square border-[8px] border-white group-hover:-translate-y-0.5 transition-transform duration-500 bg-gray-100">
-                  <Image
-                    src="/about-section-image.png"
-                    alt="Popular Hospital - Expert Care"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-
-                  {/* Subtle Light Reflection Inner Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-
-                  {/* Inner Overlay Gradient for depth (More subtle) */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative mt-8 lg:mt-0 lg:ml-12">
+              <div className="relative mx-auto max-w-[270px] sm:max-w-[520px] lg:max-w-[500px] xl:max-w-[460px]">
+                <div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-tr from-[#1e3a8a]/14 via-hospital-teal/14 to-[#E85222]/16 blur-2xl opacity-60"></div>
+                <div className="absolute -right-2 -top-3 z-20 rounded-xl bg-white px-3 py-2 shadow-[0_10px_24px_rgba(15,23,42,0.1)] ring-1 ring-slate-100 sm:-right-4 sm:-top-4 sm:rounded-2xl sm:px-5 sm:py-4">
+                  <p className="font-jakarta text-[8px] font-extrabold uppercase tracking-[0.16em] text-[#E85222] sm:text-[11px]">
+                    Since 1996
+                  </p>
+                  <p className="mt-0.5 font-jakarta text-[11px] font-black leading-tight text-[#1e3a8a] sm:mt-1 sm:text-lg">
+                    Trusted Healthcare
+                  </p>
                 </div>
+                <div className="absolute -bottom-3 left-3 z-20 flex items-center gap-2 rounded-xl bg-[#1e3a8a] px-3 py-2 text-white shadow-[0_12px_28px_rgba(30,58,138,0.18)] sm:-bottom-5 sm:left-6 sm:gap-3 sm:rounded-2xl sm:px-5 sm:py-4">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/15 text-[#FFAB73] sm:h-10 sm:w-10 sm:rounded-xl">
+                    <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="M9 12l2 2 4-4m5.6-4A12 12 0 0112 3 12 12 0 013.4 6 12 12 0 003 9c0 5.6 3.8 10.3 9 11.6 5.2-1.3 9-6 9-11.6 0-1-.1-2-.4-3z" />
+                    </svg>
+                  </span>
+                  <div>
+                    <p className="font-jakarta text-xs font-black leading-none sm:text-lg">
+                      24/7 Care
+                    </p>
+                    <p className="mt-0.5 font-jakarta text-[9px] font-semibold text-white/75 sm:mt-1 sm:text-xs">
+                      Emergency support
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative w-full overflow-hidden rounded-2xl border-[6px] border-white bg-gray-100 shadow-[0_12px_28px_rgba(15,23,42,0.1)] ring-1 ring-slate-200/70 sm:rounded-[2.5rem] sm:border-[10px] sm:shadow-[0_16px_36px_rgba(15,23,42,0.12)]">
+                  <div className="relative aspect-[4/3] w-full lg:aspect-square">
+                    <Image
+                      src="/about-section-image.png"
+                      alt="Popular Hospital - Expert Care"
+                      fill
+                      className="object-cover"
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/20 pointer-events-none"></div>
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0b1c43]/30 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                  </div>
+                </div>
+                <div className="absolute -left-3 top-10 hidden h-24 w-2 rounded-full bg-[#E85222] shadow-[0_10px_24px_rgba(232,82,34,0.32)] lg:block"></div>
+                <div className="absolute -right-3 bottom-12 hidden h-20 w-2 rounded-full bg-hospital-teal shadow-[0_10px_24px_rgba(13,148,136,0.26)] lg:block"></div>
               </div>
             </div>
           </div>
@@ -702,12 +807,9 @@ export default function HomeClient({
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8 relative z-10">
             <div className="max-w-3xl">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-12 h-[3px] bg-gradient-to-r from-[#E85222] to-hospital-teal rounded-full"></span>
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-black text-[#0b1c43] font-heading leading-[1.15] tracking-tight">
+              <h2 className="text-4xl sm:text-5xl font-black text-[#1e3a8a] font-jakarta leading-[1.15] tracking-tight">
                 Why <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
+                <span className="text-[#E85222]">
                   Popular Hospital
                 </span>
               </h2>
@@ -769,7 +871,10 @@ export default function HomeClient({
                       </a>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 mt-1 sm:mt-2 relative">
+                  <div
+                    ref={whyCounterRef}
+                    className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 mt-1 sm:mt-2 relative"
+                  >
                     <div>
                       <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">
                         {experienceCount}
@@ -924,7 +1029,7 @@ export default function HomeClient({
               ].map((feature, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white p-6 sm:p-0 rounded-[2rem] border-2 border-hospital-teal/20 sm:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 pointer-events-auto cursor-default overflow-hidden h-auto sm:h-[210px] md:h-[230px]"
+                  className="group relative bg-white p-6 sm:p-0 rounded-2xl border-2 border-hospital-teal/20 sm:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 pointer-events-auto cursor-default overflow-hidden h-auto sm:h-[210px] md:h-[230px]"
                 >
                   {/* Background Image (Desktop Only - Full Preview) */}
                   <div className="absolute inset-0 hidden sm:block pointer-events-none">
@@ -942,7 +1047,7 @@ export default function HomeClient({
                     <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0 text-white border border-white/20">
                       {feature.icon}
                     </div>
-                    <h3 className="text-[17px] font-bold text-white font-heading leading-tight drop-shadow-lg">
+                    <h3 className="text-[17px] font-bold text-white font-jakarta leading-tight drop-shadow-lg">
                       {feature.title}
                     </h3>
                   </div>
@@ -954,21 +1059,21 @@ export default function HomeClient({
                       <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0 text-hospital-teal mb-4 border border-hospital-teal/10">
                         {feature.icon}
                       </div>
-                      <h3 className="text-[18px] font-bold text-[#0b1c43] font-heading">
+                      <h3 className="text-[18px] font-bold text-[#0b1c43] font-jakarta">
                         {feature.title}
                       </h3>
                     </div>
 
                     {/* Mobile Paragraph */}
                     <div className="sm:hidden mt-3">
-                      <p className="text-[#0b1c43] font-semibold text-[14px] leading-relaxed">
+                      <p className="text-[#0b1c43] font-semibold text-[14px] leading-relaxed font-jakarta">
                         {feature.fullDesc}
                       </p>
                     </div>
 
                     {/* Desktop Hover Description (Covers entire card) */}
-                    <div className="hidden sm:flex absolute inset-0 p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 h-full w-full items-center bg-white z-20">
-                      <p className="text-[#0b1c43] font-bold text-[15px] leading-relaxed">
+                    <div className="hidden sm:flex absolute inset-0 rounded-[inherit] p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 h-full w-full items-center bg-white z-20">
+                      <p className="text-[#0b1c43] font-bold text-[15px] leading-relaxed font-jakarta">
                         {feature.fullDesc}
                       </p>
                     </div>
@@ -980,17 +1085,63 @@ export default function HomeClient({
         </div>
       </section>
 
+      {/* Centres of Excellence Section */}
+      <section
+        className="bg-white py-14 sm:py-16"
+        aria-labelledby="centres-of-excellence"
+      >
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center sm:mb-12">
+            <h2
+              id="centres-of-excellence"
+              className="text-4xl font-extrabold leading-tight tracking-normal text-[#1e3a8a] sm:text-5xl lg:text-[52px] font-jakarta"
+            >
+              Centres Of{" "}
+              <span className="text-[#E85222]">Excellence</span>
+            </h2>
+            <p className="mx-auto mt-3 max-w-4xl text-[15px] font-semibold leading-relaxed text-[#3d4d96] sm:text-base">
+              Combining the best specialists and equipment to provide you
+              nothing short of the best in healthcare.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+            {CENTRES_OF_EXCELLENCE.map((centre) => (
+              <Link
+                key={centre.title}
+                href={centre.href}
+                className={`group flex min-h-[86px] items-center gap-3 bg-gradient-to-r ${centre.cardClass} px-4 py-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg min-[420px]:min-h-[98px] sm:min-h-[110px] sm:gap-5 sm:px-6 sm:py-6`}
+              >
+                <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/70 shadow-sm ring-1 ring-white/50 transition-transform duration-300 group-hover:scale-105 sm:h-14 sm:w-14">
+                  <Image
+                    src={centre.icon}
+                    alt=""
+                    width={42}
+                    height={42}
+                    className="h-9 w-9 object-contain sm:h-11 sm:w-11"
+                    sizes="44px"
+                  />
+                </span>
+                <span className="min-w-0 text-[15px] font-extrabold leading-snug text-[#050814] sm:text-lg sm:leading-tight font-jakarta">
+                  {centre.title}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Our Services Section */}
       <section
-        className="py-20 bg-[#f5f5f7]" // Apple-like light gray background
+        className="py-20 bg-[#f5f9ff]"
         aria-labelledby="our-services"
       >
         <div className="mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="mb-12 xl:mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block font-jakarta">
               Excellence in Care
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-heading tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-jakarta tracking-tight">
               Our Departments
             </h2>
           </div>
@@ -1116,13 +1267,13 @@ export default function HomeClient({
                   {/* Content Section */}
                   <div className="p-6 xl:p-5 flex flex-col flex-grow">
                     <div className="mb-4 xl:mb-3">
-                      <span className="text-[13px] xl:text-[12px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal">
+                      <span className="text-[13px] xl:text-[12px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal font-jakarta">
                         Department of
                       </span>
-                      <h3 className="text-2xl xl:text-xl font-bold text-[#1d1d1f] mb-3 xl:mb-2 font-heading leading-tight">
+                      <h3 className="text-2xl xl:text-xl font-bold text-[#1d1d1f] mb-3 xl:mb-2 font-jakarta leading-tight">
                         {service.title}
                       </h3>
-                      <p className="text-gray-500 text-base xl:text-sm leading-relaxed font-medium line-clamp-3">
+                      <p className="text-gray-500 text-base xl:text-sm leading-relaxed font-medium line-clamp-3 font-jakarta">
                         {service.desc}
                       </p>
                     </div>
@@ -1195,7 +1346,7 @@ export default function HomeClient({
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <h2
             id="model-of-care"
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 lg:mb-20 text-center font-heading"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 lg:mb-20 text-center font-jakarta"
           >
             Popular Hospital Model of Care
           </h2>
@@ -1512,7 +1663,7 @@ export default function HomeClient({
                       "Read more about this article inside..."}
                   </p>
                   <Link
-                    href={`/news/${article.slug}`}
+                    href={`/media/news/${article.slug}`}
                     className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base mt-auto w-max"
                   >
                     <span>Read More</span>
@@ -1585,10 +1736,10 @@ export default function HomeClient({
             {latestEvents.map((event) => (
               <article
                 key={event.slug}
-                className="bg-[#EFF6FF] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group flex flex-col h-full"
+                className="group flex h-full min-h-[354px] flex-col overflow-hidden rounded-lg bg-[#EFF6FF] shadow-[0_4px_14px_rgba(15,23,42,0.14)] ring-1 ring-slate-200/70 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_26px_rgba(15,23,42,0.16)]"
               >
                 {/* Event Image Container */}
-                <div className="relative w-full h-48 sm:h-56 lg:h-64 xl:h-52 bg-gray-200 overflow-hidden shrink-0">
+                <div className="relative h-[188px] w-full shrink-0 overflow-hidden bg-slate-200">
                   <Image
                     src={
                       getImageUrl(event.thumbnail) || "/about-section-image.png"
@@ -1600,36 +1751,36 @@ export default function HomeClient({
                     unoptimized
                   />
                   {/* Date Badge */}
-                  <div className="absolute top-4 left-4 bg-white px-4 py-2.5 rounded-xl shadow-md border-l-4 border-[#E85222] flex items-center gap-3">
-                    <p className="text-[#0b1c43] font-black text-xl leading-none">
+                  <div className="absolute left-4 top-4 flex items-center gap-3 rounded-lg bg-white px-4 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.16)]">
+                    <p className="font-heading text-xl font-black leading-none text-[#0b1c43]">
                       {new Date(event.date).getDate()}
                     </p>
-                    <div className="w-[1.5px] h-6 bg-gray-100"></div>
-                    <div className="flex flex-col">
-                      <p className="text-[#1e3a8a] font-bold text-xs uppercase tracking-wider leading-none">
+                    <div className="h-7 w-px bg-slate-200" />
+                    <div className="flex flex-col items-center">
+                      <p className="text-[10px] font-black uppercase leading-none tracking-wide text-[#1e3a8a]">
                         {new Date(event.date).toLocaleString("default", {
                           month: "short",
                         })}
                       </p>
-                      <p className="text-[#E85222] font-semibold text-[10px] mt-1 leading-none">
+                      <p className="mt-1 text-[9px] font-bold leading-none text-[#E85222]">
                         {new Date(event.date).getFullYear()}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-6 xl:p-5 flex flex-col flex-1">
-                  <h3 className="text-xl sm:text-2xl xl:text-xl font-bold text-gray-900 mb-3 xl:mb-2 font-heading leading-tight line-clamp-2">
+                <div className="flex flex-1 flex-col px-5 pb-5 pt-5">
+                  <h3 className="mb-2 font-heading text-xl font-black leading-snug text-[#111827] line-clamp-2">
                     {event.title}
                   </h3>
-                  <p className="text-gray-600 text-sm sm:text-base xl:text-sm mb-4 leading-relaxed line-clamp-2 flex-1">
+                  <p className="mb-5 flex-1 text-sm font-medium leading-relaxed text-slate-600 line-clamp-2">
                     {event.description?.replace(/<[^>]*>/g, "") ||
                       "Experience our latest medical workshops and community health programs..."}
                   </p>
 
                   <Link
                     href={`/media/events/${event.slug}`}
-                    className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base mt-auto w-max group/btn"
+                    className="group/btn mt-auto inline-flex w-max items-center gap-2 text-sm font-extrabold text-[#E85222] transition-colors hover:text-[#d1451a]"
                   >
                     <span>View Details</span>
                     <svg
@@ -1681,7 +1832,7 @@ export default function HomeClient({
         <div className="mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           {/* Heading */}
           <div className="text-center mb-10 xl:mb-8">
-            <h2 className="text-3xl sm:text-4xl xl:text-3xl font-black text-[#0b1c43] font-heading tracking-tight">
+            <h2 className="text-3xl sm:text-4xl xl:text-3xl font-black text-[#0b1c43] font-jakarta tracking-tight">
               Cashless <span className="text-hospital-teal">Empanelment</span>
             </h2>
             <div className="w-16 h-1 bg-[#E85222] mx-auto mt-4 rounded-full" />
@@ -1795,7 +1946,7 @@ export default function HomeClient({
               {
                 question: "Does the hospital provide 24/7 emergency services?",
                 answer:
-                  "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895).",
+                  "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895 / 96).",
               },
               {
                 question:
@@ -1833,11 +1984,10 @@ export default function HomeClient({
             ].map((faq, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-xl border transition-all duration-300 ${
-                  openFaqIndex === index
-                    ? "border-[#E85222]/40 shadow-md"
-                    : "border-[#d0e3f0] shadow-sm hover:shadow-md"
-                }`}
+                className={`bg-white rounded-xl border transition-all duration-300 ${openFaqIndex === index
+                  ? "border-[#E85222]/40 shadow-md"
+                  : "border-[#d0e3f0] shadow-sm hover:shadow-md"
+                  }`}
               >
                 <button
                   onClick={() =>
@@ -1852,16 +2002,14 @@ export default function HomeClient({
                     {faq.question}
                   </span>
                   <div
-                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                      openFaqIndex === index
-                        ? "border-[#E85222] bg-[#E85222] rotate-45"
-                        : "border-[#2a7a8c] bg-white"
-                    }`}
+                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index
+                      ? "border-[#E85222] bg-[#E85222] rotate-45"
+                      : "border-[#2a7a8c] bg-white"
+                      }`}
                   >
                     <svg
-                      className={`w-5 h-5 transition-colors duration-300 ${
-                        openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
-                      }`}
+                      className={`w-5 h-5 transition-colors duration-300 ${openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
+                        }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1876,11 +2024,10 @@ export default function HomeClient({
                   </div>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openFaqIndex === index
-                      ? "max-h-[500px] opacity-100"
-                      : "max-h-0 opacity-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ${openFaqIndex === index
+                    ? "max-h-[500px] opacity-100"
+                    : "max-h-0 opacity-0"
+                    }`}
                 >
                   <div className="px-5 sm:px-6 pb-5 pt-0">
                     <div className="pt-3 border-t border-gray-100">
@@ -1921,7 +2068,7 @@ export default function HomeClient({
 
       {/* Contact Us Section */}
       <section
-        className="py-20 sm:py-24 xl:py-16 bg-gray-50"
+        className="py-20 sm:py-24 xl:py-16 bg-white"
         aria-labelledby="contact-us"
       >
         <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
@@ -1929,9 +2076,9 @@ export default function HomeClient({
             {/* Left Column - Brand Quote & Info (Refined Modern Style) */}
             <div className="flex flex-col gap-10 order-2 lg:order-1">
               {/* Branding Block from Image */}
-              <div className="bg-[#0b1c43] text-white rounded-3xl p-10 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden transition-all duration-500 hover:shadow-[#0b1c43]/20">
+              <div className="bg-[#0b1c43] text-white rounded-3xl p-10 sm:p-12 lg:p-14 relative overflow-hidden transition-all duration-500">
                 <div className="relative z-10">
-                  <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-4xl font-black italic leading-[1.15] tracking-tight mb-8 xl:mb-6 font-heading">
+                  <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-4xl font-black italic leading-[1.15] tracking-tight mb-8 xl:mb-6 font-jakarta">
                     Committed To Build A<br />
                     <span className="text-[#E85222]">
                       Positive, Safe, Patient
@@ -1939,7 +2086,7 @@ export default function HomeClient({
                     <br />
                     Focused Culture.
                   </h2>
-                  <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl font-medium">
+                  <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl font-medium font-jakarta">
                     Today the hospital is recognised as a world renowned
                     institution, not only providing outstanding care and
                     treatment, our goal is to deliver quality care in a
@@ -1982,7 +2129,7 @@ export default function HomeClient({
                         className="flex items-center gap-4 group cursor-default"
                       >
                         <div className="w-2.5 h-2.5 rounded-full bg-hospital-teal shadow-[0_0_10px_rgba(45,212,191,0.5)] group-hover:scale-125 transition-transform"></div>
-                        <span className="text-xl font-bold tracking-tight italic font-heading opacity-90 group-hover:opacity-100 transition-opacity">
+                        <span className="text-xl font-bold tracking-tight italic font-jakarta opacity-90 group-hover:opacity-100 transition-opacity">
                           {service}
                         </span>
                       </div>
@@ -2013,12 +2160,12 @@ export default function HomeClient({
                     Connect With Us
                   </h3>
                   <div className="flex flex-col gap-2">
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
-                      <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-6 sm:gap-y-2">
+                      <p className="whitespace-nowrap text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
                         <span className="text-[#E85222] mr-2">CALL:</span>{" "}
                         +91-7800001896
                       </p>
-                      <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
+                      <p className="whitespace-nowrap text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
                         <span className="text-[#E85222] mr-2">CALL:</span>{" "}
                         +91-7800001895
                       </p>
@@ -2034,10 +2181,10 @@ export default function HomeClient({
 
             {/* Right Column - Contact Form */}
             <div className="bg-[#FFFAF5] rounded-3xl border border-[#F3E6D8] p-8 sm:p-10 lg:p-12 xl:p-8 shadow-sm order-1 lg:order-2 self-stretch">
-              <p className="text-[#0b1c43] text-md sm:text-md font-medium mb-1 leading-relaxed">
+              <p className="text-[#0b1c43] text-md sm:text-md font-medium mb-1 leading-relaxed font-jakarta">
                 We will confirm your appointment within 2 hours
               </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5x1 xl:text-3xl font-black text-[#0b1c43] mb-10 xl:mb-6 font-heading tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5x1 xl:text-3xl font-black text-[#0b1c43] mb-10 xl:mb-6 font-jakarta tracking-tight">
                 Request An Appointment
               </h2>
 
@@ -2412,7 +2559,7 @@ export default function HomeClient({
 
       {/* Awards & Recognitions Section */}
       <section
-        className="py-16 sm:py-20 bg-[#F8FAFC] relative overflow-hidden group/section border-t border-gray-100"
+        className="py-16 sm:py-20 bg-gray-50 relative overflow-hidden group/section border-t border-gray-100"
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
           setMousePosition({
@@ -2429,8 +2576,8 @@ export default function HomeClient({
         >
           <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0b1c43] font-heading tracking-tight inline-flex items-center gap-4">
-                Awards & <span className="text-[#1D4ED8]">Recognitions</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1e3a8a] font-jakarta tracking-tight inline-flex items-center gap-4">
+                Awards & <span className="text-[#1e3a8a]">Recognitions</span>
               </h2>
               <div className="flex items-center justify-center mt-4">
                 <div className="w-12 h-1 bg-gray-300 rounded-full" />
@@ -2443,22 +2590,22 @@ export default function HomeClient({
               {/* Left Column - Chairman Profile */}
               <div className="flex flex-col items-center">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-[#1D4ED8]/5 rounded-full scale-[1.15] blur-2xl group-hover/section:bg-[#1D4ED8]/10 transition-colors" />
+                  <div className="absolute inset-0 bg-[#EFF6FF] rounded-full scale-[1.15] blur-2xl group-hover/section:bg-blue-100 transition-colors" />
 
-                  <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 border border-blue-100 shadow-2xl bg-white overflow-hidden ring-12 ring-blue-50/50">
+                  <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 border border-gray-100 shadow-md bg-white overflow-hidden ring-12 ring-white">
                     <div className="relative w-full h-full rounded-full overflow-hidden">
                       <Image
                         src="/images/dr_ak_kaushik.png"
                         alt="DR. A.K. KAUSHIK"
                         fill
-                        className="object-cover transform group-hover/section:scale-[1.02] transition-transform duration-700"
+                        className="object-contain object-bottom px-3 pt-3 pb-0 translate-y-2 transform group-hover/section:scale-[1.02] transition-transform duration-700"
                       />
                     </div>
                   </div>
 
-                  <div className="absolute top-0 right-0 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center p-3">
+                  <div className="absolute top-0 right-0 w-12 h-12 bg-[#EFF6FF] rounded-full shadow-md flex items-center justify-center p-3">
                     <svg
-                      className="w-full h-full text-[#1D4ED8]"
+                      className="w-full h-full text-[#1e3a8a]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -2474,10 +2621,10 @@ export default function HomeClient({
                 </div>
 
                 <div className="mt-8 text-center">
-                  <h3 className="text-2xl font-black text-[#0b1c43] font-heading tracking-tight uppercase italic underline decoration-[#1D4ED8]/30 decoration-4 underline-offset-8">
+                  <h3 className="text-2xl font-black text-[#1e3a8a] font-heading tracking-tight uppercase italic underline decoration-[#E85222]/30 decoration-4 underline-offset-8">
                     DR. A.K.KAUSHIK
                   </h3>
-                  <p className="mt-6 text-gray-500 font-bold leading-relaxed tracking-wide uppercase text-sm">
+                  <p className="mt-6 text-gray-600 font-bold leading-relaxed tracking-wide uppercase text-sm">
                     Chairman & Director
                     <br />
                     Popular Group of Hospitals
@@ -2488,7 +2635,7 @@ export default function HomeClient({
               {/* Right Column - Awards Gallery Grid */}
               <div className="flex flex-col gap-6">
                 <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award1.png"
                       alt="Hospital Award"
@@ -2497,7 +2644,7 @@ export default function HomeClient({
                     />
                   </div>
 
-                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award2.png"
                       alt="Medical Achievement"
@@ -2506,7 +2653,7 @@ export default function HomeClient({
                     />
                   </div>
 
-                  <div className="relative h-48 sm:h-60 col-span-2 rounded-2xl overflow-hidden shadow-lg border-4 border-white transition-all duration-500">
+                  <div className="relative h-48 sm:h-60 col-span-2 rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500">
                     <Image
                       src="/images/awards/award3.png"
                       alt="Hospital Recognition Ceremony"
@@ -2517,8 +2664,8 @@ export default function HomeClient({
                 </div>
 
                 {/* Mobile Call to Action */}
-                <div className="lg:hidden text-center mt-2 px-6 py-4 bg-white shadow-xl rounded-full border border-blue-50">
-                  <p className="text-[#1D4ED8] font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3">
+                <div className="lg:hidden text-center mt-2 px-6 py-4 bg-[#EFF6FF] shadow-md rounded-full border border-gray-100">
+                  <p className="text-[#1e3a8a] font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3">
                     <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
                     Click for detailed view
                     <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
@@ -2741,30 +2888,54 @@ function Counter({
 function SimpleCard({
   href,
   title,
+  description,
   isFirst = false,
   isLast = false,
   variant = "blue",
 }: {
   href: string;
   title: string;
+  description?: string;
   isFirst?: boolean;
   isLast?: boolean;
-  variant?: "blue" | "green";
+  variant?: "blue" | "green" | "purple" | "orange";
 }) {
   const isBlue = variant === "blue";
+  const desktopTheme = title.includes("Appointment")
+    ? {
+      card: "md:bg-gradient-to-br md:from-white md:to-[#fff8e4] md:border-[#eadf9f]",
+      icon: "md:bg-[#f4edbd] md:text-[#87951c]",
+    }
+    : title.includes("Branches")
+      ? {
+        card: "md:bg-gradient-to-br md:from-white md:to-[#eef9ff] md:border-[#b8e7f7]",
+        icon: "md:bg-[#dcf5ff] md:text-[#168fbd]",
+      }
+      : variant === "purple"
+        ? {
+          card: "md:bg-gradient-to-br md:from-white md:to-[#f6f2ff] md:border-[#d6c8ff]",
+          icon: "md:bg-[#eee6ff] md:text-[#7c5fd0]",
+        }
+        : title.includes("Doctor") || variant === "orange"
+          ? {
+            card: "md:bg-gradient-to-br md:from-white md:to-[#fff1eb] md:border-[#f4cdbd]",
+            icon: "md:bg-[#ffe7dd] md:text-[#E85222]",
+          }
+          : {
+            card: "md:bg-gradient-to-br md:from-white md:to-[#f6f2ff] md:border-[#d6c8ff]",
+            icon: "md:bg-[#eee6ff] md:text-[#7c5fd0]",
+          };
 
   // Mobile styles matching the reference image (Blue/Green cards)
-  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${
-    isBlue ? "bg-[#E0EEF7]" : "bg-[#E4F5E6]"
-  }`;
+  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${isBlue ? "bg-[#E0EEF7]" : "bg-[#E4F5E6]"
+    }`;
 
-  // Desktop styles maintaining the original white bar look
-  const desktopClasses = `md:bg-white md:rounded-none md:shadow-none md:min-h-0 md:p-0 md:flex-row md:items-center md:justify-center md:gap-1 lg:gap-3 xl:gap-2 md:px-2 lg:px-4 xl:px-3 md:py-1.5 lg:py-3 xl:py-2 md:w-auto md:flex-1 md:min-w-0 md:border-r md:border-gray-100 md:last:border-0 md:hover:bg-[#FBF8ED]`;
+  const desktopClasses = `${desktopTheme.card} md:relative md:min-h-[118px] md:overflow-hidden md:rounded-2xl md:border md:p-5 lg:p-6 md:shadow-[0_12px_28px_rgba(15,23,42,0.06)] md:flex-row md:items-end md:justify-between md:gap-4 md:hover:-translate-y-1 md:hover:shadow-[0_18px_38px_rgba(15,23,42,0.12)]`;
 
   return (
     <Link
       href={href}
-      className={`${mobileClasses} ${desktopClasses} transition-all group`}
+      className={`${mobileClasses} ${desktopClasses} transition-all group font-jakarta`}
     >
       {/* Mobile Icon & Content */}
       <div className="flex flex-col items-start gap-2 md:hidden">
@@ -2850,15 +3021,21 @@ function SimpleCard({
             </svg>
           )}
         </div>
-        <span className="text-sm font-bold font-heading uppercase tracking-wider text-gray-900">
+        <span className="text-sm font-bold uppercase tracking-wider text-gray-900">
           {title}
         </span>
       </div>
 
-      {/* Desktop Title */}
-      <span className="hidden md:block text-sm lg:text-lg xl:text-base font-medium font-heading whitespace-nowrap text-gray-800 group-hover:text-gray-900">
-        {title}
-      </span>
+      <div className="hidden md:block min-w-0 pt-4">
+        <span className="block text-lg lg:text-xl font-extrabold leading-tight text-[#07152f]">
+          {title}
+        </span>
+        {description ? (
+          <span className="mt-2 block text-xs lg:text-sm font-semibold leading-snug text-[#24314f]/75">
+            {description}
+          </span>
+        ) : null}
+      </div>
 
       {/* Mobile "Learn More" */}
       <div className="md:hidden flex items-center gap-2 text-xs font-bold text-gray-900 mt-2">
@@ -2879,22 +3056,73 @@ function SimpleCard({
       </div>
 
       {/* Desktop Arrow Circle */}
-      <div className="hidden md:flex flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 xl:w-8 xl:h-8 rounded-full border-2 border-gray-800 items-center justify-center bg-white group-hover:bg-hospital-teal group-hover:border-hospital-teal group-hover:text-white transition-all">
-        <svg
-          className="w-4 h-4 lg:w-5 lg:h-5 xl:w-4 xl:h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
+      <div className={`hidden md:flex absolute right-5 top-1/2 h-9 w-9 -translate-y-1/2 flex-shrink-0 rounded-full items-center justify-center shadow-sm transition-transform group-hover:scale-110 ${desktopTheme.icon}`}>
+        {title.includes("Appointment") ? (
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V4m8 3V4M5 10h14M7 20h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v11a2 2 0 002 2z" />
+          </svg>
+        ) : title.includes("Branches") || title.includes("Hospitals") ? (
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 20h16M6 20V8l6-4 6 4v12M9 20v-6h6v6M9 10h.01M12 10h.01M15 10h.01" />
+          </svg>
+        ) : title.includes("Doctor") || title.includes("Doctors") ? (
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0M18 14v5m-2.5-2.5h5" />
+          </svg>
+        ) : title.includes("Special") ? (
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 4c2 2.5 3 4.5 3 7a6 6 0 11-12 0c0-2.5 1.1-4.4 3.2-6.6M13 4c-.2 2.2.6 3.6 2.7 4.2M11 20c2-1.9 3-4.2 3-7M8 15c1.8.2 3.7-.7 5.6-2.6" />
+          </svg>
+        ) : (
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6M7 4h7l3 3v13H7V4z" />
+          </svg>
+        )}
       </div>
     </Link>
+  );
+}
+
+function TrustBadge({
+  value,
+  label,
+  tone,
+}: {
+  value: string;
+  label: string;
+  tone: "orange" | "blue";
+}) {
+  const iconTone =
+    tone === "orange"
+      ? "bg-[#ff9d68] text-white"
+      : "bg-[#8ba7ff] text-white";
+  const icon = label.includes("Legacy") ? (
+    <path d="M10 2.5 12.1 6.8l4.7.7-3.4 3.3.8 4.7L10 13.3l-4.2 2.2.8-4.7-3.4-3.3 4.7-.7L10 2.5Z" />
+  ) : label.includes("Surgeries") ? (
+    <path d="M8.8 3.5h2.4v4.3h4.3v2.4h-4.3v4.3H8.8v-4.3H4.5V7.8h4.3V3.5Zm6.4 8.7 1.3 1.3-3 3-1.3-1.3 3-3Z" />
+  ) : (
+    <path d="M3.5 7.2c0-.9.7-1.7 1.7-1.7h2.1c.9 0 1.7.7 1.7 1.7v2.1h7.5c1.1 0 2 .9 2 2v4.2h-2v-1.4h-13v1.4h-2V4.5h2v2.7Zm0 4.9h13v-.8H8.9V7.2H5.2v4.9Z" />
+  );
+
+  return (
+    <div className="group relative flex min-h-[78px] flex-col justify-center overflow-hidden rounded-xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50 p-3 shadow-[0_8px_22px_rgba(15,23,42,0.06)] transition-all hover:-translate-y-0.5 hover:border-[#1e3a8a]/20 hover:shadow-[0_14px_30px_rgba(15,23,42,0.1)] md:min-h-[104px] md:p-4 font-jakarta">
+      <div className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-[#E85222]/5 transition-opacity group-hover:opacity-80" />
+      <div className="relative flex min-h-[34px] w-full items-start gap-2">
+        <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md shadow-sm ${iconTone}`}>
+          <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            {icon}
+          </svg>
+        </span>
+        <span className="min-w-0 text-[10px] font-bold leading-tight text-[#667085] md:text-xs lg:text-sm">
+          {label}
+        </span>
+      </div>
+      <div className="relative mt-2 flex min-w-0 items-baseline gap-1">
+        <span className="text-[16px] font-black leading-none text-[#07152f] tracking-normal min-[390px]:text-[18px] md:text-[21px] lg:text-[24px] xl:text-[26px]">
+          {value}
+        </span>
+      </div>
+    </div>
   );
 }
 

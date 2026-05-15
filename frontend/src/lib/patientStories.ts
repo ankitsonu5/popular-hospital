@@ -134,6 +134,14 @@ export function getStoryThumbnailUrl(
   return "/images/news-sm-inner.jpg";
 }
 
+export function getHomeStoryThumbnailUrl(
+  homeThumbnailUrl?: string,
+  videoUrl?: string,
+  absolute = false,
+) {
+  return getStoryThumbnailUrl(homeThumbnailUrl, videoUrl, absolute);
+}
+
 export function getPatientStoryLabel(index: number) {
   return `Patient Story ${index + 1}`;
 }
