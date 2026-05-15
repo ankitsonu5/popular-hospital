@@ -67,6 +67,11 @@ const isYoutubeUrl = (value) => {
   return Boolean(match && match[2]?.length === 11);
 };
 
+const getYoutubeId = (value) => {
+  const match = value.match(YOUTUBE_REGEX);
+  return match && match[2]?.length === 11 ? match[2] : null;
+};
+
 const isFacebookUrl = (value) => {
   if (!isValidUrl(value)) return false;
   return /facebook\.com|fb\.watch/i.test(value);
@@ -79,6 +84,54 @@ const isInstagramUrl = (value) => {
 
 const isSupportedVideoUrl = (value) =>
   isYoutubeUrl(value) || isFacebookUrl(value) || isInstagramUrl(value);
+
+const getMetaImage = (html) => {
+  const patterns = [
+    /<meta[^>]+property=["']og:image:secure_url["'][^>]+content=["']([^"']+)["'][^>]*>/i,
+    /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image:secure_url["'][^>]*>/i,
+    /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["'][^>]*>/i,
+    /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["'][^>]*>/i,
+    /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["'][^>]*>/i,
+    /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["'][^>]*>/i,
+  ];
+
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match?.[1]) return match[1].replace(/&amp;/g, "&");
+  }
+
+  return "";
+};
+
+const getAutoThumbnailUrl = async (videoUrl) => {
+  const youtubeId = getYoutubeId(videoUrl);
+  if (youtubeId) {
+    return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+  }
+
+  if (!isFacebookUrl(videoUrl) && !isInstagramUrl(videoUrl)) return "";
+
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    const response = await fetch(videoUrl, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
+        Accept: "text/html,application/xhtml+xml",
+      },
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+
+    if (!response.ok) return "";
+
+    const html = await response.text();
+    return getMetaImage(html);
+  } catch {
+    return "";
+  }
+};
 
 export const getActivePatientStories = async (req, res) => {
   try {
@@ -128,7 +181,7 @@ export const createPatientStory = async (req, res) => {
 
     const resolvedThumbnailUrl = thumbnailFile
       ? `/uploads/patient-stories/${thumbnailFile.filename}`
-      : thumbnailUrl?.trim() || "";
+      : thumbnailUrl?.trim() || (await getAutoThumbnailUrl(videoUrl.trim()));
     const resolvedHomeThumbnailUrl = homeThumbnailFile
       ? `/uploads/patient-stories/${homeThumbnailFile.filename}`
       : homeThumbnailUrl?.trim() || "";
@@ -171,7 +224,9 @@ export const updatePatientStory = async (req, res) => {
       updates.name = req.body.name.trim();
     }
 
-    if (typeof req.body.videoUrl === "string") {
+    const isVideoUrlUpdating = typeof req.body.videoUrl === "string";
+
+    if (isVideoUrlUpdating) {
       if (
         !req.body.videoUrl.trim() ||
         !isSupportedVideoUrl(req.body.videoUrl.trim())
@@ -202,6 +257,11 @@ export const updatePatientStory = async (req, res) => {
         deleteFile(story.thumbnailUrl);
       }
       updates.thumbnailUrl = `/uploads/patient-stories/${thumbnailFile.filename}`;
+    } else if (
+      isVideoUrlUpdating &&
+      typeof req.body.thumbnailUrl !== "string"
+    ) {
+      updates.thumbnailUrl = await getAutoThumbnailUrl(req.body.videoUrl.trim());
     }
 
     if (homeThumbnailFile) {

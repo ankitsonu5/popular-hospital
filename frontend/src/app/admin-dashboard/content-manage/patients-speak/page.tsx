@@ -35,7 +35,6 @@ import {
   getPatientStoryLabel,
   getStoryThumbnailUrl,
   getVideoPlatform,
-  getYoutubeId,
 } from "@/lib/patientStories";
 
 const API_URL = "/api-backend";
@@ -87,6 +86,7 @@ function SortableStoryRow({
     position: isDragging ? ("relative" as const) : ("static" as const),
     zIndex: isDragging ? 10 : "auto",
   };
+  const thumbnailUrl = getStoryThumbnailUrl(story.thumbnailUrl, story.videoUrl);
 
   return (
     <tr
@@ -106,13 +106,15 @@ function SortableStoryRow({
       </td>
       <td className="py-3.5 px-4">
         <div className="relative h-16 w-28 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
-          <Image
-            src={getStoryThumbnailUrl(story.thumbnailUrl, story.videoUrl)}
-            alt={story.name}
-            fill
-            className="object-cover"
-            sizes="112px"
-          />
+          {thumbnailUrl ? (
+            <Image
+              src={thumbnailUrl}
+              alt={story.name}
+              fill
+              className="object-cover"
+              sizes="112px"
+            />
+          ) : null}
         </div>
       </td>
       <td className="py-3.5 px-4">
@@ -410,8 +412,8 @@ export default function PatientStoriesManagePage() {
             Manage Patients Speak
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Add YouTube, Facebook, or Instagram links with custom thumbnails.
-            Drag to reorder cards.
+            Add YouTube, Facebook, or Instagram links. A clear thumbnail is
+            added automatically where the platform allows it.
           </p>
         </div>
         <button
@@ -585,13 +587,14 @@ export default function PatientStoriesManagePage() {
                   </p>
                 ) : editingStory ? (
                   <p className="text-[11px] text-gray-500 mt-1">
-                    Keep current thumbnail, or use the YouTube thumbnail by
-                    default if no custom one is saved.
+                    Current thumbnail will stay unless you upload a new one.
+                    YouTube/Facebook/Instagram thumbnails are auto-detected
+                    when available.
                   </p>
                 ) : (
                   <p className="text-[11px] text-gray-500 mt-1">
-                    If you do not upload a thumbnail, the YouTube video
-                    thumbnail will be used by default.
+                    If you do not upload a thumbnail, the video thumbnail will
+                    be added automatically when available.
                   </p>
                 )}
               </div>

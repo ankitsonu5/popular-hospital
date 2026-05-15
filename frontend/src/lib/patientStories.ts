@@ -47,6 +47,29 @@ export function getInstagramPath(url: string) {
   }
 }
 
+function isInstagramUrl(url: string) {
+  try {
+    return new URL(url).hostname.toLowerCase().includes("instagram.com");
+  } catch {
+    return false;
+  }
+}
+
+function getInstagramEmbedFallback(url: string) {
+  try {
+    const parsed = new URL(url);
+    if (!parsed.hostname.toLowerCase().includes("instagram.com")) return null;
+
+    const normalizedPath = parsed.pathname.endsWith("/")
+      ? parsed.pathname
+      : `${parsed.pathname}/`;
+
+    return `https://www.instagram.com${normalizedPath}embed/captioned/`;
+  } catch {
+    return null;
+  }
+}
+
 export function isDirectVideoUrl(url: string) {
   return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url);
 }
@@ -54,7 +77,7 @@ export function isDirectVideoUrl(url: string) {
 export function getVideoPlatform(url: string): VideoPlatform {
   if (getYoutubeId(url)) return "youtube";
   if (/facebook\.com|fb\.watch/i.test(url)) return "facebook";
-  if (getInstagramPath(url)) return "instagram";
+  if (getInstagramPath(url) || isInstagramUrl(url)) return "instagram";
   if (isDirectVideoUrl(url)) return "direct";
   return "external";
 }
@@ -69,6 +92,9 @@ export function getVideoEmbedUrl(url: string) {
   if (instagram) {
     return `https://www.instagram.com/${instagram.type}/${instagram.id}/embed/captioned/`;
   }
+
+  const instagramFallback = getInstagramEmbedFallback(url);
+  if (instagramFallback) return instagramFallback;
 
   if (/facebook\.com|fb\.watch/i.test(url)) {
     return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false&autoplay=true`;
@@ -128,9 +154,8 @@ export function getStoryThumbnailUrl(
   if (thumbnailUrl) return getImageUrl(thumbnailUrl, absolute);
 
   const youtubeId = videoUrl ? getYoutubeId(videoUrl) : null;
-  if (youtubeId) return `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
+  if (youtubeId) return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
 
-  // Facebook videos don't have an auto-fetchable thumbnail; use default
   return "/images/news-sm-inner.jpg";
 }
 

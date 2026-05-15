@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useMemo, useState } from "react";
-import type { PatientStory } from "@/lib/api";
+import { getImageUrl, type PatientStory } from "@/lib/api";
 import {
   getHomeStoryThumbnailUrl,
   getStoryThumbnailUrl,
@@ -11,6 +11,7 @@ import {
   getPatientStoryLabel,
   getPatientStoryModalLayout,
   getYoutubeId,
+  getVideoPlatform,
 } from "@/lib/patientStories";
 
 function TestimonialCard({
@@ -26,6 +27,8 @@ function TestimonialCard({
   useHomeThumbnail?: boolean;
   onOpen: (story: PatientStory) => void;
 }) {
+  const shouldUseVideoPreview =
+    (index === 2 || index === 3) && getVideoPlatform(story.videoUrl) === "direct";
   const thumbnailUrl = useHomeThumbnail
     ? getHomeStoryThumbnailUrl(
         story.homeThumbnailUrl,
@@ -40,13 +43,25 @@ function TestimonialCard({
       className={`relative group w-full overflow-hidden rounded-[14px] bg-gray-900 text-left shadow-[0_14px_34px_rgba(15,23,42,0.14)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(15,23,42,0.18)] ${className}`}
       aria-label={`Play ${title}`}
     >
-      <Image
-        src={thumbnailUrl}
-        alt={title}
-        fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-        sizes="(max-width: 768px) 100vw, 20vw"
-      />
+      {shouldUseVideoPreview ? (
+        <video
+          src={getImageUrl(story.videoUrl)}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      ) : (
+        <Image
+          src={thumbnailUrl}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 20vw"
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
       <div className="absolute inset-0 flex items-center justify-center">
         <div
@@ -80,6 +95,9 @@ export default function Testimonials({
   stories?: PatientStory[];
 }) {
   const [selectedStory, setSelectedStory] = useState<PatientStory | null>(null);
+  const selectedPlatform = selectedStory
+    ? getVideoPlatform(selectedStory.videoUrl)
+    : null;
   const modalLayout = selectedStory
     ? getPatientStoryModalLayout(selectedStory.videoUrl)
     : null;
@@ -264,13 +282,17 @@ export default function Testimonials({
               <div
                 className={`relative w-full ${modalLayout?.frameClassName || "aspect-video"} ${modalLayout?.frameWrapperClassName || ""}`}
               >
-                {!getYoutubeId(selectedStory.videoUrl) ? (
-                  <div className="flex h-full items-center justify-center bg-white px-6 text-center">
-                    <p className="text-sm font-semibold text-gray-700">
-                      Only YouTube links are supported.
-                    </p>
-                  </div>
-                ) : (
+                {selectedPlatform === "direct" ? (
+                  <video
+                    src={getImageUrl(selectedStory.videoUrl)}
+                    className="absolute inset-0 h-full w-full bg-black object-contain"
+                    controls
+                    autoPlay
+                    playsInline
+                  />
+                ) : selectedPlatform === "youtube" ||
+                  selectedPlatform === "instagram" ||
+                  selectedPlatform === "facebook" ? (
                   <iframe
                     src={
                       getVideoEmbedUrl(selectedStory.videoUrl) ||
@@ -287,7 +309,14 @@ export default function Testimonials({
                     }
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
+                    scrolling="no"
                   />
+                ) : (
+                  <div className="flex h-full items-center justify-center bg-white px-6 text-center">
+                    <p className="text-sm font-semibold text-gray-700">
+                      This video format is not supported for inline playback.
+                    </p>
+                  </div>
                 )}
               </div>
             </div>

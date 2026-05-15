@@ -567,7 +567,7 @@ export default function HomeClient({
       </section>
 
       {/* Action Cards Section */}
-      <section className="relative z-30 overflow-hidden bg-gradient-to-br from-[#f8fafc] via-white to-[#eef6fb] py-12 sm:py-16">
+      <section className="jakarta-font-scope relative z-30 overflow-hidden bg-gradient-to-br from-[#f8fafc] via-white to-[#eef6fb] py-12 sm:py-16">
         <div className="absolute left-0 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-[#E85222]/10 blur-3xl" />
         <div className="absolute right-12 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#1e3a8a]/10 blur-3xl" />
         <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-[1240px] 2xl:max-w-[1600px]">
@@ -1408,25 +1408,25 @@ export default function HomeClient({
           </div>
 
           {/* Desktop Layout (>= lg) */}
-          <div className="hidden lg:block relative w-full h-[700px] max-w-[1000px] mx-auto">
+          <div className="hidden lg:block relative w-full h-[600px] max-w-[900px] mx-auto">
             {/* Center Image Container */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-              <div className="relative w-[400px] h-[400px] rounded-full overflow-hidden border-[12px] border-white shadow-2xl">
+              <div className="relative w-[320px] h-[320px] xl:w-[340px] xl:h-[340px] rounded-full overflow-hidden border-[10px] border-white shadow-2xl">
                 <Image
                   src="/images/model-of-care-center.jpg"
                   alt="Surgery Team"
                   fill
                   className="object-cover"
-                  sizes="400px"
+                  sizes="340px"
                 />
               </div>
             </div>
 
             {/* Dashed Orbit Ring */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-dashed border-gray-400 z-0"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] xl:w-[520px] xl:h-[520px] rounded-full border border-dashed border-gray-400 z-0"></div>
 
             {/* Node 1: Top (Exceptional clinical talent) */}
-            <div className="absolute left-1/2 top-4 transform -translate-x-1/2 flex flex-col items-center z-20 w-64 text-center">
+            <div className="absolute left-1/2 top-2 transform -translate-x-1/2 flex flex-col items-center z-20 w-60 text-center">
               <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
                 Exceptional
                 <br />
@@ -1446,7 +1446,7 @@ export default function HomeClient({
             </div>
 
             {/* Node 2: Top Right (World-class infrastructure) */}
-            <div className="absolute top-[20%] right-[3%] flex flex-col items-start z-20 w-64 text-left">
+            <div className="absolute top-[20%] right-[4%] flex flex-col items-start z-20 w-60 text-left">
               <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
                 World-class
                 <br />
@@ -1466,7 +1466,7 @@ export default function HomeClient({
             </div>
 
             {/* Node 3: Bottom Right (Latest high-end technology) */}
-            <div className="absolute bottom-[20%] right-[3%] flex flex-col items-start z-20 w-64 text-left">
+            <div className="absolute bottom-[20%] right-[4%] flex flex-col items-start z-20 w-60 text-left">
               <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
                 Latest high-end
                 <br />
@@ -1486,7 +1486,7 @@ export default function HomeClient({
             </div>
 
             {/* Node 4: Bottom Left (Caring systems and processes) */}
-            <div className="absolute bottom-[20%] left-[3%] flex flex-col items-end z-20 w-64 text-right">
+            <div className="absolute bottom-[20%] left-[4%] flex flex-col items-end z-20 w-60 text-right">
               <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
                 Caring systems
                 <br />
@@ -1506,7 +1506,7 @@ export default function HomeClient({
             </div>
 
             {/* Node 5: Top Left (Trust-based compassionate care) */}
-            <div className="absolute top-[20%] left-[3%] flex flex-col items-end z-20 w-64 text-right">
+            <div className="absolute top-[20%] left-[4%] flex flex-col items-end z-20 w-60 text-right">
               <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
                 Trust-based
                 <br />
@@ -2632,35 +2632,15 @@ export default function HomeClient({
                 </div>
               </div>
 
-              {/* Right Column - Awards Gallery Grid */}
+              {/* Right Column - Award Image */}
               <div className="flex flex-col gap-6">
-                <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500">
-                    <Image
-                      src="/images/awards/award1.png"
-                      alt="Hospital Award"
-                      fill
-                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-
-                  <div className="relative h-36 sm:h-44 rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500">
-                    <Image
-                      src="/images/awards/award2.png"
-                      alt="Medical Achievement"
-                      fill
-                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-
-                  <div className="relative h-48 sm:h-60 col-span-2 rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500">
-                    <Image
-                      src="/images/awards/award3.png"
-                      alt="Hospital Recognition Ceremony"
-                      fill
-                      className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
-                    />
-                  </div>
+                <div className="relative h-60 sm:h-72 lg:h-80 rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500">
+                  <Image
+                    src="/images/awards/award1.png"
+                    alt="Hospital Award"
+                    fill
+                    className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
+                  />
                 </div>
 
                 {/* Mobile Call to Action */}

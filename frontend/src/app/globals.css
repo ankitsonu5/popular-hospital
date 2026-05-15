@@ -114,6 +114,11 @@ button {
   font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif !important;
 }
 
+.jakarta-font-scope,
+.jakarta-font-scope * {
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif !important;
+}
+
 .pause-scroll:hover {
   animation-play-state: paused !important;
 }
