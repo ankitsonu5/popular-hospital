@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -83,7 +83,7 @@ const sections = [
         <div className="mt-8 pt-6 border-t border-gray-200">
           <h3 className="text-2xl font-black text-[#0b1c43] mb-1">
             24X7 Facilities available at{" "}
-            <span className="text-blue-600">Popular</span>
+            <span className="text-[#284a91]">Popular</span>
           </h3>
           <div className="w-12 h-1 bg-gray-500 mb-6 rounded-full relative">
             <div className="absolute top-1/2 left-0 w-2 h-2 bg-gray-500 rounded-full -translate-y-1/2 -ml-1"></div>
@@ -102,9 +102,10 @@ const sections = [
               "Wheelchairs, crash carts, mechanical ventilators, multiple-channel monitors, and separate recovery beds.",
             ].map((item, idx) => (
               <li key={idx} className="flex gap-3">
-                <span className="text-purple-700 font-bold flex-shrink-0">
-                  &gt;
-                </span>
+                <span
+                  className="text-purple-700 font-bold flex-shrink-0"
+                  aria-hidden="true"
+                />
                 <span className="font-medium text-left">{item}</span>
               </li>
             ))}
@@ -171,9 +172,10 @@ const sections = [
             "Gunshot injuries",
           ].map((item, idx) => (
             <li key={idx} className="flex items-start gap-3">
-              <span className="text-purple-700 font-black flex-shrink-0 leading-none mt-0.5">
-                &gt;
-              </span>
+              <span
+                className="text-purple-700 font-black flex-shrink-0 leading-none mt-0.5"
+                aria-hidden="true"
+              />
               <span className="text-left font-semibold">{item}</span>
             </li>
           ))}
@@ -212,9 +214,10 @@ const sections = [
             "Popular Hospital is the leading search result when you search for a 24/7 emergency hospital near me.",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -244,9 +247,10 @@ const sections = [
             "Are you getting tired of searching for a hospital near me Varanasi? Worry not!!!! Popular Hospital is there to resolve your every worry and trouble.",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -277,9 +281,10 @@ const sections = [
             "If your search is Best Emergency Hospital near me, then the result is Popular Hospital.",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -309,9 +314,10 @@ const sections = [
             "Involved with prevention efforts",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -342,9 +348,10 @@ const sections = [
             "If you are looking for a hospital near me Varanasi, then your search is in the perfect place right now.",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -372,9 +379,10 @@ const sections = [
             "The emergency medical team should exercise caution and wisdom to carefully examine the situation before acting, intervening, and reassessment.",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -409,9 +417,10 @@ const sections = [
             "The emergency team needs to evaluate the patient, act, and then reevaluate.",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -459,9 +468,10 @@ const sections = [
             "Complete medical care and attention.",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -534,27 +544,27 @@ const SectionHeader = ({
 }: {
   title: string;
   highlight?: string;
-}) => (
-  <div className="mb-12">
-    <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading leading-tight uppercase tracking-tight">
-      {title} <span className="text-blue-600 font-black">{highlight}</span>
-    </h2>
-    <div className="flex items-center gap-2 mt-4">
-      <div className="w-3 h-3 rounded-full bg-blue-600 animate-pulse" />
-      <div className="h-[3px] w-16 bg-gradient-to-r from-blue-600 to-transparent" />
+}) =>
+  title ? (
+    <div className="mb-7">
+      <h2 className="max-w-4xl text-2xl font-black leading-tight text-[#0b1c43] md:text-3xl lg:text-[2.35rem]">
+        {title}{" "}
+        {highlight && <span className="text-[#284a91]">{highlight}</span>}
+      </h2>
+      <div className="mt-4 flex items-center gap-3">
+        <div className="h-1.5 w-1.5 rounded-full bg-[#cf2e2e]" />
+        <div className="h-px w-24 bg-gradient-to-r from-[#cf2e2e] via-[#284a91] to-transparent" />
+      </div>
     </div>
-  </div>
-);
+  ) : null;
 
 /* ─── Main Component ─── */
 
 export default function EmergencyTraumaClient() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden bg-[#f7f9fc]">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[400px] md:h-[400px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
+      <section className="relative min-h-[300px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 font-sans md:h-[300px] md:py-0 lg:h-[320px]">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/emergency_trauma.png"
@@ -568,11 +578,11 @@ export default function EmergencyTraumaClient() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="animate-fade-in-up max-w-4xl">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 font-heading tracking-tight leading-[1.1]">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight leading-[1.08]">
               Emergency & <br className="hidden md:block" /> Trauma Care
             </h1>
             <nav
-              className="flex items-center text-sm md:text-lg text-white/90 font-bold"
+              className="flex items-center text-xs md:text-base text-white/90 font-bold"
               aria-label="Breadcrumb"
             >
               <Link
@@ -598,51 +608,66 @@ export default function EmergencyTraumaClient() {
       </section>
 
       {/* ═══════ MAIN CONTENT CONTENT ═══════ */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto w-full max-w-[1366px] px-6">
-          <div className="flex flex-col gap-24 lg:gap-32">
+      <section className="relative py-14 md:py-20">
+        <div className="absolute inset-x-0 top-0 h-40 bg-white" />
+        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 lg:px-10">
+          <div className="flex flex-col gap-8 lg:gap-10">
             {sections.map((section, idx) => {
               const showImage = section.id !== "department";
               const isEven = idx % 2 === 0;
+              const titleParts = section.title.split(" ");
+              const title = titleParts.slice(0, -1).join(" ");
+              const highlight = titleParts.slice(-1)[0];
               return (
-                <div
+                <article
                   key={section.id}
-                  className={`flex flex-col ${showImage ? (isEven ? "lg:flex-row" : "lg:flex-row-reverse") : "items-center text-center"} gap-12 lg:gap-20`}
+                  className={`relative overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.08)] ${
+                    showImage ? "p-4 sm:p-5 lg:p-6" : "p-5 sm:p-8 lg:p-10"
+                  }`}
                 >
+                  <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#cf2e2e] via-[#284a91] to-[#0b1c43]" />
                   <div
-                    className={`w-full ${showImage ? "lg:w-[55%]" : "w-full"}`}
+                    className={`flex flex-col ${
+                      showImage
+                        ? isEven
+                          ? "lg:flex-row"
+                          : "lg:flex-row-reverse"
+                        : ""
+                    } gap-8 lg:gap-12`}
                   >
-                    <SectionHeader
-                      title={section.title.split(" ").slice(0, -1).join(" ")}
-                      highlight={section.title.split(" ").slice(-1)[0]}
-                    />
-                    <div className="text-justify">{section.content}</div>
-                  </div>
-
-                  {showImage && (
-                    <div className="w-full lg:w-[45%] flex justify-center">
-                      <div className="relative w-full max-w-[500px]">
-                        {/* Decorative Background Blob */}
-                        <div
-                          className={`absolute -inset-10 bg-blue-50/50 rounded-full blur-[80px] opacity-60 z-0`}
-                        ></div>
-
-                        {/* Styled Image Container */}
-                        <div
-                          className={`relative w-full aspect-[4/3] z-10 overflow-hidden shadow-2xl border-4 border-white group ${section.shape}`}
-                        >
-                          <Image
-                            src={section.image}
-                            alt={section.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
+                    <div
+                      className={`w-full ${
+                        showImage
+                          ? "lg:w-[58%] lg:px-2 lg:py-4"
+                          : "mx-auto max-w-5xl"
+                      }`}
+                    >
+                      <SectionHeader title={title} highlight={highlight} />
+                      <div className="text-left [&_li>span:first-child]:mt-2 [&_li>span:first-child]:inline-block [&_li>span:first-child]:h-2 [&_li>span:first-child]:w-2 [&_li>span:first-child]:rounded-full [&_li>span:first-child]:bg-[#284a91] [&_li>span:first-child]:text-transparent [&_li]:leading-relaxed [&_p]:text-left [&_p]:md:text-justify [&_ul]:rounded-2xl [&_ul]:border [&_ul]:border-slate-100 [&_ul]:bg-slate-50/70 [&_ul]:p-4">
+                        {section.content}
                       </div>
                     </div>
-                  )}
-                </div>
+
+                    {showImage && (
+                      <div className="flex w-full justify-center lg:w-[42%]">
+                        <div className="relative w-full">
+                          <div
+                            className={`group relative h-full min-h-[260px] w-full overflow-hidden rounded-[1.35rem] border border-white md:min-h-[340px] lg:min-h-full ${section.shape}`}
+                          >
+                            <Image
+                              src={section.image}
+                              alt={section.title}
+                              fill
+                              className="object-cover transition-transform duration-700 group-hover:scale-110"
+                              sizes="(max-width: 1024px) 100vw, 42vw"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/35 via-transparent to-transparent" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </article>
               );
             })}
           </div>

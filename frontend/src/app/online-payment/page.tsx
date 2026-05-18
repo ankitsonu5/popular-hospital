@@ -59,7 +59,7 @@ const OnlinePaymentPage = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-64 md:h-96 flex items-center">
+      <section className="relative h-36 md:h-52 flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=2000"

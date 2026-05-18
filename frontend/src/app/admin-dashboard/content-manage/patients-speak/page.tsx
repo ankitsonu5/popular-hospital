@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -195,7 +195,7 @@ export default function PatientStoriesManagePage() {
   );
 
   const getHeaders = () => ({
-    Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+    Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
   });
 
   const fetchStories = useCallback(async () => {

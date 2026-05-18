@@ -153,7 +153,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-8 2xl:mb-12 flex flex-col items-center">
     <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#1e293b] font-heading leading-tight uppercase tracking-wide flex items-center gap-4">
-      {title} <span className="text-[#3b82f6] font-bold">{highlight}</span>
+      {title} <span className="text-[#284a91] font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-4 w-full">
       <div className="h-[1px] flex-grow bg-gray-300" />
@@ -173,7 +173,7 @@ const ContentBlock = ({
   bullets?: string[];
 }) => (
   <div className="mb-10 2xl:mb-14 group">
-    <h3 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-[#3b82f6] mb-4 group-hover:text-blue-700 transition-colors tracking-tight leading-tight">
+    <h3 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-[#284a91] mb-4 group-hover:text-[#284a91] transition-colors tracking-tight leading-tight">
       {title}
     </h3>
     {text && (

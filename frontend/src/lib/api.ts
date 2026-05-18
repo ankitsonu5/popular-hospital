@@ -1,4 +1,6 @@
 export const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "";
+const uploadsBaseUrl =
+  process.env.NEXT_PUBLIC_UPLOADS_BASE_URL || process.env.NEXT_PUBLIC_API_URL || "";
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser: use relative paths or Next.js rewrites
@@ -11,7 +13,11 @@ export const api = (path: string) => {
   return `${getBaseUrl()}/api/${p}`;
 };
 
-export const getImageUrl = (path: string, absolute = false) => {
+export const getImageUrl = (
+  path: string,
+  absolute = false,
+  options?: { preferRelativeUploads?: boolean },
+) => {
   if (!path) return "";
   if (path.startsWith("http")) return path;
 
@@ -24,10 +30,20 @@ export const getImageUrl = (path: string, absolute = false) => {
       ? normalizedPath
       : `/uploads${normalizedPath}`;
 
-  // Only return absolute URL when explicitly requested
-  // Default: always return relative path so Next.js rewrites handle it
+  if (finalPath.startsWith("/uploads")) {
+    if (options?.preferRelativeUploads) {
+      return finalPath;
+    }
+
+    if (uploadsBaseUrl) {
+      return `${uploadsBaseUrl.replace(/\/$/, "")}${finalPath}`;
+    }
+  }
+
+  // Only return absolute URL when explicitly requested.
+  // Default: local/public images stay relative so Next.js can serve them.
   if (absolute && apiBaseUrl) {
-    return `${apiBaseUrl}${finalPath}`;
+    return `${apiBaseUrl.replace(/\/$/, "")}${finalPath}`;
   }
 
   return finalPath;
@@ -128,6 +144,21 @@ export async function fetchDepartment(
   } catch (e) {
     console.error("Failed to fetch department:", e);
     return null;
+  }
+}
+
+export async function fetchDepartmentGallery(
+  departmentSlug: string,
+): Promise<DepartmentGalleryItem[]> {
+  try {
+    const res = await fetch(api(`/department-gallery/${departmentSlug}`), {
+      next: { revalidate: 30 },
+    });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (e) {
+    console.error("Failed to fetch department gallery:", e);
+    return [];
   }
 }
 
@@ -408,6 +439,22 @@ export interface Doctor {
   designation?: string | { _id: string; name: string };
 }
 
+export interface DepartmentGalleryItem {
+  _id: string;
+  department?: {
+    _id: string;
+    name: string;
+    slug: string;
+    department_display_name?: string;
+  };
+  type: "image" | "video";
+  title?: string;
+  mediaUrl: string;
+  thumbnailUrl?: string;
+  order?: number;
+  isActive?: boolean;
+}
+
 export interface BookingInput {
   patient_name: string;
   patient_phone: string;
@@ -541,6 +588,8 @@ export interface UpdateItem {
   isImportant: boolean;
   isActive: boolean;
   pdfUrl?: string;
+  imageUrl?: string;
+  linkUrl?: string;
 }
 
 export interface HeroBanner {

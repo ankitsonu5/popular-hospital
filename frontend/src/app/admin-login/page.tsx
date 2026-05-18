@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -49,9 +49,15 @@ export default function AdminLoginPage() {
 
         if (!res.ok) throw new Error(data.error || "Login failed");
 
-        localStorage.setItem("admin_token", data.token);
-        localStorage.setItem("admin_user", JSON.stringify(data.user));
-        router.push("/admin-dashboard");
+        sessionStorage.setItem("admin_token", data.token);
+        sessionStorage.setItem("admin_user", JSON.stringify(data.user));
+        if (data.user?.role === "sub_admin") {
+          router.push("/admin-dashboard/bookings");
+        } else if (data.user?.role === "career_admin") {
+          router.push("/admin-dashboard/careers");
+        } else {
+          router.push("/admin-dashboard");
+        }
       }
     } catch (err: any) {
       setError(err.message || "Invalid credentials");

@@ -5,7 +5,16 @@ import Link from "next/link";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
-const doctors: never[] = [];
+// Edit these doctor details here when you are ready.
+const doctors = [
+  {
+    name: "Dr. Akanksha Chaturvedi",
+    qualifications: "MBBS, MS (Obs & Gynae)",
+    designation: "IVF & Fertility Specialist",
+    slug: "dr-akanksha-chaturvedi",
+    image: "/images/departments_doctor/dr_akanksha_chaturvedi.jpg",
+  },
+];
 
 const highlights = [
   {
@@ -73,7 +82,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#7c1745] font-heading leading-tight">
-      {title} <span className="text-[#E85222]">{highlight}</span>
+      {title} <span className="text-[#284a91]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-[#E85222]" />

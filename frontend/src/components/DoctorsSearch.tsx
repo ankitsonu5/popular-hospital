@@ -7,19 +7,26 @@ import { RotateCcw } from "lucide-react";
 import {
   fetchDoctors,
   fetchSpecialities,
-  fetchBranches,
   getImageUrl,
 } from "@/lib/api";
-import type { Doctor, Speciality, Branch } from "@/lib/api";
+import type { Doctor, Speciality } from "@/lib/api";
+
+const EMPTY_DEPARTMENTS: Speciality[] = [];
+const EMPTY_DOCTORS: Doctor[] = [];
 
 export function DoctorsSearch() {
   const [speciality, setSpeciality] = useState("");
   const [search, setSearch] = useState("");
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
-  const { data: departments = [] } = useSWR("specialities", fetchSpecialities, {
-    revalidateOnFocus: false,
-  });
-  const { data: doctors = [], isLoading: loading } = useSWR(
+  const { data: departments = EMPTY_DEPARTMENTS } = useSWR(
+    "specialities",
+    fetchSpecialities,
+    {
+      revalidateOnFocus: false,
+    },
+  );
+  const { data: doctors = EMPTY_DOCTORS, isLoading: loading } = useSWR(
     ["doctors", speciality, search],
     () => fetchDoctors({ speciality, search }),
     { keepPreviousData: true },
@@ -27,6 +34,10 @@ export function DoctorsSearch() {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setFailedImages({});
+  }, [doctors]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -42,9 +53,9 @@ export function DoctorsSearch() {
   }, []);
 
   return (
-    <div className="mt-8 w-full overflow-hidden">
+    <div className="mt-7 w-full overflow-hidden">
       {/* Refined Filter Section */}
-      <div className="mb-16 flex flex-col lg:flex-row items-stretch gap-6 bg-white p-6 sm:p-10 rounded-[2.5rem] border border-gray-100 shadow-[0_20px_60px_-15px_rgba(30,58,95,0.08)]">
+      <div className="mb-14 flex flex-col lg:flex-row items-stretch gap-5 bg-white p-5 sm:p-8 rounded-[2rem] border border-gray-100 shadow-[0_20px_60px_-15px_rgba(30,58,95,0.08)]">
         <div className="w-full lg:flex-1 flex flex-col justify-center">
           <label
             htmlFor="search"
@@ -59,7 +70,7 @@ export function DoctorsSearch() {
               placeholder="Ex: Cardiology or Dr. Sharma..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-6 text-base font-medium focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] placeholder:text-gray-400"
+              className="w-full rounded-xl border-2 border-[#f1f5f9] px-5 py-4 text-sm font-medium focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] placeholder:text-gray-400"
             />
           </div>
         </div>
@@ -75,7 +86,7 @@ export function DoctorsSearch() {
             <button
               type="button"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full rounded-2xl border-2 border-[#f1f5f9] px-6 py-6 text-left text-base font-bold text-hospital-navy focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] flex items-center justify-between"
+              className="w-full rounded-xl border-2 border-[#f1f5f9] px-5 py-4 text-left text-sm font-bold text-hospital-navy focus:border-hospital-teal focus:ring-0 transition-all bg-[#f8fafc] flex items-center justify-between"
             >
               <span className="truncate">
                 {speciality
@@ -145,7 +156,7 @@ export function DoctorsSearch() {
               setSearch("");
               setSpeciality("");
             }}
-            className={`flex items-center justify-center h-[76px] px-6 lg:px-8 rounded-2xl border-2 transition-all duration-300 min-w-max ${
+            className={`flex items-center justify-center h-[56px] px-5 lg:px-7 rounded-xl border-2 transition-all duration-300 min-w-max ${
               search || speciality
                 ? "border-red-100 bg-red-50 text-red-500 hover:bg-red-100 hover:border-red-200"
                 : "border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed opacity-50"
@@ -200,16 +211,23 @@ export function DoctorsSearch() {
             >
               <Link
                 href={`/doctors/${doc.slug}`}
-                className="group relative block h-full rounded-[2rem] sm:rounded-[2.5rem] bg-white p-3.5 sm:p-4 border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-1"
+                className="group relative block h-full rounded-2xl bg-white p-3.5 sm:p-4 border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-1"
               >
                 {/* Image Container with balanced rounding */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.5rem] sm:rounded-[1.75rem] bg-[#f1f5f9] mb-5 sm:mb-6">
-                  {doc.image_url ? (
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#f1f5f9] mb-5 sm:mb-6">
+                  {doc.image_url &&
+                  !failedImages[doc._id || doc.id || doc.slug] ? (
                     <Image
                       src={getImageUrl(doc.image_url)}
                       alt={doc.name}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      onError={() =>
+                        setFailedImages((current) => ({
+                          ...current,
+                          [doc._id || doc.id || doc.slug]: true,
+                        }))
+                      }
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-teal-50/30 text-teal-200">

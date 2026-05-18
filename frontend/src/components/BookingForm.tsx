@@ -45,8 +45,18 @@ export function BookingForm({ searchParams }: { searchParams: SearchParams }) {
     Promise.all([fetchDoctors(), fetchBranches()]).then(([d, b]) => {
       setDoctors(d);
       setBranches(b);
-      if (presetDoctor) setDoctorId(presetDoctor);
-      if (presetBranch) setBranchId(presetBranch);
+      if (presetDoctor) {
+        const selectedDoctor = d.find((doctor) =>
+          [doctor._id, doctor.id, doctor.slug].includes(presetDoctor),
+        );
+        setDoctorId(selectedDoctor?._id || selectedDoctor?.id || presetDoctor);
+      }
+      if (presetBranch) {
+        const selectedBranch = b.find((branch) =>
+          [branch._id, branch.slug].includes(presetBranch),
+        );
+        setBranchId(selectedBranch?._id || presetBranch);
+      }
     });
   }, [presetDoctor, presetBranch]);
 

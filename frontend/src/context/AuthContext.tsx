@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   createContext,
@@ -33,8 +33,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("admin_token");
-    const storedUser = localStorage.getItem("admin_user");
+    const storedToken = sessionStorage.getItem("admin_token");
+    const storedUser = sessionStorage.getItem("admin_user");
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
@@ -53,15 +53,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     setToken(data.token);
     setUser(data.user);
-    localStorage.setItem("admin_token", data.token);
-    localStorage.setItem("admin_user", JSON.stringify(data.user));
+    sessionStorage.setItem("admin_token", data.token);
+    sessionStorage.setItem("admin_user", JSON.stringify(data.user));
   };
 
   const logout = () => {
     setToken(null);
     setUser(null);
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_user");
+    sessionStorage.removeItem("admin_token");
+    sessionStorage.removeItem("admin_user");
     router.push("/admin-login");
   };
 

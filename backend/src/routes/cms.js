@@ -104,7 +104,15 @@ import {
   deletePopup,
   uploadPopupImage,
 } from "../controllers/popupController.js";
-import { cmsAuth, superAdminOnly } from "../middleware/auth.js";
+import {
+  getAdminDepartmentGallery,
+  createDepartmentGalleryItem,
+  updateDepartmentGalleryItem,
+  deleteDepartmentGalleryItem,
+  reorderDepartmentGalleryItems,
+  uploadDepartmentGallery,
+} from "../controllers/departmentGalleryController.js";
+import { cmsAuth, superAdminOnly, superOrSubAdmin } from "../middleware/auth.js";
 import {
   getCareerAdmins,
   createCareerAdmin,
@@ -114,6 +122,14 @@ import {
   careerAdminLogout,
   forceLogoutCareerAdmin,
   forceLogoutAllCareerAdmins,
+  getSubAdmins,
+  createSubAdmin,
+  updateSubAdmin,
+  toggleSubAdmin,
+  deleteSubAdmin,
+  forceLogoutSubAdmin,
+  forceLogoutAllSubAdmins,
+  subAdminLogout,
 } from "../controllers/authController.js";
 
 const router = Router();
@@ -146,6 +162,24 @@ router.get("/careers/:id", getCareerById);
 router.post("/careers", createCareer);
 router.put("/careers/:id", updateCareer);
 router.delete("/careers/:id", deleteCareer);
+
+// ── Sub-Admin self-logout ────────────────────────────────────────────
+router.post("/sub-admin/logout", subAdminLogout);
+
+// ── Sub-Admin management (super_admin only) ──────────────────────────
+router.get("/sub-admin", superAdminOnly, getSubAdmins);
+router.post("/sub-admin", superAdminOnly, createSubAdmin);
+router.put("/sub-admin/:id", superAdminOnly, updateSubAdmin);
+router.patch("/sub-admin/:id/toggle", superAdminOnly, toggleSubAdmin);
+router.delete("/sub-admin/sessions/all", superAdminOnly, forceLogoutAllSubAdmins);
+router.delete("/sub-admin/:id/session", superAdminOnly, forceLogoutSubAdmin);
+router.delete("/sub-admin/:id", superAdminOnly, deleteSubAdmin);
+
+// ── Bookings — super_admin aur sub_admin dono access kar sakte hain ──
+router.get("/bookings", superOrSubAdmin, getAllBookings);
+router.patch("/bookings/:id/read", superOrSubAdmin, markBookingRead);
+router.patch("/bookings/:id/status", superOrSubAdmin, updateBookingStatus);
+router.delete("/bookings/:id", superOrSubAdmin, deleteBooking);
 
 // ── From here: super_admin only ─────────────────────────────────────
 router.use(superAdminOnly);
@@ -202,15 +236,30 @@ router.post("/designations", createDesignation);
 router.put("/designations/:id", updateDesignation);
 router.delete("/designations/:id", deleteDesignation);
 
-// Bookings (read-only for CMS)
-router.get("/bookings", getAllBookings);
-router.patch("/bookings/:id/read", markBookingRead);
-router.patch("/bookings/:id/status", updateBookingStatus);
-router.delete("/bookings/:id", deleteBooking);
-
 // Site Content
 router.get("/content", getSiteContent);
 router.post("/content", setSiteContent);
+
+// Department Gallery
+router.get("/department-gallery", getAdminDepartmentGallery);
+router.post(
+  "/department-gallery",
+  uploadDepartmentGallery.fields([
+    { name: "media", maxCount: 1 },
+    { name: "thumbnail", maxCount: 1 },
+  ]),
+  createDepartmentGalleryItem,
+);
+router.put("/department-gallery/reorder", reorderDepartmentGalleryItems);
+router.put(
+  "/department-gallery/:id",
+  uploadDepartmentGallery.fields([
+    { name: "media", maxCount: 1 },
+    { name: "thumbnail", maxCount: 1 },
+  ]),
+  updateDepartmentGalleryItem,
+);
+router.delete("/department-gallery/:id", deleteDepartmentGalleryItem);
 
 // News CRUD
 router.get("/news", getAdminNews);
@@ -248,8 +297,8 @@ router.delete("/coverage/:id", deleteCoverage);
 // =====================
 router.get("/updates", getUpdates);
 router.get("/updates/:id", getUpdateById);
-router.post("/updates", uploadUpdates.single("pdf"), createUpdate);
-router.put("/updates/:id", uploadUpdates.single("pdf"), updateUpdate);
+router.post("/updates", uploadUpdates.any(), createUpdate);
+router.put("/updates/:id", uploadUpdates.any(), updateUpdate);
 router.delete("/updates/:id", deleteUpdate);
 
 // Events CRUD

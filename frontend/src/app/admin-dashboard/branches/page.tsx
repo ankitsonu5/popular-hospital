@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import {
@@ -26,7 +26,7 @@ export default function BranchesPage() {
 
   const getHeaders = useCallback(
     () => ({
-      Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+      Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
       "Content-Type": "application/json",
     }),
     [],

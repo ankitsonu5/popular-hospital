@@ -324,7 +324,7 @@ const WellnessPage = () => {
       ) : (
         <>
           {/* ═══════ HERO ═══════ */}
-          <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
+          <section className="relative h-[150px] md:h-[200px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
             <div className="absolute inset-0 z-0">
               <Image
                 src="/images/banners/health_packages.png"
@@ -338,7 +338,7 @@ const WellnessPage = () => {
 
             <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
               <div className="max-w-4xl">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight text-shadow-lg">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 font-heading tracking-tight text-shadow-lg">
                   Health Packages
                 </h1>
                 <nav

@@ -29,7 +29,7 @@ const menuItems: MenuItem[] = [
     label: "About Us",
     dropdown: [
       { label: "Overview", href: "/about" },
-      { label: "Vision 2030", href: "/about/our-vision-2030" },
+      { label: "Our Vision", href: "/about/our-vision-2030" },
       { label: "Our Mission", href: "/about/mission" },
       { label: "From Chairman's Desk", href: "/about/chairman-desk" },
       { label: "From MD's Desk", href: "/about/md-desk" },
@@ -152,17 +152,6 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
     },
   ],
 };
-
-const premiumDepartmentLabels = new Set([
-  "Laparoscopy & General Surgery",
-  "Cardiology",
-  "Oncology",
-  "Orthopedics & Joint Replacement",
-  "Neurosurgery",
-  "IVF & Fertility",
-]);
-
-const isPremiumDepartment = (label: string) => premiumDepartmentLabels.has(label);
 
 const popularFindsIconBasePath = "/images/download/popular_finds_icons";
 
@@ -764,10 +753,10 @@ export function Header() {
                         className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
                           ? isMenuItemActive(item) ||
                             activeDropdown === item.label
-                            ? "text-hospital-teal"
-                            : "text-gray-700 hover:text-hospital-teal"
+                            ? "text-blue-600"
+                            : "text-gray-700 hover:text-blue-600"
                           : isMenuItemActive(item) && item.label !== "Home"
-                            ? "text-teal-400"
+                            ? "text-blue-300"
                             : "text-white hover:text-gray-200"
                           }`}
                       >
@@ -811,21 +800,13 @@ export function Header() {
                                       <Link
                                         key={subItem.label}
                                         href={subItem.href}
-                                        className={`relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg transition-all ${isPremiumDepartment(subItem.label)
-                                          ? "bg-gradient-to-r from-white via-[#fff7ed] to-[#eef6ff] text-[#0b1c43] shadow-[0_5px_18px_rgba(11,28,67,0.08)] ring-1 ring-[#E85222]/25 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(11,28,67,0.13)] hover:ring-[#E85222]/45 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-[#E85222]"
-                                          : "text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70"
-                                          }`}
+                                        className="relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg text-gray-700 transition-all hover:text-blue-600 hover:bg-blue-50/80"
                                         onClick={() => setActiveDropdown(null)}
                                       >
                                         <span className="relative flex items-center gap-2 pl-1">
                                           {getDepartmentIcon(subItem.label)}
                                           <span>{subItem.label}</span>
                                         </span>
-                                        {isPremiumDepartment(subItem.label) && (
-                                          <span className="relative rounded-full border border-[#E85222]/20 bg-white px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#E85222]">
-                                            Featured
-                                          </span>
-                                        )}
                                       </Link>
                                     ))}
                                   </div>
@@ -841,10 +822,7 @@ export function Header() {
                                         <Link
                                           key={subItem.label}
                                           href={subItem.href}
-                                          className={`relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg transition-all ${isPremiumDepartment(subItem.label)
-                                            ? "bg-gradient-to-r from-white via-[#fff7ed] to-[#eef6ff] text-[#0b1c43] shadow-[0_5px_18px_rgba(11,28,67,0.08)] ring-1 ring-[#E85222]/25 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(11,28,67,0.13)] hover:ring-[#E85222]/45 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-[#E85222]"
-                                            : "text-gray-700 hover:text-hospital-teal hover:bg-teal-50/70"
-                                            }`}
+                                          className="relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg text-gray-700 transition-all hover:text-blue-600 hover:bg-blue-50/80"
                                           onClick={() =>
                                             setActiveDropdown(null)
                                           }
@@ -853,11 +831,6 @@ export function Header() {
                                             {getDepartmentIcon(subItem.label)}
                                             <span>{subItem.label}</span>
                                           </span>
-                                          {isPremiumDepartment(subItem.label) && (
-                                            <span className="relative rounded-full border border-[#E85222]/20 bg-white px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#E85222]">
-                                              Featured
-                                            </span>
-                                          )}
                                         </Link>
                                       ),
                                     )}
@@ -875,7 +848,7 @@ export function Header() {
                                   <Link
                                     key={dropdownItem.label}
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-hospital-teal hover:bg-gray-50 rounded-xl transition-all whitespace-nowrap"
+                                    className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-blue-600 hover:bg-blue-50/80 rounded-xl transition-all whitespace-nowrap"
                                     onClick={() => setActiveDropdown(null)}
                                   >
                                     <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
@@ -895,7 +868,7 @@ export function Header() {
                                   )}
                                   <Link
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-4 px-6 py-3 xl:px-5 xl:py-2.5 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:bg-gray-50 hover:text-hospital-teal transition-all"
+                                    className="flex items-center gap-4 px-6 py-3 xl:px-5 xl:py-2.5 text-[15px] xl:text-[14px] font-bold text-gray-700 transition-all hover:text-blue-600 hover:bg-blue-50/80"
                                     onClick={() => setActiveDropdown(null)}
                                   >
                                     {item.label === "Popular Finds" ? (
@@ -921,10 +894,10 @@ export function Header() {
                       href={item.href || "#"}
                       className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
                         ? isMenuItemActive(item) && item.label !== "Home"
-                          ? "text-hospital-teal"
-                          : "text-gray-700 hover:text-hospital-teal"
+                          ? "text-blue-600"
+                          : "text-gray-700 hover:text-blue-600"
                         : isMenuItemActive(item) && item.label !== "Home"
-                          ? "text-teal-400"
+                          ? "text-blue-300"
                           : "text-white hover:text-gray-200"
                         }`}
                     >
@@ -999,7 +972,7 @@ export function Header() {
                     <button
                       type="button"
                       className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
-                        ? "text-hospital-teal bg-teal-50"
+                        ? "text-blue-600 bg-blue-50"
                         : "text-gray-900"
                         }`}
                       onClick={() =>
@@ -1043,7 +1016,7 @@ export function Header() {
                               <div key={dropdownItem.label} className="mt-1">
                                 <button
                                   type="button"
-                                  className="flex items-center justify-between w-full px-4 py-2 text-sm font-bold text-gray-700 hover:text-hospital-teal"
+                                  className="flex items-center justify-between w-full rounded-lg px-4 py-2 text-sm font-bold text-gray-700 hover:text-blue-600 hover:bg-blue-50/80"
                                   onClick={() =>
                                     setActiveMobileSubCategory(
                                       activeMobileSubCategory ===
@@ -1076,11 +1049,11 @@ export function Header() {
                                       <Link
                                         key={subItem.label}
                                         href={subItem.href}
-                                        className={`relative mx-2 my-1 flex items-center justify-between gap-2 overflow-hidden rounded-lg px-4 py-2 text-sm font-bold transition-all ${item.label === "Departments" &&
-                                          isPremiumDepartment(subItem.label)
-                                          ? "bg-gradient-to-r from-white via-[#fff7ed] to-[#eef6ff] text-[#0b1c43] shadow-sm ring-1 ring-[#E85222]/25 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-[#E85222]"
-                                          : "text-gray-600 hover:text-hospital-teal"
-                                          }`}
+                                        className={`relative mx-2 my-1 flex items-center justify-between gap-2 overflow-hidden rounded-lg px-4 py-2 text-sm font-bold text-gray-600 transition-all ${
+                                          item.label === "Departments"
+                                            ? "hover:text-blue-600 hover:bg-blue-50/80"
+                                            : "hover:text-blue-600 hover:bg-blue-50/80"
+                                        }`}
                                         onClick={() => setMenuOpen(false)}
                                       >
                                         <span className="relative flex items-center gap-2 pl-1">
@@ -1090,12 +1063,6 @@ export function Header() {
                                             getServicesIcon(subItem.label)}
                                           <span>{subItem.label}</span>
                                         </span>
-                                        {item.label === "Departments" &&
-                                          isPremiumDepartment(subItem.label) && (
-                                            <span className="relative rounded-full border border-[#E85222]/20 bg-white px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#E85222]">
-                                              Featured
-                                            </span>
-                                          )}
                                       </Link>
                                     ),
                                   )}
@@ -1107,7 +1074,7 @@ export function Header() {
                             <Link
                               key={dropdownItem.label}
                               href={dropdownItem.href}
-                              className="block px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-hospital-teal"
+                              className="block rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50/80"
                               onClick={() => setMenuOpen(false)}
                             >
                               {dropdownItem.label}
@@ -1118,7 +1085,7 @@ export function Header() {
                           <Link
                             key={dropdownItem.label}
                             href={dropdownItem.href}
-                            className="flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-hospital-teal"
+                            className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50/80"
                             onClick={() => setMenuOpen(false)}
                           >
                             {item.label === "Media & Blog" && getMediaIcon(dropdownItem.label)}
@@ -1131,7 +1098,7 @@ export function Header() {
                   <Link
                     href={item.href || "#"}
                     className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
-                      ? "text-hospital-teal bg-teal-50"
+                      ? "text-blue-600 bg-blue-50"
                       : "text-gray-700"
                       }`}
                     onClick={() => setMenuOpen(false)}

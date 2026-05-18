@@ -3,7 +3,7 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 
-// Setup Multer Storage for Updates (PDFs)
+// Setup Multer Storage for Updates (PDFs and images)
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = "uploads/updates";
@@ -25,6 +25,18 @@ const storage = multer.diskStorage({
 });
 
 export const uploadUpdates = multer({ storage });
+
+const getUploadedFiles = (req) => {
+  if (Array.isArray(req.files)) {
+    return req.files.reduce((acc, file) => {
+      acc[file.fieldname] = acc[file.fieldname] || [];
+      acc[file.fieldname].push(file);
+      return acc;
+    }, {});
+  }
+
+  return req.files || {};
+};
 
 // Get all updates (public & admin)
 export const getUpdates = async (req, res) => {
@@ -52,10 +64,15 @@ export const getUpdateById = async (req, res) => {
 export const createUpdate = async (req, res) => {
   try {
     const data = { ...req.body };
+    const files = getUploadedFiles(req);
 
     // Handle PDF upload if available
-    if (req.file) {
-      data.pdfUrl = `/uploads/updates/${req.file.filename}`;
+    if (files.pdf?.[0]) {
+      data.pdfUrl = `/uploads/updates/${files.pdf[0].filename}`;
+    }
+
+    if (files.image?.[0]) {
+      data.imageUrl = `/uploads/updates/${files.image[0].filename}`;
     }
 
     const newUpdate = new Update(data);
@@ -70,10 +87,15 @@ export const createUpdate = async (req, res) => {
 export const updateUpdate = async (req, res) => {
   try {
     const updates = { ...req.body };
+    const files = getUploadedFiles(req);
 
     // Handle PDF upload if available
-    if (req.file) {
-      updates.pdfUrl = `/uploads/updates/${req.file.filename}`;
+    if (files.pdf?.[0]) {
+      updates.pdfUrl = `/uploads/updates/${files.pdf[0].filename}`;
+    }
+
+    if (files.image?.[0]) {
+      updates.imageUrl = `/uploads/updates/${files.image[0].filename}`;
     }
 
     const updated = await Update.findByIdAndUpdate(req.params.id, updates, {

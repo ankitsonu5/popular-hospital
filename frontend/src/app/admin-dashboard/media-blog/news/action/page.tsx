@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -79,7 +79,7 @@ function NewsActionForm() {
         try {
           const res = await fetch(`${API_URL}/cms/news`, {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+              Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
             },
           });
           const data = await res.json();
@@ -124,7 +124,7 @@ function NewsActionForm() {
       const res = await fetch(url, {
         method,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
         },
         body: submitData,
       });
@@ -327,7 +327,7 @@ function NewsActionForm() {
                             fetch(`${API_URL}/blog-image-direct`, {
                               method: "POST",
                               headers: {
-                                Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+                                Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
                               },
                               body: fd,
                             })

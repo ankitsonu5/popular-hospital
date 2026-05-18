@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -47,7 +47,7 @@ function EventsActionForm() {
         try {
           const res = await fetch(`${API_URL}/cms/events`, {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+              Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
             },
           });
           const data = await res.json();
@@ -105,7 +105,7 @@ function EventsActionForm() {
       const res = await fetch(url, {
         method,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
         },
         body: submitData,
       });

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import {
@@ -215,7 +215,7 @@ export default function ManageContentPage() {
   );
 
   const getHeaders = () => ({
-    Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+    Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
   });
 
   const fetchBanners = useCallback(async () => {

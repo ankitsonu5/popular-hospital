@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -39,7 +39,7 @@ export default function ManagePopupPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const authHeaders = () => ({
-    Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+    Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
   });
 
   const showToast = (type: "success" | "error", msg: string) => {

@@ -40,13 +40,16 @@ export const loginAdmin = async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Single-session enforcement for career_admin
-    if (admin.role === "career_admin" && hasActiveSession(admin)) {
+    // Single-session enforcement for career_admin and sub_admin
+    if (
+      (admin.role === "career_admin" || admin.role === "sub_admin") &&
+      hasActiveSession(admin)
+    ) {
       return res.status(403).json({ error: "already_logged_in" });
     }
 
-    // Set session for career_admin
-    if (admin.role === "career_admin") {
+    // Set session for career_admin and sub_admin
+    if (admin.role === "career_admin" || admin.role === "sub_admin") {
       admin.sessionToken = crypto.randomBytes(32).toString("hex");
       admin.sessionExpires = new Date(Date.now() + SESSION_TTL_MS);
       await admin.save();
@@ -291,6 +294,112 @@ export const deleteCareerAdmin = async (req, res) => {
     });
     if (!admin)
       return res.status(404).json({ error: "Career admin not found." });
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+// ── Sub-Admin CRUD ────────────────────────────────────────────────────────
+
+export const getSubAdmins = async (req, res) => {
+  try {
+    const admins = await AdminUser.find({ role: "sub_admin" })
+      .select("-password_hash -resetPasswordToken -resetPasswordExpires")
+      .sort({ createdAt: -1 });
+    const result = admins.map((a) => ({ ...a.toObject(), isOnline: hasActiveSession(a) }));
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+export const createSubAdmin = async (req, res) => {
+  try {
+    const { email, password, name } = req.body;
+    if (!email) return res.status(400).json({ error: "Email is required." });
+    if (!password) return res.status(400).json({ error: "Password is required." });
+    const salt = await bcrypt.genSalt(10);
+    const password_hash = await bcrypt.hash(password, salt);
+    const newAdmin = await AdminUser.create({
+      email: email.toLowerCase().trim(),
+      password_hash,
+      name: name || "Sub Admin",
+      role: "sub_admin",
+    });
+    res.json({ ok: true, _id: newAdmin._id, email: newAdmin.email, name: newAdmin.name });
+  } catch (error) {
+    if (error.code === 11000) return res.status(400).json({ error: "This email is already in use." });
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+export const updateSubAdmin = async (req, res) => {
+  try {
+    const { email, password, name } = req.body;
+    if (!email) return res.status(400).json({ error: "Email is required." });
+    const admin = await AdminUser.findOne({ _id: req.params.id, role: "sub_admin" });
+    if (!admin) return res.status(404).json({ error: "Sub admin not found." });
+    const emailLower = email.toLowerCase().trim();
+    const conflict = await AdminUser.findOne({ email: emailLower, _id: { $ne: admin._id } });
+    if (conflict) return res.status(400).json({ error: "This email is already in use." });
+    admin.email = emailLower;
+    if (name) admin.name = name;
+    if (password) { const salt = await bcrypt.genSalt(10); admin.password_hash = await bcrypt.hash(password, salt); }
+    await admin.save();
+    res.json({ ok: true, email: admin.email });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+export const toggleSubAdmin = async (req, res) => {
+  try {
+    const admin = await AdminUser.findOne({ _id: req.params.id, role: "sub_admin" });
+    if (!admin) return res.status(404).json({ error: "Sub admin not found." });
+    admin.isActive = !admin.isActive;
+    await admin.save();
+    res.json({ ok: true, isActive: admin.isActive });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+export const deleteSubAdmin = async (req, res) => {
+  try {
+    const admin = await AdminUser.findOneAndDelete({ _id: req.params.id, role: "sub_admin" });
+    if (!admin) return res.status(404).json({ error: "Sub admin not found." });
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+export const forceLogoutSubAdmin = async (req, res) => {
+  try {
+    const admin = await AdminUser.findOne({ _id: req.params.id, role: "sub_admin" });
+    if (!admin) return res.status(404).json({ error: "Sub admin not found." });
+    admin.sessionToken = null;
+    admin.sessionExpires = null;
+    await admin.save();
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+export const forceLogoutAllSubAdmins = async (req, res) => {
+  try {
+    await AdminUser.updateMany({ role: "sub_admin" }, { $unset: { sessionToken: 1, sessionExpires: 1 } });
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(500).json({ error: "An internal error occurred." });
+  }
+};
+
+export const subAdminLogout = async (req, res) => {
+  try {
+    await AdminUser.findByIdAndUpdate(req.user.id, { $unset: { sessionToken: 1, sessionExpires: 1 } });
     res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });

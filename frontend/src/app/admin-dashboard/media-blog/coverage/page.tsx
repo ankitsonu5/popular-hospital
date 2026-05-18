@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback, Suspense } from "react";
 import {
@@ -27,7 +27,7 @@ function CoverageList() {
 
   const getHeaders = useCallback(
     () => ({
-      Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+      Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
     }),
     [],
   );

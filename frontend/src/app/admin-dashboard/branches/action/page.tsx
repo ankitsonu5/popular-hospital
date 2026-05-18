@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -139,7 +139,7 @@ function BranchActionForm() {
       const res = await fetch(url, {
         method,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
         },
         body: data,
       });

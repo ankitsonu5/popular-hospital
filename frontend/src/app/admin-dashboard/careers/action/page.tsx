@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -52,7 +52,7 @@ function CareerActionForm() {
         try {
           const res = await fetch(`/api-backend/cms/careers/${editId}`, {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+              Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
             },
           });
           if (!res.ok) throw new Error("Could not fetch career details");
@@ -72,7 +72,7 @@ function CareerActionForm() {
     if (e) e.preventDefault();
     setIsSaving(true);
     const getHeaders = () => ({
-      Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+      Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
       "Content-Type": "application/json",
     });
 
@@ -320,7 +320,7 @@ function CareerActionForm() {
                           fetch(`${API_URL}/blog-image-direct`, {
                             method: "POST",
                             headers: {
-                              Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+                              Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
                             },
                             body: fd,
                           })

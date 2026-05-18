@@ -280,7 +280,7 @@ const LanguageSelector = ({
             <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-[0.1em] notranslate">
               Translate
             </span>
-            <div className="w-1.5 h-1.5 rounded-full bg-hospital-teal animate-pulse" />
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
           </div>
           <div className="p-1.5 flex flex-col gap-0.5">
             {languages.map((lang) => (
@@ -289,8 +289,8 @@ const LanguageSelector = ({
                 onClick={() => handleLanguageChange(lang.code)}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 ${
                   currentLang === lang.code
-                    ? "bg-hospital-teal text-white shadow-lg shadow-hospital-teal/20"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-hospital-teal"
+                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
+                    : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
                 }`}
               >
                 <span className="flex items-center gap-2 notranslate">

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState, useCallback } from "react";
 import {
   DndContext,
@@ -221,7 +221,7 @@ export default function DoctorsPage() {
   };
 
   const getHeaders = () => ({
-    Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+    Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
     "Content-Type": "application/json",
   });
 
@@ -328,7 +328,7 @@ export default function DoctorsPage() {
 
     try {
       const headers = {
-        Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
       };
       let res;
       if (editingId) {
@@ -400,6 +400,10 @@ export default function DoctorsPage() {
     setSelectedFile(null);
     setImagePreview(null);
   };
+
+  const selectedFormSpeciality = specialities.find(
+    (s: any) => s._id === formData.speciality,
+  );
 
   const filteredDoctors = (Array.isArray(doctors) ? doctors : []).filter(
     (d) => {
@@ -500,7 +504,7 @@ export default function DoctorsPage() {
               <option value="">All Departments</option>
               {specialities.map((s: any) => (
                 <option key={s._id} value={s._id}>
-                  {s.name}
+                  {s.name} (/{s.slug})
                 </option>
               ))}
             </select>
@@ -551,7 +555,12 @@ export default function DoctorsPage() {
       ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <table className="w-full text-sm">
               <thead className="bg-gray-50/80">
                 <tr>
                   {isDragEnabled && <th className="w-10 px-4"></th>}
@@ -573,26 +582,20 @@ export default function DoctorsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                <DndContext
-                  sensors={sensors}
-                  collisionDetection={closestCenter}
-                  onDragEnd={handleDragEnd}
+                <SortableContext
+                  items={filteredDoctors.map((d) => d._id)}
+                  strategy={verticalListSortingStrategy}
                 >
-                  <SortableContext
-                    items={filteredDoctors.map((d) => d._id)}
-                    strategy={verticalListSortingStrategy}
-                  >
-                    {filteredDoctors.map((doc) => (
-                      <SortableDoctorRow
-                        key={doc._id}
-                        doc={doc}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                        isDragEnabled={isDragEnabled}
-                      />
-                    ))}
-                  </SortableContext>
-                </DndContext>
+                  {filteredDoctors.map((doc) => (
+                    <SortableDoctorRow
+                      key={doc._id}
+                      doc={doc}
+                      onEdit={handleEdit}
+                      onDelete={handleDelete}
+                      isDragEnabled={isDragEnabled}
+                    />
+                  ))}
+                </SortableContext>
                 {filteredDoctors.length === 0 && (
                   <tr>
                     <td
@@ -605,7 +608,8 @@ export default function DoctorsPage() {
                   </tr>
                 )}
               </tbody>
-            </table>
+              </table>
+            </DndContext>
           </div>
         </div>
       )}
@@ -675,10 +679,16 @@ export default function DoctorsPage() {
                     <option value="">Select</option>
                     {specialities.map((s: any) => (
                       <option key={s._id} value={s._id}>
-                        {s.name}
+                        {s.name} (/{s.slug})
                       </option>
                     ))}
                   </select>
+                  {selectedFormSpeciality?.slug && (
+                    <p className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+                      Department page: /departments/
+                      {selectedFormSpeciality.slug}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">

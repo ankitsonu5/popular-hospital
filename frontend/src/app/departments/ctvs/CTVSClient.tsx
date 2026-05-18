@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-// import DoctorSlider from '@/components/DoctorSlider';
+import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
 /* ─── Data ─── */
@@ -71,22 +70,24 @@ const whyChooseUs = [
   "Commitment to patient education and support.",
 ];
 
-/* const doctors = [
+// Edit these two doctor details from here when you are ready.
+const doctors = [
   {
-    name: 'Dr. Rahul Dev',
-    qualifications: 'MS, MCh (CTVS)',
-    designation: 'Senior Consultant',
-    slug: 'dr-rahul-dev',
-    image: '/images/departments-images/'
+    name: "Dr. Harendra Ojha",
+    qualifications: "MBBS, MS, M.Ch (Cardiothoracic and Vascular Surgery)",
+    designation: "Cardiothoracic and Vascular Surgeon",
+    slug: "dr-harendra-ojha",
+    image: "/images/departments_doctor/dr_harendra_ojha.jpg.jpeg",
   },
   {
-    name: 'Dr. Shalini Singh',
-    qualifications: 'MS, MCh (Thoracic Surgery)',
-    designation: 'Consultant',
-    slug: 'dr-shalini-singh',
-    image: '/images/departments-images/'
-  }
-]; */
+    name: "Dr. Shailesh Kumar Yadav",
+    qualifications:
+      "MBBS, (Gold Medalist), DrNB, MCH ( CTVS - Pediatric & Adult)",
+    designation: "Cardiothoracic and Vascular Surgeon",
+    slug: "dr-shailesh-kumar-yadav",
+    image: "/images/departments_doctor/dr_shailesh_kumar_yadav.jpg",
+  },
+];
 
 /* ─── Components ─── */
 
@@ -99,7 +100,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-blue-600">{highlight}</span>
+      {title} <span className="text-[#284a91]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-blue-600" />
@@ -248,43 +249,10 @@ export default function CTVSClient() {
               </ul>
             </div>
 
-            {/* Right Sidebar - Static Doctor Card */}
+            {/* Right Sidebar - Doctor Card Slider */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full max-w-sm">
-                <div className="relative pt-6">
-                  {/* Floating Appointment Button */}
-                  <Link
-                    href="/book"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-rose-600 hover:bg-rose-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap uppercase"
-                  >
-                    SCHEDULE AN APPOINTMENT
-                  </Link>
-
-                  <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-6 pt-12 relative group">
-                    <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100">
-                      <div className="flex items-center justify-center h-full bg-blue-50 text-blue-200">
-                        <svg
-                          className="w-24 h-24"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <h3 className="text-xl font-bold text-blue-600 mb-1 font-heading">
-                        CTVS Specialist
-                      </h3>
-                      <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">
-                        Expertise in Cardiothoracic & Vascular Surgery
-                      </p>
-                      <p className="text-gray-400 text-[10px] mt-4 uppercase tracking-[0.2em] font-black">
-                        DEPARTMENT OF CTVS
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <div className="sticky top-24 w-full">
+                <DoctorSlider doctors={doctors} departmentName="CTVS" />
               </div>
             </div>
           </div>

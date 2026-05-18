@@ -8,7 +8,7 @@ export default function SecondOpinionPage() {
   return (
     <div className="bg-white min-h-screen font-sans">
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] text-white min-h-[300px] md:min-h-[400px] flex items-center z-10">
+      <section className="relative bg-[#0b1c43] text-white min-h-[150px] md:min-h-[200px] flex items-center z-10">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#0b1c43] z-0" />
           <Image

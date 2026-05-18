@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import {
   Mail,
   MailOpen,
@@ -25,6 +25,9 @@ import {
   Grid,
   Globe,
   AlertTriangle,
+  X,
+  FileSpreadsheet,
+  FileText,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { mutate } from "swr";
@@ -73,13 +76,16 @@ export default function GmailContactsPage() {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [monthFilter, setMonthFilter] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
 
   const PAGE_SIZE = 10;
 
   const fetchContacts = useCallback(async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem("admin_token");
+      const token = sessionStorage.getItem("admin_token");
       const res = await fetch(`${API_URL}/contacts`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -99,12 +105,12 @@ export default function GmailContactsPage() {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, activeTab]);
+  }, [search, activeTab, monthFilter, dateFrom, dateTo]);
 
   const markAsRead = async (contact: Contact) => {
     if (contact.status === "read") return;
     try {
-      const token = localStorage.getItem("admin_token");
+      const token = sessionStorage.getItem("admin_token");
       await fetch(`${API_URL}/contacts/${contact._id}/status`, {
         method: "PATCH",
         headers: {
@@ -129,7 +135,7 @@ export default function GmailContactsPage() {
   const confirmDelete = async () => {
     if (!deleteConfirmId) return;
     try {
-      const token = localStorage.getItem("admin_token");
+      const token = sessionStorage.getItem("admin_token");
       const res = await fetch(`${API_URL}/contacts/${deleteConfirmId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
@@ -152,17 +158,94 @@ export default function GmailContactsPage() {
     markAsRead(contact);
   };
 
-  const filtered = contacts.filter((c) => {
-    const matchSearch =
-      c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.email.toLowerCase().includes(search.toLowerCase()) ||
-      c.phone.includes(search);
-    const matchTab =
-      activeTab === "primary"
-        ? true
-        : c.status === (activeTab === "unread" ? "new" : "read");
-    return matchSearch && matchTab;
-  });
+  const filtered = useMemo(() => {
+    return contacts.filter((c) => {
+      const matchSearch =
+        c.name.toLowerCase().includes(search.toLowerCase()) ||
+        c.email.toLowerCase().includes(search.toLowerCase()) ||
+        c.phone.includes(search);
+      const matchTab =
+        activeTab === "primary"
+          ? true
+          : c.status === (activeTab === "unread" ? "new" : "read");
+      let matchMonth = true;
+      if (monthFilter) {
+        const d = new Date(c.createdAt);
+        const ym = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+        matchMonth = ym === monthFilter;
+      }
+      let matchFrom = true;
+      if (dateFrom) {
+        const from = new Date(dateFrom);
+        from.setHours(0, 0, 0, 0);
+        matchFrom = new Date(c.createdAt) >= from;
+      }
+      let matchTo = true;
+      if (dateTo) {
+        const to = new Date(dateTo);
+        to.setHours(23, 59, 59, 999);
+        matchTo = new Date(c.createdAt) <= to;
+      }
+      return matchSearch && matchTab && matchMonth && matchFrom && matchTo;
+    });
+  }, [contacts, search, activeTab, monthFilter, dateFrom, dateTo]);
+
+  const hasActiveFilters = monthFilter !== "" || dateFrom !== "" || dateTo !== "";
+
+  const getTodayYMD = () => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  };
+
+  const exportCSV = useCallback(() => {
+    const headers = ["Name", "Email", "Phone", "Department", "Location", "Preferred Date", "Timing", "Message", "Status", "International", "Country", "Age", "Received At"];
+    const rows = filtered.map((c) => [
+      c.name, c.email, c.phone, c.department || "", c.location || "",
+      c.date ? new Date(c.date).toLocaleDateString("en-IN") : "",
+      c.timing || "", c.message || "",
+      c.status === "new" ? "Unread" : "Read",
+      c.isInternational ? "Yes" : "No",
+      c.country || "", c.age || "",
+      new Date(c.createdAt).toLocaleString("en-IN"),
+    ]);
+    const csv = [headers, ...rows].map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = `contacts_${getTodayYMD()}.csv`;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+    toast.success("CSV exported");
+  }, [filtered]);
+
+  const exportPDF = useCallback(() => {
+    const rows = filtered.map((c, i) => `
+      <tr>
+        <td>${i + 1}</td>
+        <td><strong>${c.name}</strong><br/><small>${c.email}</small></td>
+        <td>${c.phone}</td>
+        <td>${c.department || "-"}</td>
+        <td>${c.location || "-"}</td>
+        <td>${c.date ? new Date(c.date).toLocaleDateString("en-IN") : "-"}<br/><small>${c.timing || ""}</small></td>
+        <td><span class="badge badge-${c.status === "new" ? "new" : "read"}">${c.status === "new" ? "Unread" : "Read"}</span>${c.isInternational ? ' <span class="badge badge-intl">Intl</span>' : ""}</td>
+        <td>${new Date(c.createdAt).toLocaleDateString("en-IN")}</td>
+      </tr>`).join("");
+    const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>Contacts Report</title>
+      <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;font-size:11px;padding:24px}
+      h1{color:#0b1c43;font-size:16px;margin-bottom:4px}.meta{color:#666;font-size:10px;margin-bottom:16px}
+      table{width:100%;border-collapse:collapse}th{background:#0b1c43;color:white;padding:7px 8px;text-align:left;font-size:10px}
+      td{padding:6px 8px;border-bottom:1px solid #e5e7eb;vertical-align:top}tr:nth-child(even) td{background:#f9fafb}
+      .badge{display:inline-block;padding:1px 6px;border-radius:999px;font-size:9px;font-weight:700}
+      .badge-new{background:#fef3c7;color:#92400e}.badge-read{background:#d1fae5;color:#065f46}.badge-intl{background:#ffedd5;color:#9a3412}
+      @media print{body{padding:0}@page{margin:1.5cm}}</style></head>
+      <body><h1>Popular Hospital — Contacts Report</h1>
+      <p class="meta">Generated: ${new Date().toLocaleString("en-IN")} | Total: ${filtered.length}</p>
+      <table><thead><tr><th>#</th><th>Name / Email</th><th>Phone</th><th>Department</th><th>Location</th><th>Preferred Date</th><th>Status</th><th>Received</th></tr></thead>
+      <tbody>${rows}</tbody></table>
+      <script>window.onload=function(){window.print();}<\/script></body></html>`;
+    const win = window.open("", "_blank");
+    if (win) { win.document.write(html); win.document.close(); }
+  }, [filtered]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const pageStart = filtered.length > 0 ? (currentPage - 1) * PAGE_SIZE : 0;
@@ -254,6 +337,59 @@ export default function GmailContactsPage() {
           </div>
         </div>
       </div>
+
+      {/* Filter bar */}
+      {!selected && (
+        <div className="flex flex-wrap items-center gap-2 px-4 py-2 border-b border-gray-100 bg-gray-50/60">
+          <div className="flex items-center gap-1.5">
+            <label className="text-xs text-gray-500 font-medium whitespace-nowrap">Month:</label>
+            <input
+              type="month"
+              value={monthFilter}
+              onChange={(e) => { setMonthFilter(e.target.value); setDateFrom(""); setDateTo(""); }}
+              disabled={!!(dateFrom || dateTo)}
+              className="text-sm px-2 py-1 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-[#0b1c43]/20 outline-none disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            />
+          </div>
+          <div className="flex items-center gap-1.5">
+            <label className="text-xs text-gray-500 font-medium">From:</label>
+            <input
+              type="date"
+              value={dateFrom}
+              onChange={(e) => { setDateFrom(e.target.value); setMonthFilter(""); }}
+              disabled={!!monthFilter}
+              className="text-sm px-2 py-1 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-[#0b1c43]/20 outline-none disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            />
+          </div>
+          <div className="flex items-center gap-1.5">
+            <label className="text-xs text-gray-500 font-medium">To:</label>
+            <input
+              type="date"
+              value={dateTo}
+              min={dateFrom || undefined}
+              onChange={(e) => { setDateTo(e.target.value); setMonthFilter(""); }}
+              disabled={!!monthFilter}
+              className="text-sm px-2 py-1 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-[#0b1c43]/20 outline-none disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            />
+          </div>
+          {hasActiveFilters && (
+            <button
+              onClick={() => { setMonthFilter(""); setDateFrom(""); setDateTo(""); }}
+              className="flex items-center gap-1 px-3 py-1 text-xs font-semibold text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-300 rounded-lg transition-colors"
+            >
+              <X className="w-3.5 h-3.5" /> Clear
+            </button>
+          )}
+          <div className="ml-auto flex items-center gap-2">
+            <button onClick={exportCSV} className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg border border-emerald-200 transition-colors">
+              <FileSpreadsheet className="w-3.5 h-3.5" /> Excel
+            </button>
+            <button onClick={exportPDF} className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-200 transition-colors">
+              <FileText className="w-3.5 h-3.5" /> PDF
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Main Area */}
       {!selected ? (
