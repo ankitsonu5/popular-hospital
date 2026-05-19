@@ -11,7 +11,7 @@ const securityConfig = {
 
   // CORS — strict origin whitelist
   cors: {
-    allowedOrigins: (process.env.ALLOWED_ORIGINS || "http://localhost:3000")
+    allowedOrigins: (process.env.ALLOWED_ORIGINS || "http://localhost:3000", "http://localhost:3001")
       .split(",")
       .map((o) => o.trim()),
   },
