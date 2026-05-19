@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentGallerySection from "@/components/DepartmentGallerySection";
 
 /* ─── Data ─── */
 
@@ -84,7 +85,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-blue-600">{highlight}</span>
+      {title} <span className="text-[#284a91]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-blue-600" />
@@ -325,6 +326,11 @@ export default function CardiologyPage() {
           </div>
         </div>
       </section>
+
+      <DepartmentGallerySection
+        departmentSlug="cardiology"
+        departmentName="Cardiology"
+      />
 
       {/* ═══════ GET A CALL BACK MODAL ═══════ */}
       {showCallModal && (

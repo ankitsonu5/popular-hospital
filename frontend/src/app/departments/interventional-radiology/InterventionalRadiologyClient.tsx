@@ -108,7 +108,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-8">
     <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
-      {title} <span className="text-blue-600 font-bold">{highlight}</span>
+      {title} <span className="text-[#284a91] font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-blue-600" />
@@ -271,7 +271,7 @@ export default function InterventionalRadiologyClient() {
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 relative z-10">
           <div className="mb-12">
             <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
-              MAJOR <span className="text-blue-600 font-bold">PROCEDURES</span>
+              MAJOR <span className="text-[#284a91] font-bold">PROCEDURES</span>
             </h2>
             <div className="flex items-center gap-2 mt-2">
               <div className="w-2 h-2 rounded-full bg-blue-600" />

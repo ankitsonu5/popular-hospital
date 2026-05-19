@@ -27,7 +27,7 @@ const sections = [
           takes about an hour.
         </p>
 
-        <h3 className="text-blue-600 font-bold text-sm lg:text-base mt-2">
+        <h3 className="text-[#284a91] font-bold text-sm lg:text-base mt-2">
           The donation process is simple. You may be eligible to donate blood if
           you:
         </h3>
@@ -39,9 +39,10 @@ const sections = [
             "Donations of whole blood and platelets are needed every day — red blood cells can be stored for 42 days and platelets for 5 days.",
           ].map((item, idx) => (
             <li key={idx} className="flex gap-2">
-              <span className="text-blue-700 font-black flex-shrink-0">
-                &gt;
-              </span>
+              <span
+                className="text-blue-700 font-black flex-shrink-0"
+                aria-hidden="true"
+              />
               <span>{item}</span>
             </li>
           ))}
@@ -163,7 +164,10 @@ const sections = [
           "It has also been observed that infants treated with reconstituted blood (mixture of separated blood components) instead of whole blood recover faster.",
         ].map((item, idx) => (
           <li key={idx} className="flex gap-2">
-            <span className="text-blue-700 font-black flex-shrink-0">&gt;</span>
+            <span
+              className="text-blue-700 font-black flex-shrink-0"
+              aria-hidden="true"
+            />
             <span className="text-justify">{item}</span>
           </li>
         ))}
@@ -174,11 +178,36 @@ const sections = [
   },
 ];
 
+const SectionHeader = ({
+  title,
+  highlight,
+  eyebrow,
+}: {
+  title: string;
+  highlight?: string;
+  eyebrow?: string;
+}) => (
+  <div className="mb-7">
+    {eyebrow && (
+      <p className="mb-2 text-sm font-black uppercase tracking-[0.16em] text-[#284a91]">
+        {eyebrow}
+      </p>
+    )}
+    <h2 className="max-w-4xl text-2xl font-black leading-tight text-[#0b1c43] md:text-3xl lg:text-[2.35rem]">
+      {title} {highlight && <span className="text-[#284a91]">{highlight}</span>}
+    </h2>
+    <div className="mt-4 flex items-center gap-3">
+      <div className="h-1.5 w-1.5 rounded-full bg-[#cf2e2e]" />
+      <div className="h-px w-24 bg-gradient-to-r from-[#cf2e2e] via-[#284a91] to-transparent" />
+    </div>
+  </div>
+);
+
 export default function BloodBankPage() {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen overflow-x-hidden bg-[#f7f9fc]">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[400px] md:h-[400px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
+      <section className="relative min-h-[300px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 font-sans md:h-[300px] md:py-0 lg:h-[320px]">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/blood_bank_services.png"
@@ -192,11 +221,11 @@ export default function BloodBankPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="animate-fade-in-up max-w-4xl">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 font-heading tracking-tight leading-[1.1]">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight leading-[1.08]">
               Blood Bank
             </h1>
             <nav
-              className="flex items-center text-sm md:text-lg text-white/90 font-bold"
+              className="flex items-center text-xs md:text-base text-white/90 font-bold"
               aria-label="Breadcrumb"
             >
               <Link
@@ -222,86 +251,79 @@ export default function BloodBankPage() {
       </section>
 
       {/* Main Content (Zig-Zag Layout) */}
-      <section className="py-24">
-        <div className="container mx-auto max-w-[1366px] px-6 lg:px-12">
-          <div className="flex flex-col gap-24 lg:gap-32">
+      <section className="relative py-14 md:py-20">
+        <div className="absolute inset-x-0 top-0 h-40 bg-white" />
+        <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 lg:px-10">
+          <div className="flex flex-col gap-8 lg:gap-10">
             {sections.map((section, idx) => {
               const showImage = section.id !== "department";
               const isEven = idx % 2 === 0;
+              const titleParts = section.title.split(" ");
+              const title = section.subtitle
+                ? section.subtitle
+                : titleParts.slice(0, -2).join(" ");
+              const highlight = section.subtitle
+                ? section.subtitleHighlight
+                : titleParts.slice(-2).join(" ");
 
               return (
-                <div
+                <article
                   key={section.id}
-                  className={`flex flex-col ${showImage ? (isEven ? "lg:flex-row-reverse" : "lg:flex-row") : "items-start text-left"} gap-12 lg:gap-20`}
+                  className={`relative overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.08)] ${
+                    showImage ? "p-4 sm:p-5 lg:p-6" : "p-5 sm:p-8 lg:p-10"
+                  }`}
                 >
-                  {/* Content */}
+                  <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#cf2e2e] via-[#284a91] to-[#0b1c43]" />
                   <div
-                    className={`w-full ${showImage ? "lg:w-[55%]" : "w-full"}`}
+                    className={`flex flex-col ${
+                      showImage
+                        ? isEven
+                          ? "lg:flex-row-reverse"
+                          : "lg:flex-row"
+                        : ""
+                    } gap-8 lg:gap-12`}
                   >
-                    {section.subtitle ? (
-                      <>
-                        <h2 className="text-lg lg:text-xl font-bold text-blue-600 mb-1 lg:mb-2 font-heading tracking-wide uppercase">
-                          {section.title}
-                        </h2>
-                        <div className="flex items-center gap-4 mb-6">
-                          <h3 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight capitalize">
-                            {section.subtitle}{" "}
-                            <span className="text-blue-700">
-                              {section.subtitleHighlight}
-                            </span>
-                          </h3>
-                          <div className="flex-1 h-px bg-gray-200 mt-2"></div>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="mb-8">
-                          <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading leading-tight capitalize">
-                            {section.title.split(" ").slice(0, -2).join(" ")}{" "}
-                            <span className="text-blue-700">
-                              {section.title.split(" ").slice(-2).join(" ")}
-                            </span>
-                          </h2>
-                          <div className="flex items-center gap-2 mt-4">
-                            <div className="w-2 h-2 rounded-full bg-blue-600" />
-                            <div className="h-[2px] w-24 bg-gradient-to-r from-blue-600 to-transparent" />
-                          </div>
-                        </div>
-                      </>
-                    )}
-
-                    <div className="prose prose-lg max-w-none text-gray-700">
+                    <div
+                      className={`w-full ${
+                        showImage
+                          ? "lg:w-[58%] lg:px-2 lg:py-4"
+                          : "mx-auto max-w-5xl"
+                      }`}
+                    >
+                      <SectionHeader
+                        title={title}
+                        highlight={highlight}
+                        eyebrow={section.subtitle ? section.title : undefined}
+                      />
+                      <div className="text-left [&_li>span:first-child]:mt-2 [&_li>span:first-child]:inline-block [&_li>span:first-child]:h-2 [&_li>span:first-child]:w-2 [&_li>span:first-child]:rounded-full [&_li>span:first-child]:bg-[#284a91] [&_li>span:first-child]:text-transparent [&_li]:leading-relaxed [&_p]:text-left [&_p]:md:text-justify [&_ul]:rounded-2xl [&_ul]:border [&_ul]:border-slate-100 [&_ul]:bg-slate-50/70 [&_ul]:p-4">
                       {section.content}
-                    </div>
-                  </div>
-
-                  {/* Image with Pill Masking */}
-                  {showImage && (
-                    <div className="w-full lg:w-[45%] flex justify-center">
-                      <div className="relative w-full max-w-[500px]">
-                        {/* Decorative Element */}
-                        <div
-                          className={`absolute -inset-4 bg-blue-50/50 rounded-full blur-2xl opacity-60 z-0`}
-                        ></div>
-
-                        {/* Image Container */}
-                        <div
-                          className={`relative w-full aspect-[4/3] sm:aspect-[4/3] md:aspect-[5/3] lg:aspect-[4/3] z-10 overflow-hidden shadow-xl border-4 border-white
-                          ${isEven ? "rounded-tl-[8rem] rounded-br-[8rem] rounded-tr-[1rem] rounded-bl-[1rem]" : "rounded-tr-[8rem] rounded-bl-[8rem] rounded-tl-[1rem] rounded-br-[1rem]"} 
-                        `}
-                        >
-                          <Image
-                            src={section.image}
-                            alt={section.imgAlt}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 1024px) 100vw, 50vw"
-                          />
-                        </div>
                       </div>
                     </div>
-                  )}
-                </div>
+
+                    {showImage && (
+                      <div className="flex w-full justify-center lg:w-[42%]">
+                        <div className="relative w-full">
+                          <div
+                            className={`group relative h-full min-h-[260px] w-full overflow-hidden rounded-[1.35rem] border border-white md:min-h-[340px] lg:min-h-full ${
+                              isEven
+                                ? "rounded-tl-[8rem] rounded-br-[8rem] rounded-tr-[1rem] rounded-bl-[1rem]"
+                                : "rounded-tr-[8rem] rounded-bl-[8rem] rounded-tl-[1rem] rounded-br-[1rem]"
+                            }`}
+                          >
+                            <Image
+                              src={section.image}
+                              alt={section.imgAlt}
+                              fill
+                              className="object-cover transition-transform duration-700 group-hover:scale-110"
+                              sizes="(max-width: 1024px) 100vw, 42vw"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/35 via-transparent to-transparent" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </article>
               );
             })}
           </div>
@@ -309,19 +331,20 @@ export default function BloodBankPage() {
       </section>
 
       {/* Footer / CTA Banner */}
-      <section className="bg-gradient-to-r from-red-50 to-red-100 py-20 px-6 border-t border-red-200">
-        <div className="container mx-auto max-w-[1366px] text-center">
-          <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] mb-5 font-heading">
+      <section className="px-4 pb-16 sm:px-6 lg:px-10">
+        <div className="relative mx-auto max-w-[1366px] overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-white px-5 py-12 text-center shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:px-8">
+          <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#cf2e2e] via-[#284a91] to-[#0b1c43]" />
+          <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] mb-4">
             Ready to save a life?
           </h2>
-          <p className="text-gray-600 mb-10 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 mb-8 text-base max-w-2xl mx-auto">
             Donating blood is safe and simple, taking only about an hour. Call
             our Blood Bank to schedule your donation.
           </p>
-          <div className="bg-white p-6 md:p-8 rounded-[2rem] shadow-xl inline-flex flex-col sm:flex-row items-center gap-6 border border-red-100 relative group">
-            <div className="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center flex-shrink-0 animate-[pulse_2s_infinite]">
+          <div className="inline-flex flex-col items-center gap-5 rounded-2xl border border-slate-100 bg-slate-50/70 p-5 sm:flex-row md:p-6">
+            <div className="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center flex-shrink-0">
               <svg
-                className="w-10 h-10"
+                className="w-8 h-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -340,7 +363,7 @@ export default function BloodBankPage() {
               </p>
               <a
                 href="tel:+917800001895"
-                className="text-xl md:text-2xl font-black text-red-600 group-hover:text-red-700 transition-colors"
+                className="text-xl md:text-2xl font-black text-red-600 hover:text-red-700 transition-colors"
               >
                 +91-7800001895 / 96
               </a>

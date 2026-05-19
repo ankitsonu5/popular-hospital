@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -39,7 +39,6 @@ const sidebarItems = [
       {
         label: "Job Portal",
         href: "/admin-dashboard/applications",
-        target: "_blank",
       },
     ],
   },
@@ -48,7 +47,6 @@ const sidebarItems = [
     label: "Contacts",
     href: "/admin-dashboard/contacts",
     icon: Mail,
-    target: "_blank",
   },
   {
     label: "Call Backs",
@@ -61,6 +59,10 @@ const sidebarItems = [
     icon: MonitorPlay,
     subItems: [
       { label: "Hero Content", href: "/admin-dashboard/content-manage" },
+      {
+        label: "Department Gallery",
+        href: "/admin-dashboard/content-manage/department-gallery",
+      },
       {
         label: "Patients Speak",
         href: "/admin-dashboard/content-manage/patients-speak",
@@ -104,6 +106,7 @@ export default function AdminDashboardLayout({
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [userReady, setUserReady] = useState(false);
 
   // One open-state per dropdown group, keyed by label
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
@@ -121,27 +124,36 @@ export default function AdminDashboardLayout({
   }, [pathname]);
 
   useEffect(() => {
-    const token = localStorage.getItem("admin_token");
-    const storedUser = localStorage.getItem("admin_user");
+    const token = sessionStorage.getItem("admin_token");
+    const storedUser = sessionStorage.getItem("admin_user");
     if (!token || !storedUser) {
       router.push("/admin-login");
       return;
     }
     const parsed = JSON.parse(storedUser);
-    if (parsed.role !== "super_admin" && parsed.role !== "admin") {
-      // career_admin ya koi aur role — clear karke login pe bhejo
-      localStorage.removeItem("admin_token");
-      localStorage.removeItem("admin_user");
+    const allowedRoles = ["super_admin", "admin", "sub_admin", "career_admin"];
+    if (!allowedRoles.includes(parsed.role)) {
+      sessionStorage.removeItem("admin_token");
+      sessionStorage.removeItem("admin_user");
       router.push("/admin-login");
       return;
     }
+    if (parsed.role === "sub_admin" && pathname === "/admin-dashboard") {
+      router.replace("/admin-dashboard/bookings");
+      return;
+    }
+    if (parsed.role === "career_admin" && pathname === "/admin-dashboard") {
+      router.replace("/admin-dashboard/careers");
+      return;
+    }
     setUser(parsed);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    setUserReady(true);
+  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetcher = (url: string) =>
     fetch(url, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
       },
     }).then((res) => res.json());
 
@@ -177,9 +189,23 @@ export default function AdminDashboardLayout({
     ? newCallbacks.length
     : 0;
 
-  const handleLogout = () => {
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_user");
+  const handleLogout = async () => {
+    const token = sessionStorage.getItem("admin_token");
+    try {
+      if (user?.role === "career_admin") {
+        await fetch("/api-backend/cms/career-admin/logout", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } else if (user?.role === "sub_admin") {
+        await fetch("/api-backend/cms/sub-admin/logout", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+    } catch {}
+    sessionStorage.removeItem("admin_token");
+    sessionStorage.removeItem("admin_user");
     router.push("/admin-login");
   };
 
@@ -189,6 +215,22 @@ export default function AdminDashboardLayout({
       .flatMap((item) => item.subItems || [])
       .find((sub) => pathname === sub.href)?.label ||
     "Dashboard";
+
+  const isSubAdmin = user?.role === "sub_admin";
+  const isCareerAdmin = user?.role === "career_admin";
+
+  const SUB_ADMIN_ALLOWED = ["Bookings", "Contacts", "Call Backs"];
+  const CAREER_ADMIN_ALLOWED = ["Career Portal"];
+
+  const visibleSidebarItems = !userReady
+    ? []
+    : isSubAdmin
+    ? sidebarItems.filter(
+        (item) => item.href && SUB_ADMIN_ALLOWED.includes(item.label),
+      )
+    : isCareerAdmin
+    ? sidebarItems.filter((item) => CAREER_ADMIN_ALLOWED.includes(item.label))
+    : sidebarItems;
 
   const isActionPage = pathname.includes("/action");
   if (isActionPage) {
@@ -235,7 +277,7 @@ export default function AdminDashboardLayout({
             Menu
           </p>
           <div className="space-y-1">
-            {sidebarItems.map((item) => {
+            {visibleSidebarItems.map((item) => {
               const Icon = item.icon;
 
               // ── Dropdown group ──────────────────────────────────
@@ -362,9 +404,21 @@ export default function AdminDashboardLayout({
               {user?.name?.charAt(0) || "A"}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white truncate">
-                {user?.name || "Admin"}
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-sm font-medium text-white truncate">
+                  {user?.name || "Admin"}
+                </p>
+                {isSubAdmin && (
+                  <span className="text-[9px] font-bold bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded-full shrink-0">
+                    SUB
+                  </span>
+                )}
+                {isCareerAdmin && (
+                  <span className="text-[9px] font-bold bg-teal-400/20 text-teal-300 px-1.5 py-0.5 rounded-full shrink-0">
+                    CAREER
+                  </span>
+                )}
+              </div>
               <p className="text-[11px] text-white/40 truncate">
                 {user?.email || ""}
               </p>

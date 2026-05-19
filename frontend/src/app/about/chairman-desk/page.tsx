@@ -51,15 +51,17 @@ export default function ChairmanDeskPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
             {/* Left Column: Chairman Info & Photo */}
             <div className="lg:col-span-5 mb-10 lg:mb-0">
-              <div className="space-y-6 sticky top-24 w-[85%] md:w-3/4 lg:w-[90%] xl:w-[85%] mx-auto">
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
-                  <Image
-                    src={chairmanData.image}
-                    alt={chairmanData.name}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
+              <div className="space-y-6 sticky top-24 mt-4 lg:mt-6 w-[85%] md:w-3/4 lg:w-[90%] xl:w-[85%] mx-auto">
+                <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white p-3 pt-6">
+                  <div className="relative h-full w-full overflow-hidden rounded-[1.35rem]">
+                    <Image
+                      src={chairmanData.image}
+                      alt={chairmanData.name}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
                 </div>
                 <div className="bg-[#1e5eb2] p-8 rounded-3xl border border-blue-400/20 shadow-xl text-white">
                   <h2 className="text-2xl md:text-3xl xl:text-xl font-black font-heading mb-2 uppercase tracking-tight">

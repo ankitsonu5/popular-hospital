@@ -86,7 +86,7 @@ export default function RadiologicalServicesPage() {
           <div className="mb-12">
             <h1 className="text-3xl md:text-4xl font-bold text-[#333333] font-heading flex flex-wrap gap-2">
               Department of{" "}
-              <span className="text-[#2a5da3]">Radiology and Imaging</span>
+              <span className="text-[#284a91]">Radiology and Imaging</span>
             </h1>
             <SectionDivider />
             <p className="text-gray-700 text-[15px] leading-[1.8] text-justify">
@@ -148,7 +148,7 @@ export default function RadiologicalServicesPage() {
               <div className="mb-14">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#333333] font-heading flex gap-2">
                   Interventional{" "}
-                  <span className="text-[#2a5da3]">Radiology</span>
+                  <span className="text-[#284a91]">Radiology</span>
                 </h2>
                 <SectionDivider />
                 <p className="text-gray-700 text-[15px] leading-[1.8] text-justify">

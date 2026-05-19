@@ -31,6 +31,7 @@ import applicationsRouter from "./routes/applications.js";
 import heroBannersRouter from "./routes/heroBanners.js";
 import patientStoriesRouter from "./routes/patientStories.js";
 import callbackRequestsRouter from "./routes/callbackRequests.js";
+import departmentGalleryRouter from "./routes/departmentGallery.js";
 import { getActivePopup } from "./controllers/popupController.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -105,6 +106,7 @@ app.use("/api/contacts", contactsRouter);
 app.use("/api/applications", applicationsRouter);
 app.use("/api/hero-banners", heroBannersRouter);
 app.use("/api/patient-stories", patientStoriesRouter);
+app.use("/api/department-gallery", departmentGalleryRouter);
 app.use("/api/callback-requests", callbackRequestsRouter);
 app.get("/api/popup", getActivePopup);
 

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Save, Loader2, FileText, Plus, Trash2 } from "lucide-react";
@@ -13,7 +13,7 @@ export default function ContentPage() {
   const [newValue, setNewValue] = useState("");
 
   const getHeaders = () => ({
-    Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+    Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
     "Content-Type": "application/json",
   });
 

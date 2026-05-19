@@ -26,7 +26,7 @@ export default function BlogComments({
 
   useEffect(() => {
     // Basic check for admin auth to show admin features
-    const token = localStorage.getItem("admin_token");
+    const token = sessionStorage.getItem("admin_token");
     if (token) setIsAdmin(true);
   }, []);
 
@@ -64,7 +64,7 @@ export default function BlogComments({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
           },
           body: JSON.stringify({ text: replyText }),
         },
@@ -90,7 +90,7 @@ export default function BlogComments({
         {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
           },
         },
       );
@@ -111,7 +111,7 @@ export default function BlogComments({
         {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
           },
         },
       );

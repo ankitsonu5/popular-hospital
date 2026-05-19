@@ -170,7 +170,7 @@ const SectionHeader = ({
       {eyebrow}
     </p>
     <h2 className="font-heading text-2xl font-bold leading-tight text-[#0b1c43] sm:text-3xl lg:text-4xl">
-      {title} {highlight && <span className="text-blue-600">{highlight}</span>}
+      {title} {highlight && <span className="text-[#284a91]">{highlight}</span>}
     </h2>
     <div className="mt-4 h-1 w-16 rounded-full bg-[#E85222]" />
   </div>

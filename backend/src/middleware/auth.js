@@ -17,8 +17,8 @@ export const cmsAuth = async (req, res, next) => {
     const decoded = jwt.verify(token, securityConfig.jwt.secret);
     req.user = decoded;
 
-    // career_admin ke liye har request pe session + active status check
-    if (decoded.role === "career_admin") {
+    // career_admin aur sub_admin ke liye har request pe session + active status check
+    if (decoded.role === "career_admin" || decoded.role === "sub_admin") {
       const admin = await AdminUser.findById(decoded.id).select(
         "isActive sessionToken sessionExpires",
       );
@@ -45,11 +45,20 @@ export const cmsAuth = async (req, res, next) => {
   }
 };
 
-// Only super_admin (or legacy "admin") can access — career_admin gets 403
+// Only super_admin (or legacy "admin") can access
 export const superAdminOnly = (req, res, next) => {
   const role = req.user?.role;
   if (role !== "super_admin" && role !== "admin") {
     return res.status(403).json({ error: "Access denied. Super admin only." });
+  }
+  return next();
+};
+
+// super_admin ya sub_admin — bookings access ke liye
+export const superOrSubAdmin = (req, res, next) => {
+  const role = req.user?.role;
+  if (role !== "super_admin" && role !== "admin" && role !== "sub_admin") {
+    return res.status(403).json({ error: "Access denied." });
   }
   return next();
 };

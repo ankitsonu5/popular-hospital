@@ -87,7 +87,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-3xl 2xl:text-4xl font-bold text-[#064e3b] font-heading">
-      {title} <span className="text-emerald-600">{highlight}</span>
+      {title} <span className="text-[#284a91]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-emerald-600" />

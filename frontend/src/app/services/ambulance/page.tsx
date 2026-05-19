@@ -197,7 +197,7 @@ export default function AmbulancePage() {
                   >
                     {section.subtitle ? (
                       <>
-                        <h2 className="text-lg lg:text-xl font-bold text-blue-600 mb-1 lg:mb-2 font-heading tracking-wide uppercase">
+                        <h2 className="text-lg lg:text-xl font-bold text-[#284a91] mb-1 lg:mb-2 font-heading tracking-wide uppercase">
                           {section.title}
                         </h2>
                         <div className="flex items-center gap-4 mb-6">

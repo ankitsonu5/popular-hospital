@@ -41,7 +41,7 @@ export default function MobileWhatsAppFAB() {
                 height={20}
               />
               <span className="text-[13px] font-bold tracking-wide text-gray-800">
-                +91-7800001895 / 96
+                +91-7800001895
               </span>
             </a>
             <a
@@ -69,7 +69,7 @@ export default function MobileWhatsAppFAB() {
             >
               <PhoneCall className="h-4 w-4 text-[#0b7a75]" />
               <span className="text-[13px] font-bold tracking-wide text-gray-800">
-                +91-7800001895 / 96
+                +91-7800001895
               </span>
             </a>
             <a

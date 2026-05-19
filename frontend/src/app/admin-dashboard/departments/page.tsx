@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -13,6 +13,34 @@ import {
 import Link from "next/link";
 
 const API_URL = "/api-backend";
+const departmentPageSlugs = new Set([
+  "burns-plastic-surgery",
+  "cardiology",
+  "ctvs",
+  "dental",
+  "diabetic-foot",
+  "dietetics-nutrition",
+  "ent",
+  "gastroenterology",
+  "general-medicine",
+  "general-surgery",
+  "gynaecology",
+  "interventional-radiology",
+  "ivf-fertility",
+  "laboratory-medicine",
+  "nephrology",
+  "neurosurgery",
+  "oncology",
+  "ophthalmology",
+  "orthopedics",
+  "pain-management",
+  "pediatric-cardiology",
+  "pediatric-surgery",
+  "pediatrics",
+  "psychiatry",
+  "respiratory",
+  "urology",
+]);
 
 export default function DepartmentsPage() {
   const [departments, setDepartments] = useState<any[]>([]);
@@ -28,7 +56,7 @@ export default function DepartmentsPage() {
   const [isSaving, setIsSaving] = useState(false);
 
   const getHeaders = () => ({
-    Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+    Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
     "Content-Type": "application/json",
   });
 
@@ -73,7 +101,7 @@ export default function DepartmentsPage() {
 
       if (res.status === 401) {
         alert("Session expired. Please login again.");
-        localStorage.removeItem("admin_token");
+        sessionStorage.removeItem("admin_token");
         window.location.href = "/admin-login";
         return;
       }
@@ -113,7 +141,7 @@ export default function DepartmentsPage() {
 
       if (res.status === 401) {
         alert("Session expired. Please login again.");
-        localStorage.removeItem("admin_token");
+        sessionStorage.removeItem("admin_token");
         window.location.href = "/admin-login";
         return;
       }
@@ -220,6 +248,11 @@ export default function DepartmentsPage() {
                   <p className="text-[11px] text-gray-400 mt-0.5 truncate uppercase tracking-wider font-medium">
                     /{spec.slug}
                   </p>
+                  {departmentPageSlugs.has(spec.slug) && (
+                    <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-emerald-600">
+                      Page linked
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -298,6 +331,16 @@ export default function DepartmentsPage() {
                   }
                   className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all text-gray-500"
                 />
+                <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">
+                  Page URL: /departments/{formData.slug || "department-slug"}
+                </p>
+                {formData.slug && !departmentPageSlugs.has(formData.slug) && (
+                  <p className="mt-1 rounded-lg bg-amber-50 px-3 py-2 text-[11px] font-semibold text-amber-700">
+                    This slug is not currently used by a static department page.
+                    Doctor cards can still resolve by department name/alias, but
+                    matching the page slug is safest.
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-1">
@@ -315,7 +358,7 @@ export default function DepartmentsPage() {
                   placeholder="e.g. CARDIOLOGY"
                 />
                 <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">
-                  Will show as: DEPARTMENT OF{" "}
+                  Doctor cards show as: DEPARTMENT OF{" "}
                   {formData.department_display_name || formData.name || "..."}
                 </p>
               </div>

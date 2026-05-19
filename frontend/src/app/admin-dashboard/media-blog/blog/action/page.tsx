@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -227,7 +227,7 @@ function BlogActionForm() {
         try {
           const res = await fetch(BLOG_CMS_API, {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+              Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
             },
           });
           const data = await res.json();
@@ -281,7 +281,7 @@ function BlogActionForm() {
       const res = await fetch(url, {
         method,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
         },
         body: submitData,
       });
@@ -493,7 +493,7 @@ function BlogActionForm() {
                             fetch(BLOG_IMAGE_UPLOAD_API, {
                               method: "POST",
                               headers: {
-                                Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+                                Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
                               },
                               body: fd,
                             })

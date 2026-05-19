@@ -53,17 +53,23 @@ export default function JobPortalPage() {
   const [activeTab, setActiveTab] = useState("Primary");
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
+  const authHeader = () => ({
+    Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
+    "Content-Type": "application/json",
+  });
+
   const fetchApplications = async () => {
     setLoading(true);
     try {
-      const resp = await fetch("/api-backend/applications");
-      if (!resp.ok) {
-        throw new Error("Backend server is down or unreachable (Status 500)");
-      }
+      const resp = await fetch("/api-backend/applications", {
+        headers: authHeader(),
+      });
+      if (!resp.ok) throw new Error("Failed to fetch applications");
       const data = await resp.json();
       setApplications(data);
     } catch (err: any) {
       console.error("Error fetching applications:", err);
+      toast.error("Failed to load applications");
     } finally {
       setLoading(false);
     }
@@ -79,7 +85,7 @@ export default function JobPortalPage() {
       try {
         const resp = await fetch(`/api-backend/applications/${app._id}/read`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: authHeader(),
           body: JSON.stringify({ isRead: true }),
         });
         if (resp.ok) {
@@ -100,7 +106,7 @@ export default function JobPortalPage() {
     try {
       const resp = await fetch(`/api-backend/applications/${app._id}/star`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: authHeader(),
         body: JSON.stringify({ isStarred: newStarred }),
       });
       if (resp.ok) {
@@ -125,6 +131,7 @@ export default function JobPortalPage() {
     try {
       const resp = await fetch(`/api-backend/applications/${deleteConfirmId}`, {
         method: "DELETE",
+        headers: authHeader(),
       });
       if (resp.ok) {
         setApplications((prev) =>

@@ -76,7 +76,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-blue-600">{highlight}</span>
+      {title} <span className="text-[#284a91]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-blue-600" />
@@ -177,7 +177,7 @@ export default function BurnsPlasticSurgeryClient() {
 
               {/* Burns */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-blue-600 mb-2">Burns</h3>
+                <h3 className="text-xl font-bold text-[#284a91] mb-2">Burns</h3>
                 <div className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium text-justify space-y-4">
                   <p>
                     A burn is an injury to the skin or other organic tissue

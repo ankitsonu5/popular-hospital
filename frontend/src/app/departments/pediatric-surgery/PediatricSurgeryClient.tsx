@@ -23,7 +23,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-blue-600">{highlight}</span>
+      {title} <span className="text-[#284a91]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
       <div className="w-2 h-2 rounded-full bg-blue-600" />
@@ -157,7 +157,7 @@ export default function PediatricSurgeryClient() {
                         </Link>
                       </div>
                       <div className="text-center">
-                        <h3 className="text-xl font-bold text-[#3b82f6] mb-1 font-heading">
+                        <h3 className="text-xl font-bold text-[#284a91] mb-1 font-heading">
                           {doctors[0].name}
                         </h3>
                         <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4 text-center">

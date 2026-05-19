@@ -8,6 +8,8 @@ const updateSchema = new mongoose.Schema(
     description: { type: String, required: true },
     iconType: { type: String, default: "bell" }, // 'clock', 'heart', 'star', 'bell', etc.
     pdfUrl: { type: String, default: null },
+    imageUrl: { type: String, default: null },
+    linkUrl: { type: String, default: null },
     isImportant: { type: Boolean, default: false },
     isActive: { type: Boolean, default: true },
   },

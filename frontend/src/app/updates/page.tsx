@@ -119,33 +119,49 @@ export default function UpdatesPage() {
                           <h3 className="text-2xl font-bold text-[#0b1c43] mb-3 font-heading leading-snug">
                             {update.title}
                           </h3>
+                          {update.imageUrl && (
+                            <div className="relative mb-5 aspect-[16/9] w-full overflow-hidden rounded-xl border border-orange-100 bg-orange-50">
+                              <Image
+                                src={getImageUrl(update.imageUrl)}
+                                alt={update.title}
+                                fill
+                                className="object-cover"
+                                sizes="(min-width: 768px) 50vw, 100vw"
+                              />
+                            </div>
+                          )}
                           <p className="text-gray-600 leading-relaxed font-medium mb-6">
                             {update.description}
                           </p>
 
-                          {update.pdfUrl && (
-                            <a
-                              href={getImageUrl(update.pdfUrl)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-6 py-3 bg-[#E85222] text-white rounded-xl font-bold text-sm hover:bg-[#d1451a] transition-all shadow-md active:scale-95"
-                            >
-                              More Details (PDF)
-                              <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
+                          <div className="flex flex-wrap gap-3">
+                            {update.pdfUrl && (
+                              <a
+                                href={getImageUrl(update.pdfUrl)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-[#E85222] text-white rounded-xl font-bold text-sm hover:bg-[#d1451a] transition-all shadow-md active:scale-95"
                               >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                                />
-                              </svg>
-                            </a>
-                          )}
+                                More Details (PDF)
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </a>
+                            )}
+                            {update.linkUrl && (
+                              <a
+                                href={update.linkUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-[#0b1c43] text-white rounded-xl font-bold text-sm hover:bg-[#0e2455] transition-all shadow-md active:scale-95"
+                              >
+                                Read More
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </a>
+                            )}
+                          </div>
                         </div>
                       ))}
                   </div>
@@ -183,23 +199,35 @@ export default function UpdatesPage() {
                           <h3 className="text-xl font-bold text-[#0b1c43] mb-4 group-hover:text-[#0d9488] transition-colors font-heading leading-snug">
                             {update.title}
                           </h3>
+                          {update.imageUrl && (
+                            <div className="relative mb-5 aspect-[16/9] w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
+                              <Image
+                                src={getImageUrl(update.imageUrl)}
+                                alt={update.title}
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                              />
+                            </div>
+                          )}
                           <p className="text-sm text-gray-600 leading-relaxed font-medium mb-6">
                             {update.description}
                           </p>
 
-                          {update.pdfUrl && (
-                            <a
-                              href={getImageUrl(update.pdfUrl)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-[#0d9488] text-[#0d9488] rounded-xl font-bold text-xs hover:bg-[#0d9488] hover:text-white transition-all active:scale-95"
-                            >
-                              View PDF Details
-                              <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
+                          <div className="mt-auto flex flex-wrap gap-2">
+                            {update.pdfUrl && (
+                              <a
+                                href={getImageUrl(update.pdfUrl)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-[#0d9488] text-[#0d9488] rounded-xl font-bold text-xs hover:bg-[#0d9488] hover:text-white transition-all active:scale-95"
+                              >
+                                View PDF Details
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -208,8 +236,22 @@ export default function UpdatesPage() {
                                   d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                                 />
                               </svg>
-                            </a>
-                          )}
+                              </a>
+                            )}
+                            {update.linkUrl && (
+                              <a
+                                href={update.linkUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-[#0b1c43] text-[#0b1c43] rounded-xl font-bold text-xs hover:bg-[#0b1c43] hover:text-white transition-all active:scale-95"
+                              >
+                                Read More
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </a>
+                            )}
+                          </div>
                         </div>
                       ))}
                   </div>

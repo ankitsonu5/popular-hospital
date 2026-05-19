@@ -128,7 +128,7 @@ export default function PreventiveHealthPage() {
   return (
     <div className="bg-gray-50/50 min-h-screen">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[400px] md:h-[400px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-12 md:py-0">
+      <section className="relative min-h-[150px] md:h-[200px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-0">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/health_packages.png"
@@ -142,7 +142,7 @@ export default function PreventiveHealthPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="animate-fade-in-up max-w-4xl">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 font-heading tracking-tight leading-[1.1]">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 font-heading tracking-tight leading-[1.1]">
               Preventive Health Check Up
             </h1>
             <nav
@@ -180,7 +180,7 @@ export default function PreventiveHealthPage() {
               <div>
                 <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] leading-tight mb-4">
                   Why is a{" "}
-                  <span className="text-[#0066cc]">
+                  <span className="text-[#284a91]">
                     Regular Wellness Check-up
                   </span>{" "}
                   Important for Good Health?
@@ -256,7 +256,7 @@ export default function PreventiveHealthPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading mb-4">
               Choose Your{" "}
-              <span className="text-[#0066cc]">Preventive Health Check Up</span>
+              <span className="text-[#284a91]">Preventive Health Check Up</span>
             </h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
           </div>
@@ -284,7 +284,7 @@ export default function PreventiveHealthPage() {
                       <span className="inline-block px-3 py-1 bg-orange-50 text-orange-600 text-[10px] font-black tracking-widest uppercase rounded-full mb-2">
                         Popular Package
                       </span>
-                      <h3 className="text-[#0066cc] font-bold text-lg md:text-xl tracking-tight leading-tight max-w-[280px]">
+                      <h3 className="text-[#284a91] font-bold text-lg md:text-xl tracking-tight leading-tight max-w-[280px]">
                         {pkg.title}
                       </h3>
                     </div>
@@ -350,7 +350,7 @@ export default function PreventiveHealthPage() {
         ></div>
 
         <div className="container mx-auto max-w-[1366px] text-center relative z-10">
-          <h2 className="text-[#0066cc] text-2xl md:text-3xl font-black uppercase tracking-widest mb-4">
+          <h2 className="text-[#284a91] text-2xl md:text-3xl font-black uppercase tracking-widest mb-4">
             Preventive Health Program
           </h2>
 

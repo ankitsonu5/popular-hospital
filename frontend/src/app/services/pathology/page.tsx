@@ -62,7 +62,7 @@ export default function PathologyPage() {
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="w-full lg:w-[60%] lg:pr-10">
               <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] mb-4 font-heading leading-tight">
-                Department of <span className="text-blue-600">Pathology</span>
+                Department of <span className="text-[#284a91]">Pathology</span>
               </h2>
 
               <p className="text-gray-600 leading-loose text-justify text-[1.05rem] mb-10">
@@ -74,7 +74,7 @@ export default function PathologyPage() {
 
               <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] mb-6 font-heading leading-tight">
                 Best Pathology & Microbiology{" "}
-                <span className="text-blue-600">Testing Laboratory</span>
+                <span className="text-[#284a91]">Testing Laboratory</span>
               </h2>
               <div className="w-20 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-8"></div>
 
@@ -102,7 +102,7 @@ export default function PathologyPage() {
 
               <div className="mb-10">
                 <h3 className="text-2xl lg:text-3xl font-black text-[#0b1c43] mb-2 font-heading leading-tight flex items-center gap-2">
-                  Scope of <span className="text-blue-600">Services:</span>
+                  Scope of <span className="text-[#284a91]">Services:</span>
                 </h3>
                 {/* Decorative Line with Dot */}
                 <div className="flex items-center mb-8">
@@ -183,7 +183,7 @@ export default function PathologyPage() {
             <div className="w-full lg:w-1/2">
               <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] mb-6 font-heading leading-tight">
                 Few of our most{" "}
-                <span className="text-blue-600">
+                <span className="text-[#284a91]">
                   prominent <br /> instruments
                 </span>{" "}
                 are:
@@ -225,7 +225,7 @@ export default function PathologyPage() {
             <div className="w-full lg:w-3/5">
               <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] mb-6 font-heading leading-tight">
                 Internal Quality{" "}
-                <span className="text-blue-600">Assurance:</span>
+                <span className="text-[#284a91]">Assurance:</span>
               </h2>
               <div className="w-20 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-10"></div>
 
@@ -250,7 +250,7 @@ export default function PathologyPage() {
 
               <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] mb-6 font-heading leading-tight">
                 External Quality{" "}
-                <span className="text-blue-600">Assessment Scheme:</span>
+                <span className="text-[#284a91]">Assessment Scheme:</span>
               </h2>
               <div className="w-20 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-8"></div>
               <p className="text-gray-600 leading-loose text-justify text-[1.05rem]">

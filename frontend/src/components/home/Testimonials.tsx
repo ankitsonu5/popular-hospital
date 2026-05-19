@@ -81,9 +81,6 @@ function TestimonialCard({
         <h3 className="text-sm font-black leading-tight drop-shadow-md line-clamp-2 sm:text-[15px]">
           {title}
         </h3>
-        <p className="mt-1 text-[11px] font-extrabold leading-tight text-white/95 drop-shadow-md line-clamp-1">
-          {story.name}
-        </p>
       </div>
     </button>
   );

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Plus, Pencil, Trash2, Loader2, ArrowLeft, X } from "lucide-react";
@@ -17,7 +17,7 @@ export default function DesignationsPage() {
   const [error, setError] = useState<string | null>(null);
 
   const getHeaders = () => ({
-    Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+    Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
     "Content-Type": "application/json",
   });
 
