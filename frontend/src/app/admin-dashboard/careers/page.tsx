@@ -90,7 +90,6 @@ function CareerList() {
 
         <Link
           href="/admin-dashboard/careers/action"
-          target="_blank"
           className="group inline-flex items-center gap-2.5 px-8 py-4 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-2xl text-sm font-bold transition-all shadow-md hover:shadow-lg active:scale-95"
         >
           <Plus className="w-4 h-4 transition-transform group-hover:rotate-90" />
@@ -187,7 +186,6 @@ function CareerList() {
                       <div className="flex items-center justify-end gap-1 pr-2 transition-all">
                         <Link
                           href={`/admin-dashboard/careers/action?id=${item._id}`}
-                          target="_blank"
                           className="p-3 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-all"
                           title="Edit"
                         >

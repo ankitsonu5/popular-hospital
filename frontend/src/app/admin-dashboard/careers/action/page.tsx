@@ -113,7 +113,6 @@ function CareerActionForm() {
           ? "Job opening updated successfully!"
           : "New job role published successfully!",
       );
-      if (window.opener || window.history.length === 1) window.close();
       router.push("/admin-dashboard/careers");
     } catch (err: any) {
       alert(err.message);
@@ -136,7 +135,7 @@ function CareerActionForm() {
         <div className="max-w-[1366px] mx-auto px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <button
-              onClick={() => window.close()}
+              onClick={() => router.push("/admin-dashboard/careers")}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -159,7 +158,7 @@ function CareerActionForm() {
           <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
             <button
               type="button"
-              onClick={() => window.close()}
+              onClick={() => router.push("/admin-dashboard/careers")}
               className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
             >
               Cancel

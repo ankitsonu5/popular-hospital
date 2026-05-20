@@ -12,6 +12,7 @@ export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [info, setInfo] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
 
@@ -29,7 +30,14 @@ export default function AdminLoginPage() {
           body: JSON.stringify({ email }),
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Failed to send reset link");
+        if (!res.ok) {
+          if (data.error === "restricted_role") {
+            setIsForgotPassword(false);
+            setInfo("contact_super_admin");
+            return;
+          }
+          throw new Error(data.error || "Failed to send reset link");
+        }
         setSuccess(data.message || "Password reset link sent to your email.");
       } else {
         const res = await fetch("/api-backend/auth/login", {
@@ -136,6 +144,23 @@ export default function AdminLoginPage() {
           </div>
         )}
 
+        {/* Contact Super Admin Notification */}
+        {info === "contact_super_admin" && (
+          <div className="mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-2 animate-fade-in-up">
+            <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+              <svg className="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20A10 10 0 0012 2z" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-[12px] font-bold text-amber-800">Password reset not available</p>
+              <p className="text-[11px] text-amber-700 mt-0.5 leading-relaxed">
+                Sub Admin &amp; Career Portal Admins cannot reset their password directly. Please contact your <span className="font-black">Super Admin</span> to reset your password.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Success Message */}
         {success && (
           <div className="mb-4 p-3 rounded-xl bg-green-50 border border-green-100 flex items-center gap-2 animate-fade-in-up">
@@ -198,6 +223,7 @@ export default function AdminLoginPage() {
                     setEmail("");
                     setError("");
                     setSuccess("");
+                    setInfo("");
                   }}
                   className="text-[10px] font-bold text-[#0d9488] uppercase tracking-wider hover:opacity-70"
                 >
@@ -257,6 +283,7 @@ export default function AdminLoginPage() {
                   setEmail("");
                   setError("");
                   setSuccess("");
+                  setInfo("");
                 }}
                 className="w-full mt-3 text-xs font-bold text-[#0b1c43]/60 hover:text-[#0b1c43] transition-colors"
               >

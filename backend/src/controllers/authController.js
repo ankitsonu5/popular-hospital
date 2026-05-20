@@ -110,6 +110,11 @@ export const forgotPassword = async (req, res) => {
       });
     }
 
+    // sub_admin and career_admin cannot reset password themselves
+    if (admin.role === "sub_admin" || admin.role === "career_admin") {
+      return res.status(403).json({ error: "restricted_role" });
+    }
+
     // Generate secure token
     const resetToken = crypto.randomBytes(32).toString("hex");
 
