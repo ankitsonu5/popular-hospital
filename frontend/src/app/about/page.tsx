@@ -7,7 +7,7 @@ export default function AboutPage() {
   return (
     <div className="bg-white min-h-screen font-sans">
       {/* ─── Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] flex flex-col justify-center py-8 md:py-10 xl:py-6 2xl:py-12">
+      <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/banner-our-legacy.webp"

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Share2 } from "lucide-react";
+import { Share2, GraduationCap, Stethoscope, Handshake, Trophy } from "lucide-react";
 
 const awardsData = [
   {
@@ -77,7 +77,7 @@ export default function AwardsRecognitionPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ─── Simple & Clean Hero Section ─── */}
-      <div className="bg-[#0b1c43] text-white py-8 md:py-10 xl:py-6 relative overflow-hidden min-h-[150px] md:min-h-[200px] xl:min-h-[150px] flex flex-col justify-center">
+      <div className="bg-[#0b1c43] text-white py-10 relative overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center">
         {/* Subtle Background Pattern */}
         <div
           className="absolute inset-0 opacity-[0.05] pointer-events-none"
@@ -120,12 +120,12 @@ export default function AwardsRecognitionPage() {
                   {/* Doctor Info Section with Photo-Logo-Name Balance */}
                   <div className="flex flex-col md:flex-row lg:flex-col gap-6 md:gap-8 lg:gap-6 items-center md:items-start lg:items-center">
                     {/* Photo in refined container */}
-                    <div className="relative w-48 h-56 md:w-56 md:h-64 lg:w-full lg:h-[320px] overflow-hidden rounded-2xl border border-gray-50 flex-shrink-0 bg-slate-50/50">
+                    <div className="relative w-48 h-56 md:w-56 md:h-64 lg:w-full lg:h-[320px] overflow-hidden rounded-2xl border border-gray-100 flex-shrink-0 bg-white">
                       <Image
                         src="/images/dr_ak_kaushik.png"
                         alt="Dr. A.K. Kaushik"
                         fill
-                        className="object-contain p-2"
+                        className="object-cover object-top pt-6"
                         priority
                       />
                     </div>
@@ -192,15 +192,20 @@ export default function AwardsRecognitionPage() {
 
             {/* Right Section: Strategic Profile Summary & Grid */}
             <div className="lg:col-span-7 flex flex-col pt-4">
-              <h2 className="text-3xl font-black text-blue-500 font-heading mb-10 tracking-tight uppercase leading-none">
+              <h2 className="text-3xl font-black text-[#0b1c43] font-heading mb-8 tracking-tight uppercase leading-none flex items-center gap-3">
+                <span className="w-1.5 h-7 bg-[#E85222] rounded-full inline-block"></span>
                 Profile Summary
               </h2>
 
-              <div className="text-slate-600 font-medium text-lg md:text-xl lg:text-[15px] leading-relaxed mb-12 italic border-l-4 border-blue-100 pl-6 py-2">
-                <p>
+              {/* Redesigned Blockquote Card */}
+              <div className="relative overflow-hidden bg-gradient-to-r from-blue-50/70 to-slate-50/55 rounded-2xl border-l-4 border-[#0b467d] p-6 mb-10 shadow-sm border border-slate-100/50">
+                <span className="absolute -top-3 -right-2 text-[120px] text-blue-900/5 font-serif leading-none select-none">
+                  “
+                </span>
+                <p className="relative z-10 text-slate-700 font-jakarta font-medium text-base md:text-lg leading-relaxed italic">
                   &quot;The single greatest asset and the primary de-risking
                   factor of this investment is the promoter himself,
-                  <span className="font-bold text-slate-900 not-italic ml-1">
+                  <span className="font-extrabold text-[#0b1c43] not-italic ml-1 inline-block border-b-2 border-[#E85222]/30">
                     Dr. A.K. Kaushik
                   </span>
                   . He is a pioneer in General, Laparoscopic, Laser & Minimal
@@ -208,36 +213,53 @@ export default function AwardsRecognitionPage() {
                 </p>
               </div>
 
-              {/* Info Grid of Boxes with borders as per reference image */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4">
+              {/* Info Grid of Redesigned Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {[
                   {
                     label: "QUALIFICATIONS",
                     val: "MBBS, MS (General Surgery) IMS-BHU",
+                    iconColor: "bg-blue-50/70 border-blue-100/60 text-blue-600",
+                    borderHover: "hover:border-blue-200/80 hover:shadow-blue-500/5",
+                    icon: <GraduationCap className="w-5 h-5 text-blue-600" />,
                   },
                   {
                     label: "SPECIALIZATION",
                     val: "General, Laparoscopic, and Laser Surgery",
+                    iconColor: "bg-teal-50/70 border-teal-100/60 text-teal-600",
+                    borderHover: "hover:border-teal-200/80 hover:shadow-teal-500/5",
+                    icon: <Stethoscope className="w-5 h-5 text-teal-600" />,
                   },
                   {
                     label: "AFFILIATIONS",
                     val: "AMASI, IAGES, Hernia Society of India",
+                    iconColor: "bg-purple-50/70 border-purple-100/60 text-purple-600",
+                    borderHover: "hover:border-purple-200/80 hover:shadow-purple-500/5",
+                    icon: <Handshake className="w-5 h-5 text-purple-600" />,
                   },
                   {
                     label: "KEY AWARDS",
                     val: "Kashi Ratna, CNBC Healthcare, Sunbeam",
+                    iconColor: "bg-amber-50/70 border-amber-100/60 text-amber-600",
+                    borderHover: "hover:border-amber-200/80 hover:shadow-amber-500/5",
+                    icon: <Trophy className="w-5 h-5 text-amber-600" />,
                   },
                 ].map((point, i) => (
                   <div
                     key={i}
-                    className="p-6 md:p-5 bg-slate-50/30 rounded-2xl border border-slate-100 transition-colors hover:bg-white hover:shadow-lg hover:shadow-blue-500/5 hover:border-blue-100 group"
+                    className={`p-5 bg-white rounded-2xl border border-slate-100 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${point.borderHover} group flex items-center gap-6`}
                   >
-                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] mb-2 group-hover:text-blue-400 transition-colors">
-                      {point.label}
-                    </h4>
-                    <p className="text-slate-800 font-bold text-base md:text-sm leading-tight">
-                      {point.val}
-                    </p>
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${point.iconColor} transition-transform group-hover:scale-105 duration-300`}>
+                      {point.icon}
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] group-hover:text-[#0b467d] transition-colors leading-none">
+                        {point.label}
+                      </h4>
+                      <p className="text-slate-800 font-extrabold text-sm leading-snug font-jakarta">
+                        {point.val}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -247,48 +269,53 @@ export default function AwardsRecognitionPage() {
 
         {/* Section 2: Awards Table (Properly Mobile Responsive) */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-[#4285f4] font-heading uppercase tracking-tight">
+          <h2 className="text-2xl font-bold text-[#0b1c43] font-heading uppercase tracking-tight flex items-center gap-3">
+            <span className="w-1.5 h-6 bg-[#E85222] rounded-full inline-block"></span>
             Awards Timeline
           </h2>
 
-          <div className="border border-black rounded-lg overflow-hidden">
+          <div className="bg-white rounded-2xl border border-slate-200/80 shadow-md shadow-slate-100 overflow-hidden">
             <div className="hidden md:block">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-black bg-gray-50">
-                    <th className="px-6 py-4 font-bold border-r border-black">
+                  <tr className="bg-gradient-to-r from-slate-50 to-slate-100/70 border-b border-slate-200">
+                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider w-[120px]">
                       Year
                     </th>
-                    <th className="px-6 py-4 font-bold border-r border-black">
+                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider">
                       Award Name
                     </th>
-                    <th className="px-6 py-4 font-bold">Conferred By</th>
+                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider">
+                      Conferred By
+                    </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-black">
+                <tbody className="divide-y divide-slate-100">
                   {awardsData.map((row, idx) => (
                     <tr
                       key={idx}
-                      className="border-b border-black last:border-0"
+                      className="hover:bg-slate-50/50 transition-colors duration-200"
                     >
-                      <td className="px-6 py-4 border-r border-black font-bold">
-                        {row.year}
+                      <td className="px-8 py-5 font-bold text-[#1e3a8a] text-[15px]">
+                        <span className="inline-flex items-center justify-center bg-blue-50 text-[#1e3a8a] px-3 py-1 rounded-full text-sm font-bold border border-blue-100/50">
+                          {row.year}
+                        </span>
                       </td>
-                      <td className="px-6 py-4 border-r border-black">
+                      <td className="px-8 py-5 font-jakarta font-semibold text-slate-800 text-[15px]">
                         {row.award}
                       </td>
-                      <td className="px-6 py-4 text-gray-600">
+                      <td className="px-8 py-5 font-jakarta text-slate-600 text-[14.5px]">
                         {row.conferred}
                       </td>
                     </tr>
                   ))}
-                  <tr className="bg-gray-100">
-                    <td className="px-6 py-8 border-r border-black font-bold">
-                      Honored by
+                  <tr className="bg-gradient-to-r from-[#0b1c43]/5 to-[#0b1c43]/10 border-t border-slate-200">
+                    <td className="px-8 py-6 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider">
+                      Special Honor
                     </td>
-                    <td className="px-6 py-8 font-bold text-lg" colSpan={2}>
-                      Hon&apos;ble Chief Minister of Uttar Pradesh, Shri Yogi
-                      Adityanath Ji
+                    <td className="px-8 py-6 font-black font-jakarta text-[#0b1c43] text-base" colSpan={2}>
+                      <span className="text-[#E85222] font-black mr-2">★</span>
+                      Honored by Hon&apos;ble Chief Minister of Uttar Pradesh, Shri Yogi Adityanath Ji
                     </td>
                   </tr>
                 </tbody>
@@ -296,29 +323,31 @@ export default function AwardsRecognitionPage() {
             </div>
 
             {/* Mobile Card Layout for Table */}
-            <div className="md:hidden divide-y divide-black">
+            <div className="md:hidden divide-y divide-slate-100">
               {awardsData.map((row, idx) => (
-                <div key={idx} className="p-4 space-y-2">
-                  <div className="flex items-center gap-2">
-                    <span className="bg-[#4285f4] text-white px-2 py-0.5 rounded text-xs font-bold">
+                <div key={idx} className="p-5 space-y-3 bg-white hover:bg-slate-50/30 transition-colors">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="bg-blue-50 text-[#1e3a8a] px-3 py-0.5 rounded-full text-xs font-bold border border-blue-100">
                       {row.year}
                     </span>
-                    <p className="font-bold text-gray-900 text-sm">
+                  </div>
+                  <div className="space-y-1">
+                    <p className="font-bold text-slate-800 text-sm font-jakarta leading-snug">
                       {row.award}
                     </p>
+                    <p className="text-xs text-slate-500 font-medium font-jakarta flex items-center gap-1.5 pt-0.5">
+                      <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                      Conferred by: {row.conferred}
+                    </p>
                   </div>
-                  <p className="text-xs text-gray-500 font-medium">
-                    Conferred by: {row.conferred}
-                  </p>
                 </div>
               ))}
-              <div className="p-5 bg-gray-100 space-y-1">
-                <p className="text-[10px] font-black text-[#4285f4] uppercase tracking-widest">
-                  Honored by
+              <div className="p-6 bg-gradient-to-br from-[#0b1c43]/5 to-[#0b1c43]/10 border-t border-slate-200 space-y-2">
+                <p className="text-[10px] font-black text-[#E85222] uppercase tracking-widest flex items-center gap-1.5">
+                  <span>★</span> Special Honor
                 </p>
-                <p className="font-bold text-gray-900 leading-tight">
-                  Hon&apos;ble Chief Minister of Uttar Pradesh, Shri Yogi
-                  Adityanath Ji
+                <p className="font-black text-[#0b1c43] leading-snug text-sm font-jakarta">
+                  Honored by Hon&apos;ble Chief Minister of Uttar Pradesh, Shri Yogi Adityanath Ji
                 </p>
               </div>
             </div>
@@ -327,7 +356,7 @@ export default function AwardsRecognitionPage() {
 
         {/* Section 3: Strategic Value */}
         <div className="space-y-8 pb-10">
-          <h2 className="text-2xl font-bold text-[#4285f4] font-heading uppercase tracking-tight">
+          <h2 className="text-2xl font-bold text-[#0b1c43] font-heading uppercase tracking-tight">
             Strategic Value
           </h2>
 

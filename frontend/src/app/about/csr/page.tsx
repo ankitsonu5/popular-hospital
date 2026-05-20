@@ -117,7 +117,7 @@ export default function CSRPage() {
   return (
     <main className="min-h-screen bg-white font-sans overflow-x-hidden">
       {/* ─── Hero Section ─── */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative min-h-[180px] md:min-h-[220px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"

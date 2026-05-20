@@ -28,7 +28,7 @@ export default function MDDeskPage() {
   return (
     <div className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] xl:min-h-[180px] flex flex-col justify-center py-10 xl:py-8">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/from_chairman's_desk.png"

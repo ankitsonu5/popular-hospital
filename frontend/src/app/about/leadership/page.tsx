@@ -19,7 +19,7 @@ export default function LeadershipPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] xl:min-h-[180px] 2xl:min-h-[300px] flex flex-col justify-center py-10 xl:py-8 2xl:py-16">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/leadership.png"
@@ -59,18 +59,18 @@ export default function LeadershipPage() {
           {leaders.map((leader, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col"
+              className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col p-4 pb-0"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-50">
                 <Image
                   src={leader.image}
                   alt={leader.name}
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   unoptimized
                 />
               </div>
-              <div className="p-6 text-center relative bg-white flex-1 flex flex-col justify-end">
+              <div className="py-5 text-center relative bg-white flex-1 flex flex-col justify-end">
                 {/* Name & Role */}
                 <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading uppercase tracking-tight xl:text-lg 2xl:text-2xl">
                   {leader.name}

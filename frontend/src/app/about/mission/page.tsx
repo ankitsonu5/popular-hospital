@@ -10,7 +10,7 @@ export default function VisionMissionPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ─── Clean Hero Section ─── */}
-      <section className="relative bg-[#0b1c43] overflow-hidden min-h-[150px] md:min-h-[200px] xl:min-h-[150px] flex flex-col justify-center py-8 xl:py-6">
+      <section className="relative bg-[#0b1c43] overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0">
           <Image
             src="/images/about_popular/vision_mission.webp"
@@ -21,12 +21,6 @@ export default function VisionMissionPage() {
           />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6">
-            <div className="w-2 h-2 rounded-full bg-[#00B4D8]"></div>
-            <span className="text-sm font-semibold text-white/90 tracking-wide uppercase">
-              Our Foundation
-            </span>
-          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-3xl font-bold font-heading text-white tracking-tight leading-tight">
             Our Mission
           </h1>

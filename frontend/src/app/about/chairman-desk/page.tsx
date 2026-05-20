@@ -24,7 +24,7 @@ export default function ChairmanDeskPage() {
   return (
     <div className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
-      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[150px] md:min-h-[200px] xl:min-h-[150px] flex flex-col justify-center py-8 xl:py-6">
+      <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about_popular/from_chairman's_desk.png"
