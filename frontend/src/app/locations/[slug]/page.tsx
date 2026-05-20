@@ -287,7 +287,7 @@ export default async function LocationPage({
       {/* Other Locations */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-[1366px] mx-auto">
         <div className="text-center mb-12">
-          <span className="text-[#00B4D8] font-bold uppercase tracking-widest text-sm">
+          <span className="text-[#1e3a8a] font-bold uppercase tracking-widest text-sm">
             Grow with us
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#1d1d1f] mt-3 font-heading">
@@ -295,50 +295,37 @@ export default async function LocationPage({
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {allBranches
             .filter((l: any) => l.slug !== location.slug)
             .map((loc: any) => (
               <Link
                 key={loc.slug}
                 href={`/locations/${loc.slug}`}
-                className="group relative rounded-3xl overflow-hidden h-[300px] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className="group flex h-[276px] w-[250px] flex-shrink-0 flex-col overflow-hidden rounded-xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.16)] transition-all duration-300 hover:shadow-md hover:-translate-y-1"
               >
-                <Image
-                  src={getImageUrl(loc.image_one) || "/about-section-image.png"}
-                  alt={loc.name}
-                  fill
-                  className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/95 via-[#0b1c43]/40 to-transparent" />
-                <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#00B4D8] mb-1">
-                    {loc.city}
-                  </span>
-                  <h3 className="text-xl font-bold text-white leading-tight mb-2">
-                    {loc.name.replace(/^Popular Hospital\s[–-]\s/, "")}
+                <div className="relative h-[145px] overflow-hidden bg-slate-100">
+                  <Image
+                    src={getImageUrl(loc.image_one) || "/about-section-image.png"}
+                    alt={loc.name}
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                    sizes="250px"
+                    unoptimized
+                  />
+                </div>
+                <div className="flex flex-1 flex-col px-3.5 py-3">
+                  <h3 className="font-jakarta text-[15px] font-black leading-snug text-[#4a4a4a] line-clamp-2 transition-colors group-hover:text-[#1e3a8a]">
+                    {loc.name}
                   </h3>
-                  <div className="w-10 h-1 bg-[#E85222] rounded-full mb-2 group-hover:w-16 transition-all duration-300" />
-                  <p className="text-white/80 text-sm mt-1 line-clamp-1">
-                    {loc.address}
+                  <p className="mt-1 text-[11px] font-semibold leading-4 text-slate-500 line-clamp-1">
+                    {loc.city || loc.address}
                   </p>
-
-                  <div className="mt-3 flex items-center text-white/90 text-sm font-semibold gap-2 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                    View Details
-                    <svg
-                      className="w-4 h-4 text-[#E85222]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
+                  
+                  <div className="mt-auto">
+                    <span className="inline-flex h-9 items-center justify-center rounded bg-[#0b467d] px-3 font-jakarta text-xs font-black text-white transition hover:bg-[#083c72]">
+                      Get Direction
+                    </span>
                   </div>
                 </div>
               </Link>

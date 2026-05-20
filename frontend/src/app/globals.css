@@ -99,6 +99,22 @@ button {
   font-family: "Plus Jakarta Sans", var(--font-lato);
 }
 
+.font-hindi-rozha {
+  font-family: "Rozha One", serif !important;
+}
+
+.font-hindi-martel {
+  font-family: "Martel", serif !important;
+}
+
+.font-hindi-teko {
+  font-family: "Teko", sans-serif !important;
+}
+
+.font-hindi-poppins {
+  font-family: "Poppins", sans-serif !important;
+}
+
 .departments-font-scope,
 .departments-font-scope * {
   font-family: "Plus Jakarta Sans", var(--font-lato) !important;

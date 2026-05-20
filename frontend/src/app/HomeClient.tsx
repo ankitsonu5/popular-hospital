@@ -520,7 +520,7 @@ export default function HomeClient({
         {/* Main Slogan Overlay on Video */}
         <div className="absolute inset-x-0 bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-14 xl:bottom-16 min-[1366px]:bottom-[72px] min-[1440px]:bottom-20 2xl:bottom-[88px] z-20 text-center px-4 pointer-events-none">
           <h2
-            className="relative z-10 text-[18px] min-[390px]:text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] min-[1440px]:text-[56px] 2xl:text-[64px] font-black font-jakarta tracking-normal text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2 leading-[1.08]"
+            className="relative z-10 text-[18px] min-[390px]:text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] min-[1440px]:text-[56px] 2xl:text-[64px] font-bold font-hindi-poppins tracking-normal text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2 leading-[1.08]"
           >
             आपके हर श्वांस के रक्षक
           </h2>
