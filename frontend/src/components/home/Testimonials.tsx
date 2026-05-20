@@ -40,8 +40,15 @@ function TestimonialCard({
   return (
     <button
       onClick={() => onOpen(story)}
-      className={`relative group w-full overflow-hidden rounded-[14px] bg-gray-900 text-left shadow-[0_14px_34px_rgba(15,23,42,0.14)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(15,23,42,0.18)] ${className}`}
+      className={`relative group w-full overflow-hidden rounded-[14px] bg-gray-900 text-left shadow-[0_14px_34px_rgba(15,23,42,0.14)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(15,23,42,0.18)] transform-gpu ${className}`}
       aria-label={`Play ${title}`}
+      style={{
+        transform: "translateZ(0)",
+        WebkitTransform: "translateZ(0)",
+        isolation: "isolate",
+        maskImage: "radial-gradient(white, black)",
+        WebkitMaskImage: "radial-gradient(white, black)",
+      }}
     >
       {shouldUseVideoPreview ? (
         <video

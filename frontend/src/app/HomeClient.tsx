@@ -1029,7 +1029,14 @@ export default function HomeClient({
               ].map((feature, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white p-6 sm:p-0 rounded-2xl border-2 border-hospital-teal/20 sm:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 pointer-events-auto cursor-default overflow-hidden h-auto sm:h-[210px] md:h-[230px]"
+                  className="group relative bg-white p-6 sm:p-0 rounded-2xl border-2 border-hospital-teal/20 sm:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 pointer-events-auto cursor-default overflow-hidden h-auto sm:h-[210px] md:h-[230px] transform-gpu"
+                  style={{
+                    transform: "translateZ(0)",
+                    WebkitTransform: "translateZ(0)",
+                    isolation: "isolate",
+                    maskImage: "radial-gradient(white, black)",
+                    WebkitMaskImage: "radial-gradient(white, black)",
+                  }}
                 >
                   {/* Background Image (Desktop Only - Full Preview) */}
                   <div className="absolute inset-0 hidden sm:block pointer-events-none">
@@ -1249,7 +1256,14 @@ export default function HomeClient({
               .map((service, idx) => (
                 <div
                   key={service.title}
-                  className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden"
+                  className="group relative bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden transform-gpu"
+                  style={{
+                    transform: "translateZ(0)",
+                    WebkitTransform: "translateZ(0)",
+                    isolation: "isolate",
+                    maskImage: "radial-gradient(white, black)",
+                    WebkitMaskImage: "radial-gradient(white, black)",
+                  }}
                 >
                   {/* Image Section */}
                   <div className="w-full h-48 xl:h-40 relative flex-shrink-0 bg-gray-100">
@@ -1306,10 +1320,10 @@ export default function HomeClient({
           <div className="mt-16 text-center">
             <Link
               href="/departments"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#0066cc]/10 text-[#0066cc] hover:bg-[#0066cc] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
               <span>View all departments</span>
-              <div className="w-8 h-8 rounded-full bg-[#0066cc]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+              <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <svg
                   className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
                   fill="none"
@@ -1719,8 +1733,15 @@ export default function HomeClient({
                   >
                     {/* ── Large card LEFT (row-span-2) ── */}
                     <div
-                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300"
-                      style={{ gridRow: "1 / 3" }}
+                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 transform-gpu"
+                      style={{
+                        gridRow: "1 / 3",
+                        transform: "translateZ(0)",
+                        WebkitTransform: "translateZ(0)",
+                        isolation: "isolate",
+                        maskImage: "radial-gradient(white, black)",
+                        WebkitMaskImage: "radial-gradient(white, black)",
+                      }}
                     >
                       {current[0].image && (
                         <div className="relative shrink-0" style={{ height: "280px" }}>
@@ -1759,8 +1780,15 @@ export default function HomeClient({
 
                     {/* ── Large card RIGHT (row-span-2) ── */}
                     <div
-                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300"
-                      style={{ gridRow: "1 / 3" }}
+                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 transform-gpu"
+                      style={{
+                        gridRow: "1 / 3",
+                        transform: "translateZ(0)",
+                        WebkitTransform: "translateZ(0)",
+                        isolation: "isolate",
+                        maskImage: "radial-gradient(white, black)",
+                        WebkitMaskImage: "radial-gradient(white, black)",
+                      }}
                     >
                       {current[3].image && (
                         <div className="relative shrink-0" style={{ height: "280px" }}>
@@ -1957,22 +1985,19 @@ export default function HomeClient({
           <div className="mt-12 text-center">
             <Link
               href="/media/news"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
               <span>View All News & Articles</span>
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <svg
+                  className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </Link>
           </div>
         </div>
@@ -2073,22 +2098,19 @@ export default function HomeClient({
           <div className="mt-16 text-center">
             <Link
               href="/media/events"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
               <span>View All Events</span>
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <svg
+                  className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </Link>
           </div>
         </div>
@@ -2161,22 +2183,19 @@ export default function HomeClient({
           <div className="text-center">
             <Link
               href="/about/cashless-empanelment"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1e3a8a] text-white font-semibold text-sm hover:bg-[#15307a] transition-colors shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
               <span>View All Partners</span>
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <svg
+                  className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </Link>
           </div>
         </div>
@@ -2312,22 +2331,19 @@ export default function HomeClient({
           <div className="mt-10 text-center">
             <Link
               href="/faqs"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#1a3a5c] text-white rounded-full font-bold hover:bg-[#2a7a8c] transition-all hover:scale-105 shadow-lg shadow-slate-200"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
               <span>View All Frequently Asked Questions</span>
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+              <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <svg
+                  className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </Link>
           </div>
         </div>
