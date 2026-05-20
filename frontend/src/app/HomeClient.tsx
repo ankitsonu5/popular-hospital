@@ -17,7 +17,7 @@ import {
   type HeroBanner,
   type PatientStory,
 } from "@/lib/api";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowLeft, ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const DynamicTestimonials = dynamic(
@@ -1334,12 +1334,13 @@ export default function HomeClient({
         className="py-16 sm:py-20 bg-[#fcfcfc] relative overflow-hidden"
         aria-labelledby="model-of-care"
       >
-        {/* Background Pattern */}
+        {/* Decorative Grid Lines Background */}
         <div
-          className="absolute inset-0 opacity-[0.4]"
+          className="absolute inset-0 pointer-events-none opacity-[0.02]"
           style={{
-            backgroundImage: "radial-gradient(#9ca3af 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
+            backgroundImage:
+              "linear-gradient(to right, #0b1c43 1px, transparent 1px), linear-gradient(to bottom, #0b1c43 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
           }}
         ></div>
 
@@ -1528,6 +1529,272 @@ export default function HomeClient({
         </div>
       </section>
 
+
+      {/* Home Services Section */}
+      {(() => {
+        /* ── icon SVGs — thin-line style matching screenshot ── */
+        const IconDoctor = (
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+            <circle cx="30" cy="16" r="9"/>
+            <path d="M10 52c0-11 9-18 20-18s20 7 20 18"/>
+            <circle cx="42" cy="36" r="6"/>
+            <line x1="42" y1="33" x2="42" y2="39"/>
+            <line x1="39" y1="36" x2="45" y2="36"/>
+          </svg>
+        );
+        const IconHeart = (
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+            <path d="M30 50S8 36 8 20a12 12 0 0122-7 12 12 0 0122 7c0 16-22 30-22 30z"/>
+            <circle cx="44" cy="42" r="8"/>
+            <line x1="44" y1="38" x2="44" y2="46"/>
+            <line x1="40" y1="42" x2="48" y2="42"/>
+          </svg>
+        );
+        const IconBlood = (
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+            <path d="M30 10C30 10 12 28 12 38a18 18 0 0036 0C48 28 30 10 30 10z"/>
+            <line x1="30" y1="34" x2="30" y2="44"/>
+            <line x1="25" y1="39" x2="35" y2="39"/>
+          </svg>
+        );
+        const IconAmbulance = (
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+            <rect x="4" y="20" width="40" height="24" rx="3"/>
+            <path d="M44 30h6a2 2 0 012 2v10a2 2 0 01-2 2h-6"/>
+            <circle cx="14" cy="46" r="5"/>
+            <circle cx="38" cy="46" r="5"/>
+            <line x1="18" y1="30" x2="28" y2="30"/>
+            <line x1="23" y1="25" x2="23" y2="35"/>
+          </svg>
+        );
+        const IconFlask = (
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+            <path d="M22 8v20L10 46a4 4 0 003.6 6h32.8A4 4 0 0050 46L38 28V8"/>
+            <line x1="20" y1="8" x2="40" y2="8"/>
+            <circle cx="20" cy="42" r="2.5" fill="currentColor"/>
+            <circle cx="32" cy="46" r="2" fill="currentColor"/>
+            <circle cx="26" cy="48" r="1.5" fill="currentColor"/>
+          </svg>
+        );
+
+        const iconMap: Record<string, React.ReactNode> = {
+          doctor: IconDoctor,
+          heart: IconHeart,
+          pill: IconBlood,
+          ambulance: IconAmbulance,
+          flask: IconFlask,
+          blood: IconBlood,
+        };
+
+        const serviceSlides = [
+          [
+            {
+              type: "large" as const,
+              title: "Find a Doctor",
+              desc: "Search from our extensive list of expert doctors and specialists.",
+              image: "/images/departments-images/general-medicine.jpeg",
+              href: "/doctors",
+              icon: "doctor",
+            },
+            {
+              type: "small" as const,
+              title: "Pharmacy",
+              desc: "Get authentic medicines and healthcare products directly from our 24/7 in-house pharmacy.",
+              image: null,
+              href: "/services/pharmacy",
+              icon: "pill",
+            },
+            {
+              type: "small" as const,
+              title: "Pathological Services",
+              desc: "Advanced diagnostic tests and pathological investigations with highly accurate and fast reports.",
+              image: null,
+              href: "/services/pathology",
+              icon: "flask",
+            },
+            {
+              type: "large" as const,
+              title: "Health Check",
+              desc: "Take charge of your well-being with a health experience customised for you",
+              image: "/images/health_cards_packages.png",
+              href: "/services/wellness-packages",
+              icon: "heart",
+            },
+          ],
+          [
+            {
+              type: "large" as const,
+              title: "Emergency Care",
+              desc: "24/7 dedicated emergency care services for all your urgent medical needs.",
+              image: "/images/departments-images/emergency.jpeg",
+              href: "/services/emergency",
+              icon: "ambulance",
+            },
+            {
+              type: "small" as const,
+              title: "Blood Bank",
+              desc: "24x7 blood bank services providing safe and tested blood.",
+              image: null,
+              href: "/services/blood-bank",
+              icon: "blood",
+            },
+            {
+              type: "small" as const,
+              title: "Home Care",
+              desc: "Professional medical care and nursing services at your doorstep.",
+              image: null,
+              href: "/services/home-care",
+              icon: "doctor",
+            },
+            {
+              type: "large" as const,
+              title: "24/7 Ambulance",
+              desc: "Fully equipped ACLS/BLS ambulances for safe transport.",
+              image: "/images/departments-images/ambulance.jpeg",
+              href: "/services/ambulance",
+              icon: "ambulance",
+            },
+          ]
+        ];
+
+        const [servicesSlide, setServicesSlide] = useState(0);
+        const totalSlides = serviceSlides.length;
+        const current = serviceSlides[servicesSlide];
+
+        const KnowMore = ({ href }: { href: string }) => (
+          <Link href={href} className="group inline-flex items-center text-[#E85222] font-semibold text-[13px] tracking-wide uppercase hover:text-[#c73e15] transition-colors gap-1.5">
+            Know More
+            <span className="w-[18px] h-[18px] bg-[#E85222] text-white rounded-full flex items-center justify-center text-[11px] pb-[1px] group-hover:bg-[#c73e15] transition-colors">
+              ›
+            </span>
+          </Link>
+        );
+
+        return (
+          <section className="py-16 md:py-24 bg-[#FAFAFA] relative overflow-hidden">
+            <div className="max-w-[1280px] mx-auto px-5 lg:px-8 relative z-10">
+              
+              <div className="flex items-end justify-between mb-12 xl:mb-10">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block font-jakarta">
+                    Excellence in Care
+                  </span>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-jakarta tracking-tight">
+                    Services
+                  </h2>
+                </div>
+                <div className="flex gap-3 md:gap-4 items-center mt-2 md:mt-0">
+                  <button onClick={() => setServicesSlide((p) => (p - 1 + totalSlides) % totalSlides)} aria-label="Previous slide" className="flex items-center justify-center text-[#E85222] hover:text-[#c73e15] transition-colors"><ArrowLeft strokeWidth={2.5} className="w-7 h-7 md:w-8 md:h-8"/></button>
+                  <button onClick={() => setServicesSlide((p) => (p + 1) % totalSlides)} aria-label="Next slide" className="flex items-center justify-center text-[#E85222] hover:text-[#c73e15] transition-colors"><ArrowRight strokeWidth={2.5} className="w-7 h-7 md:w-8 md:h-8"/></button>
+                </div>
+              </div>
+
+              {/* ── Cards area ── */}
+              <div className="flex-1 min-w-0">
+                  {/* Mobile/tablet: 2-col simple grid */}
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
+                    {current.map((s) => (
+                      <div key={s.title} className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
+                        {s.image && (
+                          <div className="relative h-48 w-full shrink-0">
+                            <Image src={s.image} alt={s.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width:640px) 100vw, 50vw" />
+                          </div>
+                        )}
+                        <div className="flex flex-col flex-1 p-5 gap-3">
+                          <h3 className="text-[17px] font-bold text-[#1a1a1a] leading-snug">{s.title}</h3>
+                          <p className="text-[13px] text-[#6b7280] leading-relaxed flex-1">{s.desc}</p>
+                          <div className="flex items-end justify-between pt-1">
+                            <KnowMore href={s.href} />
+                            {s.icon && <div className="w-10 h-10 text-[#d1d5db]">{iconMap[s.icon]}</div>}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Desktop: exact screenshot layout — large | stacked-small | large */}
+                  <div
+                    className="hidden lg:grid gap-[18px]"
+                    style={{ gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "1fr 1fr", height: "510px" }}
+                  >
+                    {/* ── Large card LEFT (row-span-2) ── */}
+                    <div
+                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300"
+                      style={{ gridRow: "1 / 3" }}
+                    >
+                      {current[0].image && (
+                        <div className="relative shrink-0" style={{ height: "280px" }}>
+                          <Image src={current[0].image} alt={current[0].title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="33vw" />
+                        </div>
+                      )}
+                      <div className="flex flex-col flex-1 px-7 py-6 gap-[10px]">
+                        <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug">{current[0].title}</h3>
+                        <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">{current[0].desc}</p>
+                        <div className="flex items-end justify-between pt-1">
+                          <KnowMore href={current[0].href} />
+                          {current[0].icon && <div className="w-11 h-11 text-[#d1d5db]">{iconMap[current[0].icon]}</div>}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ── Small card TOP-MIDDLE ── */}
+                    <div className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 px-7 py-6">
+                      <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug mb-[10px]">{current[1].title}</h3>
+                      <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">{current[1].desc}</p>
+                      <div className="flex items-end justify-between pt-3">
+                        <KnowMore href={current[1].href} />
+                        {current[1].icon && <div className="w-11 h-11 text-[#d1d5db]">{iconMap[current[1].icon]}</div>}
+                      </div>
+                    </div>
+
+                    {/* ── Small card BOTTOM-MIDDLE ── */}
+                    <div className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 px-7 py-6">
+                      <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug mb-[10px]">{current[2].title}</h3>
+                      <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">{current[2].desc}</p>
+                      <div className="flex items-end justify-between pt-3">
+                        <KnowMore href={current[2].href} />
+                        {current[2].icon && <div className="w-11 h-11 text-[#d1d5db]">{iconMap[current[2].icon]}</div>}
+                      </div>
+                    </div>
+
+                    {/* ── Large card RIGHT (row-span-2) ── */}
+                    <div
+                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300"
+                      style={{ gridRow: "1 / 3" }}
+                    >
+                      {current[3].image && (
+                        <div className="relative shrink-0" style={{ height: "280px" }}>
+                          <Image src={current[3].image} alt={current[3].title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="33vw" />
+                        </div>
+                      )}
+                      <div className="flex flex-col flex-1 px-7 py-6 gap-[10px]">
+                        <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug">{current[3].title}</h3>
+                        <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">{current[3].desc}</p>
+                        <div className="flex items-end justify-between pt-1">
+                          <KnowMore href={current[3].href} />
+                          {current[3].icon && <div className="w-11 h-11 text-[#d1d5db]">{iconMap[current[3].icon]}</div>}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+              {/* Dots */}
+              <div className="flex justify-center gap-[6px] mt-7">
+                {serviceSlides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setServicesSlide(i)}
+                    aria-label={`Slide ${i + 1}`}
+                    className={`rounded-full transition-all duration-300 ${i === servicesSlide ? "w-5 h-[7px] bg-[#E85222]" : "w-[7px] h-[7px] bg-[#d1d5db] hover:bg-[#9ca3af]"}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+      
       {/* Patients Speak Testimonial Section (Dynamically Loaded) */}
       <DynamicTestimonials stories={patientStories} />
 
