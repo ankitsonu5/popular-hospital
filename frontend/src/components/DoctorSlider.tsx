@@ -30,6 +30,12 @@ const normalizeDepartmentValue = (value: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
+const normalizeDoctorValue = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const departmentRouteAliases: Record<string, string[]> = {
   "general-surgery": ["laparoscopy-and-general-surgery"],
   gynaecology: ["obstetrics-and-gynaecology"],
@@ -40,6 +46,9 @@ const departmentRouteAliases: Record<string, string[]> = {
   "diabetic-foot": ["advanced-diabetic-foot-unit"],
   ctvs: ["cardiothoracic-and-vascular-surgery", "ctvs"],
 };
+
+const getDesignationName = (designation: Doctor["designation"]) =>
+  typeof designation === "string" ? designation : designation?.name || "";
 
 export default function DoctorSlider({
   doctors,
@@ -57,7 +66,29 @@ export default function DoctorSlider({
   const departmentSlug = pathname?.startsWith("/departments/")
     ? pathname.split("/").filter(Boolean).at(-1) || ""
     : "";
-  const displayDoctors = backendDoctors.length > 0 ? backendDoctors : doctors;
+  const displayDoctors =
+    backendDoctors.length > 0
+      ? [...backendDoctors].sort((a, b) => {
+        const getOrder = (doctor: Doctor) => {
+          const slugKey = normalizeDoctorValue(doctor.slug || "");
+          const nameKey = normalizeDoctorValue(doctor.name || "");
+          const index = doctors.findIndex((item) => {
+            const itemSlugKey = normalizeDoctorValue(item.slug || "");
+            const itemNameKey = normalizeDoctorValue(item.name || "");
+            return (
+              itemSlugKey === slugKey ||
+              itemNameKey === nameKey ||
+              itemSlugKey === nameKey ||
+              itemNameKey === slugKey
+            );
+          });
+
+          return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+        };
+
+        return getOrder(a) - getOrder(b);
+      })
+      : doctors;
   const currentDoctor = displayDoctors[currentSlide];
   const appointmentHref = currentDoctor?.slug
     ? `/book?doctor=${encodeURIComponent(currentDoctor.slug)}`
@@ -196,7 +227,7 @@ export default function DoctorSlider({
               const imageSrc =
                 failedImages[imageKey] && fallbackImage
                   ? fallbackImage
-                  : primaryImage || fallbackImage;
+                  : fallbackImage || primaryImage;
 
               return (
                 <div
@@ -245,6 +276,11 @@ export default function DoctorSlider({
                     <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">
                       {doc.qualifications || doc.qualification}
                     </p>
+                    {getDesignationName(doc.designation) && (
+                      <p className="text-gray-500 text-xs font-bold leading-relaxed px-4 mt-2">
+                        {getDesignationName(doc.designation)}
+                      </p>
+                    )}
                     <p className="text-gray-500 text-[10px] mt-3 uppercase tracking-[0.2em] font-black">
                       DEPARTMENT OF{" "}
                       {(

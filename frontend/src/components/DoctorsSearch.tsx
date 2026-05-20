@@ -7,17 +7,21 @@ import { RotateCcw } from "lucide-react";
 import {
   fetchDoctors,
   fetchSpecialities,
-  getImageUrl,
 } from "@/lib/api";
 import type { Doctor, Speciality } from "@/lib/api";
+import { getDoctorImageCandidates } from "@/lib/doctorImages";
 
 const EMPTY_DEPARTMENTS: Speciality[] = [];
 const EMPTY_DOCTORS: Doctor[] = [];
 
+const getDoctorKey = (doc: Doctor) => doc._id || doc.id || doc.slug;
+
 export function DoctorsSearch() {
   const [speciality, setSpeciality] = useState("");
   const [search, setSearch] = useState("");
-  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+  const [imageFallbackIndex, setImageFallbackIndex] = useState<
+    Record<string, number>
+  >({});
 
   const { data: departments = EMPTY_DEPARTMENTS } = useSWR(
     "specialities",
@@ -36,7 +40,7 @@ export function DoctorsSearch() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setFailedImages({});
+    setImageFallbackIndex({});
   }, [doctors]);
 
   useEffect(() => {
@@ -204,28 +208,36 @@ export function DoctorsSearch() {
         </div>
       ) : (
         <ul className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-0 sm:px-1 pb-8">
-          {doctors.map((doc, index) => (
-            <li
-              key={`${doc._id ?? doc.id ?? doc.slug ?? doc.name}-${index}`}
-              className="h-full"
-            >
+          {doctors.map((doc, index) => {
+            const doctorKey = getDoctorKey(doc);
+            const imageCandidates = getDoctorImageCandidates(doc);
+            const currentImageIndex = imageFallbackIndex[doctorKey] || 0;
+            const imageSrc = imageCandidates[currentImageIndex];
+
+            return (
+              <li
+                key={`${doc._id ?? doc.id ?? doc.slug ?? doc.name}-${index}`}
+                className="h-full"
+              >
               <Link
                 href={`/doctors/${doc.slug}`}
                 className="group relative block h-full rounded-2xl bg-white p-3.5 sm:p-4 border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-1"
               >
                 {/* Image Container with balanced rounding */}
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#f1f5f9] mb-5 sm:mb-6">
-                  {doc.image_url &&
-                  !failedImages[doc._id || doc.id || doc.slug] ? (
+                  {imageSrc ? (
                     <Image
-                      src={getImageUrl(doc.image_url)}
+                      src={imageSrc}
                       alt={doc.name}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       onError={() =>
-                        setFailedImages((current) => ({
+                        setImageFallbackIndex((current) => ({
                           ...current,
-                          [doc._id || doc.id || doc.slug]: true,
+                          [doctorKey]: Math.min(
+                            (current[doctorKey] || 0) + 1,
+                            imageCandidates.length,
+                          ),
                         }))
                       }
                     />
@@ -301,7 +313,8 @@ export function DoctorsSearch() {
                 </div>
               </Link>
             </li>
-          ))}
+            );
+          })}
         </ul>
       )}
     </div>

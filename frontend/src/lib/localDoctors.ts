@@ -116,7 +116,7 @@ export const localDoctors: Record<string, LocalDoctorDetail> = {
     qualifications: "M.B.B.S, MS (Gastro Surgery)",
     designation: "Consultant",
     speciality: "Gastroenterology",
-    image: "/images/departments-images/dr-rk-singh-gastro.png",
+    image: "/images/departments_doctor/dr-r-k-singh.jpg",
     bio: "Dr. R.K. Singh is a highly experienced gastroenterologist specializing in interventional endoscopy, biliary tract procedures, and management of complex gastrointestinal conditions.",
     experience: "10+ Years",
     pastHospitals: [],

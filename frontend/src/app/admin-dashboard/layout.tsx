@@ -327,12 +327,6 @@ export default function AdminDashboardLayout({
                             <Link
                               key={sub.href}
                               href={sub.href}
-                              target={sub.target}
-                              rel={
-                                sub.target === "_blank"
-                                  ? "noopener noreferrer"
-                                  : undefined
-                              }
                               onClick={() => setSidebarOpen(false)}
                               className={`flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-all
                                 ${
@@ -360,10 +354,6 @@ export default function AdminDashboardLayout({
                 <Link
                   key={item.href || item.label}
                   href={item.href || "#"}
-                  target={item.target}
-                  rel={
-                    item.target === "_blank" ? "noopener noreferrer" : undefined
-                  }
                   onClick={() => setSidebarOpen(false)}
                   className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all
                     ${

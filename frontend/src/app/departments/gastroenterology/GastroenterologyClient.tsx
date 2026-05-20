@@ -38,7 +38,7 @@ const doctors = [
     qualifications: "MBBS, MS, MCh (Gastrosurgery)",
     designation: "Consultant GI and HPB Surgeon",
     slug: "dr-mahesh-tiwari",
-    image: "/images/departments_doctor/dr_mahesh_tiwari.png",
+    image: "/images/departments_doctor/dr_mahesh_tiwari.jpg",
   },
   {
     name: "Dr. Anirban De",

@@ -225,10 +225,6 @@ export default function NephrologyClient() {
             {/* Right Sidebar - Doctor Divider */}
             <div className="lg:col-span-4">
               <div className="sticky top-24">
-                <h3 className="text-xl font-bold text-[#0b1c43] mb-6 flex items-center gap-2">
-                  <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
-                  Our Specialists
-                </h3>
                 <DoctorSlider doctors={doctors} departmentName="Nephrology" />
               </div>
             </div>

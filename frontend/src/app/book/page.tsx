@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { BookingForm } from "@/components/BookingForm";
 
@@ -82,7 +83,9 @@ export default function BookPage({
           ))}
         </aside>
 
-        <BookingForm searchParams={searchParams} />
+        <Suspense fallback={<div className="h-96 animate-pulse rounded-xl bg-slate-100" />}>
+          <BookingForm searchParams={searchParams} />
+        </Suspense>
       </section>
     </main>
   );

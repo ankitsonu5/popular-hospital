@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { fetchDoctor, getImageUrl } from "@/lib/api";
+import { fetchDoctor } from "@/lib/api";
 import DoctorImage from "@/components/DoctorImage";
+import { getPrimaryDoctorImage } from "@/lib/doctorImages";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -86,9 +87,7 @@ export default async function DoctorPage({ params }: Props) {
     const displayBio = doctor.bio;
     const displayFee = doctor.consultation_fee;
 
-    const displayImage = doctor.image_url
-      ? getImageUrl(doctor.image_url)
-      : null;
+    const displayImage = getPrimaryDoctorImage(doctor);
 
     const normTiming = (val: unknown): string => safeStr(val, "-");
 

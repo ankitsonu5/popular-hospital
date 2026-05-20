@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import InternationalPatients from "@/components/home/InternationalPatients";
+import { fetchSpecialities } from "@/lib/api";
 
 interface ServiceContent {
   title: string;
@@ -492,16 +494,27 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const isFreeOpdOffer = slug === "free-opd-offer";
-  const isPopularFindsService =
-    slug === "international-patients" || isFreeOpdOffer;
-  const hasCompactHero = isFreeOpdOffer || slug === "international-patients";
-  const hideServicesSidebar =
-    slug === "international-patients" || isFreeOpdOffer;
+  const isInternationalPatients = slug === "international-patients";
+  const isPopularFindsService = isInternationalPatients || isFreeOpdOffer;
+  const usePopularFindsFont = isInternationalPatients || isFreeOpdOffer;
+  const hasCompactHero = isFreeOpdOffer || isInternationalPatients;
+  const hideServicesSidebar = isInternationalPatients || isFreeOpdOffer;
+  const specialities = isInternationalPatients ? await fetchSpecialities() : [];
 
   return (
     <div
-      className={`bg-[#f8fafc] min-h-screen ${isPopularFindsService ? "font-jakarta" : ""}`}
+      className={`bg-[#f8fafc] min-h-screen ${isPopularFindsService ? "font-jakarta" : ""} ${usePopularFindsFont ? "popular-finds-font" : ""}`}
     >
+      {usePopularFindsFont && (
+        <style>
+          {`
+            .popular-finds-font,
+            .popular-finds-font * {
+              font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif !important;
+            }
+          `}
+        </style>
+      )}
       {/* ═══════ HERO ═══════ */}
       <section
         className={`relative w-full bg-[#1a2b3c] overflow-hidden flex items-center ${hasCompactHero
@@ -930,6 +943,10 @@ export default async function ServicePage({
                     ))}
                   </div>
                 </section>
+
+                {isInternationalPatients && (
+                  <InternationalPatients specialities={specialities} formOnly />
+                )}
               </div>
             </div>
 

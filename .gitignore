@@ -36,7 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Agent specific files (Preview/Dev utilities)
-
+.claude
 
 # node_modules
 .next

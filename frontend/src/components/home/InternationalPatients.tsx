@@ -201,8 +201,10 @@ const COUNTRIES = [
 
 export default function InternationalPatients({
   specialities,
+  formOnly = false,
 }: {
   specialities: Speciality[];
+  formOnly?: boolean;
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -267,32 +269,47 @@ export default function InternationalPatients({
   };
 
   return (
-    <section className="relative py-12 sm:py-20 lg:py-24 xl:py-16 bg-[#F8FAFC] overflow-hidden">
+    <section
+      className={`relative overflow-hidden ${formOnly ? "py-0 bg-transparent" : "py-12 sm:py-20 lg:py-24 xl:py-16 bg-[#F8FAFC]"}`}
+    >
       {/* Mobile Only Background Image */}
-      <div className="absolute inset-0 z-0 lg:hidden">
-        <Image
-          src="/images/international_patients.png"
-          alt="International Patients Background"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-[#0b1c43]/80 backdrop-blur-[2px]" />
-      </div>
+      {!formOnly && (
+        <div className="absolute inset-0 z-0 lg:hidden">
+          <Image
+            src="/images/international_patients.png"
+            alt="International Patients Background"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-[#0b1c43]/80 backdrop-blur-[2px]" />
+        </div>
+      )}
 
-      <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="text-center mb-8 sm:mb-12 xl:mb-10">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-3xl font-black text-white lg:text-[#0b1c43] font-heading tracking-tight mb-3 sm:mb-4 drop-shadow-md lg:drop-shadow-none">
-            For International Patients
+      <div
+        className={`relative z-10 mx-auto w-full ${formOnly ? "max-w-3xl px-0" : "max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12"}`}
+      >
+        <div className={formOnly ? "text-center mb-8" : "text-center mb-8 sm:mb-12 xl:mb-10"}>
+          <h2
+            className={`text-2xl sm:text-3xl lg:text-4xl xl:text-3xl font-black font-heading tracking-tight mb-3 sm:mb-4 ${formOnly ? "text-[#0b1c43]" : "text-white lg:text-[#0b1c43] drop-shadow-md lg:drop-shadow-none"}`}
+          >
+            {formOnly ? "Send Your Inquiry to Assist You" : "For International Patients"}
           </h2>
-          <p className="text-sm sm:text-base xl:text-xs xl:sm:text-sm font-bold text-[#FF6B00] uppercase tracking-wider drop-shadow-md lg:drop-shadow-none">
-            Send Your Inquiry to Assist You
-          </p>
+          {!formOnly && (
+            <p className="text-sm sm:text-base xl:text-xs xl:sm:text-sm font-bold text-[#FF6B00] uppercase tracking-wider drop-shadow-md lg:drop-shadow-none">
+              Send Your Inquiry to Assist You
+            </p>
+          )}
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20 xl:gap-14">
+        <div
+          className={`flex flex-col items-center ${formOnly ? "justify-center" : "lg:flex-row gap-10 lg:gap-20 xl:gap-14"}`}
+        >
           {/* Form Side */}
-          <div className="w-full lg:w-[480px] xl:w-[420px] shrink-0">
+          <div
+            className={`w-full shrink-0 ${formOnly ? "max-w-[520px]" : "lg:w-[480px] xl:w-[420px]"}`}
+          >
             <div className="bg-[#333333] lg:bg-[#333333] p-1 shadow-2xl rounded-sm">
               <div className="bg-[#333333] px-6 py-8 sm:px-10 sm:py-12 xl:px-8 xl:py-10">
                 <h3 className="text-2xl font-black text-white text-center mb-8 sm:mb-10 font-heading tracking-tight">
@@ -470,15 +487,18 @@ export default function InternationalPatients({
           </div>
 
           {/* Desktop Only Side Image */}
-          <div className="relative hidden lg:block flex-1 w-full max-w-[720px] xl:max-w-[660px] h-[600px] xl:h-[520px] overflow-hidden rounded-2xl shadow-xl mx-auto">
-            <Image
-              src="/images/international_patients.png"
-              alt="International Patient Inquiry"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
+          {!formOnly && (
+            <div className="relative hidden lg:block flex-1 w-full max-w-[720px] xl:max-w-[660px] h-[600px] xl:h-[520px] overflow-hidden rounded-2xl shadow-xl mx-auto">
+              <Image
+                src="/images/international_patients.png"
+                alt="International Patient Inquiry"
+                fill
+                sizes="(max-width: 1280px) 50vw, 660px"
+                className="object-contain"
+                priority
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -35,8 +35,16 @@ export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
     : null;
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
-      <section className="relative w-full py-20 overflow-hidden flex items-center justify-center">
+    <div className="stories-font min-h-screen bg-gray-50 pb-20">
+      <style>
+        {`
+          .stories-font,
+          .stories-font * {
+            font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif !important;
+          }
+        `}
+      </style>
+      <section className="relative w-full min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] py-8 md:py-10 xl:py-6 2xl:py-12 overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 hidden md:block">
           <Image
             src="/images/banners/patient_testimonials_video.png"
