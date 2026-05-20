@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden p-6 sm:p-10">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden p-4 sm:p-6">
       {/* Immersive Background Image */}
       <div className="absolute inset-0 z-0 bg-[#0b1c43]">
         <Image
@@ -86,28 +86,28 @@ export default function AdminLoginPage() {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#E85222]/10 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4" />
 
       {/* Login Card (Reverted to Centered Style) */}
-      <div className="relative z-10 w-full max-w-[460px] bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] border border-white/20 transform transition-all animate-fade-in-up">
+      <div className="relative z-10 w-full max-w-[390px] bg-white rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.4)] border border-white/20 transform transition-all animate-fade-in-up">
         {/* Logo */}
-        <div className="flex justify-center mb-10">
+        <div className="flex justify-center mb-6">
           <Image
             src="/logo-horizontal.png"
             alt="Popular Hospital"
-            width={200}
-            height={55}
-            className="h-11 w-auto object-contain"
+            width={160}
+            height={44}
+            className="h-9 w-auto object-contain"
             priority
           />
         </div>
 
         {/* Welcome Text */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#0b1c43]/5 text-[#0b1c43] mb-5 shadow-inner">
-            <Shield className="w-8 h-8" />
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#0b1c43]/5 text-[#0b1c43] mb-3 shadow-inner">
+            <Shield className="w-6 h-6" />
           </div>
-          <h2 className="text-3xl font-black text-[#0b1c43] tracking-tight">
+          <h2 className="text-2xl font-black text-[#0b1c43] tracking-tight">
             {isForgotPassword ? "Reset Password." : "Admin Portal."}
           </h2>
-          <p className="text-gray-500 mt-2 text-base font-medium">
+          <p className="text-gray-500 mt-1.5 text-xs font-medium">
             {isForgotPassword
               ? "Enter your email to receive a secure reset link"
               : "Access your secure management board"}
@@ -116,10 +116,10 @@ export default function AdminLoginPage() {
 
         {/* Error Message */}
         {error && (
-          <div className="mb-8 p-4 rounded-2xl bg-red-50 border border-red-100 flex items-center gap-3 animate-head-shake">
-            <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+          <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-100 flex items-center gap-2 animate-head-shake">
+            <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center shrink-0">
               <svg
-                className="w-4 h-4 text-red-600"
+                className="w-3.5 h-3.5 text-red-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -132,16 +132,16 @@ export default function AdminLoginPage() {
                 />
               </svg>
             </div>
-            <p className="text-[13px] font-bold text-red-700">{error}</p>
+            <p className="text-[12px] font-bold text-red-700">{error}</p>
           </div>
         )}
 
         {/* Success Message */}
         {success && (
-          <div className="mb-8 p-4 rounded-2xl bg-green-50 border border-green-100 flex items-center gap-3 animate-fade-in-up">
-            <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+          <div className="mb-4 p-3 rounded-xl bg-green-50 border border-green-100 flex items-center gap-2 animate-fade-in-up">
+            <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
               <svg
-                className="w-4 h-4 text-green-600"
+                className="w-3.5 h-3.5 text-green-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -154,17 +154,17 @@ export default function AdminLoginPage() {
                 />
               </svg>
             </div>
-            <p className="text-[13px] font-bold text-green-700">{success}</p>
+            <p className="text-[12px] font-bold text-green-700">{success}</p>
           </div>
         )}
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <label
               htmlFor="email"
-              className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
+              className="block text-[10px] font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
             >
               Email Address
             </label>
@@ -175,19 +175,19 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium"
+                className="w-full h-11 px-4 rounded-xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium"
               />
-              <LogIn className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-[#0d9488] transition-colors" />
+              <LogIn className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-[#0d9488] transition-colors" />
             </div>
           </div>
 
           {/* Password */}
           {!isForgotPassword && (
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="flex items-center justify-between px-1">
                 <label
                   htmlFor="password"
-                  className="block text-xs font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
+                  className="block text-[10px] font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
                 >
                   Security Password
                 </label>
@@ -212,17 +212,17 @@ export default function AdminLoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter security password"
                   required={!isForgotPassword}
-                  className="w-full h-14 px-6 rounded-2xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium pr-12"
+                  className="w-full h-11 px-4 rounded-xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium pr-10"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
                 >
                   {showPassword ? (
-                    <EyeOff className="w-5 h-5" />
+                    <EyeOff className="w-4 h-4" />
                   ) : (
-                    <Eye className="w-5 h-5" />
+                    <Eye className="w-4 h-4" />
                   )}
                 </button>
               </div>
@@ -230,21 +230,21 @@ export default function AdminLoginPage() {
           )}
 
           {/* Submit */}
-          <div className="pt-2">
+          <div className="pt-1">
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-16 flex items-center justify-center gap-3 bg-[#0b1c43] hover:bg-[#0e2455] text-white rounded-2xl font-bold text-sm transition-all shadow-[0_15px_35px_-10px_rgba(11,28,67,0.4)] hover:shadow-[0_15px_35px_-5px_rgba(11,28,67,0.6)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 active:scale-95 group overflow-hidden relative"
+              className="w-full h-11 flex items-center justify-center gap-2 bg-[#0b1c43] hover:bg-[#0e2455] text-white rounded-xl font-bold text-xs transition-all shadow-[0_10px_25px_-8px_rgba(11,28,67,0.4)] hover:shadow-[0_10px_25px_-5px_rgba(11,28,67,0.6)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 active:scale-95 group overflow-hidden relative"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               {isLoading ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                   Authenticating Access...
                 </>
               ) : (
                 <>
-                  <LogIn className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <LogIn className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   {isForgotPassword ? "Send Reset Link" : "Secure Sign In"}
                 </>
               )}
@@ -258,7 +258,7 @@ export default function AdminLoginPage() {
                   setError("");
                   setSuccess("");
                 }}
-                className="w-full mt-4 text-xs font-bold text-[#0b1c43]/60 hover:text-[#0b1c43] transition-colors"
+                className="w-full mt-3 text-xs font-bold text-[#0b1c43]/60 hover:text-[#0b1c43] transition-colors"
               >
                 Back to Login
               </button>
@@ -267,9 +267,9 @@ export default function AdminLoginPage() {
         </form>
 
         {/* Footer */}
-        <div className="mt-10 pt-8 border-t border-gray-100">
+        <div className="mt-6 pt-5 border-t border-gray-100">
           <div className="flex flex-col items-center gap-4 text-center">
-            <p className="text-[#0b1c43]/30 text-[11px] font-black uppercase tracking-[0.2em] leading-tight">
+            <p className="text-[#0b1c43]/30 text-[10px] font-black uppercase tracking-[0.2em] leading-tight">
               © 2026 Popular Hospital.
               <br />
               Admin Access Only.
