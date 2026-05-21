@@ -39,7 +39,7 @@ export default function RadiologyPage() {
               planning.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-teal-500/30 flex items-center gap-2 uppercase text-sm tracking-wide">
+              <button className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide">
                 <svg
                   className="w-5 h-5"
                   fill="none"

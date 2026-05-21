@@ -53,9 +53,11 @@ const getDesignationName = (designation: Doctor["designation"]) =>
 export default function DoctorSlider({
   doctors,
   departmentName,
+  preventBackendFetch = false,
 }: {
   doctors: Doctor[];
   departmentName: string;
+  preventBackendFetch?: boolean;
 }) {
   const pathname = usePathname();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -95,7 +97,7 @@ export default function DoctorSlider({
     : "/book";
 
   useEffect(() => {
-    if (!departmentSlug) return;
+    if (preventBackendFetch || !departmentSlug) return;
 
     let ignore = false;
     setCurrentSlide(0);
@@ -145,7 +147,7 @@ export default function DoctorSlider({
     return () => {
       ignore = true;
     };
-  }, [departmentName, departmentSlug]);
+  }, [departmentName, departmentSlug, preventBackendFetch]);
 
   useEffect(() => {
     if (currentSlide >= displayDoctors.length) {
@@ -201,16 +203,16 @@ export default function DoctorSlider({
   }
 
   return (
-    <div className="relative pt-6">
+    <div className="relative pt-6 max-w-sm mx-auto">
       {/* Floating Appointment Button */}
       <Link
         href={appointmentHref}
-        className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-bold text-sm tracking-wide shadow-lg transition-all transform hover:scale-105 whitespace-nowrap uppercase"
+        className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-[#3b82f6] text-white py-2.5 px-7 rounded-xl font-bold text-xs tracking-wider shadow-[0_4px_10px_rgba(59,130,246,0.2)] whitespace-nowrap uppercase"
       >
         SCHEDULE AN APPOINTMENT
       </Link>
 
-      <div className="bg-white rounded-xl shadow overflow-hidden border border-gray-100 flex flex-col items-center p-0 max-w-sm mx-auto relative group">
+      <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100/80 flex flex-col items-center p-0 w-full relative" style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }}>
         <div className="w-full relative overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-in-out"
@@ -232,15 +234,15 @@ export default function DoctorSlider({
               return (
                 <div
                   key={imageKey}
-                  className="w-full flex-shrink-0 p-6 pt-12 flex flex-col items-center"
+                  className="w-full flex-shrink-0 px-6 py-5 pt-10 flex flex-col items-center"
                 >
-                  <div className="relative w-64 h-80 rounded-lg overflow-hidden mb-6 shadow-lg bg-gray-100 group/img">
+                  <div className="relative w-56 h-56 rounded-2xl overflow-hidden mb-4 bg-white border border-slate-100/80 group/img">
                     {imageSrc ? (
                       <Image
                         src={getImageUrl(imageSrc)}
                         alt={doc.name}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover/img:scale-105"
+                        className="object-contain"
                         onError={() =>
                           setFailedImages((current) => ({
                             ...current,
@@ -251,7 +253,7 @@ export default function DoctorSlider({
                     ) : (
                       <div className="flex items-center justify-center h-full bg-blue-50 text-blue-200">
                         <svg
-                          className="w-24 h-24"
+                          className="w-20 h-20"
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
@@ -265,23 +267,25 @@ export default function DoctorSlider({
                       className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
                     >
                       <span className="px-5 py-2.5 border-2 border-white text-white font-bold rounded-sm tracking-wider bg-transparent hover:bg-white hover:text-blue-600 transition-all uppercase text-sm">
-                        View Full Profile
+                        View Details
                       </span>
                     </Link>
                   </div>
-                  <div className="text-center">
-                    <h3 className="text-xl font-bold text-[#3b82f6] mb-1 font-heading">
-                      {doc.name}
-                    </h3>
-                    <p className="text-gray-600 text-xs font-semibold leading-relaxed px-4">
+                  <div className="text-center flex flex-col items-center">
+                    <Link href={`/doctors/${doc.slug}`}>
+                      <h3 className="text-xl font-bold text-blue-600 font-heading mb-1">
+                        {doc.name}
+                      </h3>
+                    </Link>
+                    <p className="text-gray-500 text-xs font-semibold leading-relaxed px-4">
                       {doc.qualifications || doc.qualification}
                     </p>
                     {getDesignationName(doc.designation) && (
-                      <p className="text-gray-500 text-xs font-bold leading-relaxed px-4 mt-2">
-                        {getDesignationName(doc.designation)}
-                      </p>
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold bg-blue-50 text-blue-600 mt-2 tracking-wide">
+                        {getDesignationName(doc.designation).toUpperCase()}
+                      </span>
                     )}
-                    <p className="text-gray-500 text-[10px] mt-3 uppercase tracking-[0.2em] font-black">
+                    <p className="text-slate-400 text-[9px] uppercase tracking-widest font-bold mt-3.5">
                       DEPARTMENT OF{" "}
                       {(
                         doc.speciality?.department_display_name ||
@@ -305,7 +309,7 @@ export default function DoctorSlider({
                   prev === 0 ? displayDoctors.length - 1 : prev - 1,
                 )
               }
-              className="absolute left-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-white w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
               aria-label="Previous doctor"
             >
               <svg
@@ -328,7 +332,7 @@ export default function DoctorSlider({
                   prev === displayDoctors.length - 1 ? 0 : prev + 1,
                 )
               }
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-50 w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white w-10 h-10 rounded-full shadow-xl text-blue-600 z-10 flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group-hover:opacity-100 md:opacity-0"
               aria-label="Next doctor"
             >
               <svg
@@ -347,15 +351,15 @@ export default function DoctorSlider({
             </button>
 
             {/* Pagination Dots */}
-            <div className="flex gap-3 mb-8">
+            <div className="flex gap-2.5 mb-8 justify-center">
               {displayDoctors.map((doc, idx) => (
                 <button
                   key={doc._id || doc.id || doc.slug || idx}
                   onClick={() => handleManualSlide(idx)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 border ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     currentSlide === idx
-                      ? "bg-[#3b82f6] border-[#3b82f6] scale-125"
-                      : "bg-transparent border-gray-400"
+                      ? "w-6 bg-blue-600"
+                      : "w-2 bg-slate-200"
                   }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -363,7 +367,7 @@ export default function DoctorSlider({
             </div>
           </>
         )}
-        <div className="h-4" />
+        <div className="h-2" />
       </div>
     </div>
   );

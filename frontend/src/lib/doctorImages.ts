@@ -15,7 +15,6 @@ const PUBLIC_DOCTOR_IMAGES: Record<string, string> = {
   "dr-shailesh-kumar-yadav": "/images/departments_doctor/dr_shailesh_kumar_yadav.jpg",
   "dr-akanksha-chaturvedi": "/images/departments_doctor/dr_akanksha_chaturvedi.jpg",
   "dr-harmohan-sahu": "/images/departments_doctor/dr_harmohan_sahu.jpg",
-  "dr-rk-singh": "/images/departments_doctor/dr-r-k-singh.jpg",
   "dr-srishti-tanya": "/images/departments_doctor/dr._srishti_tanya.jpg",
   "dr-a-k-pradhan": "/images/departments_doctor/dr_a_k_pradhan.jpg",
   "dr-deepak-agrahari": "/images/departments_doctor/dr_deepak_agrahari.jpg",

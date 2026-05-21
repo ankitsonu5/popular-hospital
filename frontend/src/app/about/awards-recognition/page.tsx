@@ -78,6 +78,16 @@ export default function AwardsRecognitionPage() {
     <div className="bg-white min-h-screen">
       {/* ─── Simple & Clean Hero Section ─── */}
       <div className="bg-[#0b1c43] text-white py-10 relative overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/banners/about_us_reward.jpg"
+            alt="Awards and recognition banner"
+            fill
+            className="object-cover opacity-35"
+            priority
+          />
+          <div className="absolute inset-0 bg-[#0b1c43]/65" />
+        </div>
         {/* Subtle Background Pattern */}
         <div
           className="absolute inset-0 opacity-[0.05] pointer-events-none"

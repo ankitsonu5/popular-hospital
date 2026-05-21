@@ -10,7 +10,7 @@ export default function AboutPage() {
       <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/about_popular/banner-our-legacy.webp"
+            src="/images/banners/about_us_overview.jpg"
             alt="About Us Hero"
             fill
             className="object-cover opacity-50"

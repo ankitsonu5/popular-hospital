@@ -755,8 +755,8 @@ export function Header() {
                         className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
                           ? isMenuItemActive(item) ||
                             activeDropdown === item.label
-                            ? "text-blue-600"
-                            : "text-gray-700 hover:text-blue-600"
+                            ? "text-[#1e3a8a]"
+                            : "text-gray-700 hover:text-[#1e3a8a]"
                           : isMenuItemActive(item) && item.label !== "Home"
                             ? "text-blue-300"
                             : "text-white hover:text-gray-200"
@@ -802,7 +802,7 @@ export function Header() {
                                       <Link
                                         key={subItem.label}
                                         href={subItem.href}
-                                        className="relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg text-gray-700 transition-all hover:text-blue-600 hover:bg-blue-50/80"
+                                        className="relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg text-gray-700 transition-all hover:text-[#1e3a8a] hover:bg-blue-50/80"
                                         onClick={() => setActiveDropdown(null)}
                                       >
                                         <span className="relative flex items-center gap-2 pl-1">
@@ -824,7 +824,7 @@ export function Header() {
                                         <Link
                                           key={subItem.label}
                                           href={subItem.href}
-                                          className="relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg text-gray-700 transition-all hover:text-blue-600 hover:bg-blue-50/80"
+                                          className="relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg text-gray-700 transition-all hover:text-[#1e3a8a] hover:bg-blue-50/80"
                                           onClick={() =>
                                             setActiveDropdown(null)
                                           }
@@ -850,7 +850,7 @@ export function Header() {
                                   <Link
                                     key={dropdownItem.label}
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-blue-600 hover:bg-blue-50/80 rounded-xl transition-all whitespace-nowrap"
+                                    className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-[#1e3a8a] hover:bg-blue-50/80 rounded-xl transition-all whitespace-nowrap"
                                     onClick={() => setActiveDropdown(null)}
                                   >
                                     <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
@@ -870,7 +870,7 @@ export function Header() {
                                   )}
                                   <Link
                                     href={dropdownItem.href}
-                                    className="flex items-center gap-4 px-6 py-3 xl:px-5 xl:py-2.5 text-[15px] xl:text-[14px] font-bold text-gray-700 transition-all hover:text-blue-600 hover:bg-blue-50/80"
+                                    className="flex items-center gap-4 px-6 py-3 xl:px-5 xl:py-2.5 text-[15px] xl:text-[14px] font-bold text-gray-700 transition-all hover:text-[#1e3a8a] hover:bg-blue-50/80"
                                     onClick={() => setActiveDropdown(null)}
                                   >
                                     {item.label === "Popular Finds" ? (
@@ -896,8 +896,8 @@ export function Header() {
                       href={item.href || "#"}
                       className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
                         ? isMenuItemActive(item) && item.label !== "Home"
-                          ? "text-blue-600"
-                          : "text-gray-700 hover:text-blue-600"
+                          ? "text-[#1e3a8a]"
+                          : "text-gray-700 hover:text-[#1e3a8a]"
                         : isMenuItemActive(item) && item.label !== "Home"
                           ? "text-blue-300"
                           : "text-white hover:text-gray-200"
@@ -974,7 +974,7 @@ export function Header() {
                     <button
                       type="button"
                       className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
-                        ? "text-blue-600 bg-blue-50"
+                        ? "text-[#1e3a8a] bg-blue-50"
                         : "text-gray-900"
                         }`}
                       onClick={() =>
@@ -1018,7 +1018,7 @@ export function Header() {
                               <div key={dropdownItem.label} className="mt-1">
                                 <button
                                   type="button"
-                                  className="flex items-center justify-between w-full rounded-lg px-4 py-2 text-sm font-bold text-gray-700 hover:text-blue-600 hover:bg-blue-50/80"
+                                  className="flex items-center justify-between w-full rounded-lg px-4 py-2 text-sm font-bold text-gray-700 hover:text-[#1e3a8a] hover:bg-blue-50/80"
                                   onClick={() =>
                                     setActiveMobileSubCategory(
                                       activeMobileSubCategory ===
@@ -1053,8 +1053,8 @@ export function Header() {
                                         href={subItem.href}
                                         className={`relative mx-2 my-1 flex items-center justify-between gap-2 overflow-hidden rounded-lg px-4 py-2 text-sm font-bold text-gray-600 transition-all ${
                                           item.label === "Departments"
-                                            ? "hover:text-blue-600 hover:bg-blue-50/80"
-                                            : "hover:text-blue-600 hover:bg-blue-50/80"
+                                            ? "hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                                            : "hover:text-[#1e3a8a] hover:bg-blue-50/80"
                                         }`}
                                         onClick={() => setMenuOpen(false)}
                                       >
@@ -1076,7 +1076,7 @@ export function Header() {
                             <Link
                               key={dropdownItem.label}
                               href={dropdownItem.href}
-                              className="block rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50/80"
+                              className="block rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-[#1e3a8a] hover:bg-blue-50/80"
                               onClick={() => setMenuOpen(false)}
                             >
                               {dropdownItem.label}
@@ -1087,7 +1087,7 @@ export function Header() {
                           <Link
                             key={dropdownItem.label}
                             href={dropdownItem.href}
-                            className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50/80"
+                            className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-[#1e3a8a] hover:bg-blue-50/80"
                             onClick={() => setMenuOpen(false)}
                           >
                             {item.label === "Media & Blog" && getMediaIcon(dropdownItem.label)}
@@ -1100,7 +1100,7 @@ export function Header() {
                   <Link
                     href={item.href || "#"}
                     className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
-                      ? "text-blue-600 bg-blue-50"
+                      ? "text-[#1e3a8a] bg-blue-50"
                       : "text-gray-700"
                       }`}
                     onClick={() => setMenuOpen(false)}

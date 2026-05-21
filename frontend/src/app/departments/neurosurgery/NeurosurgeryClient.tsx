@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -62,19 +63,19 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-[#284a91]">{highlight}</span>
+      {title} <span className="text-[#1e3a8a]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
+      <div className="w-2 h-2 rounded-full bg-[#1e3a8a]" />
       <div className="h-[2px] w-12 bg-gray-300" />
     </div>
   </div>
 );
 
 const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform">
-      ›
+  <li className="group flex min-h-[64px] items-start gap-3 rounded-2xl border border-slate-100 bg-white p-4 text-base font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E85222]/30 hover:shadow-md md:text-lg 2xl:text-xl">
+    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#E85222]/10 text-sm font-black text-[#E85222] transition-colors group-hover:bg-[#E85222] group-hover:text-white">
+      <Check className="w-4 h-4" />
     </span>
     <span className="leading-relaxed">{text}</span>
   </li>
@@ -109,7 +110,7 @@ export default function NeurosurgeryClient() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2"
               >
                 <svg
                   className="w-5 h-5"
@@ -162,19 +163,6 @@ export default function NeurosurgeryClient() {
                   <p key={idx}>{p}</p>
                 ))}
               </div>
-
-              <SectionHeader title="Service" highlight="Offered:" />
-              <p className="text-gray-800 mb-6 text-base md:text-lg 2xl:text-xl font-medium px-4 border-l-4 border-blue-600">
-                We at Popular Hospital successfully provide all Neurosurgical
-                solutions under one roof.
-              </p>
-
-              <SectionHeader title="Peripheral Nerve" highlight="Surgery:" />
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mb-4">
-                {peripheralNerveList.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
             </div>
 
             {/* Right Sidebar - Doctor Card */}
@@ -184,26 +172,45 @@ export default function NeurosurgeryClient() {
               </div>
             </div>
           </div>
+
+          <div className="mt-12">
+            <div className="p-6 sm:p-7 pb-0">
+              <SectionHeader title="Service" highlight="Offered:" />
+              <p className="rounded-2xl border-l-4 border-[#E85222] px-5 py-4 text-base font-semibold leading-relaxed text-slate-700 md:text-lg 2xl:text-xl">
+                We at Popular Hospital successfully provide all Neurosurgical
+                solutions under one roof.
+              </p>
+            </div>
+
+            <div className="p-6 sm:p-7">
+              <SectionHeader title="Peripheral Nerve" highlight="Surgery:" />
+              <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                {peripheralNerveList.map((item, idx) => (
+                  <ListItem key={idx} text={item} />
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ═══════ BRAIN SURGERY SECTION ═══════ */}
       <section className="pt-8 pb-20 xl:pb-12 2xl:pb-24 bg-white overflow-hidden">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 items-center gap-10 rounded-[30px] border border-slate-100 bg-[#fbfdff] p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.6)] sm:p-8 lg:grid-cols-2 lg:gap-16">
             <div className="order-2 lg:order-1">
               <SectionHeader title="Brain" highlight="Surgery:" />
-              <ul className="grid grid-cols-1 gap-x-8 mt-6">
+              <ul className="mt-6 grid grid-cols-1 gap-4">
                 {brainSurgeryList.map((item, idx) => (
                   <ListItem key={idx} text={item} />
                 ))}
               </ul>
             </div>
 
-            <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
-                <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
+            <div className="order-1 lg:order-2 relative">
+              <div className="relative mx-auto aspect-[4/3] w-full max-w-md">
+                <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-br from-[#eaf3ff] via-white to-[#fff1eb]" />
+                <div className="relative h-full w-full overflow-hidden rounded-[28px] border-4 border-white shadow-2xl">
                   <Image
                     src="/images/departments-images/brain_surgery.jpeg"
                     alt="Brain Surgery Technology"
@@ -220,11 +227,11 @@ export default function NeurosurgeryClient() {
       {/* ═══════ SPINAL SURGERY SECTION ═══════ */}
       <section className="py-20 xl:py-12 2xl:py-24 bg-gray-50 overflow-hidden">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
-            <div className="mb-12 lg:mb-0 relative">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-blue-100 rounded-3xl" />
-                <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white animate-soft-bounce">
+          <div className="grid grid-cols-1 items-center gap-10 rounded-[30px] border border-slate-100 bg-white p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.6)] sm:p-8 lg:grid-cols-2 lg:gap-16">
+            <div className="relative">
+              <div className="relative mx-auto aspect-[4/3] w-full max-w-md">
+                <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-br from-[#fff1eb] via-white to-[#eaf3ff]" />
+                <div className="relative h-full w-full overflow-hidden rounded-[28px] border-4 border-white shadow-2xl">
                   <Image
                     src="/images/departments-images/spinal_surgery_realistic.jpeg"
                     alt="Spinal Surgery Model"
@@ -237,7 +244,7 @@ export default function NeurosurgeryClient() {
 
             <div>
               <SectionHeader title="Spinal" highlight="Surgery:" />
-              <ul className="grid grid-cols-1 gap-x-8 mt-6">
+              <ul className="mt-6 grid grid-cols-1 gap-4">
                 {spinalSurgeryList.map((item, idx) => (
                   <ListItem key={idx} text={item} />
                 ))}

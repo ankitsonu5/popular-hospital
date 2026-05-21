@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -85,7 +85,7 @@ const doctors = [
     name: "Dr. Rohan Kumar Singh",
     qualifications: "MBBS, MD (Radiodiagnosis), FIVIR",
     designation: "Consultant Interventional Radiologist",
-    slug: "dr-rohan-kr-singh",
+    slug: "dr-rohan-kumar-singh", // Corrected slug from dr-rohan-kr-singh to dr-rohan-kumar-singh
     image: "/images/departments_doctor/rohan_kr_singh.jpg",
   },
   {
@@ -97,61 +97,13 @@ const doctors = [
   },
 ];
 
-/* ─── Sub-Components ─── */
-
-const SectionHeader = ({
-  title,
-  highlight,
-}: {
-  title: string;
-  highlight?: string;
-}) => (
-  <div className="mb-8">
-    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
-      {title} <span className="text-[#284a91] font-bold">{highlight}</span>
-    </h2>
-    <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
-      <div className="h-[2px] w-12 bg-gray-300" />
-    </div>
-  </div>
-);
-
-const ContentBlock = ({ text }: { text: string }) => (
-  <p className="text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed text-justify font-medium mb-6">
-    {text}
-  </p>
-);
-
-const ListItem = ({
-  text,
-  boldTitle,
-  desc,
-}: {
-  text?: string;
-  boldTitle?: string;
-  desc?: string;
-}) => (
-  <li className="flex items-start gap-3 text-gray-700 font-medium text-base md:text-lg 2xl:text-xl mb-4">
-    <span className="text-blue-500 mt-1.5 font-bold flex-shrink-0 text-xl leading-none">
-      ›
-    </span>
-    <div className="text-justify">
-      {boldTitle && (
-        <span className="font-bold text-[#0b1c43]">{boldTitle}: </span>
-      )}
-      <span>{text || desc}</span>
-    </div>
-  </li>
-);
-
 /* ─── Main Component ─── */
 
 export default function InterventionalRadiologyClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-gradient-to-br from-[#0b1c43] to-[#042d55] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/radiology_banner.png"
@@ -162,19 +114,19 @@ export default function InterventionalRadiologyClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Super-Speciality Care
             </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
               Interventional <br />
-              <span className="text-blue-400">Radiology</span>
+              <span className="text-blue-300">Radiology</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
@@ -189,125 +141,159 @@ export default function InterventionalRadiologyClient() {
         </div>
       </section>
 
-      {/* ═══════ MAIN CONTENT AREA ═══════ */}
-      <section className="py-20 xl:py-12 2xl:py-24 bg-white">
-        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      {/* ═══════ INTRO + DOCTOR SECTION ═══════ */}
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content */}
-            <div className="lg:col-span-8">
-              {/* Department of IR */}
-              <div className="mb-16">
-                <SectionHeader
-                  title="Department of"
-                  highlight="Interventional Radiology"
-                />
-                <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
-                  <div className="flex-1">
-                    {departmentOverview.slice(0, 3).map((item, idx) => (
-                      <ContentBlock key={idx} text={item.text} />
-                    ))}
-                  </div>
-                </div>
-                {departmentOverview.slice(3).map((item, idx) => (
-                  <ContentBlock key={idx} text={item.text} />
+            <div className="lg:col-span-8 space-y-8">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                  Department of <span className="text-[#1e3a8a]">Interventional Radiology</span>
+                </h2>
+              </div>
+              <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+
+              <div className="space-y-4">
+                {departmentOverview.map((item, idx) => (
+                  <p key={idx} className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
+                    {item.text}
+                  </p>
                 ))}
               </div>
             </div>
 
-            {/* Right Sidebar - Doctor Slider */}
+            {/* Right Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit space-y-8">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Interventional Radiology"
-                />
+              <div className="sticky top-24 w-full h-fit">
+                <DoctorSlider doctors={doctors} departmentName="Interventional Radiology" />
               </div>
-            </div>
-          </div>
-
-          {/* Full Width Sections */}
-          <div className="mt-16 space-y-16">
-            {/* Who is an Radiologist */}
-            <div>
-              <SectionHeader
-                title="Who is an"
-                highlight="Interventional Radiologist?"
-              />
-              <div className="flex flex-col md:flex-row gap-10 items-center">
-                <div className="flex-1">
-                  <ContentBlock text={radiologistSection.text} />
-                </div>
-                <div className="w-full md:w-1/3 relative aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-gray-100 group">
-                  <Image
-                    src="/images/departments-images/radiology.jpeg"
-                    alt="Radiologist at work"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              </div>
-            </div>
-
-            {/* Advantages section */}
-            <div>
-              <SectionHeader title="What are the" highlight="Advantages?" />
-              <p className="text-gray-800 text-lg 2xl:text-xl mb-8 font-bold italic text-justify">
-                {advantagesSection.intro}
-              </p>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {advantagesSection.items.map((item, idx) => (
-                  <ListItem key={idx} boldTitle={item.title} desc={item.desc} />
-                ))}
-              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════ MAJOR PROCEDURES ═══════ */}
-      <section className="py-24 xl:py-12 2xl:py-24 bg-gray-50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none" />
-        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 relative z-10">
-          <div className="mb-12">
-            <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-wide">
-              MAJOR <span className="text-[#284a91] font-bold">PROCEDURES</span>
-            </h2>
-            <div className="flex items-center gap-2 mt-2">
-              <div className="w-2 h-2 rounded-full bg-blue-600" />
-              <div className="h-[2px] w-12 bg-gray-300" />
+      {/* ═══════ RADIOLOGIST SECTION ═══════ */}
+      <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50 border-t border-slate-100">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
+            <div className="order-2 lg:order-1">
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+                Specialist Expertise
+              </span>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                  Who is an <span className="text-[#1e3a8a]">Interventional Radiologist?</span>
+                </h2>
+              </div>
+              <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+
+              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6">
+                {radiologistSection.text}
+              </p>
+            </div>
+
+            <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
+              <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
+                <Image
+                  src="/images/departments-images/radiology.jpeg"
+                  alt="Interventional Radiologist at work"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            {/* Image with custom transparent blob feel */}
-            <div className="w-full lg:w-[50%] relative aspect-[4/3] group flex justify-center">
-              <div className="relative w-full h-full transform transition-transform duration-700 group-hover:scale-105">
+      {/* ═══════ ADVANTAGES SECTION ═══════ */}
+      <section className="py-16 xl:py-12 2xl:py-20 bg-white border-t border-slate-100">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="max-w-3xl mb-12">
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+              Patient-Centric Benefits
+            </span>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                What are the <span className="text-[#1e3a8a]">Advantages?</span>
+              </h2>
+            </div>
+            <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+
+            <p className="text-gray-800 text-lg 2xl:text-xl font-bold italic mt-6 leading-relaxed">
+              {advantagesSection.intro}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {advantagesSection.items.map((item, idx) => (
+              <div key={idx} className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-[#1e3a8a] flex items-center justify-center mt-0.5 border border-blue-200">
+                  <Check className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-base font-bold text-[#0b1c43] mb-1">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed text-sm md:text-[14px] font-medium">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ PROCEDURES SECTION ═══════ */}
+      <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50 border-t border-slate-100">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
+            <div className="mb-12 lg:mb-0 relative">
+              <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
                 <Image
                   src="/images/departments-images/radiology_scan.png"
-                  alt="Procedures"
+                  alt="Interventional Radiology Procedures"
                   fill
-                  className="object-contain"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
             </div>
 
-            <div className="flex-1">
-              <p className="text-gray-800 text-base md:text-lg 2xl:text-xl mb-10 font-bold text-justify leading-relaxed italic">
+            <div>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+                Diagnostic &amp; Therapeutic Range
+              </span>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                  Major <span className="text-[#1e3a8a]">Procedures</span>
+                </h2>
+              </div>
+              <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+
+              <p className="text-gray-800 text-base md:text-lg font-bold italic mb-6 leading-relaxed">
                 {proceduresSection.intro}
               </p>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {proceduresSection.items.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 group">
-                    <span className="text-blue-600 font-bold mt-1.5 transition-transform group-hover:translate-x-1">
-                      ›
-                    </span>
-                    <span className="text-gray-700 text-base 2xl:text-lg leading-relaxed font-bold">
+                  <div key={idx} className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-[#1e3a8a] flex items-center justify-center mt-0.5 border border-blue-200">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-[14px] font-medium mt-1">
                       {item}
-                    </span>
-                  </li>
+                    </p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>

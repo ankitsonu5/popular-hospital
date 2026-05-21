@@ -1,8 +1,9 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { Eye, ShieldCheck, Activity, Glasses, Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -11,22 +12,22 @@ import GetCallBackButton from "@/components/GetCallBackButton";
 const features = [
   {
     title: "General Eye Care",
-    icon: "eye",
+    icon: Eye,
     desc: "Comprehensive vision checkups for all ages.",
   },
   {
     title: "Surgical Excellence",
-    icon: "surgery",
+    icon: Activity,
     desc: "Stitchless cataract and microsurgeries.",
   },
   {
     title: "Advanced Diagnostics",
-    icon: "tech",
+    icon: Glasses,
     desc: "Computerised eye testing and imaging.",
   },
   {
     title: "Specialized Clinics",
-    icon: "specialist",
+    icon: ShieldCheck,
     desc: "Pediatric, Glaucoma, and Retina care.",
   },
 ];
@@ -43,10 +44,9 @@ const outpatientProcedures = [
 ];
 
 const specialisedProgrammes = [
-  "Computerised Eye Testing/ Preventive Eye Check-",
+  "Computerised Eye Testing / Preventive Eye Check-up",
   "Glaucoma Clinic",
   "Stitchless Cataract Surgery (Phacoemulsification)",
-  "Glaucoma",
   "Cornea & External Eye Disease",
   "Paediatric Ophthalmology",
   "Neuro-Ophthalmology",
@@ -59,7 +59,7 @@ const doctors = [
     qualifications: "M.B.B.S, MS(Ophthalmology)",
     designation: "Consultant Ophthalmologist",
     slug: "dr-gunjan-rana",
-    image: "/images/departments_doctor/dr_gunjan_rana.jpg", // Placeholder as per backend and uploaded image
+    image: "/images/departments_doctor/dr_gunjan_rana.jpg",
   },
 ];
 
@@ -73,32 +73,23 @@ const SectionHeader = ({
   highlight?: string;
 }) => (
   <div className="mb-6 2xl:mb-8">
-    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#1e1b4b] font-heading leading-tight">
-      {title} <span className="text-[#284a91] font-bold">{highlight}</span>
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
+      {title} <span className="text-[#1e3a8a] font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
+      <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
       <div className="h-[2px] w-12 bg-gray-300" />
     </div>
   </div>
-);
-
-const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-3 text-gray-800 mb-3 group text-base md:text-lg font-medium">
-    <span className="text-blue-600 mt-1.5 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">
-      ›
-    </span>
-    <span className="leading-relaxed">{text}</span>
-  </li>
 );
 
 /* ─── Page ─── */
 
 export default function OphthalmologyClient() {
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
+    <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0f172a] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/ophthalmology_banner.png"
@@ -107,21 +98,21 @@ export default function OphthalmologyClient() {
             className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#0f172a]/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Centre for Comprehensive Eye Care
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
               Restoring Vision, <br />
-              <span className="text-blue-400">Enhancing Life</span>
+              <span className="text-blue-300">Enhancing Life</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
@@ -137,84 +128,92 @@ export default function OphthalmologyClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO SECTION ═══════ */}
-      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
+      <section className="py-20 xl:py-16 bg-white min-h-[600px]">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* ── Left Content ── */}
-            <div className="lg:col-span-8">
-              <div className="mb-12">
-                <SectionHeader
-                  title="Department of"
-                  highlight="Ophthalmology"
-                />
-              </div>
-
-              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
-                <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
-                  <p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Content */}
+            <div className="lg:col-span-8 space-y-6">
+              <SectionHeader title="Department of" highlight="Ophthalmology" />
+              <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
+                <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
+                  <p className="font-semibold text-gray-800">
                     The Ophthalmology Department is designed to provide a
-                    comprehensive range of medical and surgical eye care to the
-                    patients of all age groups. Our treatment plans are designed
-                    for the protection, preservation, enhancement and
-                    restoration of vision for any age groups.
+                    comprehensive range of medical and surgical eye care to patients
+                    of all age groups. Our treatment plans focus on protection,
+                    preservation, enhancement, and restoration of vision.
                   </p>
                 </div>
                 <p>
-                  Our ophthalmology department is fully equipped with
-                  state-of-the-art diagnostic and therapeutic equipments for
-                  treating glaucoma, cataracts, corneal and external diseases,
-                  pediatric ophthalmic diseases and disorders. We are committed
-                  to provide world class eye care services with the best
-                  equipments available with warm hospitality at an affordable
-                  price.
+                  Our department is fully equipped with state-of-the-art diagnostic
+                  and therapeutic equipment for managing glaucoma, cataracts, corneal
+                  and external diseases, and pediatric ophthalmic disorders. We are
+                  committed to providing world-class eye care with advanced diagnostic
+                  technology and warm hospitality.
                 </p>
               </div>
             </div>
 
-            {/* ── Right Column (Doctor Sidebar) ── */}
+            {/* Right Column (Doctor Sidebar) */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Ophthalmology"
-                />
+                <DoctorSlider doctors={doctors} departmentName="Ophthalmology" />
               </div>
             </div>
           </div>
 
-          {/* ── Out Patient Procedures (Full Width below) ── */}
-          <div className="mt-32">
-            <div className="mb-10 text-center lg:text-left">
-              <h3 className="text-[#1e1b4b] font-bold text-2xl 2xl:text-4xl mb-3 flex items-center justify-center lg:justify-start gap-3 uppercase tracking-tight">
-                <span className="w-12 h-1 bg-blue-600 rounded-full" />
-                Out Patient Procedures:
-              </h3>
-              <p className="text-gray-500 text-base font-medium ml-0 lg:ml-15 italic">
-                Advanced diagnostic services for precision eye care
-              </p>
+          {/* Core Expertise Grid */}
+          <div className="mt-20">
+            <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Our Specializations</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
+                Core <span className="text-[#1e3a8a]">Expertise</span>
+              </h2>
+              <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article
+                    key={item.title}
+                    className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-3 group"
+                  >
+                    <div className="h-12 w-12 rounded-2xl bg-blue-50 text-[#1e3a8a] flex items-center justify-center border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-bold text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm font-medium leading-relaxed text-gray-600">
+                      {item.desc}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Outpatient Procedures Section */}
+          <div className="mt-20 border-t border-slate-100 pt-20">
+            <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Diagnostics</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
+                Outpatient <span className="text-[#1e3a8a]">Procedures</span>
+              </h2>
+              <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {outpatientProcedures.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-gray-50 border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-4 group"
+                  className="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-start gap-3 group"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-[#0f172a] transition-colors shadow-blue-600/20 shadow-lg">
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-gray-700 font-bold text-sm 2xl:text-base leading-snug">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#1e3a8a] border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
+                    <Check className="h-4 w-4" />
+                  </span>
+                  <p className="text-gray-700 font-bold text-xs sm:text-sm leading-snug pt-1">
                     {item}
                   </p>
                 </div>
@@ -222,37 +221,44 @@ export default function OphthalmologyClient() {
             </div>
           </div>
 
-          {/* ── Specialised Programmes (Full Width below) ── */}
-          <div className="mt-32 border-t border-gray-100 pt-32">
+          {/* Specialised Programmes Section */}
+          <div className="mt-20 border-t border-slate-100 pt-20">
             <div className="flex flex-col lg:flex-row items-center gap-16">
-              <div className="lg:w-1/2 w-full">
-                <div className="relative rounded-[3rem] overflow-hidden shadow-2xl h-[450px] 2xl:h-[550px] border-[12px] border-white group">
+              {/* Left Column (Illustration Image) */}
+              <div className="lg:w-4/12 w-full flex justify-center">
+                <div className="relative w-full max-w-[280px] h-[320px] lg:h-[380px] rounded-[2rem] overflow-hidden shadow-xl border-6 border-white ring-1 ring-slate-100">
                   <Image
                     src="/images/departments-images/ophthalmology_advance.jpg"
                     alt="Specialised Eye Care"
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white text-[11px] leading-snug bg-[#0b1c43]/85 backdrop-blur-sm p-3.5 rounded-xl border border-white/10">
+                    <p className="font-bold mb-0.5 text-blue-300 uppercase tracking-widest text-[8.5px]">Specialised Eye Care</p>
+                    Comprehensive clinical interventions and micro-surgeries to protect and restore your vision.
+                  </div>
                 </div>
               </div>
-              <div className="lg:w-1/2 w-full">
-                <h3 className="text-[#1e1b4b] font-bold text-2xl 2xl:text-4xl mb-12 flex items-center gap-3 uppercase tracking-tight">
-                  <span className="w-12 h-1 bg-blue-600 rounded-full" />
-                  Specialised Programmes:
-                </h3>
+
+              {/* Right Column (Clinical Offers) */}
+              <div className="lg:w-8/12 w-full space-y-6">
+                <SectionHeader title="Specialised" highlight="Programmes" />
+                <p className="text-gray-600 text-sm md:text-base font-semibold leading-relaxed">
+                  Our clinicians perform advanced interventions and specialised therapies for various ophthalmic conditions:
+                </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {specialisedProgrammes.map((item, idx) => (
                     <div
                       key={idx}
-                      className="bg-white border border-gray-100 rounded-xl p-5 2xl:p-6 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex items-start gap-4 group"
+                      className="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-blue-100 transition-all duration-300 flex items-start gap-3 group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-[#0f172a] flex items-center justify-center flex-shrink-0 text-white font-bold text-sm group-hover:bg-blue-600 transition-colors shadow-lg">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#1e3a8a] font-extrabold text-sm border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
                         {idx + 1}
-                      </div>
-                      <p className="text-gray-800 font-bold text-sm 2xl:text-base leading-relaxed pt-1">
+                      </span>
+                      <span className="text-gray-700 text-xs sm:text-sm font-bold leading-relaxed pt-1.5">
                         {item}
-                      </p>
+                      </span>
                     </div>
                   ))}
                 </div>

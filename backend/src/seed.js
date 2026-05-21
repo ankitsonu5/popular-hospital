@@ -77,9 +77,9 @@ const branches = [
     image_three: "/images/branches/varanasi-main/3.webp",
     image_four: "/images/branches/varanasi-main/4.webp",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d82.9739!3d25.2677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2e0f0f0f0f0f%3A0x0!2sPopular+Hospital+Kakarmatta!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+      "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.2927719,82.970505+(Popular%20Hospital%20Varanasi)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.2677,82.9739&destination_place_id=popular+hospital+kakarmatta+varanasi",
+      "https://maps.app.goo.gl/8KVyxNdETY219tRD6",
   },
   {
     name: "City Hospital – Sigra",
@@ -100,9 +100,9 @@ const branches = [
     image_three: "/images/branches/varanasi-sigra/3.webp",
     image_four: "/images/branches/varanasi-sigra/4.webp",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d82.9900!3d25.3100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCity+Hospital+Sigra+Varanasi!5e0!3m2!1sen!2sin!4v1700000000001!5m2!1sen!2sin",
+      "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.310566,82.9853379+(City%20Hospital%20Sigra)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.3100,82.9900&destination_place_id=city+hospital+sigra+varanasi",
+      "https://maps.app.goo.gl/qzDBKggToLk9PEpKA",
   },
   {
     name: "Popular Hospital – Mirzapur",
@@ -124,9 +124,9 @@ const branches = [
     image_three: "/images/branches/mirzapur/3.webp",
     image_four: "/images/branches/mirzapur/4.webp",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.0!2d82.5700!3d25.1500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Mirzapur!5e0!3m2!1sen!2sin!4v1700000000002!5m2!1sen!2sin",
+      "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.2927719,82.970505+(Popular%20Hospital%20Mirzapur)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.1500,82.5700&destination_place_id=popular+hospital+mirzapur",
+      "https://maps.app.goo.gl/6AD3AFtXKYpPyvQA7",
   },
   {
     name: "Popular Hospital – Gopiganj",
@@ -148,9 +148,9 @@ const branches = [
     image_three: "/images/branches/gopiganj/3.webp",
     image_four: "/images/branches/gopiganj/4.webp",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3605.0!2d82.5123!3d25.5123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Gopiganj!5e0!3m2!1sen!2sin!4v1700000000003!5m2!1sen!2sin",
+      "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.2878557,82.4292159+(Popular%20Hospital%20Gopiganj)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.5123,82.5123&destination_place_id=popular+hospital+gopiganj",
+      "https://maps.app.goo.gl/XFdtMjVtkeAq4i217",
   },
   {
     name: "Popular Hospital – Bachhaon",
@@ -171,9 +171,9 @@ const branches = [
     image_three: "/images/branches/bachhaon/3.webp",
     image_four: "/images/branches/bachhaon/4.webp",
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.0!2d82.8500!3d25.3500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPopular+Hospital+Bachhaon!5e0!3m2!1sen!2sin!4v1700000000004!5m2!1sen!2sin",
+      "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.2287388,82.9329695+(Popular%20Hospital%20Bachhaon)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
     mapDirectionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=25.3500,82.8500&destination_place_id=popular+hospital+bachhaon",
+      "https://maps.app.goo.gl/CFB9nVbpv3TwdhddA",
   },
 ];
 

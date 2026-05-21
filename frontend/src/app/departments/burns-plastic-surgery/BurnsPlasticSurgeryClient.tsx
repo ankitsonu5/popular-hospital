@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -46,7 +46,7 @@ const doctors = [
     name: "Dr. A.K Pradhan",
     qualifications: "MBBS, MS, MCh (Plastic Surgery)",
     designation: "Consultant Plastic Surgeon",
-    slug: "dr-ak-pradhan",
+    slug: "dr-a-k-pradhan",
     image: "/images/departments_doctor/dr_a_k_pradhan.jpg",
   },
   {
@@ -65,40 +65,11 @@ const doctors = [
   },
 ];
 
-/* ─── Sub-Components ─── */
-
-const SectionHeader = ({
-  title,
-  highlight,
-}: {
-  title: string;
-  highlight?: string;
-}) => (
-  <div className="mb-6 2xl:mb-8">
-    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-[#284a91]">{highlight}</span>
-    </h2>
-    <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
-      <div className="h-[2px] w-12 bg-gray-300" />
-    </div>
-  </div>
-);
-
-const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
-      ›
-    </span>
-    <span className="leading-relaxed">{text}</span>
-  </li>
-);
-
 /* ─── Page ─── */
 
 export default function BurnsPlasticSurgeryClient() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
@@ -114,49 +85,24 @@ export default function BurnsPlasticSurgeryClient() {
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Department of
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Burns &amp; Plastic Surgery
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
+              Burns &amp; <br />
+              <span className="text-blue-300">Plastic Surgery</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
                 Book Appointment
               </Link>
               <GetCallBackButton
                 department="Burns & Plastic Surgery"
-                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
                 Get a Call Back
               </GetCallBackButton>
             </div>
@@ -164,146 +110,187 @@ export default function BurnsPlasticSurgeryClient() {
         </div>
       </section>
 
-      {/* ═══════ CONTENT + DOCTOR SIDEBAR ═══════ */}
-      <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50/50">
+      {/* ═══════ INTRO + DOCTOR SECTION ═══════ */}
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* ── Left Content ── */}
-            <div className="lg:col-span-8">
-              <SectionHeader
-                title="Department of Burns &amp;"
-                highlight="Plastic Surgery"
-              />
+            {/* Left Content */}
+            <div className="lg:col-span-8 space-y-8">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                  Department of <span className="text-[#1e3a8a]">Burns &amp; Plastic Surgery</span>
+                </h2>
+              </div>
+              <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               {/* Burns */}
-              <div className="mb-8">
-                <h3 className="text-xl font-bold text-[#284a91] mb-2">Burns</h3>
-                <div className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium text-justify space-y-4">
-                  <p>
-                    A burn is an injury to the skin or other organic tissue
-                    primarily caused by heat ordue to radiation, radioactivity,
-                    electricity, friction or contact with chemicals.
-                  </p>
-                  <p>
-                    Thermal (heat) burns occur when some or all of the cells in
-                    the skin or other tissues are destroyed by:
-                  </p>
-                </div>
-                <ul className="mt-4">
-                  {burnsCauses.map((item, idx) => (
-                    <ListItem key={idx} text={item} />
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* ── Right Doctor Card ── */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Burns & Plastic Surgery"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-20 space-y-24">
-            {/* Classifications Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
-                <SectionHeader title="Classifications of" highlight="Burns" />
-                <ul className="space-y-3">
-                  {burnsClassifications.map((item, idx) => (
-                    <ListItem key={idx} text={item} />
+                <h3 className="text-xl font-bold text-[#0b1c43] mb-3 font-heading uppercase tracking-tight">
+                  Burns
+                </h3>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
+                  A burn is an injury to the skin or other organic tissue
+                  primarily caused by heat ordue to radiation, radioactivity,
+                  electricity, friction or contact with chemicals.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-4">
+                  Thermal (heat) burns occur when some or all of the cells in
+                  the skin or other tissues are destroyed by:
+                </p>
+
+                <div className="space-y-4 mt-6">
+                  {burnsCauses.map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-[#1e3a8a] flex items-center justify-center mt-0.5 border border-blue-200">
+                        <Check className="w-4 h-4" />
+                      </div>
+                      <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-1">
+                        {item}
+                      </p>
+                    </div>
                   ))}
-                </ul>
-              </div>
-              <div
-                className="relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl"
-                style={{
-                  clipPath: "polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)",
-                }}
-              >
-                <Image
-                  src="/images/departments-images/AdobeStock_222372294.jpeg"
-                  alt="Burns Classification"
-                  fill
-                  className="object-cover"
-                />
+                </div>
               </div>
             </div>
 
-            {/* Plastic Surgery Detailed Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div
-                className="order-2 md:order-1 relative h-[450px] rounded-[3rem] overflow-hidden shadow-2xl"
-                style={{
-                  clipPath: "polygon(0% 0, 90% 0%, 100% 100%, 10% 100%)",
-                }}
-              >
-                <Image
-                  src="/images/departments-images/plastic_surgery.png"
-                  alt="Plastic Surgery"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="order-1 md:order-2">
-                <SectionHeader title="Plastic" highlight="Surgery" />
-                <div className="space-y-4 text-gray-700 text-base xl:text-[15px] 2xl:text-lg leading-relaxed text-justify">
-                  <p>
-                    Plastic surgery is a surgical speciality which involves
-                    reconstruction, restoration, or alteration of the human
-                    body. Plastic Surgery is the art of treating with aims to
-                    improve the appearance of the human body or improve the
-                    functioning of a part of the body.
-                  </p>
-                  <div className="bg-blue-50/50 p-6 rounded-2xl border-l-4 border-blue-600">
-                    <p className="font-semibold text-blue-900 italic text-base 2xl:text-lg">
-                      At Popular Hospital we have a team of highly qualified and
-                      dedicated plastic surgeons to deliver the best care at an
-                      affordable price with the proverbial best in latest
-                      technology.
-                    </p>
-                  </div>
-                  <p className="text-base 2xl:text-lg">
-                    We work both independently and in Conjunction with many
-                    other Surgical Services including: ENT, General Surgery,
-                    Surgical Oncology, Orthopedics, Urology, Gynecology and
-                    Neurosurgery for giving comprehensive care to all the
-                    patients.
-                  </p>
-                </div>
+            {/* Right Doctor Card */}
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="sticky top-24 w-full h-fit">
+                <DoctorSlider doctors={doctors} departmentName="Burns & Plastic Surgery" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════ PROCEDURES ═══════ */}
-      <section className="py-16 xl:py-12 2xl:py-24 bg-[#0b1c43]">
+      {/* ═══════ CLASSIFICATIONS SECTION ═══════ */}
+      <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="text-center mb-12">
-            <span className="text-blue-300 font-bold tracking-widest text-xs uppercase mb-3 block">
-              Advanced Treatments
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white font-heading">
-              Our <span className="text-blue-400">Procedures</span>
-            </h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
-              <div className="w-2 h-2 rounded-full bg-blue-400" />
-              <div className="h-[2px] w-12 bg-blue-400/30" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
+            <div className="order-2 lg:order-1">
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+                Clinical Metrics
+              </span>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                  Classifications of <span className="text-[#1e3a8a]">Burns</span>
+                </h2>
+              </div>
+              <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+
+              <div className="space-y-4 mt-6">
+                {burnsClassifications.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-[#1e3a8a] flex items-center justify-center mt-0.5 border border-blue-200">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-1">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
+              <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
+                <Image
+                  src="/images/departments-images/AdobeStock_222372294.jpeg"
+                  alt="Burns Classification Illustration"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        </div>
+      </section>
+
+      {/* ═══════ PLASTIC SURGERY SECTION ═══════ */}
+      <section className="py-16 xl:py-12 2xl:py-20 bg-white border-t border-slate-100">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
+            <div className="mb-12 lg:mb-0 relative">
+              <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50 hover:border-blue-50 transition-colors duration-500 group">
+                <Image
+                  src="/images/departments-images/plastic_surgery.png"
+                  alt="Plastic Surgery Art & Science"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+            </div>
+
+            <div>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+                Art of Restoration
+              </span>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                  Plastic <span className="text-[#1e3a8a]">Surgery</span>
+                </h2>
+              </div>
+              <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+
+              <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
+                <p>
+                  Plastic surgery is a surgical speciality which involves
+                  reconstruction, restoration, or alteration of the human
+                  body. Plastic Surgery is the art of treating with aims to
+                  improve the appearance of the human body or improve the
+                  functioning of a part of the body.
+                </p>
+
+                <div className="border-l-4 border-blue-600 pl-4 py-2 bg-blue-50/30 rounded-r-xl">
+                  <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium italic">
+                    At Popular Hospital we have a team of highly qualified and
+                    dedicated plastic surgeons to deliver the best care at an
+                    affordable price with the proverbial best in latest
+                    technology.
+                  </p>
+                </div>
+
+                <p>
+                  We work both independently and in Conjunction with many
+                  other Surgical Services including: ENT, General Surgery,
+                  Surgical Oncology, Orthopedics, Urology, Gynecology and
+                  Neurosurgery for giving comprehensive care to all the
+                  patients.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ PROCEDURES SECTION ═══════ */}
+      <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50 border-t border-slate-100">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+              Advanced Treatments
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading">
+              Our <span className="text-[#1e3a8a]">Procedures</span>
+            </h2>
+            <div className="flex items-center justify-center gap-2 mt-3">
+              <div className="w-2 h-2 rounded-full bg-[#1e3a8a]" />
+              <div className="h-[2px] w-12 bg-blue-200" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {procedures.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-5 py-4 hover:bg-white/10 hover:border-blue-400/40 transition-all duration-300 group flex items-center gap-4"
-              >
-                <div className="w-2.5 h-2.5 rounded-full bg-blue-400 flex-shrink-0 group-hover:bg-white group-hover:shadow-[0_0_8px_2px_rgba(96,165,250,0.6)] transition-all duration-300" />
-                <p className="text-blue-50 font-medium text-sm 2xl:text-base leading-snug group-hover:text-white transition-colors">
+              <div key={idx} className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-[#1e3a8a] flex items-center justify-center mt-0.5 border border-blue-200">
+                  <Check className="w-4 h-4" />
+                </div>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-1">
                   {item}
                 </p>
               </div>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Check, Clipboard, Calendar, HeartPulse, Heart, ArrowRight } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -19,35 +20,67 @@ const doctors = [
 const highlights = [
   {
     title: "Fertility Evaluation",
+    icon: Clipboard,
     desc: "Complete assessment for both partners including history, hormone profile, ultrasound and semen analysis.",
   },
   {
     title: "Ovulation Support",
+    icon: Calendar,
     desc: "Cycle tracking, ovulation induction and timed treatment planning for couples trying to conceive.",
   },
   {
     title: "IUI & IVF Guidance",
+    icon: HeartPulse,
     desc: "Personalized counselling and treatment planning for assisted reproductive options as clinically needed.",
   },
   {
     title: "Pregnancy Support",
+    icon: Heart,
     desc: "Early pregnancy monitoring, high-risk screening and coordinated care with obstetrics specialists.",
   },
 ];
 
-const services = [
-  "Female and male infertility evaluation",
-  "Hormonal assessment and ovarian reserve testing",
-  "Follicular monitoring and ovulation induction",
-  "Semen analysis and male fertility counselling",
-  "IUI treatment counselling and preparation",
-  "IVF / ICSI counselling and cycle coordination",
-  "PCOS-related fertility management",
-  "Recurrent pregnancy loss evaluation",
-  "Fertility preservation counselling",
-  "Preconception health optimisation",
-  "Early pregnancy monitoring",
-  "Lifestyle and nutrition guidance for fertility",
+const servicesCategories = [
+  {
+    title: "Diagnostics & Evaluations",
+    icon: Clipboard,
+    description: "Comprehensive assessment protocols to identify barriers to conception.",
+    items: [
+      "Female and male infertility evaluation",
+      "Hormonal assessment and ovarian reserve testing",
+      "Semen analysis and male fertility counselling",
+    ],
+  },
+  {
+    title: "Ovulation & Hormonal Support",
+    icon: Calendar,
+    description: "Careful monitoring and cycle tracking to optimize ovulation windows.",
+    items: [
+      "Follicular monitoring and ovulation induction",
+      "PCOS-related fertility management",
+      "Preconception health optimisation",
+    ],
+  },
+  {
+    title: "Assisted Reproduction Guidance",
+    icon: HeartPulse,
+    description: "Guidance and coordination for advanced therapeutic reproductive cycles.",
+    items: [
+      "IUI treatment counselling and preparation",
+      "IVF / ICSI counselling and cycle coordination",
+      "Fertility preservation counselling",
+    ],
+  },
+  {
+    title: "Pregnancy & Restorative Care",
+    icon: Heart,
+    description: "Ongoing clinical support and screening to promote healthy outcomes.",
+    items: [
+      "Recurrent pregnancy loss evaluation",
+      "Early pregnancy monitoring",
+      "Lifestyle and nutrition guidance for fertility",
+    ],
+  },
 ];
 
 const careSteps = [
@@ -81,35 +114,30 @@ const SectionHeader = ({
   highlight?: string;
 }) => (
   <div className="mb-6 2xl:mb-8">
-    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#7c1745] font-heading leading-tight">
-      {title} <span className="text-[#284a91]">{highlight}</span>
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
+      {title} <span className="text-[#1e3a8a]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-[#E85222]" />
+      <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
       <div className="h-[2px] w-12 bg-gray-300" />
     </div>
   </div>
 );
 
 const CheckItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-3 text-gray-800 text-sm sm:text-base xl:text-[15px] 2xl:text-lg font-medium leading-relaxed">
-    <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-rose-100 text-[#E85222]">
-      <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-        <path
-          fillRule="evenodd"
-          d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z"
-          clipRule="evenodd"
-        />
-      </svg>
+  <div className="bg-white border border-slate-100/80 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-blue-100 transition-all duration-300 flex items-start gap-3">
+    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-[#1e3a8a] border border-blue-100 shadow-inner">
+      <Check className="h-3.5 w-3.5" />
     </span>
-    <span>{text}</span>
-  </li>
+    <span className="text-gray-700 text-xs sm:text-sm font-bold leading-relaxed">{text}</span>
+  </div>
 );
 
 export default function IvfFertilityClient() {
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#7c1745] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
+    <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
+      {/* ═══════ HERO ═══════ */}
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/laboratory_medicine.png"
@@ -118,21 +146,21 @@ export default function IvfFertilityClient() {
             className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#7c1745] via-[#7c1745]/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-rose-100 text-sm font-semibold mb-6 border border-white/20 backdrop-blur-sm">
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
               Department of
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
               IVF & <br />
-              <span className="text-rose-200">Fertility</span>
+              <span className="text-blue-300">Fertility</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#d1451a] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
@@ -147,12 +175,14 @@ export default function IvfFertilityClient() {
         </div>
       </section>
 
-      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
+      {/* ═══════ INTRO + SINGLE DOCTOR CARD ═══════ */}
+      <section className="py-20 xl:py-16 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Description */}
+            <div className="lg:col-span-8 space-y-6">
               <SectionHeader title="Compassionate" highlight="Fertility Care" />
-              <div className="space-y-5 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
+              <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
                 <p>
                   The IVF & Fertility department at Popular Hospital is designed
                   to support couples with clear evaluation, evidence-based
@@ -160,8 +190,8 @@ export default function IvfFertilityClient() {
                   approach focuses on understanding the cause of infertility and
                   choosing the right step at the right time.
                 </p>
-                <div className="bg-rose-50 p-6 rounded-xl border-l-4 border-[#E85222]">
-                  <p>
+                <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
+                  <p className="font-semibold text-gray-800">
                     From ovulation issues, PCOS and recurrent pregnancy loss to
                     male-factor infertility and assisted reproduction counselling,
                     patients receive private, structured and coordinated care.
@@ -175,78 +205,125 @@ export default function IvfFertilityClient() {
               </div>
             </div>
 
+            {/* Right Single Doctor Card Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="IVF & Fertility" />
+                <DoctorSlider doctors={doctors} departmentName="IVF & Fertility" preventBackendFetch={true} />
               </div>
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {highlights.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-xl border border-rose-100 bg-white p-5 shadow-sm hover:shadow-md transition-all"
-              >
-                <div className="mb-4 h-10 w-10 rounded-lg bg-rose-100 flex items-center justify-center text-[#E85222]">
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.3 12.3l7.4 7.4 8-16" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold text-[#7c1745] mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm font-medium leading-relaxed text-gray-600">
-                  {item.desc}
-                </p>
-              </article>
-            ))}
+          {/* Highlights Grid */}
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {highlights.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article
+                  key={item.title}
+                  className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-3 group"
+                >
+                  <div className="h-12 w-12 rounded-2xl bg-blue-50 text-[#1e3a8a] flex items-center justify-center border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm font-medium leading-relaxed text-gray-600">
+                    {item.desc}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50">
+      {/* ═══════ SERVICES SECTION WITH IMAGE ═══════ */}
+      <section className="py-20 xl:py-16 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5">
-              <div className="relative w-full min-h-[320px] sm:min-h-[420px] rounded-[2rem] overflow-hidden shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left Illustration Image */}
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="relative w-full max-w-[340px] h-[400px] lg:h-[460px] lg:self-center rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white ring-1 ring-slate-150">
                 <Image
                   src="/images/departments-images/obstetrics_care.jpg"
                   alt="IVF and fertility care"
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#7c1745]/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-[#0b1c43]/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
+                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]">Quality Standards</p>
+                  Patient-first approach with top clinical success rates and safety protocols.
+                </div>
               </div>
             </div>
-            <div className="lg:col-span-7">
+
+            {/* Right bullet check list */}
+            <div className="lg:col-span-8 space-y-6">
               <SectionHeader title="Our Fertility" highlight="Services" />
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
-                {services.map((item) => (
-                  <CheckItem key={item} text={item} />
-                ))}
-              </ul>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {servicesCategories.map((cat) => {
+                  const Icon = cat.icon;
+                  return (
+                    <div key={cat.title} className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-3 group">
+                      <div className="flex items-center gap-3.5">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-50 text-[#1e3a8a] flex items-center justify-center border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <h3 className="text-sm sm:text-base font-bold text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors">
+                          {cat.title}
+                        </h3>
+                      </div>
+                      <p className="text-xs text-gray-500 font-semibold leading-relaxed">
+                        {cat.description}
+                      </p>
+                      <ul className="space-y-2 mt-2 pt-3 border-t border-slate-50">
+                        {cat.items.map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-xs text-gray-700 font-bold leading-relaxed">
+                            <Check className="h-3.5 w-3.5 text-blue-500 mt-0.5 flex-shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
+      {/* ═══════ TREATMENT JOURNEY SECTION ═══════ */}
+      <section className="py-20 xl:py-16 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <SectionHeader title="Treatment" highlight="Journey" />
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+          <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Overview</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
+              Treatment <span className="text-[#1e3a8a]">Journey</span>
+            </h2>
+            <div className="h-[2px] w-24 bg-gradient-to-r from-blue-500 to-indigo-650 mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {careSteps.map((item) => (
               <article
                 key={item.step}
-                className="rounded-xl bg-[#7c1745] text-white p-6 shadow-md"
+                className="rounded-3xl bg-[#0b1c43] text-white p-6 shadow-lg hover:bg-[#0b1c43]/90 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 border border-blue-900/50 flex flex-col justify-between min-h-[220px]"
               >
-                <p className="text-3xl font-black text-rose-200 mb-5">
-                  {item.step}
-                </p>
-                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                <p className="text-sm font-medium leading-relaxed text-rose-50">
-                  {item.desc}
-                </p>
+                <div>
+                  <p className="text-3xl font-black text-blue-300 mb-4 font-heading leading-none">
+                    {item.step}
+                  </p>
+                  <h3 className="font-bold text-lg mb-2 text-white">{item.title}</h3>
+                  <p className="text-xs font-semibold leading-relaxed text-blue-100">
+                    {item.desc}
+                  </p>
+                </div>
+                <div className="mt-4 pt-4 border-t border-blue-900/40 flex justify-end">
+                  <ArrowRight className="w-4 h-4 text-blue-300" />
+                </div>
               </article>
             ))}
           </div>

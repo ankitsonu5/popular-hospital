@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { Check, Clock, Stethoscope, Baby, ShieldCheck, Activity, HeartPulse } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
-/* ─── Data (Transcribed from previous turn + General Surgery Theme) ─── */
+/* ─── Data ─── */
 
 const introParagraphs = [
   "The Department of Pediatrics and Neonatology promotes the health of children and adolescents with a balanced approach, delivers high quality comprehensive clinical care.",
@@ -15,20 +15,74 @@ const introParagraphs = [
   "Our PICU is also suitably equipped to take care of all Pediatric Intensive Care needs. The hospital is equipped with CT, MRI, etc. facilities for all Imaging needs and is also having excellent Pathology and Microbiology services, excellent support from other specialties like Neurology, Cardiology, Urology, Orthopedics, Surgery etc. which are available round the clock.",
 ];
 
+const stats = [
+  { value: "24×7", label: "Emergency Care", icon: Clock },
+  { value: "NICU", label: "State-of-the-Art Unit", icon: Baby },
+  { value: "PICU", label: "Intensive Care Unit", icon: Activity },
+  { value: "100%", label: "Dedicated Specialists", icon: Stethoscope },
+];
+
 const servicesOffered = [
-  "Outpatient Services including general check-up, well baby clinic, high risk baby clinic and vaccinations",
-  "Emergency Management of all pediatric and neonatal problems, round-the-clock",
-  "PICU Services including assisted ventilation, management of severe asthma, seizures, shock, etc.",
-  "Neonatal resuscitation in LR and OT",
-  "Neonatal/Pediatrics ventilation, CPAP & oz supplementation",
-  "Phototherapy",
-  "Exchange Blood Transfusion",
-  "Surfactant administration-including modern LISA technique",
-  "Neonatal metabolic & thyroid screening",
-  "Neonatal ROP Screening (by Ophthalmologist on call)",
-  "Bedside 2D Echo X-Ray & USG",
-  "Neonatal surgery (pediatric surgeon on call)",
-  "Peritoneal dialysis",
+  {
+    title: "Outpatient Services",
+    desc: "General check-up, well baby clinic, high risk baby clinic and vaccinations",
+    icon: Stethoscope,
+  },
+  {
+    title: "Emergency Management",
+    desc: "All pediatric and neonatal problems managed round-the-clock",
+    icon: Clock,
+  },
+  {
+    title: "PICU Services",
+    desc: "Assisted ventilation, management of severe asthma, seizures, shock, etc.",
+    icon: Activity,
+  },
+  {
+    title: "Neonatal Resuscitation",
+    desc: "Advanced resuscitation support in Labour Room and OT",
+    icon: HeartPulse,
+  },
+  {
+    title: "Ventilation & CPAP",
+    desc: "Neonatal/Pediatric ventilation, CPAP & oxygen supplementation",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Phototherapy",
+    desc: "LED phototherapy with modern open care system for jaundice management",
+    icon: Baby,
+  },
+  {
+    title: "Exchange Blood Transfusion",
+    desc: "Safe and monitored exchange transfusion procedures",
+    icon: Activity,
+  },
+  {
+    title: "LISA Technique",
+    desc: "Surfactant administration using the modern LISA technique",
+    icon: Stethoscope,
+  },
+  {
+    title: "Neonatal Screening",
+    desc: "Metabolic & thyroid screening, ROP screening by Ophthalmologist on call",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Bedside Diagnostics",
+    desc: "Bedside 2D Echo, X-Ray & USG for immediate clinical decisions",
+    icon: HeartPulse,
+  },
+  {
+    title: "Neonatal Surgery",
+    desc: "Pediatric surgeon on call for all surgical needs",
+    icon: Clock,
+  },
+  {
+    title: "Peritoneal Dialysis",
+    desc: "Kidney support therapy for critically ill neonates and children",
+    icon: Activity,
+  },
 ];
 
 const indoorServices = [
@@ -44,11 +98,31 @@ const indoorServices = [
 ];
 
 const highlights = [
-  "Supported by latest technology & experienced specialists",
-  "Direct supervision of Senior Neonatologists and Pediatricians",
-  "Clear communication with parents, with complete transparency & accountability",
-  "24x7 access to newborns for mothers",
-  "Antenatal clinic for parents to deal with fetal abnormalities detected on USG",
+  {
+    title: "Latest Technology",
+    desc: "Supported by state-of-the-art equipment and experienced specialists",
+    icon: Activity,
+  },
+  {
+    title: "Expert Supervision",
+    desc: "Direct supervision of Senior Neonatologists and Pediatricians at all times",
+    icon: Stethoscope,
+  },
+  {
+    title: "Parent Transparency",
+    desc: "Clear communication with parents, with complete transparency & accountability",
+    icon: ShieldCheck,
+  },
+  {
+    title: "24×7 Mother Access",
+    desc: "Round-the-clock access to newborns for mothers in our NICU",
+    icon: Clock,
+  },
+  {
+    title: "Antenatal Clinic",
+    desc: "Dedicated clinic for parents to deal with fetal abnormalities detected on USG",
+    icon: Baby,
+  },
 ];
 
 const doctors = [
@@ -68,83 +142,15 @@ const doctors = [
   },
 ];
 
-/* ─── Sub-Components ─── */
-
-const SectionHeader = ({
-  title,
-  highlight,
-}: {
-  title: string;
-  highlight?: string;
-}) => (
-  <div className="mb-6 2xl:mb-8">
-    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-      {title} <span className="text-[#284a91] font-bold">{highlight}</span>
-    </h2>
-    <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
-      <div className="h-[2px] w-12 bg-gray-300" />
-    </div>
-  </div>
-);
-
-const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
-      ›
-    </span>
-    <span className="leading-relaxed">{text}</span>
-  </li>
-);
-
-const FeatureIcon = ({ icon }: { icon: string }) => (
-  <svg
-    className="w-7 h-7"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    {icon === "baby" && (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-      />
-    )}
-    {icon === "shield" && (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-      />
-    )}
-    {icon === "chart" && (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-      />
-    )}
-    {icon === "plus" && (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-      />
-    )}
-  </svg>
-);
-
 /* ─── Page ─── */
 
 export default function PediatricsClient() {
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
-      {/* ═══════ HERO ═══════ */}
+    <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
+
+      {/* ══════════════════════════════════════
+          HERO  (unchanged layout, matching colors)
+      ══════════════════════════════════════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
@@ -156,52 +162,27 @@ export default function PediatricsClient() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Department of
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
+              Centre of Pediatrics & Neonatology
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Pediatrics & Neonatology
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
+              Pediatrics &amp;
+              <br />
+              <span className="text-blue-300">Neonatology</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                Book An Appointment
+                Book Appointment
               </Link>
               <GetCallBackButton
                 department="Pediatrics & Neonatology"
-                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
                 Get a Call Back
               </GetCallBackButton>
             </div>
@@ -209,127 +190,247 @@ export default function PediatricsClient() {
         </div>
       </section>
 
-      {/* ═══════ TOP SECTION: INTRO + DOCTOR ═══════ */}
-      <section className="py-12 xl:py-10 2xl:py-20 bg-white">
+      {/* ══════════════════════════════════════
+          INTRO + DOCTOR SLIDER
+      ══════════════════════════════════════ */}
+      <section className="py-20 xl:py-16 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* ── Left Content ── */}
-            <div className="lg:col-span-8">
-              <SectionHeader
-                title="Department of"
-                highlight="Pediatrics And Neonatology"
-              />
-              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium leading-relaxed mb-12 text-justify">
-                <p>{introParagraphs[0]}</p>
-                <p>{introParagraphs[1]}</p>
-                <div className="bg-blue-50/50 p-6 rounded-xl border-l-4 border-blue-600">
-                  <p>{introParagraphs[2]}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Content */}
+            <div className="lg:col-span-8 space-y-8">
+              <div className="space-y-4">
+                <span className="inline-block text-[#1e3a8a] font-bold tracking-widest text-xs uppercase">
+                  Introduction
+                </span>
+                <div className="flex items-center gap-3">
+                  <span className="w-1.5 h-10 rounded-full bg-[#1e3a8a] inline-block" />
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
+                    Department of <span className="text-[#1e3a8a]">Pediatrics &amp; Neonatology</span>
+                  </h2>
                 </div>
-                <p>{introParagraphs[3]}</p>
+                <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
+              </div>
+
+              <div className="space-y-6">
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
+                  {introParagraphs[0]}
+                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
+                  {introParagraphs[1]}
+                </p>
+
+                <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-8 shadow-sm">
+                  <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">“</span>
+                  <p className="text-gray-700 leading-relaxed text-[15px] font-semibold italic relative z-10">
+                    {introParagraphs[2]}
+                  </p>
+                </div>
+
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
+                  {introParagraphs[3]}
+                </p>
               </div>
             </div>
 
-            {/* ── Right Doctor Card ── */}
+            {/* Right Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full h-fit sticky top-24">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Pediatrics & Neonatology"
-                />
+              <div className="sticky top-24 w-full h-fit">
+                <DoctorSlider doctors={doctors} departmentName="Pediatrics & Neonatology" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════ SERVICE OFFERED SECTION ═══════ */}
-      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
-        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* List Left */}
-            <div className="lg:col-span-7">
-              <SectionHeader title="Service" highlight="Offered:" />
-              <ul className="space-y-2 mt-4">
-                {servicesOffered.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-            {/* Image Right (Blob Shape) */}
-            <div className="lg:col-span-5 h-[500px] relative">
-              <div className="absolute inset-0 bg-blue-50  opacity-50" />
-              <div className="w-full h-full relative overflow-hidden border-4 border-white shadow rounded-xl">
-                <Image
-                  src="/images/departments-images/Pediatrics Service.jpg"
-                  alt="Pediatrics Service"
-                  fill
-                  className="object-cover"
-                />
+      {/* ══════════════════════════════════════
+          STATS STRIP
+      ══════════════════════════════════════ */}
+      <section className="bg-[#0b1c43] py-16 border-t border-blue-900/60 relative overflow-hidden">
+        {/* Decorative glow elements */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map(({ value, label, icon: Icon }, idx) => (
+              <div
+                key={idx}
+                className="group flex flex-col items-center text-center gap-3 py-6 px-4 border border-blue-800/60 bg-blue-950/40 rounded-3xl hover:bg-blue-900/40 hover:border-blue-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-blue-500/15 text-blue-400 flex items-center justify-center border border-blue-500/25 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                  <Icon className="w-5 h-5" />
+                </div>
+                <span className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">{value}</span>
+                <span className="text-blue-300 text-xs font-bold tracking-wider uppercase">{label}</span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════ PEDIATRIC INDOOR SERVICES ═══════ */}
-      <section className="py-24 xl:py-12 2xl:py-24 bg-white">
+      {/* ══════════════════════════════════════
+          SERVICES OFFERED
+      ══════════════════════════════════════ */}
+      <section className="py-20 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Image Left */}
-            <div className="lg:col-span-6 h-[550px] relative order-2 lg:order-1">
-              <div className="absolute inset-0 bg-blue-50 rounded-2xl opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-2xl border-4 border-white shadow-2xl">
+          {/* Heading */}
+          <div className="mb-12">
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+              What We Offer
+            </span>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+              <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
+                Services <span className="text-[#1e3a8a]">Offered</span>
+              </h2>
+            </div>
+            <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
+          </div>
+
+          {/* Card Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {servicesOffered.map(({ title, desc, icon: Icon }, idx) => (
+              <div
+                key={idx}
+                className="group bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 flex gap-4"
+              >
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-50/85 text-[#1e3a8a] flex items-center justify-center border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-sm">
+                  <Icon className="w-5.5 h-5.5" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-extrabold text-[#0b1c43] text-sm group-hover:text-[#1e3a8a] transition-colors duration-200">{title}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed font-semibold">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          INDOOR SERVICES (INPATIENT CARE)
+      ══════════════════════════════════════ */}
+      <section className="py-20 bg-[#0b1c43] border-t border-blue-900/60 relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+
+            {/* Left – Image */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white/10 hover:border-white/20 transition-all duration-500 group lg:self-center">
                 <Image
                   src="/images/departments-images/pediatric_opd_realistic.png"
-                  alt="Indoor Services"
+                  alt="Pediatric Indoor Services"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/45 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100">
+                    State-of-the-Art Pediatric Care
+                  </span>
+                </div>
               </div>
             </div>
-            {/* List Right */}
-            <div className="lg:col-span-6 order-1 lg:order-2">
-              <SectionHeader title="Pediatric Indoor" highlight="Services" />
-              <ul className="space-y-3 mt-4">
+
+            {/* Right – List */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              <span className="text-blue-400 font-bold tracking-widest text-xs uppercase mb-3 block">
+                Inpatient Care
+              </span>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-1.5 h-8 rounded-full bg-blue-400 inline-block" />
+                <h2 className="text-3xl font-extrabold text-white font-heading tracking-tight">
+                  Pediatric Indoor <span className="text-blue-400">Services</span>
+                </h2>
+              </div>
+              <div className="h-[2px] w-full bg-gradient-to-r from-blue-700 to-transparent mb-8" />
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {indoorServices.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
+                  <div
+                    key={idx}
+                    className="group flex items-start gap-3.5 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-400/40 transition-all duration-300 shadow-sm"
+                  >
+                    <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-blue-500/20 text-blue-300 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300 shadow-inner">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <p className="text-blue-100 leading-relaxed text-sm font-semibold group-hover:text-white transition-colors duration-200">
+                      {item}
+                    </p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* ═══════ HIGHLIGHTS SECTION ═══════ */}
-      <section className="py-24 2xl:py-32 bg-white">
+      {/* ══════════════════════════════════════
+          HIGHLIGHTS
+      ══════════════════════════════════════ */}
+      <section className="py-20 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* List Left */}
-            <div className="lg:col-span-6">
-              <h2 className="text-3xl 2xl:text-4xl font-bold text-[#284a91] font-heading mb-6">
-                Highlights
+
+          {/* Heading */}
+          <div className="mb-12">
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+              Why Choose Us
+            </span>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+              <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight animate-fade-in">
+                Department <span className="text-[#1e3a8a]">Highlights</span>
               </h2>
-              <ul className="space-y-4">
-                {highlights.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
             </div>
-            {/* Image Right */}
-            <div className="lg:col-span-6 h-[400px] relative">
-              <div className="absolute inset-0 bg-blue-50 rounded-2xl opacity-50" />
-              <div className="w-full h-full relative overflow-hidden rounded-2xl border-4 border-white shadow-2xl group">
+            <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+
+            {/* Left – Highlight Cards */}
+            <div className="lg:col-span-7 flex flex-col justify-center space-y-4">
+              {highlights.map(({ title, desc, icon: Icon }, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-4 p-5 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-blue-50/40 hover:border-blue-100 hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-[#1e3a8a] text-white flex items-center justify-center shadow-md shadow-blue-500/20">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-extrabold text-[#0b1c43] text-sm">{title}</h3>
+                    <p className="text-gray-500 text-xs leading-relaxed font-semibold">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Right – Image */}
+            <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
+              <div className="relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-100 hover:border-blue-100 transition-colors duration-500 group lg:self-center">
                 <Image
                   src="/images/departments-images/neonatology.jpeg"
                   alt="Pediatrics Highlights"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/20 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100">
+                    24/7 Neonatologist Support
+                  </span>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
+
     </main>
   );
 }

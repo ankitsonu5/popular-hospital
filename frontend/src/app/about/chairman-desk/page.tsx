@@ -27,7 +27,7 @@ export default function ChairmanDeskPage() {
       <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/about_popular/from_chairman's_desk.png"
+            src="/images/banners/about_us_cmd_md.jpg"
             alt="Chairman Desk Banner"
             fill
             className="object-cover opacity-85"

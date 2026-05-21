@@ -2,114 +2,111 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import {
+  Wind,
+  Microscope,
+  ShieldCheck,
+  Activity,
+  Moon,
+  Stethoscope,
+  HeartPulse,
+  Cigarette,
+  Users,
+  BrainCircuit,
+  CheckCircle2,
+  ArrowRight,
+  Phone,
+} from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
-/* ─── Data (Transcribed from Uploaded Image) ─── */
-
-const features = [
-  {
-    title: "Sleep Lab",
-    icon: "activity",
-    desc: "Advanced sleep apnea diagnosis and studies.",
-  },
-  {
-    title: "Bronchoscopy",
-    icon: "scope",
-    desc: "Detailed airway visualization and tissue sampling.",
-  },
-  {
-    title: "ICU Support",
-    icon: "shield",
-    desc: "Specialized respiratory critical care services.",
-  },
-  {
-    title: "Pulmonary Testing",
-    icon: "plus",
-    desc: "Comprehensive evaluation of lung function and capacity.",
-  },
-];
+/* ─── Data ─── */
 
 const services = [
   {
-    title: "Diagnosis and Treatment:",
+    title: "Diagnosis & Treatment",
+    icon: Stethoscope,
     content:
-      "Our respiratory experts are skilled in diagnosing and managing various respiratory conditions, including asthma, chronic obstructive pulmonary disease (COPD), pneumonia, bronchitis, and more. Through a combination of thorough examinations, diagnostic tests, and personalized treatment plans, we strive to provide you with the most effective and tailored care.",
+      "Our respiratory experts diagnose and manage asthma, COPD, pneumonia, bronchitis, and more through thorough examinations, diagnostic tests, and personalized treatment plans.",
   },
   {
-    title: "Pulmonary Function Testing:",
+    title: "Pulmonary Function Testing",
+    icon: Activity,
     content:
-      "We offer a comprehensive range of pulmonary function tests to evaluate lung function, measure lung capacity, and assess the efficiency of oxygen exchange. These tests help in diagnosing respiratory conditions, monitoring disease progression, and evaluating the effectiveness of treatment interventions.",
+      "Comprehensive pulmonary function tests evaluate lung function, measure capacity, and assess oxygen exchange — helping diagnose conditions and monitor treatment effectiveness.",
   },
   {
-    title: "Bronchoscopy:",
+    title: "Bronchoscopy",
+    icon: Microscope,
     content:
-      "Our department is equipped with advanced bronchoscopy technology, allowing us to visualize the airways and obtain tissue samples for further analysis. Bronchoscopy is a valuable tool for diagnosing lung diseases, detecting abnormalities, and guiding treatment decisions.",
+      "Advanced bronchoscopy technology allows us to visualize airways and obtain tissue samples for analysis, guiding diagnosis and treatment decisions for lung diseases.",
   },
   {
-    title: "Sleep Disorder Evaluation:",
+    title: "Sleep Disorder Evaluation",
+    icon: Moon,
     content:
-      "Sleep-related breathing disorders, such as sleep apnea, can have a significant impact on your health and quality of life. Our respiratory specialists can conduct sleep studies and evaluations to diagnose and manage these conditions effectively. We provide comprehensive sleep disorder management, including continuous positive airway pressure (CPAP) therapy, lifestyle modifications, and patient education.",
+      "Specialized sleep studies diagnose sleep apnea and related breathing disorders, with management including CPAP therapy, lifestyle modifications, and patient education.",
   },
   {
-    title: "Asthma and COPD Management:",
+    title: "Asthma & COPD Management",
+    icon: Wind,
     content:
-      "Our team is experienced in managing chronic respiratory conditions like asthma and COPD. We work closely with you to develop personalized treatment plans, including medications, inhaler techniques, lifestyle modifications, and self-management strategies, to help you gain control over your symptoms and improve your quality of life.",
+      "Personalized treatment plans including medications, inhaler techniques, lifestyle modifications, and self-management strategies to improve quality of life.",
   },
   {
-    title: "Smoking Cessation Programs:",
+    title: "Smoking Cessation & Rehabilitation",
+    icon: Cigarette,
     content:
-      "Quitting smoking is one of the most impactful steps you can take to improve your respiratory health. Our respiratory department offers specialized smoking cessation programs to support and guide individuals in their journey towards a smoke-free life. Our team of experts provides counseling, behavioral therapies, and medical interventions to help you quit smoking successfully.",
-  },
-  {
-    title: "Smoking Cessation Programs:",
-    content:
-      "For patients with chronic respiratory conditions, we offer specialized respiratory rehabilitation programs. These programs combine exercise, education, and emotional support to enhance lung capacity, reduce symptoms, and improve overall physical and mental well-being.",
+      "Specialized cessation programs with counseling, behavioral therapies, and medical interventions. Respiratory rehabilitation programs combine exercise and education to enhance lung capacity.",
   },
 ];
 
 const scopeOfTreatment = [
   "Asthma & Difficult Asthma",
   "Allergy",
-  "COPD(CHRONIC OBSTRUCTIVE PULMONARY DISEASE)",
+  "COPD (Chronic Obstructive Pulmonary Disease)",
   "ILD (Interstitial Lung Disease) & Rehabilitation",
-  "Sever Pneumonia",
+  "Severe Pneumonia",
   "Complicated Lung Infection",
-  "Bronchoscopy - Rigid & Flexible",
+  "Bronchoscopy — Rigid & Flexible",
   "Thoracoscopy",
   "EBUS",
   "Sleep Medicine",
-  "PLEUral catheter",
-  "TB/ Post TB Sequelae",
+  "Pleural Catheter",
+  "TB / Post TB Sequelae",
   "Respiratory Critical Care",
 ];
 
 const whyChooseUs = [
   {
-    title: "Expertise:",
+    title: "Expert Specialists",
+    icon: Users,
     content:
-      "Our team of skilled physicians and specialists bring extensive experience and knowledge to the table, ensuring that you receive the highest quality care.",
+      "Our skilled physicians bring extensive experience ensuring the highest quality respiratory care.",
   },
   {
-    title: "Advanced Technology:",
+    title: "Advanced Technology",
+    icon: BrainCircuit,
     content:
-      "We utilize cutting-edge equipment and diagnostic tools to provide accurate assessments and personalized treatment plans.",
+      "Cutting-edge diagnostic tools for accurate assessments and personalized treatment plans.",
   },
   {
-    title: "Patient-Centered Approach:",
+    title: "Patient-Centered Approach",
+    icon: HeartPulse,
     content:
-      "Your well-being and satisfaction are our top priorities. We strive to create a compassionate and supportive environment where you feel heard, understood, and actively involved in your treatment decisions.",
+      "A compassionate environment where you are heard, understood, and actively involved in decisions.",
   },
   {
-    title: "Collaborative Care:",
+    title: "Collaborative Care",
+    icon: ShieldCheck,
     content:
-      "Our respiratory department works closely with other specialties and departments within the hospital to provide comprehensive and integrated care, ensuring a holistic approach to your respiratory health.",
+      "We work closely with other specialties for comprehensive, integrated respiratory health care.",
   },
   {
-    title: "Education and Support:",
+    title: "Education & Support",
+    icon: Wind,
     content:
-      "We believe in empowering our patients with knowledge and support to actively manage their respiratory conditions. Through patient education, support groups, and resources, we equip you with the tools necessary for better self-care.",
+      "We empower patients with knowledge and support groups to actively manage their respiratory conditions.",
   },
 ];
 
@@ -139,6 +136,12 @@ const doctors = [
 
 /* ─── Sub-Components ─── */
 
+const SectionLabel = ({ text }: { text: string }) => (
+  <span className="inline-block text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3">
+    {text}
+  </span>
+);
+
 const SectionHeader = ({
   title,
   highlight,
@@ -147,30 +150,22 @@ const SectionHeader = ({
   highlight?: string;
 }) => (
   <div className="mb-6 2xl:mb-8">
-    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight uppercase tracking-tight">
-      {title} <span className="text-[#284a91] font-bold">{highlight}</span>
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
+      {title} <span className="text-[#1e3a8a] font-bold">{highlight}</span>
     </h2>
-    <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-cyan-600" />
-      <div className="h-[2px] w-12 bg-gray-300" />
+    <div className="flex items-center gap-2 mt-3">
+      <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+      <div className="h-[2px] w-12 bg-blue-100" />
     </div>
   </div>
-);
-
-const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-3 text-gray-800 mb-3 group text-base md:text-lg 2xl:text-xl font-bold">
-    <span className="text-cyan-600 mt-1.5 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0 text-xl leading-none">
-      ›
-    </span>
-    <span className="leading-relaxed">{text}</span>
-  </li>
 );
 
 /* ─── Page ─── */
 
 export default function RespiratoryClient() {
   return (
-    <main className="min-h-screen bg-white overflow-x-hidden">
+    <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
+
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#164e63] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
@@ -192,13 +187,13 @@ export default function RespiratoryClient() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-6xl font-bold text-white mb-4 leading-[1.1] font-heading">
               Department of{" "}
               <span className="text-cyan-400">
-                Pulmonology & Chest/Respiratory Medicine Department
+                Pulmonology &amp; Chest/Respiratory Medicine Department
               </span>
             </h1>
             <div className="flex flex-col sm:flex-row gap-4 mt-6">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-orange-600 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 text-center uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center justify-center gap-2 text-center uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
@@ -214,146 +209,231 @@ export default function RespiratoryClient() {
       </section>
 
       {/* ═══════ DEPARTMENT INFO SECTION ═══════ */}
-      <section className="py-16 xl:py-10 2xl:py-20 bg-white min-h screen">
+      <section className="py-20 xl:py-16 bg-white min-h-[600px]">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* ── Left Content ── */}
-            <div className="lg:col-span-8">
-              <SectionHeader
-                title="Department of"
-                highlight="Pulmonology & Chest/Respiratory Medicine Department"
-              />
-              <div className="space-y-6 text-gray-800 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed mb-12 font-medium text-justify">
-                <p>
-                  Our Respiratory medicine Department is dedicated to providing
-                  exceptional care of chest, lungs, and your Sleep Disorder that
-                  helps you to breathe and provide comprehensive treatment for a
-                  wide range of respiratory illness such as asthma, Difficult to
-                  treat Asthma, COPD(smoking/pollution related damage to lungs),
-                  pneumonia(INCLUDING COVID-19), lung cancer, lung fibrosis,
-                  sleep apnea, and other respiratory diseases.
+
+          {/* ── Intro + Doctor Grid ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Content */}
+            <div className="lg:col-span-8 space-y-6">
+              <SectionLabel text="About the Department" />
+              <SectionHeader title="Pulmonology &" highlight="Respiratory Medicine" />
+
+              <div className="space-y-4 text-gray-700 text-base md:text-[15px] leading-relaxed font-medium">
+                <p className="text-justify">
+                  Our Respiratory Medicine Department is dedicated to providing exceptional care of chest, lungs, and sleep disorders — helping you breathe and providing comprehensive treatment for a wide range of respiratory illnesses such as asthma, COPD, pneumonia (including COVID-19), lung cancer, lung fibrosis, sleep apnea, and more.
                 </p>
-                <div className="bg-cyan-50/50 p-6 rounded-xl border-l-4 border-cyan-600">
-                  <p>
-                    We understand the importance of healthy lungs and the impact
-                    that respiratory health has on our overall well-being. With
-                    our HIGHLY experienced team of respiratory specialists and
-                    state-of-the-art facilities, we are committed to helping you
-                    breathe easier and live a fulfilling life.
+                <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/60 to-transparent rounded-r-3xl shadow-sm">
+                  <p className="font-semibold text-gray-800">
+                    With our highly experienced team of respiratory specialists and state-of-the-art facilities, we are committed to helping you breathe easier and live a fulfilling life.
                   </p>
                 </div>
               </div>
+
+              {/* Quick highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                {[
+                  "Expert Pulmonologists on team",
+                  "Advanced Sleep Lab & Bronchoscopy",
+                  "Specialized ICU for respiratory care",
+                  "Comprehensive pulmonary testing",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3 bg-blue-50/50 rounded-xl px-4 py-3 border border-blue-100/60">
+                    <CheckCircle2 className="h-4 w-4 text-[#1e3a8a] shrink-0" />
+                    <span className="text-gray-700 text-xs sm:text-sm font-semibold">{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* ── Right Column (Doctor Slider) ── */}
+            {/* Doctor Sidebar */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit flex flex-col gap-10">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Respiratory Medicine"
-                />
+              <div className="sticky top-24 w-full h-fit">
+                <DoctorSlider doctors={doctors} departmentName="Respiratory Medicine" />
               </div>
             </div>
           </div>
 
-          {/* ── Services We Offer (Full Width) ── */}
-          <div className="mt-24 border-t border-gray-100 pt-24">
-            <SectionHeader title="Services" highlight="We Offer:" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 mt-10">
-              {services.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-5 group">
-                  <div className="w-12 h-12 rounded-xl bg-cyan-50 flex items-center justify-center flex-shrink-0 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white transition-all shadow-lg border border-cyan-100">
-                    <span className="font-bold text-lg">0{idx + 1}</span>
-                  </div>
-                  <div className="flex-1">
-                    <span className="font-bold text-[#0b1c43] text-xl block mb-2 uppercase tracking-tight">
-                      {item.title}
-                    </span>
-                    <p className="text-gray-800 text-base md:text-lg 2xl:text-xl leading-relaxed text-justify font-medium">
-                      {item.content}
-                    </p>
+          {/* ── Department Image + Overview ── */}
+          <div className="mt-20 border-t border-slate-100 pt-20">
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              {/* Image */}
+              <div className="lg:w-5/12 w-full flex justify-center">
+                <div className="relative w-full max-w-sm h-[340px] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white ring-2 ring-blue-100">
+                  <Image
+                    src="/images/departments-images/pulmonology.jpeg"
+                    alt="Pulmonology Department"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 bg-[#0b1c43]/90 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
+                    <p className="text-[8.5px] font-bold text-blue-300 uppercase tracking-widest mb-0.5">Department Overview</p>
+                    <p className="text-white text-[11px] leading-snug font-medium">Advanced care for all respiratory and pulmonary conditions.</p>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Content */}
+              <div className="lg:w-7/12 w-full space-y-6">
+                <SectionLabel text="Our Commitment" />
+                <SectionHeader title="Patient-Centered" highlight="Respiratory Care" />
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed font-medium">
+                  At our Respiratory Department, patient-centered care is our top priority. We strive to create a comfortable and supportive environment where you can openly discuss your concerns and receive the highest standard of pulmonary care.
+                </p>
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed font-medium">
+                  We understand the importance of healthy lungs and the impact that respiratory health has on our overall well-being. Our team is committed to providing you with the most effective and tailored care for every respiratory condition.
+                </p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <Link
+                    href="/book"
+                    className="bg-[#0b1c43] hover:bg-blue-900 text-white px-6 py-3 rounded-full font-bold transition-all flex items-center gap-2 text-xs uppercase tracking-widest shadow-lg"
+                  >
+                    Book Appointment <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* ── Scope of Treatment (Full Width with Background) ── */}
-          <div className="mt-32 bg-gray-50 -mx-4 px-4 sm:-mx-8 sm:px-8 py-24 rounded-[3rem] border border-gray-100">
-            <div className="max-w-6xl mx-auto px-4">
-              <SectionHeader title="Scope of" highlight="Treatment" />
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 mt-10">
+          {/* ── Services We Offer ── */}
+          <div className="mt-20 border-t border-slate-100 pt-20">
+            <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
+              <SectionLabel text="Clinical Services" />
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
+                Services <span className="text-[#1e3a8a]">We Offer</span>
+              </h2>
+              <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {services.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <article
+                    key={idx}
+                    className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-100 transition-all duration-300 flex flex-col gap-4 group"
+                  >
+                    <div className="h-12 w-12 rounded-2xl bg-blue-50 text-[#1e3a8a] flex items-center justify-center border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-base font-bold text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm font-medium leading-relaxed text-gray-500 flex-1">
+                      {item.content}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ── Scope of Treatment — dark blue band ── */}
+          <div className="mt-20 rounded-3xl bg-[#0b1c43] px-8 py-14 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#1e3a8a]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="relative z-10">
+              <div className="mb-10 text-center space-y-3">
+                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">Conditions Treated</span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
+                  Scope of <span className="text-blue-300">Treatment</span>
+                </h2>
+                <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {scopeOfTreatment.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 bg-blue-900/40 border border-blue-800/60 rounded-xl px-4 py-3 hover:bg-blue-800/50 hover:border-blue-600/60 transition-all duration-200 group"
+                  >
+                    <CheckCircle2 className="h-4 w-4 text-blue-400 shrink-0 group-hover:text-blue-300" />
+                    <span className="text-blue-100 text-xs sm:text-sm font-semibold leading-snug">{item}</span>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* ── Why Choose Us (Full Width with Border) ── */}
-          <div className="mt-32 px-6 py-20 rounded-[3rem] border-2 border-cyan-100/50 bg-white shadow-2xl shadow-cyan-900/5">
-            <div className="max-w-6xl mx-auto">
-              <SectionHeader
-                title="Why Choose Our"
-                highlight="Respiratory Department?"
-              />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 mt-12">
-                {whyChooseUs.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-6 group">
-                    <div className="w-14 h-14 rounded-2xl bg-cyan-50 flex items-center justify-center flex-shrink-0 text-cyan-600 border border-cyan-100 shadow-md group-hover:bg-cyan-600 group-hover:text-white transition-all">
-                      <svg
-                        className="w-7 h-7"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+          {/* ── Why Choose Us ── */}
+          <div className="mt-20 border-t border-slate-100 pt-20">
+            <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
+              <SectionLabel text="Our Strengths" />
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
+                Why Choose Our <span className="text-[#1e3a8a]">Respiratory Department</span>
+              </h2>
+              <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {whyChooseUs.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-blue-100 hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4 group"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#1e3a8a] border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <div>
-                      <span className="font-black text-[#0b1c43] text-xl block mb-3 uppercase tracking-tight">
+                    <div className="space-y-1.5">
+                      <h4 className="text-[#0b1c43] font-bold text-sm sm:text-base group-hover:text-[#1e3a8a] transition-colors">
                         {item.title}
-                      </span>
-                      <p className="text-gray-800 text-base md:text-lg 2xl:text-xl leading-relaxed text-justify font-medium">
+                      </h4>
+                      <p className="text-gray-500 text-xs sm:text-sm font-medium leading-relaxed">
                         {item.content}
                       </p>
                     </div>
                   </div>
-                ))}
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ── CTA Banner ── */}
+          <div className="mt-20 rounded-3xl overflow-hidden">
+            <div className="relative bg-gradient-to-br from-[#0b1c43] to-[#1e3a8a] px-8 py-14 text-center">
+              <div className="absolute inset-0 opacity-10 pointer-events-none">
+                <Image
+                  src="/images/departments-images/pulmonology.jpeg"
+                  alt="Pulmonology"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative z-10 max-w-2xl mx-auto space-y-5">
+                <p className="text-blue-300 text-xs font-bold uppercase tracking-widest">
+                  Patient-Centered Respiratory Care
+                </p>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-white font-heading leading-tight">
+                  Breathe freely with the Respiratory Department at{" "}
+                  <span className="text-[#E85222]">Popular Hospital</span>.
+                </h2>
+                <p className="text-blue-100/70 text-sm md:text-base font-medium leading-relaxed">
+                  Take the first step towards better respiratory health today. Our team is here to help you every step of the way.
+                </p>
+                <div className="h-[1px] w-24 bg-blue-500/40 mx-auto" />
+                <p className="text-blue-300 font-extrabold text-xl md:text-2xl uppercase tracking-widest">
+                  Breathe Easy. Live Fully.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 pt-2">
+                  <Link
+                    href="/book"
+                    className="bg-[#E85222] hover:bg-[#d04420] text-white px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-xs tracking-widest"
+                  >
+                    Schedule Appointment <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <GetCallBackButton
+                    department="Respiratory Medicine"
+                    className="bg-white/10 hover:bg-white/20 text-white px-7 py-3 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-xs tracking-widest"
+                  >
+                    <Phone className="h-4 w-4" /> Get a Call Back
+                  </GetCallBackButton>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* ── Call to Action ── */}
-          <div className="mt-32 space-y-12">
-            <div className="space-y-8 text-gray-800 text-lg md:text-xl 2xl:text-2xl leading-relaxed font-bold text-justify max-w-4xl mx-auto text-center">
-              <p>
-                At our Respiratory Department, patient-centered care is our top
-                priority. We strive to create a comfortable and supportive
-                environment where you can openly discuss your concerns.
-              </p>
-            </div>
-
-            <div className="p-10 border border-cyan-600/20 rounded-[3rem] bg-gradient-to-br from-cyan-50/50 to-white shadow-lg max-w-4xl mx-auto">
-              <p className="mb-8 text-center text-lg 2xl:text-xl font-medium text-gray-700">
-                Take the first step towards better respiratory health today.
-                Contact our Respiratory Department to schedule an appointment.
-              </p>
-              <div className="h-[1px] w-32 bg-gradient-to-r from-transparent via-cyan-200 to-transparent mx-auto mb-8" />
-              <p className="text-center text-[#0b1c43] font-bold text-xl md:text-2xl leading-tight">
-                Breathe freely with the Respiratory Department at{" "}
-                <span className="text-[#E85222]">Popular Hospital</span>.
-              </p>
-              <p className="text-center text-cyan-600 font-extrabold text-2xl md:text-3xl mt-6 uppercase tracking-[0.15em]">
-                Breathe Easy. Live Fully.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
     </main>

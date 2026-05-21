@@ -59,7 +59,7 @@ export default function OurVision2030Page() {
       <section className="relative flex min-h-[180px] items-center overflow-hidden bg-[#0b1c43] py-10 md:min-h-[220px]">
         <div className="absolute inset-0">
           <Image
-            src="/images/banners/trusted-healthcare-provider.jpg"
+            src="/images/banners/about_us_vision.jpg"
             alt="Vision 2030"
             fill
             className="object-cover opacity-30"

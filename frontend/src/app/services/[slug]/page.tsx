@@ -518,7 +518,9 @@ export default async function ServicePage({
       {/* ═══════ HERO ═══════ */}
       <section
         className={`relative w-full bg-[#1a2b3c] overflow-hidden flex items-center ${hasCompactHero
-          ? "min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] py-8 md:py-10 xl:py-6 2xl:py-12"
+          ? isPopularFindsService
+            ? "min-h-[180px] md:min-h-[220px] py-10"
+            : "min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] py-8 md:py-10 xl:py-6 2xl:py-12"
           : "h-[350px] md:h-[400px]"
           }`}
       >
@@ -543,23 +545,20 @@ export default async function ServicePage({
             >
               {service.title}
             </h1>
-            <nav
-              className="flex max-w-full flex-wrap items-center gap-y-1 text-sm md:text-base text-white/90 font-medium"
-              aria-label="Breadcrumb"
-            >
-              <Link href="/" className="hover:text-blue-300 transition-colors">
-                Home
-              </Link>
-              <span className="mx-2 text-red-600 font-bold">|</span>
-              <Link
-                href="/services"
-                className="hover:text-blue-300 transition-colors"
+            {!isPopularFindsService && (
+              <nav
+                className="flex max-w-full flex-wrap items-center gap-y-1 text-sm md:text-base text-white/90 font-medium"
+                aria-label="Breadcrumb"
               >
-                Services
-              </Link>
-              <span className="mx-2 text-red-600 font-bold">|</span>
-              <span className="text-white">{service.title}</span>
-            </nav>
+                <Link href="/" className="hover:text-blue-300 transition-colors">
+                  Home
+                </Link>
+                <span className="mx-2 text-red-600 font-bold">|</span>
+                <span>Services</span>
+                <span className="mx-2 text-red-600 font-bold">|</span>
+                <span className="text-white">{service.title}</span>
+              </nav>
+            )}
           </div>
         </div>
       </section>

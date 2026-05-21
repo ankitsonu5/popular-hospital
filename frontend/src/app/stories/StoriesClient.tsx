@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import type { PatientStory } from "@/lib/api";
 import {
   getStoryThumbnailUrl,
@@ -44,7 +43,7 @@ export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
           }
         `}
       </style>
-      <section className="relative w-full min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] py-8 md:py-10 xl:py-6 2xl:py-12 overflow-hidden flex items-center justify-center">
+      <section className="relative w-full min-h-[180px] md:min-h-[220px] py-10 overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 hidden md:block">
           <Image
             src="/images/banners/patient_testimonials_video.png"
@@ -68,25 +67,6 @@ export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
         </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 text-center text-white">
-          <Link
-            href="/"
-            className="inline-flex items-center text-sm text-gray-300 hover:text-white mb-6 transition-colors"
-          >
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
-            Back to Home
-          </Link>
           <h1 className="text-4xl md:text-6xl font-black font-heading tracking-tight mb-4 drop-shadow-lg">
             Patient Stories
           </h1>

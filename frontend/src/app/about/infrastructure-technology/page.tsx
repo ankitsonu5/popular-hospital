@@ -99,13 +99,13 @@ export default function InfrastructureTechnologyPage() {
       <section className="relative flex min-h-[180px] items-center overflow-hidden bg-[#0b1c43] py-10 md:min-h-[220px]">
         <div className="absolute inset-0">
           <Image
-            src="/images/banners/multi-specialty-hospital.jpg"
+            src="/images/banners/about_us_infra.jpg"
             alt="Infrastructure and technology"
             fill
-            className="object-cover opacity-25"
+            className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-[#0b1c43]/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43]/80 via-[#0b1c43]/60 to-[#0b1c43]/20" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">

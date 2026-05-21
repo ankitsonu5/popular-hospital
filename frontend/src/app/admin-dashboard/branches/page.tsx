@@ -117,7 +117,6 @@ export default function BranchesPage() {
         </div>
         <Link
           href="/admin-dashboard/branches/action"
-          target="_blank"
           className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0d9488] hover:bg-[#0b8578] text-white rounded-xl text-sm font-semibold transition-colors shadow-sm"
         >
           <Plus className="w-4 h-4" /> Add Branch
@@ -181,7 +180,6 @@ export default function BranchesPage() {
                   <div className="flex gap-1 shrink-0">
                     <Link
                       href={`/admin-dashboard/branches/action?id=${branch._id}`}
-                      target="_blank"
                       className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                     >
                       <Pencil className="w-4 h-4" />

@@ -7,6 +7,6 @@ export const metadata: Metadata = {
     "Expert nutritional counseling and personalized diet plans at Popular Hospital Dietetics & Nutrition Department.",
 };
 
-export default async function DieteticsNutritionPage() {
+export default function DieteticsNutritionPage() {
   return <DieteticsNutritionClient />;
 }

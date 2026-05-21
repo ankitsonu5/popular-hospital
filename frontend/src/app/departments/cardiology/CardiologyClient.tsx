@@ -13,26 +13,51 @@ const uspItems = [
     title: "Hi-Tech Cath Lab:-",
     content:
       "Cardiac department of Popular Hospital have a Cath lab equipped with hi-tech equipment where we carry out tests and procedures including ablation, angiogram, angioplasty, IVUS, Rotablation and implantation of pacemakers/icds etc.",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+      </svg>
+    ),
   },
   {
     title: "IVUS Facility:-",
     content:
       "Only center of eastern U.P. having HD-IVUS facility where we can detect exact amount of plaque its size, Degree of narrowing, restenosis & accurate stent placement.",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+      </svg>
+    ),
   },
   {
     title: "Dedicated Cardiac Team:-",
     content:
       "Our cardiac department have a team of expert and experienced Consultants with trained nursing staff especially for the cardiac services who are available 24x7 in cardiac care unit.",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
   },
   {
     title: "Non-Invasive cardiology program:-",
     content:
       'Popular hospital believes in saving life as its vision is to "Caring for Your Every Breath", the cardiac department performs all kind of non-invasive Procedure to save patient and give them a healthy and worry free life.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    ),
   },
   {
     title: "Round the clock support:-",
     content:
       "Popular Hospital provides 24x7 availability of doctors to support emergency cardiac services.",
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
   },
 ];
 
@@ -63,7 +88,7 @@ const doctors = [
     qualifications: "MBBS, DNB (General Medicine), DrNB (Cardiology)",
     designation: "Consultant Interventional cardiology",
     slug: "dr-tejas-mahajan",
-    image: "/uploads/doctors/1778846780966-dr-tejas-mahajan-jpg.jpeg",
+    image: "/images/departments_doctor/dr_tejas_mahajan.jpg.jpeg",
   },
   {
     name: "Dr. Hari Krishan Srivastava",
@@ -80,35 +105,6 @@ const doctors = [
     image: "/images/departments_doctor/dr_manoj-sharma.jpg",
   },
 ];
-
-/* ─── Components ─── */
-
-const SectionHeader = ({
-  title,
-  highlight,
-}: {
-  title: string;
-  highlight?: string;
-}) => (
-  <div className="mb-6 2xl:mb-8">
-    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-[#284a91]">{highlight}</span>
-    </h2>
-    <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
-      <div className="h-[2px] w-12 bg-gray-300" />
-    </div>
-  </div>
-);
-
-const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform">
-      ›
-    </span>
-    <span className="leading-relaxed">{text}</span>
-  </li>
-);
 
 /* ─── Page ─── */
 
@@ -166,7 +162,7 @@ export default function CardiologyPage() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2"
               >
                 <svg
                   className="w-5 h-5"
@@ -211,57 +207,56 @@ export default function CardiologyPage() {
       </section>
 
       {/* ═══════ CONTENT SECTION ═══════ */}
-      <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50/50">
+      <section className="py-16 xl:py-10 2xl:py-20 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
             {/* Left Content (8 cols) */}
-            <div className="lg:col-span-8">
-              <SectionHeader title="Department of" highlight="Cardiology" />
-              <div className="prose prose-blue max-w-none text-gray-800 space-y-4 mb-10 leading-relaxed text-base md:text-lg 2xl:text-xl font-medium text-justify">
-                <p>
-                  Popular Hospital is a Top cardiac hospital of eastern Uttar
-                  Pradesh ensuring best treatment for Heart Diseases. The entire
-                  cardiology department is the only center in this region to
-                  perform all coronary procedures via transradial route. The
-                  center is well equipped with state-of-the-art equipment using
-                  cutting-edge technology. From high end 2D Echocardiography to
-                  the latest Catheterisation laboratory where complex coronary,
-                  peripheral and structural interventions are being carried out
-                  on a day to day basis using the most modern tools such as
-                  Fractional flow Reserve (FFR)/ Rotatory Atherectomy
-                  (Roatablation), Intravascular Ultrasound
-                  (IVUS)/Electrophysiology.
-                </p>
-                <p>
-                  The cardiac department at Popular is an integrated healthcare
-                  center with a highly experienced, qualified, and dedicated
-                  team of cardiologists who work in complete coordination to
-                  provide comprehensive and multidisciplinary care to the
-                  patients suffering from heart ailments. At Popular we have
-                  pioneered the &apos;Heart Team&apos; approach where all
-                  cardiovascular problems are comprehensively evaluated, jointly
-                  discussed and individually planned for appropriate indicated
-                  therapies.
-                </p>
+            <div className="lg:col-span-8 space-y-12">
+
+              {/* Department Intro */}
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                    Department of <span className="text-[#1e3a8a]">Cardiology</span>
+                  </h2>
+                </div>
+                <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+                <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[17px] 2xl:text-lg font-medium text-justify">
+                  <p>
+                    Popular Hospital is a Top cardiac hospital of eastern Uttar
+                    Pradesh ensuring best treatment for Heart Diseases. The entire
+                    cardiology department is the only center in this region to
+                    perform all coronary procedures via transradial route. The
+                    center is well equipped with state-of-the-art equipment using
+                    cutting-edge technology. From high end 2D Echocardiography to
+                    the latest Catheterisation laboratory where complex coronary,
+                    peripheral and structural interventions are being carried out
+                    on a day to day basis using the most modern tools such as
+                    Fractional flow Reserve (FFR)/ Rotatory Atherectomy
+                    (Roatablation), Intravascular Ultrasound
+                    (IVUS)/Electrophysiology.
+                  </p>
+                  <p>
+                    The cardiac department at Popular is an integrated healthcare
+                    center with a highly experienced, qualified, and dedicated
+                    team of cardiologists who work in complete coordination to
+                    provide comprehensive and multidisciplinary care to the
+                    patients suffering from heart ailments. At Popular we have
+                    pioneered the &apos;Heart Team&apos; approach where all
+                    cardiovascular problems are comprehensively evaluated, jointly
+                    discussed and individually planned for appropriate indicated
+                    therapies.
+                  </p>
+                </div>
               </div>
 
-              <SectionHeader title="USP Of Cardiac" highlight="Departments" />
-              <ul className="space-y-4 mb-12">
-                {uspItems.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-blue-600 mt-1 font-bold">›</span>
-                    <p className="text-gray-800 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-lg font-medium">
-                      <span className="font-bold text-[#0b1c43]">
-                        {item.title}
-                      </span>{" "}
-                      {item.content}
-                    </p>
-                  </li>
-                ))}
-              </ul>
+
+
             </div>
 
-            {/* Right Sidebar - Doctor Card (4 cols) with Slider */}
+            {/* Right Sidebar - Doctor Card (4 cols) */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
                 <DoctorSlider doctors={doctors} departmentName="Cardiology" />
@@ -271,65 +266,105 @@ export default function CardiologyPage() {
         </div>
       </section>
 
-      {/* ═══════ WHAT WE TREAT SECTION ═══════ */}
-      <section className="py-20 xl:py-12 2xl:py-24 bg-white overflow-hidden">
+      {/* ═══════ USP SECTION ═══════ */}
+      <section className="py-16 xl:py-12 2xl:py-20 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
-            <div className="order-2 lg:order-1">
-              <SectionHeader title="What we" highlight="treat:" />
-              <ul className="grid grid-cols-1 md:grid-cols-1 gap-x-8 mt-6">
-                {treatmentList.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
-            </div>
-
-            <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-blue-50 rounded-3xl" />
-                <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
-                  <Image
-                    src="/images/departments-images/coronary_angiography.jpeg"
-                    alt="Cardiac Treatment"
-                    fill
-                    className="object-cover"
-                  />
+          <div className="flex items-center gap-3 mb-2">
+            <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+              USP Of Cardiac <span className="text-[#1e3a8a]">Departments</span>
+            </h2>
+          </div>
+          <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+          
+          <div className="grid grid-cols-1 gap-4">
+            {uspItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100"
+              >
+                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-[#1e3a8a] text-white flex items-center justify-center shadow-sm shadow-blue-200">
+                  {item.icon}
+                </div>
+                <div>
+                  <p className="text-gray-900 leading-relaxed text-base md:text-[15px] 2xl:text-base font-medium">
+                    <span className="font-bold text-[#0b1c43]">
+                      {item.title}
+                    </span>{" "}
+                    {item.content}
+                  </p>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════ NON-INVASIVE SECTION ═══════ */}
-      <section className="py-20 xl:py-12 2xl:py-24 bg-gray-50 overflow-hidden">
+      {/* ═══════ WHAT WE TREAT + NON-INVASIVE - side by side ═══════ */}
+      <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
-            <div className="mb-12 lg:mb-0 relative">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-blue-100 rounded-3xl" />
-                <div className="relative h-full w-full overflow-hidden shadow-lg rounded-3xl border-4 border-white">
-                  <Image
-                    src="/images/departments-images/preventive_cardiology.jpeg"
-                    alt="Preventive Cardiology"
-                    fill
-                    className="object-cover"
-                  />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            {/* What We Treat */}
+            <div className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
+              <div className="relative h-52 w-full">
+                <Image
+                  src="/images/departments-images/coronary_angiography.jpeg"
+                  alt="Cardiac Treatment"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/80 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5">
+                  <h2 className="text-xl md:text-2xl font-bold text-white font-heading">
+                    What we <span className="text-blue-300">treat:</span>
+                  </h2>
                 </div>
+              </div>
+              <div className="p-6">
+                <ul className="space-y-3">
+                  {treatmentList.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-gray-700 text-[15px] font-medium">
+                      <span className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] inline-block" />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
-            <div>
-              <SectionHeader
-                title="Non-invasive and"
-                highlight="preventive Cardiology:"
-              />
-              <ul className="grid grid-cols-1 md:grid-cols-1 gap-x-8 mt-6">
-                {preventiveList.map((item, idx) => (
-                  <ListItem key={idx} text={item} />
-                ))}
-              </ul>
+            {/* Non-Invasive */}
+            <div className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
+              <div className="relative h-52 w-full">
+                <Image
+                  src="/images/departments-images/preventive_cardiology.jpeg"
+                  alt="Preventive Cardiology"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/80 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5">
+                  <h2 className="text-xl md:text-2xl font-bold text-white font-heading">
+                    Non-invasive and <span className="text-blue-300">preventive Cardiology:</span>
+                  </h2>
+                </div>
+              </div>
+              <div className="p-6">
+                <ul className="space-y-3">
+                  {preventiveList.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-gray-700 text-[15px] font-medium">
+                      <span className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] inline-block" />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
+
           </div>
         </div>
       </section>

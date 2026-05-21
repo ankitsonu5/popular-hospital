@@ -51,10 +51,10 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6">
     <h2 className="text-3xl font-bold text-[#0b1c43] font-heading uppercase tracking-tight">
-      {title} <span className="text-[#284a91] font-bold">{highlight}</span>
+      {title} <span className="text-[#1e3a8a] font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
+      <div className="w-2 h-2 rounded-full bg-[#1e3a8a]" />
       <div className="h-[2px] w-12 bg-gray-300" />
     </div>
   </div>
@@ -88,7 +88,7 @@ export default function LaboratoryMedicineClient() {
             <div className="flex flex-wrap gap-4 mt-8">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 <svg
                   className="w-5 h-5"
@@ -156,7 +156,7 @@ export default function LaboratoryMedicineClient() {
 
               <div className="mt-12 grid grid-cols-2 gap-8 w-full border-t border-gray-100 pt-12">
                 <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-inner group hover:bg-white hover:shadow-md transition-all">
-                  <p className="text-5xl font-black text-blue-600 mb-2 group-hover:scale-110 transition-transform">
+                  <p className="text-5xl font-black text-[#1e3a8a] mb-2 group-hover:scale-110 transition-transform">
                     NABL
                   </p>
                   <p className="text-slate-500 font-bold uppercase text-xs tracking-[0.2em]">
@@ -164,7 +164,7 @@ export default function LaboratoryMedicineClient() {
                   </p>
                 </div>
                 <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-inner group hover:bg-white hover:shadow-md transition-all">
-                  <p className="text-5xl font-black text-blue-600 mb-2 group-hover:scale-110 transition-transform">
+                  <p className="text-5xl font-black text-[#1e3a8a] mb-2 group-hover:scale-110 transition-transform">
                     100%
                   </p>
                   <p className="text-slate-500 font-bold uppercase text-xs tracking-[0.2em]">
@@ -221,13 +221,13 @@ export default function LaboratoryMedicineClient() {
       <section className="py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent" />
         <div className="mx-auto w-full max-w-[1366px] px-6 text-center mb-16">
-          <span className="text-blue-600 font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">
+          <span className="text-[#1e3a8a] font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">
             Excellence in Diagnostics
           </span>
           <h2 className="text-3xl md:text-5xl font-black text-[#0b1c43] mb-4 font-heading uppercase tracking-tight">
             Complete Test Range
           </h2>
-          <div className="w-24 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1.5 bg-[#1e3a8a] mx-auto rounded-full"></div>
         </div>
 
         <div className="mx-auto w-full max-w-[1366px] px-6">
@@ -250,7 +250,7 @@ export default function LaboratoryMedicineClient() {
                 key={i}
                 className="bg-white p-10 rounded-[2.5rem] border border-slate-100 hover:shadow-2xl transition-all duration-500 group transform hover:-translate-y-2"
               >
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mb-8 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-[#1e3a8a] mb-8 group-hover:bg-[#1e3a8a] group-hover:text-white transition-all shadow-lg">
                   <svg
                     className="w-6 h-6"
                     fill="none"
@@ -274,7 +274,7 @@ export default function LaboratoryMedicineClient() {
                       key={j}
                       className="flex items-center gap-3 text-slate-700 font-bold group/item"
                     >
-                      <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] group-hover/item:scale-110 transition-transform">
+                      <span className="w-6 h-6 rounded-full bg-[#1e3a8a] text-white flex items-center justify-center text-[10px] group-hover/item:scale-110 transition-transform">
                         <svg
                           className="w-3 h-3"
                           fill="none"

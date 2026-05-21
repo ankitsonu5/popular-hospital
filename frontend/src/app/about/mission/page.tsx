@@ -13,7 +13,7 @@ export default function VisionMissionPage() {
       <section className="relative bg-[#0b1c43] overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0">
           <Image
-            src="/images/about_popular/vision_mission.webp"
+            src="/images/banners/about_us_mission.jpg"
             alt="Vision Banner"
             fill
             className="object-cover opacity-15"

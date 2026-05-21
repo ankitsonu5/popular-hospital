@@ -30,10 +30,10 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-      {title} <span className="text-[#284a91]">{highlight}</span>
+      {title} <span className="text-[#1e3a8a]">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
+      <div className="w-2 h-2 rounded-full bg-[#1e3a8a]" />
       <div className="h-[2px] w-12 bg-gray-300" />
     </div>
   </div>
@@ -41,7 +41,7 @@ const SectionHeader = ({
 
 const ListItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform">
+    <span className="text-[#1e3a8a] mt-1 font-bold group-hover:translate-x-1 transition-transform">
       ›
     </span>
     <span className="leading-relaxed">{text}</span>
@@ -97,7 +97,7 @@ export default async function DepartmentPage({ params }: Props) {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#e11d48] hover:bg-rose-700 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-rose-500/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2"
               >
                 <svg
                   className="w-5 h-5"

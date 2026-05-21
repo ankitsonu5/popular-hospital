@@ -9,7 +9,13 @@ const services = [
     href: "/departments/cardiology",
   },
   {
-    title: "Neuro Surgery",
+    title: "Cardiothoracic & Vascular Surgery (CTVS)",
+    desc: "Advanced heart, lung, and vascular surgery services.",
+    image: "/images/departments-images/cardiothoracic_vascular_surgery.jpeg",
+    href: "/departments/ctvs",
+  },
+  {
+    title: "Neurosurgery",
     desc: "Advanced surgical treatments for brain and spine disorders.",
     image: "/images/departments-images/neuro-surgery.jpeg",
     href: "/departments/neurosurgery",
@@ -45,25 +51,43 @@ const services = [
     href: "/departments/burns-plastic-surgery",
   },
   {
-    title: "Laparoscopic & General Surgery",
+    title: "Interventional Radiology",
+    desc: "Minimally invasive image-guided diagnosis and treatment.",
+    image: "/images/departments-images/radiology.jpeg",
+    href: "/departments/interventional-radiology",
+  },
+  {
+    title: "Pediatric Surgery",
+    desc: "Specialized surgical care for infants, children, and adolescents.",
+    image: "/images/departments-images/pediatric_surgery.avif",
+    href: "/departments/pediatric-surgery",
+  },
+  {
+    title: "Pediatric Cardiology",
+    desc: "Heart care for newborns, children, and young patients.",
+    image: "/images/departments-images/preventive_cardiology.jpeg",
+    href: "/departments/pediatric-cardiology",
+  },
+  {
+    title: "Laparoscopy & General Surgery",
     desc: "Department of Laparoscopic & General Surgery",
     image: "/images/departments-images/laparoscopic.jpeg",
     href: "/departments/general-surgery",
   },
   {
-    title: "Obstetrics and Gynecology",
+    title: "Obstetrics & Gynaecology",
     desc: "Care for pregnancy, childbirth, and women's health.",
     image: "/images/departments-images/obstetrics_and_gynaecology.jpeg",
     href: "/departments/gynaecology",
   },
   {
-    title: "Paediatrics and Neonatology",
+    title: "Pediatrics And Neonatology",
     desc: "Medical care for infants, children, and adolescents.",
     image: "/images/departments-images/paediatrics.jpeg",
     href: "/departments/pediatrics",
   },
   {
-    title: "Orthopaedic & Joint Replacement",
+    title: "Orthopedics & Joint Replacement",
     desc: "Treatment for bones, joints, ligaments, and nerves.",
     image: "/images/departments-images/orthopaedic.jpeg",
     href: "/departments/orthopedics",
@@ -75,10 +99,22 @@ const services = [
     href: "/departments/general-medicine",
   },
   {
-    title: "Department of ENT",
+    title: "IVF & Fertility",
+    desc: "Fertility care, assisted reproduction, and family planning support.",
+    image: "/images/banners/laboratory_medicine.png",
+    href: "/departments/ivf-fertility",
+  },
+  {
+    title: "ENT",
     desc: "Ear, Nose, and Throat diagnostics and surgery.",
     image: "/images/departments-images/ent.jpeg",
     href: "/departments/ent",
+  },
+  {
+    title: "Dietetics & Nutrition",
+    desc: "Personalized nutrition guidance for recovery and wellness.",
+    image: "/images/banners/dietetics_nutrition.jpg",
+    href: "/departments/dietetics-nutrition",
   },
   {
     title: "Ophthalmology",
@@ -87,16 +123,28 @@ const services = [
     href: "/departments/ophthalmology",
   },
   {
-    title: "Dental Care",
+    title: "Dental",
     desc: "Comprehensive dentistry and oral surgeries.",
     image: "/images/departments-images/dental-care.jpeg",
     href: "/departments/dental",
   },
   {
-    title: "Pulmonology & Chest Medicine",
+    title: "Respiratory Medicine",
     desc: "Respiratory and lung health specialists.",
     image: "/images/departments-images/pulmonology.jpeg",
     href: "/departments/respiratory",
+  },
+  {
+    title: "Pain Medicine",
+    desc: "Diagnosis and management of acute and chronic pain conditions.",
+    image: "/images/banners/pain_management_banner.png",
+    href: "/departments/pain-management",
+  },
+  {
+    title: "Psychiatry Department",
+    desc: "Mental health consultation, therapy, and psychiatric care.",
+    image: "/images/banners/psychiatry_banner.png",
+    href: "/departments/psychiatry",
   },
   {
     title: "Advanced Diabetic Foot Unit",
@@ -113,7 +161,7 @@ export default function ServicesPage() {
       <section className="relative min-h-[180px] md:min-h-[220px] w-full bg-[#1a2b3c] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/department_banner.jpg"
+            src="/images/banners/department_banner.jpg"
             alt="Our Departments"
             fill
             className="object-cover object-center opacity-80"
@@ -166,7 +214,7 @@ export default function ServicesPage() {
                 {/* Content Section */}
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="mb-4">
-                    <span className="text-[13px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal">
+                    <span className="text-[13px] font-extrabold uppercase tracking-wider mb-2 block text-[#2F5597]">
                       Department of
                     </span>
                     <h3 className="text-xl md:text-2xl font-bold text-[#1d1d1f] mb-3 font-heading leading-tight group-hover:text-[#E85222] transition-colors">

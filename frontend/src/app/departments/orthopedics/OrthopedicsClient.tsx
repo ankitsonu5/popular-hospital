@@ -2,103 +2,137 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { Check, Bone, Zap, ShieldCheck, Activity, Clock, Award } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
-/* ─── Data (Transcribed from Image) ─── */
+/* ─── Data ─── */
 
 const introParagraphs = [
   "The Orthopedics and Joint Replacement department provides comprehensive care in the field of Orthopedics by experienced and highly skilled surgeons backed by highly advanced and the world-class technology and post-operative physical rehabilitation by Physiotherapists.",
   "The Joint Replacement Centre chooses Minimally Invasive Surgical Techniques (MIS), Navigation Technology and High Quality Prosthesis to provide quick functional recovery and a shorter hospital stay. For early Osteoarthritis patients, the center provides Unicondylar (Partial Knee Replacement) for a pain free life.",
-  "For Arthroscopy and Sports Injury we are well equipped with the latest Arthroscopic system and instruments to provide treatment for all common sports related injuries like ACL Tear, PCL Tear, Meniscal injury, Chondral Damage, Recurrent Patellar Dislocation, Recurrent Shoulder Dislocation, Rotator Cuff Injury, Slap Lesion and Shoulder Impingement. Our doctors are supported by expert team of physiotherapists for speedy recovery and provide rehabilitation to bring the patient to a pre injury level and start sports activity quickly.",
+  "For Arthroscopy and Sports Injury we are well equipped with the latest Arthroscopic system and instruments to provide treatment for all common sports related injuries like ACL Tear, PCL Tear, Meniscal injury, Chondral Damage, Recurrent Patellar Dislocation, Recurrent Shoulder Dislocation, Rotator Cuff Injury, Slap Lesion and Shoulder Impingement.",
   "Our Trauma Center provides a multidisciplinary treatment involving General Surgeons, Neurosurgeons, Chest Physicians, Intensivists, Plastic Surgeons, In-House Blood Bank and state-of-the-art ICU care to treat cases of Poly Trauma.",
 ];
 
-const replacementServices = [
-  "Total Knee Replacement",
-  "Partial (Unicondylar) Knee Replacement",
-  "Total Hip Replacement",
-  "Revision Hip and Knee Replacement",
-  "Total Elbow Replacement",
-  "Total Shoulder Replacement",
-];
-
-const arthroscopyServices = [
-  "ACL/PCL Reconstruction",
-  "Meniscal Repair",
-  "Chondroplasty",
-  "Rotator Cuff Repair",
-  "SLAP Tear Repair",
-  "Sub Acromial Decompression",
-];
-
-const limbReconstruction = [
-  "Ilizarov",
-  "Rail Fixation",
-  "Tendon Transfer",
-  "Deformity Correction",
-  "SLAP Tear Repair",
-  "Sub Acromial Decompression",
-];
-
-const traumaServices = [
-  "Minimally Invasive Techniques for Plating",
-  "Multidisciplinary Treatment of Polytrauma",
-];
-
-const pediatricOrthopedics = [
-  "CTEV (Club Foot)",
-  "CDH (Congenital Dislocation Hip)",
-  "Polydactyly correction",
-  "Genu Varum/ Valgus col-md-12 correction",
-  "Cubitus-Varus/Valgus col-md-12 correction",
-];
-
-const spineSurgeries = [
-  "Microscopic Discectomy",
-  "Spinal Fixation",
-  "Lumbar Canal Stenosis Decompression",
-  "Correction of Spondylolisthesis",
-  "Kyphoplasty",
+const stats = [
+  { value: "MIS", label: "Minimally Invasive Techniques", icon: Zap },
+  { value: "Nav", label: "Navigation Technology", icon: Activity },
+  { value: "24×7", label: "Trauma Care", icon: Clock },
+  { value: "6+", label: "Specialty Sub-Divisions", icon: Award },
 ];
 
 const treatmentCategories = [
   {
     id: "replacement",
-    title: "Replacement Services",
+    title: "Joint Replacement",
+    tag: "Surgical",
     image: "/images/departments-images/orthopedics.jpg",
-    services: replacementServices,
+    services: [
+      "Total Knee Replacement",
+      "Partial (Unicondylar) Knee Replacement",
+      "Total Hip Replacement",
+      "Revision Hip and Knee Replacement",
+      "Total Elbow Replacement",
+      "Total Shoulder Replacement",
+    ],
   },
   {
     id: "arthroscopy",
     title: "Arthroscopy & Sports Injury",
+    tag: "Sports Medicine",
     image: "/images/departments-images/advance_orthopedics.jpg",
-    services: arthroscopyServices,
+    services: [
+      "ACL/PCL Reconstruction",
+      "Meniscal Repair",
+      "Chondroplasty",
+      "Rotator Cuff Repair",
+      "SLAP Tear Repair",
+      "Sub Acromial Decompression",
+    ],
   },
   {
     id: "limb",
     title: "Limb Reconstruction",
+    tag: "Reconstructive",
     image: "/images/departments-images/orthopaedic.jpeg",
-    services: limbReconstruction,
+    services: [
+      "Ilizarov",
+      "Rail Fixation",
+      "Tendon Transfer",
+      "Deformity Correction",
+      "SLAP Tear Repair",
+      "Sub Acromial Decompression",
+    ],
   },
   {
     id: "trauma",
-    title: "Trauma",
+    title: "Trauma Care",
+    tag: "Emergency",
     image: "/images/departments-images/trauma_ortho.webp",
-    services: traumaServices,
+    services: [
+      "Minimally Invasive Techniques for Plating",
+      "Multidisciplinary Treatment of Polytrauma",
+    ],
   },
   {
     id: "pediatric",
     title: "Pediatric Orthopedics",
+    tag: "Pediatric",
     image: "/images/departments-images/pediatric_orthopedics.jpg",
-    services: pediatricOrthopedics,
+    services: [
+      "CTEV (Club Foot)",
+      "CDH (Congenital Dislocation Hip)",
+      "Polydactyly correction",
+      "Genu Varum / Valgus correction",
+      "Cubitus-Varus / Valgus correction",
+    ],
   },
   {
     id: "spine",
-    title: "Spine surgeries",
+    title: "Spine Surgeries",
+    tag: "Spine",
     image: "/images/departments-images/spine-surgery.jpg",
-    services: spineSurgeries,
+    services: [
+      "Microscopic Discectomy",
+      "Spinal Fixation",
+      "Lumbar Canal Stenosis Decompression",
+      "Correction of Spondylolisthesis",
+      "Kyphoplasty",
+    ],
+  },
+];
+
+const whyUs = [
+  {
+    icon: Zap,
+    title: "Minimally Invasive Surgery",
+    desc: "MIS techniques for faster recovery, less pain and shorter hospital stay",
+  },
+  {
+    icon: Activity,
+    title: "Navigation Technology",
+    desc: "Advanced navigation for precise implant placement and better outcomes",
+  },
+  {
+    icon: ShieldCheck,
+    title: "High Quality Prosthesis",
+    desc: "World-class implants ensuring long-lasting functional recovery",
+  },
+  {
+    icon: Clock,
+    title: "24×7 Trauma Support",
+    desc: "Round-the-clock multidisciplinary team for emergency polytrauma cases",
+  },
+  {
+    icon: Bone,
+    title: "Expert Physiotherapy",
+    desc: "Dedicated physiotherapists for post-operative rehabilitation",
+  },
+  {
+    icon: Award,
+    title: "Experienced Surgeons",
+    desc: "Highly skilled orthopedic surgeons backed by world-class technology",
   },
 ];
 
@@ -113,52 +147,21 @@ const doctors = [
   {
     name: "Dr. Md Akhtar Ali Ansari",
     qualifications: "MBBS, MS (Orthopedics) AIIMS, New Delhi",
-    designation:
-      "Specialist in Joint Replacement, Arthroscopy, Spine Surgery & Trauma Care",
+    designation: "Specialist in Joint Replacement, Arthroscopy, Spine Surgery & Trauma Care",
     slug: "dr-md-akhtar-ali-ansari",
     image: "/images/departments_doctor/dr_ohd_akhtar_ali_ansari.jpg",
   },
 ];
 
-/* ─── Sub-Components ─── */
-
-const SectionHeader = ({
-  title,
-  highlight,
-}: {
-  title: string;
-  highlight?: string;
-}) => (
-  <div className="mb-6 2xl:mb-8">
-    <h2 className="text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-      {title} <span className="text-[#284a91] font-bold">{highlight}</span>
-    </h2>
-    <div className="flex items-center gap-2 mt-2">
-      <div className="w-2 h-2 rounded-full bg-blue-600" />
-      <div className="h-[2px] w-12 bg-gray-300" />
-    </div>
-  </div>
-);
-
-const ListItem = ({ text }: { text: string }) => (
-  <li className="flex items-start gap-2 text-gray-800 mb-2 group text-base md:text-lg 2xl:text-xl font-medium">
-    <span className="text-blue-600 mt-1 font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
-      ›
-    </span>
-    <span className="leading-relaxed">{text}</span>
-  </li>
-);
-
 /* ─── Page ─── */
 
 export default function OrthopedicsClient() {
-  const [selectedCategory, setSelectedCategory] = useState(
-    treatmentCategories[0],
-  );
-
   return (
     <div className="bg-white overflow-x-hidden">
-      {/* ═══════ HERO ═══════ */}
+
+      {/* ══════════════════════════════════════
+          HERO  (unchanged)
+      ══════════════════════════════════════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
@@ -182,7 +185,7 @@ export default function OrthopedicsClient() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
@@ -197,132 +200,179 @@ export default function OrthopedicsClient() {
         </div>
       </section>
 
-      {/* ═══════ TOP SECTION: INTRO + DOCTOR ═══════ */}
+      {/* ══════════════════════════════════════
+          INTRO + DOCTOR SLIDER  (unchanged)
+      ══════════════════════════════════════ */}
       <section className="py-12 xl:py-10 2xl:py-20 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* ── Left Content ── */}
+            {/* Left Content */}
             <div className="lg:col-span-8">
-              <SectionHeader
-                title="Department of"
-                highlight="Orthopedics & Joint Replacement"
-              />
-              <div className="space-y-6 text-gray-700 text-sm md:text-[15px] xl:text-[14px] 2xl:text-lg leading-relaxed mb-12 text-justify font-medium">
-                {introParagraphs.map((para, idx) => (
-                  <p key={idx}>{para}</p>
-                ))}
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                  Department of{" "}
+                  <span className="text-[#1e3a8a]">Orthopedics & Joint Replacement</span>
+                </h2>
+              </div>
+              <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
+              <div className="space-y-5 text-gray-700 text-base md:text-[15px] font-medium leading-relaxed">
+                <p>{introParagraphs[0]}</p>
+                <div className="border-l-4 border-blue-500 pl-5 py-3 bg-blue-50/40 rounded-r-2xl">
+                  <p>{introParagraphs[1]}</p>
+                </div>
+                <p>{introParagraphs[2]}</p>
+                <p>{introParagraphs[3]}</p>
               </div>
             </div>
-
-            {/* Doctor Column (Sidebar style inside central row) */}
+            {/* Right Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="w-full h-fit sticky top-24">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Orthopedics & Joint Replacement"
-                />
+                <DoctorSlider doctors={doctors} departmentName="Orthopedics & Joint Replacement" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════ TREATMENTS INTERACTIVE SECTION ═══════ */}
-      <section className="py-20 xl:py-12 2xl:py-24 bg-[#fafafa] overflow-hidden">
-        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl 2xl:text-6xl font-bold text-[#333] mb-4 font-heading">
-              Treatments
-            </h2>
+      {/* ══════════════════════════════════════
+          STATS STRIP
+      ══════════════════════════════════════ */}
+      <section className="bg-[#0b1c43] py-10 border-t border-blue-900">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map(({ value, label, icon: Icon }, idx) => (
+              <div
+                key={idx}
+                className="flex flex-col items-center text-center gap-2 py-4 px-2 border border-blue-800/50 rounded-2xl hover:bg-blue-900/30 transition-colors duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-300 flex items-center justify-center mb-1">
+                  <Icon className="w-6 h-6" />
+                </div>
+                <span className="text-3xl font-bold text-white font-heading">{value}</span>
+                <span className="text-blue-300 text-xs font-semibold tracking-widest uppercase">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          TREATMENT SPECIALTIES  –  card grid
+      ══════════════════════════════════════ */}
+      <section className="py-16 xl:py-14 2xl:py-20 bg-slate-50 border-t border-slate-100">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+
+          {/* Heading */}
+          <div className="mb-10">
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+              Our Specialties
+            </span>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                Treatment <span className="text-[#1e3a8a]">Categories</span>
+              </h2>
+            </div>
+            <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Sidebar */}
-            <div className="lg:col-span-3 order-2 lg:order-1">
-              <div className="flex flex-col border-t border-gray-200">
-                {treatmentCategories.map((cat) => (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`flex items-center justify-between py-5 px-4 border-b border-gray-200 transition-all duration-300 group ${
-                      selectedCategory.id === cat.id
-                        ? "text-[#E85222] font-bold bg-white shadow-sm"
-                        : "text-gray-700 hover:text-[#E85222] hover:bg-gray-50 font-medium"
-                    }`}
-                  >
-                    <span className="text-left text-lg 2xl:text-xl">
-                      {cat.title}
-                    </span>
-                    <span
-                      className={`transition-transform duration-300 ${
-                        selectedCategory.id === cat.id
-                          ? "translate-x-0"
-                          : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
-                      }`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Middle Circular Image */}
-            <div className="lg:col-span-5 flex justify-center order-1 lg:order-2 mb-10 lg:mb-0">
-              <div className="relative group">
-                {/* Decorative Dashed Rings */}
-                <div className="absolute inset-[-20px] rounded-full border-2 border-dashed border-gray-300 animate-[spin_20s_linear_infinite] group-hover:border-[#E85222]/50 transition-colors" />
-                <div className="absolute inset-[-10px] rounded-full border border-gray-200" />
-
-                {/* Main Circular Image */}
-                <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] 2xl:w-[500px] 2xl:h-[500px] rounded-full overflow-hidden border-8 border-white shadow-2xl transition-transform duration-500 group-hover:scale-105">
+          {/* 3-column card grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {treatmentCategories.map((cat) => (
+              <div
+                key={cat.id}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group flex flex-col"
+              >
+                {/* Card Image */}
+                <div className="relative w-full h-44 overflow-hidden">
                   <Image
-                    key={selectedCategory.id}
-                    src={selectedCategory.image}
-                    alt={selectedCategory.title}
+                    src={cat.image}
+                    alt={cat.title}
                     fill
-                    className="object-cover transition-opacity duration-500 animate-fade-in"
+                    className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 to-transparent" />
+                  {/* Tag */}
+                  <span className="absolute top-3 left-3 bg-[#1e3a8a] text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                    {cat.tag}
+                  </span>
+                  {/* Title overlay */}
+                  <h3 className="absolute bottom-3 left-4 right-4 text-white font-bold text-base leading-tight font-heading">
+                    {cat.title}
+                  </h3>
+                </div>
+
+                {/* Services list */}
+                <div className="p-5 flex-1 flex flex-col gap-2">
+                  {cat.services.map((service, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-md bg-blue-50 text-[#1e3a8a] flex items-center justify-center mt-0.5 border border-blue-100">
+                        <Check className="w-3 h-3" />
+                      </div>
+                      <p className="text-gray-600 text-xs leading-relaxed font-medium">{service}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-
-            {/* Right Content */}
-            <div className="lg:col-span-4 order-3">
-              <div className="animate-fade-in pl-4 lg:pl-10 2xl:pl-16">
-                <h3 className="text-2xl 2xl:text-4xl font-bold text-[#333] mb-6 flex items-center gap-3">
-                  <span className="w-8 h-[2px] bg-[#E85222]" />
-                  {selectedCategory.title}
-                </h3>
-                <ul className="space-y-4">
-                  {selectedCategory.services.map((service, idx) => (
-                    <li key={idx} className="flex items-start gap-3 group">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E85222] flex-shrink-0 group-hover:scale-150 transition-transform" />
-                      <span className="text-gray-700 text-lg 2xl:text-2xl leading-relaxed font-medium">
-                        {service}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════
+          WHY CHOOSE US  –  white theme feature grid
+      ══════════════════════════════════════ */}
+      <section className="py-16 xl:py-14 2xl:py-20 bg-white border-t border-slate-100">
+        <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
+
+          {/* Heading */}
+          <div className="mb-10">
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
+              Why Choose Us
+            </span>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
+                Our <span className="text-[#1e3a8a]">Strengths</span>
+              </h2>
+            </div>
+            <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent" />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+            {/* Left – Feature Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {whyUs.map(({ icon: Icon, title, desc }, idx) => (
+                <div
+                  key={idx}
+                  className="bg-slate-50 border border-slate-100 rounded-2xl p-5 hover:bg-blue-50/50 hover:border-blue-100 transition-all duration-300"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#1e3a8a] text-white flex items-center justify-center mb-3 shadow-lg shadow-blue-200">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-[#0b1c43] font-bold text-sm mb-1">{title}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Right – Image */}
+            <div className="relative w-full aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-md border-8 border-slate-100">
+              <Image
+                src="/images/departments-images/orthopedics.jpg"
+                alt="Orthopedics Expertise"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
