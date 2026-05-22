@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 import {
@@ -35,13 +35,13 @@ interface Booking {
   branch: { _id: string; name: string; slug: string };
   slot_date: string;
   slot_time: string;
-  status: "pending" | "confirmed" | "done";
+  status: "pending" | "confirmed" | "done" | "rejected";
   notes: string;
   isRead: boolean;
   createdAt: string;
 }
 
-type TabType = "all" | "unread" | "pending" | "confirmed" | "done";
+type TabType = "all" | "unread" | "pending" | "confirmed" | "done" | "rejected";
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -70,18 +70,21 @@ const STATUS_LABEL: Record<string, string> = {
   pending: "Pending",
   confirmed: "Confirmed",
   done: "Done",
+  rejected: "Rejected",
 };
 
 const STATUS_STYLES: Record<string, string> = {
   pending: "text-amber-700 bg-amber-50 border-amber-200",
   confirmed: "text-emerald-700 bg-emerald-50 border-emerald-200",
   done: "text-blue-700 bg-blue-50 border-blue-200",
+  rejected: "text-red-700 bg-red-50 border-red-200",
 };
 
 const STATUS_BTN_STYLES: Record<string, string> = {
   pending: "bg-amber-500 hover:bg-amber-600 text-white",
   confirmed: "bg-emerald-500 hover:bg-emerald-600 text-white",
   done: "bg-blue-500 hover:bg-blue-600 text-white",
+  rejected: "bg-red-500 hover:bg-red-600 text-white",
 };
 
 const PAGE_SIZE = 20;
@@ -230,6 +233,7 @@ export default function BookingsAdminPage() {
       pending: bookings.filter((b) => b.status === "pending").length,
       confirmed: bookings.filter((b) => b.status === "confirmed").length,
       done: bookings.filter((b) => b.status === "done").length,
+      rejected: bookings.filter((b) => b.status === "rejected").length,
     };
   }, [bookings]);
 
@@ -244,6 +248,8 @@ export default function BookingsAdminPage() {
       result = result.filter((b) => b.status === "confirmed");
     else if (activeTab === "done")
       result = result.filter((b) => b.status === "done");
+    else if (activeTab === "rejected")
+      result = result.filter((b) => b.status === "rejected");
 
     // Search filter
     if (search.trim()) {
@@ -367,6 +373,7 @@ export default function BookingsAdminPage() {
     .status-pending { background: #fef3c7; color: #92400e; }
     .status-confirmed { background: #d1fae5; color: #065f46; }
     .status-done { background: #dbeafe; color: #1e40af; }
+    .status-rejected { background: #fee2e2; color: #991b1b; }
     @media print {
       body { padding: 0; }
       @page { margin: 1.5cm; }
@@ -405,6 +412,7 @@ export default function BookingsAdminPage() {
     { key: "all", label: "All" },
     { key: "pending", label: "Pending" },
     { key: "confirmed", label: "Confirmed" },
+    { key: "rejected", label: "Rejected" },
   ];
 
   const TAB_BADGE_COLOR: Record<TabType, string> = {
@@ -413,6 +421,7 @@ export default function BookingsAdminPage() {
     pending: "bg-amber-500 text-white",
     confirmed: "bg-emerald-500 text-white",
     done: "bg-blue-400 text-white",
+    rejected: "bg-red-500 text-white",
   };
 
   // ─── Detail View ────────────────────────────────────────────────────────────
@@ -579,7 +588,7 @@ export default function BookingsAdminPage() {
                 Update Status
               </div>
               <div className="flex flex-wrap gap-3">
-                {(["pending", "confirmed"] as const).map((st) => (
+                {(["pending", "confirmed", "rejected"] as const).map((st) => (
                   <button
                     key={st}
                     onClick={() => updateStatus(selected, st)}
@@ -879,6 +888,7 @@ function BookingRow({
         >
           <option value="pending">Pending</option>
           <option value="confirmed">Confirmed</option>
+          <option value="rejected">Rejected</option>
         </select>
 
         {/* Delete button */}

@@ -19,7 +19,7 @@ const bookingSchema = new mongoose.Schema(
     slot_time: { type: String, required: true },
     status: {
       type: String,
-      enum: ["pending", "confirmed", "done"],
+      enum: ["pending", "confirmed", "done", "rejected"],
       default: "pending",
     },
     notes: { type: String, default: null },

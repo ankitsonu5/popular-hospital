@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -249,7 +249,7 @@ export default function AdminDashboardLayout({
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-[280px] bg-[#0b1c43] transform transition-transform duration-300 ease-in-out
+        className={`fixed top-0 left-0 z-50 h-full w-[280px] flex flex-col bg-[#0b1c43] transform transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
       >
         {/* Logo */}
@@ -272,7 +272,7 @@ export default function AdminDashboardLayout({
         </div>
 
         {/* Nav Items */}
-        <nav className="mt-6 px-3 flex-1 overflow-y-auto overflow-x-hidden">
+        <nav className="mt-6 px-3 pb-6 flex-1 overflow-y-auto overflow-x-hidden">
           <p className="px-3 mb-3 text-[10px] font-bold tracking-widest text-white/30 uppercase">
             Menu
           </p>
@@ -388,7 +388,7 @@ export default function AdminDashboardLayout({
         </nav>
 
         {/* User Section at Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/10">
+        <div className="shrink-0 p-4 border-t border-white/10 mt-auto bg-[#0b1c43] z-10">
           <div className="flex items-center gap-3 px-2 py-2">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#0d9488] to-[#0b1c43] flex items-center justify-center text-white font-bold text-sm shrink-0">
               {user?.name?.charAt(0) || "A"}

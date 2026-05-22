@@ -579,7 +579,7 @@ export default function HomeClient({
           </div>
 
           <div className="mt-5 grid grid-cols-3 gap-3 px-2 md:hidden">
-            <TrustBadge value="32+" label="Years Legacy" tone="orange" />
+            <TrustBadge value="32+" label="Years of Legacy" tone="orange" />
             <TrustBadge value="100000+" label="Surgeries" tone="blue" />
             <TrustBadge value="450+" label="Beds" tone="orange" />
           </div>
@@ -624,7 +624,7 @@ export default function HomeClient({
                 </h3>
               </div>
               <div className="relative grid w-full grid-cols-3 gap-3">
-                <TrustBadge value="32+" label="Years Legacy" tone="orange" />
+                <TrustBadge value="32+" label="Years of Legacy" tone="orange" />
                 <TrustBadge value="100000+" label="Surgeries" tone="blue" />
                 <TrustBadge value="450+" label="Beds" tone="orange" />
               </div>
@@ -1640,7 +1640,7 @@ export default function HomeClient({
               type: "large" as const,
               title: "Emergency Care",
               desc: "24/7 dedicated emergency care services for all your urgent medical needs.",
-              image: "/images/departments-images/emergency.jpeg",
+              image: "/images/departments-images/emergency_services.webp",
               href: "/services/emergency",
               icon: "ambulance",
             },
@@ -1664,7 +1664,7 @@ export default function HomeClient({
               type: "large" as const,
               title: "24/7 Ambulance",
               desc: "Fully equipped ACLS/BLS ambulances for safe transport.",
-              image: "/images/departments-images/ambulance.jpeg",
+              image: "/images/departments-images/ambulance_doctor.png",
               href: "/services/ambulance",
               icon: "ambulance",
             },

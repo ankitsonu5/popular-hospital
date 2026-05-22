@@ -40,13 +40,15 @@ export const loginAdmin = async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Single-session enforcement for career_admin and sub_admin
+    // Single-session enforcement removed to allow multiple logins
+    /*
     if (
       (admin.role === "career_admin" || admin.role === "sub_admin") &&
       hasActiveSession(admin)
     ) {
       return res.status(403).json({ error: "already_logged_in" });
     }
+    */
 
     // Set session for career_admin and sub_admin
     if (admin.role === "career_admin" || admin.role === "sub_admin") {
