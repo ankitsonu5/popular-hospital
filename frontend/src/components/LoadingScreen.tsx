@@ -3,18 +3,26 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
+const SESSION_KEY = "ph_intro_shown";
+
 const LoadingScreen = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  // Start hidden — decide in useEffect to avoid SSR mismatch
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Hide the loading screen after exactly 5 seconds (one full ambulance pass)
+    // Only show the intro loader ONCE per browser session
+    const alreadyShown = sessionStorage.getItem(SESSION_KEY);
+    if (alreadyShown) return; // user already saw it this session → skip
+
+    // First visit this session → show loader
+    sessionStorage.setItem(SESSION_KEY, "1");
+    setIsVisible(true);
+
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 5000);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   if (!isVisible) return null;

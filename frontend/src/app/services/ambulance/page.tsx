@@ -42,7 +42,7 @@ const sections: ServiceSection[] = [
         </p>
       </div>
     ),
-    image: "/images/banners/Ambulance_24_bg.avif",
+    image: "/images/departments-images/ambulance_department.jpg",
     imgAlt: "Ambulance service",
   },
   {
@@ -57,7 +57,7 @@ const sections: ServiceSection[] = [
         reduce waiting time and improve treatment decisions during urgent care.
       </p>
     ),
-    image: "/images/departments-images/emergency_services.webp",
+    image: "/images/departments-images/ambulance_department_img.jpg",
     imgAlt: "Emergency medical team",
   },
   {
@@ -85,8 +85,9 @@ const sections: ServiceSection[] = [
         relevant team at Popular Hospital.
       </p>
     ),
-    image: "/images/departments-images/ambulance_doctor.png",
+    image: "/images/departments-images/ambulance_doctor.jpg",
     imgAlt: "Doctor near ambulance",
+    imageClassName: "min-h-[300px] md:min-h-[380px] lg:min-h-[420px] lg:h-full",
   },
 ];
 

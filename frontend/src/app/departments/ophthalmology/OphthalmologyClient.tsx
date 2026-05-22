@@ -228,7 +228,7 @@ export default function OphthalmologyClient() {
               <div className="lg:w-4/12 w-full flex justify-center">
                 <div className="relative w-full max-w-[280px] h-[320px] lg:h-[380px] rounded-[2rem] overflow-hidden shadow-xl border-6 border-white ring-1 ring-slate-100">
                   <Image
-                    src="/images/departments-images/ophthalmology_advance.jpg"
+                    src="/images/departments-images/ophthalmology_specialised.jpg"
                     alt="Specialised Eye Care"
                     fill
                     className="object-cover"

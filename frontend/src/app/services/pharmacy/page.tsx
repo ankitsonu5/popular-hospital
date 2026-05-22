@@ -88,7 +88,7 @@ export default function PharmacyPage() {
         title: "Need medicines or pharmacy support?",
         description:
           "Our pharmacy team supports patients with genuine medicines and prompt service inside the hospital premises.",
-        label: "+91-7800001895",
+        label: "+91-7800001895 / 96",
         href: "tel:+917800001895",
         eyebrow: "Popular Hospital Pharmacy",
       }}

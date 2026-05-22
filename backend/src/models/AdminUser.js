@@ -17,6 +17,8 @@ const adminUserSchema = new mongoose.Schema(
       default: "super_admin",
     },
     isActive: { type: Boolean, default: true },
+    activeSessions: [{ token: String, expires: Date }],
+    // Legacy fields kept for migration safety (unused)
     sessionToken: { type: String, default: null },
     sessionExpires: { type: Date, default: null },
     resetPasswordToken: { type: String, default: null },

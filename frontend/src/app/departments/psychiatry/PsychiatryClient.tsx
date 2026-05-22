@@ -227,7 +227,7 @@ export default function PsychiatryClient() {
               <div className="lg:col-span-5 flex flex-col justify-between bg-gradient-to-b from-slate-50 to-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="relative h-64 w-full">
                   <Image
-                    src="/images/departments-images/psychiatry_illustration.png"
+                    src="/images/departments-images/psychiatry_img.jpg"
                     alt="Mental Wellness & Psychiatric Care"
                     fill
                     className="object-cover"

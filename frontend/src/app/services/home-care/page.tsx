@@ -145,7 +145,7 @@ export default function HomeCarePage() {
         title: "Need care at home?",
         description:
           "Call Popular Hospital to arrange home care support, nursing care, consultations or sample collection.",
-        label: "+91-7800001895",
+        label: "+91-7800001895 / 96",
         href: "tel:+917800001895",
         eyebrow: "Home Care Support",
       }}

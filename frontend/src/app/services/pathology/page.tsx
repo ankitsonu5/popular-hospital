@@ -159,7 +159,7 @@ export default function PathologyPage() {
         title: "Need pathology testing support?",
         description:
           "Our laboratory team provides reliable reporting and round-the-clock diagnostic support for patients and doctors.",
-        label: "+91-7800001895",
+        label: "+91-7800001895 / 96",
         href: "tel:+917800001895",
         eyebrow: "Popular Clinical Laboratory",
       }}

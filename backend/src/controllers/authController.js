@@ -7,10 +7,13 @@ import securityConfig from "../config/security.js";
 // 4h in ms — matches JWT expiry
 const SESSION_TTL_MS = 4 * 60 * 60 * 1000;
 
-const hasActiveSession = (admin) =>
-  admin.sessionToken &&
-  admin.sessionExpires &&
-  admin.sessionExpires > new Date();
+const hasActiveSession = (admin) => {
+  const now = new Date();
+  return (
+    Array.isArray(admin.activeSessions) &&
+    admin.activeSessions.some((s) => s.expires > now)
+  );
+};
 import {
   sendPasswordResetEmail,
   sendPasswordResetSuccessEmail,
@@ -40,25 +43,29 @@ export const loginAdmin = async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Single-session enforcement removed to allow multiple logins
-    /*
-    if (
-      (admin.role === "career_admin" || admin.role === "sub_admin") &&
-      hasActiveSession(admin)
-    ) {
-      return res.status(403).json({ error: "already_logged_in" });
-    }
-    */
+    let sessionToken = null;
 
-    // Set session for career_admin and sub_admin
+    // Create a new session entry for career_admin and sub_admin
     if (admin.role === "career_admin" || admin.role === "sub_admin") {
-      admin.sessionToken = crypto.randomBytes(32).toString("hex");
-      admin.sessionExpires = new Date(Date.now() + SESSION_TTL_MS);
-      await admin.save();
+      sessionToken = crypto.randomBytes(32).toString("hex");
+      const sessionExpires = new Date(Date.now() + SESSION_TTL_MS);
+
+      // Prune expired sessions, then push the new one
+      await AdminUser.findByIdAndUpdate(admin._id, {
+        $pull: { activeSessions: { expires: { $lt: new Date() } } },
+      });
+      await AdminUser.findByIdAndUpdate(admin._id, {
+        $push: { activeSessions: { token: sessionToken, expires: sessionExpires } },
+      });
     }
 
     const token = jwt.sign(
-      { id: admin._id, email: admin.email, role: admin.role || "super_admin" },
+      {
+        id: admin._id,
+        email: admin.email,
+        role: admin.role || "super_admin",
+        ...(sessionToken && { sessionToken }),
+      },
       securityConfig.jwt.secret,
       { expiresIn: securityConfig.jwt.accessTokenExpiry },
     );
@@ -172,16 +179,19 @@ export const getCareerAdmins = async (req, res) => {
 // POST /api/cms/career-admin/logout — career admin clears own session
 export const careerAdminLogout = async (req, res) => {
   try {
-    await AdminUser.findByIdAndUpdate(req.user.id, {
-      $unset: { sessionToken: 1, sessionExpires: 1 },
-    });
+    const { sessionToken } = req.user;
+    if (sessionToken) {
+      await AdminUser.findByIdAndUpdate(req.user.id, {
+        $pull: { activeSessions: { token: sessionToken } },
+      });
+    }
     res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
   }
 };
 
-// DELETE /api/cms/career-admin/:id/session — super admin force-clears one session
+// DELETE /api/cms/career-admin/:id/session — super admin force-clears all sessions for one career admin
 export const forceLogoutCareerAdmin = async (req, res) => {
   try {
     const admin = await AdminUser.findOne({
@@ -190,8 +200,7 @@ export const forceLogoutCareerAdmin = async (req, res) => {
     });
     if (!admin)
       return res.status(404).json({ error: "Career admin not found." });
-    admin.sessionToken = null;
-    admin.sessionExpires = null;
+    admin.activeSessions = [];
     await admin.save();
     res.json({ ok: true });
   } catch (error) {
@@ -204,7 +213,7 @@ export const forceLogoutAllCareerAdmins = async (req, res) => {
   try {
     await AdminUser.updateMany(
       { role: "career_admin" },
-      { $unset: { sessionToken: 1, sessionExpires: 1 } },
+      { $set: { activeSessions: [] } },
     );
     res.json({ ok: true });
   } catch (error) {
@@ -386,8 +395,7 @@ export const forceLogoutSubAdmin = async (req, res) => {
   try {
     const admin = await AdminUser.findOne({ _id: req.params.id, role: "sub_admin" });
     if (!admin) return res.status(404).json({ error: "Sub admin not found." });
-    admin.sessionToken = null;
-    admin.sessionExpires = null;
+    admin.activeSessions = [];
     await admin.save();
     res.json({ ok: true });
   } catch (error) {
@@ -397,7 +405,7 @@ export const forceLogoutSubAdmin = async (req, res) => {
 
 export const forceLogoutAllSubAdmins = async (req, res) => {
   try {
-    await AdminUser.updateMany({ role: "sub_admin" }, { $unset: { sessionToken: 1, sessionExpires: 1 } });
+    await AdminUser.updateMany({ role: "sub_admin" }, { $set: { activeSessions: [] } });
     res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
@@ -406,7 +414,12 @@ export const forceLogoutAllSubAdmins = async (req, res) => {
 
 export const subAdminLogout = async (req, res) => {
   try {
-    await AdminUser.findByIdAndUpdate(req.user.id, { $unset: { sessionToken: 1, sessionExpires: 1 } });
+    const { sessionToken } = req.user;
+    if (sessionToken) {
+      await AdminUser.findByIdAndUpdate(req.user.id, {
+        $pull: { activeSessions: { token: sessionToken } },
+      });
+    }
     res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });

@@ -1281,7 +1281,7 @@ export default function HomeClient({
                   {/* Content Section */}
                   <div className="p-6 xl:p-5 flex flex-col flex-grow">
                     <div className="mb-4 xl:mb-3">
-                      <span className="text-[13px] xl:text-[12px] font-extrabold text-gray-500 uppercase tracking-wider mb-2 block text-hospital-teal font-jakarta">
+                      <span className="text-[13px] xl:text-[12px] font-extrabold uppercase tracking-wider mb-2 block text-[#284a91] font-jakarta">
                         Department of
                       </span>
                       <h3 className="text-2xl xl:text-xl font-bold text-[#1d1d1f] mb-3 xl:mb-2 font-jakarta leading-tight">
@@ -2422,7 +2422,7 @@ export default function HomeClient({
               </div>
 
               {/* Simplified Connect With Us Box */}
-              <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-xl shadow-gray-200/50 flex flex-col sm:flex-row items-center gap-8 group">
+              <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center gap-8 group">
                 <div className="flex-shrink-0 w-20 h-20 bg-pink-50 rounded-xl flex items-center justify-center text-[#E85222] group-hover:scale-110 transition-transform duration-500">
                   <svg
                     className="w-10 h-10"

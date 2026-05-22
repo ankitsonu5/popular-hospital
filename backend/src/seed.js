@@ -265,7 +265,7 @@ const newsArticles = [
       "The Medical Network Directory also facilitates seamless communication between departments, enabling faster consultations, second opinions, and coordinated treatment plans. This integrated approach has significantly improved patient outcomes and reduced treatment delays.",
       "For clients and patients, the directory provides easy access to information about available services, doctor schedules, and appointment booking. This transparency in healthcare delivery is a cornerstone of our commitment to patient-centric care at Popular Hospital.",
     ],
-    image: "/news-1.png",
+    image: "/images/latestnews/one.jpg",
     author: "Dr. A.K. Kaushik",
   },
   {
@@ -281,7 +281,7 @@ const newsArticles = [
       "Studies have shown that people who undergo regular health checkups have significantly better health outcomes compared to those who only seek medical attention when symptoms appear. Early detection of conditions like diabetes, cholesterol imbalance, and thyroid disorders can lead to more effective and less invasive treatments.",
       "Popular Hospital offers a range of health checkup packages tailored for different age groups, genders, and risk factors. Our state-of-the-art diagnostic facilities ensure accurate results, while our experienced medical team provides comprehensive health guidance based on your individual health profile.",
     ],
-    image: "/b-1.png",
+    image: "/images/latestnews/two.jpg",
     author: "Dr. Kiran Kaushik",
   },
   {
@@ -297,7 +297,7 @@ const newsArticles = [
       "We also emphasize the importance of lifestyle modifications in stress management. Regular exercise, balanced nutrition, adequate sleep, and maintaining social connections are all crucial factors in building resilience against stress.",
       "Popular Hospital's Psychiatry Department offers confidential counseling sessions, group therapy programs, and wellness workshops to support individuals and families dealing with stress and mental health challenges. We believe that seeking help is a sign of strength, not weakness.",
     ],
-    image: "/b-2.png",
+    image: "/images/latestnews/three.jpg",
     author: "Dr. Priya Sharma",
   },
 ];

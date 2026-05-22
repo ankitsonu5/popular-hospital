@@ -110,7 +110,7 @@ export default function RadiologicalServicesPage() {
         title: "Need diagnostic imaging?",
         description:
           "Book a radiology appointment for dependable imaging, reporting and specialist diagnostic support.",
-        label: "+91-7800001895",
+        label: "+91-7800001895 / 96",
         href: "tel:+917800001895",
         eyebrow: "Radiology Appointment",
       }}

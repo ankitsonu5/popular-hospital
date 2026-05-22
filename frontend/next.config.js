@@ -3,6 +3,10 @@ const nextConfig = {
   reactStrictMode: false,
   compress: true,
   poweredByHeader: false,
+  webpack: (config) => {
+    config.profile = false;
+    return config;
+  },
   images: {
     localPatterns: [{ pathname: "/**" }],
     formats: ["image/avif", "image/webp"],

@@ -300,8 +300,8 @@ export default function CTVSClient() {
             ))}
           </div>
 
-          {/* Full-width image */}
-          <div className="relative w-full aspect-[16/7] md:aspect-[21/9] rounded-3xl overflow-hidden border border-slate-100">
+          {/* Centered smaller image */}
+          <div className="relative mx-auto max-w-2xl aspect-[16/10] rounded-3xl overflow-hidden border border-slate-100 shadow-md">
             <Image
               src="/images/departments-images/cardiothoracic_vascular_surgery.jpeg"
               alt="CTVS Procedures"

@@ -4,7 +4,7 @@ import Image from "next/image";
 export function Footer() {
   return (
     <footer className="bg-[#0b1c43]">
-      <div className="bg-[#0b1c43] text-white rounded-t-[2.5rem] px-6 pt-12 pb-8 sm:px-10 sm:pt-16 sm:pb-10 md:px-16 lg:pt-20 lg:pb-12 mx-auto max-w-[1280px] relative overflow-hidden">
+      <div className="bg-[#0b1c43] text-white rounded-t-[2.5rem] px-6 pt-12 pb-28 sm:px-10 sm:pt-16 sm:pb-28 md:px-16 md:pb-10 lg:pt-20 lg:pb-12 mx-auto max-w-[1280px] relative overflow-hidden">
         {/* Decorative Background Pattern */}
         <div
           className="absolute inset-0 opacity-[0.05] pointer-events-none z-0"
@@ -32,10 +32,13 @@ export function Footer() {
 
             <div className="space-y-6 text-[15px] text-gray-200">
               <div>
-                <h4 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-xl font-bold font-heading mb-6">
                   Locations:
-                </h4>
-                <p className="leading-relaxed font-medium">
+                </h3>
+                <p
+                  className="leading-relaxed font-normal text-gray-300 text-[13px]"
+                  style={{ fontFamily: '"Plus Jakarta Sans", "Segoe UI"' }}
+                >
                   N-10 / 60, A-2,
                   <br />
                   B.L.W. ROAD, KAKARMATTA,
@@ -51,10 +54,10 @@ export function Footer() {
                     Contact Us:
                   </span>
                   <a
-                    href="tel:+917800001896"
+                    href="tel:+917800001895"
                     className="text-white hover:text-hospital-teal transition-colors font-bold"
                   >
-                    +91-7800001896
+                    +91-7800001895
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
@@ -62,10 +65,10 @@ export function Footer() {
                     Contact Us:
                   </span>
                   <a
-                    href="tel:+917800001895"
+                    href="tel:+917800001896"
                     className="text-white hover:text-hospital-teal transition-colors font-bold"
                   >
-                    +91-7800001895
+                    +91-7800001896
                   </a>
                 </div>
                 <div className="flex items-center gap-2">

@@ -523,3 +523,21 @@ body > .skiptranslate {
     height: 18px !important;
   }
 }
+
+/* Disable hover effects on images/icons in the header services dropdown options */
+.header-services-dropdown a img,
+.header-services-dropdown a svg,
+.header-services-dropdown a span {
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.header-services-dropdown a:hover img,
+.header-services-dropdown a:hover svg,
+.header-services-dropdown a:hover span {
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}

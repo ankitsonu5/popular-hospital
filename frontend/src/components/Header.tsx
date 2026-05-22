@@ -558,13 +558,13 @@ export function Header() {
     if (!iconSrc) return getIcon(label);
 
     return (
-      <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
+      <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center pointer-events-none select-none">
         <Image
           src={iconSrc}
           alt=""
           width={24}
           height={24}
-          className="h-6 w-6 object-contain"
+          className="h-6 w-6 object-contain pointer-events-none select-none transition-none"
         />
       </span>
     );
@@ -788,9 +788,9 @@ export function Header() {
                       >
                         <div className="pt-2">
                           {item.label === "Departments" ? (
-                            <div className="w-[820px] min-[1366px]:w-[860px] overflow-hidden rounded-xl bg-white shadow-xl border border-gray-100">
+                            <div className="w-[1050px] min-[1366px]:w-[1150px] rounded-xl bg-white shadow-xl border border-gray-100">
                               <div className="flex">
-                                {/* Left Side */}
+                                {/* Left Side: Super Specialties */}
                                 <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5 border-r border-gray-100">
                                   <h3 className="text-hospital-teal font-heading font-bold text-[11px] min-[1440px]:text-xs uppercase tracking-widest mb-3 min-[1440px]:mb-4 pb-2 border-b-2 border-hospital-teal/20">
                                     Super Specialties
@@ -813,13 +813,38 @@ export function Header() {
                                     ))}
                                   </div>
                                 </div>
-                                {/* Right Side */}
-                                <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5">
+                                {/* Middle: Specialties Part 1 */}
+                                <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5 border-r border-gray-100">
                                   <h3 className="text-hospital-teal font-heading font-bold text-[11px] min-[1440px]:text-xs uppercase tracking-widest mb-3 min-[1440px]:mb-4 pb-2 border-b-2 border-hospital-teal/20">
                                     Specialties
                                   </h3>
                                   <div className="flex flex-col gap-0.5">
-                                    {specialtiesContent["Specialties"].map(
+                                    {specialtiesContent["Specialties"].slice(0, 11).map(
+                                      (subItem) => (
+                                        <Link
+                                          key={subItem.label}
+                                          href={subItem.href}
+                                          className="relative flex items-center justify-between gap-2 overflow-hidden text-[13.5px] xl:text-[12.5px] min-[1440px]:text-[13.5px] font-bold px-2 py-1.5 xl:px-1.5 xl:py-1 min-[1440px]:p-1.5 rounded-lg text-gray-700 transition-all hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                                          onClick={() =>
+                                            setActiveDropdown(null)
+                                          }
+                                        >
+                                          <span className="relative flex items-center gap-2 pl-1">
+                                            {getDepartmentIcon(subItem.label)}
+                                            <span>{subItem.label}</span>
+                                          </span>
+                                        </Link>
+                                      ),
+                                    )}
+                                  </div>
+                                </div>
+                                {/* Right Side: Specialties Part 2 */}
+                                <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5">
+                                  <h3 className="text-hospital-teal font-heading font-bold text-[11px] min-[1440px]:text-xs uppercase tracking-widest mb-3 min-[1440px]:mb-4 pb-2 border-b-2 border-hospital-teal/20 opacity-0 select-none">
+                                    Specialties
+                                  </h3>
+                                  <div className="flex flex-col gap-0.5">
+                                    {specialtiesContent["Specialties"].slice(11).map(
                                       (subItem) => (
                                         <Link
                                           key={subItem.label}
@@ -853,7 +878,7 @@ export function Header() {
                                     className="flex items-center gap-3 p-2.5 xl:p-2 text-[15px] xl:text-[14px] font-bold text-gray-700 hover:text-[#1e3a8a] hover:bg-blue-50/80 rounded-xl transition-all whitespace-nowrap"
                                     onClick={() => setActiveDropdown(null)}
                                   >
-                                    <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
+                                    <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center pointer-events-none select-none transition-none">
                                       {getServicesIcon(dropdownItem.label)}
                                     </span>
                                     <span>{dropdownItem.label}</span>

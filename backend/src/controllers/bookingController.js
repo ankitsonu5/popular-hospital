@@ -137,12 +137,12 @@ export const markBookingRead = async (req, res) => {
 export const updateBookingStatus = async (req, res) => {
   try {
     const { status } = req.body;
-    if (!["pending", "confirmed", "done"].includes(status)) {
+    if (!["pending", "confirmed", "done", "rejected"].includes(status)) {
       return res.status(400).json({ error: "Invalid status" });
     }
 
     const updateData = { status };
-    if (status === "confirmed") {
+    if (status === "confirmed" || status === "rejected") {
       updateData.isRead = true;
     }
 

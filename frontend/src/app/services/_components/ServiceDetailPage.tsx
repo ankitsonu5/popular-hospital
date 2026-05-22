@@ -10,6 +10,7 @@ export type ServiceSection = {
   content: ReactNode;
   image?: string;
   imgAlt?: string;
+  imageClassName?: string;
 };
 
 type ServiceDetailPageProps = {
@@ -151,7 +152,9 @@ export function ServiceDetailPage({
                       <div className="flex w-full justify-center lg:w-[42%]">
                         <div className="relative w-full">
                           <div
-                            className={`group relative h-full min-h-[260px] w-full overflow-hidden rounded-[1.35rem] border border-white md:min-h-[340px] lg:min-h-full ${
+                            className={`group relative h-full w-full overflow-hidden rounded-[1.35rem] border border-white ${
+                              section.imageClassName || "min-h-[260px] md:min-h-[340px] lg:min-h-full lg:h-full"
+                            } ${
                               isEven
                                 ? "rounded-tl-[8rem] rounded-br-[8rem] rounded-tr-[1rem] rounded-bl-[1rem]"
                                 : "rounded-tr-[8rem] rounded-bl-[8rem] rounded-tl-[1rem] rounded-br-[1rem]"

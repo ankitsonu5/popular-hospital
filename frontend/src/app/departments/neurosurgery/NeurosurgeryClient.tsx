@@ -212,7 +212,7 @@ export default function NeurosurgeryClient() {
                 <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-br from-[#eaf3ff] via-white to-[#fff1eb]" />
                 <div className="relative h-full w-full overflow-hidden rounded-[28px] border-4 border-white shadow-2xl">
                   <Image
-                    src="/images/departments-images/brain_surgery.jpeg"
+                    src="/images/departments-images/brain_surgery.jpg"
                     alt="Brain Surgery Technology"
                     fill
                     className="object-cover"

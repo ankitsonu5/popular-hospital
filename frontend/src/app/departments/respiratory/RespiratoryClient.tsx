@@ -15,7 +15,6 @@ import {
   BrainCircuit,
   CheckCircle2,
   ArrowRight,
-  Phone,
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
@@ -390,49 +389,7 @@ export default function RespiratoryClient() {
             </div>
           </div>
 
-          {/* ── CTA Banner ── */}
-          <div className="mt-20 rounded-3xl overflow-hidden">
-            <div className="relative bg-gradient-to-br from-[#0b1c43] to-[#1e3a8a] px-8 py-14 text-center">
-              <div className="absolute inset-0 opacity-10 pointer-events-none">
-                <Image
-                  src="/images/departments-images/pulmonology.jpeg"
-                  alt="Pulmonology"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative z-10 max-w-2xl mx-auto space-y-5">
-                <p className="text-blue-300 text-xs font-bold uppercase tracking-widest">
-                  Patient-Centered Respiratory Care
-                </p>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-white font-heading leading-tight">
-                  Breathe freely with the Respiratory Department at{" "}
-                  <span className="text-[#E85222]">Popular Hospital</span>.
-                </h2>
-                <p className="text-blue-100/70 text-sm md:text-base font-medium leading-relaxed">
-                  Take the first step towards better respiratory health today. Our team is here to help you every step of the way.
-                </p>
-                <div className="h-[1px] w-24 bg-blue-500/40 mx-auto" />
-                <p className="text-blue-300 font-extrabold text-xl md:text-2xl uppercase tracking-widest">
-                  Breathe Easy. Live Fully.
-                </p>
-                <div className="flex flex-wrap justify-center gap-4 pt-2">
-                  <Link
-                    href="/book"
-                    className="bg-[#E85222] hover:bg-[#d04420] text-white px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-xs tracking-widest"
-                  >
-                    Schedule Appointment <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <GetCallBackButton
-                    department="Respiratory Medicine"
-                    className="bg-white/10 hover:bg-white/20 text-white px-7 py-3 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-xs tracking-widest"
-                  >
-                    <Phone className="h-4 w-4" /> Get a Call Back
-                  </GetCallBackButton>
-                </div>
-              </div>
-            </div>
-          </div>
+
 
         </div>
       </section>

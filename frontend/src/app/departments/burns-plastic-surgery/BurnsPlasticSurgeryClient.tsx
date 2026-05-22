@@ -216,7 +216,7 @@ export default function BurnsPlasticSurgeryClient() {
             <div className="mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50 hover:border-blue-50 transition-colors duration-500 group">
                 <Image
-                  src="/images/departments-images/plastic_surgery.png"
+                  src="/images/departments-images/plastic_surgery.jpg"
                   alt="Plastic Surgery Art & Science"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

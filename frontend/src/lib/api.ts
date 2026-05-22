@@ -28,7 +28,9 @@ export const getImageUrl = (
     ? normalizedPath
     : normalizedPath.startsWith("/images")
       ? normalizedPath
-      : `/uploads${normalizedPath}`;
+      : path.startsWith("/")
+        ? normalizedPath // root-relative public path — don't mangle
+        : `/uploads${normalizedPath}`; // bare filename — treat as upload
 
   if (finalPath.startsWith("/uploads")) {
     if (options?.preferRelativeUploads) {

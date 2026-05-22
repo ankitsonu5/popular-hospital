@@ -20,16 +20,18 @@ export const cmsAuth = async (req, res, next) => {
     // career_admin aur sub_admin ke liye har request pe session + active status check
     if (decoded.role === "career_admin" || decoded.role === "sub_admin") {
       const admin = await AdminUser.findById(decoded.id).select(
-        "isActive sessionToken sessionExpires",
+        "isActive activeSessions",
       );
       if (!admin || admin.isActive === false) {
         return res.status(403).json({ error: "account_disabled" });
       }
-      if (
-        !admin.sessionToken ||
-        !admin.sessionExpires ||
-        admin.sessionExpires < new Date()
-      ) {
+      const now = new Date();
+      const sessionToken = decoded.sessionToken;
+      const hasValid = Array.isArray(admin.activeSessions) &&
+        admin.activeSessions.some(
+          (s) => s.token === sessionToken && s.expires > now,
+        );
+      if (!hasValid) {
         return res.status(401).json({ error: "session_expired" });
       }
     }

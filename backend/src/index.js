@@ -2,6 +2,17 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import "dotenv/config";
+
+// ── Global error handlers (must be first) ────────────────────────────────────
+process.on("uncaughtException", (err) => {
+  console.error("[FATAL] Uncaught Exception:", err);
+  process.exit(1);
+});
+
+process.on("unhandledRejection", (reason) => {
+  console.error("[FATAL] Unhandled Promise Rejection:", reason);
+  process.exit(1);
+});
 import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
@@ -135,6 +146,20 @@ app.get("/api/health", (req, res) => {
 // Must be the LAST middleware — catches all unhandled errors
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`🏥 Popular Hospital API running at http://localhost:${PORT}`);
 });
+
+// ── Graceful shutdown (Ctrl+C / process kill) ─────────────────────────────
+const shutdown = (signal) => {
+  console.log(`\n[SERVER] ${signal} received — shutting down gracefully...`);
+  server.close(() => {
+    console.log("[SERVER] All connections closed. Exiting.");
+    process.exit(0);
+  });
+  // Force-kill if connections hang after 5 s
+  setTimeout(() => process.exit(1), 5000).unref();
+};
+
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));
