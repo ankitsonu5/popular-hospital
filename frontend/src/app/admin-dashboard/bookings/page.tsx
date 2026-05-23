@@ -37,6 +37,7 @@ interface Booking {
   slot_time: string;
   status: "pending" | "confirmed" | "done" | "rejected";
   notes: string;
+  adminNotes: string;
   isRead: boolean;
   createdAt: string;
 }
@@ -100,6 +101,8 @@ export default function BookingsAdminPage() {
   const [dateTo, setDateTo] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [adminNotesDraft, setAdminNotesDraft] = useState("");
+  const [notesSaving, setNotesSaving] = useState(false);
 
   const fetchBookings = useCallback(async () => {
     setLoading(true);
@@ -213,10 +216,39 @@ export default function BookingsAdminPage() {
   const handleSelectBooking = useCallback(
     (booking: Booking) => {
       setSelected(booking);
+      setAdminNotesDraft(booking.adminNotes || "");
       markAsRead(booking);
     },
     [markAsRead]
   );
+
+  const saveAdminNotes = useCallback(async () => {
+    if (!selected) return;
+    setNotesSaving(true);
+    try {
+      const token = sessionStorage.getItem("admin_token");
+      const res = await fetch(`${API_URL}/cms/bookings/${selected._id}/admin-notes`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ adminNotes: adminNotesDraft }),
+      });
+      if (!res.ok) throw new Error();
+      setBookings((prev) =>
+        prev.map((b) =>
+          b._id === selected._id ? { ...b, adminNotes: adminNotesDraft } : b
+        )
+      );
+      setSelected((prev) => prev ? { ...prev, adminNotes: adminNotesDraft } : null);
+      toast.success("Notes saved");
+    } catch {
+      toast.error("Failed to save notes");
+    } finally {
+      setNotesSaving(false);
+    }
+  }, [selected, adminNotesDraft]);
 
   const clearFilters = useCallback(() => {
     setSearch("");
@@ -604,6 +636,40 @@ export default function BookingsAdminPage() {
                       : `Mark as ${STATUS_LABEL[st]}`}
                   </button>
                 ))}
+              </div>
+            </div>
+
+            {/* Admin Notes */}
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mt-5">
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                  Internal Admin Notes
+                </div>
+                {selected.adminNotes && adminNotesDraft === selected.adminNotes && (
+                  <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-wide">
+                    Saved
+                  </span>
+                )}
+              </div>
+              <textarea
+                value={adminNotesDraft}
+                onChange={(e) => setAdminNotesDraft(e.target.value)}
+                placeholder="Add internal notes about this booking — e.g. patient called, rescheduling requested, follow-up required..."
+                rows={4}
+                maxLength={2000}
+                className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-400 focus:bg-white outline-none text-sm text-gray-700 leading-relaxed resize-none transition-all"
+              />
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-[11px] text-gray-400">
+                  {adminNotesDraft.length}/2000
+                </span>
+                <button
+                  onClick={saveAdminNotes}
+                  disabled={notesSaving || adminNotesDraft === (selected.adminNotes || "")}
+                  className="px-5 py-2 rounded-xl text-sm font-bold bg-[#0b1c43] text-white hover:bg-[#162d6b] transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {notesSaving ? "Saving…" : "Save Notes"}
+                </button>
               </div>
             </div>
           </div>

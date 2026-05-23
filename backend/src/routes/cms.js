@@ -36,6 +36,7 @@ import {
   getAllBookings,
   markBookingRead,
   updateBookingStatus,
+  updateAdminNotes,
   deleteBooking,
 } from "../controllers/bookingController.js";
 import {
@@ -179,6 +180,7 @@ router.delete("/sub-admin/:id", superAdminOnly, deleteSubAdmin);
 router.get("/bookings", superOrSubAdmin, getAllBookings);
 router.patch("/bookings/:id/read", superOrSubAdmin, markBookingRead);
 router.patch("/bookings/:id/status", superOrSubAdmin, updateBookingStatus);
+router.patch("/bookings/:id/admin-notes", superOrSubAdmin, updateAdminNotes);
 router.delete("/bookings/:id", superOrSubAdmin, deleteBooking);
 
 // ── From here: super_admin only ─────────────────────────────────────

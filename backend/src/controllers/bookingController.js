@@ -157,6 +157,23 @@ export const updateBookingStatus = async (req, res) => {
   }
 };
 
+// PATCH /api/cms/bookings/:id/admin-notes
+export const updateAdminNotes = async (req, res) => {
+  try {
+    const { adminNotes } = req.body;
+    const booking = await Booking.findByIdAndUpdate(
+      req.params.id,
+      { adminNotes: String(adminNotes ?? "").trim().substring(0, 2000) },
+      { new: true }
+    );
+    if (!booking) return res.status(404).json({ error: "Booking not found" });
+    res.json(booking);
+  } catch (e) {
+    console.error("[BOOKING NOTES]", e.message);
+    res.status(500).json({ error: "Failed to save notes" });
+  }
+};
+
 // DELETE /api/cms/bookings/:id
 export const deleteBooking = async (req, res) => {
   try {

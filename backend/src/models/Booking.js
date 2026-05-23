@@ -23,6 +23,7 @@ const bookingSchema = new mongoose.Schema(
       default: "pending",
     },
     notes: { type: String, default: null },
+    adminNotes: { type: String, default: "" },
     isRead: { type: Boolean, default: false },
   },
   { timestamps: true },
