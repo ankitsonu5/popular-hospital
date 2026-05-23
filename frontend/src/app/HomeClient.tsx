@@ -3068,7 +3068,7 @@ export default function HomeClient({
               </div>
               <div className="text-left">
                 <div className="text-5xl sm:text-6xl font-black font-heading leading-tight text-[#FF6B00] mb-1">
-                  <Counter target={450} duration={2000} />
+                  <Counter target={450} duration={2000} />+
                 </div>
                 <div className="text-lg sm:text-xl font-bold tracking-[0.1em] text-white/80 uppercase">
                   Beds
@@ -3114,7 +3114,7 @@ function Counter({
   duration?: number;
 }) {
   const [count, setCount] = useState(0);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const elementRef = useRef<HTMLSpanElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
@@ -3146,7 +3146,7 @@ function Counter({
     requestAnimationFrame(animate);
   }, [hasStarted, target, duration]);
 
-  return <div ref={elementRef}>{count}</div>;
+  return <span ref={elementRef}>{count}</span>;
 }
 
 function SimpleCard({

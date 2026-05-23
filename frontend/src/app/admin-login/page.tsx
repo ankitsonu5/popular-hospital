@@ -14,7 +14,6 @@ export default function AdminLoginPage() {
   const [success, setSuccess] = useState("");
   const [info, setInfo] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isForgotPassword, setIsForgotPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,49 +22,31 @@ export default function AdminLoginPage() {
     setIsLoading(true);
 
     try {
-      if (isForgotPassword) {
-        const res = await fetch("/api-backend/auth/forgot-password", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          if (data.error === "restricted_role") {
-            setIsForgotPassword(false);
-            setInfo("contact_super_admin");
-            return;
-          }
-          throw new Error(data.error || "Failed to send reset link");
-        }
-        setSuccess(data.message || "Password reset link sent to your email.");
+      const res = await fetch("/api-backend/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        throw new Error(
+          "Server returned an invalid response. Please check if the backend is running.",
+        );
+      }
+
+      if (!res.ok) throw new Error(data.error || "Login failed");
+
+      sessionStorage.setItem("admin_token", data.token);
+      sessionStorage.setItem("admin_user", JSON.stringify(data.user));
+      if (data.user?.role === "sub_admin") {
+        router.push("/admin-dashboard/bookings");
+      } else if (data.user?.role === "career_admin") {
+        router.push("/admin-dashboard/careers");
       } else {
-        const res = await fetch("/api-backend/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        });
-        const text = await res.text();
-        let data;
-        try {
-          data = JSON.parse(text);
-        } catch (e) {
-          throw new Error(
-            "Server returned an invalid response. Please check if the backend is running.",
-          );
-        }
-
-        if (!res.ok) throw new Error(data.error || "Login failed");
-
-        sessionStorage.setItem("admin_token", data.token);
-        sessionStorage.setItem("admin_user", JSON.stringify(data.user));
-        if (data.user?.role === "sub_admin") {
-          router.push("/admin-dashboard/bookings");
-        } else if (data.user?.role === "career_admin") {
-          router.push("/admin-dashboard/careers");
-        } else {
-          router.push("/admin-dashboard");
-        }
+        router.push("/admin-dashboard");
       }
     } catch (err: any) {
       setError(err.message || "Invalid credentials");
@@ -113,12 +94,10 @@ export default function AdminLoginPage() {
             <Shield className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-black text-[#0b1c43] tracking-tight">
-            {isForgotPassword ? "Reset Password." : "Admin Portal."}
+            Admin Portal.
           </h2>
           <p className="text-gray-500 mt-1.5 text-xs font-medium">
-            {isForgotPassword
-              ? "Enter your email to receive a secure reset link"
-              : "Access your secure management board"}
+            Access your secure management board
           </p>
         </div>
 
@@ -144,22 +123,6 @@ export default function AdminLoginPage() {
           </div>
         )}
 
-        {/* Contact Super Admin Notification */}
-        {info === "contact_super_admin" && (
-          <div className="mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-2 animate-fade-in-up">
-            <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
-              <svg className="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20A10 10 0 0012 2z" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-[12px] font-bold text-amber-800">Password reset not available</p>
-              <p className="text-[11px] text-amber-700 mt-0.5 leading-relaxed">
-                Sub Admin &amp; Career Portal Admins cannot reset their password directly. Please contact your <span className="font-black">Super Admin</span> to reset your password.
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Success Message */}
         {success && (
@@ -207,53 +170,38 @@ export default function AdminLoginPage() {
           </div>
 
           {/* Password */}
-          {!isForgotPassword && (
-            <div className="space-y-1.5">
-              <div className="flex items-center justify-between px-1">
-                <label
-                  htmlFor="password"
-                  className="block text-[10px] font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
-                >
-                  Security Password
-                </label>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsForgotPassword(true);
-                    setEmail("");
-                    setError("");
-                    setSuccess("");
-                    setInfo("");
-                  }}
-                  className="text-[10px] font-bold text-[#0d9488] uppercase tracking-wider hover:opacity-70"
-                >
-                  Forgot Key?
-                </button>
-              </div>
-              <div className="relative group">
-                <input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter security password"
-                  required={!isForgotPassword}
-                  className="w-full h-11 px-4 rounded-xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-4 h-4" />
-                  ) : (
-                    <Eye className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between px-1">
+              <label
+                htmlFor="password"
+                className="block text-[10px] font-bold text-[#0b1c43]/50 uppercase tracking-widest pl-1"
+              >
+                Security Password
+              </label>
             </div>
-          )}
+            <div className="relative group">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter security password"
+                required
+                className="w-full h-11 px-4 rounded-xl border-2 border-gray-100 bg-gray-50/30 text-[#0b1c43] placeholder-gray-300 focus:bg-white focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 outline-none transition-all text-sm font-medium pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors p-1"
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+          </div>
 
           {/* Submit */}
           <div className="pt-1">
@@ -271,38 +219,13 @@ export default function AdminLoginPage() {
               ) : (
                 <>
                   <LogIn className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  {isForgotPassword ? "Send Reset Link" : "Secure Sign In"}
+                  Secure Sign In
                 </>
               )}
             </button>
-            {isForgotPassword && (
-              <button
-                type="button"
-                onClick={() => {
-                  setIsForgotPassword(false);
-                  setEmail("");
-                  setError("");
-                  setSuccess("");
-                  setInfo("");
-                }}
-                className="w-full mt-3 text-xs font-bold text-[#0b1c43]/60 hover:text-[#0b1c43] transition-colors"
-              >
-                Back to Login
-              </button>
-            )}
           </div>
         </form>
 
-        {/* Footer */}
-        <div className="mt-6 pt-5 border-t border-gray-100">
-          <div className="flex flex-col items-center gap-4 text-center">
-            <p className="text-[#0b1c43]/30 text-[10px] font-black uppercase tracking-[0.2em] leading-tight">
-              © 2026 Popular Hospital.
-              <br />
-              Admin Access Only.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

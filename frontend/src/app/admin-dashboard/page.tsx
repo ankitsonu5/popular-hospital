@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -127,7 +127,7 @@ export default function AdminDashboardPage() {
             <span>Admin Dashboard</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold mb-2">
-            Welcome back, Admin! 👋
+            Popular Hospital, Admin! 👋
           </h2>
           <p className="text-white/60 text-sm sm:text-base max-w-xl">
             Manage your hospital data from one place. Here&apos;s a quick
