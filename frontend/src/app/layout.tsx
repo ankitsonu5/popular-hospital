@@ -72,6 +72,25 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rozha+One&family=Martel:wght@700;800;900&family=Teko:wght@600;700&family=Poppins:wght@600;700;800&display=swap"
           rel="stylesheet"
         />
+        {/* Bypass the Next.js/React dev timing/performance measure overlay crash bug */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                if (typeof window !== 'undefined' && window.performance && window.performance.measure) {
+                  const originalMeasure = window.performance.measure;
+                  window.performance.measure = function() {
+                    try {
+                      return originalMeasure.apply(window.performance, arguments);
+                    } catch (e) {
+                      console.warn("[Performance Bypass] Ignored error:", e.message);
+                    }
+                  };
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body
         className="min-h-screen flex flex-col overflow-x-hidden"

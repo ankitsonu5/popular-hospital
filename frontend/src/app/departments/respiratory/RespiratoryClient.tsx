@@ -111,7 +111,7 @@ const whyChooseUs = [
 
 const doctors = [
   {
-    name: "Dr. K. P. Singh",
+    name: "Dr. K.P. Singh",
     qualifications: "MBBS, MD (Respiratory Medicine), Dip Card",
     designation: "Sr. Consultant Pulmonologist",
     slug: "dr-kp-singh",
@@ -248,7 +248,7 @@ export default function RespiratoryClient() {
             {/* Doctor Sidebar */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Respiratory Medicine" />
+                <DoctorSlider doctors={doctors} departmentName="Respiratory Medicine" preventBackendFetch={true} />
               </div>
             </div>
           </div>

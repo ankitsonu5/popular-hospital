@@ -12,7 +12,6 @@ import {
   Navigation,
   Upload,
   FileText,
-  Image as ImageIcon,
   CheckCircle2,
   AlertCircle,
   ArrowRight,
@@ -42,10 +41,7 @@ export default function ApplyPage() {
   type FormDataKey = keyof typeof formData;
 
   const [resume, setResume] = useState<File | null>(null);
-  const [photo, setPhoto] = useState<File | null>(null);
-
   const resumeRef = useRef<HTMLInputElement>(null);
-  const photoRef = useRef<HTMLInputElement>(null);
 
   // Get job ID from URL
   const [jobId, setJobId] = useState<string | null>(null);
@@ -75,17 +71,6 @@ export default function ApplyPage() {
     if (error && error.includes("Resume")) setError(null);
   };
 
-  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files ? e.target.files[0] : null;
-    if (file && file.size > 250 * 1024) {
-      setError("Photo file size must be less than 250KB");
-      setPhoto(null);
-      if (photoRef.current) photoRef.current.value = "";
-      return;
-    }
-    setPhoto(file);
-    if (error && error.includes("Photo")) setError(null);
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,7 +82,6 @@ export default function ApplyPage() {
       data.append(key, formData[key]),
     );
     if (resume) data.append("resume", resume);
-    if (photo) data.append("photo", photo);
     if (jobId) data.append("appliedFor", jobId);
 
     try {
@@ -194,7 +178,7 @@ export default function ApplyPage() {
               onClick={() => setStep(2)}
               className={`px-8 py-4 text-sm font-bold transition-all relative ${step === 2 ? "text-blue-600" : "text-gray-400 hover:text-gray-600"}`}
             >
-              Documents & Photo
+              Documents
               {step === 2 && (
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-600 rounded-t-full" />
               )}
@@ -421,58 +405,7 @@ export default function ApplyPage() {
                   </div>
                 </div>
 
-                <div className="space-y-6">
-                  <div>
-                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 block">
-                      Upload Photo
-                    </label>
-                    <div
-                      onClick={() => photoRef.current?.click()}
-                      className="border-2 border-dashed border-gray-100 rounded-3xl p-10 flex flex-col items-center justify-center gap-4 bg-gray-50/50 hover:bg-blue-50/50 hover:border-blue-200 transition-all cursor-pointer group"
-                    >
-                      <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center transition-transform group-hover:scale-110">
-                        <ImageIcon className="w-8 h-8 text-blue-600" />
-                      </div>
-                      <div className="text-center">
-                        <p className="text-sm font-bold text-gray-800">
-                          Drop files here or{" "}
-                          <span className="text-blue-600">browse</span>
-                        </p>
-                        <p className="text-xs text-gray-400 mt-1">
-                          Max file size 250KB (JPG, PNG)
-                        </p>
-                      </div>
-                      <input
-                        type="file"
-                        ref={photoRef}
-                        className="hidden"
-                        accept="image/*"
-                        onChange={handlePhotoSelect}
-                      />
-                    </div>
-                    {photo && (
-                      <div className="mt-4 flex items-center justify-between p-3 bg-blue-50 rounded-xl border border-blue-100">
-                        <div className="flex items-center gap-3">
-                          <ImageIcon className="w-5 h-5 text-blue-600" />
-                          <div>
-                            <p className="text-xs font-bold text-gray-800 truncate max-w-[150px]">
-                              {photo.name}
-                            </p>
-                            <p className="text-[10px] text-blue-500">
-                              {(photo.size / 1024).toFixed(1)} KB
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          onClick={() => setPhoto(null)}
-                          className="p-1 hover:bg-blue-200 rounded-full text-blue-600 transition-colors"
-                        >
-                          <X className="w-4 h-4" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
+
 
                 <div className="md:col-span-2 pt-8 flex items-center justify-between">
                   <button

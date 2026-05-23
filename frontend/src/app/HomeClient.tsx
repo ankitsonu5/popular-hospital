@@ -2917,12 +2917,13 @@ export default function HomeClient({
 
               {/* Right Column - Award Image */}
               <div className="flex flex-col gap-6">
-                <div className="relative h-60 sm:h-72 lg:h-80 rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500">
+                <div className="relative rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500 max-w-xl mx-auto w-full">
                   <Image
                     src="/images/awards/award1.png"
                     alt="Hospital Award"
-                    fill
-                    className="object-cover transform group-hover/section:scale-105 transition-transform duration-700"
+                    width={2496}
+                    height={1726}
+                    className="w-full h-auto transform group-hover/section:scale-105 transition-transform duration-700"
                   />
                 </div>
 

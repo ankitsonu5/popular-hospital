@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Briefcase, Loader2, Save, X, ArrowLeft } from "lucide-react";
 import dynamic from "next/dynamic";
+import toast from "react-hot-toast";
 
 const Editor = dynamic(() => import("@/components/TinyMCEEditor"), {
   ssr: false,
@@ -108,14 +109,14 @@ function CareerActionForm() {
         throw new Error(result.error || "Failed to save career opening");
       }
 
-      alert(
+      toast.success(
         editId
           ? "Job opening updated successfully!"
           : "New job role published successfully!",
       );
       router.push("/admin-dashboard/careers");
     } catch (err: any) {
-      alert(err.message);
+      toast.error(err.message);
     } finally {
       setIsSaving(false);
     }

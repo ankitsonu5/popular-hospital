@@ -9,6 +9,20 @@ import GetCallBackButton from "@/components/GetCallBackButton";
 // Edit these doctor details here when you are ready.
 const doctors = [
   {
+    name: "Dr. Priyanka Jaiswal",
+    qualifications: "MBBS, MS (OBGY)",
+    designation: "Consultant Gynaecologist",
+    slug: "dr-priyanka-jaiswal",
+    image: "/images/departments_doctor/dr_priyanka_jaiswal.jpg",
+  },
+  {
+    name: "Dr. Srishti Tanya",
+    qualifications: "M.B.B.S., MS",
+    designation: "Consultant Gynaecologist",
+    slug: "dr-srishti-tanya",
+    image: "/images/departments_doctor/dr._srishti_tanya.jpg",
+  },
+  {
     name: "Dr. Akanksha Chaturvedi",
     qualifications: "MBBS, MS (Obs & Gynae)",
     designation: "IVF & Fertility Specialist",
@@ -114,19 +128,19 @@ const SectionHeader = ({
   highlight?: string;
 }) => (
   <div className="mb-6 2xl:mb-8">
-    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-      {title} <span className="text-[#1e3a8a]">{highlight}</span>
+    <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-violet-950 font-heading leading-tight">
+      {title} <span className="text-pink-600">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-2">
-      <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
+      <span className="w-1.5 h-8 rounded-full bg-pink-600 inline-block" />
       <div className="h-[2px] w-12 bg-gray-300" />
     </div>
   </div>
 );
 
 const CheckItem = ({ text }: { text: string }) => (
-  <div className="bg-white border border-slate-100/80 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-blue-100 transition-all duration-300 flex items-start gap-3">
-    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-[#1e3a8a] border border-blue-100 shadow-inner">
+  <div className="bg-white border border-slate-100/80 rounded-2xl p-4 shadow-sm hover:shadow-md hover:violet-100 transition-all duration-300 flex items-start gap-3">
+    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-violet-700 border border-violet-100 shadow-inner">
       <Check className="h-3.5 w-3.5" />
     </span>
     <span className="text-gray-700 text-xs sm:text-sm font-bold leading-relaxed">{text}</span>
@@ -137,7 +151,7 @@ export default function IvfFertilityClient() {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
+      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-violet-950 overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/laboratory_medicine.png"
@@ -146,21 +160,21 @@ export default function IvfFertilityClient() {
             className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-violet-950 via-violet-950/90 to-transparent" />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
+            <span className="inline-block py-1 px-3 rounded-full bg-pink-500/20 text-pink-200 text-sm font-semibold mb-6 border border-pink-400/30 backdrop-blur-sm tracking-wide">
               Department of
             </span>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
               IVF & <br />
-              <span className="text-blue-300">Fertility</span>
+              <span className="text-pink-300">Fertility</span>
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-pink-600/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
@@ -190,7 +204,7 @@ export default function IvfFertilityClient() {
                   approach focuses on understanding the cause of infertility and
                   choosing the right step at the right time.
                 </p>
-                <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
+                <div className="relative border-l-4 border-pink-500 pl-6 py-4 bg-gradient-to-r from-pink-50/40 to-pink-50/10 rounded-r-3xl my-6 shadow-sm">
                   <p className="font-semibold text-gray-800">
                     From ovulation issues, PCOS and recurrent pregnancy loss to
                     male-factor infertility and assisted reproduction counselling,
@@ -222,10 +236,10 @@ export default function IvfFertilityClient() {
                   key={item.title}
                   className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-3 group"
                 >
-                  <div className="h-12 w-12 rounded-2xl bg-blue-50 text-[#1e3a8a] flex items-center justify-center border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
+                  <div className="h-12 w-12 rounded-2xl bg-violet-50 text-violet-700 flex items-center justify-center border border-violet-100 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300 shadow-inner">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors">
+                  <h3 className="text-lg font-bold text-violet-950 group-hover:text-violet-700 transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-sm font-medium leading-relaxed text-gray-600">
@@ -251,9 +265,9 @@ export default function IvfFertilityClient() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-[#0b1c43]/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]">Quality Standards</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-violet-950/60 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-violet-950/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
+                  <p className="font-bold mb-1 text-pink-300 uppercase tracking-widest text-[9.5px]">Quality Standards</p>
                   Patient-first approach with top clinical success rates and safety protocols.
                 </div>
               </div>
@@ -268,10 +282,10 @@ export default function IvfFertilityClient() {
                   return (
                     <div key={cat.title} className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-3 group">
                       <div className="flex items-center gap-3.5">
-                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-50 text-[#1e3a8a] flex items-center justify-center border border-blue-100 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors duration-300 shadow-inner">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-violet-50 text-violet-700 flex items-center justify-center border border-violet-100 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300 shadow-inner">
                           <Icon className="w-5 h-5" />
                         </div>
-                        <h3 className="text-sm sm:text-base font-bold text-[#0b1c43] group-hover:text-[#1e3a8a] transition-colors">
+                        <h3 className="text-sm sm:text-base font-bold text-violet-950 group-hover:text-violet-700 transition-colors">
                           {cat.title}
                         </h3>
                       </div>
@@ -281,7 +295,7 @@ export default function IvfFertilityClient() {
                       <ul className="space-y-2 mt-2 pt-3 border-t border-slate-50">
                         {cat.items.map((item) => (
                           <li key={item} className="flex items-start gap-2 text-xs text-gray-700 font-bold leading-relaxed">
-                            <Check className="h-3.5 w-3.5 text-blue-500 mt-0.5 flex-shrink-0" />
+                            <Check className="h-3.5 w-3.5 text-pink-500 mt-0.5 flex-shrink-0" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -299,30 +313,30 @@ export default function IvfFertilityClient() {
       <section className="py-20 xl:py-16 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Overview</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-              Treatment <span className="text-[#1e3a8a]">Journey</span>
+            <span className="text-pink-600 font-bold tracking-widest text-xs uppercase block">Overview</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-violet-950 font-heading tracking-tight">
+              Treatment <span className="text-pink-600">Journey</span>
             </h2>
-            <div className="h-[2px] w-24 bg-gradient-to-r from-blue-500 to-indigo-650 mx-auto" />
+            <div className="h-[2px] w-24 bg-gradient-to-r from-violet-500 to-pink-500 mx-auto" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {careSteps.map((item) => (
               <article
                 key={item.step}
-                className="rounded-3xl bg-[#0b1c43] text-white p-6 shadow-lg hover:bg-[#0b1c43]/90 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 border border-blue-900/50 flex flex-col justify-between min-h-[220px]"
+                className="rounded-3xl bg-violet-950 text-white p-6 shadow-lg hover:bg-violet-900 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 border border-violet-800/50 flex flex-col justify-between min-h-[220px]"
               >
                 <div>
-                  <p className="text-3xl font-black text-blue-300 mb-4 font-heading leading-none">
+                  <p className="text-3xl font-black text-pink-300 mb-4 font-heading leading-none">
                     {item.step}
                   </p>
                   <h3 className="font-bold text-lg mb-2 text-white">{item.title}</h3>
-                  <p className="text-xs font-semibold leading-relaxed text-blue-100">
+                  <p className="text-xs font-semibold leading-relaxed text-violet-100">
                     {item.desc}
                   </p>
                 </div>
-                <div className="mt-4 pt-4 border-t border-blue-900/40 flex justify-end">
-                  <ArrowRight className="w-4 h-4 text-blue-300" />
+                <div className="mt-4 pt-4 border-t border-violet-800/40 flex justify-end">
+                  <ArrowRight className="w-4 h-4 text-pink-300" />
                 </div>
               </article>
             ))}

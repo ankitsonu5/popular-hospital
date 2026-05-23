@@ -114,23 +114,16 @@ const doctors = [
   {
     name: "Dr. Madhavi Paramar",
     qualifications: "MBBS, DGO",
-    designation: "Consultant Obstetrician, Gynaecologist & Infertility Specialist",
+    designation: "Consultant Gynaecologist",
     slug: "dr-madhavi-paramar",
     image: "/images/departments_doctor/madhvi_parmar.jpg",
   },
   {
     name: "Dr. Priyanka Jaiswal",
     qualifications: "MBBS, MS (OBGY)",
-    designation: "Consultant Laparoscopic Gynaecologist & IVF Specialist",
+    designation: "Consultant Gynaecologist",
     slug: "dr-priyanka-jaiswal",
     image: "/images/departments_doctor/dr_priyanka_jaiswal.jpg",
-  },
-  {
-    name: "Dr. Srishti Tanya",
-    qualifications: "M.B.B.S., MS",
-    designation: "Consultant Gynaecologist",
-    slug: "dr-srishti-tanya",
-    image: "/images/departments_doctor/dr._srishti_tanya.jpg",
   },
 ];
 
@@ -230,7 +223,7 @@ export default function GynaecologyClient() {
             {/* Right Doctor Slider (UNCHANGED WRAPPER) */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Obstetrics and Gynaecology" />
+                <DoctorSlider doctors={doctors} departmentName="Obstetrics and Gynaecology" preventBackendFetch={true} />
               </div>
             </div>
           </div>

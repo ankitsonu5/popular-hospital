@@ -191,3 +191,29 @@ export const toggleRead = async (req, res) => {
       .json({ message: "Error updating read status", error: err.message });
   }
 };
+
+// Update Application Status
+export const updateStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    
+    if (!["Applied", "Shortlisted", "Selected", "Rejected"].includes(status)) {
+      return res.status(400).json({ message: "Invalid status" });
+    }
+
+    const application = await Application.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true },
+    ).populate("appliedFor");
+    
+    if (!application)
+      return res.status(404).json({ message: "Application not found" });
+    res.json(application);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error updating status", error: err.message });
+  }
+};

@@ -17,7 +17,7 @@ const doctors = [
   },
   {
     name: "Dt. Sayeda Eram Fatma",
-    qualifications: "MSc. (DFSM)",
+    qualifications: "M.SC (DFSM) Dietetics Food service management  BHU  Diploma in health care and hospital management BHU CNCC Nutrition in child care",
     designation: "Clinical Dietitian",
     slug: "dt-sayeda-eram-fatma",
     image: "/images/departments_doctor/dt._sayeda_eram_fatma.jpeg",

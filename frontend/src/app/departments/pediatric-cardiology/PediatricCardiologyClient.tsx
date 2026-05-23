@@ -37,7 +37,7 @@ const symptoms = [
   "Excessive sweating specially during feeding",
   "Bluish discolouration of lips and extremities",
   "Syncope / Fainting spells",
-  "Palpitation (Excessive awareness of heart beats)",
+  "Palpitation (Excessive awareness of heart beats)", 
 ];
 
 const services = [

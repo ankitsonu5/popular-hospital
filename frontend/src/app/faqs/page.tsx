@@ -167,23 +167,36 @@ export default function FAQPage() {
               Our clinical support team is available 24/7 to guide you through
               your medical journey.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
               <a
                 href="tel:+917800001895"
-                className="flex items-center gap-3 px-10 py-5 bg-[#2a7a8c] text-white rounded-full font-bold text-lg hover:bg-[#215f6d] transition-all hover:scale-105 shadow-lg shadow-teal-50"
+                className="flex items-center gap-3 px-8 py-4 bg-[#1a3a5c] text-white rounded-full font-bold text-lg hover:bg-[#122842] transition-all hover:scale-105 shadow-lg shadow-blue-50"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M20,15.5C18.8,15.5 17.5,15.3 16.4,14.9C16.3,14.9 16.2,14.9 16.1,14.9C15.8,14.9 15.6,15 15.4,15.2L13.2,17.4C10.4,15.9 8,13.6 6.6,10.8L8.8,8.6C9.1,8.3 9.2,7.9 9,7.6C8.7,6.5 8.5,5.2 8.5,4C8.5,3.5 8,3 7.5,3H4C3.5,3 3,3.5 3,4C3,13.4 10.6,21 20,21C20.5,21 21,20.5 21,20V16.5C21,16 20.5,15.5 20,15.5Z" />
                 </svg>
-                Contact 24/7 Support
+                +91 7800001895
+              </a>
+              <a
+                href="tel:+917800001896"
+                className="flex items-center gap-3 px-8 py-4 bg-[#1a3a5c] text-white rounded-full font-bold text-lg hover:bg-[#122842] transition-all hover:scale-105 shadow-lg shadow-blue-50"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20,15.5C18.8,15.5 17.5,15.3 16.4,14.9C16.3,14.9 16.2,14.9 16.1,14.9C15.8,14.9 15.6,15 15.4,15.2L13.2,17.4C10.4,15.9 8,13.6 6.6,10.8L8.8,8.6C9.1,8.3 9.2,7.9 9,7.6C8.7,6.5 8.5,5.2 8.5,4C8.5,3.5 8,3 7.5,3H4C3.5,3 3,3.5 3,4C3,13.4 10.6,21 20,21C20.5,21 21,20.5 21,20V16.5C21,16 20.5,15.5 20,15.5Z" />
+                </svg>
+                +91 7800001896
               </a>
               <Link
                 href="/#contact-form"
-                className="px-10 py-5 border-2 border-[#1a3a5c] text-[#1a3a5c] rounded-full font-bold text-lg hover:bg-[#1a3a5c] hover:text-white transition-all hover:scale-105"
+                className="px-8 py-4 border-2 border-[#1a3a5c] text-[#1a3a5c] rounded-full font-bold text-lg hover:bg-[#1a3a5c] hover:text-white transition-all hover:scale-105"
               >
                 Reach Out to Us
               </Link>

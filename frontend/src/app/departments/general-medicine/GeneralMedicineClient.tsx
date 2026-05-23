@@ -207,7 +207,7 @@ export default function GeneralMedicineClient() {
             {/* Right Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="General Medicine" />
+                <DoctorSlider doctors={doctors} departmentName="General Medicine" preventBackendFetch={true} />
               </div>
             </div>
           </div>
