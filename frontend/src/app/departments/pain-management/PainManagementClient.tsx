@@ -132,7 +132,7 @@ const doctors = [
     qualifications: "MBBS, MD (Anaesthesia), PDCC",
     designation: "Consultant Pain Management",
     slug: "dr-alisha-raj",
-    image: "",
+    image: "/images/departments_doctor/dr_alisha_raj_new.jpg",
   },
   {
     name: "Dr. Rahul Singh",
@@ -146,7 +146,7 @@ const doctors = [
     qualifications: "MBBS, MD (Anaesthesia) IMS, BHU",
     designation: "Consultant Pain Management",
     slug: "dr-sumit-vishwakarma",
-    image: "",
+    image: "/images/departments_doctor/dr_sumit_vishwakarma_new.jpg",
   },
   {
     name: "Dr. Vikas Mishra",

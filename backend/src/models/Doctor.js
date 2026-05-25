@@ -22,6 +22,7 @@ const doctorSchema = new mongoose.Schema(
     image_url: { type: String, default: null },
     consultation_fee: { type: Number, default: null },
     available_days: { type: String, default: null },
+    youtube_video_url: { type: String, default: null },
     opd_timings: {
       monday: { type: String, default: "9am-12pm & 4pm-8pm" },
       tuesday: { type: String, default: "9am-12pm & 4pm-8pm" },

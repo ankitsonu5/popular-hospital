@@ -3,13 +3,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import DoctorSlider from "@/components/DoctorSlider";
-
+import DepartmentSchema from "@/components/schema/DepartmentSchema";
 const doctors: never[] = []; // No doctors for now
 
 export default function PathologyPage() {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
+    <>
+      <DepartmentSchema
+        name="Department of Pathology | Popular Hospital"
+        description="Laboratory & Medical Research. Advanced diagnostic solutions powered by cutting-edge technology and expert pathologists."
+        urlSlug="pathology"
+        medicalSpecialty="Pathology"
+      />
+      <main className="min-h-screen bg-white">
+        {/* Hero Section */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#004d61] overflow-hidden flex items-center py-10 md:py-12">
         {/* Background Image Overlay */}
         <div className="absolute inset-0 z-0">
@@ -350,6 +357,7 @@ export default function PathologyPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

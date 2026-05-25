@@ -231,12 +231,16 @@ export const createDoctor = async (req, res) => {
 export const updateDoctor = async (req, res) => {
   try {
     const updates = { ...req.body };
-    updates.experience_years = updates.experience_years
-      ? parseInt(updates.experience_years)
-      : null;
-    updates.consultation_fee = updates.consultation_fee
-      ? parseInt(updates.consultation_fee)
-      : null;
+    if (updates.experience_years !== undefined) {
+      updates.experience_years = updates.experience_years
+        ? parseInt(updates.experience_years)
+        : null;
+    }
+    if (updates.consultation_fee !== undefined) {
+      updates.consultation_fee = updates.consultation_fee
+        ? parseInt(updates.consultation_fee)
+        : null;
+    }
     if (updates.is_active !== undefined)
       updates.is_active =
         updates.is_active !== "false" && updates.is_active !== false;

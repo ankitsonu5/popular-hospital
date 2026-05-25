@@ -37,7 +37,7 @@ const PUBLIC_DOCTOR_IMAGES: Record<string, string> = {
     "/images/departments_doctor/dr_ohd_akhtar_ali_ansari.jpg",
   "dr-vinit-yadav": "/images/departments_doctor/vinit_yadav.jpg",
   "dr-piyush-hari": "/images/departments_doctor/dr_piyush_hari.jpg",
-  "dr-alok-c-bhardwaj": "/images/departments_doctor/dr._alok_c_bhardwaj.jpg",
+  "dr-alok-c-bhardwaj": "/images/departments_doctor/alok_c_bharwaj.jpg",
   "dr-greeshma-suresh": "/images/departments_doctor/dr_greeshma_suresh.jpg",
   "dr-prabhat-kumar": "/images/departments_doctor/dr_prabhat_kumar.jpg",
   "dr-rajesh-kumar-singh": "/images/departments_doctor/dr_rajesh_kumar_singh.jpg",
@@ -47,6 +47,8 @@ const PUBLIC_DOCTOR_IMAGES: Record<string, string> = {
   "dr-vikas-jaiswal": "/images/departments_doctor/dr_vikas_jaiswal.jpg",
   "dr-dinesh-singh": "/images/departments_doctor/dr-dinesh-singh.jpg",
   "dr-piyush-kumar-saini": "/images/departments_doctor/dr_piyush_saini.jpg",
+  "dr-alisha-raj": "/images/departments_doctor/dr_alisha_raj_new.jpg",
+  "dr-sumit-vishwakarma": "/images/departments_doctor/dr_sumit_vishwakarma_new.jpg",
 };
 
 export const getDoctorImageCandidates = (doctor: Doctor) =>

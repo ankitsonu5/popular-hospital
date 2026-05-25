@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useState, useCallback } from "react";
 import {
   DndContext,
@@ -229,7 +229,7 @@ export default function DoctorsPage() {
     setIsLoading(true);
     try {
       const [docsRes, specsRes, branchesRes, desigRes] = await Promise.all([
-        fetch(`${API_URL}/cms/doctors`, { headers: getHeaders() }),
+        fetch(`${API_URL}/cms/doctors?t=${Date.now()}`, { headers: getHeaders() }),
         fetch(`${API_URL}/doctors/specialities`),
         fetch(`${API_URL}/branches`),
         fetch(`${API_URL}/cms/designations`, { headers: getHeaders() }),

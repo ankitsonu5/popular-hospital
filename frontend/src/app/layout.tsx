@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { apiBaseUrl } from "@/lib/api";
 import LayoutShell from "@/components/LayoutShell";
@@ -13,39 +14,50 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://popularhospital.in"),
   title: {
     default:
-      "Popular Hospital | Best Multispeciality Hospital - Book Doctor & OPD",
-    template: "%s | Popular Hospital",
+      "Popular Hospital Varanasi | Top Multi Super Speciality Hospital",
+    template: "%s | Popular Hospital Varanasi",
   },
   description:
-    "Popular Hospital offers quality healthcare, doctor appointments, OPD services, and multiple branches across Varanasi. Book online, find doctors by speciality, and get the best care.",
+    "Popular Hospital is the best & top multi super speciality hospital in Varanasi. 450+ beds, 28 departments, expert doctors. 24/7 emergency care, cashless treatment. Book OPD appointment online.",
   keywords: [
-    "hospital",
-    "doctor appointment",
-    "OPD",
-    "healthcare",
-    "Popular Hospital",
-    "multispeciality",
-    "Varanasi",
-    "best hospital",
+    "popular hospital",
+    "popular hospital varanasi",
+    "best hospital in varanasi",
+    "top hospital in varanasi",
+    "best multi super speciality hospital in varanasi",
+    "dr a.k. kaushik",
+    "hospital in varanasi",
+    "multispeciality hospital varanasi",
+    "doctor appointment varanasi",
+    "OPD varanasi",
   ],
   authors: [{ name: "Popular Hospital" }],
   creator: "Popular Hospital",
   openGraph: {
-    title: "Popular Hospital | Best Multispeciality Hospital",
+    title: "Popular Hospital Varanasi | Best & Top Multi Super Speciality Hospital",
     description:
-      "Quality healthcare with compassion. Book appointments, find doctors, and visit our branches.",
+      "Popular Hospital — top multi super speciality hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors. 24/7 emergency, cashless treatment.",
     type: "website",
     locale: "en_IN",
-    siteName: "Popular Hospital",
+    siteName: "Popular Hospital Varanasi",
+    url: "https://popularhospital.in",
+    images: [
+      {
+        url: "https://popularhospital.in/logo.png",
+        width: 512,
+        height: 512,
+        alt: "Popular Hospital Varanasi Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Popular Hospital | Best Multispeciality Hospital",
+    title: "Popular Hospital Varanasi | Top Multi Super Speciality Hospital",
     description:
-      "Quality healthcare with compassion. Book appointments, find doctors, and visit our branches.",
+      "Best & top hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors. Book appointment online.",
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://popularhospital.com" },
+  alternates: { canonical: "https://popularhospital.in" },
   icons: {
     icon: "/images/favicon/favppl.png",
     apple: "/images/favicon/favppl.png",
@@ -73,7 +85,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {/* Bypass the Next.js/React dev timing/performance measure overlay crash bug */}
-        <script
+        <Script
+          id="performance-bypass"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {

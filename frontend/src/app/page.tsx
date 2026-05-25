@@ -1,5 +1,8 @@
 import { Metadata } from "next";
 import HomeClient from "./HomeClient";
+import HospitalSchema from "@/components/schema/HospitalSchema";
+import LocalBusinessSchema from "@/components/schema/LocalBusinessSchema";
+import FAQSchema from "@/components/schema/FAQSchema";
 import {
   fetchNews,
   fetchBranches,
@@ -13,9 +16,10 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Best Multi Super Speciality Hospital in Varanasi",
+  title:
+    "Popular Hospital Varanasi | Best & Top Multi Super Speciality Hospital in Varanasi",
   description:
-    "Popular Hospital (a Unit of POPULAR MEDICARE LTD) is one of Varanasi's best Super Speciality Institutes offering 24/7 world-class healthcare, expert doctors, and modern infrastructure.",
+    "Popular Hospital — the top multi super speciality hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors including Dr. A.K. Kaushik (Chairman). 24/7 emergency, cashless treatment & advanced care. Book appointment now.",
 };
 
 export default async function HomePage() {
@@ -36,13 +40,18 @@ export default async function HomePage() {
   ]);
 
   return (
-    <HomeClient
-      latestNews={newsData.slice(0, 3)}
-      branches={branchesData}
-      latestEvents={eventsData.slice(0, 3)}
-      specialities={specialitiesData}
-      heroBanners={bannersData}
-      patientStories={patientStoriesData.slice(0, 7)}
-    />
+    <>
+      <HospitalSchema />
+      <LocalBusinessSchema />
+      <FAQSchema />
+      <HomeClient
+        latestNews={newsData.slice(0, 3)}
+        branches={branchesData}
+        latestEvents={eventsData.slice(0, 3)}
+        specialities={specialitiesData}
+        heroBanners={bannersData}
+        patientStories={patientStoriesData.slice(0, 7)}
+      />
+    </>
   );
 }

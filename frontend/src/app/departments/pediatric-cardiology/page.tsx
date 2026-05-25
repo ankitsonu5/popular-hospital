@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PediatricCardiologyClient from "./PediatricCardiologyClient";
+import DepartmentSchema from "@/components/schema/DepartmentSchema";
 
 export const metadata: Metadata = {
   title: "Pediatric Cardiology | Popular Hospital",
@@ -8,5 +9,15 @@ export const metadata: Metadata = {
 };
 
 export default function PediatricCardiologyPage() {
-  return <PediatricCardiologyClient />;
+  return (
+    <>
+      <DepartmentSchema
+        name="Pediatric Cardiology | Popular Hospital"
+        description="Specialized pediatric cardiology care for children. Dedicated Pediatric Cardiologists and support ensuring gentle, safe care."
+        urlSlug="pediatric-cardiology"
+        medicalSpecialty="Pediatric"
+      />
+      <PediatricCardiologyClient />
+    </>
+  );
 }

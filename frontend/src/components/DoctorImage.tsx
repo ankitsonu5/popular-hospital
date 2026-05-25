@@ -43,6 +43,7 @@ export default function DoctorImage({ src, alt }: DoctorImageProps) {
       src={src}
       alt={alt}
       fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       className="object-cover object-top"
       // Skip Next.js image optimization for backend /uploads/ images.
       // Optimization pipeline fetches the image server-side; if the file

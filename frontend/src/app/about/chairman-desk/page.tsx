@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ChairmanSchema from "@/components/schema/ChairmanSchema";
 
 const chairmanData = {
   name: "Dr. A.K. Kaushik",
@@ -22,6 +23,8 @@ export const metadata = {
 
 export default function ChairmanDeskPage() {
   return (
+    <>
+    <ChairmanSchema />
     <div className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
       <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
@@ -40,7 +43,7 @@ export default function ChairmanDeskPage() {
             Foundation
           </span>
           <h1 className="text-3xl md:text-5xl xl:text-2xl font-black font-heading mb-3 text-white uppercase tracking-tight">
-            From Chairman's Desk
+            From Chairman&apos;s Desk
           </h1>
           <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full"></div>
         </div>
@@ -106,5 +109,6 @@ export default function ChairmanDeskPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

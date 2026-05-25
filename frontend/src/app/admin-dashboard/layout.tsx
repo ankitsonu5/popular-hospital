@@ -60,6 +60,10 @@ const sidebarItems = [
     subItems: [
       { label: "Hero Content", href: "/admin-dashboard/content-manage" },
       {
+        label: "Doctor Videos",
+        href: "/admin-dashboard/content-manage/doctor-videos",
+      },
+      {
         label: "Department Gallery",
         href: "/admin-dashboard/content-manage/department-gallery",
       },

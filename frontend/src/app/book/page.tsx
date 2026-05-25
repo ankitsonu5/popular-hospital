@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { BookingForm } from "@/components/BookingForm";
+import BookingSchema from "@/components/schema/BookingSchema";
 
 export const metadata: Metadata = {
   title: "Book Appointment",
@@ -14,6 +15,8 @@ export default function BookPage({
   searchParams: Promise<{ doctor?: string; branch?: string }>;
 }) {
   return (
+    <>
+    <BookingSchema />
     <main
       className="bg-[#f6f8fc]"
       style={{ fontFamily: '"Plus Jakarta Sans", "Segoe UI", sans-serif' }}
@@ -88,5 +91,6 @@ export default function BookPage({
         </Suspense>
       </section>
     </main>
+    </>
   );
 }

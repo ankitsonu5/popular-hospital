@@ -239,13 +239,17 @@ export default async function DoctorPage({ params }: Props) {
                 <div className="lg:col-span-8 p-10 lg:p-12">
                   <div className="mb-8 flex flex-col justify-end gap-3 sm:flex-row">
                     <Link
-                      href={`/book?doctor=${doctor.id}`}
+                      href={`/book?doctor=${doctor.slug}`}
                       className="inline-flex items-center justify-center bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3 rounded-md font-bold text-sm tracking-wide shadow transition-all transform hover:scale-105"
                     >
                       SCHEDULE AN APPOINTMENT
                     </Link>
                     <a
-                      href="https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
+                      href={
+                        doctor.youtube_video_url
+                          ? (doctor.youtube_video_url.startsWith('http') ? doctor.youtube_video_url : `https://${doctor.youtube_video_url}`)
+                          : "https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 rounded-md border border-[#3b82f6]/25 bg-white px-8 py-3 text-sm font-bold tracking-wide text-[#3b82f6] shadow transition-all hover:-translate-y-0.5 hover:border-[#3b82f6] hover:bg-blue-50"

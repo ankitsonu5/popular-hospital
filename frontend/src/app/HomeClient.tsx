@@ -456,6 +456,10 @@ export default function HomeClient({
 
   return (
     <>
+      {/* SEO: Primary H1 — visually hidden, accessible to search engines */}
+      <h1 className="sr-only">
+        Popular Hospital Varanasi — Best & Top Multi Super Speciality Hospital in Varanasi | Dr. A.K. Kaushik, Chairman
+      </h1>
       <section className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[64px] sm:mt-[80px] md:mt-0 h-[480px] sm:h-[calc(100dvh-80px)] md:h-[100dvh] min-h-[480px] sm:min-h-[calc(100dvh-80px)] md:min-h-[100dvh]">
         {/* Slider Background */}
         <div className="absolute inset-0 z-0 bg-white">
@@ -2919,7 +2923,7 @@ export default function HomeClient({
               <div className="flex flex-col gap-6">
                 <div className="relative rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500 max-w-xl mx-auto w-full">
                   <Image
-                    src="/images/awards/award1.png"
+                    src="/images/awards/award1_v2.png"
                     alt="Hospital Award"
                     width={2496}
                     height={1726}

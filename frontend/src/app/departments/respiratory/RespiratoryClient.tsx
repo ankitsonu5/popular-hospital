@@ -114,7 +114,7 @@ const doctors = [
     name: "Dr. K.P. Singh",
     qualifications: "MBBS, MD (Respiratory Medicine), Dip Card",
     designation: "Sr. Consultant Pulmonologist",
-    slug: "dr-kp-singh",
+    slug: "dr-k-p-singh",
     image: "/images/departments_doctor/dr_k_p_singh.jpg",
   },
   {
@@ -164,7 +164,6 @@ const SectionHeader = ({
 export default function RespiratoryClient() {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#164e63] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
@@ -178,27 +177,27 @@ export default function RespiratoryClient() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#164e63] via-[#164e63]/90 to-transparent" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-cyan-500/20 text-cyan-100 text-xs md:text-sm font-bold mb-4 border border-cyan-400/30 backdrop-blur-sm uppercase tracking-wider">
+            <span className="inline-block py-1 px-3 rounded-full bg-cyan-500/20 text-cyan-100 text-sm font-semibold mb-6 border border-cyan-400/30 backdrop-blur-sm uppercase tracking-wide">
               Centre for Advanced Pulmonology
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-6xl font-bold text-white mb-4 leading-[1.1] font-heading">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-2xl 2xl:text-4xl font-bold text-white mb-6 leading-tight font-heading break-words">
               Department of{" "}
               <span className="text-cyan-400">
                 Pulmonology &amp; Chest/Respiratory Medicine Department
               </span>
             </h1>
-            <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#E85222] text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center justify-center gap-2 text-center uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center justify-center gap-2 text-center uppercase text-sm tracking-wide"
               >
                 Book Appointment
               </Link>
               <GetCallBackButton
                 department="Respiratory Medicine"
-                className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
               >
                 Get a Call Back
               </GetCallBackButton>
@@ -210,21 +209,30 @@ export default function RespiratoryClient() {
       {/* ═══════ DEPARTMENT INFO SECTION ═══════ */}
       <section className="py-20 xl:py-16 bg-white min-h-[600px]">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-
           {/* ── Intro + Doctor Grid ── */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Content */}
             <div className="lg:col-span-8 space-y-6">
               <SectionLabel text="About the Department" />
-              <SectionHeader title="Pulmonology &" highlight="Respiratory Medicine" />
+              <SectionHeader
+                title="Pulmonology &"
+                highlight="Respiratory Medicine"
+              />
 
               <div className="space-y-4 text-gray-700 text-base md:text-[15px] leading-relaxed font-medium">
                 <p className="text-justify">
-                  Our Respiratory Medicine Department is dedicated to providing exceptional care of chest, lungs, and sleep disorders — helping you breathe and providing comprehensive treatment for a wide range of respiratory illnesses such as asthma, COPD, pneumonia (including COVID-19), lung cancer, lung fibrosis, sleep apnea, and more.
+                  Our Respiratory Medicine Department is dedicated to providing
+                  exceptional care of chest, lungs, and sleep disorders —
+                  helping you breathe and providing comprehensive treatment for
+                  a wide range of respiratory illnesses such as asthma, COPD,
+                  pneumonia (including COVID-19), lung cancer, lung fibrosis,
+                  sleep apnea, and more.
                 </p>
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/60 to-transparent rounded-r-3xl shadow-sm">
                   <p className="font-semibold text-gray-800">
-                    With our highly experienced team of respiratory specialists and state-of-the-art facilities, we are committed to helping you breathe easier and live a fulfilling life.
+                    With our highly experienced team of respiratory specialists
+                    and state-of-the-art facilities, we are committed to helping
+                    you breathe easier and live a fulfilling life.
                   </p>
                 </div>
               </div>
@@ -237,9 +245,14 @@ export default function RespiratoryClient() {
                   "Specialized ICU for respiratory care",
                   "Comprehensive pulmonary testing",
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 bg-blue-50/50 rounded-xl px-4 py-3 border border-blue-100/60">
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 bg-blue-50/50 rounded-xl px-4 py-3 border border-blue-100/60"
+                  >
                     <CheckCircle2 className="h-4 w-4 text-[#1e3a8a] shrink-0" />
-                    <span className="text-gray-700 text-xs sm:text-sm font-semibold">{item}</span>
+                    <span className="text-gray-700 text-xs sm:text-sm font-semibold">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -248,7 +261,11 @@ export default function RespiratoryClient() {
             {/* Doctor Sidebar */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Respiratory Medicine" preventBackendFetch={true} />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Respiratory Medicine"
+                  preventBackendFetch={true}
+                />
               </div>
             </div>
           </div>
@@ -267,8 +284,13 @@ export default function RespiratoryClient() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/70 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 bg-[#0b1c43]/90 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                    <p className="text-[8.5px] font-bold text-blue-300 uppercase tracking-widest mb-0.5">Department Overview</p>
-                    <p className="text-white text-[11px] leading-snug font-medium">Advanced care for all respiratory and pulmonary conditions.</p>
+                    <p className="text-[8.5px] font-bold text-blue-300 uppercase tracking-widest mb-0.5">
+                      Department Overview
+                    </p>
+                    <p className="text-white text-[11px] leading-snug font-medium">
+                      Advanced care for all respiratory and pulmonary
+                      conditions.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -276,12 +298,21 @@ export default function RespiratoryClient() {
               {/* Content */}
               <div className="lg:w-7/12 w-full space-y-6">
                 <SectionLabel text="Our Commitment" />
-                <SectionHeader title="Patient-Centered" highlight="Respiratory Care" />
+                <SectionHeader
+                  title="Patient-Centered"
+                  highlight="Respiratory Care"
+                />
                 <p className="text-gray-600 text-sm md:text-base leading-relaxed font-medium">
-                  At our Respiratory Department, patient-centered care is our top priority. We strive to create a comfortable and supportive environment where you can openly discuss your concerns and receive the highest standard of pulmonary care.
+                  At our Respiratory Department, patient-centered care is our
+                  top priority. We strive to create a comfortable and supportive
+                  environment where you can openly discuss your concerns and
+                  receive the highest standard of pulmonary care.
                 </p>
                 <p className="text-gray-600 text-sm md:text-base leading-relaxed font-medium">
-                  We understand the importance of healthy lungs and the impact that respiratory health has on our overall well-being. Our team is committed to providing you with the most effective and tailored care for every respiratory condition.
+                  We understand the importance of healthy lungs and the impact
+                  that respiratory health has on our overall well-being. Our
+                  team is committed to providing you with the most effective and
+                  tailored care for every respiratory condition.
                 </p>
                 <div className="flex flex-wrap gap-4 pt-2">
                   <Link
@@ -334,7 +365,9 @@ export default function RespiratoryClient() {
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
             <div className="relative z-10">
               <div className="mb-10 text-center space-y-3">
-                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">Conditions Treated</span>
+                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">
+                  Conditions Treated
+                </span>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
                   Scope of <span className="text-blue-300">Treatment</span>
                 </h2>
@@ -347,7 +380,9 @@ export default function RespiratoryClient() {
                     className="flex items-center gap-3 bg-blue-900/40 border border-blue-800/60 rounded-xl px-4 py-3 hover:bg-blue-800/50 hover:border-blue-600/60 transition-all duration-200 group"
                   >
                     <CheckCircle2 className="h-4 w-4 text-blue-400 shrink-0 group-hover:text-blue-300" />
-                    <span className="text-blue-100 text-xs sm:text-sm font-semibold leading-snug">{item}</span>
+                    <span className="text-blue-100 text-xs sm:text-sm font-semibold leading-snug">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -359,7 +394,8 @@ export default function RespiratoryClient() {
             <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
               <SectionLabel text="Our Strengths" />
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Why Choose Our <span className="text-[#1e3a8a]">Respiratory Department</span>
+                Why Choose Our{" "}
+                <span className="text-[#1e3a8a]">Respiratory Department</span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -388,9 +424,6 @@ export default function RespiratoryClient() {
               })}
             </div>
           </div>
-
-
-
         </div>
       </section>
     </main>

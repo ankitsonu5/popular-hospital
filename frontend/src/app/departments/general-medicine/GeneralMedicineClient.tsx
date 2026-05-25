@@ -112,7 +112,7 @@ const doctors = [
     name: "Dr. P.K Tiwari",
     qualifications: "MBBS, MD (Internal Medicine) IMS, BHU",
     designation: "Senior Consultant Physician",
-    slug: "dr-pk-tiwari",
+    slug: "dr-p-k-tiwari",
     image: "/images/departments_doctor/dr_pk_tiwari.jpg",
   },
   {

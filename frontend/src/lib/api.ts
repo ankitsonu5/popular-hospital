@@ -426,6 +426,7 @@ export interface Doctor {
   experience_location?: string;
   bio?: string;
   image_url?: string;
+  youtube_video_url?: string;
   consultation_fee?: number;
   available_days?: string;
   opd_timings?: {

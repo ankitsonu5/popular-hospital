@@ -10,6 +10,7 @@ import {
 import BlogSidebar, { BlogSearchWidget } from "@/app/blog/BlogSidebar";
 import BlogComments from "./BlogComments";
 import { allCategories } from "../data";
+import BlogArticleSchema from "@/components/schema/BlogArticleSchema";
 
 /* ───────────────── static params ───────────────── */
 export async function generateStaticParams() {
@@ -66,6 +67,17 @@ export default async function BlogDetailPage({
   ]);
 
   return (
+    <>
+    <BlogArticleSchema
+      title={article.title}
+      slug={slug}
+      excerpt={article.excerpt || article.title}
+      image={getImageUrl(article.image, true)}
+      date={article.date}
+      author={article.author}
+      category={article.category}
+      readingTime={article.readingTime}
+    />
     <main className="min-h-screen bg-[#f9fafb] py-12">
       <div className="max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col lg:flex-row gap-8 lg:gap-12">
         {/* Mobile Search Widget - Only shown on mobile at the top */}
@@ -184,5 +196,6 @@ export default async function BlogDetailPage({
         />
       </div>
     </main>
+    </>
   );
 }

@@ -44,7 +44,7 @@ export default function MDDeskPage() {
             Perspective
           </span>
           <h1 className="text-3xl md:text-5xl xl:text-4xl font-black font-heading mb-4 text-white uppercase tracking-tight">
-            From MD's Desk
+            From MD&apos;s Desk
           </h1>
           <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full"></div>
         </div>
