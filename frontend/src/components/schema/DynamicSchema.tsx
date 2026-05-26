@@ -21,17 +21,21 @@ interface DynamicSchemaProps {
   fallback?: React.ReactNode;
 }
 
-const PUBLIC_API =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
-  process.env.BACKEND_API_URL?.replace(/\/$/, "") ||
-  "http://localhost:5100";
+// Server-only fetch — matches the same pattern used elsewhere
+// (lib/api.ts → getBaseUrl) so production / local both work.
+const getBackendBase = () => {
+  const fromEnv =
+    process.env.NEXT_PUBLIC_API_URL ||
+    process.env.BACKEND_API_URL ||
+    "http://localhost:5100";
+  return fromEnv.replace(/\/$/, "");
+};
 
 async function fetchOverride(pageKey: string): Promise<unknown | null> {
   try {
-    const url = `${PUBLIC_API}/api/schemas/${encodeURIComponent(pageKey)}`;
+    const url = `${getBackendBase()}/api/schemas/${encodeURIComponent(pageKey)}`;
     const res = await fetch(url, {
-      // Revalidate frequently so admin edits go live fast,
-      // but don't slow down every request
+      // Revalidate every 60s so admin edits go live fast
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
@@ -39,6 +43,7 @@ async function fetchOverride(pageKey: string): Promise<unknown | null> {
     if (!data || !data.jsonLd) return null;
     return data.jsonLd;
   } catch {
+    // If backend is unreachable during build/SSR, fall back silently
     return null;
   }
 }

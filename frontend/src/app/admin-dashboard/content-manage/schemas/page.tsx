@@ -281,7 +281,11 @@ export default function ManageSchemasPage() {
           <textarea
             value={jsonCode}
             onChange={(e) => handleJsonChange(e.target.value)}
-            placeholder='{\n  "@context": "https://schema.org",\n  "@type": "Hospital",\n  ...\n}'
+            placeholder={`{
+  "@context": "https://schema.org",
+  "@type": "Hospital",
+  ...
+}`}
             rows={20}
             className={`w-full px-3 py-2.5 rounded-xl border-2 text-xs font-mono focus:outline-none transition-all ${
               jsonError
