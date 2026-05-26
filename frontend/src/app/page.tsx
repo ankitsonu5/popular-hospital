@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import HomeClient from "./HomeClient";
 import HospitalSchema from "@/components/schema/HospitalSchema";
-import LocalBusinessSchema from "@/components/schema/LocalBusinessSchema";
-import FAQSchema from "@/components/schema/FAQSchema";
 import {
   fetchNews,
   fetchBranches,
@@ -42,8 +40,6 @@ export default async function HomePage() {
   return (
     <>
       <HospitalSchema />
-      <LocalBusinessSchema />
-      <FAQSchema />
       <HomeClient
         latestNews={newsData.slice(0, 3)}
         branches={branchesData}

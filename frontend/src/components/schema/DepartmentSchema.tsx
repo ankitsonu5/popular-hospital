@@ -18,7 +18,6 @@ export default function DepartmentSchema({
     name: name,
     description: description,
     url: `https://www.popularhospital.in/departments/${urlSlug}`,
-    isAcceptingPatients: true,
     parentOrganization: {
       "@type": "Hospital",
       "@id": "https://www.popularhospital.in/#hospital",
@@ -38,6 +37,7 @@ export default function DepartmentSchema({
       latitude: 25.2927719,
       longitude: 82.970505,
     },
+    priceRange: "$$",
     telephone: ["+91-7800001895", "+91-7800001896"],
     image: "https://www.popularhospital.in/logo.png",
     openingHoursSpecification: [
