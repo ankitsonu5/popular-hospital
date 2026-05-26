@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, useCallback, Suspense } from "react";
 import {
@@ -90,7 +90,6 @@ function BlogList() {
 
         <Link
           href="/admin-dashboard/media-blog/blog/action"
-          target="_blank"
           className="group inline-flex items-center gap-2 px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold transition-all shadow-md hover:shadow-lg active:scale-95"
         >
           <Plus className="w-4 h-4 transition-transform group-hover:rotate-90" />
@@ -198,7 +197,6 @@ function BlogList() {
                       <div className="flex items-center justify-end gap-1 transition-all pr-2">
                         <Link
                           href={`/admin-dashboard/media-blog/blog/action?id=${item._id}`}
-                          target="_blank"
                           className="p-3 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-all"
                           title="Edit"
                         >
