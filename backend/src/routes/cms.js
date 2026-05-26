@@ -106,6 +106,12 @@ import {
   uploadPopupImage,
 } from "../controllers/popupController.js";
 import {
+  getAllSchemas,
+  getSchemaByKey,
+  upsertSchema,
+  deleteSchema,
+} from "../controllers/schemaContentController.js";
+import {
   getAdminDepartmentGallery,
   createDepartmentGalleryItem,
   updateDepartmentGalleryItem,
@@ -355,5 +361,11 @@ router.delete("/patient-stories/:id", deletePatientStory);
 router.get("/popup", getPopup);
 router.put("/popup", uploadPopupImage.single("image"), upsertPopup);
 router.delete("/popup", deletePopup);
+
+// Schemas (JSON-LD admin overrides)
+router.get("/schemas", getAllSchemas);
+router.get("/schemas/:pageKey", getSchemaByKey);
+router.put("/schemas", upsertSchema);
+router.delete("/schemas/:pageKey", deleteSchema);
 
 export default router;

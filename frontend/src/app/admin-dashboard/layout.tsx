@@ -72,6 +72,10 @@ const sidebarItems = [
         href: "/admin-dashboard/content-manage/patients-speak",
       },
       { label: "Manage Popup", href: "/admin-dashboard/popup" },
+      {
+        label: "Manage Schemas",
+        href: "/admin-dashboard/content-manage/schemas",
+      },
     ],
   },
   { label: "Site Content", href: "/admin-dashboard/content", icon: FileText },

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import HomeClient from "./HomeClient";
 import HospitalSchema from "@/components/schema/HospitalSchema";
+import DynamicSchema from "@/components/schema/DynamicSchema";
 import {
   fetchNews,
   fetchBranches,
@@ -39,7 +40,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HospitalSchema />
+      <DynamicSchema pageKey="home" fallback={<HospitalSchema />} />
       <HomeClient
         latestNews={newsData.slice(0, 3)}
         branches={branchesData}

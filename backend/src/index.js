@@ -44,6 +44,7 @@ import patientStoriesRouter from "./routes/patientStories.js";
 import callbackRequestsRouter from "./routes/callbackRequests.js";
 import departmentGalleryRouter from "./routes/departmentGallery.js";
 import { getActivePopup } from "./controllers/popupController.js";
+import { getPublicSchema } from "./controllers/schemaContentController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -120,6 +121,7 @@ app.use("/api/patient-stories", patientStoriesRouter);
 app.use("/api/department-gallery", departmentGalleryRouter);
 app.use("/api/callback-requests", callbackRequestsRouter);
 app.get("/api/popup", getActivePopup);
+app.get("/api/schemas/:pageKey", getPublicSchema);
 
 // Serve uploads (static files)
 app.use(
