@@ -516,6 +516,8 @@ export interface BlogItem {
   ogTitle?: string;
   ogDescription?: string;
   readingTime?: number;
+  updatedAt?: string;
+  dateModified?: string;
 }
 export async function fetchCareers(): Promise<CareerItem[]> {
   try {

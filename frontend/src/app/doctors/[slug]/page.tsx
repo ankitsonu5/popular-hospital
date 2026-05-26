@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { fetchDoctor } from "@/lib/api";
 import DoctorImage from "@/components/DoctorImage";
 import { getPrimaryDoctorImage } from "@/lib/doctorImages";
+import { DoctorSchema } from "@/components/schema/DoctorSchema";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -140,6 +141,19 @@ export default async function DoctorPage({ params }: Props) {
 
     return (
       <main className="min-h-screen bg-white">
+        <DoctorSchema
+          name={displayName}
+          slug={slug}
+          description={displayBio ?? undefined}
+          qualification={displayQualification || undefined}
+          designation={displayDesignation || undefined}
+          speciality={displaySpeciality || undefined}
+          experienceYears={doctor.experience_years ?? undefined}
+          experienceLocation={doctor.experience_location ?? undefined}
+          consultationFee={displayFee ?? undefined}
+          image={displayImage ?? undefined}
+          opdTimings={doctor.opd_timings ?? undefined}
+        />
         {/* ── Banner ── */}
         <section
           className="relative py-14 overflow-hidden"

@@ -71,12 +71,27 @@ export default async function BlogDetailPage({
     <BlogArticleSchema
       title={article.title}
       slug={slug}
-      excerpt={article.excerpt || article.title}
+      excerpt={article.excerpt || article.metaDescription || article.title}
       image={getImageUrl(article.image, true)}
       date={article.date}
       author={article.author}
       category={article.category}
       readingTime={article.readingTime}
+      dateModified={article.updatedAt || article.dateModified}
+      keywords={article.metaKeywords}
+      imageAlt={article.imageAlt}
+      canonicalUrl={article.canonicalUrl}
+      wordCount={
+        article.content
+          ? (Array.isArray(article.content)
+              ? article.content.join(" ")
+              : article.content
+            )
+              .replace(/<[^>]+>/g, " ")
+              .split(/\s+/)
+              .filter(Boolean).length
+          : undefined
+      }
     />
     <main className="min-h-screen bg-[#f9fafb] py-12">
       <div className="max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col lg:flex-row gap-8 lg:gap-12">

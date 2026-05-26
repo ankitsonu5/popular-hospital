@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DoctorsSearch } from "@/components/DoctorsSearch";
+import { DoctorsListSchema } from "@/components/schema/DoctorSchema";
 
 export const metadata: Metadata = {
   title: "Find Doctors",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function DoctorsPage() {
   return (
     <div className="max-w-[1366px] mx-auto px-6 sm:px-8 md:px-10 lg:px-12 py-10 sm:py-14">
+      <DoctorsListSchema />
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1e3a8a] font-heading tracking-tight mb-3">
         Find a Doctor
       </h1>

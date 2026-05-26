@@ -208,40 +208,21 @@ export function DoctorsSearch() {
         </div>
       ) : (
         <ul className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-0 sm:px-1 pb-8">
-          {[...doctors].sort((a, b) => {
-            const aIsChairman = a.slug === "dr-a-k-kaushik" || a.slug === "dr-ak-kaushik";
-            const bIsChairman = b.slug === "dr-a-k-kaushik" || b.slug === "dr-ak-kaushik";
-            if (aIsChairman && !bIsChairman) return -1;
-            if (!aIsChairman && bIsChairman) return 1;
-            return 0;
-          }).map((doc, index) => {
+          {[...doctors].map((doc, index) => {
             const doctorKey = getDoctorKey(doc);
             const imageCandidates = getDoctorImageCandidates(doc);
             const currentImageIndex = imageFallbackIndex[doctorKey] || 0;
             const imageSrc = imageCandidates[currentImageIndex];
 
-            const isChairman = doc.slug === "dr-a-k-kaushik" || doc.slug === "dr-ak-kaushik";
-
             return (
               <li
                 key={`${doc._id ?? doc.id ?? doc.slug ?? doc.name}-${index}`}
-                className={`h-full ${isChairman ? "sm:col-span-2 lg:col-span-1" : ""}`}
+                className={`h-full`}
               >
               <Link
                 href={`/doctors/${doc.slug}`}
-                className={`group relative block h-full rounded-2xl p-3.5 sm:p-4 transition-all duration-500 hover:-translate-y-1 ${
-                  isChairman
-                    ? "bg-gradient-to-b from-amber-50/80 to-white border-2 border-amber-300/70 shadow-[0_15px_40px_-10px_rgba(217,170,0,0.18)] hover:shadow-[0_30px_60px_-15px_rgba(217,170,0,0.25)] ring-1 ring-amber-200/50"
-                    : "bg-white border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)]"
-                }`}
+                className={`group relative block h-full rounded-2xl p-3.5 sm:p-4 transition-all duration-500 hover:-translate-y-1 bg-white border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)]`}
               >
-                {/* Chairman Badge */}
-                {isChairman && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-4 py-1.5 rounded-full shadow-lg shadow-amber-200/50">
-                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm0 2h14v2H5v-2z"/></svg>
-                    <span className="text-[10px] font-black uppercase tracking-[0.15em]">Chairman</span>
-                  </div>
-                )}
                 {/* Image Container with balanced rounding */}
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#f1f5f9] mb-5 sm:mb-6">
                   {imageSrc ? (
