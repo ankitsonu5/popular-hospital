@@ -11,6 +11,7 @@ import BlogSidebar, { BlogSearchWidget } from "@/app/blog/BlogSidebar";
 import BlogComments from "./BlogComments";
 import { allCategories } from "../data";
 import BlogArticleSchema from "@/components/schema/BlogArticleSchema";
+import DynamicSchema from "@/components/schema/DynamicSchema";
 
 /* ───────────────── static params ───────────────── */
 export async function generateStaticParams() {
@@ -68,29 +69,34 @@ export default async function BlogDetailPage({
 
   return (
     <>
-    <BlogArticleSchema
-      title={article.title}
-      slug={slug}
-      excerpt={article.excerpt || article.metaDescription || article.title}
-      image={getImageUrl(article.image, true)}
-      date={article.date}
-      author={article.author}
-      category={article.category}
-      readingTime={article.readingTime}
-      dateModified={article.updatedAt || article.dateModified}
-      keywords={article.metaKeywords}
-      imageAlt={article.imageAlt}
-      canonicalUrl={article.canonicalUrl}
-      wordCount={
-        article.content
-          ? (Array.isArray(article.content)
-              ? article.content.join(" ")
-              : article.content
-            )
-              .replace(/<[^>]+>/g, " ")
-              .split(/\s+/)
-              .filter(Boolean).length
-          : undefined
+    <DynamicSchema
+      pageKey={`blog:${slug}`}
+      fallback={
+        <BlogArticleSchema
+          title={article.title}
+          slug={slug}
+          excerpt={article.excerpt || article.metaDescription || article.title}
+          image={getImageUrl(article.image, true)}
+          date={article.date}
+          author={article.author}
+          category={article.category}
+          readingTime={article.readingTime}
+          dateModified={article.updatedAt || article.dateModified}
+          keywords={article.metaKeywords}
+          imageAlt={article.imageAlt}
+          canonicalUrl={article.canonicalUrl}
+          wordCount={
+            article.content
+              ? (Array.isArray(article.content)
+                  ? article.content.join(" ")
+                  : article.content
+                )
+                  .replace(/<[^>]+>/g, " ")
+                  .split(/\s+/)
+                  .filter(Boolean).length
+              : undefined
+          }
+        />
       }
     />
     <main className="min-h-screen bg-[#f9fafb] py-12">

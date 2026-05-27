@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ChairmanSchema from "@/components/schema/ChairmanSchema";
+import DynamicSchema from "@/components/schema/DynamicSchema";
 
 const chairmanData = {
   name: "Dr. A.K. Kaushik",
@@ -24,7 +25,7 @@ export const metadata = {
 export default function ChairmanDeskPage() {
   return (
     <>
-    <ChairmanSchema />
+    <DynamicSchema pageKey="chairman" fallback={<ChairmanSchema />} />
     <div className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
       <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">

@@ -4,16 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import DoctorSlider from "@/components/DoctorSlider";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
+import DynamicSchema from "@/components/schema/DynamicSchema";
 const doctors: never[] = []; // No doctors for now
 
 export default function PathologyPage() {
   return (
     <>
-      <DepartmentSchema
+      <DynamicSchema
+        pageKey="department:pathology"
+        fallback={<DepartmentSchema
         name="Department of Pathology | Popular Hospital"
         description="Laboratory & Medical Research. Advanced diagnostic solutions powered by cutting-edge technology and expert pathologists."
         urlSlug="pathology"
         medicalSpecialty="Pathology"
+      />}
       />
       <main className="min-h-screen bg-white">
         {/* Hero Section */}

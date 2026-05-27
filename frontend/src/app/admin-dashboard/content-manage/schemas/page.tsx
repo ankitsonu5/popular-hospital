@@ -6,19 +6,13 @@ import toast from "react-hot-toast";
 
 const API_URL = "/api-backend";
 
-// Pre-defined keys → friendly labels.
-// Admin can also type a custom pageKey (e.g. "doctor:dr-name").
+// Static pages that have dedicated schema components.
+// Dynamic pages (doctor, department, blog) use the custom key field below.
 const PRESET_KEYS: { value: string; label: string; hint: string }[] = [
-  { value: "home", label: "Home Page (/)", hint: "HospitalSchema (WebSite + Organization + Hospital)" },
-  { value: "doctors", label: "Doctors Listing (/doctors)", hint: "CollectionPage + BreadcrumbList" },
-  { value: "blog-list", label: "Blog Listing (/blog)", hint: "Blog page schema" },
-  { value: "about", label: "About Page (/about)", hint: "AboutPage schema" },
-  { value: "contact", label: "Contact Page (/contact-us)", hint: "ContactPage schema" },
-  { value: "department:cardiology", label: "Department: Cardiology", hint: "MedicalClinic override" },
-  { value: "department:neurosurgery", label: "Department: Neurosurgery", hint: "MedicalClinic override" },
-  { value: "department:oncology", label: "Department: Oncology", hint: "MedicalClinic override" },
-  { value: "department:urology", label: "Department: Urology", hint: "MedicalClinic override" },
-  { value: "department:gastroenterology", label: "Department: Gastroenterology", hint: "MedicalClinic override" },
+  { value: "home",     label: "Home Page (/)",                      hint: "HospitalSchema — WebSite + Organization + Hospital" },
+  { value: "doctors",  label: "Doctors Listing (/doctors)",         hint: "DoctorsListSchema — CollectionPage + BreadcrumbList" },
+  { value: "booking",  label: "Book Appointment (/book-an-appointment)", hint: "BookingSchema — MedicalClinic + ReserveAction" },
+  { value: "chairman", label: "Chairman's Desk (/about/chairman-desk)",  hint: "ChairmanSchema — ProfilePage + Person (Dr. A.K. Kaushik)" },
 ];
 
 interface SchemaItem {
@@ -39,7 +33,6 @@ export default function ManageSchemasPage() {
   const [label, setLabel] = useState<string>("");
   const [jsonCode, setJsonCode] = useState<string>("");
   const [isActive, setIsActive] = useState(true);
-  const [notes, setNotes] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [jsonError, setJsonError] = useState<string | null>(null);
 
@@ -73,7 +66,6 @@ export default function ManageSchemasPage() {
     if (!effectivePageKey) {
       setJsonCode("");
       setLabel("");
-      setNotes("");
       setIsActive(true);
       return;
     }
@@ -81,14 +73,11 @@ export default function ManageSchemasPage() {
     if (existing) {
       setJsonCode(JSON.stringify(existing.jsonLd, null, 2));
       setLabel(existing.label ?? "");
-      setNotes(existing.notes ?? "");
       setIsActive(existing.isActive !== false);
     } else {
-      // No saved schema for this key — clear editor
       setJsonCode("");
       const preset = PRESET_KEYS.find((p) => p.value === effectivePageKey);
       setLabel(preset?.label ?? "");
-      setNotes("");
       setIsActive(true);
     }
     setJsonError(null);
@@ -138,7 +127,6 @@ export default function ManageSchemasPage() {
           label,
           jsonLd: parsed,
           isActive,
-          notes,
         }),
       });
       if (!res.ok) {
@@ -234,35 +222,39 @@ export default function ManageSchemasPage() {
         {selectedKey === "__custom__" && (
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Custom Page Key
+              Page Key
             </label>
             <input
               type="text"
               value={customKey}
               onChange={(e) => setCustomKey(e.target.value)}
-              placeholder="e.g. doctor:dr-ak-kaushik or blog:my-slug"
+              placeholder="e.g. doctor:dr-ak-kaushik"
               className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all font-mono"
             />
-            <p className="text-xs text-gray-500 mt-1">
-              Format suggestions: <code>home</code>, <code>doctor:slug</code>,{" "}
-              <code>blog:slug</code>, <code>department:slug</code>
-            </p>
+            <div className="mt-2 bg-gray-50 rounded-xl border border-gray-100 px-3 py-2.5 text-xs text-gray-600 space-y-1">
+              <p className="font-semibold text-gray-700 mb-1">Dynamic page key formats:</p>
+              <p><code className="bg-white border border-gray-200 px-1 rounded">doctor:dr-ak-kaushik</code> → Individual doctor page (DoctorSchema)</p>
+              <p><code className="bg-white border border-gray-200 px-1 rounded">department:cardiology</code> → Department page (DepartmentSchema)</p>
+              <p><code className="bg-white border border-gray-200 px-1 rounded">blog:my-article-slug</code> → Blog article page (BlogArticleSchema)</p>
+            </div>
           </div>
         )}
 
-        {/* Label */}
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Display Label
-          </label>
-          <input
-            type="text"
-            value={label}
-            onChange={(e) => setLabel(e.target.value)}
-            placeholder="e.g. Home Page Schema"
-            className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
-          />
-        </div>
+        {/* Display Label — auto-filled, editable only for custom keys */}
+        {selectedKey === "__custom__" && (
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Display Label <span className="text-gray-400 font-normal">(shown in admin table only)</span>
+            </label>
+            <input
+              type="text"
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
+              placeholder="e.g. Dr. AK Kaushik — Doctor Schema"
+              className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
+            />
+          </div>
+        )}
 
         {/* JSON-LD Code Editor */}
         <div>
@@ -304,20 +296,6 @@ export default function ManageSchemasPage() {
               <CheckCircle2 className="w-3 h-3" /> Valid JSON
             </p>
           )}
-        </div>
-
-        {/* Notes */}
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Notes (internal only)
-          </label>
-          <input
-            type="text"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            placeholder="Optional - for your reference"
-            className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
-          />
         </div>
 
         {/* Active Toggle */}

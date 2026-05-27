@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import LaboratoryMedicineClient from "./LaboratoryMedicineClient";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
+import DynamicSchema from "@/components/schema/DynamicSchema";
 
 export const metadata: Metadata = {
   title: "Laboratory Medicine | Popular Hospital",
@@ -11,11 +12,14 @@ export const metadata: Metadata = {
 export default function LaboratoryMedicinePage() {
   return (
     <>
-      <DepartmentSchema
+      <DynamicSchema
+        pageKey="department:laboratory-medicine"
+        fallback={<DepartmentSchema
         name="Laboratory Medicine | Popular Hospital"
         description="Advanced diagnostic services and medical research at Popular Hospital Laboratory Medicine Department."
         urlSlug="laboratory-medicine"
         medicalSpecialty="LaboratoryScience"
+      />}
       />
       <LaboratoryMedicineClient />
     </>

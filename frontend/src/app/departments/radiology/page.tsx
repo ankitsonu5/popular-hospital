@@ -5,17 +5,21 @@ import Link from "next/link";
 import RadiologyVideoSection from "../../../components/RadiologyVideoSection";
 import DoctorSlider from "@/components/DoctorSlider";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
+import DynamicSchema from "@/components/schema/DynamicSchema";
 
 const doctors: never[] = []; // No doctors for now
 
 export default function RadiologyPage() {
   return (
     <>
-      <DepartmentSchema
+      <DynamicSchema
+        pageKey="department:radiology"
+        fallback={<DepartmentSchema
         name="Department of Radiology | Popular Hospital"
         description="State-of-the-art imaging technology provided by expert radiologists. Advanced diagnostic imaging for effective treatment planning."
         urlSlug="radiology"
         medicalSpecialty="Radiologic"
+      />}
       />
       <main className="min-h-screen bg-white overflow-hidden">
         {/* Hero Section */}

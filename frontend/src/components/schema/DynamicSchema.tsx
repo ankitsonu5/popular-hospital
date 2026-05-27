@@ -1,28 +1,10 @@
-// ─────────────────────────────────────────────
-// DynamicSchema.tsx
-//
-// Server-side fetch of an admin-managed JSON-LD override for a given pageKey.
-// If admin has saved a schema for this key in the DB (and isActive=true),
-// it renders that JSON. Otherwise it renders the `fallback` schema component.
-//
-// Use on any page that already has a static schema, e.g.:
-//   <DynamicSchema pageKey="home" fallback={<HospitalSchema />} />
-//
-// pageKey conventions:
-//   - "home"
-//   - "doctors"
-//   - "doctor:{slug}"
-//   - "blog:{slug}"
-//   - "department:{slug}"
-// ─────────────────────────────────────────────
+import { Suspense } from "react";
 
 interface DynamicSchemaProps {
   pageKey: string;
   fallback?: React.ReactNode;
 }
 
-// Server-only fetch — matches the same pattern used elsewhere
-// (lib/api.ts → getBaseUrl) so production / local both work.
 const getBackendBase = () => {
   const fromEnv =
     process.env.NEXT_PUBLIC_API_URL ||
@@ -35,7 +17,6 @@ async function fetchOverride(pageKey: string): Promise<unknown | null> {
   try {
     const url = `${getBackendBase()}/api/schemas/${encodeURIComponent(pageKey)}`;
     const res = await fetch(url, {
-      // Revalidate every 60s so admin edits go live fast
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
@@ -43,12 +24,12 @@ async function fetchOverride(pageKey: string): Promise<unknown | null> {
     if (!data || !data.jsonLd) return null;
     return data.jsonLd;
   } catch {
-    // If backend is unreachable during build/SSR, fall back silently
     return null;
   }
 }
 
-export default async function DynamicSchema({
+// Async inner component — resolves DB override
+async function SchemaResolver({
   pageKey,
   fallback,
 }: DynamicSchemaProps) {
@@ -64,4 +45,17 @@ export default async function DynamicSchema({
   }
 
   return <>{fallback}</>;
+}
+
+// Sync outer wrapper with Suspense(fallback=null) — prevents double schema
+// in the raw HTML that Next.js streaming produces for async server components.
+export default function DynamicSchema({
+  pageKey,
+  fallback,
+}: DynamicSchemaProps) {
+  return (
+    <Suspense fallback={null}>
+      <SchemaResolver pageKey={pageKey} fallback={fallback} />
+    </Suspense>
+  );
 }

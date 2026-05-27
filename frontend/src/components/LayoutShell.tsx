@@ -62,7 +62,6 @@ export default function LayoutShell({
     return (
       <main className="flex-1">
         {children}
-        <BackToTop />
       </main>
     );
   }

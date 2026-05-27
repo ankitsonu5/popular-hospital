@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import GeneralSurgeryClient from "./GeneralSurgeryClient";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
+import DynamicSchema from "@/components/schema/DynamicSchema";
 
 export const metadata: Metadata = {
   title: "Laparoscopy & General Surgery | Popular Hospital",
@@ -11,11 +12,14 @@ export const metadata: Metadata = {
 export default function GeneralSurgeryPage() {
   return (
     <>
-      <DepartmentSchema
+      <DynamicSchema
+        pageKey="department:general-surgery"
+        fallback={<DepartmentSchema
         name="Laparoscopy & General Surgery | Popular Hospital"
         description="Advanced laparoscopic (keyhole) and general surgical procedures with state-of-the-art technology and expert surgeons."
         urlSlug="general-surgery"
         medicalSpecialty="Surgical"
+      />}
       />
       <GeneralSurgeryClient />
     </>
