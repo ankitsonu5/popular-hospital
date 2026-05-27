@@ -1,18 +1,18 @@
 import Image from "next/image";
 
 export const metadata = {
-  title: "Vision 2030 | Popular Hospital",
+  title: "Our Vision | Popular Hospital",
   description:
-    "Popular Hospital's Vision 2030 for advanced, accessible, and patient-focused healthcare.",
+    "Popular Hospital's vision for advanced, accessible, and patient-focused healthcare.",
 };
 
 const visionGoals = [
   {
     label: "Hospitals",
-    current: "4",
+    current: "5",
     target: "16",
     accent: "bg-[#E85222]",
-    description: "Expanding from 4 hospitals to 16 hospitals.",
+    description: "Expanding from 5 hospitals to 16 hospitals.",
   },
   {
     label: "Clinics",
@@ -39,12 +39,12 @@ const visionTopics = [
   {
     title: "Revenue Growth",
     description:
-      "The 2030 roadmap targets revenue growth from 150 Crore to 1200 Crore through service expansion, higher patient reach, stronger operational systems, and a broader multi-speciality care model.",
+      "Our strategic roadmap targets revenue growth from 150 Crore to 1200 Crore through service expansion, higher patient reach, stronger operational systems, and a broader multi-speciality care model.",
   },
   {
     title: "Future Hospitals",
     description:
-      "The plan is to grow from 4 hospitals to 16 hospitals with modern infrastructure, specialist departments, advanced technology, and patient-first facilities across key locations.",
+      "The plan is to grow from 5 hospitals to 16 hospitals with modern infrastructure, specialist departments, advanced technology, and patient-first facilities across key locations.",
   },
   {
     title: "Leadership Vision",
@@ -60,7 +60,7 @@ export default function OurVision2030Page() {
         <div className="absolute inset-0">
           <Image
             src="/images/banners/about_us_vision.jpg"
-            alt="Vision 2030"
+            alt="Our Vision"
             fill
             className="object-cover opacity-30"
             priority
@@ -73,7 +73,7 @@ export default function OurVision2030Page() {
             Future Ready Healthcare
           </p>
           <h1 className="font-heading text-4xl font-black tracking-tight text-white md:text-5xl lg:text-6xl">
-            Vision 2030
+            Our Vision
           </h1>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function OurVision2030Page() {
               Building a stronger healthcare future
             </h2>
             <p className="mt-5 text-base font-medium leading-8 text-gray-600 md:text-lg">
-              Vision 2030 is our roadmap for expanding hospital capacity,
+              Our vision serves as a roadmap for expanding hospital capacity,
               creating a wider clinic network, and growing with sustainable
               healthcare delivery.
             </p>
@@ -172,10 +172,10 @@ export default function OurVision2030Page() {
                 </div>
                 <div>
                   <div className="font-heading text-2xl font-black text-white">
-                    2030
+                    Future
                   </div>
                   <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-white/55">
-                    Target
+                    Goals
                   </p>
                 </div>
               </div>
