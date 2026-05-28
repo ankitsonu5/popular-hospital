@@ -18,6 +18,10 @@ import {
   Share2,
   Copy,
   Check,
+  Monitor,
+  Tablet,
+  Smartphone,
+  PencilLine,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -32,16 +36,127 @@ import { getImageUrl } from "@/lib/api";
 const BLOG_CMS_API = "/api-backend/cms/blogs";
 const BLOG_IMAGE_UPLOAD_API = "/api-backend/blog-image-direct";
 
+type EditorDevice = "desktop" | "tablet" | "mobile";
+type EditorMode = "edit" | "preview";
+
+const editorDevices: {
+  key: EditorDevice;
+  label: string;
+  width: string;
+  icon: typeof Monitor;
+}[] = [
+  { key: "desktop", label: "Desktop", width: "100%", icon: Monitor },
+  { key: "tablet", label: "Tablet", width: "768px", icon: Tablet },
+  { key: "mobile", label: "Mobile", width: "390px", icon: Smartphone },
+];
+
+const editorHeights: Record<EditorDevice, number> = {
+  desktop: 700,
+  tablet: 650,
+  mobile: 620,
+};
+
 const normalizeEditorImagePath = (value: string) => {
   if (!value) return value;
-  const match = value.match(/\/uploads\/[^"'\s)]+/i);
-  return match ? match[0] : value;
+  const cleanValue = value.replace(/\\/g, "/").trim();
+  const match = cleanValue.match(
+    /(?:https?:\/\/[^"'\s<>)]+)?(?:\.\.\/)*\/?uploads\/[^"'\s<>)]+/i,
+  );
+  if (!match) return cleanValue;
+
+  const uploadsIndex = match[0].toLowerCase().indexOf("uploads/");
+  return `/${match[0].slice(uploadsIndex)}`;
 };
 
 const normalizeEditorHtml = (html: string) => {
   if (!html) return "";
-  return html.replace(/https?:\/\/[^"'\s<]+(\/uploads\/[^"'\s<]+)/gi, "$1");
+  return html.replace(
+    /\b(src|href)=["']([^"']+)["']/gi,
+    (fullMatch, attribute, url) => {
+      const normalizedUrl = normalizeEditorImagePath(url);
+      return normalizedUrl === url
+        ? fullMatch
+        : `${attribute}="${normalizedUrl}"`;
+    },
+  );
 };
+
+const tinyContentStyle = `
+  body {
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 16px;
+    color: #374151;
+  }
+  img, video, iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  .responsive-image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    clear: both;
+    margin: 24px 0;
+  }
+  .responsive-image-grid > * {
+    margin: 0;
+  }
+  .responsive-image-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 12px;
+  }
+  table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #e5e7eb;
+    padding: 10px;
+  }
+  .alignleft {
+    float: left;
+    margin: 8px 24px 16px 0;
+  }
+  .alignright {
+    float: right;
+    margin: 8px 0 16px 24px;
+  }
+  .aligncenter {
+    display: block;
+    margin: 16px auto;
+  }
+  @media (max-width: 1024px) {
+    .responsive-image-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 600px) {
+    body {
+      font-size: 15px;
+      margin: 12px;
+    }
+    .responsive-image-grid {
+      grid-template-columns: 1fr;
+    }
+    img[style*="float"], .alignleft, .alignright {
+      float: none !important;
+      display: block;
+      margin: 16px auto !important;
+    }
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+`;
 
 const CATEGORIES = [
   "Best Cancer Specialist Hospital in Varanasi",
@@ -85,6 +200,8 @@ function BlogActionForm() {
     slug: "",
     excerpt: "",
     content: "",
+    contentTablet: "",
+    contentMobile: "",
     date: new Date().toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "long",
@@ -111,6 +228,8 @@ function BlogActionForm() {
   const [imagePreview, setImagePreview] = useState<string>("");
   const [keywordInput, setKeywordInput] = useState("");
   const [copied, setCopied] = useState(false);
+  const [editorDevice, setEditorDevice] = useState<EditorDevice>("desktop");
+  const [editorMode, setEditorMode] = useState<EditorMode>("edit");
 
   const handleCopyLink = () => {
     const url = `https://popularhospital.in/blog/${formData.slug}`;
@@ -140,6 +259,31 @@ function BlogActionForm() {
     const currentTags = formData.focusKeyword.split(",").map((t) => t.trim());
     const newTags = currentTags.filter((_, i) => i !== index).join(", ");
     setFormData({ ...formData, focusKeyword: newTags, metaKeywords: newTags });
+  };
+
+  const getContentKey = (
+    device: EditorDevice,
+  ): "content" | "contentTablet" | "contentMobile" => {
+    if (device === "tablet") return "contentTablet";
+    if (device === "mobile") return "contentMobile";
+    return "content";
+  };
+
+  const getContentForDevice = (device: EditorDevice) => {
+    const key = getContentKey(device);
+    if (key === "content") return formData.content;
+    return formData[key] || formData.content;
+  };
+
+  const updateContentForDevice = (content: string) => {
+    const key = getContentKey(editorDevice);
+    setFormData({ ...formData, [key]: normalizeEditorHtml(content) });
+  };
+
+  const clearDeviceOverride = () => {
+    const key = getContentKey(editorDevice);
+    if (key === "content") return;
+    setFormData({ ...formData, [key]: "" });
   };
 
   useEffect(() => {
@@ -242,6 +386,8 @@ function BlogActionForm() {
                     ? item.content.join("\n\n")
                     : "",
               ),
+              contentTablet: normalizeEditorHtml(item.contentTablet || ""),
+              contentMobile: normalizeEditorHtml(item.contentMobile || ""),
               dateIso: item.date
                 ? new Date(item.date).toISOString().split("T")[0]
                 : "",
@@ -267,7 +413,9 @@ function BlogActionForm() {
       if (key !== "image")
         submitData.append(
           key,
-          key === "content"
+          key === "content" ||
+            key === "contentTablet" ||
+            key === "contentMobile"
             ? normalizeEditorHtml(String(value))
             : String(value),
         );
@@ -463,54 +611,186 @@ function BlogActionForm() {
                       min read
                     </span>
                   </label>
-                  <div className="rounded-xl overflow-hidden border border-gray-200 min-h-[700px]">
-                    <Editor
-                      value={formData.content}
-                      onEditorChange={(content: string) =>
-                        setFormData({
-                          ...formData,
-                          content: normalizeEditorHtml(content),
-                        })
-                      }
-                      init={{
-                        height: 700,
-                        menubar: true,
-                        plugins:
-                          "advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount emoticons codesample",
-                        toolbar:
-                          "undo redo | blocks fontfamily fontsize | bold italic underline | image link media table | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat | help",
-                        images_upload_url: BLOG_IMAGE_UPLOAD_API,
-                        branding: false,
-                        statusbar: false,
-                        images_upload_handler: (blobInfo: any) =>
-                          new Promise((resolve, reject) => {
-                            const fd = new FormData();
-                            fd.append(
-                              "file",
-                              blobInfo.blob(),
-                              blobInfo.filename(),
+                  <div className="rounded-xl overflow-hidden border border-gray-200 bg-white">
+                    <div className="flex flex-col gap-3 border-b border-gray-200 bg-slate-50 p-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="inline-flex w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-1 sm:w-auto">
+                        {editorDevices.map((device) => {
+                          const Icon = device.icon;
+                          const isActive = editorDevice === device.key;
+                          return (
+                            <button
+                              key={device.key}
+                              type="button"
+                              title={device.label}
+                              onClick={() => setEditorDevice(device.key)}
+                              className={`flex flex-1 items-center justify-center gap-2 rounded-md px-3 py-2 text-xs font-bold transition-colors sm:flex-none ${
+                                isActive
+                                  ? "bg-blue-600 text-white shadow-sm"
+                                  : "text-gray-600 hover:bg-gray-100"
+                              }`}
+                            >
+                              <Icon className="h-4 w-4" />
+                              <span>{device.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                        <div className="inline-flex overflow-hidden rounded-lg border border-gray-200 bg-white p-1">
+                          {[
+                            { key: "edit", label: "Edit", icon: PencilLine },
+                            { key: "preview", label: "Preview", icon: Eye },
+                          ].map((mode) => {
+                            const Icon = mode.icon;
+                            const isActive = editorMode === mode.key;
+                            return (
+                              <button
+                                key={mode.key}
+                                type="button"
+                                title={mode.label}
+                                onClick={() =>
+                                  setEditorMode(mode.key as EditorMode)
+                                }
+                                className={`flex flex-1 items-center justify-center gap-2 rounded-md px-3 py-2 text-xs font-bold transition-colors sm:flex-none ${
+                                  isActive
+                                    ? "bg-gray-900 text-white shadow-sm"
+                                    : "text-gray-600 hover:bg-gray-100"
+                                }`}
+                              >
+                                <Icon className="h-4 w-4" />
+                                <span>{mode.label}</span>
+                              </button>
                             );
-                            fetch(BLOG_IMAGE_UPLOAD_API, {
-                              method: "POST",
-                              headers: {
-                                Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
-                              },
-                              body: fd,
-                            })
-                              .then((res) =>
-                                res.ok ? res.json() : reject("Upload failed"),
-                              )
-                              .then((json) =>
-                                json.location
-                                  ? resolve(
-                                      normalizeEditorImagePath(json.location),
-                                    )
-                                  : reject("Invalid location"),
-                              )
-                              .catch((err) => reject(err.message));
-                          }),
-                      }}
-                    />
+                          })}
+                        </div>
+
+                        {editorDevice !== "desktop" &&
+                          formData[getContentKey(editorDevice)] && (
+                            <button
+                              type="button"
+                              title="Use Desktop Default"
+                              onClick={clearDeviceOverride}
+                              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-bold text-gray-600 transition-colors hover:bg-gray-100"
+                            >
+                              <X className="h-4 w-4" />
+                              <span>Default</span>
+                            </button>
+                          )}
+                      </div>
+                    </div>
+
+                    <div className="overflow-x-auto bg-slate-100 p-3 sm:p-4">
+                      <div
+                        className="mx-auto transition-all duration-300"
+                        style={{
+                          width: "100%",
+                          maxWidth: editorDevices.find(
+                            (device) => device.key === editorDevice,
+                          )?.width,
+                        }}
+                      >
+                        {editorMode === "edit" ? (
+                          <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+                            <Editor
+                              key={editorDevice}
+                              value={getContentForDevice(editorDevice)}
+                              onEditorChange={(content: string) =>
+                                updateContentForDevice(content)
+                              }
+                              init={{
+                                height: editorHeights[editorDevice],
+                                menubar: true,
+                                plugins:
+                                  "advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount emoticons codesample",
+                                toolbar:
+                                  "undo redo | blocks fontfamily fontsize | bold italic underline | image responsiveimagegrid link media table | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat | help",
+                                content_style: tinyContentStyle,
+                                images_upload_url: BLOG_IMAGE_UPLOAD_API,
+                                automatic_uploads: true,
+                                convert_urls: false,
+                                relative_urls: false,
+                                remove_script_host: false,
+                                file_picker_types: "image",
+                                image_advtab: true,
+                                image_caption: true,
+                                image_uploadtab: true,
+                                image_title: true,
+                                object_resizing: true,
+                                toolbar_mode: "sliding",
+                                branding: false,
+                                statusbar: false,
+                                images_upload_handler: (blobInfo: any) =>
+                                  new Promise((resolve, reject) => {
+                                    const fd = new FormData();
+                                    fd.append(
+                                      "file",
+                                      blobInfo.blob(),
+                                      blobInfo.filename(),
+                                    );
+                                    fetch(BLOG_IMAGE_UPLOAD_API, {
+                                      method: "POST",
+                                      headers: {
+                                        Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
+                                      },
+                                      body: fd,
+                                    })
+                                      .then((res) =>
+                                        res.ok
+                                          ? res.json()
+                                          : reject("Upload failed"),
+                                      )
+                                      .then((json) =>
+                                        json.location
+                                          ? resolve(
+                                              normalizeEditorImagePath(
+                                                json.location,
+                                              ),
+                                            )
+                                          : reject("Invalid location"),
+                                      )
+                                      .catch((err) => reject(err.message));
+                                  }),
+                                setup: (editor: any) => {
+                                  editor.ui.registry.addButton(
+                                    "responsiveimagegrid",
+                                    {
+                                      text: "3/2/1 Grid",
+                                      tooltip:
+                                        "Selected images ko desktop 3, tablet 2, mobile 1 column grid me set kare",
+                                      onAction: () => {
+                                        const selectedHtml =
+                                          editor.selection.getContent({
+                                            format: "html",
+                                          });
+
+                                        if (!/<img\b/i.test(selectedHtml)) {
+                                          window.alert(
+                                            "Pehle editor me images select karein, phir 3/2/1 Grid click karein.",
+                                          );
+                                          return;
+                                        }
+
+                                        editor.selection.setContent(
+                                          `<div class="responsive-image-grid">${selectedHtml}</div><p></p>`,
+                                        );
+                                      },
+                                    },
+                                  );
+                                },
+                              }}
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            className="prose prose-teal min-h-[520px] max-w-none rounded-lg border border-gray-200 bg-white p-5 text-gray-700 shadow-sm sm:p-8"
+                            dangerouslySetInnerHTML={{
+                              __html: getContentForDevice(editorDevice) || "",
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -864,7 +1144,9 @@ function BlogActionForm() {
                 </div>
                 <div
                   className="prose prose-xl prose-slate max-w-none text-gray-700 leading-relaxed font-medium"
-                  dangerouslySetInnerHTML={{ __html: formData.content }}
+                  dangerouslySetInnerHTML={{
+                    __html: getContentForDevice(editorDevice),
+                  }}
                 />
               </div>
             </div>

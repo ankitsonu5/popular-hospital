@@ -6,13 +6,27 @@ import { escapeRegex } from "../middleware/security.js";
 
 const normalizeUploadPath = (value = "") => {
   if (typeof value !== "string" || !value) return "";
-  const match = value.match(/\/uploads\/[^"'\s)]+/i);
-  return match ? match[0] : value;
+  const cleanValue = value.replace(/\\/g, "/").trim();
+  const match = cleanValue.match(
+    /(?:https?:\/\/[^"'\s<>)]+)?(?:\.\.\/)*\/?uploads\/[^"'\s<>)]+/i,
+  );
+  if (!match) return cleanValue;
+
+  const uploadsIndex = match[0].toLowerCase().indexOf("uploads/");
+  return `/${match[0].slice(uploadsIndex)}`;
 };
 
 const normalizeRichContent = (content = "") => {
   if (typeof content !== "string" || !content) return "";
-  return content.replace(/https?:\/\/[^"'\s<]+(\/uploads\/[^"'\s<]+)/gi, "$1");
+  return content.replace(
+    /\b(src|href)=["']([^"']+)["']/gi,
+    (fullMatch, attribute, url) => {
+      const normalizedUrl = normalizeUploadPath(url);
+      return normalizedUrl === url
+        ? fullMatch
+        : `${attribute}="${normalizedUrl}"`;
+    },
+  );
 };
 
 const extractContentImages = (content = "") => {
@@ -31,10 +45,16 @@ const normalizeBlogOutput = (blogDoc) => {
     obj.content = obj.content.map((p) => `<p>${p}</p>`).join("");
   }
   obj.content = normalizeRichContent(obj.content || "");
+  obj.contentTablet = normalizeRichContent(obj.contentTablet || "");
+  obj.contentMobile = normalizeRichContent(obj.contentMobile || "");
   obj.contentImages =
     Array.isArray(obj.contentImages) && obj.contentImages.length
       ? obj.contentImages.map(normalizeUploadPath).filter(Boolean)
-      : extractContentImages(obj.content);
+      : extractContentImages(
+          [obj.content, obj.contentTablet, obj.contentMobile]
+            .filter(Boolean)
+            .join(""),
+        );
   return obj;
 };
 
@@ -195,6 +215,8 @@ export const createBlog = async (req, res) => {
       slug,
       excerpt,
       content,
+      contentTablet,
+      contentMobile,
       date,
       category,
       isUncategorized,
@@ -215,6 +237,8 @@ export const createBlog = async (req, res) => {
       ? `/uploads/blogs/${req.file.filename}`
       : normalizeUploadPath(req.body.image || "");
     const normalizedContent = normalizeRichContent(content || "");
+    const normalizedTabletContent = normalizeRichContent(contentTablet || "");
+    const normalizedMobileContent = normalizeRichContent(contentMobile || "");
 
     // Ensure keywords are synced if one is provided
     const finalFocusKeyword = focusKeyword || "";
@@ -225,7 +249,13 @@ export const createBlog = async (req, res) => {
       slug,
       excerpt: excerpt || "",
       content: normalizedContent,
-      contentImages: extractContentImages(normalizedContent),
+      contentTablet: normalizedTabletContent,
+      contentMobile: normalizedMobileContent,
+      contentImages: extractContentImages(
+        [normalizedContent, normalizedTabletContent, normalizedMobileContent]
+          .filter(Boolean)
+          .join(""),
+      ),
       author: author || "popularhospital-admin",
       date:
         date ||
@@ -266,6 +296,8 @@ export const updateBlog = async (req, res) => {
       slug,
       excerpt,
       content,
+      contentTablet,
+      contentMobile,
       date,
       category,
       isUncategorized,
@@ -287,12 +319,20 @@ export const updateBlog = async (req, res) => {
     const finalMetaKeywords = metaKeywords || finalFocusKeyword;
 
     const normalizedContent = normalizeRichContent(content || "");
+    const normalizedTabletContent = normalizeRichContent(contentTablet || "");
+    const normalizedMobileContent = normalizeRichContent(contentMobile || "");
     const updates = {
       title,
       slug,
       excerpt: excerpt || "",
       content: normalizedContent,
-      contentImages: extractContentImages(normalizedContent),
+      contentTablet: normalizedTabletContent,
+      contentMobile: normalizedMobileContent,
+      contentImages: extractContentImages(
+        [normalizedContent, normalizedTabletContent, normalizedMobileContent]
+          .filter(Boolean)
+          .join(""),
+      ),
       author: author || "popularhospital-admin",
       date,
       category:

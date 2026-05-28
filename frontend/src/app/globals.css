@@ -330,6 +330,19 @@ body > .skiptranslate {
   vertical-align: middle;
 }
 
+.prose .responsive-image-grid {
+  @apply my-8 grid clear-both gap-4;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.prose .responsive-image-grid > * {
+  margin: 0;
+}
+
+.prose .responsive-image-grid img {
+  @apply m-0 block h-auto w-full max-w-full rounded-xl;
+}
+
 /* Float support for editor images */
 .prose img[style*="float: left"],
 .prose .alignleft {
@@ -359,12 +372,40 @@ body > .skiptranslate {
 }
 
 .prose table {
-  @apply w-full border-collapse border border-gray-100 my-8 overflow-hidden rounded-xl;
+  @apply w-full border-collapse border border-gray-100 my-8 rounded-xl;
 }
 .prose th,
 .prose td {
   @apply border border-gray-100 p-4 text-left;
-  display: none !important;
+  display: table-cell;
+}
+
+@media (max-width: 1024px) {
+  .prose .responsive-image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .prose .responsive-image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prose img[style*="float: left"],
+  .prose img[style*="float: right"],
+  .prose .alignleft,
+  .prose .alignright {
+    float: none !important;
+    display: block;
+    margin: 1rem auto !important;
+  }
+
+  .prose table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
 
 /* ───────────────────────────────────────────────────────────────── */

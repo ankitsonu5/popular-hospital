@@ -27,6 +27,4 @@ const schemaContentSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-schemaContentSchema.index({ pageKey: 1 });
-
 export default mongoose.model("SchemaContent", schemaContentSchema);

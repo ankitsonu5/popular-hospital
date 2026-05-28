@@ -50,6 +50,7 @@ import {
   deleteNews,
   getAdminNews,
   uploadNews,
+  uploadNewsImage,
 } from "../controllers/newsController.js";
 import {
   getAdminBlogs,
@@ -270,6 +271,11 @@ router.put(
 router.delete("/department-gallery/:id", deleteDepartmentGalleryItem);
 
 // News CRUD
+router.post(
+  "/news/image-upload-direct",
+  uploadNews.single("file"),
+  uploadNewsImage,
+);
 router.get("/news", getAdminNews);
 router.post("/news", uploadNews.any(), createNews);
 router.put("/news/:id", uploadNews.any(), updateNews);

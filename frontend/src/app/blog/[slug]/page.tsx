@@ -13,6 +13,8 @@ import { allCategories } from "../data";
 import BlogArticleSchema from "@/components/schema/BlogArticleSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
 
+export const dynamic = "force-dynamic";
+
 /* ───────────────── static params ───────────────── */
 export async function generateStaticParams() {
   const blogsList = await fetchBlogs().catch(() => []);
@@ -66,6 +68,11 @@ export default async function BlogDetailPage({
     fetchBlogs().catch(() => []),
     fetchBlogCategoriesMetrics().catch(() => []),
   ]);
+  const desktopContent = Array.isArray(article.content)
+    ? article.content.join("")
+    : article.content || "";
+  const tabletContent = article.contentTablet || desktopContent;
+  const mobileContent = article.contentMobile || desktopContent;
 
   return (
     <>
@@ -190,11 +197,21 @@ export default async function BlogDetailPage({
               {/* Content Body */}
               <div className="mt-8 border-t border-gray-50 pt-8">
                 <div
-                  className="prose prose-teal prose-lg max-w-none text-gray-700 leading-relaxed font-medium"
+                  className="prose prose-teal prose-lg hidden max-w-none text-gray-700 leading-relaxed font-medium lg:block"
                   dangerouslySetInnerHTML={{
-                    __html: Array.isArray(article.content)
-                      ? article.content.join("")
-                      : article.content || "",
+                    __html: desktopContent,
+                  }}
+                />
+                <div
+                  className="prose prose-teal prose-lg hidden max-w-none text-gray-700 leading-relaxed font-medium sm:block lg:hidden"
+                  dangerouslySetInnerHTML={{
+                    __html: tabletContent,
+                  }}
+                />
+                <div
+                  className="prose prose-teal prose-lg block max-w-none text-gray-700 leading-relaxed font-medium sm:hidden"
+                  dangerouslySetInnerHTML={{
+                    __html: mobileContent,
                   }}
                 />
               </div>

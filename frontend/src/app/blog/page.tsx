@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     "Stay updated with the latest medical advancements, health tips, and hospital news from Popular Hospital Varanasi.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function BlogPage() {
   const [dbPosts, categoriesMetrics] = await Promise.all([
     fetchBlogs().catch(() => []),

@@ -27,6 +27,8 @@ const blogSchema = new mongoose.Schema(
     },
     excerpt: { type: String, default: "" },
     content: { type: String, default: "" }, // Store rich HTML from CMS
+    contentTablet: { type: String, default: "" },
+    contentMobile: { type: String, default: "" },
     contentImages: [{ type: String }], // Embedded editor image paths from rich HTML
     image: { type: String, required: true }, // main thumbnail image path
     imageAlt: { type: String, default: "" }, // for SEO Full Content (Article History) *& Accessibility

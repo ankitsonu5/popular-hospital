@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 
 import { fetchNews, getImageUrl } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
+
 /* ───────────────── page component ───────────────── */
 export default async function NewsPage() {
   const newsArticles = await fetchNews();

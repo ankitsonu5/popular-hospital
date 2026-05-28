@@ -200,7 +200,7 @@ export async function createBooking(
 
 export async function fetchNews(): Promise<NewsItem[]> {
   try {
-    const res = await fetch(api("/news"), { next: { revalidate: 60 } });
+    const res = await fetch(api("/news"), { cache: "no-store" });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -211,7 +211,7 @@ export async function fetchNews(): Promise<NewsItem[]> {
 
 export async function fetchNewsItem(slug: string): Promise<NewsItem | null> {
   try {
-    const res = await fetch(api(`/news/${slug}`), { next: { revalidate: 60 } });
+    const res = await fetch(api(`/news/${slug}`), { cache: "no-store" });
     if (!res.ok) return null;
     return res.json();
   } catch (e) {
@@ -222,7 +222,7 @@ export async function fetchNewsItem(slug: string): Promise<NewsItem | null> {
 
 export async function fetchBlogs(): Promise<BlogItem[]> {
   try {
-    const res = await fetch(api("/blogs"), { next: { revalidate: 60 } });
+    const res = await fetch(api("/blogs"), { cache: "no-store" });
     if (!res.ok) return [];
     return res.json();
   } catch (e) {
@@ -234,7 +234,7 @@ export async function fetchBlogs(): Promise<BlogItem[]> {
 export async function fetchBlogItem(slug: string): Promise<BlogItem | null> {
   try {
     const res = await fetch(api(`/blogs/${slug}`), {
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
     if (!res.ok) return null;
     return res.json();
@@ -476,6 +476,8 @@ export interface NewsItem {
   date: string;
   excerpt: string;
   content: string; // HTML string from TinyMCE
+  contentTablet?: string;
+  contentMobile?: string;
   image: string;
   author?: string;
 }
@@ -502,6 +504,8 @@ export interface BlogItem {
   date: string;
   excerpt: string;
   content: string; // Changed from string[] to string for HTML
+  contentTablet?: string;
+  contentMobile?: string;
   image: string;
   author?: string;
   category?: string;

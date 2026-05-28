@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 
 import { fetchNews, fetchNewsItem, getImageUrl } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
+
 /* ───────────────── static params ───────────────── */
 export async function generateStaticParams() {
   const newsList = await fetchNews().catch(() => []);
@@ -41,6 +43,11 @@ export default async function NewsDetailPage({
   const relatedArticles = allNews
     .filter((a) => a.slug !== article.slug)
     .slice(0, 3);
+  const desktopContent = Array.isArray(article.content)
+    ? article.content.join("")
+    : article.content || "";
+  const tabletContent = article.contentTablet || desktopContent;
+  const mobileContent = article.contentMobile || desktopContent;
 
   return (
     <main className="min-h-screen bg-white">
@@ -130,10 +137,21 @@ export default async function NewsDetailPage({
           {/* Rich Text Body */}
           <div className="prose prose-teal prose-lg max-w-none text-gray-700 leading-relaxed">
             <div
+              className="hidden lg:block"
               dangerouslySetInnerHTML={{
-                __html: Array.isArray(article.content)
-                  ? article.content.join("")
-                  : article.content || "",
+                __html: desktopContent,
+              }}
+            />
+            <div
+              className="hidden sm:block lg:hidden"
+              dangerouslySetInnerHTML={{
+                __html: tabletContent,
+              }}
+            />
+            <div
+              className="block sm:hidden"
+              dangerouslySetInnerHTML={{
+                __html: mobileContent,
               }}
             />
           </div>
