@@ -276,7 +276,7 @@ export default function CardiologyPage() {
             </h2>
           </div>
           <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
-          
+
           <div className="grid grid-cols-1 gap-4">
             {uspItems.map((item, idx) => (
               <div

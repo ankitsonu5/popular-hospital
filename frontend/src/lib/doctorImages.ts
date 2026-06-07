@@ -55,9 +55,9 @@ export const getDoctorImageCandidates = (doctor: Doctor) =>
   Array.from(
     new Set(
       [
+        doctor.image_url ? getImageUrl(doctor.image_url) : "",
         PUBLIC_DOCTOR_IMAGES[doctor.slug],
         localDoctors[doctor.slug]?.image,
-        doctor.image_url ? getImageUrl(doctor.image_url) : "",
       ].filter(Boolean),
     ),
   );
