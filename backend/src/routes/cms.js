@@ -120,7 +120,11 @@ import {
   reorderDepartmentGalleryItems,
   uploadDepartmentGallery,
 } from "../controllers/departmentGalleryController.js";
-import { cmsAuth, superAdminOnly, superOrSubAdmin } from "../middleware/auth.js";
+import {
+  cmsAuth,
+  superAdminOnly,
+  superOrSubAdmin,
+} from "../middleware/auth.js";
 import {
   getCareerAdmins,
   createCareerAdmin,
@@ -179,7 +183,11 @@ router.get("/sub-admin", superAdminOnly, getSubAdmins);
 router.post("/sub-admin", superAdminOnly, createSubAdmin);
 router.put("/sub-admin/:id", superAdminOnly, updateSubAdmin);
 router.patch("/sub-admin/:id/toggle", superAdminOnly, toggleSubAdmin);
-router.delete("/sub-admin/sessions/all", superAdminOnly, forceLogoutAllSubAdmins);
+router.delete(
+  "/sub-admin/sessions/all",
+  superAdminOnly,
+  forceLogoutAllSubAdmins,
+);
 router.delete("/sub-admin/:id/session", superAdminOnly, forceLogoutSubAdmin);
 router.delete("/sub-admin/:id", superAdminOnly, deleteSubAdmin);
 

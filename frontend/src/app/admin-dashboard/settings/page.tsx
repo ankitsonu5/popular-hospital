@@ -346,38 +346,126 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
 }
 
 // ── Sub-Admin Edit Modal ────────────────────────────────────────────────
-function SubAdminEditModal({ admin, onClose, onSaved }: { admin: SubAdmin; onClose: () => void; onSaved: (updated: SubAdmin) => void }) {
+function SubAdminEditModal({
+  admin,
+  onClose,
+  onSaved,
+}: {
+  admin: SubAdmin;
+  onClose: () => void;
+  onSaved: (updated: SubAdmin) => void;
+}) {
   const [name, setName] = useState(admin.name);
   const [email, setEmail] = useState(admin.email);
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [saving, setSaving] = useState(false);
   const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault(); setSaving(true);
+    e.preventDefault();
+    setSaving(true);
     try {
-      const res = await fetch(`/api-backend/cms/sub-admin/${admin._id}`, { method: "PUT", headers: authHeaders(), body: JSON.stringify({ email, name, ...(password ? { password } : {}) }) });
+      const res = await fetch(`/api-backend/cms/sub-admin/${admin._id}`, {
+        method: "PUT",
+        headers: authHeaders(),
+        body: JSON.stringify({
+          email,
+          name,
+          ...(password ? { password } : {}),
+        }),
+      });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Save failed");
-      onSaved({ ...admin, email, name }); toast.success("Sub Admin updated successfully!");
-    } catch (e: any) { toast.error(e.message || "Save failed"); } finally { setSaving(false); }
+      onSaved({ ...admin, email, name });
+      toast.success("Sub Admin updated successfully!");
+    } catch (e: any) {
+      toast.error(e.message || "Save failed");
+    } finally {
+      setSaving(false);
+    }
   };
   return (
     <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-bold text-gray-900 text-lg">Edit Sub Admin</h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100"><X className="w-5 h-5" /></button>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
         <form onSubmit={handleSave} className="space-y-4">
-          <div><label className="block text-sm font-medium text-gray-700 mb-1">Name</label><input value={name} onChange={(e) => setName(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition" /></div>
-          <div><label className="block text-sm font-medium text-gray-700 mb-1">Email (Login ID)</label><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition" /></div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password <span className="text-gray-400 font-normal">(leave blank to keep unchanged)</span></label>
-            <div className="relative"><input type={showPass ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="New password (optional)" className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition" /><button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">{showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}</button></div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Name
+            </label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email (Login ID)
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password{" "}
+              <span className="text-gray-400 font-normal">
+                (leave blank to keep unchanged)
+              </span>
+            </label>
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="New password (optional)"
+                className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass((v) => !v)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                {showPass ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
+              </button>
+            </div>
           </div>
           <div className="flex gap-3 pt-1">
-            <button type="button" onClick={onClose} className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">Cancel</button>
-            <button type="submit" disabled={saving} className="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-white rounded-xl px-4 py-2.5 text-sm font-medium transition-colors">{saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}{saving ? "Saving..." : "Save Changes"}</button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={saving}
+              className="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-white rounded-xl px-4 py-2.5 text-sm font-medium transition-colors"
+            >
+              {saving ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Save className="w-4 h-4" />
+              )}
+              {saving ? "Saving..." : "Save Changes"}
+            </button>
           </div>
         </form>
       </div>
@@ -386,28 +474,114 @@ function SubAdminEditModal({ admin, onClose, onSaved }: { admin: SubAdmin; onClo
 }
 
 // ── Sub-Admin Create Form ───────────────────────────────────────────────
-function SubAdminCreateForm({ onCreated }: { onCreated: (a: SubAdmin) => void }) {
+function SubAdminCreateForm({
+  onCreated,
+}: {
+  onCreated: (a: SubAdmin) => void;
+}) {
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState(""); const [email, setEmail] = useState(""); const [password, setPassword] = useState(""); const [showPass, setShowPass] = useState(false); const [saving, setSaving] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [saving, setSaving] = useState(false);
   const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault(); setSaving(true);
+    e.preventDefault();
+    setSaving(true);
     try {
-      const res = await fetch("/api-backend/cms/sub-admin", { method: "POST", headers: authHeaders(), body: JSON.stringify({ email, name, password }) });
+      const res = await fetch("/api-backend/cms/sub-admin", {
+        method: "POST",
+        headers: authHeaders(),
+        body: JSON.stringify({ email, name, password }),
+      });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Create failed");
-      onCreated({ _id: data._id, email: data.email, name: data.name || name, isActive: true, isOnline: false });
-      toast.success("Sub Admin created successfully!"); setName(""); setEmail(""); setPassword(""); setOpen(false);
-    } catch (e: any) { toast.error(e.message || "Create failed"); } finally { setSaving(false); }
+      onCreated({
+        _id: data._id,
+        email: data.email,
+        name: data.name || name,
+        isActive: true,
+        isOnline: false,
+      });
+      toast.success("Sub Admin created successfully!");
+      setName("");
+      setEmail("");
+      setPassword("");
+      setOpen(false);
+    } catch (e: any) {
+      toast.error(e.message || "Create failed");
+    } finally {
+      setSaving(false);
+    }
   };
-  if (!open) return <button onClick={() => setOpen(true)} className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl px-4 py-2.5 text-sm font-medium transition-colors"><Plus className="w-4 h-4" /> Add Sub Admin</button>;
+  if (!open)
+    return (
+      <button
+        onClick={() => setOpen(true)}
+        className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl px-4 py-2.5 text-sm font-medium transition-colors"
+      >
+        <Plus className="w-4 h-4" /> Add Sub Admin
+      </button>
+    );
   return (
     <div className="border border-amber-400/30 rounded-xl p-4 bg-amber-50/50 mt-2">
-      <div className="flex items-center justify-between mb-4"><p className="font-semibold text-gray-800 text-sm">New Sub Admin</p><button onClick={() => setOpen(false)} className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-white"><X className="w-4 h-4" /></button></div>
+      <div className="flex items-center justify-between mb-4">
+        <p className="font-semibold text-gray-800 text-sm">New Sub Admin</p>
+        <button
+          onClick={() => setOpen(false)}
+          className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-white"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      </div>
       <form onSubmit={handleCreate} className="space-y-3">
-        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition" />
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Email (Login ID)" className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition" />
-        <div className="relative"><input type={showPass ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} required placeholder="Password" className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition" /><button type="button" onClick={() => setShowPass((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">{showPass ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}</button></div>
-        <button type="submit" disabled={saving} className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-white rounded-lg py-2 text-sm font-medium transition-colors">{saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}{saving ? "Creating..." : "Create Sub Admin"}</button>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+          className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition"
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          placeholder="Email (Login ID)"
+          className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition"
+        />
+        <div className="relative">
+          <input
+            type={showPass ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Password"
+            className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPass((v) => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+          >
+            {showPass ? (
+              <EyeOff className="w-3.5 h-3.5" />
+            ) : (
+              <Eye className="w-3.5 h-3.5" />
+            )}
+          </button>
+        </div>
+        <button
+          type="submit"
+          disabled={saving}
+          className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-white rounded-lg py-2 text-sm font-medium transition-colors"
+        >
+          {saving ? (
+            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+          ) : (
+            <Check className="w-3.5 h-3.5" />
+          )}
+          {saving ? "Creating..." : "Create Sub Admin"}
+        </button>
       </form>
     </div>
   );
@@ -434,7 +608,9 @@ export default function SettingsPage() {
   const [editingSubAdmin, setEditingSubAdmin] = useState<SubAdmin | null>(null);
   const [togglingSubId, setTogglingSubId] = useState<string | null>(null);
   const [deletingSubId, setDeletingSubId] = useState<string | null>(null);
-  const [forceLoggingOutSubId, setForceLoggingOutSubId] = useState<string | null>(null);
+  const [forceLoggingOutSubId, setForceLoggingOutSubId] = useState<
+    string | null
+  >(null);
   const [loggingOutAllSub, setLoggingOutAllSub] = useState(false);
 
   // Confirm modal state
@@ -467,7 +643,11 @@ export default function SettingsPage() {
   useEffect(() => {
     fetch("/api-backend/cms/sub-admin", { headers: authHeaders() })
       .then((r) => r.json())
-      .then((data) => setSubAdmins(Array.isArray(data) ? data : data && data._id ? [data] : []))
+      .then((data) =>
+        setSubAdmins(
+          Array.isArray(data) ? data : data && data._id ? [data] : [],
+        ),
+      )
       .catch(() => setSubAdmins([]))
       .finally(() => setLoadingSubAdmins(false));
   }, []);
@@ -586,7 +766,8 @@ export default function SettingsPage() {
             },
           );
           const allData = await res.json().catch(() => ({}));
-          if (!res.ok) throw new Error(allData.error || `Server error ${res.status}`);
+          if (!res.ok)
+            throw new Error(allData.error || `Server error ${res.status}`);
           setAdmins((prev) => prev.map((a) => ({ ...a, isOnline: false })));
           toast.success("All career admins logged out");
         } catch (e: any) {
@@ -601,30 +782,51 @@ export default function SettingsPage() {
   const handleSubAdminToggle = async (admin: SubAdmin) => {
     setTogglingSubId(admin._id);
     try {
-      const res = await fetch(`/api-backend/cms/sub-admin/${admin._id}/toggle`, { method: "PATCH", headers: authHeaders() });
+      const res = await fetch(
+        `/api-backend/cms/sub-admin/${admin._id}/toggle`,
+        { method: "PATCH", headers: authHeaders() },
+      );
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Toggle failed");
-      setSubAdmins((prev) => prev.map((a) => a._id === admin._id ? { ...a, isActive: data.isActive } : a));
-      toast.success(data.isActive ? `${admin.name} enabled` : `${admin.name} disabled`);
-    } catch (e: any) { toast.error(e.message || "Toggle failed"); } finally { setTogglingSubId(null); }
+      setSubAdmins((prev) =>
+        prev.map((a) =>
+          a._id === admin._id ? { ...a, isActive: data.isActive } : a,
+        ),
+      );
+      toast.success(
+        data.isActive ? `${admin.name} enabled` : `${admin.name} disabled`,
+      );
+    } catch (e: any) {
+      toast.error(e.message || "Toggle failed");
+    } finally {
+      setTogglingSubId(null);
+    }
   };
 
   const handleSubAdminDelete = (admin: SubAdmin) => {
     showConfirm({
       message: `Delete "${admin.name}"?`,
-      subMessage: "This action cannot be undone. The sub admin's access will be permanently removed.",
+      subMessage:
+        "This action cannot be undone. The sub admin's access will be permanently removed.",
       confirmLabel: "Yes, Delete",
       variant: "danger",
       onConfirm: async () => {
         closeConfirm();
         setDeletingSubId(admin._id);
         try {
-          const res = await fetch(`/api-backend/cms/sub-admin/${admin._id}`, { method: "DELETE", headers: authHeaders() });
+          const res = await fetch(`/api-backend/cms/sub-admin/${admin._id}`, {
+            method: "DELETE",
+            headers: authHeaders(),
+          });
           const data = await res.json().catch(() => ({}));
           if (!res.ok) throw new Error(data.error || "Delete failed");
           setSubAdmins((prev) => prev.filter((a) => a._id !== admin._id));
           toast.success(`${admin.name} deleted`);
-        } catch (e: any) { toast.error(e.message || "Delete failed, please try again"); } finally { setDeletingSubId(null); }
+        } catch (e: any) {
+          toast.error(e.message || "Delete failed, please try again");
+        } finally {
+          setDeletingSubId(null);
+        }
       },
     });
   };
@@ -632,19 +834,31 @@ export default function SettingsPage() {
   const handleSubAdminForceLogout = (admin: SubAdmin) => {
     showConfirm({
       message: `Log out "${admin.name}"?`,
-      subMessage: "Their active session will be terminated. They will need to log in again.",
+      subMessage:
+        "Their active session will be terminated. They will need to log in again.",
       confirmLabel: "Yes, Log Out",
       variant: "warning",
       onConfirm: async () => {
         closeConfirm();
         setForceLoggingOutSubId(admin._id);
         try {
-          const res = await fetch(`/api-backend/cms/sub-admin/${admin._id}/session`, { method: "DELETE", headers: authHeaders() });
+          const res = await fetch(
+            `/api-backend/cms/sub-admin/${admin._id}/session`,
+            { method: "DELETE", headers: authHeaders() },
+          );
           const data = await res.json().catch(() => ({}));
           if (!res.ok) throw new Error(data.error || "Logout failed");
-          setSubAdmins((prev) => prev.map((a) => a._id === admin._id ? { ...a, isOnline: false } : a));
+          setSubAdmins((prev) =>
+            prev.map((a) =>
+              a._id === admin._id ? { ...a, isOnline: false } : a,
+            ),
+          );
           toast.success(`${admin.name} logged out`);
-        } catch (e: any) { toast.error(e.message || "Logout failed, please try again"); } finally { setForceLoggingOutSubId(null); }
+        } catch (e: any) {
+          toast.error(e.message || "Logout failed, please try again");
+        } finally {
+          setForceLoggingOutSubId(null);
+        }
       },
     });
   };
@@ -653,19 +867,30 @@ export default function SettingsPage() {
     const onlineCount = subAdmins.filter((a) => a.isOnline).length;
     showConfirm({
       message: "Log out all Sub Admins?",
-      subMessage: onlineCount > 0 ? `${onlineCount} sub admin(s) currently online. All their sessions will be cleared.` : "All sub admin sessions will be cleared.",
+      subMessage:
+        onlineCount > 0
+          ? `${onlineCount} sub admin(s) currently online. All their sessions will be cleared.`
+          : "All sub admin sessions will be cleared.",
       confirmLabel: "Yes, Log Out All",
       variant: "warning",
       onConfirm: async () => {
         closeConfirm();
         setLoggingOutAllSub(true);
         try {
-          const res = await fetch("/api-backend/cms/sub-admin/sessions/all", { method: "DELETE", headers: authHeaders() });
+          const res = await fetch("/api-backend/cms/sub-admin/sessions/all", {
+            method: "DELETE",
+            headers: authHeaders(),
+          });
           const data = await res.json().catch(() => ({}));
-          if (!res.ok) throw new Error(data.error || `Server error ${res.status}`);
+          if (!res.ok)
+            throw new Error(data.error || `Server error ${res.status}`);
           setSubAdmins((prev) => prev.map((a) => ({ ...a, isOnline: false })));
           toast.success("All sub admins logged out");
-        } catch (e: any) { toast.error(e.message || "Something went wrong, please try again"); } finally { setLoggingOutAllSub(false); }
+        } catch (e: any) {
+          toast.error(e.message || "Something went wrong, please try again");
+        } finally {
+          setLoggingOutAllSub(false);
+        }
       },
     });
   };
@@ -708,7 +933,9 @@ export default function SettingsPage() {
           admin={editingSubAdmin}
           onClose={() => setEditingSubAdmin(null)}
           onSaved={(updated) => {
-            setSubAdmins((prev) => prev.map((a) => (a._id === updated._id ? updated : a)));
+            setSubAdmins((prev) =>
+              prev.map((a) => (a._id === updated._id ? updated : a)),
+            );
             setEditingSubAdmin(null);
           }}
         />
@@ -958,12 +1185,16 @@ export default function SettingsPage() {
           <div className="flex-1 min-w-0">
             <h3 className="font-bold text-gray-900">Sub Admins</h3>
             <p className="text-xs text-gray-500 mt-0.5">
-              {loadingSubAdmins ? "Loading..." : (
+              {loadingSubAdmins ? (
+                "Loading..."
+              ) : (
                 <>
-                  {subAdmins.length} sub admin{subAdmins.length !== 1 ? "s" : ""}
+                  {subAdmins.length} sub admin
+                  {subAdmins.length !== 1 ? "s" : ""}
                   {subAdmins.filter((a) => a.isOnline).length > 0 && (
                     <span className="ml-2 text-emerald-600 font-semibold">
-                      · {subAdmins.filter((a) => a.isOnline).length} currently online
+                      · {subAdmins.filter((a) => a.isOnline).length} currently
+                      online
                     </span>
                   )}
                 </>
@@ -977,7 +1208,11 @@ export default function SettingsPage() {
               title="Log out all sub admins"
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors shrink-0 disabled:opacity-50"
             >
-              {loggingOutAllSub ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ShieldOff className="w-3.5 h-3.5" />}
+              {loggingOutAllSub ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <ShieldOff className="w-3.5 h-3.5" />
+              )}
               Logout All
             </button>
           )}
@@ -999,21 +1234,30 @@ export default function SettingsPage() {
                 className={`flex items-center gap-3 p-3 rounded-xl border transition-colors
                   ${admin.isOnline ? "bg-emerald-50/60 border-emerald-200" : "bg-amber-50/30 border-amber-100 hover:bg-amber-50"}`}
               >
-                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${admin.isOnline ? "bg-emerald-600" : "bg-amber-500"}`}>
+                <div
+                  className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${admin.isOnline ? "bg-emerald-600" : "bg-amber-500"}`}
+                >
                   {admin.name?.charAt(0)?.toUpperCase() || "S"}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-gray-900 truncate">{admin.name || "Sub Admin"}</p>
+                    <p className="text-sm font-semibold text-gray-900 truncate">
+                      {admin.name || "Sub Admin"}
+                    </p>
                     {admin.isOnline && (
                       <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
-                        <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />Online
+                        <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                        Online
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-gray-400 truncate">{admin.email}</p>
+                  <p className="text-xs text-gray-400 truncate">
+                    {admin.email}
+                  </p>
                 </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${admin.isActive ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-600"}`}>
+                <span
+                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${admin.isActive ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-600"}`}
+                >
                   {admin.isActive ? "Active" : "Disabled"}
                 </span>
                 <button
@@ -1022,7 +1266,9 @@ export default function SettingsPage() {
                   title={admin.isActive ? "Disable" : "Enable"}
                   className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none shrink-0 ${admin.isActive ? "bg-amber-500" : "bg-gray-300"} ${togglingSubId === admin._id ? "opacity-50" : ""}`}
                 >
-                  <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform ${admin.isActive ? "translate-x-4" : "translate-x-0.5"}`} />
+                  <span
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform ${admin.isActive ? "translate-x-4" : "translate-x-0.5"}`}
+                  />
                 </button>
                 <button
                   onClick={() => handleSubAdminForceLogout(admin)}
@@ -1030,7 +1276,11 @@ export default function SettingsPage() {
                   title="Force Logout — clear session"
                   className="p-1.5 rounded-lg transition-colors shrink-0 text-amber-500 hover:text-amber-700 hover:bg-amber-50 disabled:opacity-40"
                 >
-                  {forceLoggingOutSubId === admin._id ? <Loader2 className="w-4 h-4 animate-spin" /> : <WifiOff className="w-4 h-4" />}
+                  {forceLoggingOutSubId === admin._id ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <WifiOff className="w-4 h-4" />
+                  )}
                 </button>
                 <button
                   onClick={() => setEditingSubAdmin(admin)}
@@ -1045,14 +1295,20 @@ export default function SettingsPage() {
                   title="Delete"
                   className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
                 >
-                  {deletingSubId === admin._id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
+                  {deletingSubId === admin._id ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Trash2 className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             ))}
           </div>
         )}
 
-        <SubAdminCreateForm onCreated={(newAdmin) => setSubAdmins((prev) => [newAdmin, ...prev])} />
+        <SubAdminCreateForm
+          onCreated={(newAdmin) => setSubAdmins((prev) => [newAdmin, ...prev])}
+        />
       </div>
 
       {/* Logout */}

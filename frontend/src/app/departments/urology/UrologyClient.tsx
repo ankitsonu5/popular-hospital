@@ -169,7 +169,8 @@ export default function UrologyClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Options at <span className="text-[#1e3a8a]">Popular Hospital</span>
+                  Options at{" "}
+                  <span className="text-[#1e3a8a]">Popular Hospital</span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />

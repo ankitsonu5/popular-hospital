@@ -8,12 +8,15 @@ const PUBLIC_DOCTOR_IMAGES: Record<string, string> = {
   "dr-gunjan-rana": "/images/departments_doctor/dr_gunjan_rana.jpg",
   "dr-priyanka-jaiswal": "/images/departments_doctor/dr_priyanka_jaiswal.jpg",
   "dr-madhavi-paramar": "/images/departments_doctor/madhvi_parmar.jpg",
-  "dt-sayeda-eram-fatma": "/images/departments_doctor/dt._sayeda_eram_fatma.jpeg",
+  "dt-sayeda-eram-fatma":
+    "/images/departments_doctor/dt._sayeda_eram_fatma.jpeg",
   "dt-sakshi-pandey": "/images/departments_doctor/dt_sakshi_pandey.jpg",
   "dr-harendra-ojha": "/images/departments_doctor/dr_harendra_ojha.jpg.jpeg",
   "dr-tejas-mahajan": "/images/departments_doctor/dr_tejas_mahajan.jpg.jpeg",
-  "dr-shailesh-kumar-yadav": "/images/departments_doctor/dr_shailesh_kumar_yadav.jpg",
-  "dr-akanksha-chaturvedi": "/images/departments_doctor/dr_akanksha_chaturvedi.jpg",
+  "dr-shailesh-kumar-yadav":
+    "/images/departments_doctor/dr_shailesh_kumar_yadav.jpg",
+  "dr-akanksha-chaturvedi":
+    "/images/departments_doctor/dr_akanksha_chaturvedi.jpg",
   "dr-harmohan-sahu": "/images/departments_doctor/dr_harmohan_sahu.jpg",
   "dr-srishti-tanya": "/images/departments_doctor/dr._srishti_tanya.jpg",
   "dr-a-k-pradhan": "/images/departments_doctor/dr_a_k_pradhan.jpg",
@@ -40,15 +43,19 @@ const PUBLIC_DOCTOR_IMAGES: Record<string, string> = {
   "dr-alok-c-bhardwaj": "/images/departments_doctor/alok_c_bharwaj.jpg",
   "dr-greeshma-suresh": "/images/departments_doctor/dr_greeshma_suresh.jpg",
   "dr-prabhat-kumar": "/images/departments_doctor/dr_prabhat_kumar.jpg",
-  "dr-rajesh-kumar-singh": "/images/departments_doctor/dr_rajesh_kumar_singh.jpg",
+  "dr-rajesh-kumar-singh":
+    "/images/departments_doctor/dr_rajesh_kumar_singh.jpg",
   "dr-neha-gupta": "/images/departments_doctor/dr_neha_gupta.png",
-  "dr-omkareshwar-pratap-singh": "/images/departments_doctor/dr_omkareshwar.jpg",
-  "dr-shailendra-shivhare": "/images/departments_doctor/dr_sailendra shivhare.jpg",
+  "dr-omkareshwar-pratap-singh":
+    "/images/departments_doctor/dr_omkareshwar.jpg",
+  "dr-shailendra-shivhare":
+    "/images/departments_doctor/dr_sailendra shivhare.jpg",
   "dr-vikas-jaiswal": "/images/departments_doctor/dr_vikas_jaiswal.jpg",
   "dr-dinesh-singh": "/images/departments_doctor/dr-dinesh-singh.jpg",
   "dr-piyush-kumar-saini": "/images/departments_doctor/dr_piyush_saini.jpg",
   "dr-alisha-raj": "/images/departments_doctor/dr_alisha_raj_new.jpg",
-  "dr-sumit-vishwakarma": "/images/departments_doctor/dr_sumit_vishwakarma_new.jpg",
+  "dr-sumit-vishwakarma":
+    "/images/departments_doctor/dr_sumit_vishwakarma_new.jpg",
 };
 
 export const getDoctorImageCandidates = (doctor: Doctor) =>

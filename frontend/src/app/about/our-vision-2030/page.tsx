@@ -212,7 +212,6 @@ export default function OurVision2030Page() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }

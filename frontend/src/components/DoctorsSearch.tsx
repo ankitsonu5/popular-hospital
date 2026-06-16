@@ -4,10 +4,7 @@ import useSWR from "swr";
 import Link from "next/link";
 import Image from "next/image";
 import { RotateCcw } from "lucide-react";
-import {
-  fetchDoctors,
-  fetchSpecialities,
-} from "@/lib/api";
+import { fetchDoctors, fetchSpecialities } from "@/lib/api";
 import type { Doctor, Speciality } from "@/lib/api";
 import { getDoctorImageCandidates } from "@/lib/doctorImages";
 
@@ -219,100 +216,100 @@ export function DoctorsSearch() {
                 key={`${doc._id ?? doc.id ?? doc.slug ?? doc.name}-${index}`}
                 className={`h-full`}
               >
-              <Link
-                href={`/doctors/${doc.slug}`}
-                className={`group relative block h-full rounded-2xl p-3.5 sm:p-4 transition-all duration-500 hover:-translate-y-1 bg-white border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)]`}
-              >
-                {/* Image Container with balanced rounding */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#f1f5f9] mb-5 sm:mb-6">
-                  {imageSrc ? (
-                    <Image
-                      src={imageSrc}
-                      alt={doc.name}
-                      fill
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                      onError={() =>
-                        setImageFallbackIndex((current) => ({
-                          ...current,
-                          [doctorKey]: Math.min(
-                            (current[doctorKey] || 0) + 1,
-                            imageCandidates.length,
-                          ),
-                        }))
-                      }
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-teal-50/30 text-teal-200">
-                      <svg
-                        className="w-24 h-24"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
+                <Link
+                  href={`/doctors/${doc.slug}`}
+                  className={`group relative block h-full rounded-2xl p-3.5 sm:p-4 transition-all duration-500 hover:-translate-y-1 bg-white border border-gray-50 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)]`}
+                >
+                  {/* Image Container with balanced rounding */}
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#f1f5f9] mb-5 sm:mb-6">
+                    {imageSrc ? (
+                      <Image
+                        src={imageSrc}
+                        alt={doc.name}
+                        fill
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                        onError={() =>
+                          setImageFallbackIndex((current) => ({
+                            ...current,
+                            [doctorKey]: Math.min(
+                              (current[doctorKey] || 0) + 1,
+                              imageCandidates.length,
+                            ),
+                          }))
+                        }
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-teal-50/30 text-teal-200">
+                        <svg
+                          className="w-24 h-24"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
 
-                {/* Content Section */}
-                <div className="px-1 sm:px-3 pb-4 sm:pb-6 min-w-0">
-                  <h3 className="text-[18px] sm:text-[22px] font-black text-[#4285f4] tracking-tight break-words leading-tight mb-2">
-                    {doc.name}
-                  </h3>
+                  {/* Content Section */}
+                  <div className="px-1 sm:px-3 pb-4 sm:pb-6 min-w-0">
+                    <h3 className="text-[18px] sm:text-[22px] font-black text-[#4285f4] tracking-tight break-words leading-tight mb-2">
+                      {doc.name}
+                    </h3>
 
-                  {doc.designation && (
-                    <p className="text-[11px] sm:text-[12px] font-bold text-[#0d9488] uppercase tracking-wider mb-1 break-words">
-                      {typeof doc.designation === "object"
-                        ? doc.designation.name
-                        : doc.designation || "-"}
+                    {doc.designation && (
+                      <p className="text-[11px] sm:text-[12px] font-bold text-[#0d9488] uppercase tracking-wider mb-1 break-words">
+                        {typeof doc.designation === "object"
+                          ? doc.designation.name
+                          : doc.designation || "-"}
+                      </p>
+                    )}
+
+                    <p className="text-[13px] sm:text-[14px] font-bold text-gray-600 leading-tight mb-1 line-clamp-2">
+                      {(doc.qualification || "")
+                        .replace(/\s*\([^)]*\)\s*$/, "")
+                        .trim() || "Highly Qualified Physician"}
                     </p>
-                  )}
 
-                  <p className="text-[13px] sm:text-[14px] font-bold text-gray-600 leading-tight mb-1 line-clamp-2">
-                    {(doc.qualification || "")
-                      .replace(/\s*\([^)]*\)\s*$/, "")
-                      .trim() || "Highly Qualified Physician"}
-                  </p>
-
-                  <p className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-[0.18em] sm:tracking-widest mb-5 sm:mb-6 break-words">
-                    DEPARTMENT OF{" "}
-                    {doc.speciality?.department_display_name ||
-                      doc.speciality?.name ||
-                      "Medical Science"}
-                  </p>
-                  {/* Footer with stats and button */}
-                  <div className="flex flex-col gap-3 min-[380px]:flex-row min-[380px]:items-center min-[380px]:justify-between">
-                    <div className="flex items-center gap-1.5 text-gray-900 min-w-0">
-                      <svg
-                        className="w-5 h-5 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
-                      </svg>
-                      {doc.experience_years && (
-                        <span className="text-base sm:text-lg font-bold">
-                          {doc.experience_years}
-                          <span className="text-sm text-gray-400 font-medium ml-1">
-                            Years Exp.
+                    <p className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-[0.18em] sm:tracking-widest mb-5 sm:mb-6 break-words">
+                      DEPARTMENT OF{" "}
+                      {doc.speciality?.department_display_name ||
+                        doc.speciality?.name ||
+                        "Medical Science"}
+                    </p>
+                    {/* Footer with stats and button */}
+                    <div className="flex flex-col gap-3 min-[380px]:flex-row min-[380px]:items-center min-[380px]:justify-between">
+                      <div className="flex items-center gap-1.5 text-gray-900 min-w-0">
+                        <svg
+                          className="w-5 h-5 text-gray-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          />
+                        </svg>
+                        {doc.experience_years && (
+                          <span className="text-base sm:text-lg font-bold">
+                            {doc.experience_years}
+                            <span className="text-sm text-gray-400 font-medium ml-1">
+                              Years Exp.
+                            </span>
                           </span>
-                        </span>
-                      )}
-                    </div>
+                        )}
+                      </div>
 
-                    <div className="w-full min-[380px]:w-auto bg-[#f1f5f9] px-4 sm:px-5 py-3 rounded-2xl font-bold text-gray-900 flex items-center justify-center gap-1 hover:bg-[#e2e8f0] transition-colors">
-                      View <span className="text-xl leading-none">+</span>
+                      <div className="w-full min-[380px]:w-auto bg-[#f1f5f9] px-4 sm:px-5 py-3 rounded-2xl font-bold text-gray-900 flex items-center justify-center gap-1 hover:bg-[#e2e8f0] transition-colors">
+                        View <span className="text-xl leading-none">+</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </li>
+                </Link>
+              </li>
             );
           })}
         </ul>

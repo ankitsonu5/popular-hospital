@@ -35,7 +35,10 @@ export default function CareerPage() {
   const currentOpenings = openings.filter((o) => o.category === activeTab);
 
   return (
-    <div className="bg-[#f0f7ff] min-h-screen pt-12 pb-20" style={{ fontFamily: '"Plus Jakarta Sans", "Segoe UI", sans-serif' }}>
+    <div
+      className="bg-[#f0f7ff] min-h-screen pt-12 pb-20"
+      style={{ fontFamily: '"Plus Jakarta Sans", "Segoe UI", sans-serif' }}
+    >
       <div className="max-w-[1366px] mx-auto px-6 lg:px-12">
         {/* Hero Section */}
         <div className="mb-16">
@@ -232,14 +235,17 @@ export default function CareerPage() {
               {/* Contact */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
                 <h4 className="text-[11px] font-bold text-slate-800 uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-                  <ArrowRight className="w-3.5 h-3.5 text-[#E85222]" /> Recruitment Inquiry
+                  <ArrowRight className="w-3.5 h-3.5 text-[#E85222]" />{" "}
+                  Recruitment Inquiry
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="flex items-center gap-2.5 text-[11px] text-slate-600 font-bold">
                     <div className="w-7 h-7 rounded-md bg-white flex items-center justify-center text-blue-400 border border-slate-200 shrink-0">
                       <Mail className="w-3.5 h-3.5" />
                     </div>
-                    <span className="truncate">popularhospitalhelpline@gmail.com</span>
+                    <span className="truncate">
+                      popularhospitalhelpline@gmail.com
+                    </span>
                   </div>
                   <div className="flex items-center gap-2.5 text-[11px] text-slate-600 font-bold">
                     <div className="w-7 h-7 rounded-md bg-white flex items-center justify-center text-blue-400 border border-slate-200 shrink-0">

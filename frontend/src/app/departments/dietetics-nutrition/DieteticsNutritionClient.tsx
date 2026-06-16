@@ -17,7 +17,8 @@ const doctors = [
   },
   {
     name: "Dt. Sayeda Eram Fatma",
-    qualifications: "M.SC (DFSM) Dietetics Food service management  BHU  Diploma in health care and hospital management BHU CNCC Nutrition in child care",
+    qualifications:
+      "M.SC (DFSM) Dietetics Food service management  BHU  Diploma in health care and hospital management BHU CNCC Nutrition in child care",
     designation: "Clinical Dietitian",
     slug: "dt-sayeda-eram-fatma",
     image: "/images/departments_doctor/dt._sayeda_eram_fatma.jpeg",
@@ -148,14 +149,17 @@ export default function DieteticsNutritionClient() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Content Left */}
             <div className="lg:col-span-8 space-y-6">
-              <SectionHeader title="Comprehensive" highlight="Dietetics & Nutrition" />
+              <SectionHeader
+                title="Comprehensive"
+                highlight="Dietetics & Nutrition"
+              />
               <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
                 <p>
-                  At Popular Hospital, Varanasi, our Department of Dietetics
-                  and Nutrition is dedicated to improving overall health and
+                  At Popular Hospital, Varanasi, our Department of Dietetics and
+                  Nutrition is dedicated to improving overall health and
                   accelerating recovery through personalized, science-based
-                  nutritional strategies. We believe that proper nutrition is
-                  a cornerstone of medical treatment and disease prevention,
+                  nutritional strategies. We believe that proper nutrition is a
+                  cornerstone of medical treatment and disease prevention,
                   playing a crucial role in healing and maintaining a high
                   quality of life.
                 </p>
@@ -168,10 +172,11 @@ export default function DieteticsNutritionClient() {
                   </p>
                 </div>
                 <p>
-                  Our services are backed by a complete dietary mapping protocol, 
-                  continuous medical checks, and targeted lifestyle modifications. 
-                  From managing medical conditions to therapeutic diets, we help you 
-                  formulate sustainable, realistic dietary changes.
+                  Our services are backed by a complete dietary mapping
+                  protocol, continuous medical checks, and targeted lifestyle
+                  modifications. From managing medical conditions to therapeutic
+                  diets, we help you formulate sustainable, realistic dietary
+                  changes.
                 </p>
               </div>
             </div>
@@ -191,7 +196,9 @@ export default function DieteticsNutritionClient() {
           {/* Specialized Services */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Our Specialities</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
+                Our Specialities
+              </span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
                 Nutrition <span className="text-[#1e3a8a]">Services</span>
               </h2>
@@ -235,7 +242,9 @@ export default function DieteticsNutritionClient() {
           {/* Diet Plans Grid */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Structure</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
+                Structure
+              </span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
                 Dietary <span className="text-[#1e3a8a]">Care Plans</span>
               </h2>
@@ -271,7 +280,9 @@ export default function DieteticsNutritionClient() {
           {/* Why Choose Us */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Why Choose Us</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
+                Why Choose Us
+              </span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
                 Our Nutrition <span className="text-[#1e3a8a]">Advantages</span>
               </h2>

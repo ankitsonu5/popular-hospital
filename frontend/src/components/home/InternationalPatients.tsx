@@ -290,11 +290,17 @@ export default function InternationalPatients({
       <div
         className={`relative z-10 mx-auto w-full ${formOnly ? "max-w-3xl px-0" : "max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12"}`}
       >
-        <div className={formOnly ? "text-center mb-8" : "text-center mb-8 sm:mb-12 xl:mb-10"}>
+        <div
+          className={
+            formOnly ? "text-center mb-8" : "text-center mb-8 sm:mb-12 xl:mb-10"
+          }
+        >
           <h2
             className={`text-2xl sm:text-3xl lg:text-4xl xl:text-3xl font-black font-heading tracking-tight mb-3 sm:mb-4 ${formOnly ? "text-[#0b1c43]" : "text-white lg:text-[#0b1c43] drop-shadow-md lg:drop-shadow-none"}`}
           >
-            {formOnly ? "Send Your Inquiry to Assist You" : "For International Patients"}
+            {formOnly
+              ? "Send Your Inquiry to Assist You"
+              : "For International Patients"}
           </h2>
           {!formOnly && (
             <p className="text-sm sm:text-base xl:text-xs xl:sm:text-sm font-bold text-[#FF6B00] uppercase tracking-wider drop-shadow-md lg:drop-shadow-none">

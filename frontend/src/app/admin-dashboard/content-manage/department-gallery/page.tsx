@@ -462,72 +462,72 @@ export default function DepartmentGalleryPage() {
                 {items.map((item) => (
                   <SortableGalleryCardShell key={item._id} id={item._id}>
                     <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
-                <div className="relative aspect-video bg-gray-100">
-                  {item.type === "video" ? (
-                    item.thumbnailUrl ? (
-                      <img
-                        src={getImageUrl(item.thumbnailUrl, false, {
-                          preferRelativeUploads: true,
-                        })}
-                        alt={item.title || "Video thumbnail"}
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <video
-                        src={getImageUrl(item.mediaUrl, false, {
-                          preferRelativeUploads: true,
-                        })}
-                        className="h-full w-full object-cover"
-                        muted
-                        preload="metadata"
-                      />
-                    )
-                  ) : (
-                    <img
-                      src={getImageUrl(item.mediaUrl, false, {
-                        preferRelativeUploads: true,
-                      })}
-                      alt={item.title || "Gallery image"}
-                      className="h-full w-full object-cover"
-                    />
-                  )}
-                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-bold uppercase text-[#0b1c43]">
-                    {item.type === "video" ? (
-                      <Video className="h-3.5 w-3.5" />
-                    ) : (
-                      <ImageIcon className="h-3.5 w-3.5" />
-                    )}
-                    {item.type}
-                  </span>
-                </div>
-                <div className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="font-bold text-gray-900">
-                        {item.title || "Untitled"}
-                      </h3>
-                      <p className="mt-1 text-xs font-semibold text-gray-400">
-                        {item.isActive !== false ? "Active" : "Hidden"}
-                      </p>
-                    </div>
-                    <div className="flex gap-1">
-                      <button
-                        type="button"
-                        onClick={() => openEdit(item)}
-                        className="rounded-lg p-2 text-gray-400 hover:bg-blue-50 hover:text-blue-600"
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleDelete(item._id)}
-                        className="rounded-lg p-2 text-gray-400 hover:bg-red-50 hover:text-red-600"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                      <div className="relative aspect-video bg-gray-100">
+                        {item.type === "video" ? (
+                          item.thumbnailUrl ? (
+                            <img
+                              src={getImageUrl(item.thumbnailUrl, false, {
+                                preferRelativeUploads: true,
+                              })}
+                              alt={item.title || "Video thumbnail"}
+                              className="h-full w-full object-cover"
+                            />
+                          ) : (
+                            <video
+                              src={getImageUrl(item.mediaUrl, false, {
+                                preferRelativeUploads: true,
+                              })}
+                              className="h-full w-full object-cover"
+                              muted
+                              preload="metadata"
+                            />
+                          )
+                        ) : (
+                          <img
+                            src={getImageUrl(item.mediaUrl, false, {
+                              preferRelativeUploads: true,
+                            })}
+                            alt={item.title || "Gallery image"}
+                            className="h-full w-full object-cover"
+                          />
+                        )}
+                        <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-bold uppercase text-[#0b1c43]">
+                          {item.type === "video" ? (
+                            <Video className="h-3.5 w-3.5" />
+                          ) : (
+                            <ImageIcon className="h-3.5 w-3.5" />
+                          )}
+                          {item.type}
+                        </span>
+                      </div>
+                      <div className="p-4">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <h3 className="font-bold text-gray-900">
+                              {item.title || "Untitled"}
+                            </h3>
+                            <p className="mt-1 text-xs font-semibold text-gray-400">
+                              {item.isActive !== false ? "Active" : "Hidden"}
+                            </p>
+                          </div>
+                          <div className="flex gap-1">
+                            <button
+                              type="button"
+                              onClick={() => openEdit(item)}
+                              className="rounded-lg p-2 text-gray-400 hover:bg-blue-50 hover:text-blue-600"
+                            >
+                              <Pencil className="h-4 w-4" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleDelete(item._id)}
+                              className="rounded-lg p-2 text-gray-400 hover:bg-red-50 hover:text-red-600"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </SortableGalleryCardShell>
                 ))}
@@ -560,7 +560,10 @@ export default function DepartmentGalleryPage() {
                     required
                     value={formData.department}
                     onChange={(event) =>
-                      setFormData({ ...formData, department: event.target.value })
+                      setFormData({
+                        ...formData,
+                        department: event.target.value,
+                      })
                     }
                     className="w-full rounded-xl border-2 border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-[#0d9488]"
                   >
@@ -609,7 +612,10 @@ export default function DepartmentGalleryPage() {
                     type="checkbox"
                     checked={formData.isActive}
                     onChange={(event) =>
-                      setFormData({ ...formData, isActive: event.target.checked })
+                      setFormData({
+                        ...formData,
+                        isActive: event.target.checked,
+                      })
                     }
                     className="h-4 w-4 accent-[#0d9488]"
                   />
@@ -624,7 +630,9 @@ export default function DepartmentGalleryPage() {
                 <input
                   type="file"
                   accept={formData.type === "video" ? "video/*" : "image/*"}
-                  onChange={(event) => setMediaFile(event.target.files?.[0] || null)}
+                  onChange={(event) =>
+                    setMediaFile(event.target.files?.[0] || null)
+                  }
                   className="w-full rounded-xl border-2 border-dashed border-gray-200 px-3 py-3 text-sm"
                 />
                 <p className="mt-1 text-xs text-gray-400">

@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Clipboard, Calendar, HeartPulse, Heart, ArrowRight } from "lucide-react";
+import {
+  Check,
+  Clipboard,
+  Calendar,
+  HeartPulse,
+  Heart,
+  ArrowRight,
+} from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -58,7 +65,8 @@ const servicesCategories = [
   {
     title: "Diagnostics & Evaluations",
     icon: Clipboard,
-    description: "Comprehensive assessment protocols to identify barriers to conception.",
+    description:
+      "Comprehensive assessment protocols to identify barriers to conception.",
     items: [
       "Female and male infertility evaluation",
       "Hormonal assessment and ovarian reserve testing",
@@ -68,7 +76,8 @@ const servicesCategories = [
   {
     title: "Ovulation & Hormonal Support",
     icon: Calendar,
-    description: "Careful monitoring and cycle tracking to optimize ovulation windows.",
+    description:
+      "Careful monitoring and cycle tracking to optimize ovulation windows.",
     items: [
       "Follicular monitoring and ovulation induction",
       "PCOS-related fertility management",
@@ -78,7 +87,8 @@ const servicesCategories = [
   {
     title: "Assisted Reproduction Guidance",
     icon: HeartPulse,
-    description: "Guidance and coordination for advanced therapeutic reproductive cycles.",
+    description:
+      "Guidance and coordination for advanced therapeutic reproductive cycles.",
     items: [
       "IUI treatment counselling and preparation",
       "IVF / ICSI counselling and cycle coordination",
@@ -88,7 +98,8 @@ const servicesCategories = [
   {
     title: "Pregnancy & Restorative Care",
     icon: Heart,
-    description: "Ongoing clinical support and screening to promote healthy outcomes.",
+    description:
+      "Ongoing clinical support and screening to promote healthy outcomes.",
     items: [
       "Recurrent pregnancy loss evaluation",
       "Early pregnancy monitoring",
@@ -143,7 +154,9 @@ const CheckItem = ({ text }: { text: string }) => (
     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-violet-700 border border-violet-100 shadow-inner">
       <Check className="h-3.5 w-3.5" />
     </span>
-    <span className="text-gray-700 text-xs sm:text-sm font-bold leading-relaxed">{text}</span>
+    <span className="text-gray-700 text-xs sm:text-sm font-bold leading-relaxed">
+      {text}
+    </span>
   </div>
 );
 
@@ -207,14 +220,15 @@ export default function IvfFertilityClient() {
                 <div className="relative border-l-4 border-pink-500 pl-6 py-4 bg-gradient-to-r from-pink-50/40 to-pink-50/10 rounded-r-3xl my-6 shadow-sm">
                   <p className="font-semibold text-gray-800">
                     From ovulation issues, PCOS and recurrent pregnancy loss to
-                    male-factor infertility and assisted reproduction counselling,
-                    patients receive private, structured and coordinated care.
+                    male-factor infertility and assisted reproduction
+                    counselling, patients receive private, structured and
+                    coordinated care.
                   </p>
                 </div>
                 <p>
                   Every fertility journey is personal. Our team emphasizes
-                  counselling, transparent communication and regular monitoring so
-                  couples feel supported throughout evaluation and treatment.
+                  counselling, transparent communication and regular monitoring
+                  so couples feel supported throughout evaluation and treatment.
                 </p>
               </div>
             </div>
@@ -222,7 +236,11 @@ export default function IvfFertilityClient() {
             {/* Right Single Doctor Card Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="IVF & Fertility" preventBackendFetch={true} />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="IVF & Fertility"
+                  preventBackendFetch={true}
+                />
               </div>
             </div>
           </div>
@@ -267,8 +285,11 @@ export default function IvfFertilityClient() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-violet-950/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-violet-950/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                  <p className="font-bold mb-1 text-pink-300 uppercase tracking-widest text-[9.5px]">Quality Standards</p>
-                  Patient-first approach with top clinical success rates and safety protocols.
+                  <p className="font-bold mb-1 text-pink-300 uppercase tracking-widest text-[9.5px]">
+                    Quality Standards
+                  </p>
+                  Patient-first approach with top clinical success rates and
+                  safety protocols.
                 </div>
               </div>
             </div>
@@ -280,7 +301,10 @@ export default function IvfFertilityClient() {
                 {servicesCategories.map((cat) => {
                   const Icon = cat.icon;
                   return (
-                    <div key={cat.title} className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-3 group">
+                    <div
+                      key={cat.title}
+                      className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-3 group"
+                    >
                       <div className="flex items-center gap-3.5">
                         <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-violet-50 text-violet-700 flex items-center justify-center border border-violet-100 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300 shadow-inner">
                           <Icon className="w-5 h-5" />
@@ -294,7 +318,10 @@ export default function IvfFertilityClient() {
                       </p>
                       <ul className="space-y-2 mt-2 pt-3 border-t border-slate-50">
                         {cat.items.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-xs text-gray-700 font-bold leading-relaxed">
+                          <li
+                            key={item}
+                            className="flex items-start gap-2 text-xs text-gray-700 font-bold leading-relaxed"
+                          >
                             <Check className="h-3.5 w-3.5 text-pink-500 mt-0.5 flex-shrink-0" />
                             <span>{item}</span>
                           </li>
@@ -313,7 +340,9 @@ export default function IvfFertilityClient() {
       <section className="py-20 xl:py-16 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-pink-600 font-bold tracking-widest text-xs uppercase block">Overview</span>
+            <span className="text-pink-600 font-bold tracking-widest text-xs uppercase block">
+              Overview
+            </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-violet-950 font-heading tracking-tight">
               Treatment <span className="text-pink-600">Journey</span>
             </h2>
@@ -330,7 +359,9 @@ export default function IvfFertilityClient() {
                   <p className="text-3xl font-black text-pink-300 mb-4 font-heading leading-none">
                     {item.step}
                   </p>
-                  <h3 className="font-bold text-lg mb-2 text-white">{item.title}</h3>
+                  <h3 className="font-bold text-lg mb-2 text-white">
+                    {item.title}
+                  </h3>
                   <p className="text-xs font-semibold leading-relaxed text-violet-100">
                     {item.desc}
                   </p>

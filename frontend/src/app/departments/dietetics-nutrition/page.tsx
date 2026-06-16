@@ -14,12 +14,14 @@ export default function DieteticsNutritionPage() {
     <>
       <DynamicSchema
         pageKey="department:dietetics-nutrition"
-        fallback={<DepartmentSchema
-        name="Dietetics & Nutrition | Popular Hospital"
-        description="Expert nutritional counseling and personalized diet plans at Popular Hospital Dietetics & Nutrition Department."
-        urlSlug="dietetics-nutrition"
-        medicalSpecialty="DietNutrition"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Dietetics & Nutrition | Popular Hospital"
+            description="Expert nutritional counseling and personalized diet plans at Popular Hospital Dietetics & Nutrition Department."
+            urlSlug="dietetics-nutrition"
+            medicalSpecialty="DietNutrition"
+          />
+        }
       />
       <DieteticsNutritionClient />
     </>

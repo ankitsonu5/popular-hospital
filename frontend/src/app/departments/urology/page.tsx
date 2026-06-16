@@ -14,12 +14,14 @@ export default function UrologyPage() {
     <>
       <DynamicSchema
         pageKey="department:urology"
-        fallback={<DepartmentSchema
-        name="Department of Urology | Popular Hospital"
-        description="Expert care for urological conditions including kidney stones, prostate health, uro-oncology, and male infertility."
-        urlSlug="urology"
-        medicalSpecialty="Urologic"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Department of Urology | Popular Hospital"
+            description="Expert care for urological conditions including kidney stones, prostate health, uro-oncology, and male infertility."
+            urlSlug="urology"
+            medicalSpecialty="Urologic"
+          />
+        }
       />
       <UrologyClient />
     </>

@@ -63,7 +63,10 @@ const normalizeDate = (d: string): string => {
 const normalizeKeywords = (k?: string | string[]): string[] | undefined => {
   if (!k) return undefined;
   if (Array.isArray(k)) return k.map((s) => s.trim()).filter(Boolean);
-  return k.split(",").map((s) => s.trim()).filter(Boolean);
+  return k
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
 };
 
 // Strip HTML tags and decode common entities for clean plain text description

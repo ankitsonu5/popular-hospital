@@ -113,8 +113,7 @@ const SectionHeader = ({
 }) => (
   <div className="mb-6 2xl:mb-8">
     <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-      {title}{" "}
-      <span className="text-[#1e3a8a] font-bold">{highlight}</span>
+      {title} <span className="text-[#1e3a8a] font-bold">{highlight}</span>
     </h2>
     <div className="flex items-center gap-2 mt-3">
       <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
@@ -167,11 +166,9 @@ export default function DentalClient() {
         </div>
       </section>
 
-
       {/* ═══════ DEPARTMENT INFO SECTION ═══════ */}
       <section className="py-20 xl:py-16 bg-white min-h-[600px]">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-
           {/* Intro + Doctor Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Content */}
@@ -180,7 +177,12 @@ export default function DentalClient() {
               <SectionHeader title="Department of" highlight="Dental" />
               <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/60 to-transparent rounded-r-3xl shadow-sm">
                 <p className="font-semibold text-gray-700 text-base md:text-[15px] leading-relaxed">
-                  The department is operational with state-of-the-art dental equipment harmonizing international standards to deliver quality treatment to patients. This multi-sphere dental unit offers a high-quality, specialized dental care experience with excellence, comfort, and a soothing atmosphere — offering a full range of dental services under one roof.
+                  The department is operational with state-of-the-art dental
+                  equipment harmonizing international standards to deliver
+                  quality treatment to patients. This multi-sphere dental unit
+                  offers a high-quality, specialized dental care experience with
+                  excellence, comfort, and a soothing atmosphere — offering a
+                  full range of dental services under one roof.
                 </p>
               </div>
 
@@ -192,9 +194,14 @@ export default function DentalClient() {
                   "Advanced digital diagnostics",
                   "All specialties under one roof",
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 bg-blue-50/50 rounded-xl px-4 py-3 border border-blue-100/60">
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 bg-blue-50/50 rounded-xl px-4 py-3 border border-blue-100/60"
+                  >
                     <CheckCircle2 className="h-4 w-4 text-[#1e3a8a] shrink-0" />
-                    <span className="text-gray-700 text-xs sm:text-sm font-semibold">{item}</span>
+                    <span className="text-gray-700 text-xs sm:text-sm font-semibold">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -216,9 +223,12 @@ export default function DentalClient() {
 
             <div className="relative z-10">
               <div className="text-center mb-12">
-                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block mb-2">Core Advantages</span>
+                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block mb-2">
+                  Core Advantages
+                </span>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
-                  Why Choose Our <span className="text-blue-300">Dental Care</span>
+                  Why Choose Our{" "}
+                  <span className="text-blue-300">Dental Care</span>
                 </h2>
                 <div className="h-[2px] w-24 bg-blue-500 mx-auto mt-4" />
               </div>
@@ -291,7 +301,8 @@ export default function DentalClient() {
             <div className="bg-blue-50/60 p-5 rounded-2xl border border-blue-100 mt-7 flex items-start gap-3">
               <Info className="h-5 w-5 text-[#1e3a8a] shrink-0 mt-0.5" />
               <p className="text-gray-600 text-xs sm:text-sm font-semibold italic leading-relaxed">
-                Craniofacial Surgeries are performed in close collaboration with the Department of Plastic Surgery.
+                Craniofacial Surgeries are performed in close collaboration with
+                the Department of Plastic Surgery.
               </p>
             </div>
           </div>
@@ -303,24 +314,34 @@ export default function DentalClient() {
               <SectionHeader title="Digital Radiological" highlight="Support" />
 
               <p className="text-gray-700 text-base leading-relaxed font-semibold">
-                The department is backed by exceptional diagnostic amenities — including cordless digital Intra-oral periapical radiographs, Orthopantomograph (OPG), and Dentascan — ensuring flawless management of even the most complex dental conditions.
+                The department is backed by exceptional diagnostic amenities —
+                including cordless digital Intra-oral periapical radiographs,
+                Orthopantomograph (OPG), and Dentascan — ensuring flawless
+                management of even the most complex dental conditions.
               </p>
               <p className="text-gray-500 text-sm sm:text-base leading-relaxed font-medium">
-                The Department of Dentistry at Popular Hospital practices everything about dentistry under one roof, delivering international-standard care in a comfortable, sterile, and pain-free environment.
+                The Department of Dentistry at Popular Hospital practices
+                everything about dentistry under one roof, delivering
+                international-standard care in a comfortable, sterile, and
+                pain-free environment.
               </p>
 
               {/* Feature checklist */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {radiologyFeatures.map((feat) => (
-                  <div key={feat} className="flex items-start gap-3 bg-blue-50/50 rounded-xl px-4 py-3 border border-blue-100/60">
+                  <div
+                    key={feat}
+                    className="flex items-start gap-3 bg-blue-50/50 rounded-xl px-4 py-3 border border-blue-100/60"
+                  >
                     <CheckCircle2 className="h-4 w-4 text-[#1e3a8a] shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-xs sm:text-sm font-semibold leading-snug">{feat}</span>
+                    <span className="text-gray-700 text-xs sm:text-sm font-semibold leading-snug">
+                      {feat}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </main>

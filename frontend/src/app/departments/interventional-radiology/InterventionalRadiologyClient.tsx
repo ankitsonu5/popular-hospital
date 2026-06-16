@@ -81,7 +81,11 @@ const proceduresSection = {
 
 /* ─── Main Component ─── */
 
-export default function InterventionalRadiologyClient({ doctors }: { doctors: any[] }) {
+export default function InterventionalRadiologyClient({
+  doctors,
+}: {
+  doctors: any[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -132,14 +136,20 @@ export default function InterventionalRadiologyClient({ doctors }: { doctors: an
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Department of <span className="text-[#1e3a8a]">Interventional Radiology</span>
+                  Department of{" "}
+                  <span className="text-[#1e3a8a]">
+                    Interventional Radiology
+                  </span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <div className="space-y-4">
                 {departmentOverview.map((item, idx) => (
-                  <p key={idx} className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
+                  <p
+                    key={idx}
+                    className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"
+                  >
                     {item.text}
                   </p>
                 ))}
@@ -149,7 +159,10 @@ export default function InterventionalRadiologyClient({ doctors }: { doctors: an
             {/* Right Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Interventional Radiology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Interventional Radiology"
+                />
               </div>
             </div>
           </div>
@@ -167,7 +180,10 @@ export default function InterventionalRadiologyClient({ doctors }: { doctors: an
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Who is an <span className="text-[#1e3a8a]">Interventional Radiologist?</span>
+                  Who is an{" "}
+                  <span className="text-[#1e3a8a]">
+                    Interventional Radiologist?
+                  </span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />

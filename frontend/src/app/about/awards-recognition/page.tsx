@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Share2, GraduationCap, Stethoscope, Handshake, Trophy } from "lucide-react";
+import {
+  Share2,
+  GraduationCap,
+  Stethoscope,
+  Handshake,
+  Trophy,
+} from "lucide-react";
 
 const awardsData = [
   {
@@ -230,28 +236,34 @@ export default function AwardsRecognitionPage() {
                     label: "QUALIFICATIONS",
                     val: "MBBS, MS (General Surgery) IMS-BHU",
                     iconColor: "bg-blue-50/70 border-blue-100/60 text-blue-600",
-                    borderHover: "hover:border-blue-200/80 hover:shadow-blue-500/5",
+                    borderHover:
+                      "hover:border-blue-200/80 hover:shadow-blue-500/5",
                     icon: <GraduationCap className="w-5 h-5 text-blue-600" />,
                   },
                   {
                     label: "SPECIALIZATION",
                     val: "General, Laparoscopic, and Laser Surgery",
                     iconColor: "bg-teal-50/70 border-teal-100/60 text-teal-600",
-                    borderHover: "hover:border-teal-200/80 hover:shadow-teal-500/5",
+                    borderHover:
+                      "hover:border-teal-200/80 hover:shadow-teal-500/5",
                     icon: <Stethoscope className="w-5 h-5 text-teal-600" />,
                   },
                   {
                     label: "AFFILIATIONS",
                     val: "AMASI, IAGES, Hernia Society of India",
-                    iconColor: "bg-purple-50/70 border-purple-100/60 text-purple-600",
-                    borderHover: "hover:border-purple-200/80 hover:shadow-purple-500/5",
+                    iconColor:
+                      "bg-purple-50/70 border-purple-100/60 text-purple-600",
+                    borderHover:
+                      "hover:border-purple-200/80 hover:shadow-purple-500/5",
                     icon: <Handshake className="w-5 h-5 text-purple-600" />,
                   },
                   {
                     label: "KEY AWARDS",
                     val: "Kashi Ratna, CNBC Healthcare, Sunbeam",
-                    iconColor: "bg-amber-50/70 border-amber-100/60 text-amber-600",
-                    borderHover: "hover:border-amber-200/80 hover:shadow-amber-500/5",
+                    iconColor:
+                      "bg-amber-50/70 border-amber-100/60 text-amber-600",
+                    borderHover:
+                      "hover:border-amber-200/80 hover:shadow-amber-500/5",
                     icon: <Trophy className="w-5 h-5 text-amber-600" />,
                   },
                 ].map((point, i) => (
@@ -259,7 +271,9 @@ export default function AwardsRecognitionPage() {
                     key={i}
                     className={`p-5 bg-white rounded-2xl border border-slate-100 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${point.borderHover} group flex items-center gap-6`}
                   >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${point.iconColor} transition-transform group-hover:scale-105 duration-300`}>
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${point.iconColor} transition-transform group-hover:scale-105 duration-300`}
+                    >
                       {point.icon}
                     </div>
                     <div className="space-y-1">
@@ -323,9 +337,13 @@ export default function AwardsRecognitionPage() {
                     <td className="px-8 py-6 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider">
                       Special Honor
                     </td>
-                    <td className="px-8 py-6 font-black font-jakarta text-[#0b1c43] text-base" colSpan={2}>
+                    <td
+                      className="px-8 py-6 font-black font-jakarta text-[#0b1c43] text-base"
+                      colSpan={2}
+                    >
                       <span className="text-[#E85222] font-black mr-2">★</span>
-                      Honored by Hon&apos;ble Chief Minister of Uttar Pradesh, Shri Yogi Adityanath Ji
+                      Honored by Hon&apos;ble Chief Minister of Uttar Pradesh,
+                      Shri Yogi Adityanath Ji
                     </td>
                   </tr>
                 </tbody>
@@ -335,7 +353,10 @@ export default function AwardsRecognitionPage() {
             {/* Mobile Card Layout for Table */}
             <div className="md:hidden divide-y divide-slate-100">
               {awardsData.map((row, idx) => (
-                <div key={idx} className="p-5 space-y-3 bg-white hover:bg-slate-50/30 transition-colors">
+                <div
+                  key={idx}
+                  className="p-5 space-y-3 bg-white hover:bg-slate-50/30 transition-colors"
+                >
                   <div className="flex items-center justify-between gap-3">
                     <span className="bg-blue-50 text-[#1e3a8a] px-3 py-0.5 rounded-full text-xs font-bold border border-blue-100">
                       {row.year}
@@ -357,7 +378,8 @@ export default function AwardsRecognitionPage() {
                   <span>★</span> Special Honor
                 </p>
                 <p className="font-black text-[#0b1c43] leading-snug text-sm font-jakarta">
-                  Honored by Hon&apos;ble Chief Minister of Uttar Pradesh, Shri Yogi Adityanath Ji
+                  Honored by Hon&apos;ble Chief Minister of Uttar Pradesh, Shri
+                  Yogi Adityanath Ji
                 </p>
               </div>
             </div>

@@ -131,25 +131,22 @@ export default function BookingsAdminPage() {
     setCurrentPage(1);
   }, [search, activeTab, monthFilter, dateFrom, dateTo]);
 
-  const markAsRead = useCallback(
-    async (booking: Booking) => {
-      if (booking.isRead) return;
-      try {
-        const token = sessionStorage.getItem("admin_token");
-        await fetch(`${API_URL}/cms/bookings/${booking._id}/read`, {
-          method: "PATCH",
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setBookings((prev) =>
-          prev.map((b) => (b._id === booking._id ? { ...b, isRead: true } : b))
-        );
-        mutate("/api-backend/cms/bookings?status=pending");
-      } catch (e) {
-        console.error(e);
-      }
-    },
-    []
-  );
+  const markAsRead = useCallback(async (booking: Booking) => {
+    if (booking.isRead) return;
+    try {
+      const token = sessionStorage.getItem("admin_token");
+      await fetch(`${API_URL}/cms/bookings/${booking._id}/read`, {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setBookings((prev) =>
+        prev.map((b) => (b._id === booking._id ? { ...b, isRead: true } : b)),
+      );
+      mutate("/api-backend/cms/bookings?status=pending");
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
 
   const updateStatus = useCallback(
     async (booking: Booking, newStatus: string) => {
@@ -164,19 +161,17 @@ export default function BookingsAdminPage() {
               Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({ status: newStatus }),
-          }
+          },
         );
         if (!res.ok) throw new Error("Failed to update status");
         const updatedBooking = await res.json();
         setBookings((prev) =>
           prev.map((b) =>
-            b._id === booking._id ? { ...b, ...updatedBooking } : b
-          )
+            b._id === booking._id ? { ...b, ...updatedBooking } : b,
+          ),
         );
         if (selected && selected._id === booking._id) {
-          setSelected((prev) =>
-            prev ? { ...prev, ...updatedBooking } : null
-          );
+          setSelected((prev) => (prev ? { ...prev, ...updatedBooking } : null));
         }
         toast.success(`Status updated to ${STATUS_LABEL[newStatus]}`);
         mutate("/api-backend/cms/bookings?status=pending");
@@ -185,7 +180,7 @@ export default function BookingsAdminPage() {
         toast.error("Failed to update status");
       }
     },
-    [selected]
+    [selected],
   );
 
   const promptDelete = useCallback((id: string) => {
@@ -219,7 +214,7 @@ export default function BookingsAdminPage() {
       setAdminNotesDraft(booking.adminNotes || "");
       markAsRead(booking);
     },
-    [markAsRead]
+    [markAsRead],
   );
 
   const saveAdminNotes = useCallback(async () => {
@@ -227,21 +222,26 @@ export default function BookingsAdminPage() {
     setNotesSaving(true);
     try {
       const token = sessionStorage.getItem("admin_token");
-      const res = await fetch(`${API_URL}/cms/bookings/${selected._id}/admin-notes`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `${API_URL}/cms/bookings/${selected._id}/admin-notes`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ adminNotes: adminNotesDraft }),
         },
-        body: JSON.stringify({ adminNotes: adminNotesDraft }),
-      });
+      );
       if (!res.ok) throw new Error();
       setBookings((prev) =>
         prev.map((b) =>
-          b._id === selected._id ? { ...b, adminNotes: adminNotesDraft } : b
-        )
+          b._id === selected._id ? { ...b, adminNotes: adminNotesDraft } : b,
+        ),
       );
-      setSelected((prev) => prev ? { ...prev, adminNotes: adminNotesDraft } : null);
+      setSelected((prev) =>
+        prev ? { ...prev, adminNotes: adminNotesDraft } : null,
+      );
       toast.success("Notes saved");
     } catch {
       toast.error("Failed to save notes");
@@ -291,7 +291,7 @@ export default function BookingsAdminPage() {
           b.patient_name.toLowerCase().includes(q) ||
           b.patient_phone.includes(q) ||
           (b.doctor?.name || "").toLowerCase().includes(q) ||
-          (b.branch?.name || "").toLowerCase().includes(q)
+          (b.branch?.name || "").toLowerCase().includes(q),
       );
     }
 
@@ -355,7 +355,7 @@ export default function BookingsAdminPage() {
     ]);
     const csvContent = [headers, ...rows]
       .map((row) =>
-        row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")
+        row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(","),
       )
       .join("\n");
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
@@ -383,7 +383,7 @@ export default function BookingsAdminPage() {
         <td>${b.slot_date}<br/><small>${formatTimeToAmPm(b.slot_time)}</small></td>
         <td><span class="status-badge status-${b.status}">${STATUS_LABEL[b.status] || b.status}</span></td>
         <td>${formatDate(b.createdAt)}</td>
-      </tr>`
+      </tr>`,
       )
       .join("");
 
@@ -645,11 +645,12 @@ export default function BookingsAdminPage() {
                 <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
                   Internal Admin Notes
                 </div>
-                {selected.adminNotes && adminNotesDraft === selected.adminNotes && (
-                  <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-wide">
-                    Saved
-                  </span>
-                )}
+                {selected.adminNotes &&
+                  adminNotesDraft === selected.adminNotes && (
+                    <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-wide">
+                      Saved
+                    </span>
+                  )}
               </div>
               <textarea
                 value={adminNotesDraft}
@@ -665,7 +666,10 @@ export default function BookingsAdminPage() {
                 </span>
                 <button
                   onClick={saveAdminNotes}
-                  disabled={notesSaving || adminNotesDraft === (selected.adminNotes || "")}
+                  disabled={
+                    notesSaving ||
+                    adminNotesDraft === (selected.adminNotes || "")
+                  }
                   className="px-5 py-2 rounded-xl text-sm font-bold bg-[#0b1c43] text-white hover:bg-[#162d6b] transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   {notesSaving ? "Saving…" : "Save Notes"}
@@ -819,7 +823,9 @@ export default function BookingsAdminPage() {
             title="Refresh"
             className="p-1.5 hover:bg-gray-200 rounded-lg transition-colors"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
+            <RefreshCw
+              className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`}
+            />
           </button>
           <span className="text-xs font-medium text-gray-400 mx-1">
             {filtered.length > 0 ? `${pageStart + 1}–${pageEnd}` : "0"} of{" "}

@@ -14,12 +14,14 @@ export default function OrthopedicsPage() {
     <>
       <DynamicSchema
         pageKey="department:orthopedics"
-        fallback={<DepartmentSchema
-        name="Orthopedics & Joint Replacement | Popular Hospital"
-        description="Advanced orthopedic care including joint replacement, sports medicine, trauma surgery, and spine treatments with cutting-edge technology."
-        urlSlug="orthopedics"
-        medicalSpecialty="Musculoskeletal"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Orthopedics & Joint Replacement | Popular Hospital"
+            description="Advanced orthopedic care including joint replacement, sports medicine, trauma surgery, and spine treatments with cutting-edge technology."
+            urlSlug="orthopedics"
+            medicalSpecialty="Musculoskeletal"
+          />
+        }
       />
       <OrthopedicsClient />
     </>

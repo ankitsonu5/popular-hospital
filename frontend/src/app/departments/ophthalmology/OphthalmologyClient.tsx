@@ -138,17 +138,19 @@ export default function OphthalmologyClient() {
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
                   <p className="font-semibold text-gray-800">
                     The Ophthalmology Department is designed to provide a
-                    comprehensive range of medical and surgical eye care to patients
-                    of all age groups. Our treatment plans focus on protection,
-                    preservation, enhancement, and restoration of vision.
+                    comprehensive range of medical and surgical eye care to
+                    patients of all age groups. Our treatment plans focus on
+                    protection, preservation, enhancement, and restoration of
+                    vision.
                   </p>
                 </div>
                 <p>
-                  Our department is fully equipped with state-of-the-art diagnostic
-                  and therapeutic equipment for managing glaucoma, cataracts, corneal
-                  and external diseases, and pediatric ophthalmic disorders. We are
-                  committed to providing world-class eye care with advanced diagnostic
-                  technology and warm hospitality.
+                  Our department is fully equipped with state-of-the-art
+                  diagnostic and therapeutic equipment for managing glaucoma,
+                  cataracts, corneal and external diseases, and pediatric
+                  ophthalmic disorders. We are committed to providing
+                  world-class eye care with advanced diagnostic technology and
+                  warm hospitality.
                 </p>
               </div>
             </div>
@@ -156,7 +158,10 @@ export default function OphthalmologyClient() {
             {/* Right Column (Doctor Sidebar) */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Ophthalmology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Ophthalmology"
+                />
               </div>
             </div>
           </div>
@@ -164,7 +169,9 @@ export default function OphthalmologyClient() {
           {/* Core Expertise Grid */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Our Specializations</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
+                Our Specializations
+              </span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
                 Core <span className="text-[#1e3a8a]">Expertise</span>
               </h2>
@@ -197,7 +204,9 @@ export default function OphthalmologyClient() {
           {/* Outpatient Procedures Section */}
           <div className="mt-20 border-t border-slate-100 pt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Diagnostics</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
+                Diagnostics
+              </span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
                 Outpatient <span className="text-[#1e3a8a]">Procedures</span>
               </h2>
@@ -235,8 +244,11 @@ export default function OphthalmologyClient() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white text-[11px] leading-snug bg-[#0b1c43]/85 backdrop-blur-sm p-3.5 rounded-xl border border-white/10">
-                    <p className="font-bold mb-0.5 text-blue-300 uppercase tracking-widest text-[8.5px]">Specialised Eye Care</p>
-                    Comprehensive clinical interventions and micro-surgeries to protect and restore your vision.
+                    <p className="font-bold mb-0.5 text-blue-300 uppercase tracking-widest text-[8.5px]">
+                      Specialised Eye Care
+                    </p>
+                    Comprehensive clinical interventions and micro-surgeries to
+                    protect and restore your vision.
                   </div>
                 </div>
               </div>
@@ -245,7 +257,8 @@ export default function OphthalmologyClient() {
               <div className="lg:w-8/12 w-full space-y-6">
                 <SectionHeader title="Specialised" highlight="Programmes" />
                 <p className="text-gray-600 text-sm md:text-base font-semibold leading-relaxed">
-                  Our clinicians perform advanced interventions and specialised therapies for various ophthalmic conditions:
+                  Our clinicians perform advanced interventions and specialised
+                  therapies for various ophthalmic conditions:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {specialisedProgrammes.map((item, idx) => (

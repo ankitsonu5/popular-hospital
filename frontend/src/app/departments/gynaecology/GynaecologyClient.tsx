@@ -3,7 +3,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Heart, Sparkles, Activity, ShieldCheck, Award, Stethoscope, Baby, Users } from "lucide-react";
+import {
+  Check,
+  Heart,
+  Sparkles,
+  Activity,
+  ShieldCheck,
+  Award,
+  Stethoscope,
+  Baby,
+  Users,
+} from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -14,7 +24,10 @@ const facilitiesList = [
   { text: "High Risk Pregnancy", icon: Baby },
   { text: "Antenatal & Postnatal Check-ups", icon: Activity },
   { text: "Painless Delivery (Normal / Caesarean)", icon: Heart },
-  { text: "Advanced diagnostic and operative minimal invasive surgeries", icon: Stethoscope },
+  {
+    text: "Advanced diagnostic and operative minimal invasive surgeries",
+    icon: Stethoscope,
+  },
   {
     text: "All kinds of Gynaecological procedures & surgeries including ovarian cystectomy/ hysterectomy for Ovarian cyst/ Mass, uterine fibroid/Adenomyosis, prolapse, Cancer etc.",
     icon: ShieldCheck,
@@ -44,7 +57,8 @@ const procedureCategories = [
   {
     id: "outpatient",
     title: "Outpatient & Minor Care",
-    description: "Daily consultations, screening procedures, and minor surgical interventions performed on an outpatient basis.",
+    description:
+      "Daily consultations, screening procedures, and minor surgical interventions performed on an outpatient basis.",
     icon: Stethoscope,
     items: [
       { text: "OPD consultation", type: "item" },
@@ -53,30 +67,47 @@ const procedureCategories = [
       { text: "Dilatation and evacuation (D&E)", type: "sub" },
       { text: "Cervical biopsy / endometrial biopsy", type: "sub" },
       { text: "Colposcopy", type: "sub" },
-      { text: "Cryotherapy or thermoablation for cervical erosion", type: "sub" },
+      {
+        text: "Cryotherapy or thermoablation for cervical erosion",
+        type: "sub",
+      },
       { text: "Abscess drainage – vulval, bartholin's etc.", type: "sub" },
-    ]
+    ],
   },
   {
     id: "hysterectomy",
     title: "Hysterectomy & Pelvic Repair",
-    description: "Advanced surgical options for uterus removal and pelvic floor reconstructive procedures.",
+    description:
+      "Advanced surgical options for uterus removal and pelvic floor reconstructive procedures.",
     icon: Heart,
     items: [
       { text: "Hysterectomy", type: "item" },
       { text: "Abdominal hysterectomy", type: "sub" },
-      { text: "Total Laparoscopic Hysterectomy (TLH) / Laparoscopic assisted vaginal hysterectomy", type: "sub" },
+      {
+        text: "Total Laparoscopic Hysterectomy (TLH) / Laparoscopic assisted vaginal hysterectomy",
+        type: "sub",
+      },
       { text: "Non descent vaginal hysterectomy", type: "sub" },
       { text: "Vaginal hysterectomy", type: "sub" },
-      { text: "Surgery for benign gynaecological conditions – myomectomy & polypectomy", type: "item" },
-      { text: "Sling surgery for prolapsed uterus / vault prolapse", type: "item" },
-      { text: "Pelvic floor repair – Anterior and posterior colporrhaphy", type: "item" },
-    ]
+      {
+        text: "Surgery for benign gynaecological conditions – myomectomy & polypectomy",
+        type: "item",
+      },
+      {
+        text: "Sling surgery for prolapsed uterus / vault prolapse",
+        type: "item",
+      },
+      {
+        text: "Pelvic floor repair – Anterior and posterior colporrhaphy",
+        type: "item",
+      },
+    ],
   },
   {
     id: "laparoscopy",
     title: "Minimal Access & Laparoscopy",
-    description: "Keyhole surgeries and hysteroscopic interventions offering faster recovery and minimal pain.",
+    description:
+      "Keyhole surgeries and hysteroscopic interventions offering faster recovery and minimal pain.",
     icon: Activity,
     items: [
       { text: "Diagnostic laparoscopy", type: "item" },
@@ -87,20 +118,30 @@ const procedureCategories = [
       { text: "Adnexal masses excision", type: "sub" },
       { text: "Ovarian cysts removal", type: "sub" },
       { text: "Diagnostic hysteroscopy", type: "item" },
-      { text: "Operative hysteroscopy (polypectomy, myomectomy, adhesiolysis, septal resection)", type: "item" },
-    ]
+      {
+        text: "Operative hysteroscopy (polypectomy, myomectomy, adhesiolysis, septal resection)",
+        type: "item",
+      },
+    ],
   },
   {
     id: "screening",
     title: "Screenings & Wellness",
-    description: "Preventative healthcare, cancer screenings, and comprehensive family planning services.",
+    description:
+      "Preventative healthcare, cancer screenings, and comprehensive family planning services.",
     icon: ShieldCheck,
     items: [
-      { text: "Gynaecological cancer screening – pap smear, CT Scan & MRI, tumour markers", type: "item" },
-      { text: "Family planning services – Abdominal tube ligation, laparoscopic tube ligation, CuT/multiload insertion", type: "item" },
+      {
+        text: "Gynaecological cancer screening – pap smear, CT Scan & MRI, tumour markers",
+        type: "item",
+      },
+      {
+        text: "Family planning services – Abdominal tube ligation, laparoscopic tube ligation, CuT/multiload insertion",
+        type: "item",
+      },
       { text: "Surgery for gynaecological malignancy", type: "item" },
-    ]
-  }
+    ],
+  },
 ];
 
 const doctors = [
@@ -187,7 +228,10 @@ export default function GynaecologyClient() {
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-10 rounded-full bg-[#1e3a8a] inline-block" />
                   <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Department of <span className="text-[#1e3a8a]">Obstetrics &amp; Gynaecology</span>
+                    Department of{" "}
+                    <span className="text-[#1e3a8a]">
+                      Obstetrics &amp; Gynaecology
+                    </span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -195,27 +239,36 @@ export default function GynaecologyClient() {
 
               <div className="space-y-6">
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The Obstetrics and Gynaecology Department of Popular Hospital offers world-level women healthcare
-                  services involving unborn children and pregnant women. Popular Hospital is also known for its efficient
-                  management of other related diseases. Popular provides expert gynaecological and obstetrical treatment
-                  along with specialist services for specific disease groups.
+                  The Obstetrics and Gynaecology Department of Popular Hospital
+                  offers world-level women healthcare services involving unborn
+                  children and pregnant women. Popular Hospital is also known
+                  for its efficient management of other related diseases.
+                  Popular provides expert gynaecological and obstetrical
+                  treatment along with specialist services for specific disease
+                  groups.
                 </p>
 
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-8 shadow-sm">
-                  <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">“</span>
+                  <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">
+                    “
+                  </span>
                   <p className="text-gray-700 leading-relaxed text-[15px] font-semibold italic relative z-10">
-                    Different age group females face different health issues, which are appropriately assessed and
-                    addressed with utmost care. Popular ensures total safety and comfort of female patients as well as
-                    their children. A well-trained team of Doctors from Popular performs procedures that are completely
+                    Different age group females face different health issues,
+                    which are appropriately assessed and addressed with utmost
+                    care. Popular ensures total safety and comfort of female
+                    patients as well as their children. A well-trained team of
+                    Doctors from Popular performs procedures that are completely
                     safe and well tested.
                   </p>
                 </div>
 
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The Dept. of Obs. & Gynae offers a comprehensive range of inpatient and outpatient services spanning the
-                  needs of women from their teen years, through pregnancy to menopause and beyond. Routine screening and
-                  check-ups including screening for various cancers as well as diagnostic workups for specialized
-                  problems are available.
+                  The Dept. of Obs. & Gynae offers a comprehensive range of
+                  inpatient and outpatient services spanning the needs of women
+                  from their teen years, through pregnancy to menopause and
+                  beyond. Routine screening and check-ups including screening
+                  for various cancers as well as diagnostic workups for
+                  specialized problems are available.
                 </p>
               </div>
             </div>
@@ -223,7 +276,11 @@ export default function GynaecologyClient() {
             {/* Right Doctor Slider (UNCHANGED WRAPPER) */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Obstetrics and Gynaecology" preventBackendFetch={true} />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Obstetrics and Gynaecology"
+                  preventBackendFetch={true}
+                />
               </div>
             </div>
           </div>
@@ -243,7 +300,8 @@ export default function GynaecologyClient() {
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-8 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 inline-block" />
                   <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Department <span className="text-[#1e3a8a]">Facilities</span>
+                    Department{" "}
+                    <span className="text-[#1e3a8a]">Facilities</span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -393,7 +451,9 @@ export default function GynaecologyClient() {
                       : "bg-white hover:bg-slate-50 text-gray-700 border-slate-200 hover:border-blue-200"
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-[#1e3a8a]"}`} />
+                  <Icon
+                    className={`w-4 h-4 ${isActive ? "text-white" : "text-[#1e3a8a]"}`}
+                  />
                   <span>{cat.title}</span>
                 </button>
               );
@@ -427,7 +487,10 @@ export default function GynaecologyClient() {
                     {cat.items.map((item, idx) => {
                       if (item.type === "header") {
                         return (
-                          <div key={idx} className="col-span-1 md:col-span-2 flex items-center gap-3 mt-4 mb-2">
+                          <div
+                            key={idx}
+                            className="col-span-1 md:col-span-2 flex items-center gap-3 mt-4 mb-2"
+                          >
                             <span className="text-[#1e3a8a] font-bold text-xs uppercase tracking-widest whitespace-nowrap">
                               {item.text}
                             </span>
@@ -437,7 +500,10 @@ export default function GynaecologyClient() {
                       }
                       if (item.type === "sub") {
                         return (
-                          <div key={idx} className="flex items-start gap-3 pl-6 py-2 border-l-2 border-blue-100 hover:border-blue-500 transition-colors duration-200">
+                          <div
+                            key={idx}
+                            className="flex items-start gap-3 pl-6 py-2 border-l-2 border-blue-100 hover:border-blue-500 transition-colors duration-200"
+                          >
                             <div className="flex-shrink-0 w-2 h-2 rounded-full bg-blue-400 mt-2" />
                             <p className="text-gray-600 leading-relaxed text-sm font-semibold">
                               {item.text}
@@ -446,7 +512,10 @@ export default function GynaecologyClient() {
                         );
                       }
                       return (
-                        <div key={idx} className="flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors duration-200">
+                        <div
+                          key={idx}
+                          className="flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors duration-200"
+                        >
                           <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-[#1e3a8a] flex items-center justify-center border border-blue-100">
                             <Check className="w-4 h-4" />
                           </div>

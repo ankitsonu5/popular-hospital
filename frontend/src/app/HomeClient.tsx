@@ -458,7 +458,8 @@ export default function HomeClient({
     <>
       {/* SEO: Primary H1 — visually hidden, accessible to search engines */}
       <h1 className="sr-only">
-        Popular Hospital Varanasi — Best & Top Multi Super Speciality Hospital in Varanasi | Dr. A.K. Kaushik, Chairman
+        Popular Hospital Varanasi — Best & Top Multi Super Speciality Hospital
+        in Varanasi | Dr. A.K. Kaushik, Chairman
       </h1>
       <section className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[64px] sm:mt-[80px] md:mt-0 h-[480px] sm:h-[calc(100dvh-80px)] md:h-[100dvh] min-h-[480px] sm:min-h-[calc(100dvh-80px)] md:min-h-[100dvh]">
         {/* Slider Background */}
@@ -523,9 +524,7 @@ export default function HomeClient({
 
         {/* Main Slogan Overlay on Video */}
         <div className="absolute inset-x-0 bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-14 xl:bottom-16 min-[1366px]:bottom-[72px] min-[1440px]:bottom-20 2xl:bottom-[88px] z-20 text-center px-4 pointer-events-none">
-          <h2
-            className="relative z-10 text-[18px] min-[390px]:text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] min-[1440px]:text-[56px] 2xl:text-[64px] font-bold font-hindi-poppins tracking-normal text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2 leading-[1.08]"
-          >
+          <h2 className="relative z-10 text-[18px] min-[390px]:text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] min-[1440px]:text-[56px] 2xl:text-[64px] font-bold font-hindi-poppins tracking-normal text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2 leading-[1.08]">
             आपके हर श्वांस के रक्षक
           </h2>
         </div>
@@ -576,10 +575,28 @@ export default function HomeClient({
         <div className="absolute right-12 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#1e3a8a]/10 blur-3xl" />
         <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-[1240px] 2xl:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:hidden">
-            <SimpleCard href="/our-locations" title="Our Branches" isFirst={true} variant="blue" />
-            <SimpleCard href="/book" title="Book an Appointment" variant="green" />
-            <SimpleCard href="/doctors" title="Find Your Doctor" variant="blue" />
-            <SimpleCard href="/patient-reports" title="Patient Report" isLast={true} variant="green" />
+            <SimpleCard
+              href="/our-locations"
+              title="Our Branches"
+              isFirst={true}
+              variant="blue"
+            />
+            <SimpleCard
+              href="/book"
+              title="Book an Appointment"
+              variant="green"
+            />
+            <SimpleCard
+              href="/doctors"
+              title="Find Your Doctor"
+              variant="blue"
+            />
+            <SimpleCard
+              href="/patient-reports"
+              title="Patient Report"
+              isLast={true}
+              variant="green"
+            />
           </div>
 
           <div className="mt-5 grid grid-cols-3 gap-3 px-2 md:hidden">
@@ -652,10 +669,7 @@ export default function HomeClient({
             <div className="flex flex-col justify-center space-y-8">
               <div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-black font-jakarta leading-tight tracking-tight text-[#1e3a8a] mb-6 xl:mb-4 drop-shadow-sm">
-                  About{" "}
-                  <span className="text-[#E85222]">
-                    Popular Hospital
-                  </span>
+                  About <span className="text-[#E85222]">Popular Hospital</span>
                 </h2>
 
                 <p className="text-gray-600 text-[17px] sm:text-[19px] leading-relaxed font-medium font-jakarta">
@@ -754,8 +768,18 @@ export default function HomeClient({
                 </div>
                 <div className="absolute -bottom-3 left-3 z-20 flex items-center gap-2 rounded-xl bg-[#1e3a8a] px-3 py-2 text-white shadow-[0_12px_28px_rgba(30,58,138,0.18)] sm:-bottom-5 sm:left-6 sm:gap-3 sm:rounded-2xl sm:px-5 sm:py-4">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/15 text-[#FFAB73] sm:h-10 sm:w-10 sm:rounded-xl">
-                    <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="M9 12l2 2 4-4m5.6-4A12 12 0 0112 3 12 12 0 013.4 6 12 12 0 003 9c0 5.6 3.8 10.3 9 11.6 5.2-1.3 9-6 9-11.6 0-1-.1-2-.4-3z" />
+                    <svg
+                      className="h-4 w-4 sm:h-5 sm:w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.4}
+                        d="M9 12l2 2 4-4m5.6-4A12 12 0 0112 3 12 12 0 013.4 6 12 12 0 003 9c0 5.6 3.8 10.3 9 11.6 5.2-1.3 9-6 9-11.6 0-1-.1-2-.4-3z"
+                      />
                     </svg>
                   </span>
                   <div>
@@ -813,9 +837,7 @@ export default function HomeClient({
             <div className="max-w-3xl">
               <h2 className="text-4xl sm:text-5xl font-black text-[#1e3a8a] font-jakarta leading-[1.15] tracking-tight">
                 Why <br className="hidden md:block" />
-                <span className="text-[#E85222]">
-                  Popular Hospital
-                </span>
+                <span className="text-[#E85222]">Popular Hospital</span>
               </h2>
             </div>
           </div>
@@ -1107,8 +1129,7 @@ export default function HomeClient({
               id="centres-of-excellence"
               className="text-4xl font-extrabold leading-tight tracking-normal text-[#1e3a8a] sm:text-5xl lg:text-[52px] font-jakarta"
             >
-              Centres Of{" "}
-              <span className="text-[#E85222]">Excellence</span>
+              Centres Of <span className="text-[#E85222]">Excellence</span>
             </h2>
             <p className="mx-auto mt-3 max-w-4xl text-[15px] font-semibold leading-relaxed text-[#3d4d96] sm:text-base">
               Combining the best specialists and equipment to provide you
@@ -1143,10 +1164,7 @@ export default function HomeClient({
       </section>
 
       {/* Our Services Section */}
-      <section
-        className="py-20 bg-[#f5f9ff]"
-        aria-labelledby="our-services"
-      >
+      <section className="py-20 bg-[#f5f9ff]" aria-labelledby="our-services">
         <div className="mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="mb-12 xl:mb-10">
             <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block font-jakarta">
@@ -1547,51 +1565,90 @@ export default function HomeClient({
         </div>
       </section>
 
-
       {/* Home Services Section */}
       {(() => {
         /* ── icon SVGs — thin-line style matching screenshot ── */
         const IconDoctor = (
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-            <circle cx="30" cy="16" r="9"/>
-            <path d="M10 52c0-11 9-18 20-18s20 7 20 18"/>
-            <circle cx="42" cy="36" r="6"/>
-            <line x1="42" y1="33" x2="42" y2="39"/>
-            <line x1="39" y1="36" x2="45" y2="36"/>
+          <svg
+            viewBox="0 0 60 60"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-full h-full"
+          >
+            <circle cx="30" cy="16" r="9" />
+            <path d="M10 52c0-11 9-18 20-18s20 7 20 18" />
+            <circle cx="42" cy="36" r="6" />
+            <line x1="42" y1="33" x2="42" y2="39" />
+            <line x1="39" y1="36" x2="45" y2="36" />
           </svg>
         );
         const IconHeart = (
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-            <path d="M30 50S8 36 8 20a12 12 0 0122-7 12 12 0 0122 7c0 16-22 30-22 30z"/>
-            <circle cx="44" cy="42" r="8"/>
-            <line x1="44" y1="38" x2="44" y2="46"/>
-            <line x1="40" y1="42" x2="48" y2="42"/>
+          <svg
+            viewBox="0 0 60 60"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-full h-full"
+          >
+            <path d="M30 50S8 36 8 20a12 12 0 0122-7 12 12 0 0122 7c0 16-22 30-22 30z" />
+            <circle cx="44" cy="42" r="8" />
+            <line x1="44" y1="38" x2="44" y2="46" />
+            <line x1="40" y1="42" x2="48" y2="42" />
           </svg>
         );
         const IconBlood = (
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-            <path d="M30 10C30 10 12 28 12 38a18 18 0 0036 0C48 28 30 10 30 10z"/>
-            <line x1="30" y1="34" x2="30" y2="44"/>
-            <line x1="25" y1="39" x2="35" y2="39"/>
+          <svg
+            viewBox="0 0 60 60"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-full h-full"
+          >
+            <path d="M30 10C30 10 12 28 12 38a18 18 0 0036 0C48 28 30 10 30 10z" />
+            <line x1="30" y1="34" x2="30" y2="44" />
+            <line x1="25" y1="39" x2="35" y2="39" />
           </svg>
         );
         const IconAmbulance = (
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-            <rect x="4" y="20" width="40" height="24" rx="3"/>
-            <path d="M44 30h6a2 2 0 012 2v10a2 2 0 01-2 2h-6"/>
-            <circle cx="14" cy="46" r="5"/>
-            <circle cx="38" cy="46" r="5"/>
-            <line x1="18" y1="30" x2="28" y2="30"/>
-            <line x1="23" y1="25" x2="23" y2="35"/>
+          <svg
+            viewBox="0 0 60 60"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-full h-full"
+          >
+            <rect x="4" y="20" width="40" height="24" rx="3" />
+            <path d="M44 30h6a2 2 0 012 2v10a2 2 0 01-2 2h-6" />
+            <circle cx="14" cy="46" r="5" />
+            <circle cx="38" cy="46" r="5" />
+            <line x1="18" y1="30" x2="28" y2="30" />
+            <line x1="23" y1="25" x2="23" y2="35" />
           </svg>
         );
         const IconFlask = (
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-            <path d="M22 8v20L10 46a4 4 0 003.6 6h32.8A4 4 0 0050 46L38 28V8"/>
-            <line x1="20" y1="8" x2="40" y2="8"/>
-            <circle cx="20" cy="42" r="2.5" fill="currentColor"/>
-            <circle cx="32" cy="46" r="2" fill="currentColor"/>
-            <circle cx="26" cy="48" r="1.5" fill="currentColor"/>
+          <svg
+            viewBox="0 0 60 60"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-full h-full"
+          >
+            <path d="M22 8v20L10 46a4 4 0 003.6 6h32.8A4 4 0 0050 46L38 28V8" />
+            <line x1="20" y1="8" x2="40" y2="8" />
+            <circle cx="20" cy="42" r="2.5" fill="currentColor" />
+            <circle cx="32" cy="46" r="2" fill="currentColor" />
+            <circle cx="26" cy="48" r="1.5" fill="currentColor" />
           </svg>
         );
 
@@ -1672,7 +1729,7 @@ export default function HomeClient({
               href: "/services/ambulance",
               icon: "ambulance",
             },
-          ]
+          ],
         ];
 
         const [servicesSlide, setServicesSlide] = useState(0);
@@ -1680,7 +1737,10 @@ export default function HomeClient({
         const current = serviceSlides[servicesSlide];
 
         const KnowMore = ({ href }: { href: string }) => (
-          <Link href={href} className="group inline-flex items-center text-[#E85222] font-semibold text-[13px] tracking-wide uppercase hover:text-[#c73e15] transition-colors gap-1.5">
+          <Link
+            href={href}
+            className="group inline-flex items-center text-[#E85222] font-semibold text-[13px] tracking-wide uppercase hover:text-[#c73e15] transition-colors gap-1.5"
+          >
             Know More
             <span className="w-[18px] h-[18px] bg-[#E85222] text-white rounded-full flex items-center justify-center text-[11px] pb-[1px] group-hover:bg-[#c73e15] transition-colors">
               ›
@@ -1691,7 +1751,6 @@ export default function HomeClient({
         return (
           <section className="py-16 md:py-24 bg-[#FAFAFA] relative overflow-hidden">
             <div className="max-w-[1280px] mx-auto px-5 lg:px-8 relative z-10">
-              
               <div className="flex items-end justify-between mb-12 xl:mb-10">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block font-jakarta">
@@ -1702,113 +1761,208 @@ export default function HomeClient({
                   </h2>
                 </div>
                 <div className="flex gap-3 md:gap-4 items-center mt-2 md:mt-0">
-                  <button onClick={() => setServicesSlide((p) => (p - 1 + totalSlides) % totalSlides)} aria-label="Previous slide" className="flex items-center justify-center text-[#E85222] hover:text-[#c73e15] transition-colors"><ArrowLeft strokeWidth={2.5} className="w-7 h-7 md:w-8 md:h-8"/></button>
-                  <button onClick={() => setServicesSlide((p) => (p + 1) % totalSlides)} aria-label="Next slide" className="flex items-center justify-center text-[#E85222] hover:text-[#c73e15] transition-colors"><ArrowRight strokeWidth={2.5} className="w-7 h-7 md:w-8 md:h-8"/></button>
+                  <button
+                    onClick={() =>
+                      setServicesSlide(
+                        (p) => (p - 1 + totalSlides) % totalSlides,
+                      )
+                    }
+                    aria-label="Previous slide"
+                    className="flex items-center justify-center text-[#E85222] hover:text-[#c73e15] transition-colors"
+                  >
+                    <ArrowLeft
+                      strokeWidth={2.5}
+                      className="w-7 h-7 md:w-8 md:h-8"
+                    />
+                  </button>
+                  <button
+                    onClick={() =>
+                      setServicesSlide((p) => (p + 1) % totalSlides)
+                    }
+                    aria-label="Next slide"
+                    className="flex items-center justify-center text-[#E85222] hover:text-[#c73e15] transition-colors"
+                  >
+                    <ArrowRight
+                      strokeWidth={2.5}
+                      className="w-7 h-7 md:w-8 md:h-8"
+                    />
+                  </button>
                 </div>
               </div>
 
               {/* ── Cards area ── */}
               <div className="flex-1 min-w-0">
-                  {/* Mobile/tablet: 2-col simple grid */}
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
-                    {current.map((s) => (
-                      <div key={s.title} className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
-                        {s.image && (
-                          <div className="relative h-48 w-full shrink-0">
-                            <Image src={s.image} alt={s.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width:640px) 100vw, 50vw" />
+                {/* Mobile/tablet: 2-col simple grid */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
+                  {current.map((s) => (
+                    <div
+                      key={s.title}
+                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.07)]"
+                    >
+                      {s.image && (
+                        <div className="relative h-48 w-full shrink-0">
+                          <Image
+                            src={s.image}
+                            alt={s.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width:640px) 100vw, 50vw"
+                          />
+                        </div>
+                      )}
+                      <div className="flex flex-col flex-1 p-5 gap-3">
+                        <h3 className="text-[17px] font-bold text-[#1a1a1a] leading-snug">
+                          {s.title}
+                        </h3>
+                        <p className="text-[13px] text-[#6b7280] leading-relaxed flex-1">
+                          {s.desc}
+                        </p>
+                        <div className="flex items-end justify-between pt-1">
+                          <KnowMore href={s.href} />
+                          {s.icon && (
+                            <div className="w-10 h-10 text-[#d1d5db]">
+                              {iconMap[s.icon]}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop: exact screenshot layout — large | stacked-small | large */}
+                <div
+                  className="hidden lg:grid gap-[18px]"
+                  style={{
+                    gridTemplateColumns: "1fr 1fr 1fr",
+                    gridTemplateRows: "1fr 1fr",
+                    height: "510px",
+                  }}
+                >
+                  {/* ── Large card LEFT (row-span-2) ── */}
+                  <div
+                    className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 transform-gpu"
+                    style={{
+                      gridRow: "1 / 3",
+                      transform: "translateZ(0)",
+                      WebkitTransform: "translateZ(0)",
+                      isolation: "isolate",
+                      maskImage: "radial-gradient(white, black)",
+                      WebkitMaskImage: "radial-gradient(white, black)",
+                    }}
+                  >
+                    {current[0].image && (
+                      <div
+                        className="relative shrink-0"
+                        style={{ height: "280px" }}
+                      >
+                        <Image
+                          src={current[0].image}
+                          alt={current[0].title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="33vw"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-col flex-1 px-7 py-6 gap-[10px]">
+                      <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug">
+                        {current[0].title}
+                      </h3>
+                      <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">
+                        {current[0].desc}
+                      </p>
+                      <div className="flex items-end justify-between pt-1">
+                        <KnowMore href={current[0].href} />
+                        {current[0].icon && (
+                          <div className="w-11 h-11 text-[#d1d5db]">
+                            {iconMap[current[0].icon]}
                           </div>
                         )}
-                        <div className="flex flex-col flex-1 p-5 gap-3">
-                          <h3 className="text-[17px] font-bold text-[#1a1a1a] leading-snug">{s.title}</h3>
-                          <p className="text-[13px] text-[#6b7280] leading-relaxed flex-1">{s.desc}</p>
-                          <div className="flex items-end justify-between pt-1">
-                            <KnowMore href={s.href} />
-                            {s.icon && <div className="w-10 h-10 text-[#d1d5db]">{iconMap[s.icon]}</div>}
-                          </div>
-                        </div>
                       </div>
-                    ))}
+                    </div>
                   </div>
 
-                  {/* Desktop: exact screenshot layout — large | stacked-small | large */}
+                  {/* ── Small card TOP-MIDDLE ── */}
+                  <div className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 px-7 py-6">
+                    <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug mb-[10px]">
+                      {current[1].title}
+                    </h3>
+                    <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">
+                      {current[1].desc}
+                    </p>
+                    <div className="flex items-end justify-between pt-3">
+                      <KnowMore href={current[1].href} />
+                      {current[1].icon && (
+                        <div className="w-11 h-11 text-[#d1d5db]">
+                          {iconMap[current[1].icon]}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* ── Small card BOTTOM-MIDDLE ── */}
+                  <div className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 px-7 py-6">
+                    <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug mb-[10px]">
+                      {current[2].title}
+                    </h3>
+                    <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">
+                      {current[2].desc}
+                    </p>
+                    <div className="flex items-end justify-between pt-3">
+                      <KnowMore href={current[2].href} />
+                      {current[2].icon && (
+                        <div className="w-11 h-11 text-[#d1d5db]">
+                          {iconMap[current[2].icon]}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* ── Large card RIGHT (row-span-2) ── */}
                   <div
-                    className="hidden lg:grid gap-[18px]"
-                    style={{ gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "1fr 1fr", height: "510px" }}
+                    className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 transform-gpu"
+                    style={{
+                      gridRow: "1 / 3",
+                      transform: "translateZ(0)",
+                      WebkitTransform: "translateZ(0)",
+                      isolation: "isolate",
+                      maskImage: "radial-gradient(white, black)",
+                      WebkitMaskImage: "radial-gradient(white, black)",
+                    }}
                   >
-                    {/* ── Large card LEFT (row-span-2) ── */}
-                    <div
-                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 transform-gpu"
-                      style={{
-                        gridRow: "1 / 3",
-                        transform: "translateZ(0)",
-                        WebkitTransform: "translateZ(0)",
-                        isolation: "isolate",
-                        maskImage: "radial-gradient(white, black)",
-                        WebkitMaskImage: "radial-gradient(white, black)",
-                      }}
-                    >
-                      {current[0].image && (
-                        <div className="relative shrink-0" style={{ height: "280px" }}>
-                          <Image src={current[0].image} alt={current[0].title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="33vw" />
-                        </div>
-                      )}
-                      <div className="flex flex-col flex-1 px-7 py-6 gap-[10px]">
-                        <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug">{current[0].title}</h3>
-                        <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">{current[0].desc}</p>
-                        <div className="flex items-end justify-between pt-1">
-                          <KnowMore href={current[0].href} />
-                          {current[0].icon && <div className="w-11 h-11 text-[#d1d5db]">{iconMap[current[0].icon]}</div>}
-                        </div>
+                    {current[3].image && (
+                      <div
+                        className="relative shrink-0"
+                        style={{ height: "280px" }}
+                      >
+                        <Image
+                          src={current[3].image}
+                          alt={current[3].title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="33vw"
+                        />
                       </div>
-                    </div>
-
-                    {/* ── Small card TOP-MIDDLE ── */}
-                    <div className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 px-7 py-6">
-                      <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug mb-[10px]">{current[1].title}</h3>
-                      <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">{current[1].desc}</p>
-                      <div className="flex items-end justify-between pt-3">
-                        <KnowMore href={current[1].href} />
-                        {current[1].icon && <div className="w-11 h-11 text-[#d1d5db]">{iconMap[current[1].icon]}</div>}
-                      </div>
-                    </div>
-
-                    {/* ── Small card BOTTOM-MIDDLE ── */}
-                    <div className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 px-7 py-6">
-                      <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug mb-[10px]">{current[2].title}</h3>
-                      <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">{current[2].desc}</p>
-                      <div className="flex items-end justify-between pt-3">
-                        <KnowMore href={current[2].href} />
-                        {current[2].icon && <div className="w-11 h-11 text-[#d1d5db]">{iconMap[current[2].icon]}</div>}
-                      </div>
-                    </div>
-
-                    {/* ── Large card RIGHT (row-span-2) ── */}
-                    <div
-                      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 transform-gpu"
-                      style={{
-                        gridRow: "1 / 3",
-                        transform: "translateZ(0)",
-                        WebkitTransform: "translateZ(0)",
-                        isolation: "isolate",
-                        maskImage: "radial-gradient(white, black)",
-                        WebkitMaskImage: "radial-gradient(white, black)",
-                      }}
-                    >
-                      {current[3].image && (
-                        <div className="relative shrink-0" style={{ height: "280px" }}>
-                          <Image src={current[3].image} alt={current[3].title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="33vw" />
-                        </div>
-                      )}
-                      <div className="flex flex-col flex-1 px-7 py-6 gap-[10px]">
-                        <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug">{current[3].title}</h3>
-                        <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">{current[3].desc}</p>
-                        <div className="flex items-end justify-between pt-1">
-                          <KnowMore href={current[3].href} />
-                          {current[3].icon && <div className="w-11 h-11 text-[#d1d5db]">{iconMap[current[3].icon]}</div>}
-                        </div>
+                    )}
+                    <div className="flex flex-col flex-1 px-7 py-6 gap-[10px]">
+                      <h3 className="text-[20px] font-bold text-[#1a1a1a] leading-snug">
+                        {current[3].title}
+                      </h3>
+                      <p className="text-[13.5px] text-[#6b7280] leading-relaxed flex-1">
+                        {current[3].desc}
+                      </p>
+                      <div className="flex items-end justify-between pt-1">
+                        <KnowMore href={current[3].href} />
+                        {current[3].icon && (
+                          <div className="w-11 h-11 text-[#d1d5db]">
+                            {iconMap[current[3].icon]}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
+                </div>
               </div>
 
               {/* Dots */}
@@ -1826,7 +1980,7 @@ export default function HomeClient({
           </section>
         );
       })()}
-      
+
       {/* Patients Speak Testimonial Section (Dynamically Loaded) */}
       <DynamicTestimonials stories={patientStories} />
 
@@ -1999,7 +2153,12 @@ export default function HomeClient({
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </div>
             </Link>
@@ -2112,7 +2271,12 @@ export default function HomeClient({
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </div>
             </Link>
@@ -2197,7 +2361,12 @@ export default function HomeClient({
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </div>
             </Link>
@@ -2274,10 +2443,11 @@ export default function HomeClient({
             ].map((faq, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-xl border transition-all duration-300 ${openFaqIndex === index
-                  ? "border-[#E85222]/40 shadow-md"
-                  : "border-[#d0e3f0] shadow-sm hover:shadow-md"
-                  }`}
+                className={`bg-white rounded-xl border transition-all duration-300 ${
+                  openFaqIndex === index
+                    ? "border-[#E85222]/40 shadow-md"
+                    : "border-[#d0e3f0] shadow-sm hover:shadow-md"
+                }`}
               >
                 <button
                   onClick={() =>
@@ -2292,14 +2462,16 @@ export default function HomeClient({
                     {faq.question}
                   </span>
                   <div
-                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${openFaqIndex === index
-                      ? "border-[#E85222] bg-[#E85222] rotate-45"
-                      : "border-[#2a7a8c] bg-white"
-                      }`}
+                    className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                      openFaqIndex === index
+                        ? "border-[#E85222] bg-[#E85222] rotate-45"
+                        : "border-[#2a7a8c] bg-white"
+                    }`}
                   >
                     <svg
-                      className={`w-5 h-5 transition-colors duration-300 ${openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
-                        }`}
+                      className={`w-5 h-5 transition-colors duration-300 ${
+                        openFaqIndex === index ? "text-white" : "text-[#2a7a8c]"
+                      }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -2314,10 +2486,11 @@ export default function HomeClient({
                   </div>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${openFaqIndex === index
-                    ? "max-h-[500px] opacity-100"
-                    : "max-h-0 opacity-0"
-                    }`}
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaqIndex === index
+                      ? "max-h-[500px] opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
                 >
                   <div className="px-5 sm:px-6 pb-5 pt-0">
                     <div className="pt-3 border-t border-gray-100">
@@ -2345,7 +2518,12 @@ export default function HomeClient({
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </div>
             </Link>
@@ -3171,32 +3349,33 @@ function SimpleCard({
   const isBlue = variant === "blue";
   const desktopTheme = title.includes("Appointment")
     ? {
-      card: "md:bg-gradient-to-br md:from-white md:to-[#fff8e4] md:border-[#eadf9f]",
-      icon: "md:bg-[#f4edbd] md:text-[#87951c]",
-    }
+        card: "md:bg-gradient-to-br md:from-white md:to-[#fff8e4] md:border-[#eadf9f]",
+        icon: "md:bg-[#f4edbd] md:text-[#87951c]",
+      }
     : title.includes("Branches")
       ? {
-        card: "md:bg-gradient-to-br md:from-white md:to-[#eef9ff] md:border-[#b8e7f7]",
-        icon: "md:bg-[#dcf5ff] md:text-[#168fbd]",
-      }
+          card: "md:bg-gradient-to-br md:from-white md:to-[#eef9ff] md:border-[#b8e7f7]",
+          icon: "md:bg-[#dcf5ff] md:text-[#168fbd]",
+        }
       : variant === "purple"
         ? {
-          card: "md:bg-gradient-to-br md:from-white md:to-[#f6f2ff] md:border-[#d6c8ff]",
-          icon: "md:bg-[#eee6ff] md:text-[#7c5fd0]",
-        }
-        : title.includes("Doctor") || variant === "orange"
-          ? {
-            card: "md:bg-gradient-to-br md:from-white md:to-[#fff1eb] md:border-[#f4cdbd]",
-            icon: "md:bg-[#ffe7dd] md:text-[#E85222]",
-          }
-          : {
             card: "md:bg-gradient-to-br md:from-white md:to-[#f6f2ff] md:border-[#d6c8ff]",
             icon: "md:bg-[#eee6ff] md:text-[#7c5fd0]",
-          };
+          }
+        : title.includes("Doctor") || variant === "orange"
+          ? {
+              card: "md:bg-gradient-to-br md:from-white md:to-[#fff1eb] md:border-[#f4cdbd]",
+              icon: "md:bg-[#ffe7dd] md:text-[#E85222]",
+            }
+          : {
+              card: "md:bg-gradient-to-br md:from-white md:to-[#f6f2ff] md:border-[#d6c8ff]",
+              icon: "md:bg-[#eee6ff] md:text-[#7c5fd0]",
+            };
 
   // Mobile styles matching the reference image (Blue/Green cards)
-  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${isBlue ? "bg-[#E0EEF7]" : "bg-[#E4F5E6]"
-    }`;
+  const mobileClasses = `flex flex-col items-start justify-between p-4 rounded-2xl w-full min-h-[140px] shadow-sm ${
+    isBlue ? "bg-[#E0EEF7]" : "bg-[#E4F5E6]"
+  }`;
 
   const desktopClasses = `${desktopTheme.card} md:relative md:min-h-[118px] md:overflow-hidden md:rounded-2xl md:border md:p-5 lg:p-6 md:shadow-[0_12px_28px_rgba(15,23,42,0.06)] md:flex-row md:items-end md:justify-between md:gap-4 md:hover:-translate-y-1 md:hover:shadow-[0_18px_38px_rgba(15,23,42,0.12)]`;
 
@@ -3324,26 +3503,78 @@ function SimpleCard({
       </div>
 
       {/* Desktop Arrow Circle */}
-      <div className={`hidden md:flex absolute right-5 top-1/2 h-9 w-9 -translate-y-1/2 flex-shrink-0 rounded-full items-center justify-center shadow-sm transition-transform group-hover:scale-110 ${desktopTheme.icon}`}>
+      <div
+        className={`hidden md:flex absolute right-5 top-1/2 h-9 w-9 -translate-y-1/2 flex-shrink-0 rounded-full items-center justify-center shadow-sm transition-transform group-hover:scale-110 ${desktopTheme.icon}`}
+      >
         {title.includes("Appointment") ? (
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V4m8 3V4M5 10h14M7 20h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v11a2 2 0 002 2z" />
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 7V4m8 3V4M5 10h14M7 20h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v11a2 2 0 002 2z"
+            />
           </svg>
         ) : title.includes("Branches") || title.includes("Hospitals") ? (
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 20h16M6 20V8l6-4 6 4v12M9 20v-6h6v6M9 10h.01M12 10h.01M15 10h.01" />
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 20h16M6 20V8l6-4 6 4v12M9 20v-6h6v6M9 10h.01M12 10h.01M15 10h.01"
+            />
           </svg>
         ) : title.includes("Doctor") || title.includes("Doctors") ? (
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0M18 14v5m-2.5-2.5h5" />
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 11a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0M18 14v5m-2.5-2.5h5"
+            />
           </svg>
         ) : title.includes("Special") ? (
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 4c2 2.5 3 4.5 3 7a6 6 0 11-12 0c0-2.5 1.1-4.4 3.2-6.6M13 4c-.2 2.2.6 3.6 2.7 4.2M11 20c2-1.9 3-4.2 3-7M8 15c1.8.2 3.7-.7 5.6-2.6" />
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 4c2 2.5 3 4.5 3 7a6 6 0 11-12 0c0-2.5 1.1-4.4 3.2-6.6M13 4c-.2 2.2.6 3.6 2.7 4.2M11 20c2-1.9 3-4.2 3-7M8 15c1.8.2 3.7-.7 5.6-2.6"
+            />
           </svg>
         ) : (
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6M7 4h7l3 3v13H7V4z" />
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12h6m-6 4h6M7 4h7l3 3v13H7V4z"
+            />
           </svg>
         )}
       </div>
@@ -3361,9 +3592,7 @@ function TrustBadge({
   tone: "orange" | "blue";
 }) {
   const iconTone =
-    tone === "orange"
-      ? "bg-[#ff9d68] text-white"
-      : "bg-[#8ba7ff] text-white";
+    tone === "orange" ? "bg-[#ff9d68] text-white" : "bg-[#8ba7ff] text-white";
   const icon = label.includes("Legacy") ? (
     <path d="M10 2.5 12.1 6.8l4.7.7-3.4 3.3.8 4.7L10 13.3l-4.2 2.2.8-4.7-3.4-3.3 4.7-.7L10 2.5Z" />
   ) : label.includes("Surgeries") ? (
@@ -3376,8 +3605,15 @@ function TrustBadge({
     <div className="group relative flex min-h-[78px] flex-col justify-center overflow-hidden rounded-xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50 p-3 shadow-[0_8px_22px_rgba(15,23,42,0.06)] transition-all hover:-translate-y-0.5 hover:border-[#1e3a8a]/20 hover:shadow-[0_14px_30px_rgba(15,23,42,0.1)] md:min-h-[104px] md:p-4 font-jakarta">
       <div className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-[#E85222]/5 transition-opacity group-hover:opacity-80" />
       <div className="relative flex min-h-[34px] w-full items-start gap-2">
-        <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md shadow-sm ${iconTone}`}>
-          <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+        <span
+          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md shadow-sm ${iconTone}`}
+        >
+          <svg
+            className="h-3 w-3"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+          >
             {icon}
           </svg>
         </span>

@@ -23,7 +23,9 @@ function CareerList() {
   const [search, setSearch] = useState("");
 
   const getHeaders = useCallback(
-    () => ({ Authorization: `Bearer ${localStorage.getItem("career_admin_token")}` }),
+    () => ({
+      Authorization: `Bearer ${localStorage.getItem("career_admin_token")}`,
+    }),
     [],
   );
 

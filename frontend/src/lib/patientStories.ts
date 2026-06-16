@@ -154,7 +154,8 @@ export function getStoryThumbnailUrl(
   if (thumbnailUrl) return getImageUrl(thumbnailUrl, absolute);
 
   const youtubeId = videoUrl ? getYoutubeId(videoUrl) : null;
-  if (youtubeId) return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+  if (youtubeId)
+    return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
 
   return "/images/news-sm-inner.jpg";
 }

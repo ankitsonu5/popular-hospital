@@ -14,7 +14,11 @@ export default function CareerAdminLayoutRedirect({
     const storedUser = sessionStorage.getItem("admin_user");
     if (token && storedUser) {
       const parsed = JSON.parse(storedUser);
-      if (parsed.role === "career_admin" || parsed.role === "super_admin" || parsed.role === "admin") {
+      if (
+        parsed.role === "career_admin" ||
+        parsed.role === "super_admin" ||
+        parsed.role === "admin"
+      ) {
         router.replace("/admin-dashboard/careers");
         return;
       }

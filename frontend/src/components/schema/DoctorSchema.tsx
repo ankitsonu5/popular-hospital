@@ -64,8 +64,13 @@ export function DoctorSchema({
   const buildAvailability = () => {
     if (!opdTimings) return undefined;
     const dayMap: Record<string, string> = {
-      monday: "Monday", tuesday: "Tuesday", wednesday: "Wednesday",
-      thursday: "Thursday", friday: "Friday", saturday: "Saturday", sunday: "Sunday",
+      monday: "Monday",
+      tuesday: "Tuesday",
+      wednesday: "Wednesday",
+      thursday: "Thursday",
+      friday: "Friday",
+      saturday: "Saturday",
+      sunday: "Sunday",
     };
     const specs = Object.entries(opdTimings)
       .filter(([, timing]) => timing && timing !== "-")
@@ -104,7 +109,9 @@ export function DoctorSchema({
         ...(experienceYears && {
           hasOccupation: {
             "@type": "Occupation",
-            name: speciality ? `${speciality} Specialist` : "Medical Specialist",
+            name: speciality
+              ? `${speciality} Specialist`
+              : "Medical Specialist",
             occupationLocation: { "@type": "City", name: "Varanasi" },
             yearsOfExperience: experienceYears,
             ...(experienceLocation && { description: experienceLocation }),
@@ -133,8 +140,18 @@ export function DoctorSchema({
         "@type": "BreadcrumbList",
         "@id": `${doctorUrl}#breadcrumb`,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.popularhospital.in/" },
-          { "@type": "ListItem", position: 2, name: "Find a Doctor", item: "https://www.popularhospital.in/doctors" },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.popularhospital.in/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Find a Doctor",
+            item: "https://www.popularhospital.in/doctors",
+          },
           { "@type": "ListItem", position: 3, name, item: doctorUrl },
         ],
       },
@@ -168,8 +185,18 @@ export function DoctorsListSchema() {
         "@type": "BreadcrumbList",
         "@id": "https://www.popularhospital.in/doctors#breadcrumb",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.popularhospital.in/" },
-          { "@type": "ListItem", position: 2, name: "Find a Doctor", item: "https://www.popularhospital.in/doctors" },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.popularhospital.in/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Find a Doctor",
+            item: "https://www.popularhospital.in/doctors",
+          },
         ],
       },
     ],

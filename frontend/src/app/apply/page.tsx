@@ -71,7 +71,6 @@ export default function ApplyPage() {
     if (error && error.includes("Resume")) setError(null);
   };
 
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -404,8 +403,6 @@ export default function ApplyPage() {
                     )}
                   </div>
                 </div>
-
-
 
                 <div className="md:col-span-2 pt-8 flex items-center justify-between">
                   <button

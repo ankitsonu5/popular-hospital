@@ -169,10 +169,10 @@ const servicesIconBasePath = "/images/download/popular_finds_icons";
 const servicesIconMap: Record<string, string> = {
   "Emergency And Trauma Care": `${servicesIconBasePath}/emergency-trauma.svg`,
   "Blood Bank": `${servicesIconBasePath}/blood-bank.svg`,
-  "Ambulance": `${servicesIconBasePath}/ambulance.svg`,
+  Ambulance: `${servicesIconBasePath}/ambulance.svg`,
   "Wellness Packages": `${servicesIconBasePath}/wellness-packages.svg`,
   "Preventive Health Check Up": `${servicesIconBasePath}/wellness-packages.svg`,
-  "Pharmacy": `${servicesIconBasePath}/pharmacy.svg`,
+  Pharmacy: `${servicesIconBasePath}/pharmacy.svg`,
   "Pathological Services": `${servicesIconBasePath}/pathology.svg`,
   "Radiological Services": `${servicesIconBasePath}/radiology.svg`,
   "Home Care Services": `${servicesIconBasePath}/home-care.svg`,
@@ -181,23 +181,22 @@ const servicesIconMap: Record<string, string> = {
 const mediaIconBasePath = "/images/download/popular_finds_icons";
 
 const mediaIconMap: Record<string, string> = {
-  "News": `${mediaIconBasePath}/news.svg`,
-  "Blog": `${mediaIconBasePath}/blog.svg`,
-  "Press": `${mediaIconBasePath}/press.svg`,
-  "Events": `${mediaIconBasePath}/events.svg`,
+  News: `${mediaIconBasePath}/news.svg`,
+  Blog: `${mediaIconBasePath}/blog.svg`,
+  Press: `${mediaIconBasePath}/press.svg`,
+  Events: `${mediaIconBasePath}/events.svg`,
 };
 
 const departmentIconBasePath = "/images/download/pl_icons";
 
 const departmentIconMap: Record<string, string> = {
-  "Cardiology": `${departmentIconBasePath}/cardiology_icon.webp`,
-  "Cardiothoracic & Vascular Surgery (CTVS)":
-    `${departmentIconBasePath}/cardiology_icon.webp`,
-  "Neurosurgery": `${departmentIconBasePath}/nuerosurgery_icon.webp`,
-  "Gastroenterology": `${departmentIconBasePath}/gastroentrology_icon.webp`,
-  "Nephrology": `${departmentIconBasePath}/naprology_icon.webp`,
-  "Oncology": `${departmentIconBasePath}/oncology_icon.webp`,
-  "Urology": `${departmentIconBasePath}/urology_icon.webp`,
+  Cardiology: `${departmentIconBasePath}/cardiology_icon.webp`,
+  "Cardiothoracic & Vascular Surgery (CTVS)": `${departmentIconBasePath}/cardiology_icon.webp`,
+  Neurosurgery: `${departmentIconBasePath}/nuerosurgery_icon.webp`,
+  Gastroenterology: `${departmentIconBasePath}/gastroentrology_icon.webp`,
+  Nephrology: `${departmentIconBasePath}/naprology_icon.webp`,
+  Oncology: `${departmentIconBasePath}/oncology_icon.webp`,
+  Urology: `${departmentIconBasePath}/urology_icon.webp`,
   "Burns & Plastic Surgery": `${departmentIconBasePath}/laparoscopy_icon.webp`,
   "Interventional Radiology": `${departmentIconBasePath}/laparoscopy_icon.webp`,
   "Pediatric Surgery": `${departmentIconBasePath}/pediatric_icon.webp`,
@@ -208,10 +207,10 @@ const departmentIconMap: Record<string, string> = {
   "Orthopedics & Joint Replacement": `${departmentIconBasePath}/orthopedics_icon.webp`,
   "General Medicine": `${departmentIconBasePath}/laparoscopy_icon.webp`,
   "IVF & Fertility": `${departmentIconBasePath}/obstetrics_icon.webp`,
-  "ENT": `${departmentIconBasePath}/ent_icon.webp`,
+  ENT: `${departmentIconBasePath}/ent_icon.webp`,
   "Dietetics & Nutrition": `${departmentIconBasePath}/gastroentrology_icon.webp`,
-  "Ophthalmology": `${departmentIconBasePath}/ophthalmology_icon.webp`,
-  "Dental": `${departmentIconBasePath}/dental_icon.webp`,
+  Ophthalmology: `${departmentIconBasePath}/ophthalmology_icon.webp`,
+  Dental: `${departmentIconBasePath}/dental_icon.webp`,
   "Respiratory Medicine": `${departmentIconBasePath}/laparoscopy_icon.webp`,
   "Pain Medicine": `${departmentIconBasePath}/orthopedics_icon.webp`,
   "Psychiatry Department": `${departmentIconBasePath}/psychiatry_icon.webp`,
@@ -519,7 +518,8 @@ export function Header() {
 
   function getDepartmentIcon(label: string) {
     const iconSrc =
-      departmentIconMap[label] || `${departmentIconBasePath}/cardiology_icon.webp`;
+      departmentIconMap[label] ||
+      `${departmentIconBasePath}/cardiology_icon.webp`;
 
     return (
       <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#E85222]/10">
@@ -591,15 +591,17 @@ export function Header() {
   return (
     <>
       <header
-        className={`${pathname === "/" ? "fixed" : "sticky"} top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || !isTransparentPage
-          ? "bg-white/95 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-white/90"
-          : "bg-white shadow-sm md:bg-transparent md:shadow-none"
-          }`}
+        className={`${pathname === "/" ? "fixed" : "sticky"} top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled || !isTransparentPage
+            ? "bg-white/95 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-white/90"
+            : "bg-white shadow-sm md:bg-transparent md:shadow-none"
+        }`}
       >
         {/* Gradient Overlay */}
         <div
-          className={`hidden lg:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${scrolled || !isTransparentPage ? "opacity-0" : "opacity-100"
-            }`}
+          className={`hidden lg:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${
+            scrolled || !isTransparentPage ? "opacity-0" : "opacity-100"
+          }`}
         />
 
         {/* Top Bar */}
@@ -722,10 +724,11 @@ export function Header() {
           <div className="flex h-16 sm:h-16 items-center justify-between gap-2">
             <Link
               href="/"
-              className={`flex items-center transition-all duration-300 header-logo-link ${scrolled || !isTransparentPage
-                ? ""
-                : "md:px-3 md:py-1 header-logo-with-bg"
-                }`}
+              className={`flex items-center transition-all duration-300 header-logo-link ${
+                scrolled || !isTransparentPage
+                  ? ""
+                  : "md:px-3 md:py-1 header-logo-with-bg"
+              }`}
             >
               <Image
                 src="/logo-horizontal.png"
@@ -752,15 +755,16 @@ export function Header() {
                     <>
                       <button
                         type="button"
-                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
-                          ? isMenuItemActive(item) ||
-                            activeDropdown === item.label
-                            ? "text-[#1e3a8a]"
-                            : "text-gray-700 hover:text-[#1e3a8a]"
-                          : isMenuItemActive(item) && item.label !== "Home"
-                            ? "text-blue-300"
-                            : "text-white hover:text-gray-200"
-                          }`}
+                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
+                          scrolled || !isTransparentPage
+                            ? isMenuItemActive(item) ||
+                              activeDropdown === item.label
+                              ? "text-[#1e3a8a]"
+                              : "text-gray-700 hover:text-[#1e3a8a]"
+                            : isMenuItemActive(item) && item.label !== "Home"
+                              ? "text-blue-300"
+                              : "text-white hover:text-gray-200"
+                        }`}
                       >
                         {item.label}
                         <svg
@@ -781,10 +785,11 @@ export function Header() {
                         ref={(el) => {
                           dropdownRefs.current[item.label] = el;
                         }}
-                        className={`absolute top-full z-50 transition-all duration-300 ${activeDropdown === item.label
-                          ? "opacity-100 translate-y-0 pointer-events-auto visible"
-                          : "opacity-0 -translate-y-2 pointer-events-none invisible"
-                          } ${item.label === "Departments" || item.label === "Services" ? "left-1/2 -translate-x-1/2" : "left-0"}`}
+                        className={`absolute top-full z-50 transition-all duration-300 ${
+                          activeDropdown === item.label
+                            ? "opacity-100 translate-y-0 pointer-events-auto visible"
+                            : "opacity-0 -translate-y-2 pointer-events-none invisible"
+                        } ${item.label === "Departments" || item.label === "Services" ? "left-1/2 -translate-x-1/2" : "left-0"}`}
                       >
                         <div className="pt-2">
                           {item.label === "Departments" ? (
@@ -819,8 +824,9 @@ export function Header() {
                                     Specialties
                                   </h3>
                                   <div className="flex flex-col gap-0.5">
-                                    {specialtiesContent["Specialties"].slice(0, 11).map(
-                                      (subItem) => (
+                                    {specialtiesContent["Specialties"]
+                                      .slice(0, 11)
+                                      .map((subItem) => (
                                         <Link
                                           key={subItem.label}
                                           href={subItem.href}
@@ -834,8 +840,7 @@ export function Header() {
                                             <span>{subItem.label}</span>
                                           </span>
                                         </Link>
-                                      ),
-                                    )}
+                                      ))}
                                   </div>
                                 </div>
                                 {/* Right Side: Specialties Part 2 */}
@@ -844,8 +849,9 @@ export function Header() {
                                     Specialties
                                   </h3>
                                   <div className="flex flex-col gap-0.5">
-                                    {specialtiesContent["Specialties"].slice(11).map(
-                                      (subItem) => (
+                                    {specialtiesContent["Specialties"]
+                                      .slice(11)
+                                      .map((subItem) => (
                                         <Link
                                           key={subItem.label}
                                           href={subItem.href}
@@ -859,8 +865,7 @@ export function Header() {
                                             <span>{subItem.label}</span>
                                           </span>
                                         </Link>
-                                      ),
-                                    )}
+                                      ))}
                                   </div>
                                 </div>
                               </div>
@@ -919,14 +924,15 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href || "#"}
-                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
-                        ? isMenuItemActive(item) && item.label !== "Home"
-                          ? "text-[#1e3a8a]"
-                          : "text-gray-700 hover:text-[#1e3a8a]"
-                        : isMenuItemActive(item) && item.label !== "Home"
-                          ? "text-blue-300"
-                          : "text-white hover:text-gray-200"
-                        }`}
+                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
+                        scrolled || !isTransparentPage
+                          ? isMenuItemActive(item) && item.label !== "Home"
+                            ? "text-[#1e3a8a]"
+                            : "text-gray-700 hover:text-[#1e3a8a]"
+                          : isMenuItemActive(item) && item.label !== "Home"
+                            ? "text-blue-300"
+                            : "text-white hover:text-gray-200"
+                      }`}
                     >
                       {item.label}
                     </Link>
@@ -947,10 +953,11 @@ export function Header() {
                 <LanguageSelector scrolled={true} isTransparentPage={false} />
                 <button
                   type="button"
-                  className={`p-2 rounded-lg transition-all duration-300 ${scrolled || !isTransparentPage
-                    ? "text-gray-600 hover:bg-gray-100"
-                    : "text-gray-600 hover:bg-gray-100"
-                    }`}
+                  className={`p-2 rounded-lg transition-all duration-300 ${
+                    scrolled || !isTransparentPage
+                      ? "text-gray-600 hover:bg-gray-100"
+                      : "text-gray-600 hover:bg-gray-100"
+                  }`}
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   <svg
@@ -983,10 +990,11 @@ export function Header() {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden transition-all duration-300 ease-in-out z-[999] shadow-2xl ${menuOpen
-            ? "max-h-[calc(100vh-80px)] opacity-100 overflow-y-auto overscroll-contain pb-20"
-            : "max-h-0 opacity-0 pointer-events-none overflow-hidden"
-            }`}
+          className={`absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden transition-all duration-300 ease-in-out z-[999] shadow-2xl ${
+            menuOpen
+              ? "max-h-[calc(100vh-80px)] opacity-100 overflow-y-auto overscroll-contain pb-20"
+              : "max-h-0 opacity-0 pointer-events-none overflow-hidden"
+          }`}
         >
           <div
             className="px-4 py-4 space-y-1"
@@ -998,10 +1006,11 @@ export function Header() {
                   <div className="flex flex-col">
                     <button
                       type="button"
-                      className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
-                        ? "text-[#1e3a8a] bg-blue-50"
-                        : "text-gray-900"
-                        }`}
+                      className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${
+                        isMenuItemActive(item) && item.label !== "Home"
+                          ? "text-[#1e3a8a] bg-blue-50"
+                          : "text-gray-900"
+                      }`}
                       onClick={() =>
                         setActiveMobileDropdown(
                           activeMobileDropdown === item.label
@@ -1030,104 +1039,106 @@ export function Header() {
                     >
                       {item.label === "Departments" || item.label === "Services"
                         ? item.dropdown.map((dropdownItem) => {
-                          const contentMap =
-                            item.label === "Departments"
-                              ? specialtiesContent
-                              : servicesContent;
-                          const isCategory = contentMap.hasOwnProperty(
-                            dropdownItem.label,
-                          );
-
-                          if (isCategory) {
-                            return (
-                              <div key={dropdownItem.label} className="mt-1">
-                                <button
-                                  type="button"
-                                  className="flex items-center justify-between w-full rounded-lg px-4 py-2 text-sm font-bold text-gray-700 hover:text-[#1e3a8a] hover:bg-blue-50/80"
-                                  onClick={() =>
-                                    setActiveMobileSubCategory(
-                                      activeMobileSubCategory ===
-                                        dropdownItem.label
-                                        ? null
-                                        : dropdownItem.label,
-                                    )
-                                  }
-                                >
-                                  <span>{dropdownItem.label}</span>
-                                  <svg
-                                    className={`w-3.5 h-3.5 transition-transform ${activeMobileSubCategory === dropdownItem.label ? "rotate-180" : "-rotate-90"}`}
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M19 9l-7 7-7-7"
-                                    />
-                                  </svg>
-                                </button>
-                                <div
-                                  className={`pl-4 overflow-hidden transition-all duration-300 ${activeMobileSubCategory === dropdownItem.label ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}
-                                >
-                                  {contentMap[dropdownItem.label]?.map(
-                                    (subItem) => (
-                                      <Link
-                                        key={subItem.label}
-                                        href={subItem.href}
-                                        className={`relative mx-2 my-1 flex items-center justify-between gap-2 overflow-hidden rounded-lg px-4 py-2 text-sm font-bold text-gray-600 transition-all ${
-                                          item.label === "Departments"
-                                            ? "hover:text-[#1e3a8a] hover:bg-blue-50/80"
-                                            : "hover:text-[#1e3a8a] hover:bg-blue-50/80"
-                                        }`}
-                                        onClick={() => setMenuOpen(false)}
-                                      >
-                                        <span className="relative flex items-center gap-2 pl-1">
-                                          {item.label === "Departments" &&
-                                            getDepartmentIcon(subItem.label)}
-                                          {item.label === "Services" &&
-                                            getServicesIcon(subItem.label)}
-                                          <span>{subItem.label}</span>
-                                        </span>
-                                      </Link>
-                                    ),
-                                  )}
-                                </div>
-                              </div>
+                            const contentMap =
+                              item.label === "Departments"
+                                ? specialtiesContent
+                                : servicesContent;
+                            const isCategory = contentMap.hasOwnProperty(
+                              dropdownItem.label,
                             );
-                          }
-                          return (
+
+                            if (isCategory) {
+                              return (
+                                <div key={dropdownItem.label} className="mt-1">
+                                  <button
+                                    type="button"
+                                    className="flex items-center justify-between w-full rounded-lg px-4 py-2 text-sm font-bold text-gray-700 hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                                    onClick={() =>
+                                      setActiveMobileSubCategory(
+                                        activeMobileSubCategory ===
+                                          dropdownItem.label
+                                          ? null
+                                          : dropdownItem.label,
+                                      )
+                                    }
+                                  >
+                                    <span>{dropdownItem.label}</span>
+                                    <svg
+                                      className={`w-3.5 h-3.5 transition-transform ${activeMobileSubCategory === dropdownItem.label ? "rotate-180" : "-rotate-90"}`}
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M19 9l-7 7-7-7"
+                                      />
+                                    </svg>
+                                  </button>
+                                  <div
+                                    className={`pl-4 overflow-hidden transition-all duration-300 ${activeMobileSubCategory === dropdownItem.label ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}
+                                  >
+                                    {contentMap[dropdownItem.label]?.map(
+                                      (subItem) => (
+                                        <Link
+                                          key={subItem.label}
+                                          href={subItem.href}
+                                          className={`relative mx-2 my-1 flex items-center justify-between gap-2 overflow-hidden rounded-lg px-4 py-2 text-sm font-bold text-gray-600 transition-all ${
+                                            item.label === "Departments"
+                                              ? "hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                                              : "hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                                          }`}
+                                          onClick={() => setMenuOpen(false)}
+                                        >
+                                          <span className="relative flex items-center gap-2 pl-1">
+                                            {item.label === "Departments" &&
+                                              getDepartmentIcon(subItem.label)}
+                                            {item.label === "Services" &&
+                                              getServicesIcon(subItem.label)}
+                                            <span>{subItem.label}</span>
+                                          </span>
+                                        </Link>
+                                      ),
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            }
+                            return (
+                              <Link
+                                key={dropdownItem.label}
+                                href={dropdownItem.href}
+                                className="block rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                                onClick={() => setMenuOpen(false)}
+                              >
+                                {dropdownItem.label}
+                              </Link>
+                            );
+                          })
+                        : item.dropdown.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.label}
                               href={dropdownItem.href}
-                              className="block rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                              className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-[#1e3a8a] hover:bg-blue-50/80"
                               onClick={() => setMenuOpen(false)}
                             >
-                              {dropdownItem.label}
+                              {item.label === "Media & Blog" &&
+                                getMediaIcon(dropdownItem.label)}
+                              <span>{dropdownItem.label}</span>
                             </Link>
-                          );
-                        })
-                        : item.dropdown.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.label}
-                            href={dropdownItem.href}
-                            className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:text-[#1e3a8a] hover:bg-blue-50/80"
-                            onClick={() => setMenuOpen(false)}
-                          >
-                            {item.label === "Media & Blog" && getMediaIcon(dropdownItem.label)}
-                            <span>{dropdownItem.label}</span>
-                          </Link>
-                        ))}
+                          ))}
                     </div>
                   </div>
                 ) : (
                   <Link
                     href={item.href || "#"}
-                    className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
-                      ? "text-[#1e3a8a] bg-blue-50"
-                      : "text-gray-700"
-                      }`}
+                    className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${
+                      isMenuItemActive(item) && item.label !== "Home"
+                        ? "text-[#1e3a8a] bg-blue-50"
+                        : "text-gray-700"
+                    }`}
                     onClick={() => setMenuOpen(false)}
                   >
                     {item.label}

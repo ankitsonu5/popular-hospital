@@ -156,10 +156,14 @@ export default async function PathologyPage() {
     if (section.id === "scope") {
       return {
         ...section,
-        imagePosition: "right",
+        imagePosition: "right" as const,
         sideContent: (
           <div className="w-full h-full flex justify-center items-center">
-             <DoctorSlider doctors={doctors} departmentName="Pathology" preventBackendFetch />
+            <DoctorSlider
+              doctors={doctors}
+              departmentName="Pathology"
+              preventBackendFetch
+            />
           </div>
         ),
       };

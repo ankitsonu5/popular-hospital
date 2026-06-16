@@ -14,12 +14,14 @@ export default function PediatricSurgeryPage() {
     <>
       <DynamicSchema
         pageKey="department:pediatric-surgery"
-        fallback={<DepartmentSchema
-        name="Pediatric Surgery | Popular Hospital"
-        description="Specialized surgical care for newborns, infants, and children. Dedicated Paediatric Surgeons and NICU support ensuring gentle, safe care."
-        urlSlug="pediatric-surgery"
-        medicalSpecialty="Pediatric"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Pediatric Surgery | Popular Hospital"
+            description="Specialized surgical care for newborns, infants, and children. Dedicated Paediatric Surgeons and NICU support ensuring gentle, safe care."
+            urlSlug="pediatric-surgery"
+            medicalSpecialty="Pediatric"
+          />
+        }
       />
       <PediatricSurgeryClient />
     </>

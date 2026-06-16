@@ -1,6 +1,8 @@
 export const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "";
 const uploadsBaseUrl =
-  process.env.NEXT_PUBLIC_UPLOADS_BASE_URL || process.env.NEXT_PUBLIC_API_URL || "";
+  process.env.NEXT_PUBLIC_UPLOADS_BASE_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "";
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser: use relative paths or Next.js rewrites

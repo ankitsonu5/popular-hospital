@@ -229,7 +229,9 @@ export default function DoctorsPage() {
     setIsLoading(true);
     try {
       const [docsRes, specsRes, branchesRes, desigRes] = await Promise.all([
-        fetch(`${API_URL}/cms/doctors?t=${Date.now()}`, { headers: getHeaders() }),
+        fetch(`${API_URL}/cms/doctors?t=${Date.now()}`, {
+          headers: getHeaders(),
+        }),
         fetch(`${API_URL}/doctors/specialities`),
         fetch(`${API_URL}/branches`),
         fetch(`${API_URL}/cms/designations`, { headers: getHeaders() }),
@@ -561,53 +563,53 @@ export default function DoctorsPage() {
               onDragEnd={handleDragEnd}
             >
               <table className="w-full text-sm">
-              <thead className="bg-gray-50/80">
-                <tr>
-                  {isDragEnabled && <th className="w-10 px-4"></th>}
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    Doctor
-                  </th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">
-                    Department
-                  </th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">
-                    Experience
-                  </th>
-                  <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">
-                    Status
-                  </th>
-                  <th className="text-right py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50">
-                <SortableContext
-                  items={filteredDoctors.map((d) => d._id)}
-                  strategy={verticalListSortingStrategy}
-                >
-                  {filteredDoctors.map((doc) => (
-                    <SortableDoctorRow
-                      key={doc._id}
-                      doc={doc}
-                      onEdit={handleEdit}
-                      onDelete={handleDelete}
-                      isDragEnabled={isDragEnabled}
-                    />
-                  ))}
-                </SortableContext>
-                {filteredDoctors.length === 0 && (
+                <thead className="bg-gray-50/80">
                   <tr>
-                    <td
-                      colSpan={isDragEnabled ? 6 : 5}
-                      className="text-center py-16 text-gray-400"
-                    >
-                      <Stethoscope className="w-10 h-10 mx-auto mb-3 text-gray-200" />
-                      <p>No doctors found</p>
-                    </td>
+                    {isDragEnabled && <th className="w-10 px-4"></th>}
+                    <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Doctor
+                    </th>
+                    <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">
+                      Department
+                    </th>
+                    <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">
+                      Experience
+                    </th>
+                    <th className="text-left py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">
+                      Status
+                    </th>
+                    <th className="text-right py-3.5 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Actions
+                    </th>
                   </tr>
-                )}
-              </tbody>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
+                  <SortableContext
+                    items={filteredDoctors.map((d) => d._id)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {filteredDoctors.map((doc) => (
+                      <SortableDoctorRow
+                        key={doc._id}
+                        doc={doc}
+                        onEdit={handleEdit}
+                        onDelete={handleDelete}
+                        isDragEnabled={isDragEnabled}
+                      />
+                    ))}
+                  </SortableContext>
+                  {filteredDoctors.length === 0 && (
+                    <tr>
+                      <td
+                        colSpan={isDragEnabled ? 6 : 5}
+                        className="text-center py-16 text-gray-400"
+                      >
+                        <Stethoscope className="w-10 h-10 mx-auto mb-3 text-gray-200" />
+                        <p>No doctors found</p>
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
               </table>
             </DndContext>
           </div>

@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Shield, 
-  Activity, 
-  CheckCircle2, 
+import {
+  Shield,
+  Activity,
+  CheckCircle2,
   Heart,
   Zap,
   Sparkles,
   Award,
   Stethoscope,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
@@ -39,11 +39,13 @@ const procedures = [
 const doctors = [
   {
     name: "Diabetic Foot Specialist",
-    qualifications: "MS (General Surgery / Orthopedics), Fellowship in Wound Care",
+    qualifications:
+      "MS (General Surgery / Orthopedics), Fellowship in Wound Care",
     designation: "Consultant Podiatric Surgeon",
     slug: "diabetic-foot-specialist",
-    image: "https://images.unsplash.com/photo-1559839734-2b71f1536780?auto=format&fit=crop&q=80&w=800",
-  }
+    image:
+      "https://images.unsplash.com/photo-1559839734-2b71f1536780?auto=format&fit=crop&q=80&w=800",
+  },
 ];
 
 /* ─── Sub-Components ─── */
@@ -64,7 +66,10 @@ const SectionHeader = ({
       </span>
     )}
     <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading leading-tight">
-      {title} {highlight && <span className="text-[#1e3a8a] font-bold">{highlight}</span>}
+      {title}{" "}
+      {highlight && (
+        <span className="text-[#1e3a8a] font-bold">{highlight}</span>
+      )}
     </h2>
     <div className="flex items-center gap-2 mt-3">
       <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
@@ -120,10 +125,8 @@ export default function DiabeticFootClient() {
       <section className="py-20 xl:py-16 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
             {/* Left Content (8 cols) */}
             <div className="lg:col-span-8 space-y-12">
-              
               {/* Introduction & Overview */}
               <div className="space-y-8">
                 <SectionHeader
@@ -137,14 +140,18 @@ export default function DiabeticFootClient() {
                     <Stethoscope className="w-8 h-8" />
                   </div>
                   <p className="font-bold text-slate-700 text-[15px] sm:text-base leading-relaxed text-justify">
-                    The Advanced Diabetic Foot Unit at Popular Hospital, Varanasi is a dedicated multidisciplinary unit for diabetic foot wounds, ulcers, neuropathy, infection, and circulation-related complications.
+                    The Advanced Diabetic Foot Unit at Popular Hospital,
+                    Varanasi is a dedicated multidisciplinary unit for diabetic
+                    foot wounds, ulcers, neuropathy, infection, and
+                    circulation-related complications.
                   </p>
                   <p className="font-semibold text-slate-500 text-[14px] sm:text-[15px] leading-relaxed text-justify mt-3">
-                    Our care model combines wound management, sugar monitoring, vascular assessment, pressure offloading, and surgical support to prevent complications and accelerate healing.
+                    Our care model combines wound management, sugar monitoring,
+                    vascular assessment, pressure offloading, and surgical
+                    support to prevent complications and accelerate healing.
                   </p>
                 </div>
               </div>
-
             </div>
 
             {/* Right Sidebar - Doctor Card (4 cols) */}
@@ -157,7 +164,6 @@ export default function DiabeticFootClient() {
                 />
               </div>
             </div>
-
           </div>
 
           {/* Interactive Stats Grid & Mini Cards Section (Full Width, directly below Doctor Card) */}
@@ -165,14 +171,39 @@ export default function DiabeticFootClient() {
             {/* Interactive Stats Grid (4 columns) */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { value: "95%+", label: "Limb Salvage", color: "from-blue-600 to-indigo-600", desc: "Highest success in preventing amputation" },
-                { value: "3x", label: "Faster Healing", color: "from-[#E85222] to-orange-500", desc: "With specialized NPWT & VAC therapies" },
-                { value: "24/7", label: "Trauma Care", color: "from-teal-600 to-emerald-500", desc: "Immediate podiatric emergency support" },
-                { value: "100%", label: "Integrated", color: "from-purple-600 to-pink-600", desc: "Multidisciplinary specialist coordination" }
+                {
+                  value: "95%+",
+                  label: "Limb Salvage",
+                  color: "from-blue-600 to-indigo-600",
+                  desc: "Highest success in preventing amputation",
+                },
+                {
+                  value: "3x",
+                  label: "Faster Healing",
+                  color: "from-[#E85222] to-orange-500",
+                  desc: "With specialized NPWT & VAC therapies",
+                },
+                {
+                  value: "24/7",
+                  label: "Trauma Care",
+                  color: "from-teal-600 to-emerald-500",
+                  desc: "Immediate podiatric emergency support",
+                },
+                {
+                  value: "100%",
+                  label: "Integrated",
+                  color: "from-purple-600 to-pink-600",
+                  desc: "Multidisciplinary specialist coordination",
+                },
               ].map((stat, i) => (
-                <div key={i} className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50/60 via-white to-white p-5 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.015)] hover:shadow-[0_12px_35px_rgba(30,58,138,0.05)] hover:-translate-y-1 hover:border-blue-100 transition-all duration-300 group">
+                <div
+                  key={i}
+                  className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50/60 via-white to-white p-5 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.015)] hover:shadow-[0_12px_35px_rgba(30,58,138,0.05)] hover:-translate-y-1 hover:border-blue-100 transition-all duration-300 group"
+                >
                   <div className="absolute -right-4 -bottom-4 w-16 h-16 rounded-full bg-blue-500/5 group-hover:scale-150 transition-all duration-700 pointer-events-none" />
-                  <span className={`block text-2xl md:text-3xl font-extrabold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <span
+                    className={`block text-2xl md:text-3xl font-extrabold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                  >
                     {stat.value}
                   </span>
                   <h5 className="text-[11px] font-bold text-slate-800 uppercase tracking-widest mt-2 mb-1">
@@ -188,9 +219,37 @@ export default function DiabeticFootClient() {
             {/* Mini Cards - 3 columns full-width */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { label: "Early Detection", desc: "Identifying nerve and blood flow risks early.", icon: Activity, bg: "from-blue-500/5 to-indigo-500/5", border: "hover:border-blue-200/80 hover:shadow-blue-500/5", text: "text-blue-600", iconBg: "bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white" },
-                { label: "Wound Healing", desc: "Protocol-led wound care and advanced dressings.", icon: Shield, bg: "from-teal-500/5 to-emerald-500/5", border: "hover:border-teal-200/80 hover:shadow-teal-500/5", text: "text-teal-600", iconBg: "bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white" },
-                { label: "Amputation Prevention", desc: "Advanced limb salvage surgical techniques.", icon: Heart, bg: "from-[#E85222]/5 to-orange-500/5", border: "hover:border-orange-200/80 hover:shadow-orange-500/5", text: "text-[#E85222]", iconBg: "bg-orange-50 text-[#E85222] group-hover:bg-[#E85222] group-hover:text-white" },
+                {
+                  label: "Early Detection",
+                  desc: "Identifying nerve and blood flow risks early.",
+                  icon: Activity,
+                  bg: "from-blue-500/5 to-indigo-500/5",
+                  border: "hover:border-blue-200/80 hover:shadow-blue-500/5",
+                  text: "text-blue-600",
+                  iconBg:
+                    "bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white",
+                },
+                {
+                  label: "Wound Healing",
+                  desc: "Protocol-led wound care and advanced dressings.",
+                  icon: Shield,
+                  bg: "from-teal-500/5 to-emerald-500/5",
+                  border: "hover:border-teal-200/80 hover:shadow-teal-500/5",
+                  text: "text-teal-600",
+                  iconBg:
+                    "bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white",
+                },
+                {
+                  label: "Amputation Prevention",
+                  desc: "Advanced limb salvage surgical techniques.",
+                  icon: Heart,
+                  bg: "from-[#E85222]/5 to-orange-500/5",
+                  border:
+                    "hover:border-orange-200/80 hover:shadow-orange-500/5",
+                  text: "text-[#E85222]",
+                  iconBg:
+                    "bg-orange-50 text-[#E85222] group-hover:bg-[#E85222] group-hover:text-white",
+                },
               ].map((item) => {
                 const Icon = item.icon;
                 return (
@@ -198,9 +257,13 @@ export default function DiabeticFootClient() {
                     key={item.label}
                     className={`group relative overflow-hidden rounded-2xl border border-slate-100 bg-gradient-to-br from-white to-slate-50/30 p-5 ${item.border} hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center`}
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-r ${item.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${item.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                    />
                     <div className="relative z-10 flex items-center gap-3 mb-2">
-                      <div className={`h-10 w-10 rounded-xl ${item.iconBg} border border-slate-100 text-[#1e3a8a] flex items-center justify-center transition-all duration-300 shrink-0 shadow-sm`}>
+                      <div
+                        className={`h-10 w-10 rounded-xl ${item.iconBg} border border-slate-100 text-[#1e3a8a] flex items-center justify-center transition-all duration-300 shrink-0 shadow-sm`}
+                      >
                         <Icon className="h-5 w-5" />
                       </div>
                       <p className="text-[13px] font-extrabold uppercase tracking-wider text-slate-800">
@@ -242,7 +305,12 @@ export default function DiabeticFootClient() {
                   Screening, treatment and prevention in one unit.
                 </h4>
                 <p className="text-slate-500 text-[15px] sm:text-base leading-relaxed text-justify">
-                  Our integrated care model ensures that every diabetic foot complication is caught early and managed by a multidisciplinary team. By bringing together diagnostics, advanced wound care therapies, pressure-offloading solutions, and specialized clinical expertise, we provide a unified path to healing and prevent serious complications.
+                  Our integrated care model ensures that every diabetic foot
+                  complication is caught early and managed by a
+                  multidisciplinary team. By bringing together diagnostics,
+                  advanced wound care therapies, pressure-offloading solutions,
+                  and specialized clinical expertise, we provide a unified path
+                  to healing and prevent serious complications.
                 </p>
               </div>
             </div>
@@ -253,21 +321,21 @@ export default function DiabeticFootClient() {
       {/* ═══════ SERVICES & PROCEDURES - side by side ═══════ */}
       <section className="py-20 xl:py-16 bg-gradient-to-b from-slate-50/50 to-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block py-1.5 px-4 rounded-full bg-blue-550/10 border border-blue-100 text-[#1e3a8a] text-xs font-bold mb-3 uppercase tracking-wider">
               Clinical Offerings
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading">
-              Specialized Care & <span className="text-[#1e3a8a]">Advanced Procedures</span>
+              Specialized Care &{" "}
+              <span className="text-[#1e3a8a]">Advanced Procedures</span>
             </h2>
             <p className="text-gray-500 text-sm md:text-base mt-3 leading-relaxed">
-              We offer comprehensive screening, state-of-the-art therapies, and expert surgical interventions to ensure the best patient outcomes.
+              We offer comprehensive screening, state-of-the-art therapies, and
+              expert surgical interventions to ensure the best patient outcomes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
             {/* Specialized Services */}
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(30,58,138,0.06)] hover:border-blue-100/50 transition-all duration-500 flex flex-col h-full group">
               <div className="relative h-80 w-full overflow-hidden">
@@ -287,16 +355,16 @@ export default function DiabeticFootClient() {
                   </h3>
                 </div>
               </div>
-              
+
               <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
                 <div className="space-y-4">
                   {uspList.map((item, idx) => {
                     const serviceIcons = [Shield, Activity, Heart, Zap, Award];
                     const ServiceIcon = serviceIcons[idx % serviceIcons.length];
-                    
+
                     return (
-                      <div 
-                        key={idx} 
+                      <div
+                        key={idx}
                         className="flex items-start gap-4 p-3.5 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all duration-300"
                       >
                         <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-50/80 border border-blue-100/60 flex items-center justify-center text-[#1e3a8a] shadow-sm">
@@ -333,16 +401,24 @@ export default function DiabeticFootClient() {
                   </h3>
                 </div>
               </div>
-              
+
               <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
                 <div className="space-y-4">
                   {procedures.map((item, idx) => {
-                    const procedureIcons = [Stethoscope, Sparkles, Shield, Activity, Zap, Heart];
-                    const ProcedureIcon = procedureIcons[idx % procedureIcons.length];
-                    
+                    const procedureIcons = [
+                      Stethoscope,
+                      Sparkles,
+                      Shield,
+                      Activity,
+                      Zap,
+                      Heart,
+                    ];
+                    const ProcedureIcon =
+                      procedureIcons[idx % procedureIcons.length];
+
                     return (
-                      <div 
-                        key={idx} 
+                      <div
+                        key={idx}
                         className="flex items-start gap-4 p-3.5 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all duration-300"
                       >
                         <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#E85222] shadow-sm">
@@ -359,7 +435,6 @@ export default function DiabeticFootClient() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>

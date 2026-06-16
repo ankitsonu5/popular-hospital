@@ -14,12 +14,14 @@ export default function ENTPage() {
     <>
       <DynamicSchema
         pageKey="department:ent"
-        fallback={<DepartmentSchema
-        name="ENT (Ear, Nose & Throat) | Popular Hospital"
-        description="Expert ENT services for ear, nose, and throat disorders. Advanced surgical and medical care by Dr. Anshuman Singh and team."
-        urlSlug="ent"
-        medicalSpecialty="Otolaryngologic"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="ENT (Ear, Nose & Throat) | Popular Hospital"
+            description="Expert ENT services for ear, nose, and throat disorders. Advanced surgical and medical care by Dr. Anshuman Singh and team."
+            urlSlug="ent"
+            medicalSpecialty="Otolaryngologic"
+          />
+        }
       />
       <ENTClient />
     </>

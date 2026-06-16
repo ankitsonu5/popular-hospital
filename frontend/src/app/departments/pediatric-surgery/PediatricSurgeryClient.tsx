@@ -118,7 +118,8 @@ export default function PediatricSurgeryClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Department of <span className="text-[#1e3a8a]">Pediatric Surgery</span>
+                  Department of{" "}
+                  <span className="text-[#1e3a8a]">Pediatric Surgery</span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -155,7 +156,10 @@ export default function PediatricSurgeryClient() {
             {/* Right Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Pediatric Surgery" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Pediatric Surgery"
+                />
               </div>
             </div>
           </div>
@@ -173,7 +177,8 @@ export default function PediatricSurgeryClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Knowing a <span className="text-[#1e3a8a]">Pediatric Surgeon</span>
+                  Knowing a{" "}
+                  <span className="text-[#1e3a8a]">Pediatric Surgeon</span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -214,13 +219,15 @@ export default function PediatricSurgeryClient() {
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
               <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Pediatric Surgery at <span className="text-[#1e3a8a]">Popular Hospital</span>
+                Pediatric Surgery at{" "}
+                <span className="text-[#1e3a8a]">Popular Hospital</span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
             <p className="text-gray-800 text-lg font-bold mt-6 leading-relaxed">
-              At Popular Hospital, pediatric surgery offers several benefits, including:
+              At Popular Hospital, pediatric surgery offers several benefits,
+              including:
             </p>
           </div>
 
@@ -304,14 +311,14 @@ export default function PediatricSurgeryClient() {
                 In Conclusion
               </h3>
               <p className="text-gray-700 leading-relaxed text-base md:text-[16px] font-medium italic">
-                At Popular Hospital, we understand that surgery of a child is not
-                only a medical condition needing highest amount of medical care
-                but also an emotional one to the entire family. Our Pediatric
-                Surgery Department provides high-quality medical treatment in
-                various fields, and its experienced staff treats each of the
-                patients with care, understanding, and respect. As these
-                parameters are our key offerings, our parents can be assured of
-                the best surgical care to their children.
+                At Popular Hospital, we understand that surgery of a child is
+                not only a medical condition needing highest amount of medical
+                care but also an emotional one to the entire family. Our
+                Pediatric Surgery Department provides high-quality medical
+                treatment in various fields, and its experienced staff treats
+                each of the patients with care, understanding, and respect. As
+                these parameters are our key offerings, our parents can be
+                assured of the best surgical care to their children.
               </p>
             </div>
           </div>

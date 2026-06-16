@@ -14,12 +14,14 @@ export default function NephrologyPage() {
     <>
       <DynamicSchema
         pageKey="department:nephrology"
-        fallback={<DepartmentSchema
-        name="Department of Nephrology | Popular Hospital"
-        description="Comprehensive kidney care including Hemodialysis, Peritoneal Dialysis, Kidney Transplantation, CRRT, and management of Chronic Kidney Disease."
-        urlSlug="nephrology"
-        medicalSpecialty="Renal"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Department of Nephrology | Popular Hospital"
+            description="Comprehensive kidney care including Hemodialysis, Peritoneal Dialysis, Kidney Transplantation, CRRT, and management of Chronic Kidney Disease."
+            urlSlug="nephrology"
+            medicalSpecialty="Renal"
+          />
+        }
       />
       <NephrologyClient />
     </>

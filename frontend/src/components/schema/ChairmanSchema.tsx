@@ -29,7 +29,11 @@ export default function ChairmanSchema() {
           addressCountry: "IN",
         },
       },
-      knowsAbout: ["General Surgery", "Hospital Administration", "Healthcare Management"],
+      knowsAbout: [
+        "General Surgery",
+        "Hospital Administration",
+        "Healthcare Management",
+      ],
       sameAs: ["https://www.popularhospital.in/doctors/dr-a-k-kaushik"],
     },
   };

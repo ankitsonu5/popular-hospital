@@ -213,7 +213,10 @@ const FaqBlock = ({
         {bullets && (
           <ul className="space-y-1.5 pt-1">
             {bullets.map((b, i) => (
-              <li key={i} className="flex items-start gap-2 text-gray-500 text-xs sm:text-sm font-medium">
+              <li
+                key={i}
+                className="flex items-start gap-2 text-gray-500 text-xs sm:text-sm font-medium"
+              >
                 <CheckCircle2 className="h-3.5 w-3.5 text-blue-500 shrink-0 mt-0.5" />
                 <span>{b}</span>
               </li>
@@ -230,7 +233,6 @@ const FaqBlock = ({
 export default function PainManagementClient() {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
@@ -243,7 +245,7 @@ export default function PainManagementClient() {
           />
           <div className="absolute inset-0 bg-[#0b1c43]/80" />
         </div>
-        
+
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
@@ -273,7 +275,6 @@ export default function PainManagementClient() {
       {/* ═══════ MAIN CONTENT SECTION ═══════ */}
       <section className="py-20 xl:py-16 bg-white min-h-[600px]">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-
           {/* Intro + Doctor Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Content */}
@@ -282,7 +283,11 @@ export default function PainManagementClient() {
               <SectionHeader title="Pain" highlight="Medicine Clinic" />
               <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/60 to-transparent rounded-r-3xl shadow-sm">
                 <p className="font-semibold text-gray-700 text-base md:text-[15px] leading-relaxed">
-                  The Pain Management Clinic at Popular Hospital is the only dedicated Pain Clinic in the Purvanchal area from a corporate hospital, offering cashless facilities. Our specialists treat chronic pain conditions unresponsive to conventional treatment through advanced Interventional Pain Procedures.
+                  The Pain Management Clinic at Popular Hospital is the only
+                  dedicated Pain Clinic in the Purvanchal area from a corporate
+                  hospital, offering cashless facilities. Our specialists treat
+                  chronic pain conditions unresponsive to conventional treatment
+                  through advanced Interventional Pain Procedures.
                 </p>
               </div>
 
@@ -291,9 +296,14 @@ export default function PainManagementClient() {
                 {features.map((f) => {
                   const Icon = f.icon;
                   return (
-                    <div key={f.title} className="flex items-center gap-2.5 bg-blue-50/50 rounded-xl px-3 py-2.5 border border-blue-100/60">
+                    <div
+                      key={f.title}
+                      className="flex items-center gap-2.5 bg-blue-50/50 rounded-xl px-3 py-2.5 border border-blue-100/60"
+                    >
                       <Icon className="h-4 w-4 text-[#1e3a8a] shrink-0" />
-                      <span className="text-gray-700 text-[11px] sm:text-xs font-semibold leading-snug">{f.title}</span>
+                      <span className="text-gray-700 text-[11px] sm:text-xs font-semibold leading-snug">
+                        {f.title}
+                      </span>
                     </div>
                   );
                 })}
@@ -303,7 +313,10 @@ export default function PainManagementClient() {
             {/* Doctor Sidebar — same style as Cardiology */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <DoctorSlider doctors={doctors} departmentName="Pain Medicine" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Pain Medicine"
+                />
               </div>
             </div>
           </div>
@@ -319,7 +332,12 @@ export default function PainManagementClient() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {introFaqs.map((item, idx) => (
-                <FaqBlock key={idx} title={item.title} text={item.text} icon={item.icon} />
+                <FaqBlock
+                  key={idx}
+                  title={item.title}
+                  text={item.text}
+                  icon={item.icon}
+                />
               ))}
             </div>
           </div>
@@ -330,9 +348,14 @@ export default function PainManagementClient() {
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
             <div className="relative z-10">
               <div className="mb-10 text-center space-y-3">
-                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">Interventional Neurology</span>
+                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">
+                  Interventional Neurology
+                </span>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
-                  Trigeminal <span className="text-blue-300">Neuralgia & Neck / Back Pain</span>
+                  Trigeminal{" "}
+                  <span className="text-blue-300">
+                    Neuralgia & Neck / Back Pain
+                  </span>
                 </h2>
                 <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
               </div>
@@ -353,7 +376,10 @@ export default function PainManagementClient() {
                     {item.bullets && (
                       <ul className="space-y-1.5 pt-1">
                         {item.bullets.map((b, i) => (
-                          <li key={i} className="flex items-start gap-2 text-blue-200/80 text-xs sm:text-sm font-medium">
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-blue-200/80 text-xs sm:text-sm font-medium"
+                          >
                             <CheckCircle2 className="h-3.5 w-3.5 text-blue-400 shrink-0 mt-0.5" />
                             <span>{b}</span>
                           </li>
@@ -371,13 +397,19 @@ export default function PainManagementClient() {
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
               <SectionLabel text="Regenerative Medicine" />
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Platelet Rich Plasma <span className="text-[#1e3a8a]">(PRP) Therapy</span>
+                Platelet Rich Plasma{" "}
+                <span className="text-[#1e3a8a]">(PRP) Therapy</span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {prpFaqs.map((item, idx) => (
-                <FaqBlock key={idx} title={item.title} text={item.text} icon={FlaskConical} />
+                <FaqBlock
+                  key={idx}
+                  title={item.title}
+                  text={item.text}
+                  icon={FlaskConical}
+                />
               ))}
             </div>
           </div>
@@ -393,7 +425,12 @@ export default function PainManagementClient() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {cancerFaqs.map((item, idx) => (
-                <FaqBlock key={idx} title={item.title} text={item.text} icon={HeartPulse} />
+                <FaqBlock
+                  key={idx}
+                  title={item.title}
+                  text={item.text}
+                  icon={HeartPulse}
+                />
               ))}
             </div>
           </div>
@@ -407,10 +444,13 @@ export default function PainManagementClient() {
                 </p>
                 <h2 className="text-2xl md:text-3xl font-extrabold text-white font-heading leading-tight">
                   Live Pain-Free with the{" "}
-                  <span className="text-[#E85222]">Pain Management Clinic</span> at Popular Hospital.
+                  <span className="text-[#E85222]">Pain Management Clinic</span>{" "}
+                  at Popular Hospital.
                 </h2>
                 <p className="text-blue-100/70 text-sm md:text-base font-medium leading-relaxed">
-                  Advanced interventional procedures for chronic pain — cashless facilities available. Our team of Pain Medicine specialists is here to help you reclaim your life.
+                  Advanced interventional procedures for chronic pain — cashless
+                  facilities available. Our team of Pain Medicine specialists is
+                  here to help you reclaim your life.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 pt-2">
                   <Link
@@ -429,7 +469,6 @@ export default function PainManagementClient() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </main>

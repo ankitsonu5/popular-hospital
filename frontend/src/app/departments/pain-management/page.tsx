@@ -14,12 +14,14 @@ export default function PainManagementPage() {
     <>
       <DynamicSchema
         pageKey="department:pain-management"
-        fallback={<DepartmentSchema
-        name="Pain Management Clinic | Popular Hospital"
-        description="Specialized management of chronic pain not responding to conventional treatment. Expert care for Trigeminal Neuralgia, PRP Therapy, Cancer Pain, and more under the supervision of specialists."
-        urlSlug="pain-management"
-        medicalSpecialty="Anesthesia"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Pain Management Clinic | Popular Hospital"
+            description="Specialized management of chronic pain not responding to conventional treatment. Expert care for Trigeminal Neuralgia, PRP Therapy, Cancer Pain, and more under the supervision of specialists."
+            urlSlug="pain-management"
+            medicalSpecialty="Anesthesia"
+          />
+        }
       />
       <PainManagementClient />
     </>

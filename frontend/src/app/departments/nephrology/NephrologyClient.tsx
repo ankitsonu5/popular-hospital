@@ -4,7 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
-import { AlertTriangle, CheckCircle, ShieldCheck, Activity } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle,
+  ShieldCheck,
+  Activity,
+} from "lucide-react";
 
 /* ─── Data ─── */
 
@@ -103,20 +108,19 @@ export default function NephrologyClient() {
       <section className="py-16 xl:py-10 2xl:py-20 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
             {/* Left Content */}
             <div className="lg:col-span-8 space-y-12">
-
               {/* Department Intro */}
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                   <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                    Department of <span className="text-[#1e3a8a]">Nephrology</span>
+                    Department of{" "}
+                    <span className="text-[#1e3a8a]">Nephrology</span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
-                
+
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mb-6">
                   Nephrology is a medical super speciality that deals with the
                   functioning of diseases related to the kidney. Kidneys are the
@@ -130,18 +134,17 @@ export default function NephrologyClient() {
                 </p>
 
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mb-6">
-                  Nephrology department is a state-of-the-art setup geared
-                  to manage any form of Nephrological Emergency. It has
-                  facilities to treat cases with Acute Kidney Failure,
-                  Chronic Kidney Failure, Renal Hypertension, General
-                  Nephrology & Dialysis. For Critical Care Nephrology, we
-                  have facilities of &quot;Slow Low-Efficiency Dialysis
-                  (SLED)&quot;, &quot;Continuous Renal Replacement
-                  Therapy&quot; (CRRT) and &quot;Plasmapheresis&quot;.
-                  Dialysis centre is ultramodern with 08 Dialysis Stations
-                  with separate set up for Hepatitis C. The Dialysis Centre
-                  is functional round the clock and is manned by very
-                  experienced dialysis staff.
+                  Nephrology department is a state-of-the-art setup geared to
+                  manage any form of Nephrological Emergency. It has facilities
+                  to treat cases with Acute Kidney Failure, Chronic Kidney
+                  Failure, Renal Hypertension, General Nephrology & Dialysis.
+                  For Critical Care Nephrology, we have facilities of &quot;Slow
+                  Low-Efficiency Dialysis (SLED)&quot;, &quot;Continuous Renal
+                  Replacement Therapy&quot; (CRRT) and
+                  &quot;Plasmapheresis&quot;. Dialysis centre is ultramodern
+                  with 08 Dialysis Stations with separate set up for Hepatitis
+                  C. The Dialysis Centre is functional round the clock and is
+                  manned by very experienced dialysis staff.
                 </p>
 
                 <div className="border-l-4 border-blue-600 pl-4 py-2 bg-blue-50/30 rounded-r-xl mb-6">
@@ -154,28 +157,23 @@ export default function NephrologyClient() {
                 </div>
 
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mb-6">
-                  The Centre has excellent backup support of Urology,
-                  Pathology, Radiology and Intensivists. It runs daily
-                  OPD&apos;s with lot of focus on Preventive Nephrology. The
-                  Nephrology Department follows International guidelines.
+                  The Centre has excellent backup support of Urology, Pathology,
+                  Radiology and Intensivists. It runs daily OPD&apos;s with lot
+                  of focus on Preventive Nephrology. The Nephrology Department
+                  follows International guidelines.
                 </p>
 
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  Our nephrologists strive to deliver the best possible care
-                  to patients suffering from acute or chronic kidney
-                  diseases.
+                  Our nephrologists strive to deliver the best possible care to
+                  patients suffering from acute or chronic kidney diseases.
                 </p>
               </div>
-
             </div>
 
             {/* Right Sidebar - Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Nephrology"
-                />
+                <DoctorSlider doctors={doctors} departmentName="Nephrology" />
               </div>
             </div>
           </div>
@@ -186,13 +184,13 @@ export default function NephrologyClient() {
       <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
             {/* Sign & Symptoms */}
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Sign &amp; Symptoms of <span className="text-[#1e3a8a]">Kidney Diseases</span>
+                  Sign &amp; Symptoms of{" "}
+                  <span className="text-[#1e3a8a]">Kidney Diseases</span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -215,7 +213,8 @@ export default function NephrologyClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Evaluating &amp; Managing <span className="text-[#1e3a8a]">Renal Diseases</span>
+                  Evaluating &amp; Managing{" "}
+                  <span className="text-[#1e3a8a]">Renal Diseases</span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -232,7 +231,6 @@ export default function NephrologyClient() {
                 ))}
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -249,7 +247,10 @@ export default function NephrologyClient() {
           <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-8" />
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {conditions.map((item, idx) => (
-              <li key={idx} className="flex items-start gap-3 text-gray-700 text-[15px] font-medium">
+              <li
+                key={idx}
+                className="flex items-start gap-3 text-gray-700 text-[15px] font-medium"
+              >
                 <span className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] inline-block" />
                 </span>

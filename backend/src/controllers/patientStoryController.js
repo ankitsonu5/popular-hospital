@@ -261,7 +261,9 @@ export const updatePatientStory = async (req, res) => {
       isVideoUrlUpdating &&
       typeof req.body.thumbnailUrl !== "string"
     ) {
-      updates.thumbnailUrl = await getAutoThumbnailUrl(req.body.videoUrl.trim());
+      updates.thumbnailUrl = await getAutoThumbnailUrl(
+        req.body.videoUrl.trim(),
+      );
     }
 
     if (homeThumbnailFile) {

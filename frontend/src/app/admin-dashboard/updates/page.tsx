@@ -496,7 +496,10 @@ function UpdatesHub() {
 
               <div>
                 <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4 ml-1">
-                  External Link <span className="text-gray-300 font-bold normal-case tracking-normal">(optional)</span>
+                  External Link{" "}
+                  <span className="text-gray-300 font-bold normal-case tracking-normal">
+                    (optional)
+                  </span>
                 </label>
                 <div className="relative">
                   <Link2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
@@ -506,7 +509,10 @@ function UpdatesHub() {
                     className="w-full pl-11 pr-6 py-4 bg-gray-50/50 border-2 border-transparent focus:border-[#E85222] focus:bg-white outline-none transition-all text-sm font-bold text-gray-900"
                     value={currentUpdate.linkUrl || ""}
                     onChange={(e) =>
-                      setCurrentUpdate({ ...currentUpdate, linkUrl: e.target.value })
+                      setCurrentUpdate({
+                        ...currentUpdate,
+                        linkUrl: e.target.value,
+                      })
                     }
                   />
                 </div>

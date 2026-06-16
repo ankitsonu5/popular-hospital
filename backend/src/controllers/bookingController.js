@@ -163,8 +163,12 @@ export const updateAdminNotes = async (req, res) => {
     const { adminNotes } = req.body;
     const booking = await Booking.findByIdAndUpdate(
       req.params.id,
-      { adminNotes: String(adminNotes ?? "").trim().substring(0, 2000) },
-      { new: true }
+      {
+        adminNotes: String(adminNotes ?? "")
+          .trim()
+          .substring(0, 2000),
+      },
+      { new: true },
     );
     if (!booking) return res.status(404).json({ error: "Booking not found" });
     res.json(booking);

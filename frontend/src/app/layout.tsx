@@ -13,8 +13,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://popularhospital.in"),
   title: {
-    default:
-      "Popular Hospital Varanasi | Top Multi Super Speciality Hospital",
+    default: "Popular Hospital Varanasi | Top Multi Super Speciality Hospital",
     template: "%s | Popular Hospital Varanasi",
   },
   description:
@@ -34,7 +33,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Popular Hospital" }],
   creator: "Popular Hospital",
   openGraph: {
-    title: "Popular Hospital Varanasi | Best & Top Multi Super Speciality Hospital",
+    title:
+      "Popular Hospital Varanasi | Best & Top Multi Super Speciality Hospital",
     description:
       "Popular Hospital — top multi super speciality hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors. 24/7 emergency, cashless treatment.",
     type: "website",

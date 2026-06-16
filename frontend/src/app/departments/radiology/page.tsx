@@ -14,12 +14,14 @@ export default function RadiologyPage() {
     <>
       <DynamicSchema
         pageKey="department:radiology"
-        fallback={<DepartmentSchema
-        name="Department of Radiology | Popular Hospital"
-        description="State-of-the-art imaging technology provided by expert radiologists. Advanced diagnostic imaging for effective treatment planning."
-        urlSlug="radiology"
-        medicalSpecialty="Radiologic"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Department of Radiology | Popular Hospital"
+            description="State-of-the-art imaging technology provided by expert radiologists. Advanced diagnostic imaging for effective treatment planning."
+            urlSlug="radiology"
+            medicalSpecialty="Radiologic"
+          />
+        }
       />
       <main className="min-h-screen bg-white overflow-hidden">
         {/* Hero Section */}
@@ -47,8 +49,8 @@ export default function RadiologyPage() {
               </h1>
               <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
                 State-of-the-art imaging technology provided by expert
-                radiologists. We ensure accurate diagnosis for effective treatment
-                planning.
+                radiologists. We ensure accurate diagnosis for effective
+                treatment planning.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide">
@@ -144,7 +146,9 @@ export default function RadiologyPage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2 font-heading tracking-tight">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm font-medium">{item.desc}</p>
+                  <p className="text-gray-600 text-sm font-medium">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -286,7 +290,9 @@ export default function RadiologyPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-teal-900/60 to-transparent"></div>
                   <div className="absolute bottom-8 left-8 text-white">
-                    <p className="text-4xl font-black mb-1 font-heading">3.0T</p>
+                    <p className="text-4xl font-black mb-1 font-heading">
+                      3.0T
+                    </p>
                     <p className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-80">
                       MRI Precision
                     </p>
@@ -301,10 +307,11 @@ export default function RadiologyPage() {
                   Advanced Technology
                 </h3>
                 <p className="text-gray-700 mb-6 text-base md:text-lg font-bold text-justify leading-relaxed">
-                  We utilize the absolute latest in diagnostic imaging technology.
-                  Our 3T MRI machines provide clearer images in less time, while
-                  our advanced PET-CT scanners allow for early detection of
-                  critical conditions with minimal radiation exposure.
+                  We utilize the absolute latest in diagnostic imaging
+                  technology. Our 3T MRI machines provide clearer images in less
+                  time, while our advanced PET-CT scanners allow for early
+                  detection of critical conditions with minimal radiation
+                  exposure.
                 </p>
               </div>
             </div>
@@ -320,9 +327,9 @@ export default function RadiologyPage() {
                 </h3>
                 <p className="text-gray-700 mb-6 text-base md:text-lg font-bold text-justify leading-relaxed">
                   Our radiologists are sub-specialty trained, meaning your
-                  neuro-scan is read by a neuro-radiologist, and your cardiac scan
-                  by a cardiac specialist. This expert review ensures the highest
-                  accuracy for your diagnosis.
+                  neuro-scan is read by a neuro-radiologist, and your cardiac
+                  scan by a cardiac specialist. This expert review ensures the
+                  highest accuracy for your diagnosis.
                 </p>
               </div>
               <div className="w-full md:w-1/2">
@@ -335,7 +342,9 @@ export default function RadiologyPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-l from-teal-900/60 to-transparent"></div>
                   <div className="absolute bottom-8 right-8 text-white text-right">
-                    <p className="text-4xl font-black mb-1 font-heading">24/7</p>
+                    <p className="text-4xl font-black mb-1 font-heading">
+                      24/7
+                    </p>
                     <p className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-80">
                       Expert Reporting
                     </p>
@@ -364,8 +373,8 @@ export default function RadiologyPage() {
                 World Class Imaging
               </h2>
               <p className="text-teal-50 text-lg opacity-90 font-bold">
-                Comprehensive radiology services covering everything from routine
-                X-rays to advanced interventional procedures.
+                Comprehensive radiology services covering everything from
+                routine X-rays to advanced interventional procedures.
               </p>
             </div>
 

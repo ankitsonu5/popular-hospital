@@ -2,7 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Image as ImageIcon, Play, Video } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Image as ImageIcon,
+  Play,
+  Video,
+} from "lucide-react";
 import {
   fetchDepartmentGallery,
   getImageUrl,
@@ -17,7 +23,9 @@ export default function DepartmentGallerySection({
   departmentName: string;
 }) {
   const [items, setItems] = useState<DepartmentGalleryItem[]>([]);
-  const [activeType, setActiveType] = useState<"all" | "image" | "video">("all");
+  const [activeType, setActiveType] = useState<"all" | "image" | "video">(
+    "all",
+  );
   const [selected, setSelected] = useState<DepartmentGalleryItem | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -87,7 +95,9 @@ export default function DepartmentGallerySection({
               <button
                 key={value}
                 type="button"
-                onClick={() => setActiveType(value as "all" | "image" | "video")}
+                onClick={() =>
+                  setActiveType(value as "all" | "image" | "video")
+                }
                 className={`rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-wider transition ${
                   activeType === value
                     ? "bg-[#284a91] text-white shadow-sm"
@@ -166,7 +176,10 @@ export default function DepartmentGallerySection({
                     )}
                   </span>
                   <p className="line-clamp-2 text-sm font-extrabold text-[#0b1c43]">
-                    {item.title || (item.type === "video" ? "Department Video" : "Department Photo")}
+                    {item.title ||
+                      (item.type === "video"
+                        ? "Department Video"
+                        : "Department Photo")}
                   </p>
                 </div>
               </button>

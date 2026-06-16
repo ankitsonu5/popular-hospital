@@ -71,25 +71,25 @@ export default function DoctorSlider({
   const displayDoctors =
     backendDoctors.length > 0
       ? [...backendDoctors].sort((a, b) => {
-        const getOrder = (doctor: Doctor) => {
-          const slugKey = normalizeDoctorValue(doctor.slug || "");
-          const nameKey = normalizeDoctorValue(doctor.name || "");
-          const index = doctors.findIndex((item) => {
-            const itemSlugKey = normalizeDoctorValue(item.slug || "");
-            const itemNameKey = normalizeDoctorValue(item.name || "");
-            return (
-              itemSlugKey === slugKey ||
-              itemNameKey === nameKey ||
-              itemSlugKey === nameKey ||
-              itemNameKey === slugKey
-            );
-          });
+          const getOrder = (doctor: Doctor) => {
+            const slugKey = normalizeDoctorValue(doctor.slug || "");
+            const nameKey = normalizeDoctorValue(doctor.name || "");
+            const index = doctors.findIndex((item) => {
+              const itemSlugKey = normalizeDoctorValue(item.slug || "");
+              const itemNameKey = normalizeDoctorValue(item.name || "");
+              return (
+                itemSlugKey === slugKey ||
+                itemNameKey === nameKey ||
+                itemSlugKey === nameKey ||
+                itemNameKey === slugKey
+              );
+            });
 
-          return index === -1 ? Number.MAX_SAFE_INTEGER : index;
-        };
+            return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+          };
 
-        return getOrder(a) - getOrder(b);
-      })
+          return getOrder(a) - getOrder(b);
+        })
       : doctors;
   const currentDoctor = displayDoctors[currentSlide];
   const appointmentHref = currentDoctor?.slug
@@ -127,7 +127,10 @@ export default function DoctorSlider({
         );
       });
 
-      if (!matchedDepartment?.slug || matchedDepartment.slug === departmentSlug) {
+      if (
+        !matchedDepartment?.slug ||
+        matchedDepartment.slug === departmentSlug
+      ) {
         return directDoctors;
       }
 
@@ -212,7 +215,10 @@ export default function DoctorSlider({
         SCHEDULE AN APPOINTMENT
       </Link>
 
-      <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100/80 flex flex-col items-center p-0 w-full relative" style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }}>
+      <div
+        className="bg-white rounded-[2rem] overflow-hidden border border-slate-100/80 flex flex-col items-center p-0 w-full relative"
+        style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }}
+      >
         <div className="w-full relative overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-in-out"

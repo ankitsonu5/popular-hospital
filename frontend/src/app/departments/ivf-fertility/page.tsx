@@ -14,12 +14,14 @@ export default function IvfFertilityPage() {
     <>
       <DynamicSchema
         pageKey="department:ivf-fertility"
-        fallback={<DepartmentSchema
-        name="IVF & Fertility | Popular Hospital"
-        description="Advanced IVF and fertility care at Popular Hospital, Varanasi. Evaluation, ovulation induction, IUI, IVF guidance, fertility preservation, and compassionate reproductive care."
-        urlSlug="ivf-fertility"
-        medicalSpecialty="Gynecologic"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="IVF & Fertility | Popular Hospital"
+            description="Advanced IVF and fertility care at Popular Hospital, Varanasi. Evaluation, ovulation induction, IUI, IVF guidance, fertility preservation, and compassionate reproductive care."
+            urlSlug="ivf-fertility"
+            medicalSpecialty="Gynecologic"
+          />
+        }
       />
       <IvfFertilityClient />
     </>
