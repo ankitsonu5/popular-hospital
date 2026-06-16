@@ -79,27 +79,9 @@ const proceduresSection = {
   ],
 };
 
-/* ─── Doctors Data ─── */
-const doctors = [
-  {
-    name: "Dr. Rohan Kumar Singh",
-    qualifications: "MBBS, MD (Radiodiagnosis), FIVIR",
-    designation: "Consultant Interventional Radiologist",
-    slug: "dr-rohan-kumar-singh", // Corrected slug from dr-rohan-kr-singh to dr-rohan-kumar-singh
-    image: "/images/departments_doctor/rohan_kr_singh.jpg",
-  },
-  {
-    name: "Dr. Omkareshwar Pratap Singh",
-    qualifications: "MBBS, DNB (Radiodiagnosis)",
-    designation: "Consultant Radiologist",
-    slug: "dr-omkareshwar-pratap-singh",
-    image: "/images/departments_doctor/dr_omkareshwar.jpg",
-  },
-];
-
 /* ─── Main Component ─── */
 
-export default function InterventionalRadiologyClient() {
+export default function InterventionalRadiologyClient({ doctors }: { doctors: any[] }) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}

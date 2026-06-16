@@ -3,6 +3,8 @@ import {
   ServiceDetailPage,
   type ServiceSection,
 } from "../_components/ServiceDetailPage";
+import { fetchDoctors } from "@/lib/api";
+import DoctorSlider from "@/components/DoctorSlider";
 
 export const metadata: Metadata = {
   title: "Pathology Services | Popular Hospital",
@@ -147,14 +149,31 @@ const sections: ServiceSection[] = [
   },
 ];
 
-export default function PathologyPage() {
+export default async function PathologyPage() {
+  const doctors = await fetchDoctors({ speciality: "pathology" });
+
+  const pageSections = sections.map((section) => {
+    if (section.id === "scope") {
+      return {
+        ...section,
+        imagePosition: "right",
+        sideContent: (
+          <div className="w-full h-full flex justify-center items-center">
+             <DoctorSlider doctors={doctors} departmentName="Pathology" preventBackendFetch />
+          </div>
+        ),
+      };
+    }
+    return section;
+  });
+
   return (
     <ServiceDetailPage
       title="Pathological Services"
       breadcrumb="Pathology"
       heroImage="/images/banners/services_pathology.png"
       heroAlt="Pathology Services"
-      sections={sections}
+      sections={pageSections}
       cta={{
         title: "Need pathology testing support?",
         description:

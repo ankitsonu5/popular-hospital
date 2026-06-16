@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import NeurosurgeryClient from "./NeurosurgeryClient";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
+import { fetchDoctors } from "@/lib/api";
 
 export const metadata: Metadata = {
   title: "Neurosurgery Department | Popular Hospital",
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
     "Expert surgical treatment for brain, spinal cord, and peripheral nerve disorders at Popular Hospital.",
 };
 
-export default function NeurosurgeryPage() {
+export default async function NeurosurgeryPage() {
+  const doctors = await fetchDoctors({ speciality: "neurosurgery" });
+
   return (
     <>
       <DynamicSchema
@@ -23,7 +26,7 @@ export default function NeurosurgeryPage() {
         medicalSpecialty="Neurologic"
       />}
       />
-      <NeurosurgeryClient />
+      <NeurosurgeryClient doctors={doctors} />
     </>
   );
 }

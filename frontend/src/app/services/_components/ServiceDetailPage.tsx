@@ -11,6 +11,8 @@ export type ServiceSection = {
   image?: string;
   imgAlt?: string;
   imageClassName?: string;
+  sideContent?: ReactNode;
+  imagePosition?: 'left' | 'right';
 };
 
 type ServiceDetailPageProps = {
@@ -111,21 +113,22 @@ export function ServiceDetailPage({
         <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-8 lg:gap-10">
             {sections.map((section, idx) => {
-              const showImage = Boolean(section.image);
+              const showSideContent = Boolean(section.image || section.sideContent);
               const isEven = idx % 2 === 0;
+              const imageOnLeft = section.imagePosition ? section.imagePosition === 'left' : isEven;
 
               return (
                 <article
                   key={section.id}
                   className={`relative overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.08)] ${
-                    showImage ? "p-4 sm:p-5 lg:p-6" : "p-5 sm:p-8 lg:p-10"
+                    showSideContent ? "p-4 sm:p-5 lg:p-6" : "p-5 sm:p-8 lg:p-10"
                   }`}
                 >
                   <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#cf2e2e] via-[#284a91] to-[#0b1c43]" />
                   <div
                     className={`flex flex-col ${
-                      showImage
-                        ? isEven
+                      showSideContent
+                        ? imageOnLeft
                           ? "lg:flex-row-reverse"
                           : "lg:flex-row"
                         : ""
@@ -133,7 +136,7 @@ export function ServiceDetailPage({
                   >
                     <div
                       className={`w-full ${
-                        showImage
+                        showSideContent
                           ? "lg:w-[58%] lg:px-2 lg:py-4"
                           : "mx-auto max-w-5xl"
                       }`}
@@ -148,28 +151,34 @@ export function ServiceDetailPage({
                       </div>
                     </div>
 
-                    {showImage && section.image && (
+                    {showSideContent && (
                       <div className="flex w-full justify-center lg:w-[42%]">
-                        <div className="relative w-full">
-                          <div
-                            className={`group relative h-full w-full overflow-hidden rounded-[1.35rem] border border-white ${
-                              section.imageClassName || "min-h-[260px] md:min-h-[340px] lg:min-h-full lg:h-full"
-                            } ${
-                              isEven
-                                ? "rounded-tl-[8rem] rounded-br-[8rem] rounded-tr-[1rem] rounded-bl-[1rem]"
-                                : "rounded-tr-[8rem] rounded-bl-[8rem] rounded-tl-[1rem] rounded-br-[1rem]"
-                            }`}
-                          >
-                            <Image
-                              src={section.image}
-                              alt={section.imgAlt || section.title}
-                              fill
-                              className="object-cover transition-transform duration-700 group-hover:scale-110"
-                              sizes="(max-width: 1024px) 100vw, 42vw"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/35 via-transparent to-transparent" />
+                        {section.sideContent ? (
+                          <div className="w-full flex justify-center items-center">
+                            {section.sideContent}
                           </div>
-                        </div>
+                        ) : section.image ? (
+                          <div className="relative w-full">
+                            <div
+                              className={`group relative h-full w-full overflow-hidden rounded-[1.35rem] border border-white ${
+                                section.imageClassName || "min-h-[260px] md:min-h-[340px] lg:min-h-full lg:h-full"
+                              } ${
+                                isEven
+                                  ? "rounded-tl-[8rem] rounded-br-[8rem] rounded-tr-[1rem] rounded-bl-[1rem]"
+                                  : "rounded-tr-[8rem] rounded-bl-[8rem] rounded-tl-[1rem] rounded-br-[1rem]"
+                              }`}
+                            >
+                              <Image
+                                src={section.image}
+                                alt={section.imgAlt || section.title}
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                sizes="(max-width: 1024px) 100vw, 42vw"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/35 via-transparent to-transparent" />
+                            </div>
+                          </div>
+                        ) : null}
                       </div>
                     )}
                   </div>

@@ -1,0 +1,78 @@
+[
+  {
+    "opd_timings": {
+      "monday": "",
+      "tuesday": "",
+      "wednesday": "",
+      "thursday": "",
+      "friday": "",
+      "saturday": "",
+      "sunday": ""
+    },
+    "youtube_video_url": null,
+    "_id": "69f06730a832d95b8d3fa6b8",
+    "name": "Dr. Rohan Kumar Singh",
+    "slug": "dr-rohan-kumar-singh",
+    "speciality": {
+      "_id": "69d07e8d1583fcfc5b99cc5f",
+      "slug": "interventional-radiology",
+      "department_display_name": "Interventional Radiology",
+      "name": "Interventional Radiology"
+    },
+    "qualification": "MBBS, MD (Radiodiagnosis), FIVIR",
+    "experience_years": null,
+    "experience_location": "",
+    "bio": "",
+    "image_url": "/uploads/doctors/1780810807817-rohan-kr-singh.jpg",
+    "consultation_fee": null,
+    "available_days": "",
+    "branches": [],
+    "designation": {
+      "_id": "69c393d0f0296c2a05508a51",
+      "name": "Consultant Radiologist"
+    },
+    "is_active": true,
+    "sortIndex": 31,
+    "createdAt": "2026-04-28T07:52:16.882Z",
+    "updatedAt": "2026-06-07T05:40:07.822Z",
+    "__v": 0
+  },
+  {
+    "opd_timings": {
+      "monday": "",
+      "tuesday": "",
+      "wednesday": "",
+      "thursday": "",
+      "friday": "",
+      "saturday": "",
+      "sunday": ""
+    },
+    "youtube_video_url": null,
+    "_id": "69b514cfe91529da06eebcf9",
+    "name": "Dr. Omkareshwar Pratap Singh",
+    "slug": "dr-omkareshwar-pratap-singh",
+    "speciality": {
+      "_id": "69d07e8d1583fcfc5b99cc5f",
+      "slug": "interventional-radiology",
+      "department_display_name": "Interventional Radiology",
+      "name": "Interventional Radiology"
+    },
+    "qualification": "MBBS, MD (Radiology)",
+    "experience_years": 10,
+    "experience_location": "",
+    "bio": "Dr Omkareshwar Pratap Singh is a highly skilled Consultant Radiologist at Popular Hospital with extensive expertise in Radiology. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+    "image_url": "/uploads/doctors/1780811669986-dr-omkareshwar.jpg",
+    "consultation_fee": null,
+    "available_days": "",
+    "branches": [],
+    "is_active": true,
+    "createdAt": "2026-03-14T07:57:03.567Z",
+    "updatedAt": "2026-06-16T07:50:51.023Z",
+    "__v": 0,
+    "designation": {
+      "_id": "69c393d0f0296c2a05508a51",
+      "name": "Consultant Radiologist"
+    },
+    "sortIndex": 49
+  }
+]

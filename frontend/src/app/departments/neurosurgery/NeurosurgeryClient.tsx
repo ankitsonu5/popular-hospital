@@ -43,15 +43,7 @@ const spinalSurgeryList = [
   "Kyphoplasty and Vertebroplasty",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Kamlesh Kumar Singh",
-    qualifications: "MBBS, MS, M.Ch (Neurosurgery)",
-    designation: "Head, Department of Neurosurgery",
-    slug: "dr-kamlesh-kumar-singh",
-    image: "/images/departments_doctor/dr._kamlesh_kumar_Singh.jpg",
-  },
-];
+// Doctors data is now fetched from the backend and passed as a prop
 
 /* ─── Components ─── */
 const SectionHeader = ({
@@ -83,7 +75,7 @@ const ListItem = ({ text }: { text: string }) => (
 
 /* ─── Page ─── */
 
-export default function NeurosurgeryClient() {
+export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO ═══════ */}
