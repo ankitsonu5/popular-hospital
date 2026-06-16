@@ -7,8 +7,8 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI).then(async () => {
     const Speciality = (await import('./src/models/Speciality.js')).default;
     const Doctor = (await import('./src/models/Doctor.js')).default;
-    
-    const spec = await Speciality.findOne({slug: 'pathology'});
+
+    const spec = await Speciality.findOne({ slug: 'pathology' });
     if (!spec) {
         console.log("Pathology speciality not found!");
         process.exit(1);
