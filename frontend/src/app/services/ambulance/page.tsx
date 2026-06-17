@@ -42,7 +42,7 @@ const sections: ServiceSection[] = [
         </p>
       </div>
     ),
-    image: "/images/departments-images/ambulance_department.jpg",
+    image: "/images/departments-images/ambulance_department_v2.jpeg",
     imgAlt: "Ambulance service",
   },
   {
@@ -57,8 +57,9 @@ const sections: ServiceSection[] = [
         reduce waiting time and improve treatment decisions during urgent care.
       </p>
     ),
-    image: "/images/departments-images/ambulance_department_img.jpg",
+    image: "/images/departments-images/ambulance_department_v2.jpeg",
     imgAlt: "Emergency medical team",
+    imageClassName: "min-h-[350px] md:min-h-[400px] lg:min-h-[450px] lg:h-full",
   },
   {
     id: "safest-hospital",
