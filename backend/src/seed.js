@@ -78,8 +78,7 @@ const branches = [
     image_four: "/images/branches/varanasi-main/4.webp",
     mapEmbedUrl:
       "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.2927719,82.970505+(Popular%20Hospital%20Varanasi)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
-    mapDirectionsUrl:
-      "https://maps.app.goo.gl/8KVyxNdETY219tRD6",
+    mapDirectionsUrl: "https://maps.app.goo.gl/8KVyxNdETY219tRD6",
   },
   {
     name: "City Hospital – Sigra",
@@ -101,8 +100,7 @@ const branches = [
     image_four: "/images/branches/varanasi-sigra/4.webp",
     mapEmbedUrl:
       "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.310566,82.9853379+(City%20Hospital%20Sigra)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
-    mapDirectionsUrl:
-      "https://maps.app.goo.gl/qzDBKggToLk9PEpKA",
+    mapDirectionsUrl: "https://maps.app.goo.gl/qzDBKggToLk9PEpKA",
   },
   {
     name: "Popular Hospital – Mirzapur",
@@ -125,8 +123,7 @@ const branches = [
     image_four: "/images/branches/mirzapur/4.webp",
     mapEmbedUrl:
       "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.2927719,82.970505+(Popular%20Hospital%20Mirzapur)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
-    mapDirectionsUrl:
-      "https://maps.app.goo.gl/6AD3AFtXKYpPyvQA7",
+    mapDirectionsUrl: "https://maps.app.goo.gl/6AD3AFtXKYpPyvQA7",
   },
   {
     name: "Popular Hospital – Gopiganj",
@@ -149,8 +146,7 @@ const branches = [
     image_four: "/images/branches/gopiganj/4.webp",
     mapEmbedUrl:
       "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.2878557,82.4292159+(Popular%20Hospital%20Gopiganj)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
-    mapDirectionsUrl:
-      "https://maps.app.goo.gl/XFdtMjVtkeAq4i217",
+    mapDirectionsUrl: "https://maps.app.goo.gl/XFdtMjVtkeAq4i217",
   },
   {
     name: "Popular Hospital – Bachhaon",
@@ -172,8 +168,7 @@ const branches = [
     image_four: "/images/branches/bachhaon/4.webp",
     mapEmbedUrl:
       "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=25.2287388,82.9329695+(Popular%20Hospital%20Bachhaon)&t=&z=15&ie=UTF8&iwloc=B&output=embed",
-    mapDirectionsUrl:
-      "https://maps.app.goo.gl/CFB9nVbpv3TwdhddA",
+    mapDirectionsUrl: "https://maps.app.goo.gl/CFB9nVbpv3TwdhddA",
   },
 ];
 

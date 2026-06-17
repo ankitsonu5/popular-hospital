@@ -588,8 +588,8 @@ export default function PatientStoriesManagePage() {
                 ) : editingStory ? (
                   <p className="text-[11px] text-gray-500 mt-1">
                     Current thumbnail will stay unless you upload a new one.
-                    YouTube/Facebook/Instagram thumbnails are auto-detected
-                    when available.
+                    YouTube/Facebook/Instagram thumbnails are auto-detected when
+                    available.
                   </p>
                 ) : (
                   <p className="text-[11px] text-gray-500 mt-1">
@@ -690,4 +690,3 @@ export default function PatientStoriesManagePage() {
     </div>
   );
 }
-

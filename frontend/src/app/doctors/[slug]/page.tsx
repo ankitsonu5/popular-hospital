@@ -267,7 +267,9 @@ export default async function DoctorPage({ params }: Props) {
                     <a
                       href={
                         doctor.youtube_video_url
-                          ? (doctor.youtube_video_url.startsWith('http') ? doctor.youtube_video_url : `https://${doctor.youtube_video_url}`)
+                          ? doctor.youtube_video_url.startsWith("http")
+                            ? doctor.youtube_video_url
+                            : `https://${doctor.youtube_video_url}`
                           : "https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
                       }
                       target="_blank"

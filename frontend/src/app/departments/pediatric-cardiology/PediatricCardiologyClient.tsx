@@ -37,7 +37,7 @@ const symptoms = [
   "Excessive sweating specially during feeding",
   "Bluish discolouration of lips and extremities",
   "Syncope / Fainting spells",
-  "Palpitation (Excessive awareness of heart beats)", 
+  "Palpitation (Excessive awareness of heart beats)",
 ];
 
 const services = [
@@ -123,28 +123,38 @@ export default function PediatricCardiologyClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Popular Hospital's <span className="text-[#1e3a8a]">Pediatric Cardiologist & Intensivist</span>
+                  Popular Hospital's{" "}
+                  <span className="text-[#1e3a8a]">
+                    Pediatric Cardiologist & Intensivist
+                  </span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <div className="space-y-4">
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  At Popular Hospital, Varanasi, our Pediatric Cardiology Department is dedicated to providing advanced,
-                  compassionate, and child-friendly care to Fragile hearts of Neonatal/pediatric patients.
+                  At Popular Hospital, Varanasi, our Pediatric Cardiology
+                  Department is dedicated to providing advanced, compassionate,
+                  and child-friendly care to Fragile hearts of
+                  Neonatal/pediatric patients.
                 </p>
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The department is led by Dr Rajesh Kumar Singh, the first full-time pediatric cardiologist and Intensivist in
-                  Purvanchal, bringing specialised cardiac care closer to families in Eastern Uttar Pradesh and nearby regions.
+                  The department is led by Dr Rajesh Kumar Singh, the first
+                  full-time pediatric cardiologist and Intensivist in
+                  Purvanchal, bringing specialised cardiac care closer to
+                  families in Eastern Uttar Pradesh and nearby regions.
                 </p>
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  With a focus on early diagnosis, accurate treatment, and long-term follow-up, we ensure that infants, children,
-                  and adolescents receive world-class cardiac care under one roof.
+                  With a focus on early diagnosis, accurate treatment, and
+                  long-term follow-up, we ensure that infants, children, and
+                  adolescents receive world-class cardiac care under one roof.
                 </p>
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  Dr Rajesh Kumar Singh is a highly respected name in pediatric cardiology and is known for pioneering specialised
-                  heart care for children in Purvanchal. His vast experience, combined with a child-centric approach, ensures
-                  accurate diagnosis and effective treatment even in complex heart conditions.
+                  Dr Rajesh Kumar Singh is a highly respected name in pediatric
+                  cardiology and is known for pioneering specialised heart care
+                  for children in Purvanchal. His vast experience, combined with
+                  a child-centric approach, ensures accurate diagnosis and
+                  effective treatment even in complex heart conditions.
                 </p>
               </div>
             </div>
@@ -152,7 +162,10 @@ export default function PediatricCardiologyClient() {
             {/* Right Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Pediatric Cardiology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Pediatric Cardiology"
+                />
               </div>
             </div>
           </div>
@@ -170,7 +183,8 @@ export default function PediatricCardiologyClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Why parents trust <span className="text-[#1e3a8a]">Popular Hospital</span>
+                  Why parents trust{" "}
+                  <span className="text-[#1e3a8a]">Popular Hospital</span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -218,13 +232,15 @@ export default function PediatricCardiologyClient() {
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
               <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Pediatric Heart Conditions <span className="text-[#1e3a8a]">We Treat</span>
+                Pediatric Heart Conditions{" "}
+                <span className="text-[#1e3a8a]">We Treat</span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
             <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6">
-              Our department specialises in diagnosing and managing a wide range of heart conditions in children, including:
+              Our department specialises in diagnosing and managing a wide range
+              of heart conditions in children, including:
             </p>
           </div>
 
@@ -350,7 +366,10 @@ export default function PediatricCardiologyClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  When should you meet a <span className="text-[#1e3a8a]">pediatric cardiologist?</span>
+                  When should you meet a{" "}
+                  <span className="text-[#1e3a8a]">
+                    pediatric cardiologist?
+                  </span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -386,13 +405,15 @@ export default function PediatricCardiologyClient() {
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
               <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Pediatric Cardiac Services <span className="text-[#1e3a8a]">at Popular Hospital</span>
+                Pediatric Cardiac Services{" "}
+                <span className="text-[#1e3a8a]">at Popular Hospital</span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
             <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6">
-              We provide comprehensive pediatric cardiology services using modern technology and evidence based treatment protocols:
+              We provide comprehensive pediatric cardiology services using
+              modern technology and evidence based treatment protocols:
             </p>
           </div>
 
@@ -423,7 +444,8 @@ export default function PediatricCardiologyClient() {
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
               <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Why Choose <span className="text-[#1e3a8a]">Popular Hospital?</span>
+                Why Choose{" "}
+                <span className="text-[#1e3a8a]">Popular Hospital?</span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -431,7 +453,10 @@ export default function PediatricCardiologyClient() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {whyChooseUs.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-4 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+              <div
+                key={idx}
+                className="flex items-start gap-4 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"
+              >
                 <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-[#1e3a8a] flex items-center justify-center mt-0.5 border border-blue-200">
                   <Check className="w-4 h-4" />
                 </div>
@@ -454,7 +479,10 @@ export default function PediatricCardiologyClient() {
                 In Support of Families
               </h3>
               <p className="text-gray-700 leading-relaxed text-base md:text-[16px] font-medium italic">
-                We understand that a child’s heart condition can be emotionally challenging for families. Our expert team ensures clarity, compassion, and continuous support at every step of the treatment journey.
+                We understand that a child’s heart condition can be emotionally
+                challenging for families. Our expert team ensures clarity,
+                compassion, and continuous support at every step of the
+                treatment journey.
               </p>
             </div>
           </div>

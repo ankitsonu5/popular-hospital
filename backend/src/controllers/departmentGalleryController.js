@@ -34,7 +34,11 @@ export const uploadDepartmentGallery = multer({
 const deleteFile = (filePath) => {
   if (!filePath || !filePath.startsWith("/uploads/")) return;
   try {
-    const fullPath = path.join(__dirname, "../../", filePath.replace(/^\//, ""));
+    const fullPath = path.join(
+      __dirname,
+      "../../",
+      filePath.replace(/^\//, ""),
+    );
     if (fs.existsSync(fullPath)) fs.unlinkSync(fullPath);
   } catch (error) {
     console.error("Error deleting department gallery file:", error);
@@ -59,7 +63,9 @@ const findDepartmentByIdOrSlug = async (value) => {
 // GET /api/department-gallery/:departmentSlug
 export const getActiveDepartmentGallery = async (req, res) => {
   try {
-    const department = await findDepartmentByIdOrSlug(req.params.departmentSlug);
+    const department = await findDepartmentByIdOrSlug(
+      req.params.departmentSlug,
+    );
     if (!department) return res.json([]);
 
     const items = await DepartmentGalleryItem.find({
@@ -102,7 +108,8 @@ export const createDepartmentGalleryItem = async (req, res) => {
     if (!dept) return res.status(400).json({ error: "Department is required" });
 
     const mediaFile = req.files?.media?.[0];
-    if (!mediaFile) return res.status(400).json({ error: "Media file is required" });
+    if (!mediaFile)
+      return res.status(400).json({ error: "Media file is required" });
 
     const item = await DepartmentGalleryItem.create({
       department: dept._id,

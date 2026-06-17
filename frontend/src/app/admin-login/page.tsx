@@ -123,7 +123,6 @@ export default function AdminLoginPage() {
           </div>
         )}
 
-
         {/* Success Message */}
         {success && (
           <div className="mb-4 p-3 rounded-xl bg-green-50 border border-green-100 flex items-center gap-2 animate-fade-in-up">
@@ -225,7 +224,6 @@ export default function AdminLoginPage() {
             </button>
           </div>
         </form>
-
       </div>
     </div>
   );

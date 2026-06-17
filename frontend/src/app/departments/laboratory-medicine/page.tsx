@@ -14,12 +14,14 @@ export default function LaboratoryMedicinePage() {
     <>
       <DynamicSchema
         pageKey="department:laboratory-medicine"
-        fallback={<DepartmentSchema
-        name="Laboratory Medicine | Popular Hospital"
-        description="Advanced diagnostic services and medical research at Popular Hospital Laboratory Medicine Department."
-        urlSlug="laboratory-medicine"
-        medicalSpecialty="LaboratoryScience"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Laboratory Medicine | Popular Hospital"
+            description="Advanced diagnostic services and medical research at Popular Hospital Laboratory Medicine Department."
+            urlSlug="laboratory-medicine"
+            medicalSpecialty="LaboratoryScience"
+          />
+        }
       />
       <LaboratoryMedicineClient />
     </>

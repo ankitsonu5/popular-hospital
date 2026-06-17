@@ -122,7 +122,7 @@ export default function JobPortalPage() {
 
   const toggleSelection = (id: string) => {
     setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
     );
   };
 
@@ -135,7 +135,7 @@ export default function JobPortalPage() {
       });
       if (resp.ok) {
         setApplications((prev) =>
-          prev.map((a) => (a._id === id ? { ...a, status: newStatus } : a))
+          prev.map((a) => (a._id === id ? { ...a, status: newStatus } : a)),
         );
         if (selectedApp && selectedApp._id === id) {
           setSelectedApp({ ...selectedApp, status: newStatus });
@@ -163,17 +163,29 @@ export default function JobPortalPage() {
         if (resp.ok) {
           successCount++;
           setApplications((prev) =>
-            prev.map((a) => (a._id === id ? { ...a, status: newStatus } : a))
+            prev.map((a) => (a._id === id ? { ...a, status: newStatus } : a)),
           );
         }
-      } catch { /* continue */ }
+      } catch {
+        /* continue */
+      }
     }
     toast.success(`${successCount} application(s) marked as ${newStatus}`);
     setSelectedIds([]);
   };
 
   const exportCSV = () => {
-    const headers = ["Name", "Email", "Mobile", "Applied For", "Status", "Date", "Location", "Gender", "Nationality"];
+    const headers = [
+      "Name",
+      "Email",
+      "Mobile",
+      "Applied For",
+      "Status",
+      "Date",
+      "Location",
+      "Gender",
+      "Nationality",
+    ];
     const rows = filteredApps.map((a) => [
       a.name,
       a.email,
@@ -186,7 +198,9 @@ export default function JobPortalPage() {
       a.nationality || "",
     ]);
     const csv = [headers, ...rows]
-      .map((row) => row.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(","))
+      .map((row) =>
+        row.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(","),
+      )
       .join("\n");
     const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
@@ -263,8 +277,11 @@ export default function JobPortalPage() {
               Delete Application
             </h3>
             <p className="text-gray-500 text-sm text-center">
-              Are you sure you want to delete {deleteConfirmId === "bulk" ? "these selected applications" : "this application"}? This action
-              cannot be undone.
+              Are you sure you want to delete{" "}
+              {deleteConfirmId === "bulk"
+                ? "these selected applications"
+                : "this application"}
+              ? This action cannot be undone.
             </p>
           </div>
           <div className="flex bg-gray-50 border-t border-gray-100">
@@ -288,7 +305,7 @@ export default function JobPortalPage() {
   };
 
   const uniquePositions = Array.from(
-    new Set(applications.map((a) => a.appliedFor?.designation).filter(Boolean))
+    new Set(applications.map((a) => a.appliedFor?.designation).filter(Boolean)),
   ) as string[];
 
   const hasGeneralApps = applications.some((a) => !a.appliedFor?.designation);
@@ -298,7 +315,9 @@ export default function JobPortalPage() {
       const matchesSearch =
         app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         app.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        app.appliedFor?.designation?.toLowerCase().includes(searchTerm.toLowerCase());
+        app.appliedFor?.designation
+          ?.toLowerCase()
+          .includes(searchTerm.toLowerCase());
 
       const appDate = new Date(app.createdAt);
       appDate.setHours(0, 0, 0, 0);
@@ -313,22 +332,50 @@ export default function JobPortalPage() {
           ? !app.appliedFor?.designation
           : app.appliedFor?.designation === filterPosition);
 
-      if (activeTab === "Selected") return matchesSearch && matchesDate && matchesPosition && app.status === "Selected";
-      if (activeTab === "Shortlisted") return matchesSearch && matchesDate && matchesPosition && app.status === "Shortlisted";
-      if (activeTab === "Rejected") return matchesSearch && matchesDate && matchesPosition && app.status === "Rejected";
+      if (activeTab === "Selected")
+        return (
+          matchesSearch &&
+          matchesDate &&
+          matchesPosition &&
+          app.status === "Selected"
+        );
+      if (activeTab === "Shortlisted")
+        return (
+          matchesSearch &&
+          matchesDate &&
+          matchesPosition &&
+          app.status === "Shortlisted"
+        );
+      if (activeTab === "Rejected")
+        return (
+          matchesSearch &&
+          matchesDate &&
+          matchesPosition &&
+          app.status === "Rejected"
+        );
       return matchesSearch && matchesDate && matchesPosition;
     })
     .sort((a, b) => {
-      if (sortBy === "date-asc") return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-      if (sortBy === "date-desc") return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      if (sortBy === "date-asc")
+        return (
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        );
+      if (sortBy === "date-desc")
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
       if (sortBy === "name-asc") return a.name.localeCompare(b.name);
       if (sortBy === "name-desc") return b.name.localeCompare(a.name);
-      if (sortBy === "status") return (a.status || "").localeCompare(b.status || "");
+      if (sortBy === "status")
+        return (a.status || "").localeCompare(b.status || "");
       return 0;
     });
 
   const totalPages = Math.ceil(filteredApps.length / PAGE_SIZE);
-  const paginatedApps = filteredApps.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  const paginatedApps = filteredApps.slice(
+    page * PAGE_SIZE,
+    (page + 1) * PAGE_SIZE,
+  );
 
   if (selectedApp) {
     return (
@@ -425,8 +472,6 @@ export default function JobPortalPage() {
           <div className="max-w-4xl mx-auto bg-white rounded-sm shadow-sm border border-gray-100 overflow-hidden print-card">
             {/* Professional Clean Header */}
             <div className="p-8 border-b border-gray-50 flex flex-col md:flex-row items-start md:items-center gap-6 relative">
-
-
               <div className="relative z-10 flex-1">
                 <div className="inline-block px-2.5 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider rounded-sm mb-2">
                   Job Applicant Profile
@@ -461,12 +506,18 @@ export default function JobPortalPage() {
                 </label>
                 <select
                   value={selectedApp.status || "Applied"}
-                  onChange={(e) => updateStatus(selectedApp._id, e.target.value)}
+                  onChange={(e) =>
+                    updateStatus(selectedApp._id, e.target.value)
+                  }
                   className={`px-4 py-2.5 rounded-sm font-bold text-sm border outline-none appearance-none cursor-pointer pr-10 transition-colors
-                    ${selectedApp.status === "Selected" ? "bg-green-50 text-green-700 border-green-200" :
-                      selectedApp.status === "Rejected" ? "bg-red-50 text-red-700 border-red-200" :
-                      selectedApp.status === "Shortlisted" ? "bg-yellow-50 text-yellow-700 border-yellow-200" :
-                      "bg-blue-50 text-blue-700 border-blue-200"
+                    ${
+                      selectedApp.status === "Selected"
+                        ? "bg-green-50 text-green-700 border-green-200"
+                        : selectedApp.status === "Rejected"
+                          ? "bg-red-50 text-red-700 border-red-200"
+                          : selectedApp.status === "Shortlisted"
+                            ? "bg-yellow-50 text-yellow-700 border-yellow-200"
+                            : "bg-blue-50 text-blue-700 border-blue-200"
                     }
                   `}
                   style={{
@@ -617,10 +668,14 @@ export default function JobPortalPage() {
           <div className="flex items-center gap-1">
             <button
               onClick={() => {
-                const visibleIds = filteredApps.map(a => a._id);
-                const allSelected = visibleIds.length > 0 && visibleIds.every(id => selectedIds.includes(id));
+                const visibleIds = filteredApps.map((a) => a._id);
+                const allSelected =
+                  visibleIds.length > 0 &&
+                  visibleIds.every((id) => selectedIds.includes(id));
                 if (allSelected && visibleIds.length > 0) {
-                  setSelectedIds(prev => prev.filter(id => !visibleIds.includes(id)));
+                  setSelectedIds((prev) =>
+                    prev.filter((id) => !visibleIds.includes(id)),
+                  );
                 } else {
                   const newIds = new Set([...selectedIds, ...visibleIds]);
                   setSelectedIds(Array.from(newIds));
@@ -655,17 +710,26 @@ export default function JobPortalPage() {
                 </button>
                 <select
                   defaultValue=""
-                  onChange={(e) => { if (e.target.value) { bulkUpdateStatus(e.target.value); e.target.value = ""; } }}
+                  onChange={(e) => {
+                    if (e.target.value) {
+                      bulkUpdateStatus(e.target.value);
+                      e.target.value = "";
+                    }
+                  }}
                   className="text-xs font-semibold border border-gray-200 rounded-sm px-2 py-1.5 outline-none bg-white text-gray-600 cursor-pointer"
                   title="Bulk update status"
                 >
-                  <option value="" disabled>Set status…</option>
+                  <option value="" disabled>
+                    Set status…
+                  </option>
                   <option value="Applied">Applied</option>
                   <option value="Shortlisted">Shortlisted</option>
                   <option value="Selected">Selected</option>
                   <option value="Rejected">Rejected</option>
                 </select>
-                <span className="text-xs text-blue-600 font-semibold">{selectedIds.length} selected</span>
+                <span className="text-xs text-blue-600 font-semibold">
+                  {selectedIds.length} selected
+                </span>
               </>
             )}
           </div>
@@ -678,7 +742,10 @@ export default function JobPortalPage() {
               type="text"
               placeholder="Search by name, email, position…"
               value={searchTerm}
-              onChange={(e) => { setSearchTerm(e.target.value); setPage(0); }}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setPage(0);
+              }}
               className="w-full pl-11 pr-4 py-2.5 bg-gray-100 focus:bg-white border-transparent focus:border-gray-200 border rounded-sm outline-none text-sm transition-all"
             />
           </div>
@@ -690,7 +757,10 @@ export default function JobPortalPage() {
             <input
               type="date"
               value={dateFrom}
-              onChange={(e) => { setDateFrom(e.target.value); setPage(0); }}
+              onChange={(e) => {
+                setDateFrom(e.target.value);
+                setPage(0);
+              }}
               title="From date"
               className="bg-transparent text-xs text-gray-600 outline-none w-[110px] cursor-pointer"
             />
@@ -698,13 +768,20 @@ export default function JobPortalPage() {
             <input
               type="date"
               value={dateTo}
-              onChange={(e) => { setDateTo(e.target.value); setPage(0); }}
+              onChange={(e) => {
+                setDateTo(e.target.value);
+                setPage(0);
+              }}
               title="To date"
               className="bg-transparent text-xs text-gray-600 outline-none w-[110px] cursor-pointer"
             />
             {(dateFrom || dateTo) && (
               <button
-                onClick={() => { setDateFrom(""); setDateTo(""); setPage(0); }}
+                onClick={() => {
+                  setDateFrom("");
+                  setDateTo("");
+                  setPage(0);
+                }}
                 className="text-gray-400 hover:text-red-500 transition-colors"
                 title="Clear date filter"
               >
@@ -730,23 +807,38 @@ export default function JobPortalPage() {
         <Filter className="w-3.5 h-3.5 text-gray-400 shrink-0" />
         <select
           value={filterPosition}
-          onChange={(e) => { setFilterPosition(e.target.value); setPage(0); }}
+          onChange={(e) => {
+            setFilterPosition(e.target.value);
+            setPage(0);
+          }}
           className="text-xs font-semibold border border-gray-200 rounded-sm px-2 py-1.5 outline-none bg-white text-gray-600 cursor-pointer max-w-[220px]"
         >
           <option value="">All Positions ({applications.length})</option>
           {uniquePositions.map((p) => (
             <option key={p} value={p}>
-              {p} ({applications.filter((a) => a.appliedFor?.designation === p).length})
+              {p} (
+              {
+                applications.filter((a) => a.appliedFor?.designation === p)
+                  .length
+              }
+              )
             </option>
           ))}
           {hasGeneralApps && (
             <option value="__general__">
-              General / No Position ({applications.filter((a) => !a.appliedFor?.designation).length})
+              General / No Position (
+              {applications.filter((a) => !a.appliedFor?.designation).length})
             </option>
           )}
         </select>
         {filterPosition && (
-          <button onClick={() => { setFilterPosition(""); setPage(0); }} className="text-gray-400 hover:text-red-500">
+          <button
+            onClick={() => {
+              setFilterPosition("");
+              setPage(0);
+            }}
+            className="text-gray-400 hover:text-red-500"
+          >
             <X className="w-3.5 h-3.5" />
           </button>
         )}
@@ -754,7 +846,10 @@ export default function JobPortalPage() {
           <ArrowUpDown className="w-3.5 h-3.5 text-gray-400" />
           <select
             value={sortBy}
-            onChange={(e) => { setSortBy(e.target.value); setPage(0); }}
+            onChange={(e) => {
+              setSortBy(e.target.value);
+              setPage(0);
+            }}
             className="text-xs font-semibold border border-gray-200 rounded-sm px-2 py-1.5 outline-none bg-white text-gray-600 cursor-pointer"
           >
             <option value="date-desc">Newest First</option>
@@ -772,7 +867,10 @@ export default function JobPortalPage() {
           icon={<Briefcase />}
           label="Primary"
           active={activeTab === "Primary"}
-          onClick={() => { setActiveTab("Primary"); setPage(0); }}
+          onClick={() => {
+            setActiveTab("Primary");
+            setPage(0);
+          }}
           count={`${applications.filter((a) => !a.isRead).length} new`}
           color="blue"
         />
@@ -780,7 +878,10 @@ export default function JobPortalPage() {
           icon={<CheckCircle2 />}
           label="Selected"
           active={activeTab === "Selected"}
-          onClick={() => { setActiveTab("Selected"); setPage(0); }}
+          onClick={() => {
+            setActiveTab("Selected");
+            setPage(0);
+          }}
           count={`${applications.filter((a) => a.status === "Selected").length} total`}
           color="green"
         />
@@ -788,7 +889,10 @@ export default function JobPortalPage() {
           icon={<Briefcase />}
           label="Shortlisted"
           active={activeTab === "Shortlisted"}
-          onClick={() => { setActiveTab("Shortlisted"); setPage(0); }}
+          onClick={() => {
+            setActiveTab("Shortlisted");
+            setPage(0);
+          }}
           count={`${applications.filter((a) => a.status === "Shortlisted").length} total`}
           color="orange"
         />
@@ -796,7 +900,10 @@ export default function JobPortalPage() {
           icon={<XCircle />}
           label="Rejected"
           active={activeTab === "Rejected"}
-          onClick={() => { setActiveTab("Rejected"); setPage(0); }}
+          onClick={() => {
+            setActiveTab("Rejected");
+            setPage(0);
+          }}
           count={`${applications.filter((a) => a.status === "Rejected").length} total`}
           color="red"
         />
@@ -856,11 +963,17 @@ export default function JobPortalPage() {
                 {/* Date and Status Badge */}
                 <div className="flex items-center gap-4 shrink-0 px-2 min-w-[100px] justify-end">
                   {app.status && app.status !== "Applied" && (
-                    <span className={`text-[10px] px-2 py-0.5 rounded-sm font-bold uppercase tracking-wider ${
-                      app.status === "Selected" ? "bg-green-100 text-green-700" :
-                      app.status === "Rejected" ? "bg-red-100 text-red-700" :
-                      app.status === "Shortlisted" ? "bg-yellow-100 text-yellow-700" : ""
-                    }`}>
+                    <span
+                      className={`text-[10px] px-2 py-0.5 rounded-sm font-bold uppercase tracking-wider ${
+                        app.status === "Selected"
+                          ? "bg-green-100 text-green-700"
+                          : app.status === "Rejected"
+                            ? "bg-red-100 text-red-700"
+                            : app.status === "Shortlisted"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : ""
+                      }`}
+                    >
                       {app.status}
                     </span>
                   )}
@@ -880,7 +993,9 @@ export default function JobPortalPage() {
       {totalPages > 1 && (
         <div className="border-t border-gray-100 px-4 py-3 flex items-center justify-between bg-white sticky bottom-0">
           <span className="text-xs text-gray-500">
-            Showing {page * PAGE_SIZE + 1}–{Math.min((page + 1) * PAGE_SIZE, filteredApps.length)} of {filteredApps.length}
+            Showing {page * PAGE_SIZE + 1}–
+            {Math.min((page + 1) * PAGE_SIZE, filteredApps.length)} of{" "}
+            {filteredApps.length}
           </span>
           <div className="flex items-center gap-1">
             <button

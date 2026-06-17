@@ -233,12 +233,14 @@ export default function AdminDashboardLayout({
   const visibleSidebarItems = !userReady
     ? []
     : isSubAdmin
-    ? sidebarItems.filter(
-        (item) => item.href && SUB_ADMIN_ALLOWED.includes(item.label),
-      )
-    : isCareerAdmin
-    ? sidebarItems.filter((item) => CAREER_ADMIN_ALLOWED.includes(item.label))
-    : sidebarItems;
+      ? sidebarItems.filter(
+          (item) => item.href && SUB_ADMIN_ALLOWED.includes(item.label),
+        )
+      : isCareerAdmin
+        ? sidebarItems.filter((item) =>
+            CAREER_ADMIN_ALLOWED.includes(item.label),
+          )
+        : sidebarItems;
 
   const isActionPage = pathname.includes("/action");
   if (isActionPage) {

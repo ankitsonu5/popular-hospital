@@ -10,7 +10,7 @@ export default function DoctorVideosPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [savingId, setSavingId] = useState<string | null>(null);
-  
+
   // Track inputs per doctor
   const [videoUrls, setVideoUrls] = useState<Record<string, string>>({});
 
@@ -22,11 +22,13 @@ export default function DoctorVideosPage() {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(`${API_URL}/cms/doctors?t=${Date.now()}`, { headers: getHeaders() });
+      const res = await fetch(`${API_URL}/cms/doctors?t=${Date.now()}`, {
+        headers: getHeaders(),
+      });
       const data = await res.json();
       const docs = Array.isArray(data) ? data : data?.doctors || [];
       setDoctors(docs);
-      
+
       const urls: Record<string, string> = {};
       docs.forEach((doc: any) => {
         urls[doc._id] = doc.youtube_video_url || "";
@@ -44,21 +46,21 @@ export default function DoctorVideosPage() {
   }, [fetchData]);
 
   const handleUrlChange = (id: string, url: string) => {
-    setVideoUrls(prev => ({ ...prev, [id]: url }));
+    setVideoUrls((prev) => ({ ...prev, [id]: url }));
   };
 
   const handleSave = async (id: string) => {
     setSavingId(id);
     try {
       const url = videoUrls[id] || "";
-      
+
       // We can use the existing PUT endpoint since it merges updates.
-      // But we must send it as JSON or FormData. The controller supports FormData if there is a file, 
-      // but if we send JSON without file, does it work? 
+      // But we must send it as JSON or FormData. The controller supports FormData if there is a file,
+      // but if we send JSON without file, does it work?
       // Let's check updateDoctor controller: it just does updates = { ...req.body }.
       // But it expects FormData because of uploadDoctor.single("image") middleware.
       // So we should send FormData.
-      
+
       const data = new FormData();
       data.append("youtube_video_url", url);
 
@@ -88,7 +90,7 @@ export default function DoctorVideosPage() {
     (d) =>
       !search ||
       d.name?.toLowerCase().includes(search.toLowerCase()) ||
-      d.speciality?.name?.toLowerCase().includes(search.toLowerCase())
+      d.speciality?.name?.toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
@@ -149,7 +151,10 @@ export default function DoctorVideosPage() {
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {filteredDoctors.map((doc, index) => (
-                  <tr key={doc._id} className="hover:bg-gray-50/50 transition-colors">
+                  <tr
+                    key={doc._id}
+                    className="hover:bg-gray-50/50 transition-colors"
+                  >
                     <td className="py-3.5 px-4 text-gray-500 text-sm font-medium">
                       {index + 1}
                     </td>
@@ -166,7 +171,9 @@ export default function DoctorVideosPage() {
                           type="text"
                           placeholder="https://youtube.com/..."
                           value={videoUrls[doc._id] || ""}
-                          onChange={(e) => handleUrlChange(doc._id, e.target.value)}
+                          onChange={(e) =>
+                            handleUrlChange(doc._id, e.target.value)
+                          }
                           className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all"
                         />
                       </div>

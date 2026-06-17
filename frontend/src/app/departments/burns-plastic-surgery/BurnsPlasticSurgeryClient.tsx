@@ -119,7 +119,10 @@ export default function BurnsPlasticSurgeryClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Department of <span className="text-[#1e3a8a]">Burns &amp; Plastic Surgery</span>
+                  Department of{" "}
+                  <span className="text-[#1e3a8a]">
+                    Burns &amp; Plastic Surgery
+                  </span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -157,7 +160,10 @@ export default function BurnsPlasticSurgeryClient() {
             {/* Right Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Burns & Plastic Surgery" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Burns & Plastic Surgery"
+                />
               </div>
             </div>
           </div>
@@ -175,7 +181,8 @@ export default function BurnsPlasticSurgeryClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Classifications of <span className="text-[#1e3a8a]">Burns</span>
+                  Classifications of{" "}
+                  <span className="text-[#1e3a8a]">Burns</span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -240,10 +247,10 @@ export default function BurnsPlasticSurgeryClient() {
               <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
                 <p>
                   Plastic surgery is a surgical speciality which involves
-                  reconstruction, restoration, or alteration of the human
-                  body. Plastic Surgery is the art of treating with aims to
-                  improve the appearance of the human body or improve the
-                  functioning of a part of the body.
+                  reconstruction, restoration, or alteration of the human body.
+                  Plastic Surgery is the art of treating with aims to improve
+                  the appearance of the human body or improve the functioning of
+                  a part of the body.
                 </p>
 
                 <div className="border-l-4 border-blue-600 pl-4 py-2 bg-blue-50/30 rounded-r-xl">
@@ -256,11 +263,10 @@ export default function BurnsPlasticSurgeryClient() {
                 </div>
 
                 <p>
-                  We work both independently and in Conjunction with many
-                  other Surgical Services including: ENT, General Surgery,
-                  Surgical Oncology, Orthopedics, Urology, Gynecology and
-                  Neurosurgery for giving comprehensive care to all the
-                  patients.
+                  We work both independently and in Conjunction with many other
+                  Surgical Services including: ENT, General Surgery, Surgical
+                  Oncology, Orthopedics, Urology, Gynecology and Neurosurgery
+                  for giving comprehensive care to all the patients.
                 </p>
               </div>
             </div>

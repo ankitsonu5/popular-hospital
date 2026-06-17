@@ -24,7 +24,10 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
   };
 
   return (
-    <section id="our-locations" className="bg-white py-16 sm:py-20 overflow-hidden">
+    <section
+      id="our-locations"
+      className="bg-white py-16 sm:py-20 overflow-hidden"
+    >
       <div className="mx-auto max-w-[1440px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 lg:px-12">
         <div className="mb-8 text-center">
           <h2 className="font-jakarta text-3xl font-black leading-tight tracking-normal text-[#1e3a8a] sm:text-4xl lg:text-5xl">
@@ -59,7 +62,11 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
                     viewBox="0 0 24 24"
                     strokeWidth={2.4}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </Link>
@@ -79,7 +86,11 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
                     viewBox="0 0 24 24"
                     strokeWidth={2.4}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m6-6-6 6 6 6" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 12H5m6-6-6 6 6 6"
+                    />
                   </svg>
                 </button>
                 <button
@@ -94,7 +105,11 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
                     viewBox="0 0 24 24"
                     strokeWidth={2.4}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 12h14m-6-6 6 6-6 6"
+                    />
                   </svg>
                 </button>
               </div>

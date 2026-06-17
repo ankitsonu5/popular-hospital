@@ -14,12 +14,14 @@ export default function GeneralMedicinePage() {
     <>
       <DynamicSchema
         pageKey="department:general-medicine"
-        fallback={<DepartmentSchema
-        name="General Medicine | Popular Hospital"
-        description="Comprehensive internal medicine services for adult health. Management of chronic conditions, infectious diseases, and preventive healthcare."
-        urlSlug="general-medicine"
-        medicalSpecialty="InfectiousDisease"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="General Medicine | Popular Hospital"
+            description="Comprehensive internal medicine services for adult health. Management of chronic conditions, infectious diseases, and preventive healthcare."
+            urlSlug="general-medicine"
+            medicalSpecialty="InfectiousDisease"
+          />
+        }
       />
       <GeneralMedicineClient />
     </>

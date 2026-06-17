@@ -124,9 +124,11 @@ function CareerList() {
       if (res.ok) {
         const updated = await res.json();
         setCareers((prev) =>
-          prev.map((c) => (c._id === item._id ? updated : c))
+          prev.map((c) => (c._id === item._id ? updated : c)),
         );
-        toast.success(`Hiring status set to ${nextState ? "Hiring" : "Closed"}`);
+        toast.success(
+          `Hiring status set to ${nextState ? "Hiring" : "Closed"}`,
+        );
       } else {
         toast.error("Failed to update status");
       }
@@ -213,7 +215,9 @@ function CareerList() {
             <h3 className="text-3xl font-extrabold text-gray-900">
               {totalPositions}
             </h3>
-            <p className="text-xs font-medium text-blue-600">Target vacancies</p>
+            <p className="text-xs font-medium text-blue-600">
+              Target vacancies
+            </p>
           </div>
           <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 border border-blue-100">
             <Briefcase className="w-6 h-6" />
@@ -245,7 +249,9 @@ function CareerList() {
             <h3 className="text-3xl font-extrabold text-gray-900">
               {closedOpenings}
             </h3>
-            <p className="text-xs font-medium text-gray-500">Filled or paused</p>
+            <p className="text-xs font-medium text-gray-500">
+              Filled or paused
+            </p>
           </div>
           <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-500 border border-gray-100">
             <XCircle className="w-6 h-6" />
@@ -494,7 +500,7 @@ function CareerList() {
                     {(appCounts[selectedCareer._id] || 0) > 0 && (
                       <Link
                         href={`/admin-dashboard/applications?position=${encodeURIComponent(
-                          selectedCareer.designation
+                          selectedCareer.designation,
                         )}`}
                         className="text-[10px] font-bold text-blue-600 hover:underline flex items-center gap-1"
                       >

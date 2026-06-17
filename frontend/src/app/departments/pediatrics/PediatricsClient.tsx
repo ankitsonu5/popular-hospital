@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Clock, Stethoscope, Baby, ShieldCheck, Activity, HeartPulse } from "lucide-react";
+import {
+  Check,
+  Clock,
+  Stethoscope,
+  Baby,
+  ShieldCheck,
+  Activity,
+  HeartPulse,
+} from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -147,7 +155,6 @@ const doctors = [
 export default function PediatricsClient() {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
-
       {/* ══════════════════════════════════════
           HERO  (unchanged layout, matching colors)
       ══════════════════════════════════════ */}
@@ -205,7 +212,10 @@ export default function PediatricsClient() {
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-10 rounded-full bg-[#1e3a8a] inline-block" />
                   <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Department of <span className="text-[#1e3a8a]">Pediatrics &amp; Neonatology</span>
+                    Department of{" "}
+                    <span className="text-[#1e3a8a]">
+                      Pediatrics &amp; Neonatology
+                    </span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -220,7 +230,9 @@ export default function PediatricsClient() {
                 </p>
 
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-8 shadow-sm">
-                  <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">“</span>
+                  <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">
+                    “
+                  </span>
                   <p className="text-gray-700 leading-relaxed text-[15px] font-semibold italic relative z-10">
                     {introParagraphs[2]}
                   </p>
@@ -235,7 +247,10 @@ export default function PediatricsClient() {
             {/* Right Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Pediatrics & Neonatology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Pediatrics & Neonatology"
+                />
               </div>
             </div>
           </div>
@@ -260,8 +275,12 @@ export default function PediatricsClient() {
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/15 text-blue-400 flex items-center justify-center border border-blue-500/25 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 shadow-sm">
                   <Icon className="w-5 h-5" />
                 </div>
-                <span className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">{value}</span>
-                <span className="text-blue-300 text-xs font-bold tracking-wider uppercase">{label}</span>
+                <span className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
+                  {value}
+                </span>
+                <span className="text-blue-300 text-xs font-bold tracking-wider uppercase">
+                  {label}
+                </span>
               </div>
             ))}
           </div>
@@ -298,8 +317,12 @@ export default function PediatricsClient() {
                   <Icon className="w-5.5 h-5.5" />
                 </div>
                 <div className="space-y-1">
-                  <h3 className="font-extrabold text-[#0b1c43] text-sm group-hover:text-[#1e3a8a] transition-colors duration-200">{title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed font-semibold">{desc}</p>
+                  <h3 className="font-extrabold text-[#0b1c43] text-sm group-hover:text-[#1e3a8a] transition-colors duration-200">
+                    {title}
+                  </h3>
+                  <p className="text-gray-500 text-xs leading-relaxed font-semibold">
+                    {desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -316,7 +339,6 @@ export default function PediatricsClient() {
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
-
             {/* Left – Image */}
             <div className="lg:col-span-5 flex items-center justify-center">
               <div className="relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white/10 hover:border-white/20 transition-all duration-500 group lg:self-center">
@@ -343,11 +365,12 @@ export default function PediatricsClient() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1.5 h-8 rounded-full bg-blue-400 inline-block" />
                 <h2 className="text-3xl font-extrabold text-white font-heading tracking-tight">
-                  Pediatric Indoor <span className="text-blue-400">Services</span>
+                  Pediatric Indoor{" "}
+                  <span className="text-blue-400">Services</span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-700 to-transparent mb-8" />
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {indoorServices.map((item, idx) => (
                   <div
@@ -364,7 +387,6 @@ export default function PediatricsClient() {
                 ))}
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -374,7 +396,6 @@ export default function PediatricsClient() {
       ══════════════════════════════════════ */}
       <section className="py-20 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
-
           {/* Heading */}
           <div className="mb-12">
             <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
@@ -390,7 +411,6 @@ export default function PediatricsClient() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-
             {/* Left – Highlight Cards */}
             <div className="lg:col-span-7 flex flex-col justify-center space-y-4">
               {highlights.map(({ title, desc, icon: Icon }, idx) => (
@@ -402,8 +422,12 @@ export default function PediatricsClient() {
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#0b1c43] text-sm">{title}</h3>
-                    <p className="text-gray-500 text-xs leading-relaxed font-semibold">{desc}</p>
+                    <h3 className="font-extrabold text-[#0b1c43] text-sm">
+                      {title}
+                    </h3>
+                    <p className="text-gray-500 text-xs leading-relaxed font-semibold">
+                      {desc}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -426,11 +450,9 @@ export default function PediatricsClient() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
-
     </main>
   );
 }

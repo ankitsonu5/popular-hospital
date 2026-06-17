@@ -5,7 +5,7 @@ export default function HospitalSchema() {
     addressLocality: "Varanasi",
     addressRegion: "Uttar Pradesh",
     postalCode: "221004",
-    addressCountry: "IN"
+    addressCountry: "IN",
   };
 
   const schema = {
@@ -21,11 +21,12 @@ export default function HospitalSchema() {
           "@type": "SearchAction",
           target: {
             "@type": "EntryPoint",
-            urlTemplate: "https://www.popularhospital.in/search?q={search_term_string}"
+            urlTemplate:
+              "https://www.popularhospital.in/search?q={search_term_string}",
           },
-          "query-input": "required name=search_term_string"
+          "query-input": "required name=search_term_string",
         },
-        inLanguage: ["en", "hi"]
+        inLanguage: ["en", "hi"],
       },
       {
         "@type": "Organization",
@@ -38,14 +39,14 @@ export default function HospitalSchema() {
           "@id": "https://www.popularhospital.in/#logo",
           url: "https://www.popularhospital.in/logo.png",
           contentUrl: "https://www.popularhospital.in/logo.png",
-          caption: "Popular Hospital Logo"
+          caption: "Popular Hospital Logo",
         },
         image: { "@id": "https://www.popularhospital.in/#logo" },
         foundingDate: "1996",
         founder: {
           "@type": "Person",
           name: "Dr. A.K. Kaushik",
-          jobTitle: "Chairman"
+          jobTitle: "Chairman",
         },
         contactPoint: [
           {
@@ -53,22 +54,22 @@ export default function HospitalSchema() {
             telephone: "+91-7800001895",
             contactType: "customer support",
             areaServed: "IN",
-            availableLanguage: ["English", "Hindi"]
+            availableLanguage: ["English", "Hindi"],
           },
           {
             "@type": "ContactPoint",
             telephone: "+91-7800001896",
             contactType: "emergency",
             areaServed: "IN",
-            availableLanguage: ["English", "Hindi"]
-          }
+            availableLanguage: ["English", "Hindi"],
+          },
         ],
         sameAs: [
           "https://www.facebook.com/popularhospitals",
           "https://www.instagram.com/popularhospitals",
           "https://www.linkedin.com/company/popularhospitals",
-          "https://www.youtube.com/@popularhospitals"
-        ]
+          "https://www.youtube.com/@popularhospitals",
+        ],
       },
       {
         "@type": "Hospital",
@@ -93,7 +94,13 @@ export default function HospitalSchema() {
         faxNumber: "+91-7800001896",
         priceRange: "$$",
         currenciesAccepted: "INR",
-        paymentAccepted: ["Cash", "UPI", "Credit Card", "Debit Card", "Net Banking"],
+        paymentAccepted: [
+          "Cash",
+          "UPI",
+          "Credit Card",
+          "Debit Card",
+          "Net Banking",
+        ],
         numberOfBeds: 450,
         foundingDate: "1996",
         isAcceptingPatients: true,
@@ -108,7 +115,7 @@ export default function HospitalSchema() {
         geo: {
           "@type": "GeoCoordinates",
           latitude: 25.2927719,
-          longitude: 82.970505
+          longitude: 82.970505,
         },
         hasMap:
           "https://www.google.com/maps/place/Popular+Hospital+Varanasi/@25.2932666,82.9691746,17z/data=!4m6!3m5!1s0x398e326d171ec8b9:0xf996b29293133cb9!8m2!3d25.2927719!4d82.970505!16s%2Fg%2F1hm46979f",
@@ -118,15 +125,23 @@ export default function HospitalSchema() {
           { "@type": "State", name: "Bihar" },
           { "@type": "State", name: "Jharkhand" },
           { "@type": "State", name: "Chhattisgarh" },
-          { "@type": "State", name: "Madhya Pradesh" }
+          { "@type": "State", name: "Madhya Pradesh" },
         ],
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ],
             opens: "00:00",
-            closes: "23:59"
-          }
+            closes: "23:59",
+          },
         ],
         contactPoint: [
           {
@@ -134,15 +149,15 @@ export default function HospitalSchema() {
             telephone: "+91-7800001895",
             contactType: "customer support",
             areaServed: "IN",
-            availableLanguage: ["English", "Hindi"]
+            availableLanguage: ["English", "Hindi"],
           },
           {
             "@type": "ContactPoint",
             telephone: "+91-7800001896",
             contactType: "emergency",
             areaServed: "IN",
-            availableLanguage: ["English", "Hindi"]
-          }
+            availableLanguage: ["English", "Hindi"],
+          },
         ],
         medicalSpecialty: [
           "Cardiovascular",
@@ -162,10 +177,14 @@ export default function HospitalSchema() {
           "DietNutrition",
           "Emergency",
           "Surgical",
-          "Endocrine"
+          "Endocrine",
         ],
         availableService: [
-          { "@type": "Service", name: "Emergency And Trauma Care", serviceType: "24/7 Emergency Care" },
+          {
+            "@type": "Service",
+            name: "Emergency And Trauma Care",
+            serviceType: "24/7 Emergency Care",
+          },
           { "@type": "Service", name: "ICU & Critical Care" },
           { "@type": "Service", name: "Diagnostics & Imaging" },
           { "@type": "Service", name: "Blood Bank" },
@@ -174,44 +193,128 @@ export default function HospitalSchema() {
           { "@type": "Service", name: "Pharmacy" },
           { "@type": "Service", name: "Pathological Services" },
           { "@type": "Service", name: "Radiological Services" },
-          { "@type": "Service", name: "Home Care Services" }
+          { "@type": "Service", name: "Home Care Services" },
         ],
         department: [
-          { name: "Cardiology Department", url: "https://www.popularhospital.in/departments/cardiology" },
-          { name: "CTVS Department", url: "https://www.popularhospital.in/departments/ctvs" },
-          { name: "Neurosurgery Department", url: "https://www.popularhospital.in/departments/neurosurgery" },
-          { name: "Gastroenterology Department", url: "https://www.popularhospital.in/departments/gastroenterology" },
-          { name: "Nephrology Department", url: "https://www.popularhospital.in/departments/nephrology" },
-          { name: "Oncology Department", url: "https://www.popularhospital.in/departments/oncology" },
-          { name: "Urology Department", url: "https://www.popularhospital.in/departments/urology" },
-          { name: "Burns & Plastic Surgery", url: "https://www.popularhospital.in/departments/burns-plastic-surgery" },
-          { name: "Interventional Radiology", url: "https://www.popularhospital.in/departments/interventional-radiology" },
-          { name: "Pediatric Surgery", url: "https://www.popularhospital.in/departments/pediatric-surgery" },
-          { name: "Pediatric Cardiology", url: "https://www.popularhospital.in/departments/pediatric-cardiology" },
-          { name: "Orthopedics & Joint Replacement", url: "https://www.popularhospital.in/departments/orthopedics" },
-          { name: "General Medicine", url: "https://www.popularhospital.in/departments/general-medicine" },
-          { name: "Laparoscopy & General Surgery", url: "https://www.popularhospital.in/departments/general-surgery" },
-          { name: "Obstetrics & Gynaecology", url: "https://www.popularhospital.in/departments/gynaecology" },
-          { name: "Pediatrics & Neonatology", url: "https://www.popularhospital.in/departments/pediatrics" },
-          { name: "IVF & Fertility", url: "https://www.popularhospital.in/departments/ivf-fertility" },
-          { name: "ENT Department", url: "https://www.popularhospital.in/departments/ent" },
-          { name: "Ophthalmology", url: "https://www.popularhospital.in/departments/ophthalmology" },
-          { name: "Dental Department", url: "https://www.popularhospital.in/departments/dental" },
-          { name: "Respiratory Medicine", url: "https://www.popularhospital.in/departments/respiratory" },
-          { name: "Pain Management", url: "https://www.popularhospital.in/departments/pain-management" },
-          { name: "Psychiatry Department", url: "https://www.popularhospital.in/departments/psychiatry" },
-          { name: "Dietetics & Nutrition", url: "https://www.popularhospital.in/departments/dietetics-nutrition" },
-          { name: "Advanced Diabetic Foot Unit", url: "https://www.popularhospital.in/departments/diabetic-foot" },
-          { name: "Radiology Department", url: "https://www.popularhospital.in/departments/radiology" },
-          { name: "Pathology Department", url: "https://www.popularhospital.in/departments/pathology" },
-          { name: "Laboratory Medicine", url: "https://www.popularhospital.in/departments/laboratory-medicine" },
+          {
+            name: "Cardiology Department",
+            url: "https://www.popularhospital.in/departments/cardiology",
+          },
+          {
+            name: "CTVS Department",
+            url: "https://www.popularhospital.in/departments/ctvs",
+          },
+          {
+            name: "Neurosurgery Department",
+            url: "https://www.popularhospital.in/departments/neurosurgery",
+          },
+          {
+            name: "Gastroenterology Department",
+            url: "https://www.popularhospital.in/departments/gastroenterology",
+          },
+          {
+            name: "Nephrology Department",
+            url: "https://www.popularhospital.in/departments/nephrology",
+          },
+          {
+            name: "Oncology Department",
+            url: "https://www.popularhospital.in/departments/oncology",
+          },
+          {
+            name: "Urology Department",
+            url: "https://www.popularhospital.in/departments/urology",
+          },
+          {
+            name: "Burns & Plastic Surgery",
+            url: "https://www.popularhospital.in/departments/burns-plastic-surgery",
+          },
+          {
+            name: "Interventional Radiology",
+            url: "https://www.popularhospital.in/departments/interventional-radiology",
+          },
+          {
+            name: "Pediatric Surgery",
+            url: "https://www.popularhospital.in/departments/pediatric-surgery",
+          },
+          {
+            name: "Pediatric Cardiology",
+            url: "https://www.popularhospital.in/departments/pediatric-cardiology",
+          },
+          {
+            name: "Orthopedics & Joint Replacement",
+            url: "https://www.popularhospital.in/departments/orthopedics",
+          },
+          {
+            name: "General Medicine",
+            url: "https://www.popularhospital.in/departments/general-medicine",
+          },
+          {
+            name: "Laparoscopy & General Surgery",
+            url: "https://www.popularhospital.in/departments/general-surgery",
+          },
+          {
+            name: "Obstetrics & Gynaecology",
+            url: "https://www.popularhospital.in/departments/gynaecology",
+          },
+          {
+            name: "Pediatrics & Neonatology",
+            url: "https://www.popularhospital.in/departments/pediatrics",
+          },
+          {
+            name: "IVF & Fertility",
+            url: "https://www.popularhospital.in/departments/ivf-fertility",
+          },
+          {
+            name: "ENT Department",
+            url: "https://www.popularhospital.in/departments/ent",
+          },
+          {
+            name: "Ophthalmology",
+            url: "https://www.popularhospital.in/departments/ophthalmology",
+          },
+          {
+            name: "Dental Department",
+            url: "https://www.popularhospital.in/departments/dental",
+          },
+          {
+            name: "Respiratory Medicine",
+            url: "https://www.popularhospital.in/departments/respiratory",
+          },
+          {
+            name: "Pain Management",
+            url: "https://www.popularhospital.in/departments/pain-management",
+          },
+          {
+            name: "Psychiatry Department",
+            url: "https://www.popularhospital.in/departments/psychiatry",
+          },
+          {
+            name: "Dietetics & Nutrition",
+            url: "https://www.popularhospital.in/departments/dietetics-nutrition",
+          },
+          {
+            name: "Advanced Diabetic Foot Unit",
+            url: "https://www.popularhospital.in/departments/diabetic-foot",
+          },
+          {
+            name: "Radiology Department",
+            url: "https://www.popularhospital.in/departments/radiology",
+          },
+          {
+            name: "Pathology Department",
+            url: "https://www.popularhospital.in/departments/pathology",
+          },
+          {
+            name: "Laboratory Medicine",
+            url: "https://www.popularhospital.in/departments/laboratory-medicine",
+          },
         ].map((dept) => ({
           "@type": "MedicalClinic",
           ...dept,
           telephone: "+91-7800001895",
           priceRange: "$$",
           image: "https://www.popularhospital.in/logo.png",
-          address: hospitalAddress
+          address: hospitalAddress,
         })),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
@@ -222,40 +325,40 @@ export default function HospitalSchema() {
               itemOffered: {
                 "@type": "Service",
                 name: "Book an Appointment",
-                url: "https://www.popularhospital.in/book-an-appointment"
-              }
+                url: "https://www.popularhospital.in/book-an-appointment",
+              },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
                 name: "Find a Doctor",
-                url: "https://www.popularhospital.in/doctors"
-              }
+                url: "https://www.popularhospital.in/doctors",
+              },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
                 name: "Health Packages",
-                url: "https://www.popularhospital.in/health-packages"
-              }
-            }
-          ]
+                url: "https://www.popularhospital.in/health-packages",
+              },
+            },
+          ],
         },
         branchOf: {
           "@type": "Organization",
-          name: "Popular Group of Hospitals"
+          name: "Popular Group of Hospitals",
         },
         sameAs: [
           "https://www.popularhospital.in/",
           "https://www.facebook.com/popularhospitals",
           "https://www.instagram.com/popularhospitals",
           "https://www.linkedin.com/company/popularhospitals",
-          "https://www.youtube.com/@popularhospitals"
-        ]
-      }
-    ]
+          "https://www.youtube.com/@popularhospitals",
+        ],
+      },
+    ],
   };
 
   return (

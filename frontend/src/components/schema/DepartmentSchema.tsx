@@ -5,7 +5,7 @@ interface DepartmentSchemaProps {
   medicalSpecialty?: string;
 }
 
-export default function DepartmentSchema({ 
+export default function DepartmentSchema({
   name,
   description,
   urlSlug,

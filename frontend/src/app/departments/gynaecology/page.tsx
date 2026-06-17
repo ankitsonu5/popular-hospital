@@ -14,12 +14,14 @@ export default function GynaecologyPage() {
     <>
       <DynamicSchema
         pageKey="department:gynaecology"
-        fallback={<DepartmentSchema
-        name="Obstetrics & Gynaecology | Popular Hospital"
-        description="Comprehensive women's health care including maternity, high-risk pregnancy, infertility treatment, and advanced gynaecological surgeries."
-        urlSlug="gynaecology"
-        medicalSpecialty="Gynecologic"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Obstetrics & Gynaecology | Popular Hospital"
+            description="Comprehensive women's health care including maternity, high-risk pregnancy, infertility treatment, and advanced gynaecological surgeries."
+            urlSlug="gynaecology"
+            medicalSpecialty="Gynecologic"
+          />
+        }
       />
       <GynaecologyClient />
     </>

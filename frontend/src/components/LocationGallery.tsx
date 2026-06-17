@@ -25,14 +25,14 @@ export function LocationGallery({ images, name }: LocationGalleryProps) {
         <div className="pointer-events-none absolute -inset-3 -z-10 rounded-[28px] bg-gradient-to-br from-[#1e3a8a]/12 via-white to-[#E85222]/10" />
 
         <div className="relative h-[300px] w-full overflow-hidden rounded-xl bg-slate-100 sm:h-[390px] lg:h-[430px]">
-        <Image
-          src={getImageUrl(selectedImage)}
-          alt={name}
-          fill
-          className="object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          priority
-        />
+          <Image
+            src={getImageUrl(selectedImage)}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority
+          />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b1c43]/25 via-transparent to-transparent" />
         </div>
 

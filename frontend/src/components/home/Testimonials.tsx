@@ -28,12 +28,10 @@ function TestimonialCard({
   onOpen: (story: PatientStory) => void;
 }) {
   const shouldUseVideoPreview =
-    (index === 2 || index === 3) && getVideoPlatform(story.videoUrl) === "direct";
+    (index === 2 || index === 3) &&
+    getVideoPlatform(story.videoUrl) === "direct";
   const thumbnailUrl = useHomeThumbnail
-    ? getHomeStoryThumbnailUrl(
-        story.homeThumbnailUrl,
-        story.videoUrl,
-      )
+    ? getHomeStoryThumbnailUrl(story.homeThumbnailUrl, story.videoUrl)
     : getStoryThumbnailUrl(story.thumbnailUrl, story.videoUrl);
   const title = story.title || getPatientStoryLabel(index);
 
@@ -71,9 +69,7 @@ function TestimonialCard({
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-white/10 text-white backdrop-blur-[2px] transition-all group-hover:scale-110 group-hover:bg-white/20 sm:h-10 sm:w-10"
-        >
+        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-white/10 text-white backdrop-blur-[2px] transition-all group-hover:scale-110 group-hover:bg-white/20 sm:h-10 sm:w-10">
           <svg
             className="ml-0.5 h-4 w-4 text-white"
             fill="currentColor"

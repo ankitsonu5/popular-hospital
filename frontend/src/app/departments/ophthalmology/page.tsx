@@ -14,12 +14,14 @@ export default function OphthalmologyPage() {
     <>
       <DynamicSchema
         pageKey="department:ophthalmology"
-        fallback={<DepartmentSchema
-        name="Ophthalmology | Popular Hospital"
-        description="Advanced eye care center providing comprehensive diagnostic and surgical services including Cataract surgery, Glaucoma treatment, and specialized eye care for all age groups."
-        urlSlug="ophthalmology"
-        medicalSpecialty="Optometric"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Ophthalmology | Popular Hospital"
+            description="Advanced eye care center providing comprehensive diagnostic and surgical services including Cataract surgery, Glaucoma treatment, and specialized eye care for all age groups."
+            urlSlug="ophthalmology"
+            medicalSpecialty="Optometric"
+          />
+        }
       />
       <OphthalmologyClient />
     </>

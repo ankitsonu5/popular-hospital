@@ -94,7 +94,9 @@ const CheckItem = ({ text }: { text: string }) => (
     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-[#1e3a8a] border border-blue-100 shadow-inner">
       <Check className="h-3.5 w-3.5" />
     </span>
-    <span className="text-gray-700 text-xs sm:text-sm font-bold leading-relaxed">{text}</span>
+    <span className="text-gray-700 text-xs sm:text-sm font-bold leading-relaxed">
+      {text}
+    </span>
   </div>
 );
 
@@ -151,20 +153,25 @@ export default function ENTClient() {
               <SectionHeader title="Department of" highlight="ENT" />
               <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
                 <p>
-                  The Department of ENT at Popular Hospital provides a wide range of surgical as well
-                  as medical services for the disorders related to ear, nose & throat. The highly skilled
-                  team of ENT specialists uses the latest equipments and technologies to perform endoscopic
-                  nasal surgeries, ear surgeries, and all types of routine & complex treatments.
+                  The Department of ENT at Popular Hospital provides a wide
+                  range of surgical as well as medical services for the
+                  disorders related to ear, nose & throat. The highly skilled
+                  team of ENT specialists uses the latest equipments and
+                  technologies to perform endoscopic nasal surgeries, ear
+                  surgeries, and all types of routine & complex treatments.
                 </p>
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
                   <p className="font-semibold text-gray-800">
-                    Supported by the latest modular operation theatres and advanced diagnostic facilities,
-                    our department ensures patients receive prompt, appropriate, and quality medical care.
+                    Supported by the latest modular operation theatres and
+                    advanced diagnostic facilities, our department ensures
+                    patients receive prompt, appropriate, and quality medical
+                    care.
                   </p>
                 </div>
                 <p>
-                  Our team specializes in treating pediatric ENT defects, voice and airway disorders, 
-                  sinus conditions, and head & neck cancers with high precision and clinical excellence.
+                  Our team specializes in treating pediatric ENT defects, voice
+                  and airway disorders, sinus conditions, and head & neck
+                  cancers with high precision and clinical excellence.
                 </p>
               </div>
             </div>
@@ -180,7 +187,9 @@ export default function ENTClient() {
           {/* Core Expertise Grid */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">Our Specializations</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
+                Our Specializations
+              </span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
                 Core <span className="text-[#1e3a8a]">Expertise</span>
               </h2>
@@ -220,15 +229,21 @@ export default function ENTClient() {
             <div className="lg:col-span-8 space-y-6">
               <SectionHeader title="Common Diseases &" highlight="Conditions" />
               <p className="text-gray-650 text-sm md:text-base font-semibold leading-relaxed">
-                We provide complete diagnostics and treatment plans for a broad range of ear, nose, and throat conditions:
+                We provide complete diagnostics and treatment plans for a broad
+                range of ear, nose, and throat conditions:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {commonDiseases.map((item, idx) => (
-                  <div key={idx} className="bg-white border border-slate-100/50 rounded-2xl p-4 shadow-sm flex items-center gap-3 hover:border-blue-100 hover:shadow-md transition-all duration-300">
+                  <div
+                    key={idx}
+                    className="bg-white border border-slate-100/50 rounded-2xl p-4 shadow-sm flex items-center gap-3 hover:border-blue-100 hover:shadow-md transition-all duration-300"
+                  >
                     <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#1e3a8a] border border-blue-100 shadow-inner">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a]" />
                     </span>
-                    <span className="text-gray-700 text-sm font-bold">{item}</span>
+                    <span className="text-gray-700 text-sm font-bold">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -245,8 +260,11 @@ export default function ENTClient() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-[#0b1c43]/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]">Clinical Diagnosis</p>
-                  Comprehensive screening and diagnostics to identify airway, hearing, or throat complications early.
+                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]">
+                    Clinical Diagnosis
+                  </p>
+                  Comprehensive screening and diagnostics to identify airway,
+                  hearing, or throat complications early.
                 </div>
               </div>
             </div>
@@ -269,17 +287,24 @@ export default function ENTClient() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-[#0b1c43]/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]">Expert Therapeutics</p>
-                  Modern microsurgical and medical interventions to restore vital sensory functions.
+                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]">
+                    Expert Therapeutics
+                  </p>
+                  Modern microsurgical and medical interventions to restore
+                  vital sensory functions.
                 </div>
               </div>
             </div>
 
             {/* Right clinical offers */}
             <div className="lg:col-span-8 space-y-6 order-1 lg:order-2">
-              <SectionHeader title="Advanced Clinical" highlight="Treatments & Services" />
+              <SectionHeader
+                title="Advanced Clinical"
+                highlight="Treatments & Services"
+              />
               <p className="text-gray-655 text-sm md:text-base font-semibold leading-relaxed">
-                Our specialists offer a range of advanced therapeutic interventions and restorative surgical procedures:
+                Our specialists offer a range of advanced therapeutic
+                interventions and restorative surgical procedures:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {whatWeOffer.map((item, idx) => (

@@ -118,7 +118,9 @@ export default function VisionMissionPage() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl xl:text-2xl font-black font-heading text-[#0b1c43] mb-8 xl:mb-6">
-            Reach Out to Us <br className="hidden md:block" />Anytime</h2>
+            Reach Out to Us <br className="hidden md:block" />
+            Anytime
+          </h2>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
             <a

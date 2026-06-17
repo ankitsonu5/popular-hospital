@@ -19,12 +19,14 @@ export default async function NeurosurgeryPage() {
     <>
       <DynamicSchema
         pageKey="department:neurosurgery"
-        fallback={<DepartmentSchema
-        name="Neurosurgery Department | Popular Hospital"
-        description="Expert surgical treatment for brain, spinal cord, and peripheral nerve disorders at Popular Hospital."
-        urlSlug="neurosurgery"
-        medicalSpecialty="Neurologic"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Neurosurgery Department | Popular Hospital"
+            description="Expert surgical treatment for brain, spinal cord, and peripheral nerve disorders at Popular Hospital."
+            urlSlug="neurosurgery"
+            medicalSpecialty="Neurologic"
+          />
+        }
       />
       <NeurosurgeryClient doctors={doctors} />
     </>

@@ -104,7 +104,8 @@ export default function OncologyClient() {
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mb-6">
-                Oncology: Clinical oncology consists of three primary disciplines:
+                Oncology: Clinical oncology consists of three primary
+                disciplines:
               </p>
 
               <div className="space-y-6 mt-6">
@@ -119,14 +120,14 @@ export default function OncologyClient() {
                     found in adult and children.
                   </p>
                 </div>
-                
+
                 <div className="border-l-4 border-blue-600 pl-5 py-1">
                   <h3 className="text-lg font-bold text-[#0b1c43] mb-1 font-heading uppercase tracking-tight">
                     Surgical Oncology
                   </h3>
                   <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                    The surgical aspect of cancer including biopsy, staging
-                    and surgical resection of tumours. Right from
+                    The surgical aspect of cancer including biopsy, staging and
+                    surgical resection of tumours. Right from
                     reconstructive/advanced surgery to minimal access surgery,
                     our highly trained surgical oncologists skilfully perform
                     complex tumour removals.
@@ -139,8 +140,7 @@ export default function OncologyClient() {
                   </h3>
                   <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
                     Radiation Oncology is an advanced branch of modern cancer
-                    treatment, which is painless, incision-less and
-                    preventive.
+                    treatment, which is painless, incision-less and preventive.
                   </p>
                 </div>
               </div>

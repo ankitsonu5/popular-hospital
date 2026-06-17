@@ -51,9 +51,7 @@ export default function InternationalPatientTabs({
               <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#E85222] text-xs font-bold text-white">
                 ✓
               </span>
-              <span className="text-sm font-medium text-gray-700">
-                {point}
-              </span>
+              <span className="text-sm font-medium text-gray-700">{point}</span>
             </div>
           ))}
         </div>

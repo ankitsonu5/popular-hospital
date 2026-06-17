@@ -14,12 +14,14 @@ export default function CTVSPage() {
     <>
       <DynamicSchema
         pageKey="department:ctvs"
-        fallback={<DepartmentSchema
-        name="CTVS Department | Popular Hospital"
-        description="Specialized Cardiothoracic & Vascular Surgery (CTVS) including Bypass (CABG), Valve Replacement, and Aortic Surgery."
-        urlSlug="ctvs"
-        medicalSpecialty="Cardiovascular"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="CTVS Department | Popular Hospital"
+            description="Specialized Cardiothoracic & Vascular Surgery (CTVS) including Bypass (CABG), Valve Replacement, and Aortic Surgery."
+            urlSlug="ctvs"
+            medicalSpecialty="Cardiovascular"
+          />
+        }
       />
       <CTVSClient />
     </>

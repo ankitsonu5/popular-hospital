@@ -27,7 +27,8 @@ export const cmsAuth = async (req, res, next) => {
       }
       const now = new Date();
       const sessionToken = decoded.sessionToken;
-      const hasValid = Array.isArray(admin.activeSessions) &&
+      const hasValid =
+        Array.isArray(admin.activeSessions) &&
         admin.activeSessions.some(
           (s) => s.token === sessionToken && s.expires > now,
         );

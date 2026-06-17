@@ -3,7 +3,21 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, ClipboardCheck, Activity, Shield, Users, Stethoscope, Droplet, Wind, Moon, Dna, HeartPulse, GraduationCap, ArrowRight } from "lucide-react";
+import {
+  Check,
+  ClipboardCheck,
+  Activity,
+  Shield,
+  Users,
+  Stethoscope,
+  Droplet,
+  Wind,
+  Moon,
+  Dna,
+  HeartPulse,
+  GraduationCap,
+  ArrowRight,
+} from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -184,7 +198,8 @@ export default function GeneralMedicineClient() {
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-10 rounded-full bg-[#1e3a8a] inline-block" />
                   <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Department of <span className="text-[#1e3a8a]">General Medicine</span>
+                    Department of{" "}
+                    <span className="text-[#1e3a8a]">General Medicine</span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -192,14 +207,25 @@ export default function GeneralMedicineClient() {
 
               <div className="space-y-6">
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-8 shadow-sm">
-                  <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">“</span>
+                  <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">
+                    “
+                  </span>
                   <p className="text-gray-700 leading-relaxed text-base md:text-[15.5px] font-semibold italic relative z-10">
-                    The department of Medicine initially covered all specialties till super-specialties like Gastroenterology and Nephrology were created, to which Neurology was added and are now working as full-fledged departments.
+                    The department of Medicine initially covered all specialties
+                    till super-specialties like Gastroenterology and Nephrology
+                    were created, to which Neurology was added and are now
+                    working as full-fledged departments.
                   </p>
                 </div>
 
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium text-justify">
-                  The department continues to have specialties such as Oncology, Respiratory and Sleep Medicine and Endocrinology. It has consultants who are capable of diagnosing and treating complicated medical problems in the fields of diabetes, rheumatology, clinical haematology, medical oncology, infectious diseases, HIV and AIDS and primary immunological disorders.
+                  The department continues to have specialties such as Oncology,
+                  Respiratory and Sleep Medicine and Endocrinology. It has
+                  consultants who are capable of diagnosing and treating
+                  complicated medical problems in the fields of diabetes,
+                  rheumatology, clinical haematology, medical oncology,
+                  infectious diseases, HIV and AIDS and primary immunological
+                  disorders.
                 </p>
               </div>
             </div>
@@ -207,7 +233,11 @@ export default function GeneralMedicineClient() {
             {/* Right Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="General Medicine" preventBackendFetch={true} />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="General Medicine"
+                  preventBackendFetch={true}
+                />
               </div>
             </div>
           </div>
@@ -232,8 +262,12 @@ export default function GeneralMedicineClient() {
                   <div className="w-12 h-12 rounded-2xl bg-blue-500/15 text-blue-400 flex items-center justify-center border border-blue-500/25 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-white font-extrabold text-sm group-hover:text-blue-300 transition-colors duration-250 mt-1">{feat.title}</h3>
-                  <p className="text-blue-200 text-xs font-medium leading-relaxed">{feat.desc}</p>
+                  <h3 className="text-white font-extrabold text-sm group-hover:text-blue-300 transition-colors duration-250 mt-1">
+                    {feat.title}
+                  </h3>
+                  <p className="text-blue-200 text-xs font-medium leading-relaxed">
+                    {feat.desc}
+                  </p>
                 </div>
               );
             })}
@@ -244,7 +278,6 @@ export default function GeneralMedicineClient() {
       {/* ═══════ MEDICAL SERVICES (INTERACTIVE TABS SYSTEM) ═══════ */}
       <section className="py-20 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-          
           {/* Header */}
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
             <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
@@ -257,7 +290,6 @@ export default function GeneralMedicineClient() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
             {/* Left — Navigation Buttons */}
             <div className="lg:col-span-4 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible gap-2 pb-4 lg:pb-0 scrollbar-none sticky top-24">
               {medicalServices.map((service) => {
@@ -273,9 +305,13 @@ export default function GeneralMedicineClient() {
                         : "bg-white hover:bg-slate-50 text-gray-700 border-slate-200 hover:border-blue-200"
                     }`}
                   >
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center border transition-colors duration-300 ${
-                      isActive ? "bg-white/20 text-white border-transparent" : "bg-blue-50 text-[#1e3a8a] border-blue-100"
-                    }`}>
+                    <div
+                      className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center border transition-colors duration-300 ${
+                        isActive
+                          ? "bg-white/20 text-white border-transparent"
+                          : "bg-blue-50 text-[#1e3a8a] border-blue-100"
+                      }`}
+                    >
                       <Icon className="w-4 h-4" />
                     </div>
                     <span className="flex-1">{service.shortTitle}</span>
@@ -300,8 +336,12 @@ export default function GeneralMedicineClient() {
                           <Icon className="w-7 h-7" />
                         </div>
                         <div>
-                          <span className="text-blue-500 text-xs font-bold uppercase tracking-wider block">Specialty Service</span>
-                          <h3 className="text-xl md:text-2xl font-extrabold text-[#0b1c43] tracking-tight">{service.title}</h3>
+                          <span className="text-blue-500 text-xs font-bold uppercase tracking-wider block">
+                            Specialty Service
+                          </span>
+                          <h3 className="text-xl md:text-2xl font-extrabold text-[#0b1c43] tracking-tight">
+                            {service.title}
+                          </h3>
                         </div>
                       </div>
 
@@ -313,7 +353,9 @@ export default function GeneralMedicineClient() {
                     <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap gap-4 items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Check className="w-4 h-4 text-green-500" />
-                        <span className="text-xs text-gray-500 font-bold uppercase tracking-wider">Supervised Clinical Care</span>
+                        <span className="text-xs text-gray-500 font-bold uppercase tracking-wider">
+                          Supervised Clinical Care
+                        </span>
                       </div>
                       <Link
                         href="/book"
@@ -327,7 +369,6 @@ export default function GeneralMedicineClient() {
                 );
               })}
             </div>
-
           </div>
         </div>
       </section>

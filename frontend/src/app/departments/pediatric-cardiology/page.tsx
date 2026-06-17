@@ -14,12 +14,14 @@ export default function PediatricCardiologyPage() {
     <>
       <DynamicSchema
         pageKey="department:pediatric-cardiology"
-        fallback={<DepartmentSchema
-        name="Pediatric Cardiology | Popular Hospital"
-        description="Specialized pediatric cardiology care for children. Dedicated Pediatric Cardiologists and support ensuring gentle, safe care."
-        urlSlug="pediatric-cardiology"
-        medicalSpecialty="Pediatric"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Pediatric Cardiology | Popular Hospital"
+            description="Specialized pediatric cardiology care for children. Dedicated Pediatric Cardiologists and support ensuring gentle, safe care."
+            urlSlug="pediatric-cardiology"
+            medicalSpecialty="Pediatric"
+          />
+        }
       />
       <PediatricCardiologyClient />
     </>

@@ -12,7 +12,7 @@ export type ServiceSection = {
   imgAlt?: string;
   imageClassName?: string;
   sideContent?: ReactNode;
-  imagePosition?: 'left' | 'right';
+  imagePosition?: "left" | "right";
 };
 
 type ServiceDetailPageProps = {
@@ -113,9 +113,13 @@ export function ServiceDetailPage({
         <div className="relative mx-auto w-full max-w-[1366px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-8 lg:gap-10">
             {sections.map((section, idx) => {
-              const showSideContent = Boolean(section.image || section.sideContent);
+              const showSideContent = Boolean(
+                section.image || section.sideContent,
+              );
               const isEven = idx % 2 === 0;
-              const imageOnLeft = section.imagePosition ? section.imagePosition === 'left' : isEven;
+              const imageOnLeft = section.imagePosition
+                ? section.imagePosition === "left"
+                : isEven;
 
               return (
                 <article
@@ -161,7 +165,8 @@ export function ServiceDetailPage({
                           <div className="relative w-full">
                             <div
                               className={`group relative h-full w-full overflow-hidden rounded-[1.35rem] border border-white ${
-                                section.imageClassName || "min-h-[260px] md:min-h-[340px] lg:min-h-full lg:h-full"
+                                section.imageClassName ||
+                                "min-h-[260px] md:min-h-[340px] lg:min-h-full lg:h-full"
                               } ${
                                 isEven
                                   ? "rounded-tl-[8rem] rounded-br-[8rem] rounded-tr-[1rem] rounded-bl-[1rem]"

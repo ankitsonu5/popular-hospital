@@ -59,11 +59,7 @@ export default function LayoutShell({
     pathname.startsWith("/blog/") && pathname.split("/").length === 3;
 
   if (isAdminRoute) {
-    return (
-      <main className="flex-1">
-        {children}
-      </main>
-    );
+    return <main className="flex-1">{children}</main>;
   }
 
   return (

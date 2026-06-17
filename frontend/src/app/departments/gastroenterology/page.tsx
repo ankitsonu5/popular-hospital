@@ -14,12 +14,14 @@ export default function GastroenterologyPage() {
     <>
       <DynamicSchema
         pageKey="department:gastroenterology"
-        fallback={<DepartmentSchema
-        name="Gastroenterology & Hepatology | Popular Hospital"
-        description="Advanced care for digestive and liver diseases. Specializing in Endoscopy, Colonoscopy, ERCP, and GI Cancer treatment."
-        urlSlug="gastroenterology"
-        medicalSpecialty="Gastroenterologic"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Gastroenterology & Hepatology | Popular Hospital"
+            description="Advanced care for digestive and liver diseases. Specializing in Endoscopy, Colonoscopy, ERCP, and GI Cancer treatment."
+            urlSlug="gastroenterology"
+            medicalSpecialty="Gastroenterologic"
+          />
+        }
       />
       <GastroenterologyClient />
     </>

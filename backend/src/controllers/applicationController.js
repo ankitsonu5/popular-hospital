@@ -197,7 +197,7 @@ export const updateStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
-    
+
     if (!["Applied", "Shortlisted", "Selected", "Rejected"].includes(status)) {
       return res.status(400).json({ message: "Invalid status" });
     }
@@ -207,7 +207,7 @@ export const updateStatus = async (req, res) => {
       { status },
       { new: true },
     ).populate("appliedFor");
-    
+
     if (!application)
       return res.status(404).json({ message: "Application not found" });
     res.json(application);

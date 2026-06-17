@@ -29,10 +29,7 @@ async function fetchOverride(pageKey: string): Promise<unknown | null> {
 }
 
 // Async inner component — resolves DB override
-async function SchemaResolver({
-  pageKey,
-  fallback,
-}: DynamicSchemaProps) {
+async function SchemaResolver({ pageKey, fallback }: DynamicSchemaProps) {
   const override = await fetchOverride(pageKey);
 
   if (override) {

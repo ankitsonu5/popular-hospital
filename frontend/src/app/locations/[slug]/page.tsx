@@ -53,7 +53,10 @@ export default async function LocationPage({
                 className="mb-5 flex items-center gap-2 text-sm font-semibold text-slate-500"
                 aria-label="Breadcrumb"
               >
-                <Link href="/" className="hover:text-[#1e3a8a] transition-colors">
+                <Link
+                  href="/"
+                  className="hover:text-[#1e3a8a] transition-colors"
+                >
                   Home
                 </Link>
                 <span className="text-slate-300">/</span>
@@ -85,35 +88,35 @@ export default async function LocationPage({
                 <div className="group relative overflow-hidden rounded-xl border border-[#1e3a8a]/15 bg-gradient-to-r from-[#f8fafc] to-white p-4 shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
                   <div className="absolute inset-y-0 left-0 w-1 bg-[#1e3a8a]" />
                   <div className="flex items-start gap-4 pl-1">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white text-[#1e3a8a] shadow-[0_8px_20px_rgba(30,58,138,0.10)] ring-1 ring-[#1e3a8a]/10">
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="min-w-0">
-                    <h2 className="mb-1.5 text-xs font-black uppercase tracking-[0.18em] text-[#1e3a8a]">
-                      Address
-                    </h2>
-                    <p className="text-sm font-semibold leading-6 text-slate-700">
-                      {location.address}
-                    </p>
-                  </div>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white text-[#1e3a8a] shadow-[0_8px_20px_rgba(30,58,138,0.10)] ring-1 ring-[#1e3a8a]/10">
+                      <svg
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </div>
+                    <div className="min-w-0">
+                      <h2 className="mb-1.5 text-xs font-black uppercase tracking-[0.18em] text-[#1e3a8a]">
+                        Address
+                      </h2>
+                      <p className="text-sm font-semibold leading-6 text-slate-700">
+                        {location.address}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -306,7 +309,9 @@ export default async function LocationPage({
               >
                 <div className="relative h-[145px] overflow-hidden bg-slate-100">
                   <Image
-                    src={getImageUrl(loc.image_one) || "/about-section-image.png"}
+                    src={
+                      getImageUrl(loc.image_one) || "/about-section-image.png"
+                    }
                     alt={loc.name}
                     fill
                     className="object-cover transition-transform duration-500 hover:scale-105"
@@ -321,7 +326,7 @@ export default async function LocationPage({
                   <p className="mt-1 text-[11px] font-semibold leading-4 text-slate-500 line-clamp-1">
                     {loc.city || loc.address}
                   </p>
-                  
+
                   <div className="mt-auto">
                     <span className="inline-flex h-9 items-center justify-center rounded bg-[#0b467d] px-3 font-jakarta text-xs font-black text-white transition hover:bg-[#083c72]">
                       Get Direction

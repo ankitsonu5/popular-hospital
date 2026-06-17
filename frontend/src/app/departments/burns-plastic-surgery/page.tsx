@@ -14,12 +14,14 @@ export default function PlasticSurgeryPage() {
     <>
       <DynamicSchema
         pageKey="department:burns-plastic-surgery"
-        fallback={<DepartmentSchema
-        name="Burns & Plastic Surgery | Popular Hospital"
-        description="Specialized centre for Burns Care, Reconstructive Surgery, and Cosmetic Enhancements. Advanced burn ICU and microsurgery facilities."
-        urlSlug="burns-plastic-surgery"
-        medicalSpecialty="PlasticSurgery"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Burns & Plastic Surgery | Popular Hospital"
+            description="Specialized centre for Burns Care, Reconstructive Surgery, and Cosmetic Enhancements. Advanced burn ICU and microsurgery facilities."
+            urlSlug="burns-plastic-surgery"
+            medicalSpecialty="PlasticSurgery"
+          />
+        }
       />
       <BurnsPlasticSurgeryClient />
     </>

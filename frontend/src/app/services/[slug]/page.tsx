@@ -279,37 +279,45 @@ const servicesData: Record<string, ServiceContent> = {
       {
         treatment: "Knee replacement",
         india: "Affordable surgical packages with hospital stay support",
-        otherCountries: "High implant, surgeon, and hospital charges in many western countries",
+        otherCountries:
+          "High implant, surgeon, and hospital charges in many western countries",
         note: "Package guidance can include surgery planning, admission, diagnostics, and recovery support.",
       },
       {
         treatment: "Gallbladder surgery",
         india: "Cost-effective laparoscopic surgery options",
-        otherCountries: "Emergency and elective surgery costs may be much higher abroad",
+        otherCountries:
+          "Emergency and elective surgery costs may be much higher abroad",
         note: "Patients receive estimate guidance for consultation, tests, surgery, room category, and discharge.",
       },
       {
         treatment: "Cardiac angioplasty",
-        india: "More affordable cath lab procedure planning with cardiology support",
-        otherCountries: "Stent, hospital, and cardiologist charges are often much higher",
+        india:
+          "More affordable cath lab procedure planning with cardiology support",
+        otherCountries:
+          "Stent, hospital, and cardiologist charges are often much higher",
         note: "Cost guidance can vary based on stent type, investigations, ICU stay, and overall cardiac condition.",
       },
       {
         treatment: "Cataract surgery",
         india: "Budget-friendly eye surgery options with lens choice guidance",
-        otherCountries: "Procedure and lens package costs are commonly higher abroad",
+        otherCountries:
+          "Procedure and lens package costs are commonly higher abroad",
         note: "Final estimate depends on lens category, pre-operative tests, and doctor recommendation.",
       },
       {
         treatment: "Hernia surgery",
         india: "Cost-effective open or laparoscopic surgery planning",
-        otherCountries: "Operating room, surgeon, mesh, and recovery charges can be significantly higher",
+        otherCountries:
+          "Operating room, surgeon, mesh, and recovery charges can be significantly higher",
         note: "Package guidance can include consultation, diagnostics, mesh selection, admission, and discharge planning.",
       },
       {
         treatment: "Dental implant",
-        india: "Affordable implant treatment with dental specialist consultation",
-        otherCountries: "Implant and prosthetic costs are often substantially higher",
+        india:
+          "Affordable implant treatment with dental specialist consultation",
+        otherCountries:
+          "Implant and prosthetic costs are often substantially higher",
         note: "Estimate depends on implant system, bone condition, scans, number of implants, and crown choice.",
       },
     ],
@@ -517,12 +525,13 @@ export default async function ServicePage({
       )}
       {/* ═══════ HERO ═══════ */}
       <section
-        className={`relative w-full bg-[#1a2b3c] overflow-hidden flex items-center ${hasCompactHero
-          ? isPopularFindsService
-            ? "min-h-[180px] md:min-h-[220px] py-10"
-            : "min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] py-8 md:py-10 xl:py-6 2xl:py-12"
-          : "h-[350px] md:h-[400px]"
-          }`}
+        className={`relative w-full bg-[#1a2b3c] overflow-hidden flex items-center ${
+          hasCompactHero
+            ? isPopularFindsService
+              ? "min-h-[180px] md:min-h-[220px] py-10"
+              : "min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] py-8 md:py-10 xl:py-6 2xl:py-12"
+            : "h-[350px] md:h-[400px]"
+        }`}
       >
         <div className="absolute inset-0 z-0 text-white">
           <Image
@@ -538,10 +547,11 @@ export default async function ServicePage({
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1
-              className={`font-black text-white mb-4 font-heading tracking-tight leading-tight ${hasCompactHero
-                ? "text-3xl sm:text-4xl md:text-5xl xl:text-3xl 2xl:text-5xl"
-                : "text-4xl md:text-5xl lg:text-6xl"
-                }`}
+              className={`font-black text-white mb-4 font-heading tracking-tight leading-tight ${
+                hasCompactHero
+                  ? "text-3xl sm:text-4xl md:text-5xl xl:text-3xl 2xl:text-5xl"
+                  : "text-4xl md:text-5xl lg:text-6xl"
+              }`}
             >
               {service.title}
             </h1>
@@ -550,7 +560,10 @@ export default async function ServicePage({
                 className="flex max-w-full flex-wrap items-center gap-y-1 text-sm md:text-base text-white/90 font-medium"
                 aria-label="Breadcrumb"
               >
-                <Link href="/" className="hover:text-blue-300 transition-colors">
+                <Link
+                  href="/"
+                  className="hover:text-blue-300 transition-colors"
+                >
                   Home
                 </Link>
                 <span className="mx-2 text-red-600 font-bold">|</span>
@@ -567,8 +580,9 @@ export default async function ServicePage({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Content */}
           <div
-            className={`${isPopularFindsService ? "space-y-14 sm:space-y-16" : "space-y-12"} ${hideServicesSidebar ? "lg:col-span-12" : "lg:col-span-8"
-              }`}
+            className={`${isPopularFindsService ? "space-y-14 sm:space-y-16" : "space-y-12"} ${
+              hideServicesSidebar ? "lg:col-span-12" : "lg:col-span-8"
+            }`}
           >
             {!hasCompactHero && (
               <div className="relative h-[300px] sm:h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
@@ -817,7 +831,8 @@ export default async function ServicePage({
                           <div className="relative min-h-[150px] w-32 shrink-0 overflow-hidden bg-slate-100 sm:w-40">
                             <Image
                               src={
-                                item.image || "/images/international_patients.png"
+                                item.image ||
+                                "/images/international_patients.png"
                               }
                               alt={item.title}
                               fill
@@ -856,7 +871,8 @@ export default async function ServicePage({
                               Dedicated Coordinators
                             </p>
                             <h3 className="font-jakarta text-3xl font-black leading-tight text-[#1e3a8a] sm:text-4xl">
-                              Hospital support designed around the patient journey
+                              Hospital support designed around the patient
+                              journey
                             </h3>
                             <p className="mt-5 max-w-md text-sm font-semibold leading-7 text-slate-600">
                               A single support flow helps international patients
@@ -984,16 +1000,18 @@ export default async function ServicePage({
                       <Link
                         key={sSlug}
                         href={`/services/${sSlug}`}
-                        className={`flex items-center gap-4 p-4 rounded-2xl transition-all border-2 group ${isActive
-                          ? "border-[#E85222]/40 bg-white shadow-sm ring-4 ring-[#E85222]/5"
-                          : "bg-white border-slate-50 hover:border-[#E85222]/20 hover:bg-slate-50/50"
-                          }`}
+                        className={`flex items-center gap-4 p-4 rounded-2xl transition-all border-2 group ${
+                          isActive
+                            ? "border-[#E85222]/40 bg-white shadow-sm ring-4 ring-[#E85222]/5"
+                            : "bg-white border-slate-50 hover:border-[#E85222]/20 hover:bg-slate-50/50"
+                        }`}
                       >
                         <div
-                          className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all ${isActive
-                            ? "bg-[#E85222]/10 text-[#E85222]"
-                            : "bg-slate-50 text-slate-400 group-hover:bg-[#E85222]/5 group-hover:text-[#E85222]"
-                            }`}
+                          className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all ${
+                            isActive
+                              ? "bg-[#E85222]/10 text-[#E85222]"
+                              : "bg-slate-50 text-slate-400 group-hover:bg-[#E85222]/5 group-hover:text-[#E85222]"
+                          }`}
                         >
                           <div className="w-6 h-6 flex items-center justify-center">
                             <svg
@@ -1008,10 +1026,11 @@ export default async function ServicePage({
                           </div>
                         </div>
                         <span
-                          className={`text-[15px] leading-tight transition-colors ${isActive
-                            ? "text-[#E85222] font-black"
-                            : "text-slate-700 font-bold group-hover:text-[#E85222]"
-                            }`}
+                          className={`text-[15px] leading-tight transition-colors ${
+                            isActive
+                              ? "text-[#E85222] font-black"
+                              : "text-slate-700 font-bold group-hover:text-[#E85222]"
+                          }`}
                         >
                           {sContent.title}
                         </span>

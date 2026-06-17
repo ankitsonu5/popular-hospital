@@ -163,7 +163,8 @@ export default function CallbackRequestsPage() {
     });
   }, [requests, search, activeTab, monthFilter, dateFrom, dateTo]);
 
-  const hasActiveFilters = monthFilter !== "" || dateFrom !== "" || dateTo !== "";
+  const hasActiveFilters =
+    monthFilter !== "" || dateFrom !== "" || dateTo !== "";
 
   const getTodayYMD = () => {
     const d = new Date();
@@ -173,22 +174,33 @@ export default function CallbackRequestsPage() {
   const exportCSV = useCallback(() => {
     const headers = ["Name", "Phone", "Department", "Status", "Received At"];
     const rows = filtered.map((r) => [
-      r.name, r.phone, r.department || "",
+      r.name,
+      r.phone,
+      r.department || "",
       r.status === "new" ? "New" : "Called Back",
       new Date(r.createdAt).toLocaleString("en-IN"),
     ]);
-    const csv = [headers, ...rows].map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+    const csv = [headers, ...rows]
+      .map((row) =>
+        row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(","),
+      )
+      .join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url; a.download = `callback-requests_${getTodayYMD()}.csv`;
-    document.body.appendChild(a); a.click();
-    document.body.removeChild(a); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `callback-requests_${getTodayYMD()}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
     toast.success("CSV exported");
   }, [filtered]);
 
   const exportPDF = useCallback(() => {
-    const rows = filtered.map((r, i) => `
+    const rows = filtered
+      .map(
+        (r, i) => `
       <tr>
         <td>${i + 1}</td>
         <td><strong>${r.name}</strong></td>
@@ -196,7 +208,9 @@ export default function CallbackRequestsPage() {
         <td>${r.department || "-"}</td>
         <td><span class="badge badge-${r.status}">${r.status === "new" ? "New" : "Called Back"}</span></td>
         <td>${new Date(r.createdAt).toLocaleDateString("en-IN")}</td>
-      </tr>`).join("");
+      </tr>`,
+      )
+      .join("");
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>Callback Requests Report</title>
       <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;font-size:11px;padding:24px}
       h1{color:#0b1c43;font-size:16px;margin-bottom:4px}.meta{color:#666;font-size:10px;margin-bottom:16px}
@@ -211,7 +225,10 @@ export default function CallbackRequestsPage() {
       <tbody>${rows}</tbody></table>
       <script>window.onload=function(){window.print();}<\/script></body></html>`;
     const win = window.open("", "_blank");
-    if (win) { win.document.write(html); win.document.close(); }
+    if (win) {
+      win.document.write(html);
+      win.document.close();
+    }
   }, [filtered]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
@@ -301,11 +318,17 @@ export default function CallbackRequestsPage() {
       {!selected && (
         <div className="flex flex-wrap items-center gap-2 px-4 py-2 border-b border-gray-100 bg-gray-50/60">
           <div className="flex items-center gap-1.5">
-            <label className="text-xs text-gray-500 font-medium whitespace-nowrap">Month:</label>
+            <label className="text-xs text-gray-500 font-medium whitespace-nowrap">
+              Month:
+            </label>
             <input
               type="month"
               value={monthFilter}
-              onChange={(e) => { setMonthFilter(e.target.value); setDateFrom(""); setDateTo(""); }}
+              onChange={(e) => {
+                setMonthFilter(e.target.value);
+                setDateFrom("");
+                setDateTo("");
+              }}
               disabled={!!(dateFrom || dateTo)}
               className="text-sm px-2 py-1 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-[#0b1c43]/20 outline-none disabled:opacity-40 disabled:cursor-not-allowed transition-all"
             />
@@ -315,7 +338,10 @@ export default function CallbackRequestsPage() {
             <input
               type="date"
               value={dateFrom}
-              onChange={(e) => { setDateFrom(e.target.value); setMonthFilter(""); }}
+              onChange={(e) => {
+                setDateFrom(e.target.value);
+                setMonthFilter("");
+              }}
               disabled={!!monthFilter}
               className="text-sm px-2 py-1 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-[#0b1c43]/20 outline-none disabled:opacity-40 disabled:cursor-not-allowed transition-all"
             />
@@ -326,24 +352,37 @@ export default function CallbackRequestsPage() {
               type="date"
               value={dateTo}
               min={dateFrom || undefined}
-              onChange={(e) => { setDateTo(e.target.value); setMonthFilter(""); }}
+              onChange={(e) => {
+                setDateTo(e.target.value);
+                setMonthFilter("");
+              }}
               disabled={!!monthFilter}
               className="text-sm px-2 py-1 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-[#0b1c43]/20 outline-none disabled:opacity-40 disabled:cursor-not-allowed transition-all"
             />
           </div>
           {hasActiveFilters && (
             <button
-              onClick={() => { setMonthFilter(""); setDateFrom(""); setDateTo(""); }}
+              onClick={() => {
+                setMonthFilter("");
+                setDateFrom("");
+                setDateTo("");
+              }}
               className="flex items-center gap-1 px-3 py-1 text-xs font-semibold text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-300 rounded-lg transition-colors"
             >
               <X className="w-3.5 h-3.5" /> Clear
             </button>
           )}
           <div className="ml-auto flex items-center gap-2">
-            <button onClick={exportCSV} className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg border border-emerald-200 transition-colors">
+            <button
+              onClick={exportCSV}
+              className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg border border-emerald-200 transition-colors"
+            >
               <FileSpreadsheet className="w-3.5 h-3.5" /> Excel
             </button>
-            <button onClick={exportPDF} className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-200 transition-colors">
+            <button
+              onClick={exportPDF}
+              className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-200 transition-colors"
+            >
               <FileText className="w-3.5 h-3.5" /> PDF
             </button>
           </div>

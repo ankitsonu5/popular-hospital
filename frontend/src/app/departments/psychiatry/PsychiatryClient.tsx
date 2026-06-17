@@ -120,7 +120,6 @@ const SectionHeader = ({
 export default function PsychiatryClient() {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-gradient-to-br from-[#2e1065] to-[#4c1d95] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
@@ -164,17 +163,23 @@ export default function PsychiatryClient() {
       {/* ═══════ MAIN CONTENT SECTION ═══════ */}
       <section className="py-20 xl:py-16 bg-white min-h-[600px]">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-
           {/* ── Intro + Doctor Grid ── */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Content */}
             <div className="lg:col-span-8 space-y-6">
               <SectionLabel text="About the Department" />
-              <SectionHeader title="Welcome to the" highlight="Psychiatry Department" />
+              <SectionHeader
+                title="Welcome to the"
+                highlight="Psychiatry Department"
+              />
 
               <div className="relative border-l-4 border-blue-600 pl-6 py-5 bg-gradient-to-r from-blue-50/50 to-transparent rounded-r-2xl shadow-sm">
                 <p className="font-semibold text-gray-700 text-[15px] sm:text-base leading-relaxed text-justify">
-                  Welcome to the Psychiatry Department at Popular Hospital, Varanasi! Our expert team of psychiatrists and psychologists is devoted to providing comprehensive care for people of all ages. We focus on mental health and are here to assist you in achieving emotional well-being and living a fulfilling life.
+                  Welcome to the Psychiatry Department at Popular Hospital,
+                  Varanasi! Our expert team of psychiatrists and psychologists
+                  is devoted to providing comprehensive care for people of all
+                  ages. We focus on mental health and are here to assist you in
+                  achieving emotional well-being and living a fulfilling life.
                 </p>
               </div>
 
@@ -217,7 +222,8 @@ export default function PsychiatryClient() {
             <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
               <SectionLabel text="Psychiatric Evaluation & Diagnosis" />
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Clinical <span className="text-[#1e3a8a]">Services</span> & Conditions Treated
+                Clinical <span className="text-[#1e3a8a]">Services</span> &
+                Conditions Treated
               </h2>
               <div className="h-[2px] w-24 bg-[#1e3a8a] mx-auto" />
             </div>
@@ -234,20 +240,28 @@ export default function PsychiatryClient() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/80 via-[#0b1c43]/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6">
-                    <span className="text-blue-300 text-xs font-bold uppercase tracking-wider">Comprehensive Assessment</span>
-                    <h3 className="text-white text-xl font-bold font-heading mt-1">Holistic Diagnosis</h3>
+                    <span className="text-blue-300 text-xs font-bold uppercase tracking-wider">
+                      Comprehensive Assessment
+                    </span>
+                    <h3 className="text-white text-xl font-bold font-heading mt-1">
+                      Holistic Diagnosis
+                    </h3>
                   </div>
                 </div>
                 <div className="p-6 space-y-4 flex-grow flex flex-col justify-center">
                   <p className="text-gray-600 text-sm sm:text-[15px] font-medium leading-relaxed text-justify">
-                    Our psychiatrists perform in-depth evaluations to understand your mental health condition and provide accurate, tailored treatment plans.
+                    Our psychiatrists perform in-depth evaluations to understand
+                    your mental health condition and provide accurate, tailored
+                    treatment plans.
                   </p>
                   <div className="border-t border-slate-100 pt-4">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-full bg-blue-50 text-[#1e3a8a] flex items-center justify-center">
                         <CheckCircle2 className="h-4 w-4" />
                       </div>
-                      <p className="text-xs text-gray-500 font-bold uppercase">Evidence-Based Treatment</p>
+                      <p className="text-xs text-gray-500 font-bold uppercase">
+                        Evidence-Based Treatment
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -299,7 +313,12 @@ export default function PsychiatryClient() {
                       Individual Therapy
                     </h3>
                     <p className="text-gray-600 text-sm sm:text-base leading-relaxed text-justify font-medium">
-                      We provide individual therapy using evidence-based approaches such as cognitive-behavioral therapy (CBT), dialectical behavior therapy (DBT), and psychodynamic therapy. We offer a supportive, confidential environment to explore emotions, develop coping strategies, and promote personal growth.
+                      We provide individual therapy using evidence-based
+                      approaches such as cognitive-behavioral therapy (CBT),
+                      dialectical behavior therapy (DBT), and psychodynamic
+                      therapy. We offer a supportive, confidential environment
+                      to explore emotions, develop coping strategies, and
+                      promote personal growth.
                     </p>
                   </div>
                 </div>
@@ -316,7 +335,12 @@ export default function PsychiatryClient() {
                       Family Therapy
                     </h3>
                     <p className="text-gray-600 text-sm sm:text-base leading-relaxed text-justify font-medium">
-                      We understand the vital role of family in the therapeutic process. Our family therapy sessions aim to address family dynamics, communication issues, and relationship challenges that affect mental health, enhancing understanding and creating a strong support network for long-term recovery.
+                      We understand the vital role of family in the therapeutic
+                      process. Our family therapy sessions aim to address family
+                      dynamics, communication issues, and relationship
+                      challenges that affect mental health, enhancing
+                      understanding and creating a strong support network for
+                      long-term recovery.
                     </p>
                   </div>
                 </div>
@@ -330,9 +354,12 @@ export default function PsychiatryClient() {
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
             <div className="relative z-10">
               <div className="mb-10 text-center space-y-3">
-                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">Our Commitment</span>
+                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">
+                  Our Commitment
+                </span>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
-                  Why Choose Our <span className="text-blue-300">Psychiatry Department</span>
+                  Why Choose Our{" "}
+                  <span className="text-blue-300">Psychiatry Department</span>
                 </h2>
                 <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
               </div>
@@ -361,8 +388,6 @@ export default function PsychiatryClient() {
               </div>
             </div>
           </div>
-
-
         </div>
       </section>
     </main>

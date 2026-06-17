@@ -171,7 +171,6 @@ export default function InfrastructureTechnologyPage() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </main>

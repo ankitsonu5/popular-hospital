@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Bone, Zap, ShieldCheck, Activity, Clock, Award } from "lucide-react";
+import {
+  Check,
+  Bone,
+  Zap,
+  ShieldCheck,
+  Activity,
+  Clock,
+  Award,
+} from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
@@ -147,7 +155,8 @@ const doctors = [
   {
     name: "Dr. Md Akhtar Ali Ansari",
     qualifications: "MBBS, MS (Orthopedics) AIIMS, New Delhi",
-    designation: "Specialist in Joint Replacement, Arthroscopy, Spine Surgery & Trauma Care",
+    designation:
+      "Specialist in Joint Replacement, Arthroscopy, Spine Surgery & Trauma Care",
     slug: "dr-md-akhtar-ali-ansari",
     image: "/images/departments_doctor/dr_ohd_akhtar_ali_ansari.jpg",
   },
@@ -158,7 +167,6 @@ const doctors = [
 export default function OrthopedicsClient() {
   return (
     <div className="bg-white overflow-x-hidden">
-
       {/* ══════════════════════════════════════
           HERO  (unchanged)
       ══════════════════════════════════════ */}
@@ -212,7 +220,9 @@ export default function OrthopedicsClient() {
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
                   Department of{" "}
-                  <span className="text-[#1e3a8a]">Orthopedics & Joint Replacement</span>
+                  <span className="text-[#1e3a8a]">
+                    Orthopedics & Joint Replacement
+                  </span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -228,7 +238,10 @@ export default function OrthopedicsClient() {
             {/* Right Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="w-full h-fit sticky top-24">
-                <DoctorSlider doctors={doctors} departmentName="Orthopedics & Joint Replacement" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Orthopedics & Joint Replacement"
+                />
               </div>
             </div>
           </div>
@@ -249,8 +262,12 @@ export default function OrthopedicsClient() {
                 <div className="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-300 flex items-center justify-center mb-1">
                   <Icon className="w-6 h-6" />
                 </div>
-                <span className="text-3xl font-bold text-white font-heading">{value}</span>
-                <span className="text-blue-300 text-xs font-semibold tracking-widest uppercase">{label}</span>
+                <span className="text-3xl font-bold text-white font-heading">
+                  {value}
+                </span>
+                <span className="text-blue-300 text-xs font-semibold tracking-widest uppercase">
+                  {label}
+                </span>
               </div>
             ))}
           </div>
@@ -262,7 +279,6 @@ export default function OrthopedicsClient() {
       ══════════════════════════════════════ */}
       <section className="py-16 xl:py-14 2xl:py-20 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-
           {/* Heading */}
           <div className="mb-10">
             <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
@@ -310,7 +326,9 @@ export default function OrthopedicsClient() {
                       <div className="flex-shrink-0 w-5 h-5 rounded-md bg-blue-50 text-[#1e3a8a] flex items-center justify-center mt-0.5 border border-blue-100">
                         <Check className="w-3 h-3" />
                       </div>
-                      <p className="text-gray-600 text-xs leading-relaxed font-medium">{service}</p>
+                      <p className="text-gray-600 text-xs leading-relaxed font-medium">
+                        {service}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -325,7 +343,6 @@ export default function OrthopedicsClient() {
       ══════════════════════════════════════ */}
       <section className="py-16 xl:py-14 2xl:py-20 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
-
           {/* Heading */}
           <div className="mb-10">
             <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
@@ -341,7 +358,6 @@ export default function OrthopedicsClient() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-
             {/* Left – Feature Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {whyUs.map(({ icon: Icon, title, desc }, idx) => (
@@ -352,8 +368,12 @@ export default function OrthopedicsClient() {
                   <div className="w-10 h-10 rounded-xl bg-[#1e3a8a] text-white flex items-center justify-center mb-3 shadow-lg shadow-blue-200">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-[#0b1c43] font-bold text-sm mb-1">{title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+                  <h3 className="text-[#0b1c43] font-bold text-sm mb-1">
+                    {title}
+                  </h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">
+                    {desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -368,11 +388,9 @@ export default function OrthopedicsClient() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
-
           </div>
         </div>
       </section>
-
     </div>
   );
 }

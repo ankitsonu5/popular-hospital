@@ -117,22 +117,31 @@ export default function GeneralSurgeryClient() {
 
               <div className="space-y-4">
                 <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The Department of General and Laparoscopic Surgery at Popular Hospital is manned 24x7 by an experienced
-                  and dedicated team of consultants that aim to provide modern surgical treatment and advice to the patients.
-                  The department is committed to the principles and practices of &apos;Safe Surgery Saves Lives&apos; to
-                  provide ethical &amp; evidence-based surgical options to the patients.
+                  The Department of General and Laparoscopic Surgery at Popular
+                  Hospital is manned 24x7 by an experienced and dedicated team
+                  of consultants that aim to provide modern surgical treatment
+                  and advice to the patients. The department is committed to the
+                  principles and practices of &apos;Safe Surgery Saves
+                  Lives&apos; to provide ethical &amp; evidence-based surgical
+                  options to the patients.
                 </p>
 
                 <div className="border-l-4 border-blue-600 pl-5 py-3 bg-blue-50/30 rounded-r-2xl">
                   <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                    Laparoscopic Surgery is a technique wherein surgical procedures like removal of gallbladder can be
-                    successfully done with small keyhole incisions in place of opening up of the abdomen with large
-                    incision. Carbon dioxide gas is used to inflate the abdomen so as to open up space for putting in
-                    instruments and then performing required surgical procedures. Patients are mobilised the same evening
-                    and discharged the very next day. The benefits of Laparoscopic surgery are early return to work, less
-                    pain, faster recovery &amp; better cosmetics. With a dedicated and experienced team doing
-                    evidence-based surgical procedures, the outcomes are excellent. Safety in surgery to reduce or
-                    eliminate complications during treatment is the main motto of the consultants.
+                    Laparoscopic Surgery is a technique wherein surgical
+                    procedures like removal of gallbladder can be successfully
+                    done with small keyhole incisions in place of opening up of
+                    the abdomen with large incision. Carbon dioxide gas is used
+                    to inflate the abdomen so as to open up space for putting in
+                    instruments and then performing required surgical
+                    procedures. Patients are mobilised the same evening and
+                    discharged the very next day. The benefits of Laparoscopic
+                    surgery are early return to work, less pain, faster recovery
+                    &amp; better cosmetics. With a dedicated and experienced
+                    team doing evidence-based surgical procedures, the outcomes
+                    are excellent. Safety in surgery to reduce or eliminate
+                    complications during treatment is the main motto of the
+                    consultants.
                   </p>
                 </div>
               </div>
@@ -155,7 +164,6 @@ export default function GeneralSurgeryClient() {
       <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-stretch">
-
             {/* Left — Tall Image */}
             <div className="lg:col-span-2 relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] mx-auto lg:mx-0 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white group lg:self-center">
               <Image
@@ -181,7 +189,9 @@ export default function GeneralSurgeryClient() {
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
                   USP of General &amp;{" "}
-                  <span className="text-[#1e3a8a]">Laparoscopic Surgery Dept.</span>
+                  <span className="text-[#1e3a8a]">
+                    Laparoscopic Surgery Dept.
+                  </span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-8" />
@@ -199,7 +209,6 @@ export default function GeneralSurgeryClient() {
                 ))}
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -208,7 +217,6 @@ export default function GeneralSurgeryClient() {
       <section className="py-16 xl:py-12 2xl:py-20 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-stretch">
-
             {/* Left — Procedures List */}
             <div className="lg:col-span-3 flex flex-col justify-center">
               <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
@@ -222,7 +230,8 @@ export default function GeneralSurgeryClient() {
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-4" />
               <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mb-8">
-                Comprehensive surgical solutions for a wide range of abdominal and general surgical conditions.
+                Comprehensive surgical solutions for a wide range of abdominal
+                and general surgical conditions.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
@@ -254,7 +263,6 @@ export default function GeneralSurgeryClient() {
                 </span>
               </div>
             </div>
-
           </div>
         </div>
       </section>

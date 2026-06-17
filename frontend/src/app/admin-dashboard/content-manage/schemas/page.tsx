@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { Loader2, Save, Trash2, Code, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  Loader2,
+  Save,
+  Trash2,
+  Code,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 import toast from "react-hot-toast";
 
 const API_URL = "/api-backend";
@@ -9,10 +16,26 @@ const API_URL = "/api-backend";
 // Static pages that have dedicated schema components.
 // Dynamic pages (doctor, department, blog) use the custom key field below.
 const PRESET_KEYS: { value: string; label: string; hint: string }[] = [
-  { value: "home",     label: "Home Page (/)",                      hint: "HospitalSchema — WebSite + Organization + Hospital" },
-  { value: "doctors",  label: "Doctors Listing (/doctors)",         hint: "DoctorsListSchema — CollectionPage + BreadcrumbList" },
-  { value: "booking",  label: "Book Appointment (/book-an-appointment)", hint: "BookingSchema — MedicalClinic + ReserveAction" },
-  { value: "chairman", label: "Chairman's Desk (/about/chairman-desk)",  hint: "ChairmanSchema — ProfilePage + Person (Dr. A.K. Kaushik)" },
+  {
+    value: "home",
+    label: "Home Page (/)",
+    hint: "HospitalSchema — WebSite + Organization + Hospital",
+  },
+  {
+    value: "doctors",
+    label: "Doctors Listing (/doctors)",
+    hint: "DoctorsListSchema — CollectionPage + BreadcrumbList",
+  },
+  {
+    value: "booking",
+    label: "Book Appointment (/book-an-appointment)",
+    hint: "BookingSchema — MedicalClinic + ReserveAction",
+  },
+  {
+    value: "chairman",
+    label: "Chairman's Desk (/about/chairman-desk)",
+    hint: "ChairmanSchema — ProfilePage + Person (Dr. A.K. Kaushik)",
+  },
 ];
 
 interface SchemaItem {
@@ -41,12 +64,16 @@ export default function ManageSchemasPage() {
     "Content-Type": "application/json",
   });
 
-  const effectivePageKey = (selectedKey === "__custom__" ? customKey : selectedKey).trim();
+  const effectivePageKey = (
+    selectedKey === "__custom__" ? customKey : selectedKey
+  ).trim();
 
   const fetchAll = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(`${API_URL}/cms/schemas`, { headers: getHeaders() });
+      const res = await fetch(`${API_URL}/cms/schemas`, {
+        headers: getHeaders(),
+      });
       if (res.ok) {
         const data = await res.json();
         setSchemas(Array.isArray(data) ? data : []);
@@ -232,10 +259,27 @@ export default function ManageSchemasPage() {
               className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all font-mono"
             />
             <div className="mt-2 bg-gray-50 rounded-xl border border-gray-100 px-3 py-2.5 text-xs text-gray-600 space-y-1">
-              <p className="font-semibold text-gray-700 mb-1">Dynamic page key formats:</p>
-              <p><code className="bg-white border border-gray-200 px-1 rounded">doctor:dr-ak-kaushik</code> → Individual doctor page (DoctorSchema)</p>
-              <p><code className="bg-white border border-gray-200 px-1 rounded">department:cardiology</code> → Department page (DepartmentSchema)</p>
-              <p><code className="bg-white border border-gray-200 px-1 rounded">blog:my-article-slug</code> → Blog article page (BlogArticleSchema)</p>
+              <p className="font-semibold text-gray-700 mb-1">
+                Dynamic page key formats:
+              </p>
+              <p>
+                <code className="bg-white border border-gray-200 px-1 rounded">
+                  doctor:dr-ak-kaushik
+                </code>{" "}
+                → Individual doctor page (DoctorSchema)
+              </p>
+              <p>
+                <code className="bg-white border border-gray-200 px-1 rounded">
+                  department:cardiology
+                </code>{" "}
+                → Department page (DepartmentSchema)
+              </p>
+              <p>
+                <code className="bg-white border border-gray-200 px-1 rounded">
+                  blog:my-article-slug
+                </code>{" "}
+                → Blog article page (BlogArticleSchema)
+              </p>
             </div>
           </div>
         )}
@@ -244,7 +288,10 @@ export default function ManageSchemasPage() {
         {selectedKey === "__custom__" && (
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Display Label <span className="text-gray-400 font-normal">(shown in admin table only)</span>
+              Display Label{" "}
+              <span className="text-gray-400 font-normal">
+                (shown in admin table only)
+              </span>
             </label>
             <input
               type="text"
@@ -319,7 +366,9 @@ export default function ManageSchemasPage() {
         {existingForKey && (
           <div className="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3 text-xs text-blue-700">
             <strong>Saved schema exists</strong> for{" "}
-            <code className="bg-blue-100 px-1 rounded">{existingForKey.pageKey}</code>{" "}
+            <code className="bg-blue-100 px-1 rounded">
+              {existingForKey.pageKey}
+            </code>{" "}
             — last updated{" "}
             {existingForKey.updatedAt
               ? new Date(existingForKey.updatedAt).toLocaleString()
@@ -412,13 +461,17 @@ export default function ManageSchemasPage() {
                     </span>
                   </td>
                   <td className="py-3 px-6 text-xs text-gray-500">
-                    {s.updatedAt ? new Date(s.updatedAt).toLocaleDateString() : "—"}
+                    {s.updatedAt
+                      ? new Date(s.updatedAt).toLocaleDateString()
+                      : "—"}
                   </td>
                   <td className="py-3 px-6 text-right">
                     <button
                       onClick={() => {
                         // Switch editor to this key
-                        const inPresets = PRESET_KEYS.some((p) => p.value === s.pageKey);
+                        const inPresets = PRESET_KEYS.some(
+                          (p) => p.value === s.pageKey,
+                        );
                         if (inPresets) {
                           setSelectedKey(s.pageKey);
                         } else {

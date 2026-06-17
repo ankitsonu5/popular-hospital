@@ -14,12 +14,14 @@ export default function DiabeticFootPage() {
     <>
       <DynamicSchema
         pageKey="department:diabetic-foot"
-        fallback={<DepartmentSchema
-        name="Advanced Diabetic Foot Unit | Popular Hospital Varanasi"
-        description="Specialized Advanced Diabetic Foot Unit at Popular Hospital Varanasi — expert care for non-healing wounds, diabetic ulcers, neuropathy, and limb salvage with a multidisciplinary team."
-        urlSlug="diabetic-foot"
-        medicalSpecialty="Endocrine"
-      />}
+        fallback={
+          <DepartmentSchema
+            name="Advanced Diabetic Foot Unit | Popular Hospital Varanasi"
+            description="Specialized Advanced Diabetic Foot Unit at Popular Hospital Varanasi — expert care for non-healing wounds, diabetic ulcers, neuropathy, and limb salvage with a multidisciplinary team."
+            urlSlug="diabetic-foot"
+            medicalSpecialty="Endocrine"
+          />
+        }
       />
       <DiabeticFootClient />
     </>
