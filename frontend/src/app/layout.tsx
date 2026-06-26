@@ -84,6 +84,23 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rozha+One&family=Martel:wght@700;800;900&family=Teko:wght@600;700&family=Poppins:wght@600;700;800&display=swap"
           rel="stylesheet"
         />
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-242FEVKDES"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-242FEVKDES');
+            `,
+          }}
+        />
         {/* Bypass the Next.js/React dev timing/performance measure overlay crash bug */}
         <Script
           id="performance-bypass"
