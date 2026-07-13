@@ -1,0 +1,2149 @@
+﻿{
+    "value":  [
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "_id":  "69b50f75e91529da06eebc80",
+                      "name":  "Dr. A.K Kaushik",
+                      "slug":  "dr-a-k-kaushik",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b1",
+                                         "name":  "Laparoscopy \u0026 General Surgery",
+                                         "slug":  "general-surgery",
+                                         "department_display_name":  "Laparoscopy \u0026 General Surgery"
+                                     },
+                      "qualification":  "MBBS, MS (General Surgery)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "Eminent Surgeon of the city for more than 28 Years. Successfully performed more than fifty thousand surgeries (Laparoscopic/endoscopic \u0026 open procedures.)",
+                      "image_url":  "/uploads/doctors/1780809566870-dr-ak-kaushik.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:34:13.600Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cdf0296c2a055089ee",
+                                          "name":  "Senior Consultant Surgeon"
+                                      },
+                      "sortIndex":  0,
+                      "youtube_video_url":  "https://youtu.be/YtP4cvXkQaU?si=EEheT9FGJnndTsbu"
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b51087e91529da06eebca5",
+                      "name":  "Dr. Kiran Kaushik",
+                      "slug":  "dr-kiran-kaushik",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b3",
+                                         "name":  "Obstetrics \u0026 Gynaecology",
+                                         "slug":  "gynaecology",
+                                         "department_display_name":  "Obstetrics \u0026 Gynaecology"
+                                     },
+                      "qualification":  "MBBS, DGO, MS (Obstetrics \u0026 Gynaecology)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "With 25 years plus experience in Obs and Gyne She is effectively managing the department and hospital. Her experties are in High Risk Pregnancy, Antenatal \u0026 Postnatal Checkups, Delivery (Normal / Caesarian ), Advance Laparoscopic \u0026 Hysteroscopic Surgery / Investigation, along with all kinds of Gynecological procedures including Infertility.",
+                      "image_url":  "/uploads/doctors/1780809623839-dr-kiran-kaushik.png",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:38:47.176Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cdf0296c2a05508a01",
+                                          "name":  "Senior Consultant Gynaecologist"
+                                      },
+                      "sortIndex":  1
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69c335788a6f11f08f8bbb7f",
+                      "name":  "Dr. Abhishek Kumar",
+                      "slug":  "dr-abhishek-kumar",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b1",
+                                         "name":  "Laparoscopy \u0026 General Surgery",
+                                         "slug":  "general-surgery",
+                                         "department_display_name":  "Laparoscopy \u0026 General Surgery"
+                                     },
+                      "qualification":  "M.B.B.S, M.S. - General Surgery, FIAGES",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780809594991-dr-abhishek-kumar.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a08f71483d61b203df22",
+                                          "name":  "General Surgeon"
+                                      },
+                      "is_active":  true,
+                      "createdAt":  "2026-03-25T01:08:08.299Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "sortIndex":  2
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "9am-12pm \u0026 4pm-8pm",
+                                          "tuesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "wednesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "thursday":  "9am-12pm \u0026 4pm-8pm",
+                                          "friday":  "9am-12pm \u0026 4pm-8pm",
+                                          "saturday":  "9am-12pm \u0026 4pm-8pm",
+                                          "sunday":  "-"
+                                      },
+                      "_id":  "6a4f643ec58c1df3b9d1f04c",
+                      "name":  "Dr Rakesh Kumar",
+                      "slug":  "dr-rakesh-kumar",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cf",
+                                         "name":  "Anesthesiology",
+                                         "slug":  "-anesthesiology",
+                                         "department_display_name":  ""
+                                     },
+                      "qualification":  "CareMBBS, MD - IMS BHU Head of Department - Anesthesiology/ Senior Consultant - Anesthesia \u0026 Critical care",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1783587902717-dr-rakesh-kumar.jpeg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "youtube_video_url":  null,
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc878598181097f",
+                                          "name":  "Anaesthetist"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  3,
+                      "createdAt":  "2026-07-09T09:05:02.803Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "9am-12pm \u0026 4pm-8pm",
+                                          "tuesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "wednesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "thursday":  "9am-12pm \u0026 4pm-8pm",
+                                          "friday":  "9am-12pm \u0026 4pm-8pm",
+                                          "saturday":  "9am-12pm \u0026 4pm-8pm",
+                                          "sunday":  "-"
+                                      },
+                      "_id":  "6a4f5ccdc58c1df3b9d1ed57",
+                      "name":  "Dr Soumyaleen Roy",
+                      "slug":  "dr-soumyaleen-roy",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a3",
+                                         "name":  "Gastroenterology",
+                                         "slug":  "gastroenterology",
+                                         "department_display_name":  "Gastroenterology"
+                                     },
+                      "qualification":  "MD Medicine-IMS, BHU DM Gastroenterology-IGIMS, Patna (Gold Medalist) Ex-Fellow in Advance Endoscopy, KMC Kanpur EUS, ERCP \u0026 Third Space Endoscopy",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1783585997823-whatsapp-image-2026-07-09-at-13-57-22.jpeg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "youtube_video_url":  null,
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a08f71483d61b203df25",
+                                          "name":  "Gastroenterologist"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  4,
+                      "createdAt":  "2026-07-09T08:33:17.854Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "9am-12pm \u0026 4pm-8pm",
+                                          "tuesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "wednesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "thursday":  "9am-12pm \u0026 4pm-8pm",
+                                          "friday":  "9am-12pm \u0026 4pm-8pm",
+                                          "saturday":  "9am-12pm \u0026 4pm-8pm",
+                                          "sunday":  "-"
+                                      },
+                      "_id":  "6a4f6291c58c1df3b9d1efb1",
+                      "name":  "Dr Deepankar Mishra",
+                      "slug":  "dr-deepankar-mishra",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b1",
+                                         "name":  "Laparoscopy \u0026 General Surgery",
+                                         "slug":  "general-surgery",
+                                         "department_display_name":  "Laparoscopy \u0026 General Surgery"
+                                     },
+                      "qualification":  "MBBS, MS (General Surgeon) consultant - general surgeon",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1783587473698-dr-deepankar-mishra.jpeg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "youtube_video_url":  null,
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a08f71483d61b203df22",
+                                          "name":  "General Surgeon"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  5,
+                      "createdAt":  "2026-07-09T08:57:53.707Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "9am-12pm \u0026 4pm-8pm",
+                                          "tuesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "wednesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "thursday":  "9am-12pm \u0026 4pm-8pm",
+                                          "friday":  "9am-12pm \u0026 4pm-8pm",
+                                          "saturday":  "9am-12pm \u0026 4pm-8pm",
+                                          "sunday":  "-"
+                                      },
+                      "_id":  "6a4f6536c58c1df3b9d1f0bd",
+                      "name":  "Dr. Disha Chaudhary",
+                      "slug":  "dr-disha-chaudhary",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5c9",
+                                         "name":  "Ophthalmology",
+                                         "slug":  "ophthalmology",
+                                         "department_display_name":  "Ophthalmology"
+                                     },
+                      "qualification":  "MBBS, MS ( OPHTHALMOLOGY) Consultant -  OPHTHALMOLOGist",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1783588150049-dr-disha-chaudhary.jpeg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "youtube_video_url":  null,
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc8785981810991",
+                                          "name":  "Ophthalmologist"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  6,
+                      "createdAt":  "2026-07-09T09:09:10.066Z",
+                      "updatedAt":  "2026-07-13T07:17:47.432Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "9am-12pm \u0026 4pm-8pm",
+                                          "tuesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "wednesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "thursday":  "9am-12pm \u0026 4pm-8pm",
+                                          "friday":  "9am-12pm \u0026 4pm-8pm",
+                                          "saturday":  "9am-12pm \u0026 4pm-8pm",
+                                          "sunday":  "-"
+                                      },
+                      "_id":  "6a4f6178c58c1df3b9d1ef05",
+                      "name":  "Dr Shashank Krishnan",
+                      "slug":  "dr-shashank-krishnan",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b7",
+                                         "name":  "Orthopedics \u0026 Joint Replacement",
+                                         "slug":  "orthopedics",
+                                         "department_display_name":  "Orthopedics \u0026 Joint Replacement"
+                                     },
+                      "qualification":  "MBBS, MS (Ortho), FNB Spine Surgery Indian Spinal Injuries Centre, New Delhi",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1783587192157-shashank-krishnan.jpeg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "youtube_video_url":  null,
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a08f71483d61b203df1f",
+                                          "name":  "Orthopedician"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  7,
+                      "createdAt":  "2026-07-09T08:53:12.171Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69eb4f54c0e43c18f3599c59",
+                      "name":  "Dr. Gunjan Rana",
+                      "slug":  "dr-gunjan-rana",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5c9",
+                                         "name":  "Ophthalmology",
+                                         "slug":  "ophthalmology",
+                                         "department_display_name":  "Ophthalmology"
+                                     },
+                      "qualification":  "M.B.B.S., MS",
+                      "experience_years":  7,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780809653558-dr-gunjan-rana.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c39737e832ea8719da7300",
+                                          "name":  "Consultant Ophthalmologist"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  8,
+                      "createdAt":  "2026-04-24T11:09:08.196Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b510b5e91529da06eebcab",
+                      "name":  "Dr. Priyanka Jaiswal",
+                      "slug":  "dr-priyanka-jaiswal",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b3",
+                                         "name":  "Obstetrics \u0026 Gynaecology",
+                                         "slug":  "gynaecology",
+                                         "department_display_name":  "Obstetrics \u0026 Gynaecology"
+                                     },
+                      "qualification":  "MBBS, MS (Obstetrics \u0026 Gynaecology)",
+                      "experience_years":  7,
+                      "experience_location":  "",
+                      "bio":  "Dr. Priyanka Jaiswal, MBBS, MS (Obstetrics \u0026 Gynecology), is a distinguished Obstetrician, Gynecologist, IVF Specialist, Laparoscopic Surgeon, and Cosmetic Gynecologist devoted to advancing women’s health through compassion, precision, and innovation. \r\n\r\nShe has completed her Fellowship in Laparoscopic Gynecology and Surgery from Kiel, Germany, a globally recognized institute for minimally invasive surgical excellence. In addition, she holds a Fellowship in Microwave Ablation from Hyderabad, specializing in non-surgical management of uterine fibroids and adenomyosis — promoting a “Save Uterus” approach for women’s well-being.\r\n\r\nDr. Jaiswal also holds a Diploma and Degree in Cosmetic Gynecology and has received specialized training in IVF and Reproductive Medicine from Birla IVF Centre, strengthening her expertise in fertility management and assisted reproductive techniques.\r\n\r\nIn obstetrics, Dr. Jaiswal is highly skilled in normal vaginal deliveries and has extensive experience in managing high-risk pregnancies, including hypertension, diabetes, multiple gestations, preterm labor, and placenta-related complications. She is known for her patient-centered approach, prioritizing safety and comfort for both mother and baby.\r\n\r\nIn gynecology, she provides comprehensive care for menstrual irregularities, fibroids, ovarian cysts, endometriosis, infertility, and menopausal issues. Her proficiency in laparoscopic and hysteroscopic surgeries ensures minimally invasive treatments with faster recovery and superior outcomes.\r\n\r\nAs a cosmetic gynecologist, Dr. Jaiswal offers advanced aesthetic and functional procedures to enhance confidence, comfort, and overall quality of life for women.\r\n\r\nCombining modern medical innovation with a compassionate approach, Dr. Priyanka Jaiswal is dedicated to empowering women through complete, confidential, and personalized care at every stage of life.",
+                      "image_url":  "/uploads/doctors/1780809687041-dr-priyanka-jaiswal.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:39:33.744Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cef0296c2a05508a07",
+                                          "name":  "Consultant Gynaecologist"
+                                      },
+                      "sortIndex":  9
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b5145de91529da06eebced",
+                      "name":  "Dr. Alisha Raj",
+                      "slug":  "dr-alisha-raj",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cf",
+                                         "name":  "Anesthesiology",
+                                         "slug":  "-anesthesiology",
+                                         "department_display_name":  ""
+                                     },
+                      "qualification":  "MBBS, MD (Anaesthesia), PDCC",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780809736288-dr-alisha-raj-new.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:55:09.369Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c3a61a132041b349bac013",
+                                          "name":  "Consultant Pain Management"
+                                      },
+                      "sortIndex":  10
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b510efe91529da06eebcb1",
+                      "name":  "Dr. Madhavi Paramar",
+                      "slug":  "dr-madhavi-paramar",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b3",
+                                         "name":  "Obstetrics \u0026 Gynaecology",
+                                         "slug":  "gynaecology",
+                                         "department_display_name":  "Obstetrics \u0026 Gynaecology"
+                                     },
+                      "qualification":  "MBBS, MS (Obstetrics \u0026 Gynaecology)",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Dr Madhavi Paramar is a highly skilled Consultant Gynaecologist at Popular Hospital with extensive expertise in Gynecologist / OBGY. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/uploads/doctors/1780809769719-dr-parmar-madhavi.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:40:31.592Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cef0296c2a05508a07",
+                                          "name":  "Consultant Gynaecologist"
+                                      },
+                      "sortIndex":  11
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69ee1457c0e43c18f359d981",
+                      "name":  "Dt. Sayeda Eram Fatma",
+                      "slug":  "dt-sayeda-eram-fatma",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5c7",
+                                         "name":  "Dietetics \u0026 Nutrition",
+                                         "slug":  "nutrition",
+                                         "department_display_name":  null
+                                     },
+                      "qualification":  "M.SC (DFSM) Dietetics Food service management  BHU  Diploma in health care and hospital management BHU CNCC Nutrition in child care",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780809806915-dt-sayeda-eram-fatma.jpeg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69ee13bac0e43c18f359d93c",
+                                          "name":  "Clinical Dietitian"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  12,
+                      "createdAt":  "2026-04-26T13:34:15.572Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69e3343aa4f624eb73744c9d",
+                      "name":  "Dt. Sakshi Pandey",
+                      "slug":  "dt-sakshi-pandey",
+                      "speciality":  {
+                                         "_id":  "69e3343aa4f624eb73744c9a",
+                                         "name":  "Dietetics And Nutrition",
+                                         "slug":  "dietetics-nutrition",
+                                         "department_display_name":  "Dietetics \u0026 Nutrition"
+                                     },
+                      "qualification":  "MSc. (Food Science), CCN, CDE, PGDDN",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780809834289-dt-sakshi-pandey.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69ee13bac0e43c18f359d93c",
+                                          "name":  "Clinical Dietitian"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  13,
+                      "createdAt":  "2026-04-18T07:35:22.275Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "6a0712bc4e63f3a1a85cc593",
+                      "name":  "Dr. Harendra Ojha",
+                      "slug":  "dr-harendra-ojha",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c59f",
+                                         "name":  "Cardiothoracic \u0026 Vascular Surgery (CTVS)",
+                                         "slug":  "ctvs",
+                                         "department_display_name":  "Cardiothoracic \u0026 Vascular Surgery (CTVS)"
+                                     },
+                      "qualification":  "MBBS, MS, M.Ch (Cardiothoracic and Vascular Surgery)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810167965-dr-harendra-ojha-jpg.jpeg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a001816677c0b1ea3d8f",
+                                          "name":  "Cardiologist"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  14,
+                      "createdAt":  "2026-05-15T12:34:04.405Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50680e91529da06eebbca",
+                      "name":  "Dr. Kamlesh Kumar Singh",
+                      "slug":  "dr-kamlesh-kumar-singh",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a1",
+                                         "name":  "Neurosurgery",
+                                         "slug":  "neurosurgery",
+                                         "department_display_name":  "Neurosurgery"
+                                     },
+                      "qualification":  "MBBS, MS, M.Ch (Neurosurgery)",
+                      "experience_years":  15,
+                      "experience_location":  "",
+                      "bio":  "Dr. Kamlesh Kumar Singh completed his MBBS from GMC Bhopal,MS GMC Patiala,MCH  KMC Manipal",
+                      "image_url":  "/images/departments_doctor/dr._kamlesh_kumar_Singh.jpg",
+                      "consultation_fee":  500,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T06:56:00.391Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a08f71483d61b203df1c",
+                                          "name":  "Neuro Surgeon"
+                                      },
+                      "sortIndex":  15
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "09 AM - 03 PM",
+                                          "tuesday":  "09 AM - 03 PM",
+                                          "wednesday":  "09 AM - 03 PM",
+                                          "thursday":  "09 AM - 03 PM",
+                                          "friday":  "09 AM - 03 PM",
+                                          "saturday":  "09 AM - 03 PM",
+                                          "sunday":  "-"
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "6a070c3c4e63f3a1a85cc093",
+                      "name":  "Dr. Tejas Mahajan",
+                      "slug":  "dr-tejas-mahajan",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c59d",
+                                         "name":  "Cardiology",
+                                         "slug":  "cardiology",
+                                         "department_display_name":  "Cardiology"
+                                     },
+                      "qualification":  "MBBS, DNB (General Medicine), DrNB (Cardiology)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810197884-dr-tejas-mahajan-jpg.jpeg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "6a070c784e63f3a1a85cc0b2",
+                                          "name":  "Consultant Interventional cardiology"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  16,
+                      "createdAt":  "2026-05-15T12:06:20.980Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "6a070ff24e63f3a1a85cc340",
+                      "name":  "Dr. Akanksha Chaturvedi",
+                      "slug":  "dr-akanksha-chaturvedi",
+                      "speciality":  {
+                                         "_id":  "6a070f8a4e63f3a1a85cc2c3",
+                                         "name":  "IVF \u0026 Infertility Medicine",
+                                         "slug":  "ivf-infertility-medicine",
+                                         "department_display_name":  "IVF \u0026 Infertility Medicine"
+                                     },
+                      "qualification":  "MBBS, MS, DNB, FELLOWSHIP IN ADVANCED ART AND REPRODUCTIVE MEDICINE",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810345389-dr-akanksha-chaturvedi.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "6a070efd4e63f3a1a85cc221",
+                                          "name":  "Consultant – IVF \u0026 Infertility Medicine"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  18,
+                      "createdAt":  "2026-05-15T12:22:10.762Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69e1d1c8795b35ba928081a2",
+                      "name":  "Dr. R.K. Singh",
+                      "slug":  "dr-rk-singh",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a3",
+                                         "name":  "Gastroenterology",
+                                         "slug":  "gastroenterology",
+                                         "department_display_name":  "Gastroenterology"
+                                     },
+                      "qualification":  "M.B.B.S, MS (Gastro Surgery)",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Highly experienced gastroenterologist specializing in interventional endoscopy, biliary tract procedures, and management of complex gastrointestinal conditions.",
+                      "image_url":  null,
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+                                       {
+                                           "_id":  "69a17fbc0209f4be25ced78c",
+                                           "slug":  "mirzapur",
+                                           "name":  "Popular Hospital – Mirzapur"
+                                       },
+                                       {
+                                           "_id":  "69a17fbc0209f4be25ced78b",
+                                           "slug":  "varanasi-city-centre",
+                                           "name":  "City Hospital – Sigra"
+                                       },
+                                       {
+                                           "_id":  "69a179300209f4be25ced77f",
+                                           "slug":  "gopiganj",
+                                           "name":  "Popular Hospital – Gopiganj"
+                                       },
+                                       {
+                                           "_id":  "69a17fbc0209f4be25ced78d",
+                                           "slug":  "bachhaon",
+                                           "name":  "Popular Hospital – Bachhaon"
+                                       },
+                                       {
+                                           "_id":  "69a17fbc0209f4be25ced78a",
+                                           "slug":  "varanasi-main",
+                                           "name":  "Popular Hospital - Main Branch"
+                                       }
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c3754b8a6f11f08f8bbed9",
+                                          "name":  "Gastrosurgeon"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  19,
+                      "createdAt":  "2026-04-17T06:23:04.313Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69e2138a9f0a4fb135e9b341",
+                      "name":  "Dr. Harmohan Sahu",
+                      "slug":  "dr-harmohan-sahu",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a1",
+                                         "name":  "Neurosurgery",
+                                         "slug":  "neurosurgery",
+                                         "department_display_name":  "Neurosurgery"
+                                     },
+                      "qualification":  "M.B.B.S., MD, DM - (Neurologist)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/images/departments_doctor/dr_harmohan_sahu.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69e212939f0a4fb135e9b2d1",
+                                          "name":  "Neurologist"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  20,
+                      "createdAt":  "2026-04-17T11:03:38.125Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69c336258a6f11f08f8bbb86",
+                      "name":  "Dr. Srishti Tanya",
+                      "slug":  "dr-srishti-tanya",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b3",
+                                         "name":  "Obstetrics \u0026 Gynaecology",
+                                         "slug":  "gynaecology",
+                                         "department_display_name":  "Obstetrics \u0026 Gynaecology"
+                                     },
+                      "qualification":  "M.B.B.S., MS",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810429163-dr-srishti-tanya.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a09071483d61b203df2b",
+                                          "name":  "Gynecologist"
+                                      },
+                      "is_active":  true,
+                      "createdAt":  "2026-03-25T01:11:01.543Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "sortIndex":  21
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b513ade91529da06eebce1",
+                      "name":  "Dr. Rahul Singh",
+                      "slug":  "dr-rahul-singh",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cf",
+                                         "name":  "Anesthesiology",
+                                         "slug":  "-anesthesiology",
+                                         "department_display_name":  ""
+                                     },
+                      "qualification":  "MBBS, MD (Anaesthesia), PDCC",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:52:13.342Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c3a61a132041b349bac013",
+                                          "name":  "Consultant Pain Management"
+                                      },
+                      "sortIndex":  22
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b51374e91529da06eebcdb",
+                      "name":  "Dr. Sumit Vishwakarma",
+                      "slug":  "dr-sumit-vishwakarma",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cf",
+                                         "name":  "Anesthesiology",
+                                         "slug":  "-anesthesiology",
+                                         "department_display_name":  ""
+                                     },
+                      "qualification":  "MBBS, MD (Anaesthesia) IMS, BHU",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810491843-dr-sumit-vishwakarma-new.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:51:16.988Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c3a61a132041b349bac013",
+                                          "name":  "Consultant Pain Management"
+                                      },
+                      "sortIndex":  23
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b51431e91529da06eebce7",
+                      "name":  "Dr. Vikas Mishra",
+                      "slug":  "dr-vikas-mishra",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cf",
+                                         "name":  "Anesthesiology",
+                                         "slug":  "-anesthesiology",
+                                         "department_display_name":  ""
+                                     },
+                      "qualification":  "MBBS, MD (Anaesthesia)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:54:25.431Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c3a61a132041b349bac013",
+                                          "name":  "Consultant Pain Management"
+                                      },
+                      "sortIndex":  24
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50e3ee91529da06eebc6e",
+                      "name":  "Dr. A.K Pradhan",
+                      "slug":  "dr-a-k-pradhan",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5ab",
+                                         "name":  "Burns \u0026 Plastic Surgery",
+                                         "slug":  "burns-plastic-surgery",
+                                         "department_display_name":  "Burns \u0026 Plastic Surgery"
+                                     },
+                      "qualification":  "MBBS, MS, MCh (Plastic Surgery)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810580720-dr-a-k-pradhan.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:29:02.475Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc878598181098b",
+                                          "name":  "Plastic Surgeon"
+                                      },
+                      "sortIndex":  25
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50ea3e91529da06eebc7a",
+                      "name":  "Dr. Deepak Agrahari",
+                      "slug":  "dr-deepak-agrahari",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5ab",
+                                         "name":  "Burns \u0026 Plastic Surgery",
+                                         "slug":  "burns-plastic-surgery",
+                                         "department_display_name":  "Burns \u0026 Plastic Surgery"
+                                     },
+                      "qualification":  "MBBS, MS, MCh (Plastic Surgery)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810604305-dr-deepak-agrahari.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:30:43.220Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc878598181098b",
+                                          "name":  "Plastic Surgeon"
+                                      },
+                      "sortIndex":  26
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50e73e91529da06eebc74",
+                      "name":  "Dr. Sudhir Singh",
+                      "slug":  "dr-sudhir-singh",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5ab",
+                                         "name":  "Burns \u0026 Plastic Surgery",
+                                         "slug":  "burns-plastic-surgery",
+                                         "department_display_name":  "Burns \u0026 Plastic Surgery"
+                                     },
+                      "qualification":  "MBBS, MS, MCh (Plastic Surgery)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810661715-dr-sudhir-singh.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:29:55.185Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc878598181098b",
+                                          "name":  "Plastic Surgeon"
+                                      },
+                      "sortIndex":  27
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "_id":  "69b5060de91529da06eebbb6",
+                      "name":  "Dr. Hari Krishan Srivastava",
+                      "slug":  "dr-hari-krishan-srivastava",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c59d",
+                                         "name":  "Cardiology",
+                                         "slug":  "cardiology",
+                                         "department_display_name":  "Cardiology"
+                                     },
+                      "qualification":  "M.B.B.S., M.D., DM (Cardiology)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "Dr. Hari Krishan Srivastava completed his MBBS from King George\u0027s Medical college Lucknow and MD (Medicine)from Lala Lajpat Rai Memorial Medical College , Meerut . He completed his DM, Cardiology course from Sawai Man Singh medical college , Jaipur in 2018 . After completing his DM course , he worked at Rajiv Gandhi Super Specialty Hospital New Delhi as Interventional Cardiologist where he learned a great deal about Radial Intervention . Being an expert in Radial Interventions , he has experience of over 4000 radial procedures ( Coronary Angiography \u0026 Angioplasties) and 500 Pacemakers along with various other cardiac Procedures . He is expert in performing Primary Coronary Angioplasty with various other cardiac interventions . He is expert in performing primary Angioplasty with great success rate , multi- vessel PCI and complex coronary interventions , IVUS guided procedures , Rotaablation , BMV, ASD, VSD and PDA device closure.",
+                      "image_url":  "/uploads/doctors/1780808689939-dr-hari-krishan-srivastava.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T06:54:05.598Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a001816677c0b1ea3d8f",
+                                          "name":  "Cardiologist"
+                                      },
+                      "sortIndex":  28,
+                      "youtube_video_url":  "https://test.com"
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50642e91529da06eebbbc",
+                      "name":  "Dr. Manoj Sharma",
+                      "slug":  "dr-manoj-sharma",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c59d",
+                                         "name":  "Cardiology",
+                                         "slug":  "cardiology",
+                                         "department_display_name":  "Cardiology"
+                                     },
+                      "qualification":  "M.B.B.S., MD, PGDCC (Cardiology)",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Non Invasive Cardiologist having experince of many hospitals of repute like Medanta, Gurgaon. He has experties in 2D/3D Echo,Holter Monitering, TMT etc",
+                      "image_url":  "/uploads/doctors/1780810695724-dr-manoj-sharma.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T06:54:58.417Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a001816677c0b1ea3d8f",
+                                          "name":  "Cardiologist"
+                                      },
+                      "sortIndex":  29
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69c33b0d8a6f11f08f8bbc3c",
+                      "name":  "Dr. Hena Kauser",
+                      "slug":  "dr-hena-kauser",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cb",
+                                         "name":  "Dental",
+                                         "slug":  "dental",
+                                         "department_display_name":  "Dental"
+                                     },
+                      "qualification":  "BDS, MPH",
+                      "experience_years":  7,
+                      "experience_location":  "",
+                      "bio":  "Dr Hena Kauser is a highly skilled Consultant Dentist at Popular Hospital with extensive expertise in dental care and surgery. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/uploads/doctors/1780810727864-dr-heena-kauser.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c3981f86109e1e84630a70",
+                                          "name":  "Consultant Dentist"
+                                      },
+                      "is_active":  true,
+                      "createdAt":  "2026-03-25T01:31:57.342Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "sortIndex":  30
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50d88e91529da06eebc5c",
+                      "name":  "Dr. Anirban De",
+                      "slug":  "dr-anirban-de",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a3",
+                                         "name":  "Gastroenterology",
+                                         "slug":  "gastroenterology",
+                                         "department_display_name":  "Gastroenterology"
+                                     },
+                      "qualification":  "MBBS, MD, DM (Gastroenterology)",
+                      "experience_years":  7,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810775244-dr-anirban-de.png",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:26:00.711Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a08f71483d61b203df25",
+                                          "name":  "Gastroenterologist"
+                                      },
+                      "sortIndex":  31
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69f06730a832d95b8d3fa6b8",
+                      "name":  "Dr. Rohan Kumar Singh",
+                      "slug":  "dr-rohan-kumar-singh",
+                      "speciality":  {
+                                         "_id":  "69d07e8d1583fcfc5b99cc5f",
+                                         "slug":  "interventional-radiology",
+                                         "department_display_name":  "Interventional Radiology",
+                                         "name":  "Interventional Radiology"
+                                     },
+                      "qualification":  "MBBS, MD (Radiodiagnosis), FIVIR",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/images/departments_doctor/rohan_kr_singh.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c393d0f0296c2a05508a51",
+                                          "name":  "Consultant Radiologist"
+                                      },
+                      "is_active":  true,
+                      "sortIndex":  32,
+                      "createdAt":  "2026-04-28T07:52:16.882Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50df1e91529da06eebc68",
+                      "name":  "Dr. Mahesh Tiwari",
+                      "slug":  "dr-mahesh-tiwari",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a3",
+                                         "name":  "Gastroenterology",
+                                         "slug":  "gastroenterology",
+                                         "department_display_name":  "Gastroenterology"
+                                     },
+                      "qualification":  "MBBS, MS, MCh (Gastrosurgery)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780810855980-dr-mahesh-tiwari.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:27:45.007Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c3754b8a6f11f08f8bbed9",
+                                          "name":  "Gastrosurgeon"
+                                      },
+                      "sortIndex":  33
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50fe5e91529da06eebc93",
+                      "name":  "Dr. K.P Singh",
+                      "slug":  "dr-k-p-singh",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cd",
+                                         "name":  "Respiratory Medicine",
+                                         "slug":  "respiratory",
+                                         "department_display_name":  "Respiratory Medicine"
+                                     },
+                      "qualification":  "MBBS, MD, MNCCP, MICS (Respiratory Medicine), Dip Card",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Dr K. P. Singh, MBBS, MD (Respiratory Medicine), Dip Card, is a senior and highly respected\r\nPulmonologist with extensive experience in the diagnosis and management of complex respiratory\r\nand critical care conditions. He serves as Senior Consultant - Faculty of Respiratory Medicine \u0026\r\nIRCU at Popular Hospital, Varanasi, delivering advanced, evidence-based care for patients with\r\nacute and chronic lung diseases.\r\nDr K.P. Singh holds multiple prestigious professional memberships, including MNCCP, MICS, MICAI,\r\nMIES, MERS and FISH (Fellow Indian Society Hypertension) , reflecting his continuous commitment\r\nto academic excellence and advancements in respiratory and intensive care medicine. His clinical\r\nexpertise spans the full spectrum of pulmonary and critical respiratory disorders, with a strong focus\r\non precision diagnosis and patient safety.\r\nHe specialises in the management of chronic obstructive pulmonary disease (COPD), asthma,\r\ninterstitial lung disease (ILD), pneumonia, tuberculosis, bronchiectasis, sleep-related breathing\r\ndisorders, and respiratory infections. Dr K.P. Singh is also highly skilled in handling acute respiratory\r\nfailure, ventilator management, and advanced life support in intensive respiratory care settings.\r\nAs part of the IRCU, Dr K.P. Singh plays a crucial role in managing critically ill patients requiring noninvasive\r\nand invasive ventilation, oxygen therapy, and continuous monitoring. His integrated\r\nknowledge of respiratory and cardiac medicine allows for comprehensive care of patients with\r\noverlapping cardiopulmonary conditions.\r\nKnown for his calm leadership and patient-centred approach, Dr K. P. Singh emphasises early\r\nintervention, ethical clinical practices, and personalised treatment planning. His dedication to\r\nexcellence and compassionate care make him a trusted expert in respiratory and critical care\r\nmedicine at Popular Hospital, Varanasi.",
+                      "image_url":  "/uploads/doctors/1780810886996-dr-k-p-singh.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:36:05.064Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cff0296c2a05508a33",
+                                          "name":  "Senior Consultant Pulmonologist"
+                                      },
+                      "sortIndex":  34
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b512f2e91529da06eebccf",
+                      "name":  "Dr. P.K Tiwari",
+                      "slug":  "dr-p-k-tiwari",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b9",
+                                         "name":  "General Medicine / Physician",
+                                         "slug":  "general-medicine",
+                                         "department_display_name":  "General Medicine"
+                                     },
+                      "qualification":  "MBBS, MD (Internal Medicine) IMS, BHU",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Dr P.K Tiwari is a highly skilled Senior Consultant Physician at Popular Hospital with extensive expertise in General Medicine / Physician. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/uploads/doctors/1780810911924-dr-pk-tiwari.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:49:06.019Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cff0296c2a05508a39",
+                                          "name":  "Senior Consultant Physician"
+                                      },
+                      "sortIndex":  35
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b5132ee91529da06eebcd5",
+                      "name":  "Dr. Sandesh M Raykar",
+                      "slug":  "dr-sandesh-m-raykar",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b9",
+                                         "name":  "General Medicine / Physician",
+                                         "slug":  "general-medicine",
+                                         "department_display_name":  "General Medicine"
+                                     },
+                      "qualification":  "MBBS, MD (Internal Medicine) IMS, BHU",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Dr. Sandesh M. Raykar has completed his post graduate MD Medicine from IMS BHU following which he got the opportunity of working as senior residency for 3years in BHU . These 6 years have taught the art of medicine , confidence \u0026 knowledge to treat  Various diseases.",
+                      "image_url":  "/uploads/doctors/1780810971598-dr-sandesh-m-raykar.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:50:06.444Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393d0f0296c2a05508a3f",
+                                          "name":  "Consultant Physician"
+                                      },
+                      "sortIndex":  36
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50816e91529da06eebbe9",
+                      "name":  "Dr. Harendra Pratap Singh",
+                      "slug":  "dr-harendra-pratap-singh",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a5",
+                                         "name":  "Nephrology",
+                                         "slug":  "nephrology",
+                                         "department_display_name":  "Nephrology"
+                                     },
+                      "qualification":  "MBBS, MD, DM (Nephrology)",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780811022058-harendra-pratap.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:02:46.296Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a08f71483d61b203df13",
+                                          "name":  "Nephrologist"
+                                      },
+                      "sortIndex":  37
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50c54e91529da06eebc50",
+                      "name":  "Dr. Ajay Kumar Prajapati",
+                      "slug":  "dr-ajay-kumar-prajapati",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a7",
+                                         "name":  "Oncology",
+                                         "slug":  "oncology",
+                                         "department_display_name":  "Oncology"
+                                     },
+                      "qualification":  "MBBS, MS, MCh (Surgical Oncology)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1780811155561-dr-ajay-prajapati.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:20:52.595Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc878598181098e",
+                                          "name":  "Oncologist"
+                                      },
+                      "sortIndex":  38
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50725e91529da06eebbd6",
+                      "name":  "Dr. Md Akhtar Ali Ansari",
+                      "slug":  "dr-md-akhtar-ali-ansari",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b7",
+                                         "name":  "Orthopedics \u0026 Joint Replacement",
+                                         "slug":  "orthopedics",
+                                         "department_display_name":  "Orthopedics \u0026 Joint Replacement"
+                                     },
+                      "qualification":  "MBBS, MS (Orthopedics) AIIMS, New Delhi",
+                      "experience_years":  8,
+                      "experience_location":  "",
+                      "bio":  "Dr. Mohd Akhtar Ali Ansari is a skilled orthopaedic surgeon with extensive experience in joint replacement, arthroscopy, spine surgery, and trauma care. He completed his MBBS from Gauhati Medical College, Assam, followed by MS Orthopaedics from the All India Institute of Medical Sciences (AIIMS), New Delhi, where he also served as a Senior Resident in the Department of Orthopaedics.\r\n\r\nWith more than 6 years of independent experience, Dr. Ansari has performed a wide range of surgeries including hip and knee replacements, arthroscopies for sports injuries, spine surgeries, and complex trauma procedures. His expertise also covers computer-assisted and robotic navigation surgeries, which enhance precision and patient outcomes. He has been actively involved in both elective and emergency orthopaedic care, managing outpatient services and trauma emergencies effectively.\r\n\r\nHis research work includes a prospective randomized trial comparing medial and lateral pivot knee designs under the guidance of senior faculty at AIIMS, New Delhi. In addition, he is engaged in ongoing studies on pain management in arthroplasty and rare complications in joint replacement. He has contributed to several publications and is preparing case reports and randomized trials for academic journals.\r\n\r\nDr. Ansari has presented at multiple national conferences and attended advanced training programs such as AO Trauma courses, arthroplasty workshops, cadaveric training sessions, and international spine deformity courses. He remains committed to continuous learning and adopts global best practices to refine his surgical skills.\r\n\r\nOver his career, Dr. Ansari has independently performed and assisted in hundreds of surgeries, including knee and hip arthroplasties, spine procedures, arthroscopies, deformity corrections, and trauma reconstructions. His strong interest areas include primary and revision arthroplasty, sports injury management, spine surgery, and complex trauma care.\r\n\r\nRecognized for his academic achievements, Dr. Ansari has also received awards for excellence during his MBBS and has been an active member of professional societies such as the Delhi Orthopaedic Association and the Indian Orthopaedic Association.\r\n\r\nDedicated to delivering advanced orthopaedic care, Dr. Ansari combines surgical expertise with a patient-centered approach to ensure effective treatment and long-term recovery.",
+                      "image_url":  "/uploads/doctors/1780811248580-dr-ohd-akhtar-ali-ansari.jpg",
+                      "consultation_fee":  500,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T06:58:45.802Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cff0296c2a05508a27",
+                                          "name":  "Specialist in Joint Replacement, Arthroscopy, Spine Surgery \u0026 Trauma Care"
+                                      },
+                      "sortIndex":  39
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b506b7e91529da06eebbd0",
+                      "name":  "Dr. Vinit Yadav",
+                      "slug":  "dr-vinit-yadav",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b7",
+                                         "name":  "Orthopedics \u0026 Joint Replacement",
+                                         "slug":  "orthopedics",
+                                         "department_display_name":  "Orthopedics \u0026 Joint Replacement"
+                                     },
+                      "qualification":  "MBBS, MS (Orthopedics) IMS, BHU",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Consultant Orthopedics Surgeon having special interest in Sports injuries,Arthroplasty ( Joint Replacement Surgeries) \u0026 Arthoscopy. Spine (Trauma,T.B,Tumor) with all other routine procedures.",
+                      "image_url":  "/uploads/doctors/1780811273541-vinit-yadav.jpg",
+                      "consultation_fee":  500,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T06:56:55.740Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cff0296c2a05508a2d",
+                                          "name":  "Consultant Orthopedic Surgeon"
+                                      },
+                      "sortIndex":  40
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69c338a58a6f11f08f8bbbe6",
+                      "name":  "Dr. Piyush Hari",
+                      "slug":  "dr-piyush-hari",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5d7",
+                                         "name":  "Pathology",
+                                         "slug":  "pathology",
+                                         "department_display_name":  null
+                                     },
+                      "qualification":  "M.B.B.S., MD (Microbiology)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/images/departments_doctor/dr_piyush_hari.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc878598181097c",
+                                          "name":  "Microbiologist"
+                                      },
+                      "is_active":  true,
+                      "createdAt":  "2026-03-25T01:21:41.996Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "sortIndex":  41
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69c337b28a6f11f08f8bbbd0",
+                      "name":  "Dr. Sachidanand Sinha",
+                      "slug":  "dr-sachidanand-sinha",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5d7",
+                                         "name":  "Pathology",
+                                         "slug":  "pathology",
+                                         "department_display_name":  null
+                                     },
+                      "qualification":  "M.B.B.S, MD (Pathology)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/images/departments_doctor/dr_sachidanand_sinha.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc8785981810979",
+                                          "name":  "Pathologist"
+                                      },
+                      "is_active":  true,
+                      "createdAt":  "2026-03-25T01:17:38.245Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "sortIndex":  42
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b5118de91529da06eebcb7",
+                      "name":  "Dr. Alok C. Bhardwaj",
+                      "slug":  "dr-alok-c-bhardwaj",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b5",
+                                         "name":  "Pediatrics And Neonatology",
+                                         "slug":  "pediatrics",
+                                         "department_display_name":  "Pediatrics And Neonatology"
+                                     },
+                      "qualification":  "MBBS, MD (Pediatrics)",
+                      "experience_years":  40,
+                      "experience_location":  "",
+                      "bio":  "Eminent paediatrician of the city for more than 30 Years.Special interest in Neonatology/Paediatric endocrinology \u0026 Nephrology.",
+                      "image_url":  "/uploads/doctors/1780811519625-dr-alok-bharwaj.jpg",
+                      "consultation_fee":  500,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:43:09.831Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cef0296c2a05508a13",
+                                          "name":  "Senior Consultant Pediatrician"
+                                      },
+                      "sortIndex":  43
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b51299e91529da06eebcc9",
+                      "name":  "Dr. Greeshma Suresh",
+                      "slug":  "dr-greeshma-suresh",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b5",
+                                         "name":  "Pediatrics And Neonatology",
+                                         "slug":  "pediatrics",
+                                         "department_display_name":  "Pediatrics And Neonatology"
+                                     },
+                      "qualification":  "MBBS, MD (Pediatrics)",
+                      "experience_years":  7,
+                      "experience_location":  "",
+                      "bio":  "Dr Greeshma Suresh is a highly skilled Consultant Pediatrician at Popular Hospital with extensive expertise in Pediatrics And Neonatology. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/uploads/doctors/1780811404531-dr-greeshma-suresh.jpg",
+                      "consultation_fee":  500,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:47:37.550Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cef0296c2a05508a19",
+                                          "name":  "Consultant Pediatrician"
+                                      },
+                      "sortIndex":  44
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b511bfe91529da06eebcbd",
+                      "name":  "Dr. Prabhat Kumar",
+                      "slug":  "dr-prabhat-kumar",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5b5",
+                                         "name":  "Pediatrics And Neonatology",
+                                         "slug":  "pediatrics",
+                                         "department_display_name":  "Pediatrics And Neonatology"
+                                     },
+                      "qualification":  "MBBS, DCH, DNB (Paediatrics)",
+                      "experience_years":  15,
+                      "experience_location":  "",
+                      "bio":  "Senior paediatrician specialised in paediatrics and intensive care. Underwent intensive training  in AIIMS Delhi,PMCH Patna \u0026 TMH Jamshedpur.Special interest in Acute \u0026 chronic diseases like chickenpox,Measles \u0026 Jaundice. He is also specialised  in paediatric emergencies.",
+                      "image_url":  "/uploads/doctors/1780811536201-dr-prabhat-kumar.jpg",
+                      "consultation_fee":  500,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:43:59.848Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cef0296c2a05508a19",
+                                          "name":  "Consultant Pediatrician"
+                                      },
+                      "sortIndex":  45
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "9am-12pm \u0026 4pm-8pm",
+                                          "tuesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "wednesday":  "9am-12pm \u0026 4pm-8pm",
+                                          "thursday":  "9am-12pm \u0026 4pm-8pm",
+                                          "friday":  "9am-12pm \u0026 4pm-8pm",
+                                          "saturday":  "9am-12pm \u0026 4pm-8pm",
+                                          "sunday":  "-"
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b5121ce91529da06eebcc3",
+                      "name":  "Dr. Rajesh Kumar Singh",
+                      "slug":  "dr-rajesh-kumar-singh",
+                      "speciality":  {
+                                         "_id":  "69e3343aa4f624eb73744c95",
+                                         "name":  "Pediatric Cardiology",
+                                         "slug":  "pediatric-cardiology",
+                                         "department_display_name":  "Pediatric Cardiology"
+                                     },
+                      "qualification":  "MBBS, MD (Pediatrics)",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Dr Rajesh Kumar Singh is a highly skilled Consultant Pediatrician at Popular Hospital with extensive expertise in Pediatrics And Neonatology. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/uploads/doctors/1780811564027-dr-rajesh-kumar-singh.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:45:32.714Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393cef0296c2a05508a19",
+                                          "name":  "Consultant Pediatrician"
+                                      },
+                      "sortIndex":  46
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69c33a258a6f11f08f8bbc22",
+                      "name":  "Dr. Jyoti Ranjan",
+                      "slug":  "dr-jyoti-ranjan",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5d3",
+                                         "name":  "Physiotherapy",
+                                         "slug":  "physiotherapy",
+                                         "department_display_name":  null
+                                     },
+                      "qualification":  "MPT",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc8785981810982",
+                                          "name":  "Physiotherapist"
+                                      },
+                      "is_active":  true,
+                      "createdAt":  "2026-03-25T01:28:05.932Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "sortIndex":  47
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50d3ce91529da06eebc56",
+                      "name":  "Dr. Neha Gupta",
+                      "slug":  "dr-neha-gupta",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a7",
+                                         "name":  "Oncology",
+                                         "slug":  "oncology",
+                                         "department_display_name":  "Oncology"
+                                     },
+                      "qualification":  "MBBS, MD (Oncologist)",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Dr Neha Gupta is a highly skilled Consultant Radiologist at Popular Hospital with extensive expertise in Radiology. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/uploads/doctors/1780811589233-dr-neha-gupta.png",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:24:44.416Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c1a0aa2bc878598181098e",
+                                          "name":  "Oncologist"
+                                      },
+                      "sortIndex":  48
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b514cfe91529da06eebcf9",
+                      "name":  "Dr. Omkareshwar Pratap Singh",
+                      "slug":  "dr-omkareshwar-pratap-singh",
+                      "speciality":  {
+                                         "_id":  "69d07e8d1583fcfc5b99cc5f",
+                                         "slug":  "interventional-radiology",
+                                         "department_display_name":  "Interventional Radiology",
+                                         "name":  "Interventional Radiology"
+                                     },
+                      "qualification":  "MBBS, DNB (Radiodiagnosis)",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Dr Omkareshwar Pratap Singh is a highly skilled Consultant Radiologist at Popular Hospital with extensive expertise in Radiology. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/images/departments_doctor/dr_omkareshwar.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:57:03.567Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393d0f0296c2a05508a51",
+                                          "name":  "Consultant Radiologist"
+                                      },
+                      "sortIndex":  49
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b51014e91529da06eebc99",
+                      "name":  "Dr. Shailendra Shivhare",
+                      "slug":  "dr-shailendra-shivhare",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cd",
+                                         "name":  "Respiratory Medicine",
+                                         "slug":  "respiratory",
+                                         "department_display_name":  "Respiratory Medicine"
+                                     },
+                      "qualification":  "MBBS, MD (Respiratory Medicine)",
+                      "experience_years":  null,
+                      "experience_location":  "",
+                      "bio":  "",
+                      "image_url":  "/uploads/doctors/1779691389113-dr-sailendra-shivhare.jpg",
+                      "consultation_fee":  500,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:36:52.748Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c39a8358d567ace3f4ac36",
+                                          "name":  "Consultant Pulmonologist"
+                                      },
+                      "sortIndex":  50
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b5104de91529da06eebc9f",
+                      "name":  "Dr. Vikas Jaiswal",
+                      "slug":  "dr-vikas-jaiswal",
+                      "speciality":  {
+                                         "_id":  "69c3447572dae178c5c5c5cd",
+                                         "name":  "Respiratory Medicine",
+                                         "slug":  "respiratory",
+                                         "department_display_name":  "Respiratory Medicine"
+                                     },
+                      "qualification":  "MBBS, DTCD, DNB (Respiratory Medicine)",
+                      "experience_years":  14,
+                      "experience_location":  "",
+                      "bio":  "We are proud to have Dr. Vikas Jaiswal as the Consultant and Head of our esteemed Respiratory Department. With a stellar reputation and a wealth of experience in respiratory medicine, Dr. Jaiswal has dedicated his career to providing exceptional care and treatment to patients with chest diseases.\r\n\r\nWith an impressive track record of successfully treating over 5 lakh patients, Dr. Jaiswal\u0027s expertise and compassionate approach have earned him immense respect in the field of respiratory medicine. His vast experience of 12 years in this specialized area has enabled him to develop a deep understanding of various respiratory conditions and their management.\r\n\r\nDr. Jaiswal\u0027s journey in the field of respiratory medicine began with his tenure as a Senior Resident at the VP Chest Institute and RBIPMT in Delhi. Building on his exceptional foundation, Dr. Jaiswal further enriched his knowledge and expertise by serving as a Consultant at prestigious institutions such as Fortis Hospital and Max Super Specialty Hospital in Delhi. These experiences allowed him to work closely with multidisciplinary teams, collaborate on complex cases, and employ the latest advancements in respiratory medicine to deliver optimal patient outcomes.\r\n\r\nBeyond his medical achievements, Dr. Jaiswal is known for his warm demeanor, compassionate care, and patient-centric approach. He believes in building strong doctor-patient relationships and takes the time to listen to his patients\u0027 concerns, answer their questions, and provide them with personalized treatment plans.\r\n\r\nAs the Head of our Respiratory Department, Dr. Vikas Jaiswal brings his wealth of knowledge, expertise, and dedication to the forefront of patient care. His leadership ensures that our department remains at the forefront of respiratory medicine, delivering outstanding care to our patients.\r\n\r\nHe has also been awarded by Dainik Jagaran City Health ICON Award 2022 and Zee News UP Health ICON Award 2022 for distinguished service in the field of Respiratory Medicine field.\r\n\r\nWe are honored to have Dr. Jaiswal as an integral part of our team and are confident that his expertise and commitment will continue to make a significant impact on the lives of our patients.",
+                      "image_url":  "/uploads/doctors/1780811757267-dr-vikas-jaiswal.jpg",
+                      "consultation_fee":  500,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:37:49.701Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c39a8358d567ace3f4ac36",
+                                          "name":  "Consultant Pulmonologist"
+                                      },
+                      "sortIndex":  51
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50bd7e91529da06eebc44",
+                      "name":  "Dr. Dinesh Singh",
+                      "slug":  "dr-dinesh-singh",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a9",
+                                         "name":  "Urology",
+                                         "slug":  "urology",
+                                         "department_display_name":  "Urology"
+                                     },
+                      "qualification":  "MBBS, MS, M.ch. (Urology)",
+                      "experience_years":  11,
+                      "experience_location":  "",
+                      "bio":  "Dr Dinesh Singh is a highly skilled Consultant Surgeon at Popular Hospital with extensive expertise in Urology. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/uploads/doctors/1780811783630-dr-dinesh-singh.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:18:47.554Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69c393d0f0296c2a05508a45",
+                                          "name":  "Consultant Urologist"
+                                      },
+                      "sortIndex":  52
+                  },
+                  {
+                      "opd_timings":  {
+                                          "monday":  "",
+                                          "tuesday":  "",
+                                          "wednesday":  "",
+                                          "thursday":  "",
+                                          "friday":  "",
+                                          "saturday":  "",
+                                          "sunday":  ""
+                                      },
+                      "youtube_video_url":  null,
+                      "_id":  "69b50c10e91529da06eebc4a",
+                      "name":  "Dr. Piyush Kumar Saini",
+                      "slug":  "dr-piyush-kumar-saini",
+                      "speciality":  {
+                                         "_id":  "69c3447472dae178c5c5c5a9",
+                                         "name":  "Urology",
+                                         "slug":  "urology",
+                                         "department_display_name":  "Urology"
+                                     },
+                      "qualification":  "MBBS, MS, M.Ch. (Urology)",
+                      "experience_years":  10,
+                      "experience_location":  "",
+                      "bio":  "Dr Piyush Saini is a highly skilled Consultant Surgeon at Popular Hospital with extensive expertise in Urology. Dedicated to providing compassionate patient care and staying at the forefront of medical advancements.",
+                      "image_url":  "/uploads/doctors/1780811829129-dr-piyush-saini.jpg",
+                      "consultation_fee":  null,
+                      "available_days":  "",
+                      "branches":  [
+
+                                   ],
+                      "is_active":  true,
+                      "createdAt":  "2026-03-14T07:19:44.804Z",
+                      "updatedAt":  "2026-07-09T10:36:03.858Z",
+                      "__v":  0,
+                      "designation":  {
+                                          "_id":  "69f069aaa832d95b8d3fa7d0",
+                                          "name":  "Consultant Urologist and Andrologist"
+                                      },
+                      "sortIndex":  53
+                  }
+              ],
+    "Count":  53
+}

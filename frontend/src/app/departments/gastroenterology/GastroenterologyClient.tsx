@@ -40,11 +40,11 @@ const doctors = [
     image: "/images/departments_doctor/dr_mahesh_tiwari.jpg",
   },
   {
-    name: "Dr. Anirban De",
+    name: "Dr. Soumyaleen",
     qualifications: "MBBS, MD, DM (Gastroenterology)",
     designation: "Consultant Gastroenterologist",
-    slug: "dr-anirban-de",
-    image: "/images/departments_doctor/dr_anirban_de.png",
+    slug: "dr-soumyaleen",
+    image: "",
   },
   {
     name: "Dr. R.K Singh",

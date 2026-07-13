@@ -236,7 +236,7 @@ export default function GeneralMedicineClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="General Medicine"
-                  preventBackendFetch={true}
+                  exactMatchOnly={true}
                 />
               </div>
             </div>

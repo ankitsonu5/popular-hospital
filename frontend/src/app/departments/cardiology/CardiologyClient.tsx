@@ -134,13 +134,6 @@ const preventiveList = [
 
 const doctors = [
   {
-    name: "Dr. Tejas Mahajan",
-    qualifications: "MBBS, DNB (General Medicine), DrNB (Cardiology)",
-    designation: "Consultant Interventional cardiology",
-    slug: "dr-tejas-mahajan",
-    image: "/images/departments_doctor/dr_tejas_mahajan.jpg.jpeg",
-  },
-  {
     name: "Dr. Hari Krishan Srivastava",
     qualifications: "M.B.B.S., M.D., DM (Cardiology)",
     designation: "Head, Department of Cardiology",
@@ -153,6 +146,13 @@ const doctors = [
     designation: "Department of Cardiology",
     slug: "dr-manoj-sharma",
     image: "/images/departments_doctor/dr_manoj-sharma.jpg",
+  },
+  {
+    name: "Dr. Tejas Mahajan",
+    qualifications: "MBBS, DNB (General Medicine), DrNB (Cardiology)",
+    designation: "Consultant Interventional cardiology",
+    slug: "dr-tejas-mahajan",
+    image: "/images/departments_doctor/dr_tejas_mahajan.jpg.jpeg",
   },
 ];
 

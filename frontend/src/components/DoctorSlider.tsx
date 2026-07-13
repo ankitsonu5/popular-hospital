@@ -54,10 +54,12 @@ export default function DoctorSlider({
   doctors,
   departmentName,
   preventBackendFetch = false,
+  exactMatchOnly = false,
 }: {
   doctors: Doctor[];
   departmentName: string;
   preventBackendFetch?: boolean;
+  exactMatchOnly?: boolean;
 }) {
   const pathname = usePathname();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -70,11 +72,12 @@ export default function DoctorSlider({
     : "";
   const displayDoctors =
     backendDoctors.length > 0
-      ? [...backendDoctors].sort((a, b) => {
-          const getOrder = (doctor: Doctor) => {
-            const slugKey = normalizeDoctorValue(doctor.slug || "");
-            const nameKey = normalizeDoctorValue(doctor.name || "");
-            const index = doctors.findIndex((item) => {
+      ? [...backendDoctors]
+          .filter((doc) => {
+            if (!exactMatchOnly) return true;
+            const slugKey = normalizeDoctorValue(doc.slug || "");
+            const nameKey = normalizeDoctorValue(doc.name || "");
+            return doctors.some((item) => {
               const itemSlugKey = normalizeDoctorValue(item.slug || "");
               const itemNameKey = normalizeDoctorValue(item.name || "");
               return (
@@ -84,12 +87,27 @@ export default function DoctorSlider({
                 itemNameKey === slugKey
               );
             });
+          })
+          .sort((a, b) => {
+            const getOrder = (doctor: Doctor) => {
+              const slugKey = normalizeDoctorValue(doctor.slug || "");
+              const nameKey = normalizeDoctorValue(doctor.name || "");
+              const index = doctors.findIndex((item) => {
+                const itemSlugKey = normalizeDoctorValue(item.slug || "");
+                const itemNameKey = normalizeDoctorValue(item.name || "");
+                return (
+                  itemSlugKey === slugKey ||
+                  itemNameKey === nameKey ||
+                  itemSlugKey === nameKey ||
+                  itemNameKey === slugKey
+                );
+              });
 
-            return index === -1 ? Number.MAX_SAFE_INTEGER : index;
-          };
+              return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+            };
 
-          return getOrder(a) - getOrder(b);
-        })
+            return getOrder(a) - getOrder(b);
+          })
       : doctors;
   const currentDoctor = displayDoctors[currentSlide];
   const appointmentHref = currentDoctor?.slug

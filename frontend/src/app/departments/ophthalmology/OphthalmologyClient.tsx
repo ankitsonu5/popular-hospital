@@ -55,6 +55,13 @@ const specialisedProgrammes = [
 
 const doctors = [
   {
+    name: "Dr. Disha Chaudhary",
+    qualifications: "Consultant Ophthalmologist",
+    designation: "Consultant",
+    slug: "dr-disha-chaudhary",
+    image: "",
+  },
+  {
     name: "Dr. Gunjan Rana",
     qualifications: "M.B.B.S, MS(Ophthalmology)",
     designation: "Consultant Ophthalmologist",

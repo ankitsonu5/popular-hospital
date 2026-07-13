@@ -118,13 +118,6 @@ const doctors = [
     image: "/images/departments_doctor/dr_k_p_singh.jpg",
   },
   {
-    name: "Dr. Shailendra Shivhare",
-    qualifications: "MBBS, MD (Respiratory Medicine)",
-    designation: "Consultant Pulmonologist",
-    slug: "dr-shailendra-shivhare",
-    image: "/images/departments_doctor/dr_sailendra shivhare.jpg",
-  },
-  {
     name: "Dr. Vikas Jaiswal",
     qualifications: "MBBS, DTCD, DNB (Respiratory Medicine)",
     designation: "Consultant Pulmonologist",

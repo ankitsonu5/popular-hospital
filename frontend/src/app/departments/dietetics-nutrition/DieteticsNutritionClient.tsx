@@ -11,14 +11,14 @@ const doctors = [
   {
     name: "Dt. Sakshi Pandey",
     qualifications: "MSc. (Food Science), CCN, CDE, PGDDN",
-    designation: "Dietitian",
+    designation: "Senior Clinical Dietician",
     slug: "dt-sakshi-pandey",
     image: "/images/departments_doctor/dt_sakshi_pandey.jpg",
   },
   {
     name: "Dt. Sayeda Eram Fatma",
     qualifications:
-      "M.SC (DFSM) Dietetics Food service management  BHU  Diploma in health care and hospital management BHU CNCC Nutrition in child care",
+      "M.SC (DFSM) Dietetics Food service management BHU Diploma in health care and hospital management BHU CNCC Nutrition in child care",
     designation: "Clinical Dietitian",
     slug: "dt-sayeda-eram-fatma",
     image: "/images/departments_doctor/dt._sayeda_eram_fatma.jpeg",

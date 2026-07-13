@@ -38,13 +38,32 @@ const procedures = [
 
 const doctors = [
   {
-    name: "Diabetic Foot Specialist",
-    qualifications:
-      "MS (General Surgery / Orthopedics), Fellowship in Wound Care",
-    designation: "Consultant Podiatric Surgeon",
-    slug: "diabetic-foot-specialist",
-    image:
-      "https://images.unsplash.com/photo-1559839734-2b71f1536780?auto=format&fit=crop&q=80&w=800",
+    name: "Dr. A.K Kaushik",
+    qualifications: "MS",
+    designation: "Consultant",
+    slug: "dr-a-k-kaushik",
+    image: "",
+  },
+  {
+    name: "Dr. Sandesh M Raykar",
+    qualifications: "MBBS, MS",
+    designation: "Consultant",
+    slug: "dr-sandesh-m-raykar",
+    image: "",
+  },
+  {
+    name: "Dr. Abhishek Kumar",
+    qualifications: "MBBS, MS",
+    designation: "Consultant",
+    slug: "dr-abhishek-kumar",
+    image: "",
+  },
+  {
+    name: "Dr. Deepankar Mishra",
+    qualifications: "MBBS, MD",
+    designation: "Consultant",
+    slug: "dr-deepankar-mishra",
+    image: "",
   },
 ];
 
@@ -160,7 +179,7 @@ export default function DiabeticFootClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Advanced Diabetic Foot Unit"
-                  preventBackendFetch={true}
+                  exactMatchOnly={true}
                 />
               </div>
             </div>

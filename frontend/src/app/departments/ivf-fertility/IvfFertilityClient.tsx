@@ -23,18 +23,18 @@ const doctors = [
     image: "/images/departments_doctor/dr_priyanka_jaiswal.jpg",
   },
   {
-    name: "Dr. Srishti Tanya",
-    qualifications: "M.B.B.S., MS",
-    designation: "Consultant Gynaecologist",
-    slug: "dr-srishti-tanya",
-    image: "/images/departments_doctor/dr._srishti_tanya.jpg",
-  },
-  {
     name: "Dr. Akanksha Chaturvedi",
     qualifications: "MBBS, MS (Obs & Gynae)",
     designation: "IVF & Fertility Specialist",
     slug: "dr-akanksha-chaturvedi",
     image: "/images/departments_doctor/dr_akanksha_chaturvedi.jpg",
+  },
+  {
+    name: "Dr. Srishti Tanya",
+    qualifications: "M.B.B.S., MS",
+    designation: "Consultant Gynaecologist",
+    slug: "dr-srishti-tanya",
+    image: "/images/departments_doctor/dr._srishti_tanya.jpg",
   },
 ];
 
