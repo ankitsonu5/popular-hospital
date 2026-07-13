@@ -250,6 +250,7 @@ export default function PediatricsClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Pediatrics & Neonatology"
+                  exactMatchOnly
                 />
               </div>
             </div>

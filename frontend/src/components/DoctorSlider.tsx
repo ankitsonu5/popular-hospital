@@ -250,10 +250,9 @@ export default function DoctorSlider({
               const primaryImage = doc.image_url || doc.image || "";
               const fallbackImage =
                 fallbackDoctor?.image || fallbackDoctor?.image_url || "";
-              const imageSrc =
-                failedImages[imageKey] && fallbackImage
-                  ? fallbackImage
-                  : primaryImage || fallbackImage;
+              const imageSrc = failedImages[imageKey]
+                ? fallbackImage
+                : primaryImage || fallbackImage;
 
               return (
                 <div

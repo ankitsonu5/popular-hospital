@@ -40,7 +40,7 @@ const doctors = [
     image: "/images/departments_doctor/dr_mahesh_tiwari.jpg",
   },
   {
-    name: "Dr. Soumyaleen",
+    name: "Dr. Soumyaleen Roy",
     qualifications: "MBBS, MD, DM (Gastroenterology)",
     designation: "Consultant Gastroenterologist",
     slug: "dr-soumyaleen",
@@ -251,6 +251,7 @@ export default function GastroenterologyClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Gastroenterology"
+                  exactMatchOnly
                 />
               </div>
             </div>
