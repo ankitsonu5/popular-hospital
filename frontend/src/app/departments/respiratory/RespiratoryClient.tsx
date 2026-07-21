@@ -109,22 +109,13 @@ const whyChooseUs = [
   },
 ];
 
-const doctors = [
-  {
-    name: "Dr. K.P. Singh",
-    qualifications: "MBBS, MD (Respiratory Medicine), Dip Card",
-    designation: "Sr. Consultant Pulmonologist",
-    slug: "dr-k-p-singh",
-    image: "/images/departments_doctor/dr_k_p_singh.jpg",
-  },
-  {
-    name: "Dr. Vikas Jaiswal",
-    qualifications: "MBBS, DTCD, DNB (Respiratory Medicine)",
-    designation: "Consultant Pulmonologist",
-    slug: "dr-vikas-jaiswal",
-    image: "/images/departments_doctor/dr_vikas_jaiswal.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Sub-Components ─── */
 
@@ -154,7 +145,11 @@ const SectionHeader = ({
 
 /* ─── Page ─── */
 
-export default function RespiratoryClient() {
+export default function RespiratoryClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}

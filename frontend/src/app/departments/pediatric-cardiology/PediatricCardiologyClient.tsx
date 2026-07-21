@@ -59,19 +59,21 @@ const whyChooseUs = [
   "Trusted hospital in Varanasi",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Rajesh Kumar Singh",
-    qualifications: "MBBS, MD (Pediatrics), FNB (Pediatric Cardiology)",
-    designation: "Consultant Pediatric Cardiologist & Intensivist",
-    slug: "dr-rajesh-kumar-singh",
-    image: "/images/departments_doctor/dr_rajesh_kumar_singh.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function PediatricCardiologyClient() {
+export default function PediatricCardiologyClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -165,6 +167,7 @@ export default function PediatricCardiologyClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Pediatric Cardiology"
+                  preventBackendFetch
                 />
               </div>
             </div>

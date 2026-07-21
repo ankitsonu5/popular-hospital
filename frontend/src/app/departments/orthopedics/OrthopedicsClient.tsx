@@ -144,27 +144,21 @@ const whyUs = [
   },
 ];
 
-const doctors = [
-  {
-    name: "Dr. Vinit Yadav",
-    qualifications: "MBBS, MS (Orthopedics) IMS, BHU",
-    designation: "Consultant Orthopedic Surgeon",
-    slug: "dr-vinit-yadav",
-    image: "/images/departments_doctor/vinit_yadav.jpg",
-  },
-  {
-    name: "Dr. Md Akhtar Ali Ansari",
-    qualifications: "MBBS, MS (Orthopedics) AIIMS, New Delhi",
-    designation:
-      "Specialist in Joint Replacement, Arthroscopy, Spine Surgery & Trauma Care",
-    slug: "dr-md-akhtar-ali-ansari",
-    image: "/images/departments_doctor/dr_ohd_akhtar_ali_ansari.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function OrthopedicsClient() {
+export default function OrthopedicsClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <div className="bg-white overflow-x-hidden">
       {/* ══════════════════════════════════════
@@ -241,6 +235,7 @@ export default function OrthopedicsClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Orthopedics & Joint Replacement"
+                  preventBackendFetch
                 />
               </div>
             </div>

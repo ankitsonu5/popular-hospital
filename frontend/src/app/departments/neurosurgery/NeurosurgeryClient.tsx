@@ -160,7 +160,11 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
             {/* Right Sidebar - Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <DoctorSlider doctors={doctors} departmentName="Neurosurgery" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Neurosurgery"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

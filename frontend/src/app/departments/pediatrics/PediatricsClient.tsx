@@ -133,26 +133,21 @@ const highlights = [
   },
 ];
 
-const doctors = [
-  {
-    name: "Dr. Alok C. Bhardwaj",
-    qualifications: "MBBS, MD (Pediatrics) IMS, BHU",
-    designation: "HEAD, DEPARTMENT OF PEDIATRICS",
-    slug: "dr-alok-c-bhardwaj",
-    image: "/images/departments_doctor/alok_c_bharwaj.jpg",
-  },
-  {
-    name: "Dr. Prabhat Kumar",
-    qualifications: "MBBS, DCH, DNB (Pediatrics)",
-    designation: "Consultant Senior Pediatrician",
-    slug: "dr-prabhat-kumar",
-    image: "/images/departments_doctor/dr_prabhat_kumar.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function PediatricsClient() {
+export default function PediatricsClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ══════════════════════════════════════
@@ -250,7 +245,7 @@ export default function PediatricsClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Pediatrics & Neonatology"
-                  exactMatchOnly
+                  preventBackendFetch
                 />
               </div>
             </div>

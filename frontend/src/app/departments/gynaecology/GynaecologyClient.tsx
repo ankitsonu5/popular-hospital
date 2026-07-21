@@ -144,33 +144,21 @@ const procedureCategories = [
   },
 ];
 
-const doctors = [
-  {
-    name: "Dr. Kiran Kaushik",
-    qualifications: "MBBS, MS (OBGY) IMS, BHU",
-    designation: "Head Of Department Obstetrics & Gynaecology",
-    slug: "dr-kiran-kaushik",
-    image: "/images/departments_doctor/dr_kiran_kaushik.png",
-  },
-  {
-    name: "Dr. Madhavi Paramar",
-    qualifications: "MBBS, DGO",
-    designation: "Consultant Gynaecologist",
-    slug: "dr-madhavi-paramar",
-    image: "/images/departments_doctor/madhvi_parmar.jpg",
-  },
-  {
-    name: "Dr. Priyanka Jaiswal",
-    qualifications: "MBBS, MS (OBGY)",
-    designation: "Consultant Gynaecologist",
-    slug: "dr-priyanka-jaiswal",
-    image: "/images/departments_doctor/dr_priyanka_jaiswal.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function GynaecologyClient() {
+export default function GynaecologyClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   const [activeTab, setActiveTab] = useState("outpatient");
 
   return (

@@ -24,7 +24,7 @@ const procedures = [
   "Gallstone Disease – Laparoscopic Cholecystectomy",
   "Hernia Laparoscopic/Open Hernia Repair with Mesh",
   "Appendicitis - Laparoscopic Appendectomy",
-  "Reflux Disease, Reflux Gastritis, Hiatus Hernia – Laparoscopic Repair",
+  "Reflux Disease, Reflux Gastritis, Hiatus Hernia - Laparoscopic Repair",
   "Diagnostic Laparoscopy",
   "Thyroid and Parathyroid Tumour – Thyroidectomy/Parathyroidectomy",
   "Fissure or Anal Pain",
@@ -39,26 +39,21 @@ const procedures = [
   "Vasectomy",
 ];
 
-const doctors = [
-  {
-    name: "Dr. A.K Kaushik",
-    qualifications: "MBBS, MS (General Surgery) IMS, BHU",
-    designation: "Head, Department of General Surgery",
-    slug: "dr-a-k-kaushik",
-    image: "/images/departments_doctor/dr_ak_kaushik.jpg",
-  },
-  {
-    name: "Dr. Abhishek Kumar",
-    qualifications: "M.B.B.S, M.S. - General Surgery, FIAGES",
-    designation: "Consultant Surgeon",
-    slug: "dr-abhishek-kumar",
-    image: "/images/departments_doctor/dr_abhishek_kumar.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function GeneralSurgeryClient() {
+export default function GeneralSurgeryClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -153,6 +148,7 @@ export default function GeneralSurgeryClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Laparoscopy & General Surgery"
+                  preventBackendFetch
                 />
               </div>
             </div>

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import PediatricCardiologyClient from "./PediatricCardiologyClient";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
+import { fetchDoctors, getImageUrl } from "@/lib/api";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Pediatric Cardiology | Popular Hospital",
@@ -9,7 +12,17 @@ export const metadata: Metadata = {
     "Specialized pediatric cardiology care for children. Dedicated Pediatric Cardiologists and support ensuring gentle, safe care.",
 };
 
-export default function PediatricCardiologyPage() {
+export default async function PediatricCardiologyPage() {
+  const dbDoctors = await fetchDoctors({ speciality: "pediatric-cardiology" });
+  const doctors = dbDoctors.map((d) => ({
+    name: d.name,
+    qualifications: d.qualification || "",
+    designation:
+      typeof d.designation === "object" ? d.designation?.name : d.designation,
+    slug: d.slug,
+    image: d.image_url ? getImageUrl(d.image_url) : "",
+  }));
+
   return (
     <>
       <DynamicSchema
@@ -23,7 +36,7 @@ export default function PediatricCardiologyPage() {
           />
         }
       />
-      <PediatricCardiologyClient />
+      <PediatricCardiologyClient doctors={doctors} />
     </>
   );
 }

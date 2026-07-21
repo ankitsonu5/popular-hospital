@@ -145,27 +145,17 @@ const whyChooseUs = [
   "Commitment to patient education and support.",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Harendra Ojha",
-    qualifications: "MBBS, MS, M.Ch (Cardiothoracic and Vascular Surgery)",
-    designation: "Cardiothoracic and Vascular Surgeon",
-    slug: "dr-harendra-ojha",
-    image: "/images/departments_doctor/dr_harendra_ojha.jpg.jpeg",
-  },
-  {
-    name: "Dr. Shailesh Kumar Yadav",
-    qualifications:
-      "MBBS, (Gold Medalist), DrNB, MCH ( CTVS - Pediatric & Adult)",
-    designation: "Cardiothoracic and Vascular Surgeon",
-    slug: "dr-shailesh-kumar-yadav",
-    image: "/images/departments_doctor/dr_shailesh_kumar_yadav.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function CTVSClient() {
+export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO SECTION ═══════ */}
@@ -317,7 +307,11 @@ export default function CTVSClient() {
             {/* Right Sidebar - Doctor Slider */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <DoctorSlider doctors={doctors} departmentName="CTVS" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="CTVS"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

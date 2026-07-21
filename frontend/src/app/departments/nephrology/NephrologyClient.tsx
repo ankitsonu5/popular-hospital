@@ -49,19 +49,21 @@ const conditions = [
   "Pre & Post Transplant Care",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Harendra Pratap Singh",
-    qualifications: "MBBS, MD, DM (Nephrology)",
-    designation: "Consultant Nephrologist",
-    slug: "dr-harendra-pratap-singh",
-    image: "/images/departments_doctor/harendra_pratap.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Components ─── */
 
-export default function NephrologyClient() {
+export default function NephrologyClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
@@ -173,7 +175,11 @@ export default function NephrologyClient() {
             {/* Right Sidebar - Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Nephrology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Nephrology"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

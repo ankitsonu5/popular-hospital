@@ -7,23 +7,13 @@ import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
-const doctors = [
-  {
-    name: "Dt. Sakshi Pandey",
-    qualifications: "MSc. (Food Science), CCN, CDE, PGDDN",
-    designation: "Senior Clinical Dietician",
-    slug: "dt-sakshi-pandey",
-    image: "/images/departments_doctor/dt_sakshi_pandey.jpg",
-  },
-  {
-    name: "Dt. Sayeda Eram Fatma",
-    qualifications:
-      "M.SC (DFSM) Dietetics Food service management BHU Diploma in health care and hospital management BHU CNCC Nutrition in child care",
-    designation: "Clinical Dietitian",
-    slug: "dt-sayeda-eram-fatma",
-    image: "/images/departments_doctor/dt._sayeda_eram_fatma.jpeg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 const features = [
   {
@@ -100,7 +90,11 @@ const SectionHeader = ({
 
 /* ─── Page ─── */
 
-export default function DieteticsNutritionClient() {
+export default function DieteticsNutritionClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}

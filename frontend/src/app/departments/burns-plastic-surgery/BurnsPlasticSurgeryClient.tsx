@@ -41,33 +41,21 @@ const procedures = [
   "Sex change surgery",
 ];
 
-const doctors = [
-  {
-    name: "Dr. A.K Pradhan",
-    qualifications: "MBBS, MS, MCh (Plastic Surgery)",
-    designation: "Consultant Plastic Surgeon",
-    slug: "dr-a-k-pradhan",
-    image: "/images/departments_doctor/dr_a_k_pradhan.jpg",
-  },
-  {
-    name: "Dr. Sudhir Singh",
-    qualifications: "MBBS, MS, MCh (Plastic Surgery)",
-    designation: "Consultant Plastic Surgeon",
-    slug: "dr-sudhir-singh",
-    image: "/images/departments_doctor/dr_sudhir_singh.jpg",
-  },
-  {
-    name: "Dr. Deepak Agrahari",
-    qualifications: "MBBS, MS, MCh (Plastic Surgery)",
-    designation: "Consultant Plastic Surgeon",
-    slug: "dr-deepak-agrahari",
-    image: "/images/departments_doctor/dr_deepak_agrahari.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function BurnsPlasticSurgeryClient() {
+export default function BurnsPlasticSurgeryClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -163,6 +151,7 @@ export default function BurnsPlasticSurgeryClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Burns & Plastic Surgery"
+                  preventBackendFetch
                 />
               </div>
             </div>

@@ -27,26 +27,21 @@ const diagnosticOncologyServices = [
   "Pathology",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Ajay Kumar Prajapati",
-    qualifications: "MBBS, MS, MCh (Surgical Oncology)",
-    designation: "Consultant Surgical Oncology",
-    slug: "dr-ajay-kumar-prajapati",
-    image: "/images/departments_doctor/dr_ajay_prajapati.jpg",
-  },
-  {
-    name: "Dr. Neha Gupta",
-    qualifications: "MBBS, MD (Radiotherapy)",
-    designation: "Radiologist / Oncologist",
-    slug: "dr-neha-gupta",
-    image: "/images/departments_doctor/dr_neha_gupta.png",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function OncologyClient() {
+export default function OncologyClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -149,7 +144,11 @@ export default function OncologyClient() {
             {/* Right Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Oncology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Oncology"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

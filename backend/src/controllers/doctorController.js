@@ -63,7 +63,10 @@ export const getAllDoctors = async (req, res) => {
       if (!spec) {
         spec = await Speciality.findOne({ slug: speciality });
       }
-      if (spec) filter.speciality = spec._id;
+      // No matching department — fail safe with an empty result instead of
+      // silently returning every doctor from every department.
+      if (!spec) return res.json([]);
+      filter.speciality = spec._id;
     }
 
     if (branch) {

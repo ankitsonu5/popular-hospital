@@ -121,26 +121,21 @@ const medicalServices = [
   },
 ];
 
-const doctors = [
-  {
-    name: "Dr. P.K Tiwari",
-    qualifications: "MBBS, MD (Internal Medicine) IMS, BHU",
-    designation: "Senior Consultant Physician",
-    slug: "dr-p-k-tiwari",
-    image: "/images/departments_doctor/dr_pk_tiwari.jpg",
-  },
-  {
-    name: "Dr. Sandesh M Raykar",
-    qualifications: "MBBS, MD (Internal Medicine) IMS, BHU",
-    designation: "Consultant Physician",
-    slug: "dr-sandesh-m-raykar",
-    image: "/images/departments_doctor/dr_sandesh_m_raykar.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function GeneralMedicineClient() {
+export default function GeneralMedicineClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   const [activeTab, setActiveTab] = useState("diabetes");
 
   return (
@@ -236,7 +231,7 @@ export default function GeneralMedicineClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="General Medicine"
-                  exactMatchOnly={true}
+                  preventBackendFetch
                 />
               </div>
             </div>

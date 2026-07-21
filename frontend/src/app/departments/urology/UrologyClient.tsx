@@ -28,26 +28,21 @@ const procedures = [
   "Andrology & Male Infertility including Penile Prosthesis, Artificial Urinary Sphincter, Testicular Prosthesis, VVA and VEA etc.",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Dinesh Singh",
-    qualifications: "MBBS, MS, MCh (Urology)",
-    designation: "Consultant Urologist",
-    slug: "dr-dinesh-singh",
-    image: "/images/departments_doctor/dr-dinesh-singh.jpg",
-  },
-  {
-    name: "Dr. Piyush Saini",
-    qualifications: "MBBS, MS, MCh (Urology)",
-    designation: "Consultant Urologist",
-    slug: "dr-piyush-saini",
-    image: "/images/departments_doctor/dr_piyush_saini.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function UrologyClient() {
+export default function UrologyClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -151,7 +146,11 @@ export default function UrologyClient() {
             {/* Right Doctor Card */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Urology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Urology"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

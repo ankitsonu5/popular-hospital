@@ -14,29 +14,13 @@ import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
 // Edit these doctor details here when you are ready.
-const doctors = [
-  {
-    name: "Dr. Priyanka Jaiswal",
-    qualifications: "MBBS, MS (OBGY)",
-    designation: "Consultant Gynaecologist",
-    slug: "dr-priyanka-jaiswal",
-    image: "/images/departments_doctor/dr_priyanka_jaiswal.jpg",
-  },
-  {
-    name: "Dr. Akanksha Chaturvedi",
-    qualifications: "MBBS, MS (Obs & Gynae)",
-    designation: "IVF & Fertility Specialist",
-    slug: "dr-akanksha-chaturvedi",
-    image: "/images/departments_doctor/dr_akanksha_chaturvedi.jpg",
-  },
-  {
-    name: "Dr. Srishti Tanya",
-    qualifications: "M.B.B.S., MS",
-    designation: "Consultant Gynaecologist",
-    slug: "dr-srishti-tanya",
-    image: "/images/departments_doctor/dr._srishti_tanya.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 const highlights = [
   {
@@ -160,7 +144,11 @@ const CheckItem = ({ text }: { text: string }) => (
   </div>
 );
 
-export default function IvfFertilityClient() {
+export default function IvfFertilityClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}

@@ -53,22 +53,13 @@ const specialisedProgrammes = [
   "Oculoplasty & Tumours",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Disha Chaudhary",
-    qualifications: "Consultant Ophthalmologist",
-    designation: "Consultant",
-    slug: "dr-disha-chaudhary",
-    image: "",
-  },
-  {
-    name: "Dr. Gunjan Rana",
-    qualifications: "M.B.B.S, MS(Ophthalmology)",
-    designation: "Consultant Ophthalmologist",
-    slug: "dr-gunjan-rana",
-    image: "/images/departments_doctor/dr_gunjan_rana.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Sub-Components ─── */
 
@@ -92,7 +83,11 @@ const SectionHeader = ({
 
 /* ─── Page ─── */
 
-export default function OphthalmologyClient() {
+export default function OphthalmologyClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -168,6 +163,7 @@ export default function OphthalmologyClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Ophthalmology"
+                  preventBackendFetch
                 />
               </div>
             </div>

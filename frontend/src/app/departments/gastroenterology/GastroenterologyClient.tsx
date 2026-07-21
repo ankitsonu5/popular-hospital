@@ -31,29 +31,13 @@ const conditions = [
   "Cirrhosis of Liver",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Mahesh Tiwari",
-    qualifications: "MBBS, MS, MCh (Gastrosurgery)",
-    designation: "Consultant GI and HPB Surgeon",
-    slug: "dr-mahesh-tiwari",
-    image: "/images/departments_doctor/dr_mahesh_tiwari.jpg",
-  },
-  {
-    name: "Dr. Soumyaleen Roy",
-    qualifications: "MBBS, MD, DM (Gastroenterology)",
-    designation: "Consultant Gastroenterologist",
-    slug: "dr-soumyaleen",
-    image: "",
-  },
-  {
-    name: "Dr. R.K Singh",
-    qualifications: "MBBS, MS, FIAGES, FSG",
-    designation: "Consultant Gastrosurgeon",
-    slug: "dr-r-k-singh",
-    image: "",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 const facilityIcons = [
   <svg
@@ -150,7 +134,11 @@ const facilityIcons = [
 
 /* ─── Page ─── */
 
-export default function GastroenterologyClient() {
+export default function GastroenterologyClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
@@ -251,7 +239,7 @@ export default function GastroenterologyClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Gastroenterology"
-                  exactMatchOnly
+                  preventBackendFetch
                 />
               </div>
             </div>

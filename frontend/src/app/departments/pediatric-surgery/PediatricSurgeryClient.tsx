@@ -54,19 +54,21 @@ const specializedAreas = [
   },
 ];
 
-const doctors = [
-  {
-    name: "Dr. Greeshma Suresh",
-    qualifications: "MBBS, MS, MCh (Pediatric Surgery) IMS, BHU",
-    designation: "Consultant Pediatric Surgeon",
-    slug: "dr-greeshma-suresh",
-    image: "/images/departments_doctor/dr_greeshma_suresh.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function PediatricSurgeryClient() {
+export default function PediatricSurgeryClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -159,6 +161,7 @@ export default function PediatricSurgeryClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Pediatric Surgery"
+                  preventBackendFetch
                 />
               </div>
             </div>

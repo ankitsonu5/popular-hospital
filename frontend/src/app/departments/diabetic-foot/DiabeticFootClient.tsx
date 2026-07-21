@@ -36,36 +36,13 @@ const procedures = [
   "Customized Orthotics & Diabetic Footwear prescription",
 ];
 
-const doctors = [
-  {
-    name: "Dr. A.K Kaushik",
-    qualifications: "MS",
-    designation: "Consultant",
-    slug: "dr-a-k-kaushik",
-    image: "",
-  },
-  {
-    name: "Dr. Sandesh M Raykar",
-    qualifications: "MBBS, MS",
-    designation: "Consultant",
-    slug: "dr-sandesh-m-raykar",
-    image: "",
-  },
-  {
-    name: "Dr. Abhishek Kumar",
-    qualifications: "MBBS, MS",
-    designation: "Consultant",
-    slug: "dr-abhishek-kumar",
-    image: "",
-  },
-  {
-    name: "Dr. Deepankar Mishra",
-    qualifications: "MBBS, MD",
-    designation: "Consultant",
-    slug: "dr-deepankar-mishra",
-    image: "",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Sub-Components ─── */
 
@@ -99,7 +76,11 @@ const SectionHeader = ({
 
 /* ─── Page ─── */
 
-export default function DiabeticFootClient() {
+export default function DiabeticFootClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -179,7 +160,7 @@ export default function DiabeticFootClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Advanced Diabetic Foot Unit"
-                  exactMatchOnly={true}
+                  preventBackendFetch
                 />
               </div>
             </div>

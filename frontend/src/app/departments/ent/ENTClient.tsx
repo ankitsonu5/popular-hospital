@@ -52,15 +52,13 @@ const whatWeOffer = [
   "Foreign body removal",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Sandeep Dubey",
-    qualifications: "M.B.B.S., MS - Otorhinolaryngology",
-    designation: "Consultant ENT Surgeon",
-    slug: "dr-sandeep-dubey",
-    image: "",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Sub-Components ─── */
 
@@ -95,7 +93,7 @@ const CheckItem = ({ text }: { text: string }) => (
 
 /* ─── Page ─── */
 
-export default function ENTClient() {
+export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -172,7 +170,11 @@ export default function ENTClient() {
             {/* Right Doctor Sidebar */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="ENT" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="ENT"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

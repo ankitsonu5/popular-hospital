@@ -86,15 +86,13 @@ const radiologyFeatures = [
   "Same-day digital reports",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Hena Kauser",
-    qualifications: "BDS, MPH",
-    designation: "Consultant Dentist",
-    slug: "dr-hena-kauser",
-    image: "/images/departments_doctor/dr_heena_kauser.jpg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Sub-Components ─── */
 
@@ -124,7 +122,7 @@ const SectionHeader = ({
 
 /* ─── Page ─── */
 
-export default function DentalClient() {
+export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -210,7 +208,11 @@ export default function DentalClient() {
             {/* Doctor Sidebar */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider doctors={doctors} departmentName="Dental" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Dental"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

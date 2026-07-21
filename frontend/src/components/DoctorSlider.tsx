@@ -72,27 +72,12 @@ export default function DoctorSlider({
     : "";
   const displayDoctors =
     backendDoctors.length > 0
-      ? [...backendDoctors]
-          .filter((doc) => {
-            if (!exactMatchOnly) return true;
-            const slugKey = normalizeDoctorValue(doc.slug || "");
-            const nameKey = normalizeDoctorValue(doc.name || "");
-            return doctors.some((item) => {
-              const itemSlugKey = normalizeDoctorValue(item.slug || "");
-              const itemNameKey = normalizeDoctorValue(item.name || "");
-              return (
-                itemSlugKey === slugKey ||
-                itemNameKey === nameKey ||
-                itemSlugKey === nameKey ||
-                itemNameKey === slugKey
-              );
-            });
-          })
-          .sort((a, b) => {
-            const getOrder = (doctor: Doctor) => {
-              const slugKey = normalizeDoctorValue(doctor.slug || "");
-              const nameKey = normalizeDoctorValue(doctor.name || "");
-              const index = doctors.findIndex((item) => {
+      ? exactMatchOnly
+        ? [...backendDoctors]
+            .filter((doc) => {
+              const slugKey = normalizeDoctorValue(doc.slug || "");
+              const nameKey = normalizeDoctorValue(doc.name || "");
+              return doctors.some((item) => {
                 const itemSlugKey = normalizeDoctorValue(item.slug || "");
                 const itemNameKey = normalizeDoctorValue(item.name || "");
                 return (
@@ -102,12 +87,30 @@ export default function DoctorSlider({
                   itemNameKey === slugKey
                 );
               });
+            })
+            .sort((a, b) => {
+              const getOrder = (doctor: Doctor) => {
+                const slugKey = normalizeDoctorValue(doctor.slug || "");
+                const nameKey = normalizeDoctorValue(doctor.name || "");
+                const index = doctors.findIndex((item) => {
+                  const itemSlugKey = normalizeDoctorValue(item.slug || "");
+                  const itemNameKey = normalizeDoctorValue(item.name || "");
+                  return (
+                    itemSlugKey === slugKey ||
+                    itemNameKey === nameKey ||
+                    itemSlugKey === nameKey ||
+                    itemNameKey === slugKey
+                  );
+                });
 
-              return index === -1 ? Number.MAX_SAFE_INTEGER : index;
-            };
+                return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+              };
 
-            return getOrder(a) - getOrder(b);
-          })
+              return getOrder(a) - getOrder(b);
+            })
+        : // Not exact-match mode: trust the backend order as-is — it already
+          // reflects the admin's drag-and-drop sortIndex ordering.
+          backendDoctors
       : doctors;
   const currentDoctor = displayDoctors[currentSlide];
   const appointmentHref = currentDoctor?.slug

@@ -86,7 +86,7 @@ const prpFaqs = [
   },
   {
     title: "What is the cost of PRP therapy?",
-    text: "The cost of IA PRP Therapy is approximately ₹20–25K per joint. PRP is a very cost-effective alternative to Joint Replacement.",
+    text: "The cost of IA PRP Therapy is approximately ₹20-25K per joint. PRP is a very cost-effective alternative to Joint Replacement.",
   },
   {
     title: "What is Radiofrequency Neurotomy for Genicular Nerves?",
@@ -126,36 +126,13 @@ const features = [
   { title: "Specialized ICU Support", icon: Activity },
 ];
 
-const doctors = [
-  {
-    name: "Dr. Alisha Raj",
-    qualifications: "MBBS, MD (Anaesthesia), PDCC",
-    designation: "Consultant Pain Management",
-    slug: "dr-alisha-raj",
-    image: "/images/departments_doctor/dr_alisha_raj_new.jpg",
-  },
-  {
-    name: "Dr. Rahul Singh",
-    qualifications: "MBBS, MD (Anaesthesia), PDCC",
-    designation: "Consultant Pain Management",
-    slug: "dr-rahul-singh",
-    image: "",
-  },
-  {
-    name: "Dr. Sumit Vishwakarma",
-    qualifications: "MBBS, MD (Anaesthesia) IMS, BHU",
-    designation: "Consultant Pain Management",
-    slug: "dr-sumit-vishwakarma",
-    image: "/images/departments_doctor/dr_sumit_vishwakarma_new.jpg",
-  },
-  {
-    name: "Dr. Vikas Mishra",
-    qualifications: "MBBS, MD (Anaesthesia)",
-    designation: "Consultant Pain Management",
-    slug: "dr-vikas-mishra",
-    image: "",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Sub-Components ─── */
 
@@ -230,7 +207,11 @@ const FaqBlock = ({
 
 /* ─── Page ─── */
 
-export default function PainManagementClient() {
+export default function PainManagementClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -316,6 +297,7 @@ export default function PainManagementClient() {
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Pain Medicine"
+                  preventBackendFetch
                 />
               </div>
             </div>

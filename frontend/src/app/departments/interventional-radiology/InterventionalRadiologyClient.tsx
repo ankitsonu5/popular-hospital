@@ -162,6 +162,7 @@ export default function InterventionalRadiologyClient({
                 <DoctorSlider
                   doctors={doctors}
                   departmentName="Interventional Radiology"
+                  preventBackendFetch
                 />
               </div>
             </div>

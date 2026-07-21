@@ -132,33 +132,21 @@ const preventiveList = [
   "CT Coronary Angiography",
 ];
 
-const doctors = [
-  {
-    name: "Dr. Hari Krishan Srivastava",
-    qualifications: "M.B.B.S., M.D., DM (Cardiology)",
-    designation: "Head, Department of Cardiology",
-    slug: "dr-hari-krishan-srivastava",
-    image: "/images/departments_doctor/dr-Hari-Krishan-Srivastava.jpg",
-  },
-  {
-    name: "Dr. Manoj Sharma",
-    qualifications: "M.B.B.S., MD, PGDCC (Cardiology)",
-    designation: "Department of Cardiology",
-    slug: "dr-manoj-sharma",
-    image: "/images/departments_doctor/dr_manoj-sharma.jpg",
-  },
-  {
-    name: "Dr. Tejas Mahajan",
-    qualifications: "MBBS, DNB (General Medicine), DrNB (Cardiology)",
-    designation: "Consultant Interventional cardiology",
-    slug: "dr-tejas-mahajan",
-    image: "/images/departments_doctor/dr_tejas_mahajan.jpg.jpeg",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Page ─── */
 
-export default function CardiologyPage() {
+export default function CardiologyPage({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   const [showCallModal, setShowCallModal] = useState(false);
   const [callForm, setCallForm] = useState({ name: "", phone: "" });
   const [callStatus, setCallStatus] = useState<
@@ -305,7 +293,11 @@ export default function CardiologyPage() {
             {/* Right Sidebar - Doctor Card (4 cols) */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <DoctorSlider doctors={doctors} departmentName="Cardiology" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Cardiology"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

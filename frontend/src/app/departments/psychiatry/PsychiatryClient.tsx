@@ -78,16 +78,13 @@ const whyChoose = [
   },
 ];
 
-const doctors = [
-  {
-    name: "Psychiatry Specialist",
-    qualifications: "MD (Psychiatry), DPM",
-    designation: "Senior Consultant",
-    slug: "psychiatry-specialist",
-    image:
-      "https://images.unsplash.com/photo-1559839734-2b71f1536780?auto=format&fit=crop&q=80&w=800",
-  },
-];
+interface DoctorCard {
+  name: string;
+  qualifications: string;
+  designation?: string;
+  slug: string;
+  image: string;
+}
 
 /* ─── Sub-Components ─── */
 
@@ -117,7 +114,11 @@ const SectionHeader = ({
 
 /* ─── Page ─── */
 
-export default function PsychiatryClient() {
+export default function PsychiatryClient({
+  doctors,
+}: {
+  doctors: DoctorCard[];
+}) {
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
@@ -212,7 +213,11 @@ export default function PsychiatryClient() {
             {/* Doctor Sidebar */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="sticky top-24 w-full">
-                <DoctorSlider doctors={doctors} departmentName="Psychiatry" />
+                <DoctorSlider
+                  doctors={doctors}
+                  departmentName="Psychiatry"
+                  preventBackendFetch
+                />
               </div>
             </div>
           </div>

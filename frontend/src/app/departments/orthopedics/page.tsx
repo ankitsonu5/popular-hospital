@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import OrthopedicsClient from "./OrthopedicsClient";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
+import { fetchDoctors, getImageUrl } from "@/lib/api";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Orthopedics & Joint Replacement | Popular Hospital",
@@ -9,7 +12,17 @@ export const metadata: Metadata = {
     "Advanced orthopedic care including joint replacement, sports medicine, trauma surgery, and spine treatments with cutting-edge technology.",
 };
 
-export default function OrthopedicsPage() {
+export default async function OrthopedicsPage() {
+  const dbDoctors = await fetchDoctors({ speciality: "orthopedics" });
+  const doctors = dbDoctors.map((d) => ({
+    name: d.name,
+    qualifications: d.qualification || "",
+    designation:
+      typeof d.designation === "object" ? d.designation?.name : d.designation,
+    slug: d.slug,
+    image: d.image_url ? getImageUrl(d.image_url) : "",
+  }));
+
   return (
     <>
       <DynamicSchema
@@ -23,7 +36,7 @@ export default function OrthopedicsPage() {
           />
         }
       />
-      <OrthopedicsClient />
+      <OrthopedicsClient doctors={doctors} />
     </>
   );
 }
