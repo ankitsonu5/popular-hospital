@@ -102,11 +102,15 @@ const treatmentCategories = [
     tag: "Spine",
     image: "/images/departments-images/spine-surgery.jpg",
     services: [
-      "Microscopic Discectomy",
-      "Spinal Fixation",
-      "Lumbar Canal Stenosis Decompression",
-      "Correction of Spondylolisthesis",
-      "Kyphoplasty",
+      "Endoscopic Discectomy / Decompression",
+      "Scoliosis(Deformity) correction",
+      "Occipitocervical Fixation",
+      "Anterior Cervical Discectomy and Fusion(ACDF)",
+      "Anterior Cervical Corpectomy and Fixation(ACCF)",
+      "Cervical Disc Replacement(CDR)",
+      "Cervical Laminectomy and Lateral Mass Fixation",
+      "MIS - TLIF(Minimally Invasive - TLIF)",
+      "TLIF(Transforaminal Lumbar Interbody Fusion)"
     ],
   },
 ];
@@ -215,7 +219,7 @@ export default function OrthopedicsClient({
                 <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
                   Department of{" "}
                   <span className="text-[#1e3a8a]">
-                    Orthopedics & Joint Replacement
+                    Orthopedics , Joint Replacement and Spine Surgery
                   </span>
                 </h2>
               </div>
