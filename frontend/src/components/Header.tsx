@@ -32,6 +32,7 @@ const menuItems: MenuItem[] = [
       { label: "Our Vision", href: "/about/our-vision-2030" },
       { label: "Our Mission", href: "/about/mission" },
       { label: "From Chairman's Desk", href: "/about/chairman-desk" },
+      { label: "From Vice Chairman's Desk", href: "/about/vice-chairman-desk" },
       { label: "From MD's Desk", href: "/about/md-desk" },
       { label: "Leadership Team", href: "/about/leadership" },
       { label: "Awards & Recognition", href: "/about/awards-recognition" },

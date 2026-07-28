@@ -14,6 +14,7 @@ const ZOOM_PATHS = [
   "/about",
   "/about/mission",
   "/about/chairman-desk",
+  "/about/vice-chairman-desk",
   "/about/md-desk",
   "/about/leadership",
   "/about/awards-recognition",
