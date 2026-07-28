@@ -95,11 +95,11 @@ export default function ChairmanDeskPage() {
                   </h3>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-4.5">
                   {chairmanData.message.map((para, i) => (
                     <p
                       key={i}
-                      className="text-[17px] md:text-lg xl:text-[15px] 2xl:text-xl text-gray-600 leading-relaxed font-normal text-justify"
+                      className="text-[14px] md:text-[15px] xl:text-[14.5px] 2xl:text-[15.5px] text-gray-600 leading-relaxed font-normal text-justify"
                     >
                       {para}
                     </p>

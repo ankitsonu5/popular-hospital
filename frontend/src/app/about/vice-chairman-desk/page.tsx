@@ -71,14 +71,14 @@ export default function ViceChairmanDeskPage() {
                     unoptimized
                   />
                 </div>
-                <div className="bg-[#1e5eb2] p-8 rounded-3xl border border-blue-400/20 shadow-xl text-white">
-                  <h2 className="text-2xl md:text-3xl xl:text-xl font-black font-heading mb-2 uppercase tracking-tight">
+                <div className="bg-[#1e5eb2] p-5 md:p-6 rounded-2xl md:rounded-3xl border border-blue-400/20 shadow-xl text-white">
+                  <h2 className="text-xl md:text-2xl xl:text-xl font-black font-heading mb-1 uppercase tracking-tight">
                     {viceChairmanData.name}
                   </h2>
-                  <p className="text-yellow-400 font-bold text-sm tracking-widest uppercase mb-4">
+                  <p className="text-yellow-400 font-bold text-xs md:text-[13px] tracking-wide uppercase mb-2.5 leading-snug">
                     {viceChairmanData.role} - {viceChairmanData.qualifications}
                   </p>
-                  <div className="space-y-2 text-xs md:text-sm font-medium uppercase opacity-90 leading-snug">
+                  <div className="space-y-1.5 text-[10px] md:text-[10.5px] font-normal uppercase opacity-90 leading-[1.35]">
                     <p>{viceChairmanData.title1}</p>
                     <p>{viceChairmanData.title2}</p>
                   </div>
@@ -97,11 +97,11 @@ export default function ViceChairmanDeskPage() {
                 </h3>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-4.5">
                 {viceChairmanData.message.map((para, i) => (
                   <p
                     key={i}
-                    className="text-[17px] md:text-lg xl:text-[15px] 2xl:text-xl text-gray-600 leading-relaxed font-normal text-justify"
+                    className="text-[14px] md:text-[15px] xl:text-[14.5px] 2xl:text-[15.5px] text-gray-600 leading-relaxed font-normal text-justify"
                   >
                     {para}
                   </p>
