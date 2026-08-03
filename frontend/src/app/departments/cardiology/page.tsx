@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Department of Cardiology | Popular Hospital",
   description:
     "Comprehensive evaluation of heart conditions with India's premier cardiac care team. Advanced diagnostics, minimally invasive procedures, and personalized rehabilitation programs.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/cardiology",
+  },
 };
 
 export default async function CardiologyPage() {

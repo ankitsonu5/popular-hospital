@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Payment Policy | Popular Hospital",
   description:
     "Review the accepted payment methods and financial policies for medical services at Popular Hospital.",
+  alternates: {
+    canonical: "https://popularhospital.in/payment-policy",
+  },
 };
 
 export default function PaymentPolicyPage() {

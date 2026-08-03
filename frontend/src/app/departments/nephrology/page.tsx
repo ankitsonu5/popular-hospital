@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Department of Nephrology | Popular Hospital",
   description:
     "Comprehensive kidney care including Hemodialysis, Peritoneal Dialysis, Kidney Transplantation, CRRT, and management of Chronic Kidney Disease.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/nephrology",
+  },
 };
 
 export default async function NephrologyPage() {

@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Frequently Asked Questions (FAQs) | Popular Hospital",
   description:
     "Find answers to common questions about Popular Hospital Varanasi, including appointments, emergency services, cashless facilities, and more.",
+  alternates: {
+    canonical: "https://popularhospital.in/faqs",
+  },
 };
 
 const faqs = [

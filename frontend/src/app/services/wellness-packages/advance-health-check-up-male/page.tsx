@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     "Advance Health Check Up (Male) | Wellness Packages | Popular Hospital",
   description:
     "Detailed information and items covered under the Advance Health Check Up (Male).",
+  alternates: {
+    canonical: "https://popularhospital.in/services/wellness-packages/advance-health-check-up-male",
+  },
 };
 
 export default function PackagePage() {

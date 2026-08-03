@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Pediatric Cardiology | Popular Hospital",
   description:
     "Specialized pediatric cardiology care for children. Dedicated Pediatric Cardiologists and support ensuring gentle, safe care.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/pediatric-cardiology",
+  },
 };
 
 export default async function PediatricCardiologyPage() {

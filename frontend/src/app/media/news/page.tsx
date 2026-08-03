@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Latest News & Updates - Popular Hospital",
   description:
     "Stay updated with the latest news, health articles, medical breakthroughs, and updates from Popular Hospital. Read expert health tips and hospital announcements.",
+  alternates: {
+    canonical: "https://popularhospital.in/media/news",
+  },
 };
 
 import { fetchNews, getImageUrl } from "@/lib/api";

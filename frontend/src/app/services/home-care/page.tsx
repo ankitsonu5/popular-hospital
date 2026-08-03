@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Home Care Services | Popular Hospital",
   description:
     "Providing genuine health care beyond the four walls of a hospital with expert medical advice and 24x7 nursing care at home.",
+  alternates: {
+    canonical: "https://popularhospital.in/services/home-care",
+  },
 };
 
 const textClass =

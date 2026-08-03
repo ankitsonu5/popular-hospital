@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Find Doctors",
   description:
     "Search and book doctors by speciality and branch at Popular Hospital. View profiles, qualifications, and consultation fees.",
+  alternates: {
+    canonical: "https://popularhospital.in/doctors",
+  },
 };
 
 export default function DoctorsPage() {

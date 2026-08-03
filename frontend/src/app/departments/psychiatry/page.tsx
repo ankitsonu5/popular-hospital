@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Psychiatry Department | Popular Hospital",
   description:
     "Expert psychiatric care in Varanasi. Treatment for depression, anxiety, schizophrenia, bipolar disorder, and specialized therapy for all ages at Popular Hospital.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/psychiatry",
+  },
 };
 
 export default async function PsychiatryPage() {

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Obstetrics & Gynaecology | Popular Hospital",
   description:
     "Comprehensive women's health care including maternity, high-risk pregnancy, infertility treatment, and advanced gynaecological surgeries.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/gynaecology",
+  },
 };
 
 export default async function GynaecologyPage() {

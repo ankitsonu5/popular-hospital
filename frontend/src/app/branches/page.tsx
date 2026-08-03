@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Our Branches",
   description:
     "Find Popular Hospital branches. Addresses, phone numbers, and facilities at each location.",
+  alternates: {
+    canonical: "https://popularhospital.in/branches",
+  },
 };
 
 export default async function BranchesPage() {

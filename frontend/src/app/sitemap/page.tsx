@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Sitemap | Popular Hospital Varanasi",
   description:
     "Navigate through all the pages and services offered by Popular Hospital, Varanasi.",
+  alternates: {
+    canonical: "https://popularhospital.in/sitemap",
+  },
 };
 
 const sitemapData = [

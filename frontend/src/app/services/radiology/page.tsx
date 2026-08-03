@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Radiological Services | Popular Hospital",
   description:
     "Advanced diagnostic imaging and radiological services at Popular Hospital.",
+  alternates: {
+    canonical: "https://popularhospital.in/services/radiology",
+  },
 };
 
 const textClass =

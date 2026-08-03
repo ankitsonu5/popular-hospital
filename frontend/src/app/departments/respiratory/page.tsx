@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Department of Respiratory Medicine | Popular Hospital",
   description:
     "Our Respiratory medicine Department is dedicated to providing exceptional care of chest, lungs, and Sleep Disorders. Expert treatment for asthma, COPD, pneumonia, lung cancer, and more at Popular Hospital.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/respiratory",
+  },
 };
 
 export default async function RespiratoryMedicinePage() {

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Burns & Plastic Surgery | Popular Hospital",
   description:
     "Specialized centre for Burns Care, Reconstructive Surgery, and Cosmetic Enhancements. Advanced burn ICU and microsurgery facilities.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/burns-plastic-surgery",
+  },
 };
 
 export default async function PlasticSurgeryPage() {

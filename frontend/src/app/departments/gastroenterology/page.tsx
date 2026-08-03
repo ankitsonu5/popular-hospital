@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Gastroenterology & Hepatology | Popular Hospital",
   description:
     "Advanced care for digestive and liver diseases. Specializing in Endoscopy, Colonoscopy, ERCP, and GI Cancer treatment.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/gastroenterology",
+  },
 };
 
 export default async function GastroenterologyPage() {

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Pathology Services | Popular Hospital",
   description:
     "NABL Accredited Best Pathology & Microbiology Testing Laboratory equipped with world-class instruments.",
+  alternates: {
+    canonical: "https://popularhospital.in/services/pathology",
+  },
 };
 
 const textClass =

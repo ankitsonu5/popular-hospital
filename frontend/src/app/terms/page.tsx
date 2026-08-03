@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Terms & Conditions | Popular Hospital",
   description:
     "Read the terms and conditions for using Popular Hospital website and our healthcare services.",
+  alternates: {
+    canonical: "https://popularhospital.in/terms",
+  },
 };
 
 export default function TermsPage() {

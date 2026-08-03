@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Media Coverage – Popular Hospital",
   description:
     "Explore media coverage of Popular Hospital featuring newspaper articles, press releases, and media mentions highlighting our achievements, events, and milestones.",
+  alternates: {
+    canonical: "https://popularhospital.in/media/coverage",
+  },
 };
 
 /* ───────────────── page component ───────────────── */

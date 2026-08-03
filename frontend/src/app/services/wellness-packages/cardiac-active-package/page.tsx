@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Cardiac Active Package | Wellness Packages | Popular Hospital",
   description:
     "Detailed information and items covered under the Cardiac Active Package.",
+  alternates: {
+    canonical: "https://popularhospital.in/services/wellness-packages/cardiac-active-package",
+  },
 };
 
 export default function PackagePage() {

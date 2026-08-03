@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Ophthalmology | Popular Hospital",
   description:
     "Advanced eye care center providing comprehensive diagnostic and surgical services including Cataract surgery, Glaucoma treatment, and specialized eye care for all age groups.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/ophthalmology",
+  },
 };
 
 export default async function OphthalmologyPage() {

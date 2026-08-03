@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Dietetics & Nutrition | Popular Hospital",
   description:
     "Expert nutritional counseling and personalized diet plans at Popular Hospital Dietetics & Nutrition Department.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/dietetics-nutrition",
+  },
 };
 
 export default async function DieteticsNutritionPage() {

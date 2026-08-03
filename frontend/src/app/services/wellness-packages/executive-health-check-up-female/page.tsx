@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     "Executive Health Check Up (Female) | Wellness Packages | Popular Hospital",
   description:
     "Detailed information and items covered under the Executive Health Check Up (Female).",
+  alternates: {
+    canonical: "https://popularhospital.in/services/wellness-packages/executive-health-check-up-female",
+  },
 };
 
 export default function PackagePage() {

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "General Medicine | Popular Hospital",
   description:
     "Comprehensive internal medicine services for adult health. Management of chronic conditions, infectious diseases, and preventive healthcare.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/general-medicine",
+  },
 };
 
 export default async function GeneralMedicinePage() {

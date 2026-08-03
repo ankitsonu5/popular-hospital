@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Cardiac Screening 2 | Wellness Packages | Popular Hospital",
   description:
     "Detailed information and items covered under the Cardiac Screening 2.",
+  alternates: {
+    canonical: "https://popularhospital.in/services/wellness-packages/cardiac-screening-2",
+  },
 };
 
 export default function PackagePage() {

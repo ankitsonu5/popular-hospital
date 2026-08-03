@@ -20,6 +20,9 @@ export const metadata = {
   title: "From Chairman's Desk | Popular Hospital",
   description:
     "A message from our Founder & Chairman, Dr. A.K. Kaushik, on the vision and evolution of Popular Hospital.",
+  alternates: {
+    canonical: "https://popularhospital.in/about/chairman-desk",
+  },
 };
 
 export default function ChairmanDeskPage() {

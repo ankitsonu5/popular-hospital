@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Pain Management Clinic | Popular Hospital",
   description:
     "Specialized management of chronic pain not responding to conventional treatment. Expert care for Trigeminal Neuralgia, PRP Therapy, Cancer Pain, and more under the supervision of specialists.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/pain-management",
+  },
 };
 
 export default async function PainManagementPage() {

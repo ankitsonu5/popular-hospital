@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Healthy Heart Checkup | Wellness Packages | Popular Hospital",
   description:
     "Detailed information and items covered under the Healthy Heart Checkup.",
+  alternates: {
+    canonical: "https://popularhospital.in/services/wellness-packages/healthy-heart-checkup",
+  },
 };
 
 export default function PackagePage() {

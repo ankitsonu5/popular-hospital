@@ -4,6 +4,9 @@ export const metadata = {
   title: "Infrastructure & Technology | Popular Hospital",
   description:
     "Explore Popular Hospital's advanced infrastructure, robotics, modular operation theatres, ICU, and diagnostic facilities.",
+  alternates: {
+    canonical: "https://popularhospital.in/about/infrastructure-technology",
+  },
 };
 
 const technologyHighlights = [

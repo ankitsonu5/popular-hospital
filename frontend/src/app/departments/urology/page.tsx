@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Department of Urology | Popular Hospital",
   description:
     "Expert care for urological conditions including kidney stones, prostate health, uro-oncology, and male infertility.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/urology",
+  },
 };
 
 export default async function UrologyPage() {

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "IVF & Fertility | Popular Hospital",
   description:
     "Advanced IVF and fertility care at Popular Hospital, Varanasi. Evaluation, ovulation induction, IUI, IVF guidance, fertility preservation, and compassionate reproductive care.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/ivf-fertility",
+  },
 };
 
 export default async function IvfFertilityPage() {

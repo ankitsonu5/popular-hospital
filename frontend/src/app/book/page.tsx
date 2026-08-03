@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Book Appointment",
   description:
     "Book doctor appointment or OPD at Popular Hospital online. Choose doctor, branch, date and time.",
+  alternates: {
+    canonical: "https://popularhospital.in/book",
+  },
 };
 
 export default function BookPage({

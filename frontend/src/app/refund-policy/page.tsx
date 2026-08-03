@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Refund Policy | Popular Hospital",
   description:
     "Understand the refund and cancellation policies for appointments, admissions, and services at Popular Hospital.",
+  alternates: {
+    canonical: "https://popularhospital.in/refund-policy",
+  },
 };
 
 export default function RefundPolicyPage() {

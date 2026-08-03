@@ -4,6 +4,9 @@ export const metadata = {
   title: "Our Vision | Popular Hospital",
   description:
     "Popular Hospital's vision for advanced, accessible, and patient-focused healthcare.",
+  alternates: {
+    canonical: "https://popularhospital.in/about/our-vision-2030",
+  },
 };
 
 const visionGoals = [

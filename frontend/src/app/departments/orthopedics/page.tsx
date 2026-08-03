@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Orthopedics & Joint Replacement | Popular Hospital",
   description:
     "Advanced orthopedic care including joint replacement, sports medicine, trauma surgery, and spine treatments with cutting-edge technology.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/orthopedics",
+  },
 };
 
 export default async function OrthopedicsPage() {

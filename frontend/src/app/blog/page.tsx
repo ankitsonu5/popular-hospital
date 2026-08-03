@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Medical Blog & Health Updates | Popular Hospital",
   description:
     "Stay updated with the latest medical advancements, health tips, and hospital news from Popular Hospital Varanasi.",
+  alternates: {
+    canonical: "https://popularhospital.in/blog",
+  },
 };
 
 export const dynamic = "force-dynamic";

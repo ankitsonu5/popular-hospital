@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Neurosurgery Department | Popular Hospital",
   description:
     "Expert surgical treatment for brain, spinal cord, and peripheral nerve disorders at Popular Hospital.",
+  alternates: {
+    canonical: "https://popularhospital.in/departments/neurosurgery",
+  },
 };
 
 export default async function NeurosurgeryPage() {

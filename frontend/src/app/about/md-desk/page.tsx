@@ -22,6 +22,9 @@ export const metadata = {
   title: "From MD's Desk | Popular Hospital",
   description:
     "A message from our Managing Director, Dr. Kiran Kaushik, on her vision for excellence in healthcare.",
+  alternates: {
+    canonical: "https://popularhospital.in/about/md-desk",
+  },
 };
 
 export default function MDDeskPage() {

@@ -57,7 +57,6 @@ export const metadata: Metadata = {
       "Best & top hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors. Book appointment online.",
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://popularhospital.in" },
   icons: {
     icon: "/images/favicon/favppl.png",
     apple: "/images/favicon/favppl.png",
