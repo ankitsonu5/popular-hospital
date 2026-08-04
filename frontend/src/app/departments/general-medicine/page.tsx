@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Comprehensive internal medicine services for adult health. Management of chronic conditions, infectious diseases, and preventive healthcare.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/general-medicine",
+    canonical: "https://www.popularhospital.in/departments/general-medicine",
   },
 };
 

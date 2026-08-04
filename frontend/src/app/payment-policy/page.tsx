@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Review the accepted payment methods and financial policies for medical services at Popular Hospital.",
   alternates: {
-    canonical: "https://popularhospital.in/payment-policy",
+    canonical: "https://www.popularhospital.in/payment-policy",
   },
 };
 

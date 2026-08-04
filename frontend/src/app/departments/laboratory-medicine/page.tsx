@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Advanced diagnostic services and medical research at Popular Hospital Laboratory Medicine Department.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/laboratory-medicine",
+    canonical: "https://www.popularhospital.in/departments/laboratory-medicine",
   },
 };
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "24/7 Emergency and Trauma Care at Popular Hospital. Comprehensive emergency medical services with state-of-the-art infrastructure and highly trained professionals.",
   alternates: {
-    canonical: "https://popularhospital.in/services/emergency",
+    canonical: "https://www.popularhospital.in/services/emergency",
   },
 };
 

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Specialized Advanced Diabetic Foot Unit at Popular Hospital Varanasi — expert care for non-healing wounds, diabetic ulcers, neuropathy, and limb salvage with a multidisciplinary team.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/diabetic-foot",
+    canonical: "https://www.popularhospital.in/departments/diabetic-foot",
   },
 };
 

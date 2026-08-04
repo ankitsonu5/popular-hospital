@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Detailed information and items covered under the Cardiac Active Package.",
   alternates: {
-    canonical: "https://popularhospital.in/services/wellness-packages/cardiac-active-package",
+    canonical: "https://www.popularhospital.in/services/wellness-packages/cardiac-active-package",
   },
 };
 

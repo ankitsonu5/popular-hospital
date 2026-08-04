@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Comprehensive women's health care including maternity, high-risk pregnancy, infertility treatment, and advanced gynaecological surgeries.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/gynaecology",
+    canonical: "https://www.popularhospital.in/departments/gynaecology",
   },
 };
 

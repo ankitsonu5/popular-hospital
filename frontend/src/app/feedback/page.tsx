@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Your feedback helps us provide better care. Please share your experience with Popular Hospital.",
   alternates: {
-    canonical: "https://popularhospital.in/feedback",
+    canonical: "https://www.popularhospital.in/feedback",
   },
 };
 

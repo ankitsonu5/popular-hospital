@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Specialized surgical care for newborns, infants, and children. Dedicated Paediatric Surgeons and NICU support ensuring gentle, safe care.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/pediatric-surgery",
+    canonical: "https://www.popularhospital.in/departments/pediatric-surgery",
   },
 };
 

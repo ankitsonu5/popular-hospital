@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Hear directly from our patients about their experiences and successful recovery journeys at Popular Hospital.",
   alternates: {
-    canonical: "https://popularhospital.in/stories",
+    canonical: "https://www.popularhospital.in/stories",
   },
 };
 

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Advanced laparoscopic (keyhole) and general surgical procedures with state-of-the-art technology and expert surgeons.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/general-surgery",
+    canonical: "https://www.popularhospital.in/departments/general-surgery",
   },
 };
 

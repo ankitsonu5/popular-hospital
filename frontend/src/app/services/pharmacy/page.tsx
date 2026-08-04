@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "100% authentic and genuine medicines available 24/7 under strict quality control to fulfill patient emergency needs.",
   alternates: {
-    canonical: "https://popularhospital.in/services/pharmacy",
+    canonical: "https://www.popularhospital.in/services/pharmacy",
   },
 };
 

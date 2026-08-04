@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Guiding principles that drive Popular Hospital towards excellence in healthcare and patient safety.",
   alternates: {
-    canonical: "https://popularhospital.in/about/mission",
+    canonical: "https://www.popularhospital.in/about/mission",
   },
 };
 

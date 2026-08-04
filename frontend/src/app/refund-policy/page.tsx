@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Understand the refund and cancellation policies for appointments, admissions, and services at Popular Hospital.",
   alternates: {
-    canonical: "https://popularhospital.in/refund-policy",
+    canonical: "https://www.popularhospital.in/refund-policy",
   },
 };
 

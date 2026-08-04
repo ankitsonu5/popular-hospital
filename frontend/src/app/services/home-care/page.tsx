@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Providing genuine health care beyond the four walls of a hospital with expert medical advice and 24x7 nursing care at home.",
   alternates: {
-    canonical: "https://popularhospital.in/services/home-care",
+    canonical: "https://www.popularhospital.in/services/home-care",
   },
 };
 

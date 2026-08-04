@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "24 hrs Ambulance pickup service available all the way from anywhere in Varanasi ensuring fast and prompt transport to our Emergency Team.",
   alternates: {
-    canonical: "https://popularhospital.in/services/ambulance",
+    canonical: "https://www.popularhospital.in/services/ambulance",
   },
 };
 

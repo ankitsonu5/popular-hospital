@@ -28,7 +28,7 @@ export const metadata = {
   description:
     "A message from our Group Vice Chairman, Manuj Mittal, on strategic transformation and operational excellence at Popular Group of Hospitals.",
   alternates: {
-    canonical: "https://popularhospital.in/about/vice-chairman-desk",
+    canonical: "https://www.popularhospital.in/about/vice-chairman-desk",
   },
 };
 

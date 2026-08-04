@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Advanced care for digestive and liver diseases. Specializing in Endoscopy, Colonoscopy, ERCP, and GI Cancer treatment.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/gastroenterology",
+    canonical: "https://www.popularhospital.in/departments/gastroenterology",
   },
 };
 

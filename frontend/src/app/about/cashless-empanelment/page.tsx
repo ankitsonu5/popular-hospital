@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Popular Hospital is empanelled with leading Government PSUs, Private Corporates, Insurance Companies and International TPAs for cashless treatment.",
   alternates: {
-    canonical: "https://popularhospital.in/about/cashless-empanelment",
+    canonical: "https://www.popularhospital.in/about/cashless-empanelment",
   },
 };
 

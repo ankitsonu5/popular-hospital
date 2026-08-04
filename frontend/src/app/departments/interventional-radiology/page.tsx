@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Advanced imaging technology meets expert clinical interpretation. Our interventional radiology team provides minimally invasive treatments with maximum precision.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/interventional-radiology",
+    canonical: "https://www.popularhospital.in/departments/interventional-radiology",
   },
 };
 

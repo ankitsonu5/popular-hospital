@@ -34,8 +34,8 @@ function safeStr(val: unknown, fallback = ""): string {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
   try {
-    const { slug } = await params;
     const doctor = await fetchDoctor(slug);
     const name =
       doctor?.name ??
@@ -47,9 +47,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description:
         doctor?.bio ??
         `View the profile and OPD timings for ${name} at Popular Hospital.`,
+      alternates: {
+        canonical: `https://www.popularhospital.in/doctors/${slug}`,
+      },
     };
   } catch {
-    return { title: "Doctor Profile | Popular Hospital" };
+    return {
+      title: "Doctor Profile | Popular Hospital",
+      alternates: {
+        canonical: `https://www.popularhospital.in/doctors/${slug}`,
+      },
+    };
   }
 }
 

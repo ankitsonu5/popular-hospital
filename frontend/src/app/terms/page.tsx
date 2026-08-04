@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Read the terms and conditions for using Popular Hospital website and our healthcare services.",
   alternates: {
-    canonical: "https://popularhospital.in/terms",
+    canonical: "https://www.popularhospital.in/terms",
   },
 };
 

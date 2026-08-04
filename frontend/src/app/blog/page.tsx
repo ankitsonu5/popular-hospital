@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Stay updated with the latest medical advancements, health tips, and hospital news from Popular Hospital Varanasi.",
   alternates: {
-    canonical: "https://popularhospital.in/blog",
+    canonical: "https://www.popularhospital.in/blog",
   },
 };
 

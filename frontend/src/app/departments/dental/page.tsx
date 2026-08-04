@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "The department is operational with state of the art dental equipments harmonizing International standards to deliver quality treatment to the patients. Offering a full range of services from oral and maxillofacial surgery to digital radiological support.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/dental",
+    canonical: "https://www.popularhospital.in/departments/dental",
   },
 };
 

@@ -214,7 +214,7 @@ export async function generateMetadata({
     title: `${service.title} | Popular Hospital`,
     description: service.description,
     alternates: {
-      canonical: `https://popularhospital.in/departments/${slug}`,
+      canonical: `https://www.popularhospital.in/departments/${slug}`,
     },
   };
 }

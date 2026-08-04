@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Discover our state-of-the-art facilities including advanced ICUs, modular Operation Theatres, 24/7 Emergency unit, and comprehensive diagnostic services.",
   alternates: {
-    canonical: "https://popularhospital.in/facilities",
+    canonical: "https://www.popularhospital.in/facilities",
   },
 };
 

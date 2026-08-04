@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Comprehensive preventive health check-up packages designed for all age groups and health needs.",
   alternates: {
-    canonical: "https://popularhospital.in/services/wellness-packages",
+    canonical: "https://www.popularhospital.in/services/wellness-packages",
   },
 };
 

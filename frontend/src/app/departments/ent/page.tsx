@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Expert ENT services for ear, nose, and throat disorders. Advanced surgical and medical care by Dr. Anshuman Singh and team.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/ent",
+    canonical: "https://www.popularhospital.in/departments/ent",
   },
 };
 

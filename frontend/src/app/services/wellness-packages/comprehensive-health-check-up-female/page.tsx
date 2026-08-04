@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Detailed information and items covered under the Comprehensive Health Check Up (Female).",
   alternates: {
-    canonical: "https://popularhospital.in/services/wellness-packages/comprehensive-health-check-up-female",
+    canonical: "https://www.popularhospital.in/services/wellness-packages/comprehensive-health-check-up-female",
   },
 };
 

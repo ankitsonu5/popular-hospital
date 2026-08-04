@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "24/7 Blood Bank services at Popular Hospital ensuring availability of safe blood and blood components with the highest quality standards.",
   alternates: {
-    canonical: "https://popularhospital.in/services/blood-bank",
+    canonical: "https://www.popularhospital.in/services/blood-bank",
   },
 };
 

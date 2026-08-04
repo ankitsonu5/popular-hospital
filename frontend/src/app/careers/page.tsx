@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Join our team of dedicated medical professionals and make a real difference in patient care. Explore medical and non-medical job openings at Popular Hospital.",
   alternates: {
-    canonical: "https://popularhospital.in/careers",
+    canonical: "https://www.popularhospital.in/careers",
   },
 };
 

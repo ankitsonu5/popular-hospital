@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "OPD timings, walk-in information, and how to book OPD at Popular Hospital branches.",
   alternates: {
-    canonical: "https://popularhospital.in/opd",
+    canonical: "https://www.popularhospital.in/opd",
   },
 };
 

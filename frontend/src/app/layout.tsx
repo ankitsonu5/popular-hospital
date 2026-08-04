@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://popularhospital.in"),
+  metadataBase: new URL("https://www.popularhospital.in"),
   title: {
     default: "Popular Hospital Varanasi | Top Multi Super Speciality Hospital",
     template: "%s | Popular Hospital Varanasi",
@@ -40,10 +40,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: "Popular Hospital Varanasi",
-    url: "https://popularhospital.in",
+    url: "https://www.popularhospital.in",
     images: [
       {
-        url: "https://popularhospital.in/logo.png",
+        url: "https://www.popularhospital.in/logo.png",
         width: 512,
         height: 512,
         alt: "Popular Hospital Varanasi Logo",

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Find Popular Hospital branches. Addresses, phone numbers, and facilities at each location.",
   alternates: {
-    canonical: "https://popularhospital.in/branches",
+    canonical: "https://www.popularhospital.in/branches",
   },
 };
 

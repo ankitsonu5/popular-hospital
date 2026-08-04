@@ -232,7 +232,7 @@ function BlogActionForm() {
   const [editorMode, setEditorMode] = useState<EditorMode>("edit");
 
   const handleCopyLink = () => {
-    const url = `https://popularhospital.in/blog/${formData.slug}`;
+    const url = `https://www.popularhospital.in/blog/${formData.slug}`;
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

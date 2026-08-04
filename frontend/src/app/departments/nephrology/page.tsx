@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Comprehensive kidney care including Hemodialysis, Peritoneal Dialysis, Kidney Transplantation, CRRT, and management of Chronic Kidney Disease.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/nephrology",
+    canonical: "https://www.popularhospital.in/departments/nephrology",
   },
 };
 

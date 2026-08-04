@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Detailed information and items covered under the Primary Health Check Up (Male).",
   alternates: {
-    canonical: "https://popularhospital.in/services/wellness-packages/primary-health-check-up-male",
+    canonical: "https://www.popularhospital.in/services/wellness-packages/primary-health-check-up-male",
   },
 };
 

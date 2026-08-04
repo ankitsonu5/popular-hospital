@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Expert nutritional counseling and personalized diet plans at Popular Hospital Dietetics & Nutrition Department.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/dietetics-nutrition",
+    canonical: "https://www.popularhospital.in/departments/dietetics-nutrition",
   },
 };
 

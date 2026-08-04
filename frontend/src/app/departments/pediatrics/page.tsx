@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Comprehensive pediatric care from newborns to adolescents. Featuring advanced NICU, vaccination center, and expert pediatricians.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/pediatrics",
+    canonical: "https://www.popularhospital.in/departments/pediatrics",
   },
 };
 

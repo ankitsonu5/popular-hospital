@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Detailed information and items covered under the Child Health Check UP (10-18 Yrs).",
   alternates: {
-    canonical: "https://popularhospital.in/services/wellness-packages/child-health-check-up",
+    canonical: "https://www.popularhospital.in/services/wellness-packages/child-health-check-up",
   },
 };
 

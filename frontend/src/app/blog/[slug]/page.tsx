@@ -42,7 +42,7 @@ export async function generateMetadata({
     keywords: article.metaKeywords || "",
     alternates: {
       canonical:
-        article.canonicalUrl || `https://popularhospital.in/blog/${slug}`,
+        article.canonicalUrl || `https://www.popularhospital.in/blog/${slug}`,
     },
     openGraph: {
       title: article.ogTitle || title,

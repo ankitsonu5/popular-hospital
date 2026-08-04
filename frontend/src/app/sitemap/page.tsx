@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Navigate through all the pages and services offered by Popular Hospital, Varanasi.",
   alternates: {
-    canonical: "https://popularhospital.in/sitemap",
+    canonical: "https://www.popularhospital.in/sitemap",
   },
 };
 

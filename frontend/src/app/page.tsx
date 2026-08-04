@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "Popular Hospital — the top multi super speciality hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors including Dr. A.K. Kaushik (Chairman). 24/7 emergency, cashless treatment & advanced care. Book appointment now.",
   alternates: {
-    canonical: "https://popularhospital.in",
+    canonical: "https://www.popularhospital.in",
   },
 };
 

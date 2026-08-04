@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Detailed information and items covered under the Well Woman Executive Health Checkup.",
   alternates: {
-    canonical: "https://popularhospital.in/services/wellness-packages/well-woman-executive-health-checkup",
+    canonical: "https://www.popularhospital.in/services/wellness-packages/well-woman-executive-health-checkup",
   },
 };
 

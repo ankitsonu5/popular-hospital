@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Specialized Cardiothoracic & Vascular Surgery (CTVS) including Bypass (CABG), Valve Replacement, and Aortic Surgery.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/ctvs",
+    canonical: "https://www.popularhospital.in/departments/ctvs",
   },
 };
 

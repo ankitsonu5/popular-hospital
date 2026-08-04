@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Specialized centre for Burns Care, Reconstructive Surgery, and Cosmetic Enhancements. Advanced burn ICU and microsurgery facilities.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/burns-plastic-surgery",
+    canonical: "https://www.popularhospital.in/departments/burns-plastic-surgery",
   },
 };
 

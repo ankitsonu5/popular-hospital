@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Comprehensive cancer care centre offering Medical, Surgical, and Radiation Oncology. Expert Tumor Board and dedicated chemotherapy day care.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/oncology",
+    canonical: "https://www.popularhospital.in/departments/oncology",
   },
 };
 

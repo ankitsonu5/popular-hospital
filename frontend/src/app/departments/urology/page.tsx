@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Expert care for urological conditions including kidney stones, prostate health, uro-oncology, and male infertility.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/urology",
+    canonical: "https://www.popularhospital.in/departments/urology",
   },
 };
 

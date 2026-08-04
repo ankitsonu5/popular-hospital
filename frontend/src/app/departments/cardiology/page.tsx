@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Comprehensive evaluation of heart conditions with India's premier cardiac care team. Advanced diagnostics, minimally invasive procedures, and personalized rehabilitation programs.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/cardiology",
+    canonical: "https://www.popularhospital.in/departments/cardiology",
   },
 };
 

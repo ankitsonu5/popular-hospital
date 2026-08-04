@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Specialized management of chronic pain not responding to conventional treatment. Expert care for Trigeminal Neuralgia, PRP Therapy, Cancer Pain, and more under the supervision of specialists.",
   alternates: {
-    canonical: "https://popularhospital.in/departments/pain-management",
+    canonical: "https://www.popularhospital.in/departments/pain-management",
   },
 };
 
