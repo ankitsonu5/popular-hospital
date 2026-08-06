@@ -1180,5 +1180,5 @@ export function Header() {
         )}
       </header>
     </>
-      );
+  );
 }
