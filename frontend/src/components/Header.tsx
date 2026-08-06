@@ -592,17 +592,15 @@ export function Header() {
   return (
     <>
       <header
-        className={`${pathname === "/" ? "fixed" : "sticky"} top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled || !isTransparentPage
-            ? "bg-white/95 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-white/90"
-            : "bg-white shadow-sm md:bg-transparent md:shadow-none"
-        }`}
+        className={`${pathname === "/" ? "fixed" : "sticky"} top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || !isTransparentPage
+          ? "bg-white/95 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-white/90"
+          : "bg-white shadow-sm md:bg-transparent md:shadow-none"
+          }`}
       >
         {/* Gradient Overlay */}
         <div
-          className={`hidden lg:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${
-            scrolled || !isTransparentPage ? "opacity-0" : "opacity-100"
-          }`}
+          className={`hidden lg:block absolute top-0 left-0 w-full h-[250px] bg-gradient-to-b from-black/60 via-black/20 to-transparent transition-opacity duration-500 pointer-events-none -z-10 ${scrolled || !isTransparentPage ? "opacity-0" : "opacity-100"
+            }`}
         />
 
         {/* Top Bar */}
@@ -725,11 +723,10 @@ export function Header() {
           <div className="flex h-16 sm:h-16 items-center justify-between gap-2">
             <Link
               href="/"
-              className={`flex items-center transition-all duration-300 header-logo-link ${
-                scrolled || !isTransparentPage
-                  ? ""
-                  : "md:px-3 md:py-1 header-logo-with-bg"
-              }`}
+              className={`flex items-center transition-all duration-300 header-logo-link ${scrolled || !isTransparentPage
+                ? ""
+                : "md:px-3 md:py-1 header-logo-with-bg"
+                }`}
             >
               <Image
                 src="/logo-horizontal.png"
@@ -756,16 +753,15 @@ export function Header() {
                     <>
                       <button
                         type="button"
-                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
-                          scrolled || !isTransparentPage
-                            ? isMenuItemActive(item) ||
-                              activeDropdown === item.label
-                              ? "text-[#1e3a8a]"
-                              : "text-gray-700 hover:text-[#1e3a8a]"
-                            : isMenuItemActive(item) && item.label !== "Home"
-                              ? "text-blue-300"
-                              : "text-white hover:text-gray-200"
-                        }`}
+                        className={`flex items-center gap-1 px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
+                          ? isMenuItemActive(item) ||
+                            activeDropdown === item.label
+                            ? "text-[#1e3a8a]"
+                            : "text-gray-700 hover:text-[#1e3a8a]"
+                          : isMenuItemActive(item) && item.label !== "Home"
+                            ? "text-blue-300"
+                            : "text-white hover:text-gray-200"
+                          }`}
                       >
                         {item.label}
                         <svg
@@ -786,11 +782,10 @@ export function Header() {
                         ref={(el) => {
                           dropdownRefs.current[item.label] = el;
                         }}
-                        className={`absolute top-full z-50 transition-all duration-300 ${
-                          activeDropdown === item.label
-                            ? "opacity-100 translate-y-0 pointer-events-auto visible"
-                            : "opacity-0 -translate-y-2 pointer-events-none invisible"
-                        } ${item.label === "Departments" || item.label === "Services" ? "left-1/2 -translate-x-1/2" : "left-0"}`}
+                        className={`absolute top-full z-50 transition-all duration-300 ${activeDropdown === item.label
+                          ? "opacity-100 translate-y-0 pointer-events-auto visible"
+                          : "opacity-0 -translate-y-2 pointer-events-none invisible"
+                          } ${item.label === "Departments" || item.label === "Services" ? "left-1/2 -translate-x-1/2" : "left-0"}`}
                       >
                         <div className="pt-2">
                           {item.label === "Departments" ? (
@@ -925,15 +920,14 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href || "#"}
-                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${
-                        scrolled || !isTransparentPage
-                          ? isMenuItemActive(item) && item.label !== "Home"
-                            ? "text-[#1e3a8a]"
-                            : "text-gray-700 hover:text-[#1e3a8a]"
-                          : isMenuItemActive(item) && item.label !== "Home"
-                            ? "text-blue-300"
-                            : "text-white hover:text-gray-200"
-                      }`}
+                      className={`px-2 min-[1366px]:px-2.5 min-[1440px]:px-3 2xl:px-4 py-2.5 text-[14px] min-[1366px]:text-[15px] min-[1440px]:text-[15.5px] 2xl:text-[16px] font-bold transition-colors font-heading whitespace-nowrap ${scrolled || !isTransparentPage
+                        ? isMenuItemActive(item) && item.label !== "Home"
+                          ? "text-[#1e3a8a]"
+                          : "text-gray-700 hover:text-[#1e3a8a]"
+                        : isMenuItemActive(item) && item.label !== "Home"
+                          ? "text-blue-300"
+                          : "text-white hover:text-gray-200"
+                        }`}
                     >
                       {item.label}
                     </Link>
@@ -954,11 +948,10 @@ export function Header() {
                 <LanguageSelector scrolled={true} isTransparentPage={false} />
                 <button
                   type="button"
-                  className={`p-2 rounded-lg transition-all duration-300 ${
-                    scrolled || !isTransparentPage
-                      ? "text-gray-600 hover:bg-gray-100"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
+                  className={`p-2 rounded-lg transition-all duration-300 ${scrolled || !isTransparentPage
+                    ? "text-gray-600 hover:bg-gray-100"
+                    : "text-gray-600 hover:bg-gray-100"
+                    }`}
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   <svg
@@ -990,56 +983,52 @@ export function Header() {
         </div>
 
         {/* Mobile Menu Overlay */}
-        <div
-          className={`absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden transition-all duration-300 ease-in-out z-[999] shadow-2xl ${
-            menuOpen
-              ? "max-h-[calc(100vh-80px)] opacity-100 overflow-y-auto overscroll-contain pb-20"
-              : "max-h-0 opacity-0 pointer-events-none overflow-hidden"
-          }`}
-        >
+        {menuOpen && (
           <div
-            className="px-4 py-4 space-y-1"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="absolute top-full left-0 w-full border-t border-gray-100 bg-white xl:hidden z-[999] shadow-2xl max-h-[calc(100vh-80px)] overflow-y-auto overscroll-contain pb-20 opacity-100"
           >
-            {menuItems.map((item) => (
-              <div key={item.label}>
-                {item.dropdown ? (
-                  <div className="flex flex-col">
-                    <button
-                      type="button"
-                      className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${
-                        isMenuItemActive(item) && item.label !== "Home"
+            <div
+              className="px-4 py-4 space-y-1"
+              style={{ fontFamily: "Montserrat, sans-serif" }}
+            >
+              {menuItems.map((item) => (
+                <div key={item.label}>
+                  {item.dropdown ? (
+                    <div className="flex flex-col">
+                      <button
+                        type="button"
+                        className={`flex items-center justify-between w-full px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
                           ? "text-[#1e3a8a] bg-blue-50"
                           : "text-gray-900"
-                      }`}
-                      onClick={() =>
-                        setActiveMobileDropdown(
-                          activeMobileDropdown === item.label
-                            ? null
-                            : item.label,
-                        )
-                      }
-                    >
-                      <span>{item.label}</span>
-                      <svg
-                        className={`w-4 h-4 text-gray-400 transition-transform ${activeMobileDropdown === item.label ? "rotate-180" : ""}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                          }`}
+                        onClick={() =>
+                          setActiveMobileDropdown(
+                            activeMobileDropdown === item.label
+                              ? null
+                              : item.label,
+                          )
+                        }
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
-                    <div
-                      className={`pl-4 overflow-hidden transition-all duration-300 ${activeMobileDropdown === item.label ? "max-h-[1500px] opacity-100" : "max-h-0 opacity-0"}`}
-                    >
-                      {item.label === "Departments" || item.label === "Services"
-                        ? item.dropdown.map((dropdownItem) => {
+                        <span>{item.label}</span>
+                        <svg
+                          className={`w-4 h-4 text-gray-400 transition-transform ${activeMobileDropdown === item.label ? "rotate-180" : ""}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      <div
+                        className={`pl-4 overflow-hidden transition-all duration-300 ${activeMobileDropdown === item.label ? "max-h-[1500px] opacity-100" : "max-h-0 opacity-0"}`}
+                      >
+                        {item.label === "Departments" || item.label === "Services"
+                          ? item.dropdown.map((dropdownItem) => {
                             const contentMap =
                               item.label === "Departments"
                                 ? specialtiesContent
@@ -1086,11 +1075,10 @@ export function Header() {
                                         <Link
                                           key={subItem.label}
                                           href={subItem.href}
-                                          className={`relative mx-2 my-1 flex items-center justify-between gap-2 overflow-hidden rounded-lg px-4 py-2 text-sm font-bold text-gray-600 transition-all ${
-                                            item.label === "Departments"
-                                              ? "hover:text-[#1e3a8a] hover:bg-blue-50/80"
-                                              : "hover:text-[#1e3a8a] hover:bg-blue-50/80"
-                                          }`}
+                                          className={`relative mx-2 my-1 flex items-center justify-between gap-2 overflow-hidden rounded-lg px-4 py-2 text-sm font-bold text-gray-600 transition-all ${item.label === "Departments"
+                                            ? "hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                                            : "hover:text-[#1e3a8a] hover:bg-blue-50/80"
+                                            }`}
                                           onClick={() => setMenuOpen(false)}
                                         >
                                           <span className="relative flex items-center gap-2 pl-1">
@@ -1118,7 +1106,7 @@ export function Header() {
                               </Link>
                             );
                           })
-                        : item.dropdown.map((dropdownItem) => (
+                          : item.dropdown.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.label}
                               href={dropdownItem.href}
@@ -1130,67 +1118,67 @@ export function Header() {
                               <span>{dropdownItem.label}</span>
                             </Link>
                           ))}
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href || "#"}
-                    className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${
-                      isMenuItemActive(item) && item.label !== "Home"
+                  ) : (
+                    <Link
+                      href={item.href || "#"}
+                      className={`block px-4 py-3 text-sm font-semibold rounded-lg hover:bg-gray-50 ${isMenuItemActive(item) && item.label !== "Home"
                         ? "text-[#1e3a8a] bg-blue-50"
                         : "text-gray-700"
-                    }`}
+                        }`}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </div>
+              ))}
+
+              {/* Added Bottom Nav Items to Mobile Menu */}
+              <div className="mt-6 pt-4 border-t border-gray-100">
+                <h3 className="px-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
+                  Quick Links
+                </h3>
+                <div className="space-y-1">
+                  <Link
+                    href="/online-payment"
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
                     onClick={() => setMenuOpen(false)}
                   >
-                    {item.label}
+                    <CreditCard className="w-5 h-5 text-gray-400" />
+                    Online Payment
                   </Link>
-                )}
-              </div>
-            ))}
-
-            {/* Added Bottom Nav Items to Mobile Menu */}
-            <div className="mt-6 pt-4 border-t border-gray-100">
-              <h3 className="px-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
-                Quick Links
-              </h3>
-              <div className="space-y-1">
-                <Link
-                  href="/online-payment"
-                  className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <CreditCard className="w-5 h-5 text-gray-400" />
-                  Online Payment
-                </Link>
-                <Link
-                  href="/second-opinion"
-                  className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <Users className="w-5 h-5 text-gray-400" />
-                  Second Opinion
-                </Link>
-                <Link
-                  href="/services/wellness-packages"
-                  className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <HeartPulse className="w-5 h-5 text-gray-400" />
-                  Wellness Packages
-                </Link>
-                <Link
-                  href="/services/health-packages"
-                  className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <Activity className="w-5 h-5 text-gray-400" />
-                  Health Packages
-                </Link>
+                  <Link
+                    href="/second-opinion"
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <Users className="w-5 h-5 text-gray-400" />
+                    Second Opinion
+                  </Link>
+                  <Link
+                    href="/services/wellness-packages"
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <HeartPulse className="w-5 h-5 text-gray-400" />
+                    Wellness Packages
+                  </Link>
+                  <Link
+                    href="/services/health-packages"
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700 rounded-lg hover:bg-gray-50"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <Activity className="w-5 h-5 text-gray-400" />
+                    Health Packages
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </header>
     </>
-  );
+      );
 }

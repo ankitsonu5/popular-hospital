@@ -75,12 +75,7 @@ export function Footer() {
                   <span className="text-gray-400 font-bold text-xs uppercase tracking-wider">
                     EMAIL:
                   </span>
-                  <a
-                    href="mailto:info@popularhospitals.in"
-                    className="text-white hover:text-hospital-teal transition-colors font-bold break-all"
-                  >
-                    info@popularhospitals.in
-                  </a>
+                  <span dangerouslySetInnerHTML={{ __html: '<!--email_off--><a href="mailto:info@popularhospitals.in" class="text-white hover:text-hospital-teal transition-colors font-bold break-all">info@popularhospitals.in</a><!--/email_off-->' }} />
                 </div>
               </div>
             </div>
@@ -222,12 +217,12 @@ export function Footer() {
               <h4 className="text-lg font-semibold text-white mb-2">
                 Social Media:
               </h4>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 mt-4">
                 <a
                   href="https://www.facebook.com/popularhospitals/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-hospital-teal transition-colors"
+                  className="text-white/90 hover:text-hospital-teal transition-colors"
                   aria-label="Facebook"
                 >
                   <svg
@@ -242,7 +237,7 @@ export function Footer() {
                   href="https://www.instagram.com/popular_hospitals/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-hospital-teal transition-colors"
+                  className="text-white/90 hover:text-hospital-teal transition-colors"
                   aria-label="Instagram"
                 >
                   <svg
@@ -257,7 +252,7 @@ export function Footer() {
                   href="https://x.com/popular_vns"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-hospital-teal transition-colors"
+                  className="text-white/90 hover:text-hospital-teal transition-colors"
                   aria-label="X (Twitter)"
                 >
                   <svg
@@ -272,7 +267,7 @@ export function Footer() {
                   href="https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-hospital-teal transition-colors"
+                  className="text-white/90 hover:text-hospital-teal transition-colors"
                   aria-label="YouTube"
                 >
                   <svg
@@ -287,7 +282,7 @@ export function Footer() {
                   href="https://www.linkedin.com/company/popularhospitals"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-hospital-teal transition-colors"
+                  className="text-white/90 hover:text-hospital-teal transition-colors"
                   aria-label="LinkedIn"
                 >
                   <svg
@@ -302,7 +297,7 @@ export function Footer() {
                   href="https://in.pinterest.com/popularhospitalvaranasi/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-hospital-teal transition-colors"
+                  className="text-white/90 hover:text-hospital-teal transition-colors"
                   aria-label="Pinterest"
                 >
                   <svg

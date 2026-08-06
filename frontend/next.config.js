@@ -109,6 +109,17 @@ const nextConfig = {
         destination: "https://www.popularhospital.in/:path*",
         permanent: true,
       },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "popularhospital.in",
+          },
+        ],
+        destination: "https://www.popularhospital.in/:path*",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

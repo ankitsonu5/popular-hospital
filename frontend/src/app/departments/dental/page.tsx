@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Department of Dental | Popular Hospital",
+  title: "Best Dental Hospital in Varanasi | Popular Hospital",
   description:
-    "The department is operational with state of the art dental equipments harmonizing International standards to deliver quality treatment to the patients. Offering a full range of services from oral and maxillofacial surgery to digital radiological support.",
+    "Popular Hospital is the best Dental hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/dental",
   },
@@ -32,8 +32,8 @@ export default async function DentalPage() {
         pageKey="department:dental"
         fallback={
           <DepartmentSchema
-            name="Department of Dental | Popular Hospital"
-            description="The department is operational with state of the art dental equipments harmonizing International standards to deliver quality treatment to the patients. Offering a full range of services from oral and maxillofacial surgery to digital radiological support."
+            name="Best Dental Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Dental hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="dental"
             medicalSpecialty="DentalSpecialty"
           />

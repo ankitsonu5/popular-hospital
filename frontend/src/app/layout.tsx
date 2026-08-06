@@ -17,26 +17,15 @@ export const metadata: Metadata = {
     template: "%s | Popular Hospital Varanasi",
   },
   description:
-    "Popular Hospital is the best & top multi super speciality hospital in Varanasi. 450+ beds, 28 departments, expert doctors. 24/7 emergency care, cashless treatment. Book OPD appointment online.",
-  keywords: [
-    "popular hospital",
-    "popular hospital varanasi",
-    "best hospital in varanasi",
-    "top hospital in varanasi",
-    "best multi super speciality hospital in varanasi",
-    "dr a.k. kaushik",
-    "hospital in varanasi",
-    "multispeciality hospital varanasi",
-    "doctor appointment varanasi",
-    "OPD varanasi",
-  ],
+    "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
+
   authors: [{ name: "Popular Hospital" }],
   creator: "Popular Hospital",
   openGraph: {
     title:
-      "Popular Hospital Varanasi | Best & Top Multi Super Speciality Hospital",
+      "Best Multi Super Speciality Hospital in Varanasi | Popular Hospital",
     description:
-      "Popular Hospital — top multi super speciality hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors. 24/7 emergency, cashless treatment.",
+      "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
     type: "website",
     locale: "en_IN",
     siteName: "Popular Hospital Varanasi",
@@ -54,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Popular Hospital Varanasi | Top Multi Super Speciality Hospital",
     description:
-      "Best & top hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors. Book appointment online.",
+      "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
   },
   robots: { index: true, follow: true },
   icons: {
@@ -119,6 +108,40 @@ export default function RootLayout({
                 }
               })();
             `,
+          }}
+        />
+        {/* LocalBusiness Schema for NAP (Name, Address, Phone, Email) */}
+        <Script
+          id="local-business-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Hospital",
+              name: "Popular Hospital",
+              url: "https://www.popularhospital.in",
+              logo: "https://www.popularhospital.in/logo.png",
+              image: "https://www.popularhospital.in/logo.png",
+              description:
+                "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment.",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "N2/115-116, BLW-B.H.U. Road, Kakarmata",
+                addressLocality: "Varanasi",
+                addressRegion: "Uttar Pradesh",
+                postalCode: "221005",
+                addressCountry: "IN",
+              },
+              telephone: "+91-7703000088",
+              email: "info@popularhospitals.in",
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+91-7703000088",
+                contactType: "Emergency",
+                availableLanguage: ["English", "Hindi"],
+              },
+            }),
           }}
         />
       </head>

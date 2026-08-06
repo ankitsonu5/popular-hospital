@@ -15,10 +15,9 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title:
-    "Popular Hospital Varanasi | Best & Top Multi Super Speciality Hospital in Varanasi",
+  title: "Best Multi Super Speciality Hospital in Varanasi | Popular Hospital",
   description:
-    "Popular Hospital — the top multi super speciality hospital in Varanasi. 450+ beds, 28 departments, 100+ expert doctors including Dr. A.K. Kaushik (Chairman). 24/7 emergency, cashless treatment & advanced care. Book appointment now.",
+    "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
   alternates: {
     canonical: "https://www.popularhospital.in",
   },

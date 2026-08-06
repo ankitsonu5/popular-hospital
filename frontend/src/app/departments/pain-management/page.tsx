@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Pain Management Clinic | Popular Hospital",
+  title: "Best Pain Management Clinic Hospital in Varanasi | Popular Hospital",
   description:
-    "Specialized management of chronic pain not responding to conventional treatment. Expert care for Trigeminal Neuralgia, PRP Therapy, Cancer Pain, and more under the supervision of specialists.",
+    "Popular Hospital is the best Pain Management Clinic hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/pain-management",
   },
@@ -32,8 +32,8 @@ export default async function PainManagementPage() {
         pageKey="department:pain-management"
         fallback={
           <DepartmentSchema
-            name="Pain Management Clinic | Popular Hospital"
-            description="Specialized management of chronic pain not responding to conventional treatment. Expert care for Trigeminal Neuralgia, PRP Therapy, Cancer Pain, and more under the supervision of specialists."
+            name="Best Pain Management Clinic Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Pain Management Clinic hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="pain-management"
             medicalSpecialty="Anesthesia"
           />

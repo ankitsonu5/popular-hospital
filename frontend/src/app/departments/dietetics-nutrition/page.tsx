@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Dietetics & Nutrition | Popular Hospital",
+  title: "Best Dietetics & Nutrition Hospital in Varanasi | Popular Hospital",
   description:
-    "Expert nutritional counseling and personalized diet plans at Popular Hospital Dietetics & Nutrition Department.",
+    "Popular Hospital is the best Dietetics & Nutrition hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/dietetics-nutrition",
   },
@@ -32,8 +32,8 @@ export default async function DieteticsNutritionPage() {
         pageKey="department:dietetics-nutrition"
         fallback={
           <DepartmentSchema
-            name="Dietetics & Nutrition | Popular Hospital"
-            description="Expert nutritional counseling and personalized diet plans at Popular Hospital Dietetics & Nutrition Department."
+            name="Best Dietetics & Nutrition Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Dietetics & Nutrition hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="dietetics-nutrition"
             medicalSpecialty="DietNutrition"
           />

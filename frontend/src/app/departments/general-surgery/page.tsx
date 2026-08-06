@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Laparoscopy & General Surgery | Popular Hospital",
+  title: "Best Laparoscopy & General Surgery Hospital in Varanasi | Popular Hospital",
   description:
-    "Advanced laparoscopic (keyhole) and general surgical procedures with state-of-the-art technology and expert surgeons.",
+    "Popular Hospital is the best Laparoscopy & General Surgery hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/general-surgery",
   },
@@ -32,8 +32,8 @@ export default async function GeneralSurgeryPage() {
         pageKey="department:general-surgery"
         fallback={
           <DepartmentSchema
-            name="Laparoscopy & General Surgery | Popular Hospital"
-            description="Advanced laparoscopic (keyhole) and general surgical procedures with state-of-the-art technology and expert surgeons."
+            name="Best Laparoscopy & General Surgery Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Laparoscopy & General Surgery hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="general-surgery"
             medicalSpecialty="Surgical"
           />

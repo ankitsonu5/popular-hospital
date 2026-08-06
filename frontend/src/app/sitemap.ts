@@ -1,7 +1,48 @@
 import { MetadataRoute } from "next";
 import { fetchBranches, fetchDoctors } from "@/lib/api";
+import fs from "fs";
+import path from "path";
 
-const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://popularhospital.com";
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://www.popularhospital.in";
+
+/**
+ * Recursively find all static routes in a directory that contain a page.tsx
+ */
+function getStaticRoutes(dirPath: string, basePath: string): string[] {
+  let routes: string[] = [];
+  try {
+    if (!fs.existsSync(dirPath)) return routes;
+    
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    let hasPage = false;
+    
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        // Skip dynamic routes, private folders, and specific exclusions
+        if (
+          entry.name.startsWith("[") || 
+          entry.name.startsWith("_") ||
+          entry.name === "dept"
+        ) {
+          continue;
+        }
+        const subPath = path.join(dirPath, entry.name);
+        const subRoutes = getStaticRoutes(subPath, `${basePath}/${entry.name}`);
+        routes = routes.concat(subRoutes);
+      } else if (entry.name === "page.tsx" || entry.name === "page.js") {
+        hasPage = true;
+      }
+    }
+    
+    // Add the current base path if it has a page.tsx
+    if (hasPage && basePath !== "") {
+      routes.push(basePath);
+    }
+  } catch (e) {
+    console.error(`Error reading directory ${dirPath}`, e);
+  }
+  return routes;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [branches, doctors] = await Promise.all([
@@ -9,165 +50,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     fetchDoctors().catch(() => []),
   ]);
 
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: BASE,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1,
-    },
-    {
-      url: `${BASE}/doctors`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE}/stories`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/services/international-patients`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/services/free-opd-offer`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/book`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE}/opd`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/branches`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/online-payment`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/sitemap`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-
-    // About Pages
-    {
-      url: `${BASE}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/about/chairman-desk`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/about/vice-chairman-desk`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/about/md-desk`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/about/leadership`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/about/mission`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/about/our-vision-2030`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    // Major Specialties
-    {
-      url: `${BASE}/departments/cardiology`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/departments/neurosurgery`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/departments/oncology`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/departments/orthopedics`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-
-    // Services
-    {
-      url: `${BASE}/services/health-packages`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/services/wellness-packages/well-woman-executive-health-checkup`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/services/wellness-packages`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/services/emergency`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+  const staticCorePages: MetadataRoute.Sitemap = [
+    { url: BASE, lastModified: new Date(), changeFrequency: "daily", priority: 1 },
+    { url: `${BASE}/doctors`, lastModified: new Date(), changeFrequency: "daily", priority: 0.9 },
+    { url: `${BASE}/book`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/branches`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/opd`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/online-payment`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/stories`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
   ];
 
+  // Auto-discover static routes from Next.js app directory structure
+  const appDir = path.join(process.cwd(), "src", "app");
+  
+  const aboutPaths = getStaticRoutes(path.join(appDir, "about"), "/about");
+  const departmentPaths = getStaticRoutes(path.join(appDir, "departments"), "/departments");
+  const servicePaths = getStaticRoutes(path.join(appDir, "services"), "/services");
+  const mediaPaths = getStaticRoutes(path.join(appDir, "media"), "/media");
+  const careersPaths = getStaticRoutes(path.join(appDir, "careers"), "/careers");
+
+  const autoGeneratedPages: MetadataRoute.Sitemap = [
+    ...aboutPaths,
+    ...departmentPaths,
+    ...servicePaths,
+    ...mediaPaths,
+    ...careersPaths
+  ].filter(p => !p.includes('/admin-login')).map((routePath) => ({
+    url: `${BASE}${routePath}`,
+    lastModified: new Date(),
+    changeFrequency: routePath.includes('/departments') ? "monthly" : "weekly",
+    priority: routePath.includes('/departments') ? 0.9 : 0.8,
+  }));
+
+  // Dynamic API routes (Branches, Doctors)
   const branchPages: MetadataRoute.Sitemap = branches.map((b: any) => ({
     url: `${BASE}/branches/${b.slug}`,
     lastModified: new Date(),
@@ -182,5 +97,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...branchPages, ...doctorPages];
+  return [...staticCorePages, ...autoGeneratedPages, ...branchPages, ...doctorPages];
 }

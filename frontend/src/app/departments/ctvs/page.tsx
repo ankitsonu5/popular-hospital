@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "CTVS Department | Popular Hospital",
+  title: "Best CTVS Department Hospital in Varanasi | Popular Hospital",
   description:
-    "Specialized Cardiothoracic & Vascular Surgery (CTVS) including Bypass (CABG), Valve Replacement, and Aortic Surgery.",
+    "Popular Hospital is the best CTVS Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/ctvs",
   },
@@ -32,8 +32,8 @@ export default async function CTVSPage() {
         pageKey="department:ctvs"
         fallback={
           <DepartmentSchema
-            name="CTVS Department | Popular Hospital"
-            description="Specialized Cardiothoracic & Vascular Surgery (CTVS) including Bypass (CABG), Valve Replacement, and Aortic Surgery."
+            name="Best CTVS Department Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best CTVS Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="ctvs"
             medicalSpecialty="Cardiovascular"
           />

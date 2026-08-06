@@ -7,9 +7,9 @@ import DynamicSchema from "@/components/schema/DynamicSchema";
 import { fetchDoctors } from "@/lib/api";
 
 export const metadata: Metadata = {
-  title: "Neurosurgery Department | Popular Hospital",
+  title: "Best Neurosurgery Department Hospital in Varanasi | Popular Hospital",
   description:
-    "Expert surgical treatment for brain, spinal cord, and peripheral nerve disorders at Popular Hospital.",
+    "Popular Hospital is the best Neurosurgery Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/neurosurgery",
   },
@@ -24,8 +24,8 @@ export default async function NeurosurgeryPage() {
         pageKey="department:neurosurgery"
         fallback={
           <DepartmentSchema
-            name="Neurosurgery Department | Popular Hospital"
-            description="Expert surgical treatment for brain, spinal cord, and peripheral nerve disorders at Popular Hospital."
+            name="Best Neurosurgery Department Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Neurosurgery Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="neurosurgery"
             medicalSpecialty="Neurologic"
           />

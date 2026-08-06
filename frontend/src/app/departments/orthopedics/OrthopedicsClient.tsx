@@ -185,8 +185,7 @@ export default function OrthopedicsClient({
               Centre for Bone & Joint Care
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Restoring Mobility, <br />
-              <span className="text-blue-100">Rebuilding Lives</span>
+              Department of Orthopedics & Joint Replacement — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -225,6 +224,9 @@ export default function OrthopedicsClient({
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
               <div className="space-y-5 text-gray-700 text-base md:text-[15px] font-medium leading-relaxed">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best Orthopedics & Joint Replacement hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                 <p>{introParagraphs[0]}</p>
                 <div className="border-l-4 border-blue-500 pl-5 py-3 bg-blue-50/40 rounded-r-2xl">
                   <p>{introParagraphs[1]}</p>

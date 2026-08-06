@@ -108,8 +108,7 @@ export default function OphthalmologyClient({
               Centre for Comprehensive Eye Care
             </span>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Restoring Vision, <br />
-              <span className="text-blue-300">Enhancing Life</span>
+              Department of Ophthalmology — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -137,6 +136,9 @@ export default function OphthalmologyClient({
             <div className="lg:col-span-8 space-y-6">
               <SectionHeader title="Department of" highlight="Ophthalmology" />
               <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best Ophthalmology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
                   <p className="font-semibold text-gray-800">
                     The Ophthalmology Department is designed to provide a

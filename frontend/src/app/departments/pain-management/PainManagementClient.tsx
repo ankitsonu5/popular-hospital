@@ -233,7 +233,7 @@ export default function PainManagementClient({
               Specialized Care
             </span>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Pain <span className="text-blue-400">Medicine</span>
+              Department of Pain Management Clinic — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link

@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Oncology (Cancer Care) | Popular Hospital",
+  title: "Best Oncology (Cancer Care) Hospital in Varanasi | Popular Hospital",
   description:
-    "Comprehensive cancer care centre offering Medical, Surgical, and Radiation Oncology. Expert Tumor Board and dedicated chemotherapy day care.",
+    "Popular Hospital is the best Oncology (Cancer Care) hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/oncology",
   },
@@ -32,8 +32,8 @@ export default async function OncologyPage() {
         pageKey="department:oncology"
         fallback={
           <DepartmentSchema
-            name="Oncology (Cancer Care) | Popular Hospital"
-            description="Comprehensive cancer care centre offering Medical, Surgical, and Radiation Oncology. Expert Tumor Board and dedicated chemotherapy day care."
+            name="Best Oncology (Cancer Care) Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Oncology (Cancer Care) hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="oncology"
             medicalSpecialty="Oncologic"
           />

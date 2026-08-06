@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Orthopedics & Joint Replacement | Popular Hospital",
+  title: "Best Orthopedics & Joint Replacement Hospital in Varanasi | Popular Hospital",
   description:
-    "Advanced orthopedic care including joint replacement, sports medicine, trauma surgery, and spine treatments with cutting-edge technology.",
+    "Popular Hospital is the best Orthopedics & Joint Replacement hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/orthopedics",
   },
@@ -32,8 +32,8 @@ export default async function OrthopedicsPage() {
         pageKey="department:orthopedics"
         fallback={
           <DepartmentSchema
-            name="Orthopedics & Joint Replacement | Popular Hospital"
-            description="Advanced orthopedic care including joint replacement, sports medicine, trauma surgery, and spine treatments with cutting-edge technology."
+            name="Best Orthopedics & Joint Replacement Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Orthopedics & Joint Replacement hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="orthopedics"
             medicalSpecialty="Musculoskeletal"
           />

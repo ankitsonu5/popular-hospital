@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Department of Cardiology | Popular Hospital",
+  title: "Best Cardiology Hospital in Varanasi | Popular Hospital",
   description:
-    "Comprehensive evaluation of heart conditions with India's premier cardiac care team. Advanced diagnostics, minimally invasive procedures, and personalized rehabilitation programs.",
+    "Popular Hospital is the best Cardiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/cardiology",
   },
@@ -32,8 +32,8 @@ export default async function CardiologyPage() {
         pageKey="department:cardiology"
         fallback={
           <DepartmentSchema
-            name="Department of Cardiology | Popular Hospital"
-            description="Comprehensive evaluation of heart conditions with India's premier cardiac care team. Advanced diagnostics, minimally invasive procedures, and personalized rehabilitation programs."
+            name="Best Cardiology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Cardiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="cardiology"
             medicalSpecialty="Cardiovascular"
           />

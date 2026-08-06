@@ -332,9 +332,15 @@ export default function HomeClient({
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const [formError, setFormError] = useState("");
-  const [experienceCount, setExperienceCount] = useState(0);
-  const [specialistsCount, setSpecialistsCount] = useState(0);
+  const [experienceCount, setExperienceCount] = useState(32);
+  const [specialistsCount, setSpecialistsCount] = useState(50);
   const [hasStartedWhyCounter, setHasStartedWhyCounter] = useState(false);
+
+  // SEO Fix: Initialize with final values for SSR, then reset to 0 on client for animation
+  useEffect(() => {
+    setExperienceCount(0);
+    setSpecialistsCount(0);
+  }, []);
 
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -456,11 +462,7 @@ export default function HomeClient({
 
   return (
     <>
-      {/* SEO: Primary H1 — visually hidden, accessible to search engines */}
-      <h1 className="sr-only">
-        Popular Hospital Varanasi — Best & Top Multi Super Speciality Hospital
-        in Varanasi | Dr. A.K. Kaushik, Chairman
-      </h1>
+      {/* SEO: H1 is now integrated into the visual hero banner text below */}
       <section className="relative w-full overflow-hidden bg-white flex-shrink-0 mt-[64px] sm:mt-[80px] md:mt-0 h-[480px] sm:h-[calc(100dvh-80px)] md:h-[100dvh] min-h-[480px] sm:min-h-[calc(100dvh-80px)] md:min-h-[100dvh]">
         {/* Slider Background */}
         <div className="absolute inset-0 z-0 bg-white">
@@ -524,9 +526,10 @@ export default function HomeClient({
 
         {/* Main Slogan Overlay on Video */}
         <div className="absolute inset-x-0 bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-14 xl:bottom-16 min-[1366px]:bottom-[72px] min-[1440px]:bottom-20 2xl:bottom-[88px] z-20 text-center px-4 pointer-events-none">
-          <h2 className="relative z-10 text-[18px] min-[390px]:text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] min-[1440px]:text-[56px] 2xl:text-[64px] font-bold font-hindi-poppins tracking-normal text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2 leading-[1.08]">
-            आपके हर श्वांस के रक्षक
-          </h2>
+          <h1 className="relative z-10 text-[18px] min-[390px]:text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] min-[1440px]:text-[56px] 2xl:text-[64px] font-bold font-hindi-poppins tracking-normal text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2 leading-[1.08]">
+            <span className="sr-only">Best Multi Super Speciality Hospital in Varanasi - </span>
+            <span aria-hidden="true">आपके हर श्वांस के रक्षक</span>
+          </h1>
         </div>
       </section>
 
@@ -544,24 +547,25 @@ export default function HomeClient({
           </div>
         </div>
         <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-32">
-          {[...Array(4)].map((_, i) => (
+          {/* CSS Marquee requires duplicating the content once to create a seamless infinite loop. We reduced it from 4 to 2 to avoid excessive repetition. */}
+          {[...Array(2)].map((_, i) => (
             <div
               key={i}
               className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap"
             >
               <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
                 <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">
-                  New
+                  Update
                 </span>
-                OPD timings for Cardiology have been updated to 9 AM - 5 PM.
+                Welcome to Popular Hospital Varanasi — Delivering Excellence in Healthcare.
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
               <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                Free Heart Health Checkup Camp scheduled for 15th March 2026.
+                Cashless facility available for CGHS, ECHS, Ayushman Bharat & major health insurances.
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
               <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                Emergency Trauma Center is now fully operational 24/7.
+                Emergency & Trauma Center is fully operational 24/7. Call: +91-9519999280
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
             </div>
@@ -1064,8 +1068,8 @@ export default function HomeClient({
                     WebkitMaskImage: "radial-gradient(white, black)",
                   }}
                 >
-                  {/* Background Image (Desktop Only - Full Preview) */}
-                  <div className="absolute inset-0 hidden sm:block pointer-events-none">
+                  {/* Background Image (Desktop Only - Fades out on hover) */}
+                  <div className="absolute inset-0 hidden sm:block pointer-events-none z-0 transition-opacity duration-500 group-hover:opacity-0">
                     <Image
                       src={feature.bgImage}
                       alt={feature.title}
@@ -1073,40 +1077,25 @@ export default function HomeClient({
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 640px) 0vw, 400px"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                   </div>
 
-                  {/* Desktop Bottom Overlay (Icon + Title) */}
-                  <div className="hidden sm:flex absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent items-center gap-4 z-10 transition-all duration-500 sm:group-hover:opacity-0 sm:group-hover:translate-y-10">
-                    <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0 text-white border border-white/20">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-[17px] font-bold text-white font-jakarta leading-tight drop-shadow-lg">
-                      {feature.title}
-                    </h3>
-                  </div>
-
-                  {/* Mobile Content + Desktop Hover Paragraph */}
-                  <div className="relative z-10 flex flex-col h-full items-start sm:p-8">
-                    {/* Mobile only: Icon and Heading */}
-                    <div className="sm:hidden w-full flex flex-col">
-                      <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0 text-hospital-teal mb-4 border border-hospital-teal/10">
+                  {/* Unified Content Container */}
+                  <div className="relative z-10 flex flex-col h-full sm:absolute sm:inset-0 sm:p-8 sm:justify-end sm:group-hover:justify-center transition-all duration-500">
+                    
+                    {/* Header (Icon + Title) */}
+                    <div className="flex flex-col sm:flex-row sm:group-hover:flex-col sm:items-center sm:group-hover:items-start gap-4 sm:translate-y-0 sm:group-hover:-translate-y-2 transition-transform duration-500">
+                      <div className="w-12 h-12 sm:w-10 sm:h-10 sm:group-hover:w-12 sm:group-hover:h-12 rounded-xl bg-white sm:bg-white/20 sm:backdrop-blur-md sm:group-hover:bg-hospital-teal/10 shadow-sm flex items-center justify-center shrink-0 text-hospital-teal sm:text-white sm:group-hover:text-hospital-teal border border-hospital-teal/10 sm:border-white/20 sm:group-hover:border-hospital-teal/20 transition-all duration-500">
                         {feature.icon}
                       </div>
-                      <h3 className="text-[18px] font-bold text-[#0b1c43] font-jakarta">
+                      <h3 className="text-[18px] sm:text-[17px] sm:group-hover:text-[19px] font-bold text-[#0b1c43] sm:text-white sm:group-hover:text-[#0b1c43] font-jakarta leading-tight drop-shadow-none sm:drop-shadow-lg sm:group-hover:drop-shadow-none transition-all duration-500">
                         {feature.title}
                       </h3>
                     </div>
 
-                    {/* Mobile Paragraph */}
-                    <div className="sm:hidden mt-3">
-                      <p className="text-[#0b1c43] font-semibold text-[14px] leading-relaxed font-jakarta">
-                        {feature.fullDesc}
-                      </p>
-                    </div>
-
-                    {/* Desktop Hover Description (Covers entire card) */}
-                    <div className="hidden sm:flex absolute inset-0 rounded-[inherit] p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 h-full w-full items-center bg-white z-20">
-                      <p className="text-[#0b1c43] font-bold text-[15px] leading-relaxed font-jakarta">
+                    {/* Paragraph */}
+                    <div className="mt-3 sm:mt-0 sm:max-h-0 sm:opacity-0 sm:overflow-hidden sm:group-hover:max-h-[300px] sm:group-hover:opacity-100 sm:group-hover:mt-4 transition-all duration-500 ease-in-out">
+                      <p className="text-[#0b1c43] font-semibold sm:font-bold text-[14px] sm:text-[15px] leading-relaxed font-jakarta">
                         {feature.fullDesc}
                       </p>
                     </div>

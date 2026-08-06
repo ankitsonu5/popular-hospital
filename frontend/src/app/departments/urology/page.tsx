@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Department of Urology | Popular Hospital",
+  title: "Best Urology Hospital in Varanasi | Popular Hospital",
   description:
-    "Expert care for urological conditions including kidney stones, prostate health, uro-oncology, and male infertility.",
+    "Popular Hospital is the best Urology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/urology",
   },
@@ -32,8 +32,8 @@ export default async function UrologyPage() {
         pageKey="department:urology"
         fallback={
           <DepartmentSchema
-            name="Department of Urology | Popular Hospital"
-            description="Expert care for urological conditions including kidney stones, prostate health, uro-oncology, and male infertility."
+            name="Best Urology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Urology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="urology"
             medicalSpecialty="Urologic"
           />

@@ -106,8 +106,7 @@ export default function InterventionalRadiologyClient({
               Super-Speciality Care
             </span>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Interventional <br />
-              <span className="text-blue-300">Radiology</span>
+              Department of Interventional Radiology — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -145,6 +144,9 @@ export default function InterventionalRadiologyClient({
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <div className="space-y-4">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best Interventional Radiology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                 {departmentOverview.map((item, idx) => (
                   <p
                     key={idx}

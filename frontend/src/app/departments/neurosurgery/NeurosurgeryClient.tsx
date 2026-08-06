@@ -97,7 +97,7 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
               Department of
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Neurosurgery
+              Department of Neurosurgery Department — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link

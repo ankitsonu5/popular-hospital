@@ -14,8 +14,8 @@ export default function PathologyPage() {
         pageKey="department:pathology"
         fallback={
           <DepartmentSchema
-            name="Department of Pathology | Popular Hospital"
-            description="Laboratory & Medical Research. Advanced diagnostic solutions powered by cutting-edge technology and expert pathologists."
+            name="Best Pathology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Pathology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="pathology"
             medicalSpecialty="Pathology"
           />
@@ -94,7 +94,7 @@ export default function PathologyPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
-                  title: "Biochemistry",
+                  title: "Best Pathology Hospital in Varanasi | Popular Hospital",
                   icon: "test-tube",
                   desc: "Chemical processes within living organisms.",
                 },

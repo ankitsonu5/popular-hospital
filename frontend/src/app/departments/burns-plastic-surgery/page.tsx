@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Burns & Plastic Surgery | Popular Hospital",
+  title: "Best Burns & Plastic Surgery Hospital in Varanasi | Popular Hospital",
   description:
-    "Specialized centre for Burns Care, Reconstructive Surgery, and Cosmetic Enhancements. Advanced burn ICU and microsurgery facilities.",
+    "Popular Hospital is the best Burns & Plastic Surgery hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/burns-plastic-surgery",
   },
@@ -32,8 +32,8 @@ export default async function PlasticSurgeryPage() {
         pageKey="department:burns-plastic-surgery"
         fallback={
           <DepartmentSchema
-            name="Burns & Plastic Surgery | Popular Hospital"
-            description="Specialized centre for Burns Care, Reconstructive Surgery, and Cosmetic Enhancements. Advanced burn ICU and microsurgery facilities."
+            name="Best Burns & Plastic Surgery Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Burns & Plastic Surgery hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="burns-plastic-surgery"
             medicalSpecialty="PlasticSurgery"
           />

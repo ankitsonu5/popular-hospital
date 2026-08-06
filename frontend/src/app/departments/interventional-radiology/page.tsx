@@ -6,9 +6,9 @@ import DynamicSchema from "@/components/schema/DynamicSchema";
 import { fetchDoctors } from "@/lib/api";
 
 export const metadata: Metadata = {
-  title: "Interventional Radiology | Popular Hospital",
+  title: "Best Interventional Radiology Hospital in Varanasi | Popular Hospital",
   description:
-    "Advanced imaging technology meets expert clinical interpretation. Our interventional radiology team provides minimally invasive treatments with maximum precision.",
+    "Popular Hospital is the best Interventional Radiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/interventional-radiology",
   },
@@ -25,8 +25,8 @@ export default async function InterventionalRadiologyPage() {
         pageKey="department:interventional-radiology"
         fallback={
           <DepartmentSchema
-            name="Interventional Radiology | Popular Hospital"
-            description="Advanced imaging technology meets expert clinical interpretation. Our interventional radiology team provides minimally invasive treatments with maximum precision."
+            name="Best Interventional Radiology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Interventional Radiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="interventional-radiology"
             medicalSpecialty="Radiologic"
           />

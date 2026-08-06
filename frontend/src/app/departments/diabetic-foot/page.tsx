@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Advanced Diabetic Foot Unit | Popular Hospital Varanasi",
+  title: "Best Diabetic Foot Hospital in Varanasi | Popular Hospital",
   description:
-    "Specialized Advanced Diabetic Foot Unit at Popular Hospital Varanasi — expert care for non-healing wounds, diabetic ulcers, neuropathy, and limb salvage with a multidisciplinary team.",
+    "Popular Hospital is the best Diabetic Foot hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/diabetic-foot",
   },
@@ -32,8 +32,8 @@ export default async function DiabeticFootPage() {
         pageKey="department:diabetic-foot"
         fallback={
           <DepartmentSchema
-            name="Advanced Diabetic Foot Unit | Popular Hospital Varanasi"
-            description="Specialized Advanced Diabetic Foot Unit at Popular Hospital Varanasi — expert care for non-healing wounds, diabetic ulcers, neuropathy, and limb salvage with a multidisciplinary team."
+            name="Best Diabetic Foot Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Diabetic Foot hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="diabetic-foot"
             medicalSpecialty="Endocrine"
           />

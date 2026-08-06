@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Ophthalmology | Popular Hospital",
+  title: "Best Ophthalmology Hospital in Varanasi | Popular Hospital",
   description:
-    "Advanced eye care center providing comprehensive diagnostic and surgical services including Cataract surgery, Glaucoma treatment, and specialized eye care for all age groups.",
+    "Popular Hospital is the best Ophthalmology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/ophthalmology",
   },
@@ -32,8 +32,8 @@ export default async function OphthalmologyPage() {
         pageKey="department:ophthalmology"
         fallback={
           <DepartmentSchema
-            name="Ophthalmology | Popular Hospital"
-            description="Advanced eye care center providing comprehensive diagnostic and surgical services including Cataract surgery, Glaucoma treatment, and specialized eye care for all age groups."
+            name="Best Ophthalmology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Ophthalmology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="ophthalmology"
             medicalSpecialty="Optometric"
           />

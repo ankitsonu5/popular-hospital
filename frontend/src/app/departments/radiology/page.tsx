@@ -16,8 +16,8 @@ export default function RadiologyPage() {
         pageKey="department:radiology"
         fallback={
           <DepartmentSchema
-            name="Department of Radiology | Popular Hospital"
-            description="State-of-the-art imaging technology provided by expert radiologists. Advanced diagnostic imaging for effective treatment planning."
+            name="Best Radiology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Radiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="radiology"
             medicalSpecialty="Radiologic"
           />
@@ -96,7 +96,7 @@ export default function RadiologyPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
-                  title: "MRI Scan",
+                  title: "Best Radiology Hospital in Varanasi | Popular Hospital",
                   icon: "magnet",
                   desc: "Detailed imaging of organs and tissues using magnetic fields.",
                 },

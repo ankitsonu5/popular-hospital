@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "ENT (Ear, Nose & Throat) | Popular Hospital",
+  title: "Best ENT (Ear, Nose & Throat) Hospital in Varanasi | Popular Hospital",
   description:
-    "Expert ENT services for ear, nose, and throat disorders. Advanced surgical and medical care by Dr. Anshuman Singh and team.",
+    "Popular Hospital is the best ENT (Ear, Nose & Throat) hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/ent",
   },
@@ -32,8 +32,8 @@ export default async function ENTPage() {
         pageKey="department:ent"
         fallback={
           <DepartmentSchema
-            name="ENT (Ear, Nose & Throat) | Popular Hospital"
-            description="Expert ENT services for ear, nose, and throat disorders. Advanced surgical and medical care by Dr. Anshuman Singh and team."
+            name="Best ENT (Ear, Nose & Throat) Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best ENT (Ear, Nose & Throat) hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="ent"
             medicalSpecialty="Otolaryngologic"
           />

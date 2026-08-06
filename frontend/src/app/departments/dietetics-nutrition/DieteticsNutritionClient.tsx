@@ -116,8 +116,7 @@ export default function DieteticsNutritionClient({
               Nourishing Health Professionally
             </span>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Dietetics & <br />
-              <span className="text-blue-400">Nutrition</span>
+              Department of Dietetics & Nutrition — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -148,6 +147,9 @@ export default function DieteticsNutritionClient({
                 highlight="Dietetics & Nutrition"
               />
               <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best Dietetics & Nutrition hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                 <p>
                   At Popular Hospital, Varanasi, our Department of Dietetics and
                   Nutrition is dedicated to improving overall health and

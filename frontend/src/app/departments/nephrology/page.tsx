@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Department of Nephrology | Popular Hospital",
+  title: "Best Nephrology Hospital in Varanasi | Popular Hospital",
   description:
-    "Comprehensive kidney care including Hemodialysis, Peritoneal Dialysis, Kidney Transplantation, CRRT, and management of Chronic Kidney Disease.",
+    "Popular Hospital is the best Nephrology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/nephrology",
   },
@@ -32,8 +32,8 @@ export default async function NephrologyPage() {
         pageKey="department:nephrology"
         fallback={
           <DepartmentSchema
-            name="Department of Nephrology | Popular Hospital"
-            description="Comprehensive kidney care including Hemodialysis, Peritoneal Dialysis, Kidney Transplantation, CRRT, and management of Chronic Kidney Disease."
+            name="Best Nephrology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Nephrology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="nephrology"
             medicalSpecialty="Renal"
           />

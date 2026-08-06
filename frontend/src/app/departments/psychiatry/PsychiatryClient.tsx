@@ -140,8 +140,7 @@ export default function PsychiatryClient({
               Compassionate Mental Healthcare
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading">
-              Psychiatry <br className="hidden md:block" />
-              <span className="text-violet-300">Department</span>
+              Department of Psychiatry Department — Varanasi
             </h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -197,6 +196,9 @@ export default function PsychiatryClient({
                         <Icon className="h-5 w-5" />
                       </div>
                       <div className="space-y-1">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best Psychiatry Department hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                         <h4 className="text-gray-900 font-bold text-[15px] group-hover:text-[#1e3a8a] transition-colors">
                           {card.title}
                         </h4>

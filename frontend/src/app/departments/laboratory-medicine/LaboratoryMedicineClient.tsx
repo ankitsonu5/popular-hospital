@@ -82,8 +82,7 @@ export default function LaboratoryMedicineClient() {
               Centre of Diagnostic Excellence
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[1.1] font-heading tracking-tight">
-              Laboratory <br />
-              <span className="text-blue-400">Medicine</span>
+              Department of Laboratory Medicine — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4 mt-8">
               <Link
@@ -137,6 +136,9 @@ export default function LaboratoryMedicineClient() {
                 highlight="Pure Science"
               />
               <div className="space-y-4 text-gray-800 text-base md:text-lg font-medium leading-relaxed mb-10 text-justify">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best Laboratory Medicine hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                 <p>
                   At Popular Hospital, our Laboratory Medicine department is
                   more than just a testing facility. It is a hub of clinical

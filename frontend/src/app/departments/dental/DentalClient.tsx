@@ -143,8 +143,7 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
               Department of
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Comprehensive <br />
-              <span className="text-blue-300">Dental Care</span>
+              Department of Dental — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -283,6 +282,9 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
                       <Icon className="h-5 w-5" />
                     </div>
                     <div className="space-y-1.5">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best Dental hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                       <div className="flex items-center gap-2">
                         <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
                           0{idx + 1}

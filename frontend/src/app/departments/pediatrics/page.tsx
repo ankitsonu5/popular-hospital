@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Pediatrics & Neonatology | Popular Hospital",
+  title: "Best Pediatrics & Neonatology Hospital in Varanasi | Popular Hospital",
   description:
-    "Comprehensive pediatric care from newborns to adolescents. Featuring advanced NICU, vaccination center, and expert pediatricians.",
+    "Popular Hospital is the best Pediatrics & Neonatology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/pediatrics",
   },
@@ -32,8 +32,8 @@ export default async function PediatricsPage() {
         pageKey="department:pediatrics"
         fallback={
           <DepartmentSchema
-            name="Pediatrics & Neonatology | Popular Hospital"
-            description="Comprehensive pediatric care from newborns to adolescents. Featuring advanced NICU, vaccination center, and expert pediatricians."
+            name="Best Pediatrics & Neonatology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Pediatrics & Neonatology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="pediatrics"
             medicalSpecialty="Pediatric"
           />

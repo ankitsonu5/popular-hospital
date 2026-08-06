@@ -21,6 +21,17 @@ const leaders = [
   },
 ];
 
+
+
+export const metadata = {
+  title: 'Leadership',
+  description: 'Learn more about Leadership at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services.',
+  openGraph: {
+    title: 'Leadership | Popular Hospital Varanasi',
+    description: 'Learn more about Leadership at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services.',
+  }
+};
+
 export default function LeadershipPage() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">

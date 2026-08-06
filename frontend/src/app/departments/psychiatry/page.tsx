@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Psychiatry Department | Popular Hospital",
+  title: "Best Psychiatry Department Hospital in Varanasi | Popular Hospital",
   description:
-    "Expert psychiatric care in Varanasi. Treatment for depression, anxiety, schizophrenia, bipolar disorder, and specialized therapy for all ages at Popular Hospital.",
+    "Popular Hospital is the best Psychiatry Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/psychiatry",
   },
@@ -32,8 +32,8 @@ export default async function PsychiatryPage() {
         pageKey="department:psychiatry"
         fallback={
           <DepartmentSchema
-            name="Psychiatry Department | Popular Hospital"
-            description="Expert psychiatric care in Varanasi. Treatment for depression, anxiety, schizophrenia, bipolar disorder, and specialized therapy for all ages at Popular Hospital."
+            name="Best Psychiatry Department Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Psychiatry Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="psychiatry"
             medicalSpecialty="Psychiatric"
           />

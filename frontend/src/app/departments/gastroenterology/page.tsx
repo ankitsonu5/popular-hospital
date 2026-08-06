@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Gastroenterology & Hepatology | Popular Hospital",
+  title: "Best Gastroenterology & Hepatology Hospital in Varanasi | Popular Hospital",
   description:
-    "Advanced care for digestive and liver diseases. Specializing in Endoscopy, Colonoscopy, ERCP, and GI Cancer treatment.",
+    "Popular Hospital is the best Gastroenterology & Hepatology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/gastroenterology",
   },
@@ -32,8 +32,8 @@ export default async function GastroenterologyPage() {
         pageKey="department:gastroenterology"
         fallback={
           <DepartmentSchema
-            name="Gastroenterology & Hepatology | Popular Hospital"
-            description="Advanced care for digestive and liver diseases. Specializing in Endoscopy, Colonoscopy, ERCP, and GI Cancer treatment."
+            name="Best Gastroenterology & Hepatology Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best Gastroenterology & Hepatology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="gastroenterology"
             medicalSpecialty="Gastroenterologic"
           />

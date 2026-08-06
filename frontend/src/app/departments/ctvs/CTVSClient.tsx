@@ -177,8 +177,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
               Department of
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading">
-              Cardiothoracic & <br className="hidden md:block" />
-              Vascular Surgery
+              Department of CTVS Department — Varanasi
             </h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -243,6 +242,9 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
                 <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[17px] 2xl:text-lg font-medium text-left">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best CTVS Department hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                   <p>
                     Welcome to the Cardiothoracic and Vascular Surgery (CTVS)
                     Department at Popular Hospital. We are proud to offer

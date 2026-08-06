@@ -171,10 +171,7 @@ export default function RespiratoryClient({
               Centre for Advanced Pulmonology
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-2xl 2xl:text-4xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of{" "}
-              <span className="text-cyan-400">
-                Pulmonology &amp; Chest/Respiratory Medicine Department
-              </span>
+              Department of Respiratory Medicine — Varanasi
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -208,6 +205,9 @@ export default function RespiratoryClient({
               />
 
               <div className="space-y-4 text-gray-700 text-base md:text-[15px] leading-relaxed font-medium">
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
+                  Popular Hospital is widely recognized as the <strong>best Respiratory Medicine hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                </p>
                 <p className="text-justify">
                   Our Respiratory Medicine Department is dedicated to providing
                   exceptional care of chest, lungs, and sleep disorders —

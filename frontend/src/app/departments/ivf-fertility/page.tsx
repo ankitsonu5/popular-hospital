@@ -7,9 +7,9 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "IVF & Fertility | Popular Hospital",
+  title: "Best IVF & Fertility Hospital in Varanasi | Popular Hospital",
   description:
-    "Advanced IVF and fertility care at Popular Hospital, Varanasi. Evaluation, ovulation induction, IUI, IVF guidance, fertility preservation, and compassionate reproductive care.",
+    "Popular Hospital is the best IVF & Fertility hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/ivf-fertility",
   },
@@ -32,8 +32,8 @@ export default async function IvfFertilityPage() {
         pageKey="department:ivf-fertility"
         fallback={
           <DepartmentSchema
-            name="IVF & Fertility | Popular Hospital"
-            description="Advanced IVF and fertility care at Popular Hospital, Varanasi. Evaluation, ovulation induction, IUI, IVF guidance, fertility preservation, and compassionate reproductive care."
+            name="Best IVF & Fertility Hospital in Varanasi | Popular Hospital"
+            description="Popular Hospital is the best IVF & Fertility hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
             urlSlug="ivf-fertility"
             medicalSpecialty="Gynecologic"
           />
