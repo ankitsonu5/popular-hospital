@@ -173,7 +173,6 @@ export default function CardiologyPage({
       setCallStatus("error");
     }
   };
-
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO ═══════ */}
@@ -183,6 +182,7 @@ export default function CardiologyPage({
             src="/images/banners/cardiology_banner.png"
             alt="Cardiac Care"
             fill
+            sizes="100vw"
             className="object-cover object-center opacity-70 mix-blend-overlay"
             priority
           />

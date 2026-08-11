@@ -9,6 +9,7 @@ import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
 import PopupBanner from "@/components/PopupBanner";
+import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema";
 
 const ZOOM_PATHS = [
   "/about",
@@ -65,6 +66,7 @@ export default function LayoutShell({
 
   return (
     <>
+      <BreadcrumbSchema />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-hospital-teal focus:px-4 focus:py-2 focus:text-white"

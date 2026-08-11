@@ -492,7 +492,6 @@ export default function HomeClient({
                     priority={index === 0}
                     loading={index === 0 ? undefined : "lazy"}
                     sizes="100vw"
-                    unoptimized
                   />
                 )}
                 {/* Very subtle gradient for text shadow if needed */}
@@ -1284,7 +1283,7 @@ export default function HomeClient({
                         alt={service.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                       />
                     )}
                   </div>
@@ -1795,7 +1794,7 @@ export default function HomeClient({
                             alt={s.title}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
-                            sizes="(max-width:640px) 100vw, 50vw"
+                            sizes="(max-width:640px) 100vw, 600px"
                           />
                         </div>
                       )}
@@ -2287,36 +2286,36 @@ export default function HomeClient({
           {/* Logos Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-10">
             {[
-              { src: "/images/cashless_empanelment/AAI.png", alt: "AAI" },
-              { src: "/images/cashless_empanelment/NCL.png", alt: "NCL" },
+              { src: "/images/cashless_empanelment/AAI.png", alt: "AAI cashless treatment Popular Hospital" },
+              { src: "/images/cashless_empanelment/NCL.png", alt: "NCL cashless treatment Popular Hospital" },
               {
                 src: "/images/cashless_empanelment/Indian_oil.png",
-                alt: "Indian Oil",
+                alt: "Indian Oil cashless treatment Popular Hospital",
               },
               {
                 src: "/images/cashless_empanelment/SBI_general.png",
-                alt: "SBI General Insurance",
+                alt: "SBI General Insurance cashless treatment Popular Hospital",
               },
               {
                 src: "/images/cashless_empanelment/paramount_health.png",
-                alt: "Paramount Health",
+                alt: "Paramount Health cashless treatment Popular Hospital",
               },
               {
                 src: "/images/cashless_empanelment/pmjay.png",
-                alt: "PM-JAY Ayushman Bharat",
+                alt: "Ayushman Bharat PM-JAY cashless treatment Popular Hospital",
               },
-              { src: "/images/cashless_empanelment/BHEL.png", alt: "BHEL" },
+              { src: "/images/cashless_empanelment/BHEL.png", alt: "BHEL cashless treatment Popular Hospital" },
               {
                 src: "/images/cashless_empanelment/hindalco.png",
-                alt: "Hindalco",
+                alt: "Hindalco cashless treatment Popular Hospital",
               },
               {
                 src: "/images/cashless_empanelment/iffco-tokio.png",
-                alt: "IFFCO-Tokio",
+                alt: "IFFCO-Tokio cashless treatment Popular Hospital",
               },
               {
                 src: "/images/cashless_empanelment/vidal_health.png",
-                alt: "Vidal Health",
+                alt: "Vidal Health cashless treatment Popular Hospital",
               },
             ].map((logo) => (
               <div

@@ -526,7 +526,7 @@ export function Header() {
       <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#E85222]/10">
         <Image
           src={iconSrc}
-          alt=""
+          alt={`${label} department at Popular Hospital Varanasi`}
           width={16}
           height={16}
           className="h-4 w-4 object-contain"
@@ -544,7 +544,7 @@ export function Header() {
       <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
         <Image
           src={iconSrc}
-          alt=""
+          alt={`${label} at Popular Hospital Varanasi`}
           width={24}
           height={24}
           className="h-6 w-6 object-contain"
@@ -562,7 +562,7 @@ export function Header() {
       <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center pointer-events-none select-none">
         <Image
           src={iconSrc}
-          alt=""
+          alt={`${label} services at Popular Hospital Varanasi`}
           width={24}
           height={24}
           className="h-6 w-6 object-contain pointer-events-none select-none transition-none"
@@ -580,7 +580,7 @@ export function Header() {
       <span className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
         <Image
           src={iconSrc}
-          alt=""
+          alt={`${label} update from Popular Hospital Varanasi`}
           width={24}
           height={24}
           className="h-6 w-6 object-contain"
