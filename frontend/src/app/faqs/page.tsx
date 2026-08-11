@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import FAQSchema from "@/components/schema/FAQSchema";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions (FAQs) | Popular Hospital",
@@ -105,8 +106,10 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <div className="bg-[#f0f7ff] min-h-screen pt-12 pb-20">
-      <div className="mx-auto max-w-[1366px] px-6 lg:px-12">
+    <>
+      <FAQSchema faqs={faqs} />
+      <div className="bg-[#f0f7ff] min-h-screen pt-12 pb-20">
+        <div className="mx-auto max-w-[1366px] px-6 lg:px-12">
         {/* Header Section */}
         <div className="mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-[42px] font-black text-[#1a3a5c] mb-4 font-heading tracking-tight leading-tight">
@@ -205,8 +208,9 @@ export default function FAQPage() {
               </Link>
             </div>
           </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

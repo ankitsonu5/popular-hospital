@@ -72,7 +72,7 @@ export default function HospitalSchema() {
         ],
       },
       {
-        "@type": "Hospital",
+        "@type": ["Hospital", "MedicalOrganization"],
         "@id": "https://www.popularhospital.in/#hospital",
         name: "Popular Hospital",
         legalName: "POPULAR HOSPITAL",

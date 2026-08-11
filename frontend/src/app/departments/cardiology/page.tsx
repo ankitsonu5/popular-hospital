@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import CardiologyClient from "./CardiologyClient";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
+import MedicalWebPageSchema from "@/components/schema/MedicalWebPageSchema";
 import { fetchDoctors, getImageUrl } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
@@ -38,6 +39,14 @@ export default async function CardiologyPage() {
             medicalSpecialty="Cardiovascular"
           />
         }
+      />
+      <MedicalWebPageSchema
+        urlSlug="cardiology"
+        name="Best Cardiology Hospital in Varanasi | Popular Hospital"
+        description="Popular Hospital is the best Cardiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!"
+        specialtyName="Cardiology"
+        reviewerName="Dr. Hari Krishan Srivastava"
+        dateReviewed={new Date().toISOString().split('T')[0]} // Current date as proxy for lastReviewed
       />
       <CardiologyClient doctors={doctors} />
     </>

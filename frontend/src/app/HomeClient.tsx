@@ -19,6 +19,42 @@ import {
 } from "@/lib/api";
 import { ChevronLeft, ChevronRight, ArrowLeft, ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
+import FAQSchema from "@/components/schema/FAQSchema";
+
+const homeFaqs = [
+  {
+    question: "What medical specialties are available at Popular Hospital?",
+    answer: "Popular Hospital is a multi-specialty facility offering advanced treatment in Cardiology, Neurology, Orthopedics, Nephrology, Urology, Gastroenterology, and General Surgery.",
+  },
+  {
+    question: "Does the hospital provide 24/7 emergency services?",
+    answer: "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895 / 96).",
+  },
+  {
+    question: "How can I schedule an appointment with a specialist?",
+    answer: "Appointments can be booked via the hospital's official website or by calling our helpline. Physical walk-ins at the reception are also available for OPD consultations.",
+  },
+  {
+    question: "Is cashless treatment available for insured patients?",
+    answer: "Yes, the hospital has tie-ups with major Third Party Administrators (TPAs) and private insurance companies, providing cashless hospitalization for eligible policyholders.",
+  },
+  {
+    question: "Does the hospital support the Ayushman Bharat Yojana (PM-JAY)?",
+    answer: "Yes, Popular Hospital is an empanelled provider for the Ayushman Bharat scheme, offering free treatment to eligible cardholders as per government norms.",
+  },
+  {
+    question: "What diagnostic facilities are available on-site?",
+    answer: "The hospital features a comprehensive diagnostic wing equipped with MRI, CT Scan, X-ray, Ultrasound, and a fully automated Pathology laboratory for quick and accurate results.",
+  },
+  {
+    question: "Are there specialized critical care units?",
+    answer: "Yes, the facility includes state-of-the-art Intensive Care Units (ICU), Neonatal ICUs (NICU), and Pediatric ICUs (PICU) for patients requiring constant monitoring.",
+  },
+  {
+    question: "Where is Popular Hospital located in Varanasi?",
+    answer: "The hospital is located at Kakarmatta, near DLW Ground, Varanasi, Uttar Pradesh. It is well-connected and accessible from all major parts of the city.",
+  },
+];
 
 const DynamicTestimonials = dynamic(
   () => import("@/components/home/Testimonials"),
@@ -2383,52 +2419,8 @@ export default function HomeClient({
           </div>
 
           <div className="space-y-3 sm:space-y-4">
-            {[
-              {
-                question:
-                  "What medical specialties are available at Popular Hospital?",
-                answer:
-                  "Popular Hospital is a multi-specialty facility offering advanced treatment in Cardiology, Neurology, Orthopedics, Nephrology, Urology, Gastroenterology, and General Surgery.",
-              },
-              {
-                question: "Does the hospital provide 24/7 emergency services?",
-                answer:
-                  "Yes, Popular Hospital offers round-the-clock Emergency and Trauma care, supported by a dedicated emergency medical team and advanced life-support ambulances (+91-7800001895 / 96).",
-              },
-              {
-                question:
-                  "How can I schedule an appointment with a specialist?",
-                answer:
-                  "Appointments can be booked via the hospital's official website or by calling our helpline. Physical walk-ins at the reception are also available for OPD consultations.",
-              },
-              {
-                question:
-                  "Is cashless treatment available for insured patients?",
-                answer:
-                  "Yes, the hospital has tie-ups with major Third Party Administrators (TPAs) and private insurance companies, providing cashless hospitalization for eligible policyholders.",
-              },
-              {
-                question:
-                  "Does the hospital support the Ayushman Bharat Yojana (PM-JAY)?",
-                answer:
-                  "Yes, Popular Hospital is an empanelled provider for the Ayushman Bharat scheme, offering free treatment to eligible cardholders as per government norms.",
-              },
-              {
-                question: "What diagnostic facilities are available on-site?",
-                answer:
-                  "The hospital features a comprehensive diagnostic wing equipped with MRI, CT Scan, X-ray, Ultrasound, and a fully automated Pathology laboratory for quick and accurate results.",
-              },
-              {
-                question: "Are there specialized critical care units?",
-                answer:
-                  "Yes, the facility includes state-of-the-art Intensive Care Units (ICU), Neonatal ICUs (NICU), and Pediatric ICUs (PICU) for patients requiring constant monitoring.",
-              },
-              {
-                question: "Where is Popular Hospital located in Varanasi?",
-                answer:
-                  "The hospital is located at Kakarmatta, near DLW Ground, Varanasi, Uttar Pradesh. It is well-connected and accessible from all major parts of the city.",
-              },
-            ].map((faq, index) => (
+            <FAQSchema faqs={homeFaqs} />
+            {homeFaqs.map((faq, index) => (
               <div
                 key={index}
                 className={`bg-white rounded-xl border transition-all duration-300 ${
