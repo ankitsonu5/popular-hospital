@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { MetadataRoute } from "next";
 import { fetchBranches, fetchDoctors, fetchBlogs, fetchNews, fetchEvents, fetchSpecialities } from "@/lib/api";
 import fs from "fs";

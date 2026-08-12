@@ -68,7 +68,7 @@ export async function fetchBranches(): Promise<Branch[]> {
   try {
     const res = await fetch(api("/branches"), { next: { revalidate: 60 } });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch branches:", e);
     return [];
@@ -81,7 +81,7 @@ export async function fetchBranch(idOrSlug: string): Promise<Branch | null> {
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch branch:", e);
     return null;
@@ -103,7 +103,7 @@ export async function fetchDoctors(params?: {
       next: { revalidate: 10 },
     });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch doctors:", e);
     return [];
@@ -116,7 +116,7 @@ export async function fetchDoctor(idOrSlug: string): Promise<Doctor | null> {
       next: { revalidate: 0 },
     });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch doctor:", e);
     return null;
@@ -129,7 +129,7 @@ export async function fetchSpecialities(): Promise<Speciality[]> {
       next: { revalidate: 60 },
     });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch specialities:", e);
     return [];
@@ -144,7 +144,7 @@ export async function fetchDepartment(
       next: { revalidate: 30 },
     });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch department:", e);
     return null;
@@ -159,7 +159,7 @@ export async function fetchDepartmentGallery(
       next: { revalidate: 30 },
     });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch department gallery:", e);
     return [];
@@ -178,7 +178,7 @@ export async function fetchOpdSlots(
       ),
     );
     if (!res.ok) return { date, slots: [] };
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch slots:", e);
     return { date, slots: [] };
@@ -204,7 +204,7 @@ export async function fetchNews(): Promise<NewsItem[]> {
   try {
     const res = await fetch(api("/news"), { cache: "no-store" });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch news:", e);
     return [];
@@ -215,7 +215,7 @@ export async function fetchNewsItem(slug: string): Promise<NewsItem | null> {
   try {
     const res = await fetch(api(`/news/${slug}`), { cache: "no-store" });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch news item:", e);
     return null;
@@ -226,7 +226,7 @@ export async function fetchBlogs(): Promise<BlogItem[]> {
   try {
     const res = await fetch(api("/blogs"), { cache: "no-store" });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch blogs:", e);
     return [];
@@ -239,7 +239,7 @@ export async function fetchBlogItem(slug: string): Promise<BlogItem | null> {
       cache: "no-store",
     });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch blog item:", e);
     return null;
@@ -254,7 +254,7 @@ export async function fetchBlogCategoriesMetrics(): Promise<
       next: { revalidate: 60 },
     });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch blog categories metrics:", e);
     return [];
@@ -267,7 +267,7 @@ export async function fetchBlogSearch(query: string): Promise<BlogItem[]> {
       api(`/blogs/search?q=${encodeURIComponent(query)}`),
     );
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to search blogs:", e);
     return [];
@@ -278,7 +278,7 @@ export async function fetchCoverage(): Promise<CoverageItem[]> {
   try {
     const res = await fetch(api("/coverage"), { next: { revalidate: 60 } });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch coverage:", e);
     return [];
@@ -293,7 +293,7 @@ export async function fetchCoverageItem(
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch coverage item:", e);
     return null;
@@ -304,7 +304,7 @@ export async function fetchEvents(): Promise<EventItem[]> {
   try {
     const res = await fetch(api("/events"), { next: { revalidate: 60 } });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch events:", e);
     return [];
@@ -317,7 +317,7 @@ export async function fetchEventItem(slug: string): Promise<EventItem | null> {
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch event item:", e);
     return null;
@@ -529,7 +529,7 @@ export async function fetchCareers(): Promise<CareerItem[]> {
   try {
     const res = await fetch(api("/careers"), { next: { revalidate: 60 } });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch careers:", e);
     return [];
@@ -542,7 +542,7 @@ export async function fetchCareerItem(id: string): Promise<CareerItem | null> {
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch career item:", e);
     return null;
@@ -556,7 +556,7 @@ export async function fetchUpdates(
     const url = all ? api("/updates?all=true") : api("/updates");
     const res = await fetch(url, { next: { revalidate: 60 } });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch updates:", e);
     return [];
@@ -569,7 +569,7 @@ export async function fetchUpdateItem(id: string): Promise<UpdateItem | null> {
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch update item:", e);
     return null;
@@ -616,7 +616,7 @@ export async function fetchHeroBanners(): Promise<HeroBanner[]> {
   try {
     const res = await fetch(api("/hero-banners"), { cache: "no-store" });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch hero banners:", e);
     return [];
@@ -638,7 +638,7 @@ export async function fetchPatientStories(): Promise<PatientStory[]> {
   try {
     const res = await fetch(api("/patient-stories"), { cache: "no-store" });
     if (!res.ok) return [];
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("Failed to fetch patient stories:", e);
     return [];
