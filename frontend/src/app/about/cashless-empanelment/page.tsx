@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/about/cashless-empanelment", {
   title: "Cashless Empanelment | Popular Hospital",
   description:
     "Popular Hospital is empanelled with leading Government PSUs, Private Corporates, Insurance Companies and International TPAs for cashless treatment.",
   alternates: {
     canonical: "https://www.popularhospital.in/about/cashless-empanelment",
   },
-};
+});
+}
+
 
 const governmentPSU = [
   "AIRPORT AUTHORITY OF INDIA",

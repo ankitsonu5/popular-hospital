@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/opd", {
   title: "OPD - Outpatient Department",
   description:
     "OPD timings, walk-in information, and how to book OPD at Popular Hospital branches.",
   alternates: {
     canonical: "https://www.popularhospital.in/opd",
   },
-};
+});
+}
+
 
 export default function OPDPage() {
   return (

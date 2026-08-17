@@ -43,6 +43,7 @@ import heroBannersRouter from "./routes/heroBanners.js";
 import patientStoriesRouter from "./routes/patientStories.js";
 import callbackRequestsRouter from "./routes/callbackRequests.js";
 import departmentGalleryRouter from "./routes/departmentGallery.js";
+import seoRouter from "./routes/seoRoutes.js";
 import { getActivePopup } from "./controllers/popupController.js";
 import { getPublicSchema } from "./controllers/schemaContentController.js";
 
@@ -120,6 +121,7 @@ app.use("/api/hero-banners", heroBannersRouter);
 app.use("/api/patient-stories", patientStoriesRouter);
 app.use("/api/department-gallery", departmentGalleryRouter);
 app.use("/api/callback-requests", callbackRequestsRouter);
+app.use("/api/seo", seoRouter);
 app.get("/api/popup", getActivePopup);
 app.get("/api/schemas/:pageKey", getPublicSchema);
 

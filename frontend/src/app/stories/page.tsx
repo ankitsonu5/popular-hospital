@@ -4,14 +4,20 @@ import { fetchPatientStories } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/stories", {
   title: "Patient Stories | Popular Hospital",
   description:
     "Hear directly from our patients about their experiences and successful recovery journeys at Popular Hospital.",
   alternates: {
     canonical: "https://www.popularhospital.in/stories",
   },
-};
+});
+}
+
 
 export default async function StoriesPage() {
   const stories = await fetchPatientStories();

@@ -1,14 +1,20 @@
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/terms", {
   title: "Terms & Conditions | Popular Hospital",
   description:
     "Read the terms and conditions for using Popular Hospital website and our healthcare services.",
   alternates: {
     canonical: "https://www.popularhospital.in/terms",
   },
-};
+});
+}
+
 
 export default function TermsPage() {
   return (

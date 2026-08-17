@@ -2,14 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/media/news", {
   title: "Latest News & Updates - Popular Hospital",
   description:
     "Stay updated with the latest news, health articles, medical breakthroughs, and updates from Popular Hospital. Read expert health tips and hospital announcements.",
   alternates: {
     canonical: "https://www.popularhospital.in/media/news",
   },
-};
+});
+}
+
 
 import { fetchNews, getImageUrl } from "@/lib/api";
 

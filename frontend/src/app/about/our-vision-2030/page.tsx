@@ -1,13 +1,19 @@
 import Image from "next/image";
 
-export const metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/about/our-vision-2030", {
   title: "Our Vision | Popular Hospital",
   description:
     "Popular Hospital's vision for advanced, accessible, and patient-focused healthcare.",
   alternates: {
     canonical: "https://www.popularhospital.in/about/our-vision-2030",
   },
-};
+});
+}
+
 
 const visionGoals = [
   {

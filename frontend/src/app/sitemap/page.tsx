@@ -2,14 +2,20 @@ import React from "react";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/sitemap", {
   title: "Sitemap | Popular Hospital Varanasi",
   description:
     "Navigate through all the pages and services offered by Popular Hospital, Varanasi.",
   alternates: {
     canonical: "https://www.popularhospital.in/sitemap",
   },
-};
+});
+}
+
 
 const sitemapData = [
   {

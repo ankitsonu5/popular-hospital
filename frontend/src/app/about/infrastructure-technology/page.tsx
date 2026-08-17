@@ -1,13 +1,19 @@
 import Image from "next/image";
 
-export const metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/about/infrastructure-technology", {
   title: "Infrastructure & Technology | Popular Hospital",
   description:
     "Explore Popular Hospital's advanced infrastructure, robotics, modular operation theatres, ICU, and diagnostic facilities.",
   alternates: {
     canonical: "https://www.popularhospital.in/about/infrastructure-technology",
   },
-};
+});
+}
+
 
 const technologyHighlights = [
   {

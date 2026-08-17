@@ -156,14 +156,19 @@ const services = [
 
 
 
-export const metadata = {
-  title: 'Departments',
-  description: 'Learn more about Departments at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services.',
-  openGraph: {
+import { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return generatePageMetadata("/departments", {
     title: 'Departments | Popular Hospital Varanasi',
     description: 'Learn more about Departments at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services.',
-  }
-};
+    openGraph: {
+      title: 'Departments | Popular Hospital Varanasi',
+      description: 'Learn more about Departments at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services.',
+    }
+  });
+}
 
 export default function ServicesPage() {
   return (

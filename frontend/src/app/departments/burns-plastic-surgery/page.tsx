@@ -6,14 +6,20 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/departments/burns-plastic-surgery", {
   title: "Best Burns & Plastic Surgery Hospital in Varanasi | Popular Hospital",
   description:
     "Popular Hospital is the best Burns & Plastic Surgery hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/burns-plastic-surgery",
   },
-};
+});
+}
+
 
 export default async function PlasticSurgeryPage() {
   const dbDoctors = await fetchDoctors({ speciality: "burns-plastic-surgery" });

@@ -1,14 +1,20 @@
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/refund-policy", {
   title: "Refund Policy | Popular Hospital",
   description:
     "Understand the refund and cancellation policies for appointments, admissions, and services at Popular Hospital.",
   alternates: {
     canonical: "https://www.popularhospital.in/refund-policy",
   },
-};
+});
+}
+
 
 export default function RefundPolicyPage() {
   return (

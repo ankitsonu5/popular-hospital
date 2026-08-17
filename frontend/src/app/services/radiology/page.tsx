@@ -5,14 +5,20 @@ import {
   type ServiceSection,
 } from "../_components/ServiceDetailPage";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/services/radiology", {
   title: "Radiological Services | Popular Hospital",
   description:
     "Advanced diagnostic imaging and radiological services at Popular Hospital.",
   alternates: {
     canonical: "https://www.popularhospital.in/services/radiology",
   },
-};
+});
+}
+
 
 const textClass =
   "text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium";

@@ -3,14 +3,20 @@ import { DoctorsSearch } from "@/components/DoctorsSearch";
 import { DoctorsListSchema } from "@/components/schema/DoctorSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/doctors", {
   title: "Find Doctors",
   description:
     "Search and book doctors by speciality and branch at Popular Hospital. View profiles, qualifications, and consultation fees.",
   alternates: {
     canonical: "https://www.popularhospital.in/doctors",
   },
-};
+});
+}
+
 
 export default function DoctorsPage() {
   return (

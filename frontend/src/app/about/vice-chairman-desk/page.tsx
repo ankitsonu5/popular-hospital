@@ -23,14 +23,20 @@ const viceChairmanData = {
   ],
 };
 
-export const metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/about/vice-chairman-desk", {
   title: "From Vice Chairman's Desk | Popular Hospital",
   description:
     "A message from our Group Vice Chairman, Manuj Mittal, on strategic transformation and operational excellence at Popular Group of Hospitals.",
   alternates: {
     canonical: "https://www.popularhospital.in/about/vice-chairman-desk",
   },
-};
+});
+}
+
 
 export default function ViceChairmanDeskPage() {
   return (

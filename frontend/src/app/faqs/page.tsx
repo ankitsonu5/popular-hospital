@@ -2,14 +2,20 @@ import { Metadata } from "next";
 import Link from "next/link";
 import FAQSchema from "@/components/schema/FAQSchema";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/faqs", {
   title: "Frequently Asked Questions (FAQs) | Popular Hospital",
   description:
     "Find answers to common questions about Popular Hospital Varanasi, including appointments, emergency services, cashless facilities, and more.",
   alternates: {
     canonical: "https://www.popularhospital.in/faqs",
   },
-};
+});
+}
+
 
 const faqs = [
   {

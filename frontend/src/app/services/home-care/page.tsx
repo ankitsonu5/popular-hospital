@@ -4,14 +4,20 @@ import {
   type ServiceSection,
 } from "../_components/ServiceDetailPage";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/services/home-care", {
   title: "Home Care Services | Popular Hospital",
   description:
     "Providing genuine health care beyond the four walls of a hospital with expert medical advice and 24x7 nursing care at home.",
   alternates: {
     canonical: "https://www.popularhospital.in/services/home-care",
   },
-};
+});
+}
+
 
 const textClass =
   "text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium";

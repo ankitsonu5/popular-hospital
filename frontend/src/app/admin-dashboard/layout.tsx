@@ -24,6 +24,7 @@ import {
   Mail,
   MonitorPlay,
   PhoneIncoming,
+  Globe
 } from "lucide-react";
 
 const sidebarItems = [
@@ -90,6 +91,7 @@ const sidebarItems = [
     ],
   },
   { label: "Settings", href: "/admin-dashboard/settings", icon: Settings },
+  { label: "SEO Settings", href: "/admin-dashboard/seo-settings", icon: Globe },
 ];
 
 // Which path prefixes belong to which dropdown group

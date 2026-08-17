@@ -23,14 +23,20 @@ const leaders = [
 
 
 
-export const metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/about/leadership", {
   title: 'Leadership',
   description: 'Learn more about Leadership at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services.',
   openGraph: {
     title: 'Leadership | Popular Hospital Varanasi',
     description: 'Learn more about Leadership at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services.',
   }
-};
+});
+}
+
 
 export default function LeadershipPage() {
   return (

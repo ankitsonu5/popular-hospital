@@ -6,14 +6,20 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/departments/diabetic-foot", {
   title: "Best Diabetic Foot Hospital in Varanasi | Popular Hospital",
   description:
     "Popular Hospital is the best Diabetic Foot hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/diabetic-foot",
   },
-};
+});
+}
+
 
 export default async function DiabeticFootPage() {
   const dbDoctors = await fetchDoctors({ speciality: "diabetic-foot" });

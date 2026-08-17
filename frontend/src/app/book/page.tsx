@@ -4,14 +4,20 @@ import { BookingForm } from "@/components/BookingForm";
 import BookingSchema from "@/components/schema/BookingSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/book", {
   title: "Book Appointment",
   description:
     "Book doctor appointment or OPD at Popular Hospital online. Choose doctor, branch, date and time.",
   alternates: {
     canonical: "https://www.popularhospital.in/book",
   },
-};
+});
+}
+
 
 export default function BookPage({
   searchParams,

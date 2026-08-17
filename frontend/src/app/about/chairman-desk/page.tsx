@@ -16,14 +16,20 @@ const chairmanData = {
   ],
 };
 
-export const metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/about/chairman-desk", {
   title: "From Chairman's Desk | Popular Hospital",
   description:
     "A message from our Founder & Chairman, Dr. A.K. Kaushik, on the vision and evolution of Popular Hospital.",
   alternates: {
     canonical: "https://www.popularhospital.in/about/chairman-desk",
   },
-};
+});
+}
+
 
 export default function ChairmanDeskPage() {
   return (

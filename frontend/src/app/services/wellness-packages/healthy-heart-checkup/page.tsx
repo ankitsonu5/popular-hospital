@@ -3,14 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/services/wellness-packages/healthy-heart-checkup", {
   title: "Healthy Heart Checkup | Wellness Packages | Popular Hospital",
   description:
     "Detailed information and items covered under the Healthy Heart Checkup.",
   alternates: {
     canonical: "https://www.popularhospital.in/services/wellness-packages/healthy-heart-checkup",
   },
-};
+});
+}
+
 
 export default function PackagePage() {
   const investigations = [

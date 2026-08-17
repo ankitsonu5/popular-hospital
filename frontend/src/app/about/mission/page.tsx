@@ -1,13 +1,19 @@
 import Image from "next/image";
 
-export const metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/about/mission", {
   title: "Our Mission | Popular Hospital",
   description:
     "Guiding principles that drive Popular Hospital towards excellence in healthcare and patient safety.",
   alternates: {
     canonical: "https://www.popularhospital.in/about/mission",
   },
-};
+});
+}
+
 
 export default function VisionMissionPage() {
   return (

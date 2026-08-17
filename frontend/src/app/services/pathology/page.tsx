@@ -6,14 +6,20 @@ import {
 import { fetchDoctors } from "@/lib/api";
 import DoctorSlider from "@/components/DoctorSlider";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/services/pathology", {
   title: "Pathology Services | Popular Hospital",
   description:
     "NABL Accredited Best Pathology & Microbiology Testing Laboratory equipped with world-class instruments.",
   alternates: {
     canonical: "https://www.popularhospital.in/services/pathology",
   },
-};
+});
+}
+
 
 const textClass =
   "text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium";

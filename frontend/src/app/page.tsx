@@ -14,14 +14,18 @@ import {
 // Always fetch fresh data so new banners appear immediately after admin upload
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Best Multi Super Speciality Hospital in Varanasi | Popular Hospital",
-  description:
-    "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
-  alternates: {
-    canonical: "https://www.popularhospital.in",
-  },
-};
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return generatePageMetadata("/", {
+    title: "Best Multi Super Speciality Hospital in Varanasi | Popular Hospital",
+    description:
+      "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
+    alternates: {
+      canonical: "https://www.popularhospital.in",
+    },
+  });
+}
 
 export default async function HomePage() {
   const [

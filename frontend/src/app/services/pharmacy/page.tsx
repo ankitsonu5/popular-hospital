@@ -4,14 +4,20 @@ import {
   type ServiceSection,
 } from "../_components/ServiceDetailPage";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/services/pharmacy", {
   title: "Pharmacy | Popular Hospital",
   description:
     "100% authentic and genuine medicines available 24/7 under strict quality control to fulfill patient emergency needs.",
   alternates: {
     canonical: "https://www.popularhospital.in/services/pharmacy",
   },
-};
+});
+}
+
 
 const textClass =
   "text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium";

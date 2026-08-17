@@ -2,14 +2,20 @@ import React from "react";
 import { Metadata } from "next";
 import EmergencyTraumaClient from "./EmergencyClient";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/services/emergency", {
   title: "Emergency & Trauma Care | Popular Hospital",
   description:
     "24/7 Emergency and Trauma Care at Popular Hospital. Comprehensive emergency medical services with state-of-the-art infrastructure and highly trained professionals.",
   alternates: {
     canonical: "https://www.popularhospital.in/services/emergency",
   },
-};
+});
+}
+
 
 export default function EmergencyTraumaPage() {
   return <EmergencyTraumaClient />;

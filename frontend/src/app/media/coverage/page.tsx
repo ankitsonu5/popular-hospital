@@ -4,14 +4,20 @@ import Image from "next/image";
 import { fetchCoverage } from "@/lib/api";
 import MediaCoverageClient from "./MediaCoverageClient";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/media/coverage", {
   title: "Media Coverage – Popular Hospital",
   description:
     "Explore media coverage of Popular Hospital featuring newspaper articles, press releases, and media mentions highlighting our achievements, events, and milestones.",
   alternates: {
     canonical: "https://www.popularhospital.in/media/coverage",
   },
-};
+});
+}
+
 
 /* ───────────────── page component ───────────────── */
 export default async function MediaCoveragePage() {

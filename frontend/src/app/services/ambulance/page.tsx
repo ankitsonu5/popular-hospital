@@ -4,14 +4,20 @@ import {
   type ServiceSection,
 } from "../_components/ServiceDetailPage";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/services/ambulance", {
   title: "Ambulance Services | Popular Hospital",
   description:
     "24 hrs Ambulance pickup service available all the way from anywhere in Varanasi ensuring fast and prompt transport to our Emergency Team.",
   alternates: {
     canonical: "https://www.popularhospital.in/services/ambulance",
   },
-};
+});
+}
+
 
 const textClass =
   "text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium";

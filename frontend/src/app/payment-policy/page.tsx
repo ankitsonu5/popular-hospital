@@ -1,14 +1,20 @@
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/payment-policy", {
   title: "Payment Policy | Popular Hospital",
   description:
     "Review the accepted payment methods and financial policies for medical services at Popular Hospital.",
   alternates: {
     canonical: "https://www.popularhospital.in/payment-policy",
   },
-};
+});
+}
+
 
 export default function PaymentPolicyPage() {
   return (

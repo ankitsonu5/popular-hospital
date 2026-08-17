@@ -3,7 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/services/wellness-packages/child-health-check-up", {
   title:
     "Child Health Check UP (10-18 Yrs) | Wellness Packages | Popular Hospital",
   description:
@@ -11,7 +15,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.popularhospital.in/services/wellness-packages/child-health-check-up",
   },
-};
+});
+}
+
 
 export default function PackagePage() {
   const investigations = [

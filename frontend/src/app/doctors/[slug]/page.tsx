@@ -7,6 +7,8 @@ import { getPrimaryDoctorImage } from "@/lib/doctorImages";
 import { DoctorSchema } from "@/components/schema/DoctorSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
 
+import { fetchSeoMetadata } from "@/lib/seoApi";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -35,20 +37,77 @@ function safeStr(val: unknown, fallback = ""): string {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const route = `/doctors/${slug}`;
+  
   try {
+    // 1. Check for custom SEO from the database
+    const customSeo = await fetchSeoMetadata(route);
     const doctor = await fetchDoctor(slug);
+    
+    if (customSeo) {
+      return {
+        title: customSeo.meta_title,
+        description: customSeo.meta_description,
+        robots: customSeo.robots_meta,
+        openGraph: {
+          title: customSeo.og_title || customSeo.meta_title,
+          description: customSeo.og_description || customSeo.meta_description,
+          url: customSeo.canonical_url || `https://www.popularhospital.in${route}`,
+          siteName: "Popular Hospital",
+          type: "profile",
+          ...(customSeo.og_image && {
+            images: [{ url: customSeo.og_image, width: 800, height: 600 }],
+          }),
+        },
+        alternates: {
+          canonical: customSeo.canonical_url || `https://www.popularhospital.in${route}`,
+        },
+      };
+    }
+
+    // 2. Fallback to default dynamically generated SEO
     const name =
       doctor?.name ??
       slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
     const speciality =
       doctor?.speciality?.name ?? doctor?.speciality_name ?? "Specialist";
+      
+    let title = `${name} - ${speciality} | Popular Hospital`;
+    let description =
+      doctor?.bio ??
+      `View the profile and OPD timings for ${name} at Popular Hospital.`;
+
+    if (slug === "dr-a-k-kaushik") {
+      title = `${name} - ${speciality} - Best Surgeon in Varanasi | Popular Hospital`;
+      description = `${description} He is widely recognized as the best surgeon in Varanasi, providing exceptional surgical care.`;
+    }
+
+    const displayImage = doctor ? getPrimaryDoctorImage(doctor) : null;
+
     return {
-      title: `${name} - ${speciality} | Popular Hospital`,
-      description:
-        doctor?.bio ??
-        `View the profile and OPD timings for ${name} at Popular Hospital.`,
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        url: `https://www.popularhospital.in${route}`,
+        siteName: "Popular Hospital",
+        type: "profile",
+        ...(displayImage && {
+          images: [
+            {
+              url: displayImage.startsWith("http")
+                ? displayImage
+                : `https://www.popularhospital.in${displayImage}`,
+              width: 800,
+              height: 600,
+              alt: name,
+            },
+          ],
+        }),
+      },
       alternates: {
-        canonical: `https://www.popularhospital.in/doctors/${slug}`,
+        canonical: `https://www.popularhospital.in${route}`,
       },
     };
   } catch {

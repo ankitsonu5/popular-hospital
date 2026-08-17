@@ -2,14 +2,20 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/facilities", {
   title: "Explore Our Facilities | Popular Hospital",
   description:
     "Discover our state-of-the-art facilities including advanced ICUs, modular Operation Theatres, 24/7 Emergency unit, and comprehensive diagnostic services.",
   alternates: {
     canonical: "https://www.popularhospital.in/facilities",
   },
-};
+});
+}
+
 
 const facilities = [
   {

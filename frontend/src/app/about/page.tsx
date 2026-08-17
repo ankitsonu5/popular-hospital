@@ -1,7 +1,15 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
+import { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return generatePageMetadata("/about", {
+    title: "About Us | Popular Hospital Varanasi",
+    description: "Learn more about Popular Hospital, the best Multi Super Speciality Hospital in Varanasi providing excellence in healthcare.",
+    alternates: { canonical: "https://www.popularhospital.in/about" },
+  });
+}
 
 export default function AboutPage() {
   return (

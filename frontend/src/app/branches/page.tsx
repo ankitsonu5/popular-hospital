@@ -3,14 +3,20 @@ import Link from "next/link";
 import { fetchBranches } from "@/lib/api";
 import type { Branch } from "@/lib/api";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/branches", {
   title: "Our Branches",
   description:
     "Find Popular Hospital branches. Addresses, phone numbers, and facilities at each location.",
   alternates: {
     canonical: "https://www.popularhospital.in/branches",
   },
-};
+});
+}
+
 
 export default async function BranchesPage() {
   const branches = await fetchBranches().catch(() => [] as Branch[]);

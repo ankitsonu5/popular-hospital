@@ -6,14 +6,20 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/departments/psychiatry", {
   title: "Best Psychiatry Department Hospital in Varanasi | Popular Hospital",
   description:
     "Popular Hospital is the best Psychiatry Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/psychiatry",
   },
-};
+});
+}
+
 
 export default async function PsychiatryPage() {
   const dbDoctors = await fetchDoctors({ speciality: "psychiatry" });

@@ -6,14 +6,20 @@ import { fetchDoctors, getImageUrl } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/departments/ent", {
   title: "Best ENT (Ear, Nose & Throat) Hospital in Varanasi | Popular Hospital",
   description:
     "Popular Hospital is the best ENT (Ear, Nose & Throat) hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!",
   alternates: {
     canonical: "https://www.popularhospital.in/departments/ent",
   },
-};
+});
+}
+
 
 export default async function ENTPage() {
   const dbDoctors = await fetchDoctors({ speciality: "ent" });

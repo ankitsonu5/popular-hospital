@@ -18,14 +18,20 @@ const mdData = {
   ],
 };
 
-export const metadata = {
+
+import { generatePageMetadata } from "@/lib/seoApi";
+
+export async function generateMetadata() {
+  return generatePageMetadata("/about/md-desk", {
   title: "From MD's Desk | Popular Hospital",
   description:
     "A message from our Managing Director, Dr. Kiran Kaushik, on her vision for excellence in healthcare.",
   alternates: {
     canonical: "https://www.popularhospital.in/about/md-desk",
   },
-};
+});
+}
+
 
 export default function MDDeskPage() {
   return (
