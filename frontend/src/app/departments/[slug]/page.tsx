@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { generatePageMetadata } from "@/lib/seoApi";
+import { STANDARD_PAGES } from "@/lib/seoConstants";
 
 interface ServiceContent {
   title: string;
@@ -210,13 +212,16 @@ export async function generateMetadata({
 
   if (!service) return { title: "Service Not Found" };
 
-  return {
-    title: `${service.title} | Popular Hospital`,
-    description: service.description,
+  const route = `/departments/${slug}`;
+  const defaultSeo = STANDARD_PAGES.find((p) => p.route === route);
+
+  return generatePageMetadata(route, {
+    title: defaultSeo?.defaultTitle || `${service.title} | Popular Hospital`,
+    description: defaultSeo?.defaultDescription || service.description,
     alternates: {
-      canonical: `https://www.popularhospital.in/departments/${slug}`,
+      canonical: `https://www.popularhospital.in${route}`,
     },
-  };
+  });
 }
 
 export default async function ServicePage({

@@ -6,8 +6,8 @@ import { fetchDepartment, fetchDoctors, getImageUrl } from "@/lib/api";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
+
 
 type Props = { params: Promise<{ slug: string }> };
 

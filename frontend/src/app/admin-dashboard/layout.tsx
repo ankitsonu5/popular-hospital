@@ -29,7 +29,14 @@ import {
 
 const sidebarItems = [
   { label: "Dashboard", href: "/admin-dashboard", icon: LayoutDashboard },
-  { label: "Doctors", href: "/admin-dashboard/doctors", icon: Stethoscope },
+  {
+    label: "Doctors",
+    icon: Stethoscope,
+    subItems: [
+      { label: "Doctors", href: "/admin-dashboard/doctors" },
+      { label: "Doctor Videos", href: "/admin-dashboard/doctor-videos" },
+    ],
+  },
   { label: "Branches", href: "/admin-dashboard/branches", icon: Building2 },
   { label: "Updates", href: "/admin-dashboard/updates", icon: Bell },
   {
@@ -96,6 +103,10 @@ const sidebarItems = [
 
 // Which path prefixes belong to which dropdown group
 const GROUP_PATHS: Record<string, string[]> = {
+  "Doctors": [
+    "/admin-dashboard/doctors",
+    "/admin-dashboard/doctor-videos",
+  ],
   "Career Portal": [
     "/admin-dashboard/careers",
     "/admin-dashboard/applications",

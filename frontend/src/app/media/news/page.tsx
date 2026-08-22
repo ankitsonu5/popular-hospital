@@ -19,7 +19,7 @@ export async function generateMetadata() {
 
 import { fetchNews, getImageUrl } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 /* ───────────────── page component ───────────────── */
 export default async function NewsPage() {

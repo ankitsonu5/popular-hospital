@@ -5,7 +5,7 @@ import DynamicSchema from "@/components/schema/DynamicSchema";
 import MedicalWebPageSchema from "@/components/schema/MedicalWebPageSchema";
 import { fetchDoctors, getImageUrl } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 
 import { generatePageMetadata } from "@/lib/seoApi";

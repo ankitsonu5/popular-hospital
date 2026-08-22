@@ -9,8 +9,8 @@ import DynamicSchema from "@/components/schema/DynamicSchema";
 
 import { fetchSeoMetadata } from "@/lib/seoApi";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
+
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -66,19 +66,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     // 2. Fallback to default dynamically generated SEO
-    const name =
-      doctor?.name ??
-      slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    const name = doctor?.name ?? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    const docName = name.trim();
+    const hasDrPrefix = docName.toLowerCase().startsWith('dr.') || docName.toLowerCase().startsWith('dr ');
+    const displayName = hasDrPrefix ? docName : `Dr. ${docName}`;
+
     const speciality =
       doctor?.speciality?.name ?? doctor?.speciality_name ?? "Specialist";
       
-    let title = `${name} - ${speciality} | Popular Hospital`;
+    let title = `${displayName} - ${speciality} | Popular Hospital`;
     let description =
       doctor?.bio ??
-      `View the profile and OPD timings for ${name} at Popular Hospital.`;
+      `View the profile and OPD timings for ${displayName} at Popular Hospital.`;
 
     if (slug === "dr-a-k-kaushik") {
-      title = `${name} - ${speciality} - Best Surgeon in Varanasi | Popular Hospital`;
+      title = `${displayName} - ${speciality} - Best Surgeon in Varanasi | Popular Hospital`;
       description = `${description} He is widely recognized as the best surgeon in Varanasi, providing exceptional surgical care.`;
     }
 
@@ -331,28 +333,6 @@ export default async function DoctorPage({ params }: Props) {
                     >
                       SCHEDULE AN APPOINTMENT
                     </Link>
-                    <a
-                      href={
-                        doctor.youtube_video_url
-                          ? doctor.youtube_video_url.startsWith("http")
-                            ? doctor.youtube_video_url
-                            : `https://${doctor.youtube_video_url}`
-                          : "https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-md border border-[#3b82f6]/25 bg-white px-8 py-3 text-sm font-bold tracking-wide text-[#3b82f6] shadow transition-all hover:-translate-y-0.5 hover:border-[#3b82f6] hover:bg-blue-50"
-                    >
-                      <svg
-                        className="h-4 w-4"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path d="M8 5v14l11-7L8 5z" />
-                      </svg>
-                      DOCTOR&apos;S VIDEO
-                    </a>
                   </div>
 
                   <div className="mb-6 pb-6 border-b border-gray-100">
@@ -435,6 +415,121 @@ export default async function DoctorPage({ params }: Props) {
                 </div>
               </div>
             </div>
+
+            {/* ── Video Gallery Section ── */}
+            {(() => {
+              if (!doctor.videos || doctor.videos.length === 0) return null;
+
+              const validVideos = doctor.videos.map(v => {
+                const match = v.url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+                return match ? { ...v, videoId: match[1], id: v._id || Math.random().toString() } : null;
+              }).filter(Boolean) as (typeof doctor.videos[0] & { videoId: string, id: string })[];
+              
+              if (validVideos.length === 0) return null;
+              
+              return (
+                <div className="mt-12 bg-gradient-to-b from-white to-slate-50/50 rounded-[2.5rem] shadow-sm border border-slate-100 p-8 lg:p-12 overflow-hidden relative">
+                  {/* Background decoration */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3"></div>
+                  
+                  {/* Schema generation for all videos */}
+                  {validVideos.map((v) => (
+                    <script
+                      key={v.id}
+                      type="application/ld+json"
+                      dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                          "@context": "https://schema.org",
+                          "@type": "VideoObject",
+                          "name": v.title,
+                          "description": `Watch ${v.title} by ${displayName} at Popular Hospital.`,
+                          "thumbnailUrl": `https://img.youtube.com/vi/${v.videoId}/maxresdefault.jpg`,
+                          "uploadDate": "2024-01-01T08:00:00+08:00",
+                          "embedUrl": `https://www.youtube.com/embed/${v.videoId}`
+                        })
+                      }}
+                    />
+                  ))}
+
+                  <div className="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-6 border-b border-slate-200/60 gap-4">
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="w-12 h-[2px] bg-[#E85222] rounded-full"></span>
+                        <span className="text-[#E85222] font-bold text-sm tracking-widest uppercase">Video Library</span>
+                      </div>
+                      <h3 className="text-3xl md:text-4xl font-black text-[#1a3a5c] font-heading tracking-tight">
+                        Watch
+                      </h3>
+                      <p className="text-slate-500 font-medium mt-2">Insights, treatments, and success stories</p>
+                    </div>
+                    
+                    <a
+                      href="https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-red-50 text-red-600 hover:bg-red-600 hover:text-white px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-sm"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                      </svg>
+                      Subscribe
+                    </a>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10 relative z-10">
+                    {validVideos.map((v, idx) => (
+                      <a
+                        key={v.id}
+                        href={`https://www.youtube.com/watch?v=${v.videoId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col rounded-[1.5rem] bg-white overflow-hidden shadow-sm border border-slate-100 hover:border-blue-100 transition-colors duration-300"
+                      >
+                        {/* HD Thumbnail Banner */}
+                        <div className="relative w-full pb-[56.25%] bg-slate-900 overflow-hidden">
+                          <img
+                            src={`https://img.youtube.com/vi/${v.videoId}/maxresdefault.jpg`}
+                            alt={v.title}
+                            className="absolute top-0 left-0 w-full h-full object-cover group-hover:opacity-90 transition-all duration-300"
+                            loading="lazy"
+                          />
+
+                          {/* Subtle Bottom Gradient */}
+                          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                          
+                          {/* Play Button Overlay (Glassmorphism) */}
+                          <div className="absolute inset-0 z-20 flex items-center justify-center">
+                            <div className="w-16 h-16 bg-white/20 backdrop-blur-md border border-white/40 rounded-full flex items-center justify-center shadow-lg group-hover:bg-[#E85222] group-hover:border-[#E85222] transition-colors duration-300">
+                              <svg className="w-8 h-8 text-white ml-1 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7L8 5z" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Card Content */}
+                        <div className="p-6 md:p-8 flex flex-col flex-grow relative">
+                          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#E85222]/0 to-transparent group-hover:via-[#E85222] transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+                          
+                          <h4 className="text-xl font-black text-[#1a3a5c] leading-tight line-clamp-2 group-hover:text-[#E85222] transition-colors duration-300 font-heading">
+                            {v.title}
+                          </h4>
+                          
+                          <div className="mt-auto pt-6 flex items-center justify-between text-sm font-bold text-slate-400 group-hover:text-[#E85222] transition-colors">
+                            <span className="flex items-center gap-2">
+                              Watch Video
+                              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
 
             <div className="mt-8">
               <Link

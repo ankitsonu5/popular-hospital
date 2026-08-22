@@ -84,7 +84,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...careersPaths,
     ...blogStaticPaths,
     ...locationsPaths
-  ].filter(p => !p.includes('/admin-login')).map((routePath) => ({
+  ].filter(p => 
+    !p.includes('/admin-login') && 
+    !p.includes('/admin') && 
+    !p.includes('/reset-admin-password') &&
+    !p.includes('/patient-reports') &&
+    p !== '/sitemap'
+  ).map((routePath) => ({
     url: `${BASE}${routePath}`,
     lastModified: new Date(),
     changeFrequency: routePath.includes('/departments') ? "monthly" : "weekly",

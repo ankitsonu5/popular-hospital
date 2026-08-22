@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import { fetchNews, fetchNewsItem, getImageUrl } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 /* ───────────────── static params ───────────────── */
 export async function generateStaticParams() {

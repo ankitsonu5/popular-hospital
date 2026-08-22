@@ -15,84 +15,19 @@ type SeoData = {
   robots_meta: string;
   updatedAt?: string;
   isCustom?: boolean;
+  group?: string;
 };
 
-const STANDARD_PAGES = [
-
-  { group: "Main Pages", label: "Home", route: "/", defaultTitle: "Best Multi Super Speciality Hospital in Varanasi | Popular Hospital", defaultDescription: "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today." },
-  
-  // About Us
-  { group: "About Us", label: "Overview", route: "/about", defaultTitle: "About Us | Popular Hospital Varanasi", defaultDescription: "Learn more about Popular Hospital, the best Multi Super Speciality Hospital in Varanasi providing excellence in healthcare." },
-  { group: "About Us", label: "Our Vision", route: "/about/our-vision-2030", defaultTitle: "Our Vision | Popular Hospital", defaultDescription: "Popular Hospital's vision for advanced, accessible, and patient-focused healthcare." },
-  { group: "About Us", label: "Our Mission", route: "/about/mission", defaultTitle: "Our Mission | Popular Hospital", defaultDescription: "Guiding principles that drive Popular Hospital towards excellence in healthcare and patient safety." },
-  { group: "About Us", label: "From Chairman's Desk", route: "/about/chairman-desk", defaultTitle: "From Chairman's Desk | Popular Hospital", defaultDescription: "A message from our Founder & Chairman, Dr. A.K. Kaushik, on the vision and evolution of Popular Hospital." },
-  { group: "About Us", label: "From Vice Chairman's Desk", route: "/about/vice-chairman-desk", defaultTitle: "From Vice Chairman's Desk | Popular Hospital", defaultDescription: "A message from our Group Vice Chairman, Manuj Mittal, on strategic transformation and operational excellence at Popular Group of Hospitals." },
-  { group: "About Us", label: "From MD's Desk", route: "/about/md-desk", defaultTitle: "From MD's Desk | Popular Hospital", defaultDescription: "A message from our Managing Director, Dr. Kiran Kaushik, on her vision for excellence in healthcare." },
-  { group: "About Us", label: "Leadership Team", route: "/about/leadership", defaultTitle: "Leadership", defaultDescription: "Learn more about Leadership at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services." },
-  { group: "About Us", label: "Awards & Recognition", route: "/about/awards-recognition" },
-  { group: "About Us", label: "Infrastructure & Technology", route: "/about/infrastructure-technology", defaultTitle: "Infrastructure & Technology | Popular Hospital", defaultDescription: "Explore Popular Hospital's advanced infrastructure, robotics, modular operation theatres, ICU, and diagnostic facilities." },
-  { group: "About Us", label: "Social Responsibility (SR)", route: "/about/csr" },
-  { group: "About Us", label: "Cashless Empanelment", route: "/about/cashless-empanelment", defaultTitle: "Cashless Empanelment | Popular Hospital", defaultDescription: "Popular Hospital is empanelled with leading Government PSUs, Private Corporates, Insurance Companies and International TPAs for cashless treatment." },
-
-  // Popular Finds
-  { group: "Popular Finds", label: "Our Doctors", route: "/doctors", defaultTitle: "Find Doctors", defaultDescription: "Search and book doctors by speciality and branch at Popular Hospital. View profiles, qualifications, and consultation fees." },
-  { group: "Popular Finds", label: "Our Locations", route: "/locations" },
-  { group: "Popular Finds", label: "Patients Testimonial", route: "/stories", defaultTitle: "Patient Stories | Popular Hospital", defaultDescription: "Hear directly from our patients about their experiences and successful recovery journeys at Popular Hospital." },
-  { group: "Popular Finds", label: "International Patients", route: "/international-patients" },
-  { group: "Popular Finds", label: "Free OPD and Offer", route: "/opd", defaultTitle: "OPD - Outpatient Department", defaultDescription: "OPD timings, walk-in information, and how to book OPD at Popular Hospital branches." },
-
-  // Departments
-  { group: "Departments", label: "All Departments (Index)", route: "/departments", defaultTitle: "Departments | Popular Hospital Varanasi", defaultDescription: "Learn more about Departments at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services." },
-  { group: "Departments", label: "Cardiology", route: "/departments/cardiology", defaultTitle: "Best Cardiology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Cardiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "CTVS", route: "/departments/ctvs", defaultTitle: "Best CTVS Department Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best CTVS Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Neurosurgery", route: "/departments/neurosurgery", defaultTitle: "Best Neurosurgery Department Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Neurosurgery Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Gastroenterology", route: "/departments/gastroenterology", defaultTitle: "Best Gastroenterology & Hepatology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Gastroenterology & Hepatology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Nephrology", route: "/departments/nephrology", defaultTitle: "Best Nephrology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Nephrology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Oncology", route: "/departments/oncology", defaultTitle: "Best Oncology (Cancer Care) Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Oncology (Cancer Care) hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Urology", route: "/departments/urology", defaultTitle: "Best Urology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Urology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Burns & Plastic Surgery", route: "/departments/burns-plastic-surgery", defaultTitle: "Best Burns & Plastic Surgery Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Burns & Plastic Surgery hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Interventional Radiology", route: "/departments/interventional-radiology", defaultTitle: "Best Interventional Radiology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Interventional Radiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Pediatric Surgery", route: "/departments/pediatric-surgery", defaultTitle: "Best Pediatric Surgery Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Pediatric Surgery hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Pediatric Cardiology", route: "/departments/pediatric-cardiology", defaultTitle: "Best Pediatric Cardiology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Pediatric Cardiology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Laparoscopy & General Surgery", route: "/departments/general-surgery", defaultTitle: "Best Laparoscopy & General Surgery Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Laparoscopy & General Surgery hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Obstetrics & Gynaecology", route: "/departments/gynaecology", defaultTitle: "Best Obstetrics & Gynaecology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Obstetrics & Gynaecology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Pediatrics And Neonatology", route: "/departments/pediatrics", defaultTitle: "Best Pediatrics & Neonatology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Pediatrics & Neonatology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Orthopedics & Joint Replacement", route: "/departments/orthopedics", defaultTitle: "Best Orthopedics & Joint Replacement Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Orthopedics & Joint Replacement hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "General Medicine", route: "/departments/general-medicine", defaultTitle: "Best General Medicine Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best General Medicine hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "IVF & Fertility", route: "/departments/ivf-fertility", defaultTitle: "Best IVF & Fertility Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best IVF & Fertility hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "ENT", route: "/departments/ent", defaultTitle: "Best ENT (Ear, Nose & Throat) Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best ENT (Ear, Nose & Throat) hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Dietetics & Nutrition", route: "/departments/dietetics-nutrition", defaultTitle: "Best Dietetics & Nutrition Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Dietetics & Nutrition hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Ophthalmology", route: "/departments/ophthalmology", defaultTitle: "Best Ophthalmology Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Ophthalmology hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Dental", route: "/departments/dental", defaultTitle: "Best Dental Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Dental hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Respiratory Medicine", route: "/departments/respiratory", defaultTitle: "Best Respiratory Medicine Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Respiratory Medicine hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Pain Medicine", route: "/departments/pain-management", defaultTitle: "Best Pain Management Clinic Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Pain Management Clinic hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Psychiatry Department", route: "/departments/psychiatry", defaultTitle: "Best Psychiatry Department Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Psychiatry Department hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-  { group: "Departments", label: "Advanced Diabetic Foot Unit", route: "/departments/diabetic-foot", defaultTitle: "Best Diabetic Foot Hospital in Varanasi | Popular Hospital", defaultDescription: "Popular Hospital is the best Diabetic Foot hospital in Varanasi, Uttar Pradesh. Get advanced care and cashless treatment in Purvanchal. Book an appointment today!" },
-
-  // Services
-  { group: "Services", label: "Emergency And Trauma Care", route: "/services/emergency", defaultTitle: "Emergency & Trauma Care | Popular Hospital", defaultDescription: "24/7 Emergency and Trauma Care at Popular Hospital. Comprehensive emergency medical services with state-of-the-art infrastructure and highly trained professionals." },
-  { group: "Services", label: "Ambulance", route: "/services/ambulance", defaultTitle: "Ambulance Services | Popular Hospital", defaultDescription: "24 hrs Ambulance pickup service available all the way from anywhere in Varanasi ensuring fast and prompt transport to our Emergency Team." },
-  { group: "Services", label: "Pharmacy", route: "/services/pharmacy", defaultTitle: "Pharmacy | Popular Hospital", defaultDescription: "100% authentic and genuine medicines available 24/7 under strict quality control to fulfill patient emergency needs." },
-  { group: "Services", label: "Radiological Services", route: "/services/radiology", defaultTitle: "Radiological Services | Popular Hospital", defaultDescription: "Advanced diagnostic imaging and radiological services at Popular Hospital." },
-  { group: "Services", label: "Blood Bank", route: "/services/blood-bank", defaultTitle: "Blood Bank Services | Popular Hospital", defaultDescription: "24/7 Blood Bank services at Popular Hospital ensuring availability of safe blood and blood components with the highest quality standards." },
-  { group: "Services", label: "Preventive Health Check Up", route: "/services/health-packages" },
-  { group: "Services", label: "Pathological Services", route: "/services/pathology", defaultTitle: "Pathology Services | Popular Hospital", defaultDescription: "NABL Accredited Best Pathology & Microbiology Testing Laboratory equipped with world-class instruments." },
-  { group: "Services", label: "Home Care Services", route: "/services/home-care", defaultTitle: "Home Care Services | Popular Hospital", defaultDescription: "Providing genuine health care beyond the four walls of a hospital with expert medical advice and 24x7 nursing care at home." },
-
-  // Media & Blog
-  { group: "Media & Blog", label: "News", route: "/updates" },
-  { group: "Media & Blog", label: "Blog", route: "/blog", defaultTitle: "Medical Blog & Health Updates | Popular Hospital", defaultDescription: "Stay updated with the latest medical advancements, health tips, and hospital news from Popular Hospital Varanasi." },
-  { group: "Media & Blog", label: "Press", route: "/media" },
-  { group: "Media & Blog", label: "Careers", route: "/careers", defaultTitle: "Careers | Popular Hospital", defaultDescription: "Join our team of dedicated medical professionals and make a real difference in patient care. Explore medical and non-medical job openings at Popular Hospital." },
-
-];
+import { STANDARD_PAGES } from "@/lib/seoConstants";
 
 export default function SeoSettingsPage() {
   const [dbSeoList, setDbSeoList] = useState<SeoData[]>([]);
-  const [dbDoctors, setDbDoctors] = useState<{name: string, slug: string, speciality_name?: string}[]>([]);
+  const [dbDoctors, setDbDoctors] = useState<{ name: string, slug: string, speciality_name?: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedPageRoute, setSelectedPageRoute] = useState("All");
   const [formData, setFormData] = useState<Partial<SeoData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -131,24 +66,39 @@ export default function SeoSettingsPage() {
   }, []);
 
   const ALL_PAGES = useMemo(() => {
-    const docPages = dbDoctors.map(doc => ({
-      group: "Doctors (Dynamic)",
-      label: `Dr. ${doc.name}`,
-      route: `/doctors/${doc.slug}`,
-      defaultTitle: `Dr. ${doc.name} - ${doc.speciality_name || 'Specialist'} | Popular Hospital`,
-      defaultDescription: `Book an appointment with Dr. ${doc.name} at Popular Hospital. Expert in ${doc.speciality_name || 'healthcare'}.`
-    }));
+    const docPages = dbDoctors.map(doc => {
+      const docName = doc.name.trim();
+      const hasDrPrefix = docName.toLowerCase().startsWith('dr.') || docName.toLowerCase().startsWith('dr ');
+      const displayName = hasDrPrefix ? docName : `Dr. ${docName}`;
+      const speciality = doc.speciality_name || "Specialist";
+
+      let title = `${displayName} - ${speciality} | Popular Hospital`;
+      let description = `View the profile and OPD timings for ${displayName} at Popular Hospital.`;
+
+      if (doc.slug === "dr-a-k-kaushik") {
+        title = `${displayName} - ${speciality} - Best Surgeon in Varanasi | Popular Hospital`;
+        description = `${description} He is widely recognized as the best surgeon in Varanasi, providing exceptional surgical care.`;
+      }
+
+      return {
+        group: "Doctors (Dynamic)",
+        label: displayName,
+        route: `/doctors/${doc.slug}`,
+        defaultTitle: title,
+        defaultDescription: description
+      };
+    });
     return [...STANDARD_PAGES, ...docPages];
   }, [dbDoctors]);
 
   const displayList = useMemo(() => {
     const list: SeoData[] = [];
-    
+
     // Add standard pages first
     ALL_PAGES.forEach(std => {
       const found = dbSeoList.find(db => db.page_route === std.route);
       if (found) {
-        list.push({ ...found, isCustom: false });
+        list.push({ ...found, isCustom: false, group: std.group });
       } else {
         list.push({
           page_route: std.route,
@@ -160,6 +110,8 @@ export default function SeoSettingsPage() {
           canonical_url: "",
           robots_meta: "index, follow",
           isCustom: false,
+          group: std.group,
+
         });
       }
     });
@@ -167,21 +119,47 @@ export default function SeoSettingsPage() {
     // Add remaining custom pages from DB
     dbSeoList.forEach(db => {
       if (!ALL_PAGES.some(std => std.route === db.page_route)) {
-        list.push({ ...db, isCustom: true });
+        list.push({ ...db, isCustom: true, group: "Custom Routes" });
       }
     });
 
     return list;
   }, [dbSeoList, ALL_PAGES]);
 
-  const filteredList = displayList.filter(item => 
-    item.page_route.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    (item.meta_title && item.meta_title.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  const categories = useMemo(() => {
+    const cats = new Set(displayList.map(item => item.group));
+    return ["All", ...Array.from(cats).filter(Boolean)] as string[];
+  }, [displayList]);
+
+  const availablePagesInCategory = useMemo(() => {
+    if (selectedCategory === "All") return [];
+    return displayList
+      .filter(item => item.group === selectedCategory)
+      .map(item => {
+        const std = ALL_PAGES.find(p => p.route === item.page_route);
+        return {
+          route: item.page_route,
+          label: std ? std.label : (item.meta_title || item.page_route)
+        };
+      });
+  }, [displayList, selectedCategory, ALL_PAGES]);
+
+  const filteredList = displayList.filter(item => {
+    const matchesSearch = item.page_route.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.meta_title && item.meta_title.toLowerCase().includes(searchQuery.toLowerCase()));
+    const matchesCategory = selectedCategory === "All" || item.group === selectedCategory;
+    const matchesPage = selectedPageRoute === "All" || item.page_route === selectedPageRoute;
+    return matchesSearch && matchesCategory && matchesPage;
+  });
+
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCategory(e.target.value);
+    setSelectedPageRoute("All");
+  };
 
   const openModal = (seo?: SeoData, isCustomNew: boolean = false) => {
     setIsCustomRouteMode(isCustomNew || (seo ? !!seo.isCustom : true));
-    
+
     if (seo) {
       setFormData(seo);
     } else {
@@ -216,7 +194,7 @@ export default function SeoSettingsPage() {
       setFormData({ ...formData, page_route: "" });
     } else {
       setIsCustomRouteMode(false);
-      
+
       // If selecting a predefined route, check if we already have DB data for it
       const existing = dbSeoList.find(db => db.page_route === route);
       if (existing) {
@@ -257,7 +235,7 @@ export default function SeoSettingsPage() {
         body: formDataUpload,
       });
       const data = await res.json();
-      
+
       if (data.success) {
         setFormData(prev => ({ ...prev, og_image: data.url }));
       } else {
@@ -276,7 +254,7 @@ export default function SeoSettingsPage() {
       setError("Page Route is required");
       return;
     }
-    
+
     setIsSubmitting(true);
     setError("");
 
@@ -331,8 +309,8 @@ export default function SeoSettingsPage() {
 
       {/* Search and List */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="p-4 border-b border-gray-100 flex items-center gap-3">
-          <div className="relative flex-1 max-w-md">
+        <div className="p-4 border-b border-gray-100 flex flex-col sm:flex-row items-center gap-3">
+          <div className="relative flex-1 w-full max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
@@ -341,6 +319,33 @@ export default function SeoSettingsPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
+          </div>
+          <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-2">
+            <select
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+              className="w-full sm:w-auto px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white"
+            >
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat === "All" ? "All Categories" : cat}
+                </option>
+              ))}
+            </select>
+            {selectedCategory !== "All" && availablePagesInCategory.length > 0 && (
+              <select
+                value={selectedPageRoute}
+                onChange={(e) => setSelectedPageRoute(e.target.value)}
+                className="w-full sm:w-auto px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white sm:max-w-[250px] truncate"
+              >
+                <option value="All">All Pages in {selectedCategory}</option>
+                {availablePagesInCategory.map((page) => (
+                  <option key={page.route} value={page.route}>
+                    {page.label}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
         </div>
 
@@ -454,9 +459,9 @@ export default function SeoSettingsPage() {
                 <label className="block text-sm font-bold text-gray-700 mb-1.5">
                   Select Page / Route <span className="text-red-500">*</span>
                 </label>
-                
+
                 {!formData._id && !isCustomRouteMode ? (
-                  <select 
+                  <select
                     value={formData.page_route || ""}
                     onChange={handleSelectRoute}
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 bg-white text-sm"
@@ -499,7 +504,7 @@ export default function SeoSettingsPage() {
               {/* Standard Meta */}
               <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-5 space-y-4">
                 <h3 className="text-base font-bold text-gray-900 border-b border-gray-200 pb-2">Standard Meta</h3>
-                
+
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Meta Title</label>
                   <input
@@ -532,7 +537,7 @@ export default function SeoSettingsPage() {
               {/* Open Graph */}
               <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-5 space-y-4">
                 <h3 className="text-base font-bold text-gray-900 border-b border-gray-200 pb-2">Open Graph (Social Sharing)</h3>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1">OG Title</label>
@@ -558,7 +563,7 @@ export default function SeoSettingsPage() {
                         />
                         {isUploading && <span className="text-sm text-blue-600 animate-pulse whitespace-nowrap">Uploading...</span>}
                       </div>
-                      
+
                       <div className="flex items-center gap-2 mt-1">
                         <input
                           type="text"
@@ -569,9 +574,9 @@ export default function SeoSettingsPage() {
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-sm bg-gray-50"
                         />
                         {formData.og_image && (
-                          <img 
-                            src={formData.og_image.startsWith('http') ? formData.og_image : `http://localhost:5100${formData.og_image}`} 
-                            alt="OG Preview" 
+                          <img
+                            src={formData.og_image.startsWith('http') ? formData.og_image : `http://localhost:5100${formData.og_image}`}
+                            alt="OG Preview"
                             className="h-9 w-9 object-cover rounded border"
                             onError={(e) => {
                               // Fallback if the domain is already in the URL or proxy works
@@ -600,7 +605,7 @@ export default function SeoSettingsPage() {
               {/* Advanced Settings */}
               <div className="bg-gray-50/50 rounded-xl border border-gray-100 p-5 space-y-4">
                 <h3 className="text-base font-bold text-gray-900 border-b border-gray-200 pb-2">Advanced Settings</h3>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1">Robots Meta</label>

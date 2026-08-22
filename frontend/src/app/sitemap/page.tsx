@@ -44,9 +44,10 @@ const sitemapData = [
       { name: "From MD's Desk", href: "/about/md-desk" },
       { name: "Leadership Team", href: "/about/leadership" },
       { name: "Awards & Recognition", href: "/about/awards-recognition" },
+      { name: "Infrastructure & Technology", href: "/about/infrastructure-technology" },
       { name: "Social Responsibility (SR)", href: "/about/csr" },
       { name: "Cashless Empanelment", href: "/about/cashless-empanelment" },
-      { name: "Our Branches", href: "/#our-locations" },
+      { name: "Our Branches", href: "/locations" },
     ],
   },
   {
@@ -62,7 +63,7 @@ const sitemapData = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1.01.707.293l5.414 5.414a1 1.01.293.707V19a2 2 0 01-2 2z"
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
         />
       </svg>
     ),
@@ -83,6 +84,8 @@ const sitemapData = [
         href: "/departments/interventional-radiology",
       },
       { name: "Pediatric Surgery", href: "/departments/pediatric-surgery" },
+      { name: "Pediatric Cardiology", href: "/departments/pediatric-cardiology" },
+      { name: "IVF & Fertility", href: "/departments/ivf-fertility" },
     ],
   },
   {
@@ -125,6 +128,7 @@ const sitemapData = [
       { name: "Respiratory Medicine", href: "/departments/respiratory" },
       { name: "Pain Medicine", href: "/departments/pain-management" },
       { name: "Psychiatry Department", href: "/departments/psychiatry" },
+      { name: "Advanced Diabetic Foot Unit", href: "/departments/diabetic-foot" },
     ],
   },
   {
@@ -184,8 +188,6 @@ const sitemapData = [
         href: "/services/international-patients",
       },
       { name: "Free OPD and Offer", href: "/services/free-opd-offer" },
-      { name: "Online Payment", href: "/online-payment" },
-      { name: "Second Opinion", href: "/second-opinion" },
       { name: "OPD Schedule", href: "/opd" },
       { name: "Careers", href: "/careers" },
       { name: "Feedback", href: "/feedback" },
@@ -226,7 +228,7 @@ export default function SitemapPage() {
   return (
     <div className="bg-[#f0f7ff] min-h-screen pt-12 pb-20">
       <div className="mx-auto max-w-[1366px] px-6 lg:px-12">
-        {/* Page Header */}
+
         <div className="mb-16">
           <h1 className="text-4xl md:text-5xl font-black text-[#1a3a5c] mb-6 font-heading tracking-tight leading-tight">
             Visual <span className="text-[#E85222]">Sitemap</span>

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import StoriesClient from "./StoriesClient";
 import { fetchPatientStories } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 
 import { generatePageMetadata } from "@/lib/seoApi";

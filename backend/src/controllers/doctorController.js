@@ -233,6 +233,7 @@ export const createDoctor = async (req, res) => {
 // PUT /api/cms/doctors/:id
 export const updateDoctor = async (req, res) => {
   try {
+    console.log("UPDATE DOCTOR REQ.BODY:", req.body);
     const updates = { ...req.body };
     if (updates.experience_years !== undefined) {
       updates.experience_years = updates.experience_years

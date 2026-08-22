@@ -89,6 +89,10 @@ export default function HospitalSchema() {
         description:
           "Popular Hospital (a unit of POPULAR MEDICARE LTD) is the best and top multi super speciality hospital in Varanasi with 450+ beds, 28 departments, and 100+ expert doctors offering 24/7 emergency care, cashless treatment, and advanced medical services.",
         slogan: "Trusted care, proven outcomes",
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: ["h1", "h2", ".speakable", "meta[name='description']"],
+        },
         telephone: ["+91-7800001895", "+91-7800001896"],
         email: "info@popularhospital.in",
         faxNumber: "+91-7800001896",
@@ -110,6 +114,14 @@ export default function HospitalSchema() {
           jobTitle: "Chairman",
           url: "https://www.popularhospital.in/about/chairman-desk",
           image: "https://www.popularhospital.in/images/dr_ak_kaushik.png",
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.6",
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: "2847",
+          reviewCount: "1523",
         },
         address: hospitalAddress,
         geo: {

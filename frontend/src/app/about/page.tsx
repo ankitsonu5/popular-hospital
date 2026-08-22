@@ -12,8 +12,27 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function AboutPage() {
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://www.popularhospital.in/about#aboutpage",
+    name: "About Popular Hospital Varanasi",
+    description: "POPULAR HOSPITAL (a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital with 450+ beds, 28 departments, and 100+ expert doctors providing excellence in healthcare delivery for over 32+ years.",
+    url: "https://www.popularhospital.in/about",
+    mainEntity: {
+      "@id": "https://www.popularhospital.in/#hospital",
+    },
+    isPartOf: {
+      "@id": "https://www.popularhospital.in/#website",
+    },
+  };
+
   return (
     <div className="bg-white min-h-screen font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
       {/* ─── Hero Section ─── */}
       <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">

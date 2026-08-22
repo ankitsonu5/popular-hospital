@@ -4,7 +4,7 @@ import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
 import { fetchDoctors, getImageUrl } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 
 import { generatePageMetadata } from "@/lib/seoApi";

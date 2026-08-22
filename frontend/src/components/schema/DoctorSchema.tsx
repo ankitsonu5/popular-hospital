@@ -199,6 +199,14 @@ export function DoctorsListSchema() {
           },
         ],
       },
+      {
+        "@type": "ItemList",
+        "@id": "https://www.popularhospital.in/doctors#itemlist",
+        name: "Doctors at Popular Hospital Varanasi",
+        description: "Complete list of 100+ expert doctors across 28 departments at Popular Hospital Varanasi.",
+        numberOfItems: 100,
+        itemListOrder: "https://schema.org/ItemListUnordered",
+      },
     ],
   };
 

@@ -113,7 +113,7 @@ export async function fetchDoctors(params?: {
 export async function fetchDoctor(idOrSlug: string): Promise<Doctor | null> {
   try {
     const res = await fetch(api(`/doctors/${idOrSlug}`), {
-      next: { revalidate: 0 },
+      next: { revalidate: 60 },
     });
     if (!res.ok) return null;
     return await res.json();
@@ -202,7 +202,7 @@ export async function createBooking(
 
 export async function fetchNews(): Promise<NewsItem[]> {
   try {
-    const res = await fetch(api("/news"), { cache: "no-store" });
+    const res = await fetch(api("/news"), { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return await res.json();
   } catch (e) {
@@ -213,7 +213,7 @@ export async function fetchNews(): Promise<NewsItem[]> {
 
 export async function fetchNewsItem(slug: string): Promise<NewsItem | null> {
   try {
-    const res = await fetch(api(`/news/${slug}`), { cache: "no-store" });
+    const res = await fetch(api(`/news/${slug}`), { next: { revalidate: 60 } });
     if (!res.ok) return null;
     return await res.json();
   } catch (e) {
@@ -236,7 +236,7 @@ export async function fetchBlogs(): Promise<BlogItem[]> {
 export async function fetchBlogItem(slug: string): Promise<BlogItem | null> {
   try {
     const res = await fetch(api(`/blogs/${slug}`), {
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
     if (!res.ok) return null;
     return await res.json();
@@ -429,6 +429,7 @@ export interface Doctor {
   bio?: string;
   image_url?: string;
   youtube_video_url?: string;
+  videos?: { title: string; url: string; _id?: string }[];
   consultation_fee?: number;
   available_days?: string;
   opd_timings?: {
@@ -614,7 +615,7 @@ export interface HeroBanner {
 
 export async function fetchHeroBanners(): Promise<HeroBanner[]> {
   try {
-    const res = await fetch(api("/hero-banners"), { cache: "no-store" });
+    const res = await fetch(api("/hero-banners"), { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return await res.json();
   } catch (e) {
@@ -636,7 +637,7 @@ export interface PatientStory {
 
 export async function fetchPatientStories(): Promise<PatientStory[]> {
   try {
-    const res = await fetch(api("/patient-stories"), { cache: "no-store" });
+    const res = await fetch(api("/patient-stories"), { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return await res.json();
   } catch (e) {
