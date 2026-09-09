@@ -6,7 +6,7 @@ const viceChairmanData = {
   qualifications: "POPULAR GROUP OF HOSPITALS, VARANASI",
   title1: "CHAIRMAN - INTERNATIONAL CHAMBER OF HEALTHCARE AND MEDICAL TOURISM FOUNDATION",
   title2: "CHAIRMAN - SWASTH BHARAT BHAVYA MISSION",
-  image: "/images/manujmittal.png",
+  image: "/images/manujmittal.jpg",
   message: [
     "MANUJ MITTAL Group Vice Chairman-Popular Group of Hospitals| Chairman-International Chamber of Healthcare and Medical Tourism Foundation | Chairman-Swasth Bharat Bhavya Mission Manuj Mittal is an internationally recognized healthcare leader, hospital business transformation specialist, and strategic growth executive with nearly three decades of experience in hospital management, corporate healthcare, international business, medical tourism, healthcare technology, digital transformation, Artificial Intelligence (AI), and institutional leadership.",
     "He currently serves as the Group Vice Chairman, Popular Group of Hospitals, Varanasi, where he is leading the strategic transformation of the group by driving sustainable business growth, operational excellence, revenue expansion, EBITDA improvement, digital transformation, AI-enabled healthcare marketing, branding, physician engagement, patient acquisition, international collaborations, and organizational excellence.",
