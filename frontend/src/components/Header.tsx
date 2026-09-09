@@ -652,7 +652,7 @@ export function Header() {
                 href="/services/health-packages"
                 className="hover:text-white/80 transition-colors"
               >
-                Health Packages
+                Health Card
               </Link>
             </div>
             <div className="flex items-center justify-center sm:justify-end gap-x-6 w-full sm:w-auto mt-1 sm:mt-0">
@@ -1171,7 +1171,7 @@ export function Header() {
                     onClick={() => setMenuOpen(false)}
                   >
                     <Activity className="w-5 h-5 text-gray-400" />
-                    Health Packages
+                    Health Card
                   </Link>
                 </div>
               </div>

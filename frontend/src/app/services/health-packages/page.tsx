@@ -339,7 +339,7 @@ const WellnessPage = () => {
             <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
               <div className="max-w-4xl">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 font-heading tracking-tight text-shadow-lg">
-                  Health Packages
+                  Health Card
                 </h1>
                 <nav
                   className="flex items-center text-sm md:text-base text-white/90 font-medium"
@@ -359,7 +359,7 @@ const WellnessPage = () => {
                     Services
                   </Link>
                   <span className="mx-2 text-red-600 font-bold">|</span>
-                  <span className="text-white">Health Packages</span>
+                  <span className="text-white">Health Card</span>
                 </nav>
               </div>
             </div>
