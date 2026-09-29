@@ -8,12 +8,6 @@ const leaders = [
     bio: "A visionary leader with over 40 years of experience in healthcare. Dr. Kaushik established Popular Hospital with the dream of providing world-class medical care to the community.",
   },
   {
-    name: "Manuj Mittal",
-    role: "Group Vice Chairman",
-    image: "/images/leadership/manuj-mittal.jpg",
-    bio: "An internationally recognized healthcare leader, hospital business transformation specialist, and strategic growth executive with nearly three decades of experience in hospital management and institutional leadership.",
-  },
-  {
     name: "Dr. Kiran Kaushik",
     role: "Managing Director",
     image: "/images/leadership/kiran.png",
@@ -78,7 +72,7 @@ export default function LeadershipPage() {
         </div>
 
         {/* Leaders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-6 2xl:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-6 2xl:gap-10 max-w-3xl mx-auto">
           {leaders.map((leader, index) => (
             <div
               key={index}

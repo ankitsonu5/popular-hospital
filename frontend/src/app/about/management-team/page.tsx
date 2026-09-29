@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const viceChairmanData = {
+const managementTeamData = {
   name: "MANUJ MITTAL",
   role: "GROUP VICE CHAIRMAN",
   qualifications: "POPULAR GROUP OF HOSPITALS, VARANASI",
@@ -27,18 +27,18 @@ const viceChairmanData = {
 import { generatePageMetadata } from "@/lib/seoApi";
 
 export async function generateMetadata() {
-  return generatePageMetadata("/about/vice-chairman-desk", {
-  title: "From Vice Chairman's Desk | Popular Hospital",
+  return generatePageMetadata("/about/management-team", {
+  title: "Management Team | Popular Hospital",
   description:
     "A message from our Group Vice Chairman, Manuj Mittal, on strategic transformation and operational excellence at Popular Group of Hospitals.",
   alternates: {
-    canonical: "https://www.popularhospital.in/about/vice-chairman-desk",
+    canonical: "https://www.popularhospital.in/about/management-team",
   },
 });
 }
 
 
-export default function ViceChairmanDeskPage() {
+export default function ManagementTeamPage() {
   return (
     <div className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
@@ -46,7 +46,7 @@ export default function ViceChairmanDeskPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/banners/about_us_cmd_md.jpg"
-            alt="Vice Chairman Desk Banner"
+            alt="Management Team Banner"
             fill
             className="object-cover opacity-85"
             priority
@@ -58,7 +58,7 @@ export default function ViceChairmanDeskPage() {
             Leadership & Growth
           </span>
           <h1 className="text-3xl md:text-5xl xl:text-4xl font-black font-heading mb-4 text-white uppercase tracking-tight">
-            From Vice Chairman&apos;s Desk
+            Management Team
           </h1>
           <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full"></div>
         </div>
@@ -72,8 +72,8 @@ export default function ViceChairmanDeskPage() {
               <div className="space-y-6 sticky top-24 w-[85%] md:w-3/4 lg:w-[90%] xl:w-[85%] mx-auto">
                 <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-slate-50">
                   <Image
-                    src={viceChairmanData.image}
-                    alt={viceChairmanData.name}
+                    src={managementTeamData.image}
+                    alt={managementTeamData.name}
                     fill
                     className="object-cover object-top"
                     priority
@@ -82,14 +82,14 @@ export default function ViceChairmanDeskPage() {
                 </div>
                 <div className="bg-[#1e5eb2] p-5 md:p-6 rounded-2xl md:rounded-3xl border border-blue-400/20 shadow-xl text-white">
                   <h2 className="text-xl md:text-2xl xl:text-xl font-black font-heading mb-1 uppercase tracking-tight">
-                    {viceChairmanData.name}
+                    {managementTeamData.name}
                   </h2>
                   <p className="text-yellow-400 font-bold text-xs md:text-[13px] tracking-wide uppercase mb-2.5 leading-snug">
-                    {viceChairmanData.role} - {viceChairmanData.qualifications}
+                    {managementTeamData.role} - {managementTeamData.qualifications}
                   </p>
                   <div className="space-y-1.5 text-[10px] md:text-[10.5px] font-normal uppercase opacity-90 leading-[1.35]">
-                    <p>{viceChairmanData.title1}</p>
-                    <p>{viceChairmanData.title2}</p>
+                    <p>{managementTeamData.title1}</p>
+                    <p>{managementTeamData.title2}</p>
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export default function ViceChairmanDeskPage() {
               </div>
 
               <div className="space-y-4 md:space-y-4.5">
-                {viceChairmanData.message.map((para, i) => (
+                {managementTeamData.message.map((para, i) => (
                   <p
                     key={i}
                     className="text-[14px] md:text-[15px] xl:text-[14.5px] 2xl:text-[15.5px] text-gray-600 leading-relaxed font-normal text-justify"

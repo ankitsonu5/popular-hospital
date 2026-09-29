@@ -40,10 +40,9 @@ const sitemapData = [
       { name: "Our Vision", href: "/about/our-vision-2030" },
       { name: "Our Mission", href: "/about/mission" },
       { name: "From Chairman's Desk", href: "/about/chairman-desk" },
-      // Temporarily hidden from menu
-      // { name: "From Vice Chairman's Desk", href: "/about/vice-chairman-desk" },
       { name: "From MD's Desk", href: "/about/md-desk" },
       { name: "Leadership Team", href: "/about/leadership" },
+      { name: "Management Team", href: "/about/management-team" },
       { name: "Awards & Recognition", href: "/about/awards-recognition" },
       { name: "Infrastructure & Technology", href: "/about/infrastructure-technology" },
       { name: "Social Responsibility (SR)", href: "/about/csr" },
