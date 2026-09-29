@@ -17,6 +17,7 @@ const ZOOM_PATHS = [
   "/about/chairman-desk",
   "/about/md-desk",
   "/about/management-team",
+  "/about/management-team/dr-manuj-mittal",
   "/about/leadership",
   "/about/awards-recognition",
   "/about/csr",
