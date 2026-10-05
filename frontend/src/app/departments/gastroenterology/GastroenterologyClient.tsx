@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -144,7 +145,7 @@ export default function GastroenterologyClient({
       {/* ═══════ HERO SECTION ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-gastroenterology_6d3a4a"
             src="/images/banners/gastroenterology.png"
             alt="Gastroenterology Banner"
             fill
@@ -156,25 +157,17 @@ export default function GastroenterologyClient({
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Centre for Digestive & Liver Diseases
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Gastroenterology & Hepatology — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-gastroenterology_1d93d4" d={"Centre for Digestive & Liver Diseases"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-gastroenterology_a30000" d={"Department of Gastroenterology & Hepatology — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-gastroenterology_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Gastroenterology"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-gastroenterology_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -190,36 +183,23 @@ export default function GastroenterologyClient({
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                    Department of{" "}
-                    <span className="text-[#1e3a8a]">Gastroenterology</span>
+                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-gastroenterology_4c5284" d={"Department of"} />{" "}
+                    <span className="text-[#1e3a8a]"><T k="departments-gastroenterology_aba2a5" d={"Gastroenterology"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The Dept. of Gastroenterology and liver services has the input
-                  of the best medical and surgical gastroenterologists.
-                  Interventional Endoscopy relating to the biliary tract and
-                  management of complications of portal hypertension. In
-                  addition to Oesophageal and Rectal dilation, Colonic
-                  Polypectomics and the placement of feeding gastrostomies,
-                  Oesophageal stents continues to expand and comprises a greater
-                  percentage of the total endoscopy work of the department.
-                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-gastroenterology_d2a799" d={"The Dept. of Gastroenterology and liver services has the input of the best medical and surgical gastroenterologists. Interventional Endoscopy relating to the biliary tract and management of complications of portal hypertension. In addition to Oesophageal and Rectal dilation, Colonic Polypectomics and the placement of feeding gastrostomies, Oesophageal stents continues to expand and comprises a greater percentage of the total endoscopy work of the department."} /></p>
               </div>
 
               {/* Facilities */}
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                    Department Facilities
-                  </h2>
+                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-gastroenterology_280e31" d={"Department Facilities"} /></h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
                 <div className="space-y-4">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Gastroenterology & Hepatology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-gastroenterology_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-gastroenterology_8fd015" d={"best Gastroenterology & Hepatology hospital in Varanasi"} /></strong><T k="departments-gastroenterology_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-gastroenterology_200859" d={"Purvanchal"} /></strong><T k="departments-gastroenterology_4f4133" d={" and "} /><strong><T k="departments-gastroenterology_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
                   {facilities.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-4">
@@ -254,8 +234,7 @@ export default function GastroenterologyClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="flex items-center gap-3 mb-2">
             <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-              Conditions We <span className="text-[#1e3a8a]">Treat</span>
+            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-gastroenterology_c18ad5" d={"Conditions We "} /><span className="text-[#1e3a8a]"><T k="departments-gastroenterology_e80f05" d={"Treat"} /></span>
             </h2>
           </div>
           <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-8" />

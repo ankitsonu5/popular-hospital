@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -128,7 +129,7 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-dental_3d3c61"
             src="/images/banners/dental_care_banner.png"
             alt="Dental Care Banner"
             fill
@@ -139,25 +140,17 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Department of
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Department of Dental — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-dental_4c5284" d={"Department of"} /></span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-dental_9fc3b7" d={"Department of Dental — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-dental_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Dental"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-dental_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -173,14 +166,7 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
               <SectionLabel text="About the Department" />
               <SectionHeader title="Department of" highlight="Dental" />
               <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/60 to-transparent rounded-r-3xl shadow-sm">
-                <p className="font-semibold text-gray-700 text-base md:text-[15px] leading-relaxed">
-                  The department is operational with state-of-the-art dental
-                  equipment harmonizing international standards to deliver
-                  quality treatment to patients. This multi-sphere dental unit
-                  offers a high-quality, specialized dental care experience with
-                  excellence, comfort, and a soothing atmosphere — offering a
-                  full range of dental services under one roof.
-                </p>
+                <p className="font-semibold text-gray-700 text-base md:text-[15px] leading-relaxed"><T k="departments-dental_7b8f42" d={"The department is operational with state-of-the-art dental equipment harmonizing international standards to deliver quality treatment to patients. This multi-sphere dental unit offers a high-quality, specialized dental care experience with excellence, comfort, and a soothing atmosphere — offering a full range of dental services under one roof."} /></p>
               </div>
 
               {/* Quick highlights */}
@@ -224,12 +210,9 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
 
             <div className="relative z-10">
               <div className="text-center mb-12">
-                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block mb-2">
-                  Core Advantages
-                </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
-                  Why Choose Our{" "}
-                  <span className="text-blue-300">Dental Care</span>
+                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block mb-2"><T k="departments-dental_42e535" d={"Core Advantages"} /></span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight"><T k="departments-dental_421d22" d={"Why Choose Our"} />{" "}
+                  <span className="text-blue-300"><T k="departments-dental_ee3f02" d={"Dental Care"} /></span>
                 </h2>
                 <div className="h-[2px] w-24 bg-blue-500 mx-auto mt-4" />
               </div>
@@ -265,9 +248,7 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
                 <SectionLabel text="Clinical Programmes" />
                 <SectionHeader title="Oral & Dental" highlight="Specialties" />
               </div>
-              <p className="text-gray-500 text-sm font-medium leading-relaxed md:max-w-xs md:text-right">
-                Advanced interventions across all major dental disciplines.
-              </p>
+              <p className="text-gray-500 text-sm font-medium leading-relaxed md:max-w-xs md:text-right"><T k="departments-dental_6d0d04" d={"Advanced interventions across all major dental disciplines."} /></p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -282,12 +263,10 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
                       <Icon className="h-5 w-5" />
                     </div>
                     <div className="space-y-1.5">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Dental hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-dental_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-dental_099b14" d={"best Dental hospital in Varanasi"} /></strong><T k="departments-dental_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-dental_200859" d={"Purvanchal"} /></strong><T k="departments-dental_4f4133" d={" and "} /><strong><T k="departments-dental_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
-                          0{idx + 1}
+                        <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100"><T k="departments-dental_b6589f" d={"0"} />{idx + 1}
                         </span>
                       </div>
                       <h4 className="text-[#0b1c43] font-bold text-sm sm:text-[15px] group-hover:text-[#1e3a8a] transition-colors leading-snug">
@@ -304,10 +283,7 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
 
             <div className="bg-blue-50/60 p-5 rounded-2xl border border-blue-100 mt-7 flex items-start gap-3">
               <Info className="h-5 w-5 text-[#1e3a8a] shrink-0 mt-0.5" />
-              <p className="text-gray-600 text-xs sm:text-sm font-semibold italic leading-relaxed">
-                Craniofacial Surgeries are performed in close collaboration with
-                the Department of Plastic Surgery.
-              </p>
+              <p className="text-gray-600 text-xs sm:text-sm font-semibold italic leading-relaxed"><T k="departments-dental_1e8c6e" d={"Craniofacial Surgeries are performed in close collaboration with the Department of Plastic Surgery."} /></p>
             </div>
           </div>
 
@@ -317,18 +293,8 @@ export default function DentalClient({ doctors }: { doctors: DoctorCard[] }) {
               <SectionLabel text="Diagnostic Infrastructure" />
               <SectionHeader title="Digital Radiological" highlight="Support" />
 
-              <p className="text-gray-700 text-base leading-relaxed font-semibold">
-                The department is backed by exceptional diagnostic amenities —
-                including cordless digital Intra-oral periapical radiographs,
-                Orthopantomograph (OPG), and Dentascan — ensuring flawless
-                management of even the most complex dental conditions.
-              </p>
-              <p className="text-gray-500 text-sm sm:text-base leading-relaxed font-medium">
-                The Department of Dentistry at Popular Hospital practices
-                everything about dentistry under one roof, delivering
-                international-standard care in a comfortable, sterile, and
-                pain-free environment.
-              </p>
+              <p className="text-gray-700 text-base leading-relaxed font-semibold"><T k="departments-dental_73cc1a" d={"The department is backed by exceptional diagnostic amenities — including cordless digital Intra-oral periapical radiographs, Orthopantomograph (OPG), and Dentascan — ensuring flawless management of even the most complex dental conditions."} /></p>
+              <p className="text-gray-500 text-sm sm:text-base leading-relaxed font-medium"><T k="departments-dental_1eba70" d={"The Department of Dentistry at Popular Hospital practices everything about dentistry under one roof, delivering international-standard care in a comfortable, sterile, and pain-free environment."} /></p>
 
               {/* Feature checklist */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">

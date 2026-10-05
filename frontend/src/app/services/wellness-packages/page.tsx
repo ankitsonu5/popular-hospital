@@ -5,6 +5,7 @@ import { Metadata } from "next";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/services/wellness-packages", {
@@ -139,7 +140,7 @@ export default function PreventiveHealthPage() {
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:h-[200px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-0">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="services-wellness-packages_905914"
             src="/images/banners/health_packages.png"
             alt="Preventive Health Check Up"
             fill
@@ -151,9 +152,7 @@ export default function PreventiveHealthPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="animate-fade-in-up max-w-4xl">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 font-heading tracking-tight leading-[1.1]">
-              Preventive Health Check Up
-            </h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 font-heading tracking-tight leading-[1.1]"><T k="services-wellness-packages_cc22cf" d={"Preventive Health Check Up"} /></h1>
             <nav
               className="flex items-center text-sm md:text-lg text-white/90 font-bold"
               aria-label="Breadcrumb"
@@ -161,20 +160,14 @@ export default function PreventiveHealthPage() {
               <Link
                 href="/"
                 className="hover:text-blue-300 transition-colors uppercase tracking-wider"
-              >
-                Home
-              </Link>
+              ><T k="services-wellness-packages_70f8bb" d={"Home"} /></Link>
               <span className="mx-3 text-red-500 font-black">/</span>
               <Link
                 href="/services"
                 className="hover:text-blue-300 transition-colors uppercase tracking-wider"
-              >
-                Services
-              </Link>
+              ><T k="services-wellness-packages_5cbd58" d={"Services"} /></Link>
               <span className="mx-3 text-red-500 font-black">/</span>
-              <span className="text-white uppercase tracking-wider">
-                Preventive Health Check Up
-              </span>
+              <span className="text-white uppercase tracking-wider"><T k="services-wellness-packages_cc22cf_2" d={"Preventive Health Check Up"} /></span>
             </nav>
           </div>
         </div>
@@ -187,13 +180,8 @@ export default function PreventiveHealthPage() {
             {/* Left: Why check-up is important */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] leading-tight mb-4">
-                  Why is a{" "}
-                  <span className="text-[#284a91]">
-                    Regular Wellness Check-up
-                  </span>{" "}
-                  Important for Good Health?
-                </h2>
+                <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] leading-tight mb-4"><T k="services-wellness-packages_c4c866" d={"Why is a"} />{" "}
+                  <span className="text-[#284a91]"><T k="services-wellness-packages_160d30" d={"Regular Wellness Check-up"} /></span>{" "}<T k="services-wellness-packages_fab36f" d={"Important for Good Health?"} /></h2>
                 <div className="w-16 h-1 bg-[#0066cc] rounded-full"></div>
               </div>
 
@@ -230,9 +218,7 @@ export default function PreventiveHealthPage() {
                     strokeWidth={2.5}
                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                   />
-                </svg>
-                Who Needs a Wellness Package?
-              </h2>
+                </svg><T k="services-wellness-packages_d2a41d" d={"Who Needs a Wellness Package?"} /></h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                 {[
@@ -263,9 +249,8 @@ export default function PreventiveHealthPage() {
       <section className="py-20 bg-gray-50/30">
         <div className="container mx-auto max-w-[1366px] px-4 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading mb-4">
-              Choose Your{" "}
-              <span className="text-[#284a91]">Preventive Health Check Up</span>
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0b1c43] font-heading mb-4"><T k="services-wellness-packages_8799de" d={"Choose Your"} />{" "}
+              <span className="text-[#284a91]"><T k="services-wellness-packages_cc22cf_3" d={"Preventive Health Check Up"} /></span>
             </h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
           </div>
@@ -290,9 +275,7 @@ export default function PreventiveHealthPage() {
                   {/* Middle: Content Area */}
                   <div className="flex flex-col items-center md:items-start text-center md:text-left gap-3 flex-1">
                     <div>
-                      <span className="inline-block px-3 py-1 bg-orange-50 text-orange-600 text-[10px] font-black tracking-widest uppercase rounded-full mb-2">
-                        Popular Package
-                      </span>
+                      <span className="inline-block px-3 py-1 bg-orange-50 text-orange-600 text-[10px] font-black tracking-widest uppercase rounded-full mb-2"><T k="services-wellness-packages_c50c11" d={"Popular Package"} /></span>
                       <h3 className="text-[#284a91] font-bold text-lg md:text-xl tracking-tight leading-tight max-w-[280px]">
                         {pkg.title}
                       </h3>
@@ -302,8 +285,7 @@ export default function PreventiveHealthPage() {
                   {/* Right: Pricing & Action Section */}
                   <div className="flex flex-col items-center md:items-end justify-between self-stretch gap-4 border-l-0 md:border-l border-gray-100/60 md:pl-8 w-full md:w-auto">
                     <div className="text-center md:text-right">
-                      <div className="text-[#86868b] text-[14px] font-medium mb-0.5">
-                        Package Price{" "}
+                      <div className="text-[#86868b] text-[14px] font-medium mb-0.5"><T k="services-wellness-packages_1dd738" d={"Package Price"} />{" "}
                         <span className="line-through ml-1 opacity-60">
                           ₹
                           {parseFloat(pkg.originalPrice).toLocaleString(
@@ -311,9 +293,7 @@ export default function PreventiveHealthPage() {
                           )}
                         </span>
                       </div>
-                      <div className="text-[#D35400] text-[11px] font-black uppercase tracking-wider mb-0.5">
-                        Discount Price
-                      </div>
+                      <div className="text-[#D35400] text-[11px] font-black uppercase tracking-wider mb-0.5"><T k="services-wellness-packages_77d6af" d={"Discount Price"} /></div>
                       <div className="text-[#1d1d1f] text-2xl md:text-3xl font-black tracking-tight">
                         ₹{pkg.price}/-
                       </div>
@@ -323,7 +303,7 @@ export default function PreventiveHealthPage() {
                       href={`/services/wellness-packages/${pkg.slug}`}
                       className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0066cc] text-white rounded-xl text-[13px] font-bold shadow-md shadow-blue-600/10 hover:bg-[#0055aa] transition-all duration-300 active:scale-95 whitespace-nowrap"
                     >
-                      <span>View Details</span>
+                      <span><T k="services-wellness-packages_907b3b" d={"View Details"} /></span>
                       <svg
                         className="w-3.5 h-3.5"
                         fill="none"
@@ -359,19 +339,12 @@ export default function PreventiveHealthPage() {
         ></div>
 
         <div className="container mx-auto max-w-[1366px] text-center relative z-10">
-          <h2 className="text-[#284a91] text-2xl md:text-3xl font-black uppercase tracking-widest mb-4">
-            Preventive Health Program
-          </h2>
+          <h2 className="text-[#284a91] text-2xl md:text-3xl font-black uppercase tracking-widest mb-4"><T k="services-wellness-packages_4236d8" d={"Preventive Health Program"} /></h2>
 
-          <p className="text-gray-700 text-base md:text-xl font-medium leading-relaxed mb-8 max-w-3xl mx-auto">
-            Early identification and correction of risk factors to ensure good
-            health.
-          </p>
+          <p className="text-gray-700 text-base md:text-xl font-medium leading-relaxed mb-8 max-w-3xl mx-auto"><T k="services-wellness-packages_36c5b8" d={"Early identification and correction of risk factors to ensure good health."} /></p>
 
           <div className="space-y-5">
-            <h3 className="text-gray-500 text-sm md:text-lg font-bold uppercase tracking-widest">
-              Contact for Appointment
-            </h3>
+            <h3 className="text-gray-500 text-sm md:text-lg font-bold uppercase tracking-widest"><T k="services-wellness-packages_68a6cb" d={"Contact for Appointment"} /></h3>
 
             <div className="flex flex-col items-center justify-center gap-6">
               {/* Phone Numbers */}
@@ -390,22 +363,18 @@ export default function PreventiveHealthPage() {
                     <a
                       href="tel:+917800001895"
                       className="hover:text-[#0066cc] transition-colors"
-                    >
-                      7800001895
-                    </a>{" "}
+                    ><T k="services-wellness-packages_8d70fd" d={"7800001895"} /></a>{" "}
                     /{" "}
                     <a
                       href="tel:+917800001896"
                       className="hover:text-[#0066cc] transition-colors"
-                    >
-                      96
-                    </a>
+                    ><T k="services-wellness-packages_6fb84a" d={"96"} /></a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-green-50 rounded-full flex items-center justify-center p-1.5 border border-green-100">
-                    <Image
+                    <CImage k="services-wellness-packages_d28b75"
                       src="/images/whatsapp_icon.png"
                       alt="WhatsApp"
                       width={24}
@@ -417,9 +386,7 @@ export default function PreventiveHealthPage() {
                     <a
                       href="tel:+917311111352"
                       className="hover:text-green-600 transition-colors"
-                    >
-                      7311111352
-                    </a>
+                    ><T k="services-wellness-packages_ba4073" d={"7311111352"} /></a>
                   </div>
                 </div>
               </div>

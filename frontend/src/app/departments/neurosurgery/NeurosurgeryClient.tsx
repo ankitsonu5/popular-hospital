@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -81,7 +82,7 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-neurosurgery_fec49c"
             src="/images/banners/neurosurgery.png"
             alt="Neurosurgery Banner"
             fill
@@ -93,12 +94,8 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Department of
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Department of Neurosurgery Department — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm"><T k="departments-neurosurgery_4c5284" d={"Department of"} /></span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-neurosurgery_2e0769" d={"Department of Neurosurgery Department — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
@@ -116,9 +113,7 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
                     strokeWidth={2}
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
-                </svg>
-                Book An Appointment
-              </Link>
+                </svg><T k="departments-neurosurgery_687bd9" d={"Book An Appointment"} /></Link>
               <GetCallBackButton
                 department="Neurosurgery"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
@@ -135,9 +130,7 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
                     strokeWidth={2}
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
-                </svg>
-                Get a Call Back
-              </GetCallBackButton>
+                </svg><T k="departments-neurosurgery_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -172,10 +165,7 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
           <div className="mt-12">
             <div className="p-6 sm:p-7 pb-0">
               <SectionHeader title="Service" highlight="Offered:" />
-              <p className="rounded-2xl border-l-4 border-[#E85222] px-5 py-4 text-base font-semibold leading-relaxed text-slate-700 md:text-lg 2xl:text-xl">
-                We at Popular Hospital successfully provide all Neurosurgical
-                solutions under one roof.
-              </p>
+              <p className="rounded-2xl border-l-4 border-[#E85222] px-5 py-4 text-base font-semibold leading-relaxed text-slate-700 md:text-lg 2xl:text-xl"><T k="departments-neurosurgery_8ab9e4" d={"We at Popular Hospital successfully provide all Neurosurgical solutions under one roof."} /></p>
             </div>
 
             <div className="p-6 sm:p-7">
@@ -207,7 +197,7 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
               <div className="relative mx-auto aspect-[4/3] w-full max-w-md">
                 <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-br from-[#eaf3ff] via-white to-[#fff1eb]" />
                 <div className="relative h-full w-full overflow-hidden rounded-[28px] border-4 border-white shadow-2xl">
-                  <Image
+                  <CImage k="departments-neurosurgery_e67541"
                     src="/images/departments-images/brain_surgery.jpg"
                     alt="Brain Surgery Technology"
                     fill
@@ -228,7 +218,7 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
               <div className="relative mx-auto aspect-[4/3] w-full max-w-md">
                 <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-br from-[#fff1eb] via-white to-[#eaf3ff]" />
                 <div className="relative h-full w-full overflow-hidden rounded-[28px] border-4 border-white shadow-2xl">
-                  <Image
+                  <CImage k="departments-neurosurgery_b579ca"
                     src="/images/departments-images/spinal_surgery_realistic.jpeg"
                     alt="Spinal Surgery Model"
                     fill

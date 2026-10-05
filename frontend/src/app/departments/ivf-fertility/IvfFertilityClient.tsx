@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 // Edit these doctor details here when you are ready.
 interface DoctorCard {
@@ -154,7 +155,7 @@ export default function IvfFertilityClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-violet-950 overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-ivf-fertility_92bc7e"
             src="/images/banners/laboratory_medicine.png"
             alt="IVF and Fertility Banner"
             fill
@@ -165,25 +166,17 @@ export default function IvfFertilityClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-pink-500/20 text-pink-200 text-sm font-semibold mb-6 border border-pink-400/30 backdrop-blur-sm tracking-wide">
-              Department of
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of IVF & Fertility — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-pink-500/20 text-pink-200 text-sm font-semibold mb-6 border border-pink-400/30 backdrop-blur-sm tracking-wide"><T k="departments-ivf-fertility_4c5284" d={"Department of"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-ivf-fertility_41afd5" d={"Department of IVF & Fertility — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-pink-600/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-ivf-fertility_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="IVF & Fertility"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-ivf-fertility_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -197,29 +190,13 @@ export default function IvfFertilityClient({
             <div className="lg:col-span-8 space-y-6">
               <SectionHeader title="Compassionate" highlight="Fertility Care" />
               <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best IVF & Fertility hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-ivf-fertility_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-ivf-fertility_d9317c" d={"best IVF & Fertility hospital in Varanasi"} /></strong><T k="departments-ivf-fertility_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-ivf-fertility_200859" d={"Purvanchal"} /></strong><T k="departments-ivf-fertility_4f4133" d={" and "} /><strong><T k="departments-ivf-fertility_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <p>
-                  The IVF & Fertility department at Popular Hospital is designed
-                  to support couples with clear evaluation, evidence-based
-                  treatment planning and compassionate reproductive care. Our
-                  approach focuses on understanding the cause of infertility and
-                  choosing the right step at the right time.
-                </p>
+                <p><T k="departments-ivf-fertility_9e6d5d" d={"The IVF & Fertility department at Popular Hospital is designed to support couples with clear evaluation, evidence-based treatment planning and compassionate reproductive care. Our approach focuses on understanding the cause of infertility and choosing the right step at the right time."} /></p>
                 <div className="relative border-l-4 border-pink-500 pl-6 py-4 bg-gradient-to-r from-pink-50/40 to-pink-50/10 rounded-r-3xl my-6 shadow-sm">
-                  <p className="font-semibold text-gray-800">
-                    From ovulation issues, PCOS and recurrent pregnancy loss to
-                    male-factor infertility and assisted reproduction
-                    counselling, patients receive private, structured and
-                    coordinated care.
-                  </p>
+                  <p className="font-semibold text-gray-800"><T k="departments-ivf-fertility_c8ba76" d={"From ovulation issues, PCOS and recurrent pregnancy loss to male-factor infertility and assisted reproduction counselling, patients receive private, structured and coordinated care."} /></p>
                 </div>
-                <p>
-                  Every fertility journey is personal. Our team emphasizes
-                  counselling, transparent communication and regular monitoring
-                  so couples feel supported throughout evaluation and treatment.
-                </p>
+                <p><T k="departments-ivf-fertility_8d13ed" d={"Every fertility journey is personal. Our team emphasizes counselling, transparent communication and regular monitoring so couples feel supported throughout evaluation and treatment."} /></p>
               </div>
             </div>
 
@@ -267,7 +244,7 @@ export default function IvfFertilityClient({
             {/* Left Illustration Image */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="relative w-full max-w-[340px] h-[400px] lg:h-[460px] lg:self-center rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white ring-1 ring-slate-150">
-                <Image
+                <CImage k="departments-ivf-fertility_9bd4ae"
                   src="/images/departments-images/obstetrics_care.jpg"
                   alt="IVF and fertility care"
                   fill
@@ -275,12 +252,7 @@ export default function IvfFertilityClient({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-violet-950/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-violet-950/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                  <p className="font-bold mb-1 text-pink-300 uppercase tracking-widest text-[9.5px]">
-                    Quality Standards
-                  </p>
-                  Patient-first approach with top clinical success rates and
-                  safety protocols.
-                </div>
+                  <p className="font-bold mb-1 text-pink-300 uppercase tracking-widest text-[9.5px]"><T k="departments-ivf-fertility_ae7f80" d={"Quality Standards"} /></p><T k="departments-ivf-fertility_51fa17" d={"Patient-first approach with top clinical success rates and safety protocols."} /></div>
               </div>
             </div>
 
@@ -330,11 +302,8 @@ export default function IvfFertilityClient({
       <section className="py-20 xl:py-16 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-pink-600 font-bold tracking-widest text-xs uppercase block">
-              Overview
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-violet-950 font-heading tracking-tight">
-              Treatment <span className="text-pink-600">Journey</span>
+            <span className="text-pink-600 font-bold tracking-widest text-xs uppercase block"><T k="departments-ivf-fertility_0efc2e" d={"Overview"} /></span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-violet-950 font-heading tracking-tight"><T k="departments-ivf-fertility_696dbf" d={"Treatment "} /><span className="text-pink-600"><T k="departments-ivf-fertility_e40c09" d={"Journey"} /></span>
             </h2>
             <div className="h-[2px] w-24 bg-gradient-to-r from-violet-500 to-pink-500 mx-auto" />
           </div>

@@ -16,10 +16,21 @@ import {
   type Speciality,
   type HeroBanner,
   type PatientStory,
+  type UpdateItem,
+  fetchUpdates,
 } from "@/lib/api";
-import { ChevronLeft, ChevronRight, ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowLeft,
+  ArrowRight,
+  X,
+  FileText,
+  ExternalLink,
+} from "lucide-react";
 import dynamic from "next/dynamic";
 import FAQSchema from "@/components/schema/FAQSchema";
+import { CImage, T } from "@/components/content/Editable";
 
 const homeFaqs = [
   {
@@ -337,6 +348,7 @@ interface HomeClientProps {
   specialities: Speciality[];
   heroBanners: HeroBanner[];
   patientStories: PatientStory[];
+  updates?: UpdateItem[];
 }
 
 export default function HomeClient({
@@ -346,7 +358,27 @@ export default function HomeClient({
   specialities,
   heroBanners,
   patientStories,
+  updates = [],
 }: HomeClientProps) {
+  const [updatesList, setUpdatesList] = useState<UpdateItem[]>(updates || []);
+  const [selectedUpdate, setSelectedUpdate] = useState<UpdateItem | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchUpdates()
+      .then((data) => {
+        if (isMounted && Array.isArray(data)) {
+          setUpdatesList(data);
+        }
+      })
+      .catch((err) => console.error("Failed to fetch fresh updates:", err));
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const activeUpdates = (updatesList || []).filter((u) => u.isActive !== false);
+  const hasActiveUpdates = activeUpdates.length > 0;
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHoveringAwards, setIsHoveringAwards] = useState(false);
@@ -562,51 +594,197 @@ export default function HomeClient({
         {/* Main Slogan Overlay on Video */}
         <div className="absolute inset-x-0 bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-14 xl:bottom-16 min-[1366px]:bottom-[72px] min-[1440px]:bottom-20 2xl:bottom-[88px] z-20 text-center px-4 pointer-events-none">
           <h1 className="relative z-10 text-[18px] min-[390px]:text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] min-[1440px]:text-[56px] 2xl:text-[64px] font-bold font-hindi-poppins tracking-normal text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] px-2 leading-[1.08]">
-            <span className="sr-only">Best Multi Super Speciality Hospital in Varanasi - </span>
-            <span aria-hidden="true">आपके हर श्वांस के रक्षक</span>
+            <span className="sr-only"><T k="home_00583a" d={"Best Multi Super Speciality Hospital in Varanasi - "} /></span>
+            <span aria-hidden="true"><T k="home_d91179" d={"आपके हर श्वांस के रक्षक"} /></span>
           </h1>
         </div>
       </section>
 
       {/* Standalone Notification Ticker */}
-      <section className="relative w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-b border-[#1e3a8a]/30 group cursor-pointer transition-colors hover:bg-[#0e2455] z-20 updates-ticker">
-        <Link
-          href="/updates"
-          className="absolute inset-0 z-40"
-          aria-label="View all updates"
-        ></Link>
-        <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-10 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
-          <div className="flex items-center gap-2 text-[#E85222] font-bold tracking-widest text-xs uppercase font-heading">
+      <section className="relative w-full bg-[#0b1c43] text-white py-3 overflow-hidden border-b border-[#1e3a8a]/30 group transition-colors hover:bg-[#0e2455] z-20 updates-ticker">
+        {/* Left Badge: Updates link to /updates */}
+        <div className="absolute left-0 top-0 bottom-0 bg-[#0b1c43] z-20 px-4 flex items-center shadow-[4px_0_24px_rgba(11,28,67,1)] group-hover:bg-[#0e2455] transition-colors">
+          <Link
+            href="/updates"
+            className="flex items-center gap-2 text-[#E85222] hover:text-[#ff784b] font-bold tracking-widest text-xs uppercase font-heading transition-colors"
+            title="View all updates"
+          >
             <span className="w-2 h-2 rounded-full bg-[#E85222] animate-pulse"></span>
-            Updates
+            <T k="home_c76d18" d={"Updates"} />
+          </Link>
+        </div>
+
+        {/* Ticker Content */}
+        {!hasActiveUpdates ? (
+          // Fallback: If no updates are posted from admin, show ONLY this text (ek baar)
+          <div className="flex items-center pl-32 sm:pl-36 pr-6 opacity-95 group-hover:opacity-100 transition-opacity">
+            <span className="flex items-center gap-3 text-xs sm:text-sm font-medium tracking-wide text-gray-200 group-hover:text-white truncate">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E85222] shrink-0"></span>
+              <span>Popular Hospital Varanasi — Delivering Excellence in Healthcare.</span>
+            </span>
+          </div>
+        ) : activeUpdates.length === 1 ? (
+          // Exactly 1 update: Show it ONCE (ek baar) - clean, crisp, no repetition
+          <div className="flex items-center pl-32 sm:pl-36 pr-6 overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setSelectedUpdate(activeUpdates[0])}
+              className="group/item inline-flex items-center gap-2.5 text-left text-gray-200 hover:text-white transition-colors cursor-pointer truncate"
+              title="Click to view details"
+            >
+              <span
+                className={`shrink-0 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                  activeUpdates[0].isImportant
+                    ? "bg-[#E85222] text-white animate-pulse"
+                    : "bg-teal-600 text-white"
+                }`}
+              >
+                {activeUpdates[0].category || "Update"}
+              </span>
+              <span className="font-semibold text-white/95 group-hover/item:text-[#E85222] group-hover/item:underline underline-offset-4 decoration-[#E85222] transition-colors truncate">
+                {activeUpdates[0].title}
+              </span>
+              <span className="text-[11px] text-[#E85222] font-semibold flex items-center ml-1 group-hover/item:translate-x-0.5 transition-transform shrink-0">
+                (Details →)
+              </span>
+            </button>
+          </div>
+        ) : (
+          // 2 or more updates: Smooth marquee showing all updates (dono/sab show honge)
+          <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-32 sm:pl-36">
+            {[...Array(2)].map((_, i) => (
+              <div
+                key={i}
+                className="flex shrink-0 items-center gap-8 mx-6 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >
+                {activeUpdates.map((update, idx) => (
+                  <span
+                    key={`${update._id}-${idx}`}
+                    className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setSelectedUpdate(update)}
+                      className="group/item inline-flex items-center gap-2 text-left text-gray-200 hover:text-white transition-colors cursor-pointer"
+                      title="Click to view details"
+                    >
+                      <span
+                        className={`px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                          update.isImportant
+                            ? "bg-[#E85222] text-white animate-pulse"
+                            : "bg-teal-600 text-white"
+                        }`}
+                      >
+                        {update.category || "Update"}
+                      </span>
+                      <span className="font-semibold text-white/95 group-hover/item:text-[#E85222] group-hover/item:underline underline-offset-4 decoration-[#E85222] transition-colors">
+                        {update.title}
+                      </span>
+                      <span className="text-[11px] text-[#E85222] font-semibold ml-0.5 group-hover/item:translate-x-0.5 transition-transform">
+                        →
+                      </span>
+                    </button>
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 ml-5"></span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Update Details Modal */}
+      {selectedUpdate && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity"
+          onClick={() => setSelectedUpdate(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 py-4 bg-[#0b1c43] text-white">
+              <div className="flex items-center gap-3">
+                <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#E85222] text-white uppercase tracking-wider">
+                  {selectedUpdate.category || "Update"}
+                </span>
+                {selectedUpdate.date && (
+                  <span className="text-xs text-gray-300 font-medium">
+                    {selectedUpdate.date}
+                  </span>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedUpdate(null)}
+                className="p-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 overflow-y-auto space-y-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#0b1c43] font-heading leading-snug">
+                {selectedUpdate.title}
+              </h2>
+
+              {selectedUpdate.imageUrl && (
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
+                  <Image
+                    src={getImageUrl(selectedUpdate.imageUrl)}
+                    alt={selectedUpdate.title}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 640px) 500px, 100vw"
+                  />
+                </div>
+              )}
+
+              <p className="text-gray-700 leading-relaxed whitespace-pre-line text-sm sm:text-base">
+                {selectedUpdate.description}
+              </p>
+            </div>
+
+            {/* Modal Footer / Actions */}
+            <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex flex-wrap items-center gap-3">
+              {selectedUpdate.pdfUrl && (
+                <a
+                  href={getImageUrl(selectedUpdate.pdfUrl)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#E85222] text-white text-xs sm:text-sm font-bold rounded-lg hover:bg-[#d1451a] transition-all shadow-sm active:scale-95"
+                >
+                  <FileText className="w-4 h-4" />
+                  View PDF Details
+                </a>
+              )}
+              {selectedUpdate.linkUrl && (
+                <a
+                  href={selectedUpdate.linkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#0b1c43] text-white text-xs sm:text-sm font-bold rounded-lg hover:bg-[#0e2455] transition-all shadow-sm active:scale-95"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Read More
+                </a>
+              )}
+              <Link
+                href="/updates"
+                onClick={() => setSelectedUpdate(null)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-300 text-gray-700 text-xs sm:text-sm font-bold rounded-lg hover:bg-gray-100 transition-colors ml-auto"
+              >
+                All Announcements →
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="flex whitespace-nowrap animate-scroll-left group-hover:[animation-play-state:paused] pl-32">
-          {/* CSS Marquee requires duplicating the content once to create a seamless infinite loop. We reduced it from 4 to 2 to avoid excessive repetition. */}
-          {[...Array(2)].map((_, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-8 mx-4 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap"
-            >
-              <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#E85222] text-white uppercase tracking-wider">
-                  Update
-                </span>
-                Welcome to Popular Hospital Varanasi — Delivering Excellence in Healthcare.
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-              <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                Cashless facility available for CGHS, ECHS, Ayushman Bharat & major health insurances.
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-              <span className="flex items-center gap-3 text-sm font-medium tracking-wide text-gray-200 group-hover:text-white">
-                Emergency & Trauma Center is fully operational 24/7. Call: +91-9519999280
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-            </div>
-          ))}
-        </div>
-      </section>
+      )}
 
       {/* Action Cards Section */}
       <section className="jakarta-font-scope relative z-30 overflow-hidden bg-gradient-to-br from-[#f8fafc] via-white to-[#eef6fb] py-12 sm:py-16">
@@ -676,12 +854,8 @@ export default function HomeClient({
               <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#E85222]/12 blur-2xl" />
               <div className="pointer-events-none absolute -bottom-12 left-10 h-44 w-44 rounded-full bg-[#1e3a8a]/10 blur-2xl" />
               <div className="relative mb-5">
-                <p className="font-jakarta text-xs font-extrabold uppercase tracking-[0.18em] text-[#E85222]">
-                  Popular Hospital
-                </p>
-                <h3 className="mt-2 font-jakarta text-2xl font-black leading-tight text-[#1e3a8a]">
-                  Trusted care, proven outcomes
-                </h3>
+                <p className="font-jakarta text-xs font-extrabold uppercase tracking-[0.18em] text-[#E85222]"><T k="home_259065" d={"Popular Hospital"} /></p>
+                <h3 className="mt-2 font-jakarta text-2xl font-black leading-tight text-[#1e3a8a]"><T k="home_0a3e64" d={"Trusted care, proven outcomes"} /></h3>
               </div>
               <div className="relative grid w-full grid-cols-3 gap-3">
                 <TrustBadge value="32+" label="Years of Legacy" tone="orange" />
@@ -707,20 +881,11 @@ export default function HomeClient({
             {/* Left Side - Text Content */}
             <div className="flex flex-col justify-center space-y-8">
               <div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-black font-jakarta leading-tight tracking-tight text-[#1e3a8a] mb-6 xl:mb-4 drop-shadow-sm">
-                  About <span className="text-[#E85222]">Popular Hospital</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-black font-jakarta leading-tight tracking-tight text-[#1e3a8a] mb-6 xl:mb-4 drop-shadow-sm"><T k="home_dae445" d={"About "} /><span className="text-[#E85222]"><T k="home_259065_2" d={"Popular Hospital"} /></span>
                 </h2>
 
                 <p className="text-gray-600 text-[17px] sm:text-[19px] leading-relaxed font-medium font-jakarta">
-                  <span className="text-[#0b1c43] font-bold">
-                    POPULAR HOSPITAL
-                  </span>{" "}
-                  (a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi
-                  Super Speciality Hospital that redefines standards of
-                  excellence in healthcare delivery by bringing together the
-                  best of infrastructure, technology, training, education and
-                  medical intelligentsia.
-                </p>
+                  <span className="text-[#0b1c43] font-bold"><T k="home_294755" d={"POPULAR HOSPITAL"} /></span>{" "}<T k="home_b2905c" d={"(a Unit of POPULAR MEDICARE LTD), one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia."} /></p>
               </div>
 
               {/* Action Area */}
@@ -732,9 +897,7 @@ export default function HomeClient({
                   className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#E85222] to-[#d1451a] text-white rounded-full font-bold text-[14px] sm:text-[17px] overflow-hidden transition-all shadow-[0_8px_30px_rgb(232,82,34,0.3)] hover:shadow-[0_8px_30px_rgb(232,82,34,0.5)] hover:scale-105 shrink-0"
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
-                  <span className="relative flex items-center gap-2 sm:gap-3 whitespace-nowrap">
-                    Discover More
-                    <span className="hidden sm:inline"> About Us</span>
+                  <span className="relative flex items-center gap-2 sm:gap-3 whitespace-nowrap"><T k="home_cab73e" d={"Discover More"} /><span className="hidden sm:inline"><T k="home_330ae3" d={" About Us"} /></span>
                     <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-[#E85222] transition-colors shadow-sm shrink-0">
                       <svg
                         className="w-3.5 h-3.5 sm:w-4 sm:h-4"
@@ -774,19 +937,13 @@ export default function HomeClient({
                     </svg>
                   </div>
                   <div className="hidden sm:flex flex-col justify-center items-start min-w-0">
-                    <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">
-                      24/7 Helpline
-                    </p>
+                    <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5"><T k="home_4d2a34" d={"24/7 Helpline"} /></p>
                     <div className="flex items-center justify-start gap-2 w-full">
-                      <span className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] tracking-tight">
-                        +91-7800001895
-                      </span>
+                      <span className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] tracking-tight"><T k="home_951297" d={"+91-7800001895"} /></span>
                       <span className="text-gray-300 font-bold text-[14px] shrink-0">
                         /
                       </span>
-                      <span className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] tracking-tight shrink-0">
-                        96
-                      </span>
+                      <span className="text-[14px] lg:text-[15px] xl:text-[16px] font-black text-[#0b1c43] tracking-tight shrink-0"><T k="home_6fb84a" d={"96"} /></span>
                     </div>
                   </div>
                 </a>
@@ -798,12 +955,8 @@ export default function HomeClient({
               <div className="relative mx-auto max-w-[270px] sm:max-w-[520px] lg:max-w-[500px] xl:max-w-[460px]">
                 <div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-tr from-[#1e3a8a]/14 via-hospital-teal/14 to-[#E85222]/16 blur-2xl opacity-60"></div>
                 <div className="absolute -right-2 -top-3 z-20 rounded-xl bg-white px-3 py-2 shadow-[0_10px_24px_rgba(15,23,42,0.1)] ring-1 ring-slate-100 sm:-right-4 sm:-top-4 sm:rounded-2xl sm:px-5 sm:py-4">
-                  <p className="font-jakarta text-[8px] font-extrabold uppercase tracking-[0.16em] text-[#E85222] sm:text-[11px]">
-                    Since 1996
-                  </p>
-                  <p className="mt-0.5 font-jakarta text-[11px] font-black leading-tight text-[#1e3a8a] sm:mt-1 sm:text-lg">
-                    Trusted Healthcare
-                  </p>
+                  <p className="font-jakarta text-[8px] font-extrabold uppercase tracking-[0.16em] text-[#E85222] sm:text-[11px]"><T k="home_ce72cb" d={"Since 1996"} /></p>
+                  <p className="mt-0.5 font-jakarta text-[11px] font-black leading-tight text-[#1e3a8a] sm:mt-1 sm:text-lg"><T k="home_b89e29" d={"Trusted Healthcare"} /></p>
                 </div>
                 <div className="absolute -bottom-3 left-3 z-20 flex items-center gap-2 rounded-xl bg-[#1e3a8a] px-3 py-2 text-white shadow-[0_12px_28px_rgba(30,58,138,0.18)] sm:-bottom-5 sm:left-6 sm:gap-3 sm:rounded-2xl sm:px-5 sm:py-4">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/15 text-[#FFAB73] sm:h-10 sm:w-10 sm:rounded-xl">
@@ -822,18 +975,14 @@ export default function HomeClient({
                     </svg>
                   </span>
                   <div>
-                    <p className="font-jakarta text-xs font-black leading-none sm:text-lg">
-                      24/7 Care
-                    </p>
-                    <p className="mt-0.5 font-jakarta text-[9px] font-semibold text-white/75 sm:mt-1 sm:text-xs">
-                      Emergency support
-                    </p>
+                    <p className="font-jakarta text-xs font-black leading-none sm:text-lg"><T k="home_bbcddc" d={"24/7 Care"} /></p>
+                    <p className="mt-0.5 font-jakarta text-[9px] font-semibold text-white/75 sm:mt-1 sm:text-xs"><T k="home_15894d" d={"Emergency support"} /></p>
                   </div>
                 </div>
 
                 <div className="relative w-full overflow-hidden rounded-2xl border-[6px] border-white bg-gray-100 shadow-[0_12px_28px_rgba(15,23,42,0.1)] ring-1 ring-slate-200/70 sm:rounded-[2.5rem] sm:border-[10px] sm:shadow-[0_16px_36px_rgba(15,23,42,0.12)]">
                   <div className="relative aspect-[4/3] w-full lg:aspect-square">
-                    <Image
+                    <CImage k="home_ba66cd"
                       src="/about-section-image.png"
                       alt="Popular Hospital - Expert Care"
                       fill
@@ -874,9 +1023,8 @@ export default function HomeClient({
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8 relative z-10">
             <div className="max-w-3xl">
-              <h2 className="text-4xl sm:text-5xl font-black text-[#1e3a8a] font-jakarta leading-[1.15] tracking-tight">
-                Why <br className="hidden md:block" />
-                <span className="text-[#E85222]">Popular Hospital</span>
+              <h2 className="text-4xl sm:text-5xl font-black text-[#1e3a8a] font-jakarta leading-[1.15] tracking-tight"><T k="home_e3a9c0" d={"Why "} /><br className="hidden md:block" />
+                <span className="text-[#E85222]"><T k="home_259065_3" d={"Popular Hospital"} /></span>
               </h2>
             </div>
           </div>
@@ -886,7 +1034,7 @@ export default function HomeClient({
             <div className="lg:col-span-4 relative h-full min-h-[500px] lg:min-h-[auto] rounded-[2.5rem] overflow-hidden group shadow-2xl">
               <div className="absolute inset-0 bg-[#0b1c43]"></div>
               {/* Main Image */}
-              <Image
+              <CImage k="home_c0d5c7"
                 src="/images/departments-images/general-medicine.jpeg"
                 alt="Expert Medical Care"
                 fill
@@ -902,9 +1050,7 @@ export default function HomeClient({
                 {/* Content Inside Image */}
                 <div className="bg-white/10 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-8 border border-white/20 transform transition-transform duration-500 group-hover:-translate-y-2 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                   <p className="flex items-center gap-2 text-hospital-teal font-bold tracking-widest text-[10px] sm:text-xs uppercase mb-3">
-                    <span className="w-2 h-2 rounded-full bg-hospital-teal animate-ping"></span>
-                    24/7 Emergency Support
-                  </p>
+                    <span className="w-2 h-2 rounded-full bg-hospital-teal animate-ping"></span><T k="home_fb02af" d={"24/7 Emergency Support"} /></p>
                   <div className="text-white font-black mb-5 sm:mb-6 flex items-center gap-3 sm:gap-4 drop-shadow-lg flex-nowrap whitespace-nowrap">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#FF6B00] to-[#d1451a] flex items-center justify-center shrink-0 shadow-lg">
                       <svg
@@ -925,15 +1071,11 @@ export default function HomeClient({
                       <a
                         href="tel:+917800001895"
                         className="text-[18px] min-[370px]:text-[20px] sm:text-[22px] tracking-tight hover:text-[#E85222] transition-colors leading-none"
-                      >
-                        +91-7800001895
-                      </a>
+                      ><T k="home_951297_2" d={"+91-7800001895"} /></a>
                       <a
                         href="tel:+917800001896"
                         className="text-[18px] min-[370px]:text-[20px] sm:text-[22px] tracking-tight hover:text-[#E85222] transition-colors leading-none"
-                      >
-                        +91-7800001896
-                      </a>
+                      ><T k="home_1ee59d" d={"+91-7800001896"} /></a>
                     </div>
                   </div>
                   <div
@@ -945,18 +1087,14 @@ export default function HomeClient({
                         {experienceCount}
                         <span className="text-[#E85222]">+</span>
                       </p>
-                      <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">
-                        Years Exp
-                      </p>
+                      <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80"><T k="home_97c224" d={"Years Exp"} /></p>
                     </div>
                     <div>
                       <p className="text-3xl sm:text-4xl font-black text-white drop-shadow-md">
                         {specialistsCount}
                         <span className="text-hospital-teal">+</span>
                       </p>
-                      <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80">
-                        Specialists
-                      </p>
+                      <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-300 font-bold uppercase tracking-wider mt-1 opacity-80"><T k="home_e87135" d={"Specialists"} /></p>
                     </div>
                   </div>
                 </div>
@@ -1152,13 +1290,9 @@ export default function HomeClient({
             <h2
               id="centres-of-excellence"
               className="text-4xl font-extrabold leading-tight tracking-normal text-[#1e3a8a] sm:text-5xl lg:text-[52px] font-jakarta"
-            >
-              Centres Of <span className="text-[#E85222]">Excellence</span>
+            ><T k="home_834285" d={"Centres Of "} /><span className="text-[#E85222]"><T k="home_6d2fae" d={"Excellence"} /></span>
             </h2>
-            <p className="mx-auto mt-3 max-w-4xl text-[15px] font-semibold leading-relaxed text-[#3d4d96] sm:text-base">
-              Combining the best specialists and equipment to provide you
-              nothing short of the best in healthcare.
-            </p>
+            <p className="mx-auto mt-3 max-w-4xl text-[15px] font-semibold leading-relaxed text-[#3d4d96] sm:text-base"><T k="home_9301ca" d={"Combining the best specialists and equipment to provide you nothing short of the best in healthcare."} /></p>
           </div>
 
           <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
@@ -1191,12 +1325,8 @@ export default function HomeClient({
       <section className="py-20 bg-[#f5f9ff]" aria-labelledby="our-services">
         <div className="mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="mb-12 xl:mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block font-jakarta">
-              Excellence in Care
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-jakarta tracking-tight">
-              Our Departments
-            </h2>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block font-jakarta"><T k="home_de44f9" d={"Excellence in Care"} /></span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-jakarta tracking-tight"><T k="home_738596" d={"Our Departments"} /></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -1327,9 +1457,7 @@ export default function HomeClient({
                   {/* Content Section */}
                   <div className="p-6 xl:p-5 flex flex-col flex-grow">
                     <div className="mb-4 xl:mb-3">
-                      <span className="text-[13px] xl:text-[12px] font-extrabold uppercase tracking-wider mb-2 block text-[#284a91] font-jakarta">
-                        Department of
-                      </span>
+                      <span className="text-[13px] xl:text-[12px] font-extrabold uppercase tracking-wider mb-2 block text-[#284a91] font-jakarta"><T k="home_4c5284" d={"Department of"} /></span>
                       <h3 className="text-2xl xl:text-xl font-bold text-[#1d1d1f] mb-3 xl:mb-2 font-jakarta leading-tight">
                         {service.title}
                       </h3>
@@ -1368,7 +1496,7 @@ export default function HomeClient({
               href="/departments"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
-              <span>View all departments</span>
+              <span><T k="home_58f07f" d={"View all departments"} /></span>
               <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <svg
                   className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
@@ -1408,14 +1536,12 @@ export default function HomeClient({
           <h2
             id="model-of-care"
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] mb-12 lg:mb-20 text-center font-jakarta"
-          >
-            Popular Hospital Model of Care
-          </h2>
+          ><T k="home_f57b6c" d={"Popular Hospital Model of Care"} /></h2>
 
           {/* Mobile Layout (< lg) */}
           <div className="lg:hidden flex flex-col items-center gap-12">
             <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border-[8px] border-white shadow-xl overflow-hidden shrink-0">
-              <Image
+              <CImage k="home_e32c48"
                 src="/images/model-of-care-center.jpg"
                 alt="Model of Care"
                 fill
@@ -1457,9 +1583,7 @@ export default function HomeClient({
                   <Link
                     href={item.href}
                     className="inline-flex items-center text-hospital-orange font-medium hover:text-orange-600 transition-colors"
-                  >
-                    Know More
-                    <span className="ml-2 w-6 h-6 bg-hospital-orange text-white rounded-full flex items-center justify-center text-xs">
+                  ><T k="home_16228c" d={"Know More"} /><span className="ml-2 w-6 h-6 bg-hospital-orange text-white rounded-full flex items-center justify-center text-xs">
                       ›
                     </span>
                   </Link>
@@ -1473,7 +1597,7 @@ export default function HomeClient({
             {/* Center Image Container */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
               <div className="relative w-[320px] h-[320px] xl:w-[340px] xl:h-[340px] rounded-full overflow-hidden border-[10px] border-white shadow-2xl">
-                <Image
+                <CImage k="home_e32c48_2"
                   src="/images/model-of-care-center.jpg"
                   alt="Surgery Team"
                   fill
@@ -1488,16 +1612,11 @@ export default function HomeClient({
 
             {/* Node 1: Top (Exceptional clinical talent) */}
             <div className="absolute left-1/2 top-2 transform -translate-x-1/2 flex flex-col items-center z-20 w-60 text-center">
-              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
-                Exceptional
-                <br />
-                clinical talent
-              </h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading"><T k="home_d5f040" d={"Exceptional"} /><br /><T k="home_1b0c88" d={"clinical talent"} /></h3>
               <Link
                 href="/care-model/clinical-talent"
                 className="text-gray-500 hover:text-hospital-orange font-medium flex items-center gap-2 transition-colors"
-              >
-                Know More{" "}
+              ><T k="home_16228c_2" d={"Know More"} />{" "}
                 <span className="w-5 h-5 bg-hospital-orange text-white rounded-full flex items-center justify-center text-sm pb-0.5">
                   ›
                 </span>
@@ -1508,16 +1627,11 @@ export default function HomeClient({
 
             {/* Node 2: Top Right (World-class infrastructure) */}
             <div className="absolute top-[20%] right-[4%] flex flex-col items-start z-20 w-60 text-left">
-              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
-                World-class
-                <br />
-                infrastructure
-              </h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading"><T k="home_3245a6" d={"World-class"} /><br /><T k="home_35f8b7" d={"infrastructure"} /></h3>
               <Link
                 href="/care-model/infrastructure"
                 className="text-gray-500 hover:text-hospital-orange font-medium flex items-center gap-2 transition-colors"
-              >
-                Know More{" "}
+              ><T k="home_16228c_3" d={"Know More"} />{" "}
                 <span className="w-5 h-5 bg-hospital-orange text-white rounded-full flex items-center justify-center text-sm pb-0.5">
                   ›
                 </span>
@@ -1528,16 +1642,11 @@ export default function HomeClient({
 
             {/* Node 3: Bottom Right (Latest high-end technology) */}
             <div className="absolute bottom-[20%] right-[4%] flex flex-col items-start z-20 w-60 text-left">
-              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
-                Latest high-end
-                <br />
-                technology
-              </h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading"><T k="home_5815e5" d={"Latest high-end"} /><br /><T k="home_30f7a1" d={"technology"} /></h3>
               <Link
                 href="/care-model/technology"
                 className="text-gray-500 hover:text-hospital-orange font-medium flex items-center gap-2 transition-colors"
-              >
-                Know More{" "}
+              ><T k="home_16228c_4" d={"Know More"} />{" "}
                 <span className="w-5 h-5 bg-hospital-orange text-white rounded-full flex items-center justify-center text-sm pb-0.5">
                   ›
                 </span>
@@ -1548,16 +1657,11 @@ export default function HomeClient({
 
             {/* Node 4: Bottom Left (Caring systems and processes) */}
             <div className="absolute bottom-[20%] left-[4%] flex flex-col items-end z-20 w-60 text-right">
-              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
-                Caring systems
-                <br />
-                and processes
-              </h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading"><T k="home_2da7e0" d={"Caring systems"} /><br /><T k="home_2ff8a0" d={"and processes"} /></h3>
               <Link
                 href="/care-model/systems-processes"
                 className="text-gray-500 hover:text-hospital-orange font-medium flex items-center justify-end gap-2 transition-colors"
-              >
-                Know More{" "}
+              ><T k="home_16228c_5" d={"Know More"} />{" "}
                 <span className="w-5 h-5 bg-hospital-orange text-white rounded-full flex items-center justify-center text-sm pb-0.5">
                   ›
                 </span>
@@ -1568,16 +1672,11 @@ export default function HomeClient({
 
             {/* Node 5: Top Left (Trust-based compassionate care) */}
             <div className="absolute top-[20%] left-[4%] flex flex-col items-end z-20 w-60 text-right">
-              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading">
-                Trust-based
-                <br />
-                compassionate care
-              </h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading"><T k="home_be7f5e" d={"Trust-based"} /><br /><T k="home_8e23c5" d={"compassionate care"} /></h3>
               <Link
                 href="/care-model/compassionate-care"
                 className="text-gray-500 hover:text-hospital-orange font-medium flex items-center justify-end gap-2 transition-colors"
-              >
-                Know More{" "}
+              ><T k="home_16228c_6" d={"Know More"} />{" "}
                 <span className="w-5 h-5 bg-hospital-orange text-white rounded-full flex items-center justify-center text-sm pb-0.5">
                   ›
                 </span>
@@ -1764,9 +1863,7 @@ export default function HomeClient({
           <Link
             href={href}
             className="group inline-flex items-center text-[#E85222] font-semibold text-[13px] tracking-wide uppercase hover:text-[#c73e15] transition-colors gap-1.5"
-          >
-            Know More
-            <span className="w-[18px] h-[18px] bg-[#E85222] text-white rounded-full flex items-center justify-center text-[11px] pb-[1px] group-hover:bg-[#c73e15] transition-colors">
+          ><T k="home_16228c_7" d={"Know More"} /><span className="w-[18px] h-[18px] bg-[#E85222] text-white rounded-full flex items-center justify-center text-[11px] pb-[1px] group-hover:bg-[#c73e15] transition-colors">
               ›
             </span>
           </Link>
@@ -1777,12 +1874,8 @@ export default function HomeClient({
             <div className="max-w-[1280px] mx-auto px-5 lg:px-8 relative z-10">
               <div className="flex items-end justify-between mb-12 xl:mb-10">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block font-jakarta">
-                    Excellence in Care
-                  </span>
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-jakarta tracking-tight">
-                    Services
-                  </h2>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#666] mb-3 block font-jakarta"><T k="home_de44f9_2" d={"Excellence in Care"} /></span>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-black text-[#1e3a8a] font-jakarta tracking-tight"><T k="home_5cbd58" d={"Services"} /></h2>
                 </div>
                 <div className="flex gap-3 md:gap-4 items-center mt-2 md:mt-0">
                   <button
@@ -2021,7 +2114,7 @@ export default function HomeClient({
       >
         {/* Background Image with High Visibility for striking look */}
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="home_23ff4b"
             src="/images/banners/book_an_appointment_banner.png"
             alt="Hospital background"
             fill
@@ -2064,13 +2157,8 @@ export default function HomeClient({
                 <h2
                   id="appointment-banner"
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-4xl font-bold text-white mb-3 xl:mb-2 font-heading"
-                >
-                  Book for an Appointments
-                </h2>
-                <p className="text-sm sm:text-base md:text-lg xl:text-base text-gray-200 leading-relaxed max-w-2xl">
-                  We are delighted to announce that our doors are open, and we
-                  are now accepting appointments to serve you better.
-                </p>
+                ><T k="home_1f7792" d={"Book for an Appointments"} /></h2>
+                <p className="text-sm sm:text-base md:text-lg xl:text-base text-gray-200 leading-relaxed max-w-2xl"><T k="home_815209" d={"We are delighted to announce that our doors are open, and we are now accepting appointments to serve you better."} /></p>
               </div>
             </div>
 
@@ -2080,7 +2168,7 @@ export default function HomeClient({
                 href="/book"
                 className="inline-flex items-center gap-2 px-6 sm:px-8 md:px-10 xl:px-8 py-3 sm:py-3.5 md:py-4 xl:py-3 rounded-full border border-[#FFAB73] bg-transparent text-white font-medium hover:bg-[#FFAB73]/10 transition-colors font-heading text-sm sm:text-base md:text-lg xl:text-base"
               >
-                <span>Make Appointment</span>
+                <span><T k="home_627896" d={"Make Appointment"} /></span>
                 <svg
                   className="w-5 h-5 sm:w-6 sm:h-6 xl:w-5 xl:h-5 text-[#FFAB73]"
                   fill="none"
@@ -2109,9 +2197,7 @@ export default function HomeClient({
           <h2
             id="latest-news"
             className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-bold text-[#1e3a8a] mb-12 xl:mb-10 font-heading"
-          >
-            Latest News & Articles
-          </h2>
+          ><T k="home_3cd8c4" d={"Latest News & Articles"} /></h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {latestNews.map((article) => (
@@ -2143,7 +2229,7 @@ export default function HomeClient({
                     href={`/media/news/${article.slug}`}
                     className="inline-flex items-center gap-2 text-[#E85222] font-medium hover:text-[#d1451a] transition-colors text-sm sm:text-base mt-auto w-max"
                   >
-                    <span>Read More</span>
+                    <span><T k="home_646061" d={"Read More"} /></span>
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -2169,7 +2255,7 @@ export default function HomeClient({
               href="/media/news"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
-              <span>View All News & Articles</span>
+              <span><T k="home_098a2b" d={"View All News & Articles"} /></span>
               <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <svg
                   className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
@@ -2205,9 +2291,7 @@ export default function HomeClient({
               <h2
                 id="latest-events"
                 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-bold text-[#1e3a8a] font-heading"
-              >
-                Latest Events
-              </h2>
+              ><T k="home_f105cc" d={"Latest Events"} /></h2>
             </div>
           </div>
 
@@ -2261,7 +2345,7 @@ export default function HomeClient({
                     href={`/media/events/${event.slug}`}
                     className="group/btn mt-auto inline-flex w-max items-center gap-2 text-sm font-extrabold text-[#E85222] transition-colors hover:text-[#d1451a]"
                   >
-                    <span>View Details</span>
+                    <span><T k="home_907b3b" d={"View Details"} /></span>
                     <svg
                       className="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
                       fill="none"
@@ -2287,7 +2371,7 @@ export default function HomeClient({
               href="/media/events"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
-              <span>View All Events</span>
+              <span><T k="home_dbafdd" d={"View All Events"} /></span>
               <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <svg
                   className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
@@ -2313,8 +2397,7 @@ export default function HomeClient({
         <div className="mx-auto w-full max-w-[1280px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           {/* Heading */}
           <div className="text-center mb-10 xl:mb-8">
-            <h2 className="text-3xl sm:text-4xl xl:text-3xl font-black text-[#0b1c43] font-jakarta tracking-tight">
-              Cashless <span className="text-hospital-teal">Empanelment</span>
+            <h2 className="text-3xl sm:text-4xl xl:text-3xl font-black text-[#0b1c43] font-jakarta tracking-tight"><T k="home_c75732" d={"Cashless "} /><span className="text-hospital-teal"><T k="home_6305d3" d={"Empanelment"} /></span>
             </h2>
             <div className="w-16 h-1 bg-[#E85222] mx-auto mt-4 rounded-full" />
           </div>
@@ -2377,7 +2460,7 @@ export default function HomeClient({
               href="/about/cashless-empanelment"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
-              <span>View All Partners</span>
+              <span><T k="home_5ae8f2" d={"View All Partners"} /></span>
               <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <svg
                   className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
@@ -2407,15 +2490,8 @@ export default function HomeClient({
             <h2
               id="faq-section"
               className="text-2xl sm:text-3xl lg:text-4xl xl:text-3xl font-bold text-[#1e3a8a] mb-4 xl:mb-2 font-heading"
-            >
-              Frequently Asked Questions - Popular Hospital
-            </h2>
-            <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-4xl">
-              Explore detailed answers to commonly asked questions about
-              healthcare services, specialist consultations, treatment
-              processes, and patient care at Popular Hospital, one of
-              India&apos;s leading multispeciality hospital networks.
-            </p>
+            ><T k="home_3671da" d={"Frequently Asked Questions - Popular Hospital"} /></h2>
+            <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-4xl"><T k="home_1c52bc" d={"Explore detailed answers to commonly asked questions about healthcare services, specialist consultations, treatment processes, and patient care at Popular Hospital, one of India's leading multispeciality hospital networks."} /></p>
           </div>
 
           <div className="space-y-3 sm:space-y-4">
@@ -2490,7 +2566,7 @@ export default function HomeClient({
               href="/faqs"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#284a91]/10 text-[#284a91] hover:bg-[#284a91] hover:text-white rounded-full font-bold text-lg transition-all shadow-sm hover:shadow-md group"
             >
-              <span>View All Frequently Asked Questions</span>
+              <span><T k="home_4d5cca" d={"View All Frequently Asked Questions"} /></span>
               <div className="w-8 h-8 rounded-full bg-[#284a91]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <svg
                   className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
@@ -2523,40 +2599,23 @@ export default function HomeClient({
               {/* Branding Block from Image */}
               <div className="bg-[#0b1c43] text-white rounded-3xl p-10 sm:p-12 lg:p-14 relative overflow-hidden transition-all duration-500">
                 <div className="relative z-10">
-                  <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-4xl font-black italic leading-[1.15] tracking-tight mb-8 xl:mb-6 font-jakarta">
-                    Committed To Build A<br />
-                    <span className="text-[#E85222]">
-                      Positive, Safe, Patient
-                    </span>
-                    <br />
-                    Focused Culture.
-                  </h2>
-                  <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl font-medium font-jakarta">
-                    Today the hospital is recognised as a world renowned
-                    institution, not only providing outstanding care and
-                    treatment, our goal is to deliver quality care in a
-                    respectful & compassionate manner. We strive to be the first
-                    and best choice for healthcare.
-                  </p>
+                  <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-4xl font-black italic leading-[1.15] tracking-tight mb-8 xl:mb-6 font-jakarta"><T k="home_65f773" d={"Committed To Build A"} /><br />
+                    <span className="text-[#E85222]"><T k="home_542030" d={"Positive, Safe, Patient"} /></span>
+                    <br /><T k="home_15f645" d={"Focused Culture."} /></h2>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl font-medium font-jakarta"><T k="home_b6fc9c" d={"Today the hospital is recognised as a world renowned institution, not only providing outstanding care and treatment, our goal is to deliver quality care in a respectful & compassionate manner. We strive to be the first and best choice for healthcare."} /></p>
 
                   <div className="flex flex-col sm:flex-row items-center gap-6 mb-16">
                     <Link
                       href="/doctors"
                       className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-3.5 bg-[#E85222] text-white rounded-xl text-lg font-bold hover:bg-[#d1451a] transition-all duration-300 shadow-lg shadow-[#E85222]/20"
-                    >
-                      Find a Doctor
-                    </Link>
+                    ><T k="home_40fc21" d={"Find a Doctor"} /></Link>
 
                     <Link
                       href="#international-patients"
                       className="w-full sm:w-auto flex flex-col items-center justify-center px-8 py-3 border-2 border-white/20 hover:border-[#E85222] text-white rounded-xl transition-all duration-300 group bg-white/5 backdrop-blur-sm"
                     >
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#E85222] group-hover:text-white mb-0.5">
-                        For International Patients
-                      </span>
-                      <span className="text-xs font-bold whitespace-nowrap">
-                        Send Your Inquiry to Assist You
-                      </span>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#E85222] group-hover:text-white mb-0.5"><T k="home_dd67df" d={"For International Patients"} /></span>
+                      <span className="text-xs font-bold whitespace-nowrap"><T k="home_d87766" d={"Send Your Inquiry to Assist You"} /></span>
                     </Link>
                   </div>
 
@@ -2601,24 +2660,16 @@ export default function HomeClient({
                   </svg>
                 </div>
                 <div className="flex-1 text-center sm:text-left">
-                  <h3 className="text-2xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase italic underline decoration-[#E85222]/30 underline-offset-8">
-                    Connect With Us
-                  </h3>
+                  <h3 className="text-2xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase italic underline decoration-[#E85222]/30 underline-offset-8"><T k="home_27d57e" d={"Connect With Us"} /></h3>
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-6 sm:gap-y-2">
                       <p className="whitespace-nowrap text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
-                        <span className="text-[#E85222] mr-2">CALL:</span>{" "}
-                        +91-7800001896
-                      </p>
+                        <span className="text-[#E85222] mr-2"><T k="home_028ecf" d={"CALL:"} /></span>{" "}<T k="home_1ee59d_2" d={"+91-7800001896"} /></p>
                       <p className="whitespace-nowrap text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
-                        <span className="text-[#E85222] mr-2">CALL:</span>{" "}
-                        +91-7800001895
-                      </p>
+                        <span className="text-[#E85222] mr-2"><T k="home_028ecf_2" d={"CALL:"} /></span>{" "}<T k="home_951297_3" d={"+91-7800001895"} /></p>
                     </div>
                     <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
-                      <span className="text-[#E85222] mr-2">EMAIL:</span>{" "}
-                      info@popularhospitals.in
-                    </p>
+                      <span className="text-[#E85222] mr-2"><T k="home_1d572d" d={"EMAIL:"} /></span>{" "}<T k="home_3ddf84" d={"info@popularhospitals.in"} /></p>
                   </div>
                 </div>
               </div>
@@ -2626,12 +2677,8 @@ export default function HomeClient({
 
             {/* Right Column - Contact Form */}
             <div className="bg-[#FFFAF5] rounded-3xl border border-[#F3E6D8] p-8 sm:p-10 lg:p-12 xl:p-8 shadow-sm order-1 lg:order-2 self-stretch">
-              <p className="text-[#0b1c43] text-md sm:text-md font-medium mb-1 leading-relaxed font-jakarta">
-                We will confirm your appointment within 2 hours
-              </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5x1 xl:text-3xl font-black text-[#0b1c43] mb-10 xl:mb-6 font-jakarta tracking-tight">
-                Request An Appointment
-              </h2>
+              <p className="text-[#0b1c43] text-md sm:text-md font-medium mb-1 leading-relaxed font-jakarta"><T k="home_d4701e" d={"We will confirm your appointment within 2 hours"} /></p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5x1 xl:text-3xl font-black text-[#0b1c43] mb-10 xl:mb-6 font-jakarta tracking-tight"><T k="home_d3d144" d={"Request An Appointment"} /></h2>
 
               <form
                 onSubmit={async (e) => {
@@ -2897,14 +2944,11 @@ export default function HomeClient({
                   <label
                     htmlFor="agreeTerms"
                     className="text-sm font-medium text-gray-600 cursor-pointer"
-                  >
-                    I agree with the{" "}
+                  ><T k="home_1ef32f" d={"I agree with the"} />{" "}
                     <Link
                       href="/terms"
                       className="text-[#E85222] hover:underline"
-                    >
-                      terms and conditions
-                    </Link>
+                    ><T k="home_9b45e6" d={"terms and conditions"} /></Link>
                     .
                   </label>
                 </div>
@@ -2924,10 +2968,7 @@ export default function HomeClient({
                         strokeWidth={2}
                         d="M5 13l4 4L19 7"
                       />
-                    </svg>
-                    Your appointment request has been submitted! We will confirm
-                    within 2 hours.
-                  </div>
+                    </svg><T k="home_368513" d={"Your appointment request has been submitted! We will confirm within 2 hours."} /></div>
                 )}
                 {formError && (
                   <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium">
@@ -2975,7 +3016,7 @@ export default function HomeClient({
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                         />
                       </svg>
-                      <span>Sending...</span>
+                      <span><T k="home_c338c1" d={"Sending..."} /></span>
                     </>
                   ) : (
                     <>
@@ -2992,7 +3033,7 @@ export default function HomeClient({
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
-                      <span>Send Message Now</span>
+                      <span><T k="home_96b7e2" d={"Send Message Now"} /></span>
                     </>
                   )}
                 </button>
@@ -3021,8 +3062,7 @@ export default function HomeClient({
         >
           <div className="mx-auto w-full max-w-[1366px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1e3a8a] font-jakarta tracking-tight inline-flex items-center gap-4">
-                Awards & <span className="text-[#1e3a8a]">Recognitions</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1e3a8a] font-jakarta tracking-tight inline-flex items-center gap-4"><T k="home_29ac38" d={"Awards & "} /><span className="text-[#1e3a8a]"><T k="home_4f9405" d={"Recognitions"} /></span>
               </h2>
               <div className="flex items-center justify-center mt-4">
                 <div className="w-12 h-1 bg-gray-300 rounded-full" />
@@ -3039,7 +3079,7 @@ export default function HomeClient({
 
                   <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 border border-gray-100 shadow-md bg-white overflow-hidden ring-12 ring-white">
                     <div className="relative w-full h-full rounded-full overflow-hidden">
-                      <Image
+                      <CImage k="home_a8776d"
                         src="/images/dr_ak_kaushik.png"
                         alt="DR. A.K. KAUSHIK"
                         fill
@@ -3066,21 +3106,15 @@ export default function HomeClient({
                 </div>
 
                 <div className="mt-8 text-center">
-                  <h3 className="text-2xl font-black text-[#1e3a8a] font-heading tracking-tight uppercase italic underline decoration-[#E85222]/30 decoration-4 underline-offset-8">
-                    DR. A.K.KAUSHIK
-                  </h3>
-                  <p className="mt-6 text-gray-600 font-bold leading-relaxed tracking-wide uppercase text-sm">
-                    Chairman & Director
-                    <br />
-                    Popular Group of Hospitals
-                  </p>
+                  <h3 className="text-2xl font-black text-[#1e3a8a] font-heading tracking-tight uppercase italic underline decoration-[#E85222]/30 decoration-4 underline-offset-8"><T k="home_2d6945" d={"DR. A.K.KAUSHIK"} /></h3>
+                  <p className="mt-6 text-gray-600 font-bold leading-relaxed tracking-wide uppercase text-sm"><T k="home_e10464" d={"Chairman & Director"} /><br /><T k="home_f61aa8" d={"Popular Group of Hospitals"} /></p>
                 </div>
               </div>
 
               {/* Right Column - Award Image */}
               <div className="flex flex-col gap-6">
                 <div className="relative rounded-2xl overflow-hidden bg-[#EFF6FF] shadow-md border-4 border-white transition-all duration-500 max-w-xl mx-auto w-full">
-                  <Image
+                  <CImage k="home_f73a95"
                     src="/images/awards/award1_v2.png"
                     alt="Hospital Award"
                     width={2496}
@@ -3092,9 +3126,7 @@ export default function HomeClient({
                 {/* Mobile Call to Action */}
                 <div className="lg:hidden text-center mt-2 px-6 py-4 bg-[#EFF6FF] shadow-md rounded-full border border-gray-100">
                   <p className="text-[#1e3a8a] font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3">
-                    <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
-                    Click for detailed view
-                    <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
+                    <span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" /><T k="home_067b87" d={"Click for detailed view"} /><span className="w-1.5 h-1.5 bg-[#E85222] rounded-full animate-ping" />
                   </p>
                 </div>
               </div>
@@ -3112,9 +3144,7 @@ export default function HomeClient({
             }}
           >
             <div className="bg-[#E85222] text-white px-6 py-2.5 rounded-full whitespace-nowrap shadow-2xl flex items-center gap-3 scale-90 group-hover/section:scale-100 transition-transform duration-300">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em]">
-                Click to view detailed
-              </span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em]"><T k="home_5c301d" d={"Click to view detailed"} /></span>
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -3149,11 +3179,8 @@ export default function HomeClient({
           }}
         />
         <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-12 text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-bold mb-16 xl:mb-12 font-heading max-w-[1200px] mx-auto leading-tight italic">
-            Popular Hospital Is The Best Hospital In Varanasi.{" "}
-            <span className="text-[#FF6B00] not-italic ml-2 xl:whitespace-nowrap">
-              Here&apos;s The Reason Why?
-            </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl font-bold mb-16 xl:mb-12 font-heading max-w-[1200px] mx-auto leading-tight italic"><T k="home_2fb9f6" d={"Popular Hospital Is The Best Hospital In Varanasi."} />{" "}
+            <span className="text-[#FF6B00] not-italic ml-2 xl:whitespace-nowrap"><T k="home_4a558e" d={"Here's The Reason Why?"} /></span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:max-w-5xl mx-auto border border-white/20 rounded-3xl overflow-hidden shadow-2xl bg-white/5 backdrop-blur-sm">
@@ -3181,12 +3208,8 @@ export default function HomeClient({
                 </svg>
               </div>
               <div className="text-left">
-                <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">
-                  Lacs of Happy
-                </div>
-                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80">
-                  Patients
-                </div>
+                <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1"><T k="home_545263" d={"Lacs of Happy"} /></div>
+                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80"><T k="home_bade30" d={"Patients"} /></div>
               </div>
             </div>
 
@@ -3206,12 +3229,8 @@ export default function HomeClient({
                 </svg>
               </div>
               <div className="text-left">
-                <div className="text-xl sm:text-2xl xl:text-xl font-bold font-heading leading-tight text-white mb-1">
-                  Excellent Team of
-                </div>
-                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80">
-                  Qualified Doctors
-                </div>
+                <div className="text-xl sm:text-2xl xl:text-xl font-bold font-heading leading-tight text-white mb-1"><T k="home_a9291c" d={"Excellent Team of"} /></div>
+                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80"><T k="home_368dd6" d={"Qualified Doctors"} /></div>
               </div>
             </div>
 
@@ -3232,9 +3251,7 @@ export default function HomeClient({
                 <div className="text-5xl sm:text-6xl font-black font-heading leading-tight text-[#FF6B00] mb-1">
                   <Counter target={450} duration={2000} />+
                 </div>
-                <div className="text-lg sm:text-xl font-bold tracking-[0.1em] text-white/80 uppercase">
-                  Beds
-                </div>
+                <div className="text-lg sm:text-xl font-bold tracking-[0.1em] text-white/80 uppercase"><T k="home_79411e" d={"Beds"} /></div>
               </div>
             </div>
 
@@ -3253,12 +3270,8 @@ export default function HomeClient({
                 </svg>
               </div>
               <div className="text-left">
-                <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1">
-                  Convenient Multiple
-                </div>
-                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80">
-                  Locations
-                </div>
+                <div className="text-xl sm:text-2xl font-bold font-heading leading-tight text-white mb-1"><T k="home_8c94f8" d={"Convenient Multiple"} /></div>
+                <div className="text-lg sm:text-xl xl:text-lg font-medium text-white/80"><T k="home_e59e8f" d={"Locations"} /></div>
               </div>
             </div>
           </div>
@@ -3465,9 +3478,7 @@ function SimpleCard({
       </div>
 
       {/* Mobile "Learn More" */}
-      <div className="md:hidden flex items-center gap-2 text-xs font-bold text-gray-900 mt-2">
-        Learn More
-        <svg
+      <div className="md:hidden flex items-center gap-2 text-xs font-bold text-gray-900 mt-2"><T k="home_378cbb" d={"Learn More"} /><svg
           className="w-3.5 h-3.5"
           fill="none"
           stroke="currentColor"
@@ -3626,9 +3637,7 @@ function QuickCard({
     >
       <h3 className="font-semibold text-hospital-navy">{title}</h3>
       <p className="mt-2 text-sm text-gray-600">{description}</p>
-      <span className="mt-4 text-sm font-medium text-hospital-teal">
-        Learn more →
-      </span>
+      <span className="mt-4 text-sm font-medium text-hospital-teal"><T k="home_bdda9f" d={"Learn more →"} /></span>
     </Link>
   );
 }

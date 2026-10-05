@@ -6,6 +6,7 @@ import {
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/services/pharmacy", {
@@ -29,18 +30,8 @@ const sections: ServiceSection[] = [
     highlight: "Commitment",
     content: (
       <div className="space-y-4">
-        <p className={textClass}>
-          Popular Hospital Pharmacy is situated in the campus of all the
-          hospitals to facilitate patients fulfilling their emergency needs as
-          well as the medicines as prescribed inside the hospital premises.
-        </p>
-        <p className={textClass}>
-          In line with rules and regulations and under the strict supervision of
-          authorities and the Drug Controller. We are committed to achieve and
-          maintain excellent standards of pharmaceutical care to deliver the
-          right medicines with best price. We continually seek ways to improve
-          our offering and services, what we deliver to our clients.
-        </p>
+        <p className={textClass}><T k="services-pharmacy_98e35d" d={"Popular Hospital Pharmacy is situated in the campus of all the hospitals to facilitate patients fulfilling their emergency needs as well as the medicines as prescribed inside the hospital premises."} /></p>
+        <p className={textClass}><T k="services-pharmacy_816bf1" d={"In line with rules and regulations and under the strict supervision of authorities and the Drug Controller. We are committed to achieve and maintain excellent standards of pharmaceutical care to deliver the right medicines with best price. We continually seek ways to improve our offering and services, what we deliver to our clients."} /></p>
       </div>
     ),
     image: "/images/departments-images/pharmacy.jpg",
@@ -53,17 +44,8 @@ const sections: ServiceSection[] = [
     eyebrow: "Quality Control",
     content: (
       <div className="space-y-4">
-        <p className={textClass}>
-          We believe in providing high quality, authentic and 100% genuine
-          products to our customers. We have highly skilled and qualified
-          employees who regularly perform the quality check.
-        </p>
-        <p className={textClass}>
-          All the medicines and other health care products being sold at Popular
-          Medical Stores are purchased from their authorized companies and its
-          distributors. This rules out spurious, duplicate, and expired drugs
-          completely for safe-guarding the interest and health of customers.
-        </p>
+        <p className={textClass}><T k="services-pharmacy_9b85fc" d={"We believe in providing high quality, authentic and 100% genuine products to our customers. We have highly skilled and qualified employees who regularly perform the quality check."} /></p>
+        <p className={textClass}><T k="services-pharmacy_0a0952" d={"All the medicines and other health care products being sold at Popular Medical Stores are purchased from their authorized companies and its distributors. This rules out spurious, duplicate, and expired drugs completely for safe-guarding the interest and health of customers."} /></p>
       </div>
     ),
     image: "/images/banners/pharmacy_24_bg.avif",
@@ -75,12 +57,7 @@ const sections: ServiceSection[] = [
     highlight: "Inventory",
     eyebrow: "Availability",
     content: (
-      <p className={textClass}>
-        Our entire inventory is centrally managed by highly skilled workers.
-        These skilled and qualified workers are dedicated to maintain sufficient
-        stock, dispose of any damaged/expired medicines and other inventory
-        control processes.
-      </p>
+      <p className={textClass}><T k="services-pharmacy_ef3b82" d={"Our entire inventory is centrally managed by highly skilled workers. These skilled and qualified workers are dedicated to maintain sufficient stock, dispose of any damaged/expired medicines and other inventory control processes."} /></p>
     ),
   },
 ];

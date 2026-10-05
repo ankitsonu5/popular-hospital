@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -126,7 +127,7 @@ export default function PsychiatryClient({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(139,92,246,0.15),transparent)]" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-          <Image
+          <CImage k="departments-psychiatry_3c62e9"
             src="/images/banners/psychiatry_banner.png"
             alt="Psychiatry Department Banner"
             fill
@@ -136,25 +137,17 @@ export default function PsychiatryClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-violet-500/20 text-violet-200 text-xs md:text-sm font-bold mb-6 border border-violet-400/30 backdrop-blur-sm uppercase tracking-wider">
-              Compassionate Mental Healthcare
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading">
-              Department of Psychiatry Department — Varanasi
-            </h1>
+            <span className="inline-block py-1.5 px-4 rounded-full bg-violet-500/20 text-violet-200 text-xs md:text-sm font-bold mb-6 border border-violet-400/30 backdrop-blur-sm uppercase tracking-wider"><T k="departments-psychiatry_c210b3" d={"Compassionate Mental Healthcare"} /></span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading"><T k="departments-psychiatry_7a6aca" d={"Department of Psychiatry Department — Varanasi"} /></h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-psychiatry_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Psychiatry"
                 className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-psychiatry_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -174,13 +167,7 @@ export default function PsychiatryClient({
               />
 
               <div className="relative border-l-4 border-blue-600 pl-6 py-5 bg-gradient-to-r from-blue-50/50 to-transparent rounded-r-2xl shadow-sm">
-                <p className="font-semibold text-gray-700 text-[15px] sm:text-base leading-relaxed text-justify">
-                  Welcome to the Psychiatry Department at Popular Hospital,
-                  Varanasi! Our expert team of psychiatrists and psychologists
-                  is devoted to providing comprehensive care for people of all
-                  ages. We focus on mental health and are here to assist you in
-                  achieving emotional well-being and living a fulfilling life.
-                </p>
+                <p className="font-semibold text-gray-700 text-[15px] sm:text-base leading-relaxed text-justify"><T k="departments-psychiatry_366e1d" d={"Welcome to the Psychiatry Department at Popular Hospital, Varanasi! Our expert team of psychiatrists and psychologists is devoted to providing comprehensive care for people of all ages. We focus on mental health and are here to assist you in achieving emotional well-being and living a fulfilling life."} /></p>
               </div>
 
               {/* Feature Cards — 4 quick highlights */}
@@ -196,8 +183,7 @@ export default function PsychiatryClient({
                         <Icon className="h-5 w-5" />
                       </div>
                       <div className="space-y-1">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Psychiatry Department hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-psychiatry_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-psychiatry_7427ec" d={"best Psychiatry Department hospital in Varanasi"} /></strong><T k="departments-psychiatry_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-psychiatry_200859" d={"Purvanchal"} /></strong><T k="departments-psychiatry_4f4133" d={" and "} /><strong><T k="departments-psychiatry_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
                         <h4 className="text-gray-900 font-bold text-[15px] group-hover:text-[#1e3a8a] transition-colors">
                           {card.title}
@@ -228,10 +214,7 @@ export default function PsychiatryClient({
           <div className="mt-20 border-t border-slate-100 pt-20">
             <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
               <SectionLabel text="Psychiatric Evaluation & Diagnosis" />
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Clinical <span className="text-[#1e3a8a]">Services</span> &
-                Conditions Treated
-              </h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-psychiatry_17e4da" d={"Clinical "} /><span className="text-[#1e3a8a]"><T k="departments-psychiatry_5cbd58" d={"Services"} /></span><T k="departments-psychiatry_9bf156" d={" & Conditions Treated"} /></h2>
               <div className="h-[2px] w-24 bg-[#1e3a8a] mx-auto" />
             </div>
 
@@ -239,7 +222,7 @@ export default function PsychiatryClient({
               {/* Left Card: Graphic/Illustration */}
               <div className="lg:col-span-5 flex flex-col justify-between bg-gradient-to-b from-slate-50 to-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="relative h-64 w-full">
-                  <Image
+                  <CImage k="departments-psychiatry_bbd162"
                     src="/images/departments-images/psychiatry_img.jpg"
                     alt="Mental Wellness & Psychiatric Care"
                     fill
@@ -247,28 +230,18 @@ export default function PsychiatryClient({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/80 via-[#0b1c43]/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6">
-                    <span className="text-blue-300 text-xs font-bold uppercase tracking-wider">
-                      Comprehensive Assessment
-                    </span>
-                    <h3 className="text-white text-xl font-bold font-heading mt-1">
-                      Holistic Diagnosis
-                    </h3>
+                    <span className="text-blue-300 text-xs font-bold uppercase tracking-wider"><T k="departments-psychiatry_96bc75" d={"Comprehensive Assessment"} /></span>
+                    <h3 className="text-white text-xl font-bold font-heading mt-1"><T k="departments-psychiatry_309673" d={"Holistic Diagnosis"} /></h3>
                   </div>
                 </div>
                 <div className="p-6 space-y-4 flex-grow flex flex-col justify-center">
-                  <p className="text-gray-600 text-sm sm:text-[15px] font-medium leading-relaxed text-justify">
-                    Our psychiatrists perform in-depth evaluations to understand
-                    your mental health condition and provide accurate, tailored
-                    treatment plans.
-                  </p>
+                  <p className="text-gray-600 text-sm sm:text-[15px] font-medium leading-relaxed text-justify"><T k="departments-psychiatry_846e3e" d={"Our psychiatrists perform in-depth evaluations to understand your mental health condition and provide accurate, tailored treatment plans."} /></p>
                   <div className="border-t border-slate-100 pt-4">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-full bg-blue-50 text-[#1e3a8a] flex items-center justify-center">
                         <CheckCircle2 className="h-4 w-4" />
                       </div>
-                      <p className="text-xs text-gray-500 font-bold uppercase">
-                        Evidence-Based Treatment
-                      </p>
+                      <p className="text-xs text-gray-500 font-bold uppercase"><T k="departments-psychiatry_b1a8d8" d={"Evidence-Based Treatment"} /></p>
                     </div>
                   </div>
                 </div>
@@ -277,9 +250,7 @@ export default function PsychiatryClient({
               {/* Right Card: Conditions List */}
               <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-100 p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-[#0b1c43] font-bold text-xl mb-6 font-heading">
-                    Specialized Treatment For:
-                  </h3>
+                  <h3 className="text-[#0b1c43] font-bold text-xl mb-6 font-heading"><T k="departments-psychiatry_0c6116" d={"Specialized Treatment For:"} /></h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {psychiatryServices.map((item, idx) => (
                       <div
@@ -302,8 +273,7 @@ export default function PsychiatryClient({
           <div className="mt-20 border-t border-slate-100 pt-20">
             <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
               <SectionLabel text="Clinical Interventions" />
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Therapeutic <span className="text-[#1e3a8a]">Programs</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-psychiatry_8159f3" d={"Therapeutic "} /><span className="text-[#1e3a8a]"><T k="departments-psychiatry_ab14d0" d={"Programs"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-[#1e3a8a] mx-auto" />
             </div>
@@ -316,17 +286,8 @@ export default function PsychiatryClient({
                     <User className="h-6 w-6" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-[#0b1c43] font-bold text-xl md:text-2xl font-heading group-hover:text-[#1e3a8a] transition-colors">
-                      Individual Therapy
-                    </h3>
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed text-justify font-medium">
-                      We provide individual therapy using evidence-based
-                      approaches such as cognitive-behavioral therapy (CBT),
-                      dialectical behavior therapy (DBT), and psychodynamic
-                      therapy. We offer a supportive, confidential environment
-                      to explore emotions, develop coping strategies, and
-                      promote personal growth.
-                    </p>
+                    <h3 className="text-[#0b1c43] font-bold text-xl md:text-2xl font-heading group-hover:text-[#1e3a8a] transition-colors"><T k="departments-psychiatry_0c7d4c" d={"Individual Therapy"} /></h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed text-justify font-medium"><T k="departments-psychiatry_62cf01" d={"We provide individual therapy using evidence-based approaches such as cognitive-behavioral therapy (CBT), dialectical behavior therapy (DBT), and psychodynamic therapy. We offer a supportive, confidential environment to explore emotions, develop coping strategies, and promote personal growth."} /></p>
                   </div>
                 </div>
               </div>
@@ -338,17 +299,8 @@ export default function PsychiatryClient({
                     <Users className="h-6 w-6" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-[#0b1c43] font-bold text-xl md:text-2xl font-heading group-hover:text-[#1e3a8a] transition-colors">
-                      Family Therapy
-                    </h3>
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed text-justify font-medium">
-                      We understand the vital role of family in the therapeutic
-                      process. Our family therapy sessions aim to address family
-                      dynamics, communication issues, and relationship
-                      challenges that affect mental health, enhancing
-                      understanding and creating a strong support network for
-                      long-term recovery.
-                    </p>
+                    <h3 className="text-[#0b1c43] font-bold text-xl md:text-2xl font-heading group-hover:text-[#1e3a8a] transition-colors"><T k="departments-psychiatry_d1c306" d={"Family Therapy"} /></h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed text-justify font-medium"><T k="departments-psychiatry_201e8b" d={"We understand the vital role of family in the therapeutic process. Our family therapy sessions aim to address family dynamics, communication issues, and relationship challenges that affect mental health, enhancing understanding and creating a strong support network for long-term recovery."} /></p>
                   </div>
                 </div>
               </div>
@@ -361,12 +313,9 @@ export default function PsychiatryClient({
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
             <div className="relative z-10">
               <div className="mb-10 text-center space-y-3">
-                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">
-                  Our Commitment
-                </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
-                  Why Choose Our{" "}
-                  <span className="text-blue-300">Psychiatry Department</span>
+                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block"><T k="departments-psychiatry_2d7ebe" d={"Our Commitment"} /></span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight"><T k="departments-psychiatry_421d22" d={"Why Choose Our"} />{" "}
+                  <span className="text-blue-300"><T k="departments-psychiatry_ef6a21" d={"Psychiatry Department"} /></span>
                 </h2>
                 <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
               </div>

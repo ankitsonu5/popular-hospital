@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -161,7 +162,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
       {/* ═══════ HERO SECTION ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-ctvs_3e872e"
             src="/images/banners/cardiothoracic_banner.png"
             alt="Heart and Vascular Care"
             fill
@@ -173,12 +174,8 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-rose-500/20 text-rose-100 text-xs md:text-sm font-bold mb-6 border border-rose-400/30 backdrop-blur-sm uppercase tracking-wider">
-              Department of
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading">
-              Department of CTVS Department — Varanasi
-            </h1>
+            <span className="inline-block py-1.5 px-4 rounded-full bg-rose-500/20 text-rose-100 text-xs md:text-sm font-bold mb-6 border border-rose-400/30 backdrop-blur-sm uppercase tracking-wider"><T k="departments-ctvs_4c5284" d={"Department of"} /></span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading"><T k="departments-ctvs_67d0c4" d={"Department of CTVS Department — Varanasi"} /></h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book"
@@ -196,9 +193,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
                     strokeWidth={2}
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
-                </svg>
-                Book An Appointment
-              </Link>
+                </svg><T k="departments-ctvs_687bd9" d={"Book An Appointment"} /></Link>
               <GetCallBackButton
                 department="Cardiothoracic & Vascular Surgery (CTVS)"
                 className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2"
@@ -215,9 +210,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
                     strokeWidth={2}
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
-                </svg>
-                Get a Call Back
-              </GetCallBackButton>
+                </svg><T k="departments-ctvs_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -233,48 +226,17 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                    Department of{" "}
-                    <span className="text-[#1e3a8a]">
-                      Cardiothoracic & Vascular Surgery (CTVS)
-                    </span>
+                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-ctvs_4c5284_2" d={"Department of"} />{" "}
+                    <span className="text-[#1e3a8a]"><T k="departments-ctvs_6303e0" d={"Cardiothoracic & Vascular Surgery (CTVS)"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
                 <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[17px] 2xl:text-lg font-medium text-left">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best CTVS Department hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-ctvs_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-ctvs_00e530" d={"best CTVS Department hospital in Varanasi"} /></strong><T k="departments-ctvs_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-ctvs_200859" d={"Purvanchal"} /></strong><T k="departments-ctvs_4f4133" d={" and "} /><strong><T k="departments-ctvs_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                  <p>
-                    Welcome to the Cardiothoracic and Vascular Surgery (CTVS)
-                    Department at Popular Hospital. We are proud to offer
-                    exceptional care in the field of cardiovascular and thoracic
-                    surgery. Our department comprises a team of highly skilled
-                    surgeons, dedicated nurses, and specialized support staff
-                    who work together to provide comprehensive and cutting-edge
-                    treatment options for patients with heart, lung, chest, and
-                    vascular conditions.
-                  </p>
-                  <p>
-                    Cardiothoracic and Vascular Surgery (CTVS) is a specialized
-                    branch of surgery that focuses on the surgical treatment of
-                    diseases and conditions affecting the heart, lungs, chest,
-                    and blood vessels. It encompasses a wide range of procedures
-                    designed to address cardiovascular and thoracic disorders,
-                    including coronary artery bypass grafting, heart valve
-                    repair/replacement, lung cancer resection, and vascular
-                    reconstructions, among others.
-                  </p>
-                  <p>
-                    At Popular Hospital, we understand that cardiovascular and
-                    thoracic disorders can have a significant impact on the
-                    lives of our patients. That&apos;s why our CTVS Department
-                    is committed to delivering the highest quality of care with
-                    a patient-centered approach. We strive to provide
-                    personalized treatment plans that are tailored to each
-                    individual&apos;s unique needs, ensuring the best possible
-                    outcomes.
-                  </p>
+                  <p><T k="departments-ctvs_3c682c" d={"Welcome to the Cardiothoracic and Vascular Surgery (CTVS) Department at Popular Hospital. We are proud to offer exceptional care in the field of cardiovascular and thoracic surgery. Our department comprises a team of highly skilled surgeons, dedicated nurses, and specialized support staff who work together to provide comprehensive and cutting-edge treatment options for patients with heart, lung, chest, and vascular conditions."} /></p>
+                  <p><T k="departments-ctvs_1e8fb6" d={"Cardiothoracic and Vascular Surgery (CTVS) is a specialized branch of surgery that focuses on the surgical treatment of diseases and conditions affecting the heart, lungs, chest, and blood vessels. It encompasses a wide range of procedures designed to address cardiovascular and thoracic disorders, including coronary artery bypass grafting, heart valve repair/replacement, lung cancer resection, and vascular reconstructions, among others."} /></p>
+                  <p><T k="departments-ctvs_45bb59" d={"At Popular Hospital, we understand that cardiovascular and thoracic disorders can have a significant impact on the lives of our patients. That's why our CTVS Department is committed to delivering the highest quality of care with a patient-centered approach. We strive to provide personalized treatment plans that are tailored to each individual's unique needs, ensuring the best possible outcomes."} /></p>
                 </div>
               </div>
 
@@ -282,11 +244,8 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                    Advanced Diagnostics & Technology —{" "}
-                    <span className="text-[#1e3a8a]">
-                      Our Tools for Treatment
-                    </span>
+                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-ctvs_98390b" d={"Advanced Diagnostics & Technology —"} />{" "}
+                    <span className="text-[#1e3a8a]"><T k="departments-ctvs_390e6f" d={"Our Tools for Treatment"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -325,9 +284,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="flex items-center gap-3 mb-2">
             <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-              Procedures
-            </h2>
+            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-ctvs_d682fc" d={"Procedures"} /></h2>
           </div>
           <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-8" />
 
@@ -352,8 +309,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="flex items-center gap-3 mb-2">
             <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-              Our <span className="text-[#1e3a8a]">Services:</span>
+            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-ctvs_bb463f" d={"Our "} /><span className="text-[#1e3a8a]"><T k="departments-ctvs_ec9441" d={"Services:"} /></span>
             </h2>
           </div>
           <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-8" />
@@ -376,7 +332,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
 
           {/* Centered smaller image */}
           <div className="relative mx-auto max-w-2xl aspect-[16/10] rounded-3xl overflow-hidden border border-slate-100 shadow-md">
-            <Image
+            <CImage k="departments-ctvs_9a5fa7"
               src="/images/departments-images/cardiothoracic_vascular_surgery.jpeg"
               alt="CTVS Procedures"
               fill
@@ -392,8 +348,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="flex items-center gap-3 mb-2">
             <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-              Why <span className="text-[#1e3a8a]">Choose us:</span>
+            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-ctvs_e3a9c0" d={"Why "} /><span className="text-[#1e3a8a]"><T k="departments-ctvs_7ceec5" d={"Choose us:"} /></span>
             </h2>
           </div>
           <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -418,18 +373,15 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="flex items-center gap-3 mb-2">
             <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-              CTVS{" "}
-              <span className="text-[#1e3a8a]">
-                Surgeons at Popular Hospital
-              </span>
+            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-ctvs_676434" d={"CTVS"} />{" "}
+              <span className="text-[#1e3a8a]"><T k="departments-ctvs_30df8f" d={"Surgeons at Popular Hospital"} /></span>
             </h2>
           </div>
           <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-8" />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="relative rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
               <div className="relative w-full aspect-[4/3]">
-                <Image
+                <CImage k="departments-ctvs_9d70cd"
                   src="/images/departments-images/ctvs_technology.jpeg"
                   alt="CTVS Technology"
                   fill
@@ -439,25 +391,8 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
               </div>
             </div>
             <div className="space-y-4">
-              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                CTVS surgeons are highly trained specialists who possess
-                extensive knowledge of cardiovascular and thoracic anatomy and
-                are skilled in performing complex surgical procedures. They work
-                closely with a multidisciplinary team, including cardiologists,
-                anesthesiologists, intensivists, and other healthcare
-                professionals, to provide comprehensive care to patients with
-                cardiovascular and thoracic conditions.
-              </p>
-              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                We are dedicated to providing compassionate and exceptional care
-                to our patients, and we strive to be at the forefront of
-                advancements in cardiovascular and thoracic surgery. If you or a
-                loved one is in need of specialized care for a heart, lung,
-                chest, or vascular condition, we invite you to contact our
-                Cardiothoracic and Vascular Surgery Department at Popular
-                Hospital. Our team is ready to guide you through your treatment
-                journey and help you achieve the best possible outcomes.
-              </p>
+              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-ctvs_ed2488" d={"CTVS surgeons are highly trained specialists who possess extensive knowledge of cardiovascular and thoracic anatomy and are skilled in performing complex surgical procedures. They work closely with a multidisciplinary team, including cardiologists, anesthesiologists, intensivists, and other healthcare professionals, to provide comprehensive care to patients with cardiovascular and thoracic conditions."} /></p>
+              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-ctvs_3b7755" d={"We are dedicated to providing compassionate and exceptional care to our patients, and we strive to be at the forefront of advancements in cardiovascular and thoracic surgery. If you or a loved one is in need of specialized care for a heart, lung, chest, or vascular condition, we invite you to contact our Cardiothoracic and Vascular Surgery Department at Popular Hospital. Our team is ready to guide you through your treatment journey and help you achieve the best possible outcomes."} /></p>
             </div>
           </div>
         </div>

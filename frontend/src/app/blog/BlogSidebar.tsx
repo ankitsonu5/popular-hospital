@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getImageUrl } from "@/lib/api";
+import { T } from "@/components/content/Editable";
 
 interface NewsItem {
   id?: number;
@@ -55,9 +56,7 @@ export function BlogSearchWidget({ className = "" }: { className?: string }) {
       className={`bg-white p-6 sm:p-8 rounded-[2rem] shadow-sm border border-slate-100 relative ${className}`}
     >
       <div className="border-b border-gray-200 mb-6 flex">
-        <h3 className="text-[15px] font-black text-[#1a3a5c] border-b-[3px] border-[#1a3a5c] pb-3 -mb-[2px] pr-4 uppercase tracking-widest">
-          SEARCH
-        </h3>
+        <h3 className="text-[15px] font-black text-[#1a3a5c] border-b-[3px] border-[#1a3a5c] pb-3 -mb-[2px] pr-4 uppercase tracking-widest"><T k="blog_a62a7a" d={"SEARCH"} /></h3>
       </div>
       <div className="relative w-full">
         <div className="flex w-full">
@@ -68,18 +67,14 @@ export function BlogSearchWidget({ className = "" }: { className?: string }) {
             onChange={(e) => setQuery(e.target.value)}
             className="w-full bg-[#f8fafc] px-4 py-3 border border-slate-200 rounded-l-xl focus:outline-none focus:border-[#E85222] text-sm transition-all"
           />
-          <button className="bg-[#1a3a5c] hover:bg-[#E85222] text-white px-5 py-3 font-semibold transition-colors text-sm rounded-r-xl shadow-md">
-            Search
-          </button>
+          <button className="bg-[#1a3a5c] hover:bg-[#E85222] text-white px-5 py-3 font-semibold transition-colors text-sm rounded-r-xl shadow-md"><T k="blog_bce064" d={"Search"} /></button>
         </div>
 
         {/* Live Search Results Formatted Like Dropdown */}
         {query.trim().length > 0 && (
           <div className="absolute top-14 left-0 w-full bg-white rounded-xl shadow-2xl border border-slate-100 z-50 overflow-hidden flex flex-col">
             {isSearching ? (
-              <div className="p-4 text-sm text-gray-500 text-center animate-pulse">
-                Searching...
-              </div>
+              <div className="p-4 text-sm text-gray-500 text-center animate-pulse"><T k="blog_ba2b5a" d={"Searching..."} /></div>
             ) : results.length > 0 ? (
               results.map((r, i) => (
                 <Link
@@ -111,9 +106,7 @@ export function BlogSearchWidget({ className = "" }: { className?: string }) {
                 </Link>
               ))
             ) : (
-              <div className="p-4 text-sm text-gray-500 text-center">
-                No results found
-              </div>
+              <div className="p-4 text-sm text-gray-500 text-center"><T k="blog_658e79" d={"No results found"} /></div>
             )}
           </div>
         )}
@@ -176,9 +169,7 @@ export default function BlogSidebar({
       {showRecentPosts && (
         <div className="bg-white p-6 sm:p-8 rounded-[2rem] shadow-sm border border-slate-100">
           <div className="border-b border-gray-200 mb-6 flex">
-            <h3 className="text-[15px] font-black text-[#1a3a5c] border-b-[3px] border-[#1a3a5c] pb-3 -mb-[2px] pr-4 uppercase tracking-widest">
-              RECENT POSTS
-            </h3>
+            <h3 className="text-[15px] font-black text-[#1a3a5c] border-b-[3px] border-[#1a3a5c] pb-3 -mb-[2px] pr-4 uppercase tracking-widest"><T k="blog_c442d7" d={"RECENT POSTS"} /></h3>
           </div>
           <ul className="flex flex-col w-full">
             {displayedRecent.map((p, idx) => (
@@ -201,9 +192,7 @@ export default function BlogSidebar({
       {/* Categories Widget */}
       <div className="bg-white p-6 sm:p-8 rounded-[2rem] shadow-sm border border-slate-100">
         <div className="border-b border-gray-200 mb-6 flex">
-          <h3 className="text-[15px] font-black text-[#1a3a5c] border-b-[3px] border-[#1a3a5c] pb-3 -mb-[2px] pr-4 uppercase tracking-widest">
-            CATEGORIES
-          </h3>
+          <h3 className="text-[15px] font-black text-[#1a3a5c] border-b-[3px] border-[#1a3a5c] pb-3 -mb-[2px] pr-4 uppercase tracking-widest"><T k="blog_e52086" d={"CATEGORIES"} /></h3>
         </div>
         <ul className="flex flex-col w-full">
           {displayedCategories.map((cat, i) => (
@@ -237,18 +226,12 @@ export default function BlogSidebar({
 
       {/* Book Consultation banner (from original theme) */}
       <div className="bg-[#1a3a5c] p-8 rounded-[2rem] shadow-xl text-white text-center">
-        <h3 className="text-xl font-black mb-4 font-heading uppercase tracking-wider">
-          Want personalized health advice?
-        </h3>
-        <p className="text-gray-300 text-sm mb-6">
-          Talk to our experts directly
-        </p>
+        <h3 className="text-xl font-black mb-4 font-heading uppercase tracking-wider"><T k="blog_18acfe" d={"Want personalized health advice?"} /></h3>
+        <p className="text-gray-300 text-sm mb-6"><T k="blog_81c41b" d={"Talk to our experts directly"} /></p>
         <Link
           href="/book"
           className="block w-full py-4 bg-[#E85222] text-white rounded-2xl font-black hover:bg-[#d1451a] transition-all shadow-lg hover:shadow-orange-900/40 uppercase tracking-widest text-sm"
-        >
-          Book Consultation
-        </Link>
+        ><T k="blog_68f2cd" d={"Book Consultation"} /></Link>
       </div>
     </aside>
   );

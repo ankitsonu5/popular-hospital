@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
@@ -91,7 +92,7 @@ export default function InterventionalRadiologyClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-interventional-radiology_8aca7b"
             src="/images/banners/radiology_banner.png"
             alt="Interventional Radiology Hero"
             fill
@@ -102,25 +103,17 @@ export default function InterventionalRadiologyClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Super-Speciality Care
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Interventional Radiology — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-interventional-radiology_d50ed3" d={"Super-Speciality Care"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-interventional-radiology_49c03f" d={"Department of Interventional Radiology — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-interventional-radiology_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Interventional Radiology"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-interventional-radiology_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -134,18 +127,14 @@ export default function InterventionalRadiologyClient({
             <div className="lg:col-span-8 space-y-8">
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Department of{" "}
-                  <span className="text-[#1e3a8a]">
-                    Interventional Radiology
-                  </span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-interventional-radiology_4c5284" d={"Department of"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-interventional-radiology_4ccf27" d={"Interventional Radiology"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <div className="space-y-4">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Interventional Radiology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-interventional-radiology_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-interventional-radiology_32f5f9" d={"best Interventional Radiology hospital in Varanasi"} /></strong><T k="departments-interventional-radiology_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-interventional-radiology_200859" d={"Purvanchal"} /></strong><T k="departments-interventional-radiology_4f4133" d={" and "} /><strong><T k="departments-interventional-radiology_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
                 {departmentOverview.map((item, idx) => (
                   <p
@@ -177,16 +166,11 @@ export default function InterventionalRadiologyClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="order-2 lg:order-1">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Specialist Expertise
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-interventional-radiology_533c97" d={"Specialist Expertise"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Who is an{" "}
-                  <span className="text-[#1e3a8a]">
-                    Interventional Radiologist?
-                  </span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-interventional-radiology_18339e" d={"Who is an"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-interventional-radiology_101e8e" d={"Interventional Radiologist?"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -198,7 +182,7 @@ export default function InterventionalRadiologyClient({
 
             <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
-                <Image
+                <CImage k="departments-interventional-radiology_d08c48"
                   src="/images/departments-images/radiology.jpeg"
                   alt="Interventional Radiologist at work"
                   fill
@@ -215,13 +199,10 @@ export default function InterventionalRadiologyClient({
       <section className="py-16 xl:py-12 2xl:py-20 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="max-w-3xl mb-12">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Patient-Centric Benefits
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-interventional-radiology_b41006" d={"Patient-Centric Benefits"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                What are the <span className="text-[#1e3a8a]">Advantages?</span>
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-interventional-radiology_bb699b" d={"What are the "} /><span className="text-[#1e3a8a]"><T k="departments-interventional-radiology_a9a7d6" d={"Advantages?"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -257,7 +238,7 @@ export default function InterventionalRadiologyClient({
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
-                <Image
+                <CImage k="departments-interventional-radiology_16e1b7"
                   src="/images/departments-images/interventional_radiology.jpg"
                   alt="Interventional Radiology Procedures"
                   fill
@@ -268,13 +249,10 @@ export default function InterventionalRadiologyClient({
             </div>
 
             <div>
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Diagnostic &amp; Therapeutic Range
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-interventional-radiology_8fe8c9" d={"Diagnostic & Therapeutic Range"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Major <span className="text-[#1e3a8a]">Procedures</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-interventional-radiology_641b6e" d={"Major "} /><span className="text-[#1e3a8a]"><T k="departments-interventional-radiology_d682fc" d={"Procedures"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />

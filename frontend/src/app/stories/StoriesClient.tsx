@@ -12,6 +12,7 @@ import {
   getVideoPlatform,
   isFacebookReel,
 } from "@/lib/patientStories";
+import { CImage, T } from "@/components/content/Editable";
 
 export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
   const [selectedStory, setSelectedStory] = useState<PatientStory | null>(null);
@@ -45,7 +46,7 @@ export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
       </style>
       <section className="relative w-full min-h-[180px] md:min-h-[220px] py-10 overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 hidden md:block">
-          <Image
+          <CImage k="stories_55b3ef"
             src="/images/banners/patient_testimonials_video.png"
             alt="Patient Stories Banner"
             fill
@@ -56,7 +57,7 @@ export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
         </div>
 
         <div className="absolute inset-0 block md:hidden">
-          <Image
+          <CImage k="stories_55b3ef_2"
             src="/images/banners/patient_testimonials_video.png"
             alt="Patient Stories Banner Mobile"
             fill
@@ -67,21 +68,14 @@ export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
         </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 text-center text-white">
-          <h1 className="text-4xl md:text-6xl font-black font-heading tracking-tight mb-4 drop-shadow-lg">
-            Patient Stories
-          </h1>
-          <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto font-medium drop-shadow-md">
-            Hear directly from our patients about their experiences and
-            successful recovery journeys at Popular Hospital.
-          </p>
+          <h1 className="text-4xl md:text-6xl font-black font-heading tracking-tight mb-4 drop-shadow-lg"><T k="stories_19e93c" d={"Patient Stories"} /></h1>
+          <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto font-medium drop-shadow-md"><T k="stories_2d269c" d={"Hear directly from our patients about their experiences and successful recovery journeys at Popular Hospital."} /></p>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
         {displayStories.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center text-gray-500">
-            No patient stories are available right now.
-          </div>
+          <div className="rounded-3xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center text-gray-500"><T k="stories_dc1ec1" d={"No patient stories are available right now."} /></div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {displayStories.map((story, index) => {
@@ -207,9 +201,7 @@ export default function StoriesPage({ stories }: { stories: PatientStory[] }) {
                 />
               ) : (
                 <div className="flex h-full items-center justify-center bg-white px-6 text-center">
-                  <p className="text-sm font-semibold text-gray-700">
-                    This video format is not supported for inline playback.
-                  </p>
+                  <p className="text-sm font-semibold text-gray-700"><T k="stories_ee0971" d={"This video format is not supported for inline playback."} /></p>
                 </div>
               )}
             </div>

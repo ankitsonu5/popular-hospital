@@ -13,6 +13,7 @@ import {
   getYoutubeId,
   getVideoPlatform,
 } from "@/lib/patientStories";
+import { T } from "@/components/content/Editable";
 
 function TestimonialCard({
   story,
@@ -135,9 +136,7 @@ export default function Testimonials({
             <h2
               id="patients-speak"
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e3a8a] text-center font-jakarta"
-            >
-              Patients Speak
-            </h2>
+            ><T k="home_580ea0" d={"Patients Speak"} /></h2>
             <div className="mt-4 inline-flex items-center justify-center gap-2">
               <span className="h-[3px] w-6 rounded-full bg-[#ffb088]" />
               <span className="h-[5px] w-10 rounded-full bg-[#E85222] shadow-[0_2px_10px_rgba(232,82,34,0.35)]" />
@@ -223,9 +222,7 @@ export default function Testimonials({
             <Link
               href="/stories"
               className="inline-flex items-center gap-2 text-[#E85222] font-semibold text-xl hover:gap-3 transition-all"
-            >
-              View All Patient Stories
-              <span className="w-8 h-8 rounded-full bg-[#E85222] text-white flex items-center justify-center shadow-md">
+            ><T k="home_639dfb" d={"View All Patient Stories"} /><span className="w-8 h-8 rounded-full bg-[#E85222] text-white flex items-center justify-center shadow-md">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -306,9 +303,7 @@ export default function Testimonials({
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center bg-white px-6 text-center">
-                    <p className="text-sm font-semibold text-gray-700">
-                      This video format is not supported for inline playback.
-                    </p>
+                    <p className="text-sm font-semibold text-gray-700"><T k="home_ee0971" d={"This video format is not supported for inline playback."} /></p>
                   </div>
                 )}
               </div>

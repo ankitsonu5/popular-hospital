@@ -6,6 +6,7 @@ import Image from "next/image";
 import { getImageUrl } from "@/lib/api";
 import BlogSidebar, { BlogSearchWidget } from "./BlogSidebar";
 import { allCategories } from "./data";
+import { CImage, T } from "@/components/content/Editable";
 
 interface NewsItem {
   id?: number;
@@ -85,7 +86,7 @@ export default function BlogClientLayout({
       <section className="relative bg-[#0b1c43] py-8 sm:py-10 lg:py-12 overflow-hidden mb-10">
         {/* Background Image - Matching News Page */}
         <div className="absolute inset-0">
-          <Image
+          <CImage k="blog_f1c9fe"
             src="/images/news-sm-inner.jpg"
             alt="Latest News"
             fill
@@ -101,14 +102,11 @@ export default function BlogClientLayout({
             className="mb-4 text-xs sm:text-sm text-white/60"
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
+            <Link href="/" className="hover:text-white transition-colors"><T k="blog_70f8bb" d={"Home"} /></Link>
             <span className="mx-2">/</span>
-            <span className="text-white">Blog</span>
+            <span className="text-white"><T k="blog_0b9d2b" d={"Blog"} /></span>
           </nav>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
-            Popular Hospital <span className="text-white">Blog</span>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl"><T k="blog_5c8e3f" d={"Popular Hospital "} /><span className="text-white"><T k="blog_0b9d2b_2" d={"Blog"} /></span>
           </h1>
         </div>
       </section>
@@ -200,9 +198,7 @@ export default function BlogClientLayout({
                   <Link
                     href={`/blog/${post.slug}`}
                     className="inline-flex items-center gap-2 text-[#E85222] font-black uppercase tracking-widest text-xs md:text-sm group/btn mt-auto"
-                  >
-                    Read Full Story
-                    <svg
+                  ><T k="blog_5041a4" d={"Read Full Story"} /><svg
                       className="w-4 h-4 md:w-5 md:h-5 transform group-hover/btn:translate-x-2 transition-transform"
                       fill="none"
                       stroke="currentColor"
@@ -222,9 +218,7 @@ export default function BlogClientLayout({
 
             {articles.length === 0 && (
               <div className="text-center py-20 bg-white rounded-lg shadow-sm border border-slate-100">
-                <p className="text-gray-500 font-medium text-lg">
-                  No blog articles available at the moment.
-                </p>
+                <p className="text-gray-500 font-medium text-lg"><T k="blog_74b6b1" d={"No blog articles available at the moment."} /></p>
               </div>
             )}
 

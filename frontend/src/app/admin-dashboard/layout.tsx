@@ -24,7 +24,9 @@ import {
   Mail,
   MonitorPlay,
   PhoneIncoming,
-  Globe
+  Globe,
+  Navigation,
+  LayoutTemplate,
 } from "lucide-react";
 
 const sidebarItems = [
@@ -87,6 +89,8 @@ const sidebarItems = [
     ],
   },
   { label: "Site Content", href: "/admin-dashboard/content", icon: FileText },
+  { label: "Nav Menu Manager", href: "/admin-dashboard/nav-menu", icon: Navigation },
+  { label: "Page Content", href: "/admin-dashboard/page-content", icon: LayoutTemplate },
   {
     label: "Media & Blog",
     icon: Newspaper,

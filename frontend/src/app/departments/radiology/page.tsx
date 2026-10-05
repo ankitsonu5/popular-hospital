@@ -6,6 +6,7 @@ import RadiologyVideoSection from "../../../components/RadiologyVideoSection";
 import DoctorSlider from "@/components/DoctorSlider";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
+import { CImage, T } from "@/components/content/Editable";
 
 const doctors: never[] = []; // No doctors for now
 
@@ -28,7 +29,7 @@ export default function RadiologyPage() {
         <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#004d61] overflow-hidden flex items-center py-10 md:py-12">
           {/* Background Image Overlay */}
           <div className="absolute inset-0 z-0">
-            <Image
+            <CImage k="departments-radiology_a05994"
               src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=2000"
               alt="Radiology Imaging"
               fill
@@ -40,18 +41,9 @@ export default function RadiologyPage() {
 
           <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
             <div className="animate-fade-in-up max-w-3xl">
-              <span className="inline-block py-1 px-3 rounded-full bg-teal-500/20 text-teal-200 text-sm font-semibold mb-6 border border-teal-400/30 backdrop-blur-sm uppercase tracking-widest">
-                Department of Radiology
-              </span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Advanced <br />
-                Diagnostic Imaging
-              </h1>
-              <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify">
-                State-of-the-art imaging technology provided by expert
-                radiologists. We ensure accurate diagnosis for effective
-                treatment planning.
-              </p>
+              <span className="inline-block py-1 px-3 rounded-full bg-teal-500/20 text-teal-200 text-sm font-semibold mb-6 border border-teal-400/30 backdrop-blur-sm uppercase tracking-widest"><T k="departments-radiology_760bd6" d={"Department of Radiology"} /></span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-radiology_d0bce9" d={"Advanced "} /><br /><T k="departments-radiology_fb2574" d={"Diagnostic Imaging"} /></h1>
+              <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify"><T k="departments-radiology_7101a5" d={"State-of-the-art imaging technology provided by expert radiologists. We ensure accurate diagnosis for effective treatment planning."} /></p>
               <div className="flex flex-wrap gap-4">
                 <button className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide">
                   <svg
@@ -66,9 +58,7 @@ export default function RadiologyPage() {
                       strokeWidth={2}
                       d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
-                  </svg>
-                  Book an Appointment
-                </button>
+                  </svg><T k="departments-radiology_83197b" d={"Book an Appointment"} /></button>
                 <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                   <svg
                     className="w-5 h-5"
@@ -82,9 +72,7 @@ export default function RadiologyPage() {
                       strokeWidth={2}
                       d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
-                  </svg>
-                  View Reports
-                </button>
+                  </svg><T k="departments-radiology_d8ec6d" d={"View Reports"} /></button>
               </div>
             </div>
           </div>
@@ -218,21 +206,11 @@ export default function RadiologyPage() {
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
               <div className="w-full lg:w-1/2">
                 <div className="relative">
-                  <span className="text-teal-600 font-bold tracking-[0.2em] text-xs uppercase mb-3 block">
-                    Patient Centered Care
-                  </span>
-                  <h2 className="text-3xl md:text-5xl font-bold font-heading text-gray-900 mb-6 relative z-10 leading-tight">
-                    Exceptional <br />
-                    <span className="text-teal-600">Radiology Care</span> for
-                    Patients
-                  </h2>
+                  <span className="text-teal-600 font-bold tracking-[0.2em] text-xs uppercase mb-3 block"><T k="departments-radiology_4203f3" d={"Patient Centered Care"} /></span>
+                  <h2 className="text-3xl md:text-5xl font-bold font-heading text-gray-900 mb-6 relative z-10 leading-tight"><T k="departments-radiology_578ce9" d={"Exceptional "} /><br />
+                    <span className="text-teal-600"><T k="departments-radiology_37b6f3" d={"Radiology Care"} /></span><T k="departments-radiology_e5b424" d={" for Patients"} /></h2>
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-10 text-base md:text-lg font-bold text-justify">
-                  Our Department combines personalized care with cutting-edge
-                  technology. Whether you need a routine X-ray or a complex MRI,
-                  our team ensures a comfortable, safe, and precise imaging
-                  experience.
-                </p>
+                <p className="text-gray-700 leading-relaxed mb-10 text-base md:text-lg font-bold text-justify"><T k="departments-radiology_a06d73" d={"Our Department combines personalized care with cutting-edge technology. Whether you need a routine X-ray or a complex MRI, our team ensures a comfortable, safe, and precise imaging experience."} /></p>
                 <ul className="space-y-4 mb-8">
                   {[
                     "Advanced 3D Mammography",
@@ -263,9 +241,7 @@ export default function RadiologyPage() {
                     </li>
                   ))}
                 </ul>
-                <button className="px-8 py-4 bg-[#E85222] text-white rounded-full font-bold hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/20 uppercase text-sm tracking-widest transform hover:scale-105">
-                  Meet Our Specialists
-                </button>
+                <button className="px-8 py-4 bg-[#E85222] text-white rounded-full font-bold hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/20 uppercase text-sm tracking-widest transform hover:scale-105"><T k="departments-radiology_d34c93" d={"Meet Our Specialists"} /></button>
               </div>
               <div className="w-full lg:w-1/2 relative group">
                 <div className="absolute inset-0 bg-teal-600/10 rounded-3xl blur-[80px] -z-10 group-hover:bg-teal-600/20 transition-all"></div>
@@ -282,7 +258,7 @@ export default function RadiologyPage() {
             <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20 mb-20">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-2xl group border-[12px] border-white">
-                  <Image
+                  <CImage k="departments-radiology_caee0f"
                     src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop"
                     alt="Advanced Technology"
                     fill
@@ -290,51 +266,28 @@ export default function RadiologyPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-teal-900/60 to-transparent"></div>
                   <div className="absolute bottom-8 left-8 text-white">
-                    <p className="text-4xl font-black mb-1 font-heading">
-                      3.0T
-                    </p>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-80">
-                      MRI Precision
-                    </p>
+                    <p className="text-4xl font-black mb-1 font-heading"><T k="departments-radiology_77f4e6" d={"3.0T"} /></p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-80"><T k="departments-radiology_101131" d={"MRI Precision"} /></p>
                   </div>
                 </div>
               </div>
               <div className="w-full md:w-1/2 order-1 md:order-2">
-                <span className="text-teal-600 font-bold tracking-[0.3em] text-xs uppercase mb-3 block">
-                  Innovation
-                </span>
-                <h3 className="text-3xl md:text-4xl font-black font-heading text-gray-900 mb-6 uppercase tracking-tight">
-                  Advanced Technology
-                </h3>
-                <p className="text-gray-700 mb-6 text-base md:text-lg font-bold text-justify leading-relaxed">
-                  We utilize the absolute latest in diagnostic imaging
-                  technology. Our 3T MRI machines provide clearer images in less
-                  time, while our advanced PET-CT scanners allow for early
-                  detection of critical conditions with minimal radiation
-                  exposure.
-                </p>
+                <span className="text-teal-600 font-bold tracking-[0.3em] text-xs uppercase mb-3 block"><T k="departments-radiology_1adba6" d={"Innovation"} /></span>
+                <h3 className="text-3xl md:text-4xl font-black font-heading text-gray-900 mb-6 uppercase tracking-tight"><T k="departments-radiology_71165c" d={"Advanced Technology"} /></h3>
+                <p className="text-gray-700 mb-6 text-base md:text-lg font-bold text-justify leading-relaxed"><T k="departments-radiology_471591" d={"We utilize the absolute latest in diagnostic imaging technology. Our 3T MRI machines provide clearer images in less time, while our advanced PET-CT scanners allow for early detection of critical conditions with minimal radiation exposure."} /></p>
               </div>
             </div>
 
             {/* Section 2 */}
             <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
               <div className="w-full md:w-1/2">
-                <span className="text-teal-600 font-bold tracking-[0.3em] text-xs uppercase mb-3 block">
-                  Precision
-                </span>
-                <h3 className="text-3xl md:text-4xl font-black font-heading text-gray-900 mb-6 uppercase tracking-tight">
-                  Accurate Radiology Reporting
-                </h3>
-                <p className="text-gray-700 mb-6 text-base md:text-lg font-bold text-justify leading-relaxed">
-                  Our radiologists are sub-specialty trained, meaning your
-                  neuro-scan is read by a neuro-radiologist, and your cardiac
-                  scan by a cardiac specialist. This expert review ensures the
-                  highest accuracy for your diagnosis.
-                </p>
+                <span className="text-teal-600 font-bold tracking-[0.3em] text-xs uppercase mb-3 block"><T k="departments-radiology_3dd4db" d={"Precision"} /></span>
+                <h3 className="text-3xl md:text-4xl font-black font-heading text-gray-900 mb-6 uppercase tracking-tight"><T k="departments-radiology_13c88f" d={"Accurate Radiology Reporting"} /></h3>
+                <p className="text-gray-700 mb-6 text-base md:text-lg font-bold text-justify leading-relaxed"><T k="departments-radiology_8e3825" d={"Our radiologists are sub-specialty trained, meaning your neuro-scan is read by a neuro-radiologist, and your cardiac scan by a cardiac specialist. This expert review ensures the highest accuracy for your diagnosis."} /></p>
               </div>
               <div className="w-full md:w-1/2">
                 <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-2xl group border-[12px] border-white">
-                  <Image
+                  <CImage k="departments-radiology_6e7da8"
                     src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1964&auto=format&fit=crop"
                     alt="Radiology Reporting"
                     fill
@@ -342,12 +295,8 @@ export default function RadiologyPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-l from-teal-900/60 to-transparent"></div>
                   <div className="absolute bottom-8 right-8 text-white text-right">
-                    <p className="text-4xl font-black mb-1 font-heading">
-                      24/7
-                    </p>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-80">
-                      Expert Reporting
-                    </p>
+                    <p className="text-4xl font-black mb-1 font-heading"><T k="departments-radiology_c41127" d={"24/7"} /></p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-80"><T k="departments-radiology_77dba8" d={"Expert Reporting"} /></p>
                   </div>
                 </div>
               </div>
@@ -366,16 +315,9 @@ export default function RadiologyPage() {
         <section className="bg-[#00A99D] py-24 text-white">
           <div className="mx-auto w-full max-w-[1366px] px-4">
             <div className="text-center mb-16 max-w-2xl mx-auto">
-              <span className="text-teal-100 font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block">
-                Our Expertise
-              </span>
-              <h2 className="text-4xl md:text-5xl font-black text-white font-heading mb-6 uppercase tracking-tight">
-                World Class Imaging
-              </h2>
-              <p className="text-teal-50 text-lg opacity-90 font-bold">
-                Comprehensive radiology services covering everything from
-                routine X-rays to advanced interventional procedures.
-              </p>
+              <span className="text-teal-100 font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block"><T k="departments-radiology_552670" d={"Our Expertise"} /></span>
+              <h2 className="text-4xl md:text-5xl font-black text-white font-heading mb-6 uppercase tracking-tight"><T k="departments-radiology_a47e1d" d={"World Class Imaging"} /></h2>
+              <p className="text-teal-50 text-lg opacity-90 font-bold"><T k="departments-radiology_5d0f67" d={"Comprehensive radiology services covering everything from routine X-rays to advanced interventional procedures."} /></p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
@@ -414,9 +356,7 @@ export default function RadiologyPage() {
                     <h4 className="text-2xl font-black mb-1 group-hover:translate-x-2 transition-transform font-heading uppercase tracking-tight">
                       {service.title}
                     </h4>
-                    <p className="text-teal-50 text-xs opacity-70 font-bold uppercase tracking-widest">
-                      Specialized Service
-                    </p>
+                    <p className="text-teal-50 text-xs opacity-70 font-bold uppercase tracking-widest"><T k="departments-radiology_f812e8" d={"Specialized Service"} /></p>
                   </div>
                   <svg
                     className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2"
@@ -457,28 +397,20 @@ export default function RadiologyPage() {
                 </svg>
               </div>
               <div>
-                <p className="text-teal-400 font-bold uppercase tracking-widest text-xs mb-1">
-                  Emergency Radiology
-                </p>
-                <p className="text-2xl font-black font-heading tracking-tight uppercase">
-                  24/7 Helpline Number
-                </p>
+                <p className="text-teal-400 font-bold uppercase tracking-widest text-xs mb-1"><T k="departments-radiology_1279f1" d={"Emergency Radiology"} /></p>
+                <p className="text-2xl font-black font-heading tracking-tight uppercase"><T k="departments-radiology_bd512a" d={"24/7 Helpline Number"} /></p>
               </div>
             </div>
             <div className="flex items-center gap-4 text-3xl md:text-4xl font-black font-heading">
               <a
                 href="tel:+917800001895"
                 className="hover:text-teal-400 transition-colors tracking-tighter text-[#E85222]"
-              >
-                +91-7800001895 / 96
-              </a>
+              ><T k="departments-radiology_6dff38" d={"+91-7800001895 / 96"} /></a>
               <span className="opacity-30">/</span>
               <a
                 href="tel:+917800001896"
                 className="hover:text-teal-400 transition-colors tracking-tighter text-[#E85222]"
-              >
-                96
-              </a>
+              ><T k="departments-radiology_6fb84a" d={"96"} /></a>
             </div>
           </div>
         </section>

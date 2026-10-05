@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchEvents, getImageUrl, EventItem } from "@/lib/api";
 import { Loader2, Calendar, ArrowRight } from "lucide-react";
+import { CImage, T } from "@/components/content/Editable";
 
 export default function EventsListingPage() {
   const [events, setEvents] = useState<EventItem[]>([]);
@@ -24,7 +25,7 @@ export default function EventsListingPage() {
       {/* ─── Hero Section ─── */}
       <section className="relative bg-[#0b1c43] py-20 sm:py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <Image
+          <CImage k="media-events_f1c9fe"
             src="/images/news-sm-inner.jpg"
             alt=""
             fill
@@ -40,19 +41,13 @@ export default function EventsListingPage() {
             className="mb-6 text-[11px] text-white/50 uppercase tracking-[0.2em]"
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
+            <Link href="/" className="hover:text-white transition-colors"><T k="media-events_70f8bb" d={"Home"} /></Link>
             <span className="mx-2">/</span>
-            <span className="text-white">Events</span>
+            <span className="text-white"><T k="media-events_c5497b" d={"Events"} /></span>
           </nav>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-none">
-            Hospital <span className="text-[#00B4D8]">Events</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-none"><T k="media-events_0b1eac" d={"Hospital "} /><span className="text-[#00B4D8]"><T k="media-events_c5497b_2" d={"Events"} /></span>
           </h1>
-          <p className="mt-6 text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed mx-auto sm:mx-0">
-            Capturing the spirit of healthcare through our community outreach,
-            medical camps, and organizational milestones.
-          </p>
+          <p className="mt-6 text-base sm:text-lg text-white/60 max-w-2xl leading-relaxed mx-auto sm:mx-0"><T k="media-events_99c040" d={"Capturing the spirit of healthcare through our community outreach, medical camps, and organizational milestones."} /></p>
         </div>
       </section>
 
@@ -61,7 +56,7 @@ export default function EventsListingPage() {
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
             <Loader2 className="w-12 h-12 animate-spin text-indigo-600" />
-            <p className="text-gray-400 font-medium">Loading Events...</p>
+            <p className="text-gray-400 font-medium"><T k="media-events_23e190" d={"Loading Events..."} /></p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -94,9 +89,7 @@ export default function EventsListingPage() {
                   <h2 className="text-lg font-extrabold text-[#111827] leading-tight mb-4 group-hover:text-indigo-600 transition-colors line-clamp-2 px-2">
                     {event.title}
                   </h2>
-                  <div className="mt-auto pt-4 flex items-center gap-2 text-xs font-bold text-[#E85222] uppercase tracking-wider group/link">
-                    View Gallery
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1.5" />
+                  <div className="mt-auto pt-4 flex items-center gap-2 text-xs font-bold text-[#E85222] uppercase tracking-wider group/link"><T k="media-events_293674" d={"View Gallery"} /><ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1.5" />
                   </div>
                 </div>
               </Link>
@@ -104,9 +97,7 @@ export default function EventsListingPage() {
 
             {events.length === 0 && (
               <div className="col-span-full py-24 text-center">
-                <p className="text-gray-400 italic text-lg">
-                  No events published yet.
-                </p>
+                <p className="text-gray-400 italic text-lg"><T k="media-events_8ae741" d={"No events published yet."} /></p>
               </div>
             )}
           </div>

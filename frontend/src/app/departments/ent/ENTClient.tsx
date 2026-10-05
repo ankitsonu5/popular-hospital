@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Ear, Wind, Volume2, Activity, Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
@@ -99,7 +100,7 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-ent_d01cea"
             src="/images/banners/ent_banner.png"
             alt="ENT Department Banner"
             fill
@@ -110,25 +111,17 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Centre for ENT & Head-Neck Surgery
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of ENT (Ear, Nose & Throat) — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-ent_4afd03" d={"Centre for ENT & Head-Neck Surgery"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-ent_9514e2" d={"Department of ENT (Ear, Nose & Throat) — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-ent_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="ENT"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-ent_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -142,30 +135,13 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
             <div className="lg:col-span-8 space-y-6">
               <SectionHeader title="Department of" highlight="ENT" />
               <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best ENT (Ear, Nose & Throat) hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-ent_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-ent_38b6c4" d={"best ENT (Ear, Nose & Throat) hospital in Varanasi"} /></strong><T k="departments-ent_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-ent_200859" d={"Purvanchal"} /></strong><T k="departments-ent_4f4133" d={" and "} /><strong><T k="departments-ent_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <p>
-                  The Department of ENT at Popular Hospital provides a wide
-                  range of surgical as well as medical services for the
-                  disorders related to ear, nose & throat. The highly skilled
-                  team of ENT specialists uses the latest equipments and
-                  technologies to perform endoscopic nasal surgeries, ear
-                  surgeries, and all types of routine & complex treatments.
-                </p>
+                <p><T k="departments-ent_ee3d38" d={"The Department of ENT at Popular Hospital provides a wide range of surgical as well as medical services for the disorders related to ear, nose & throat. The highly skilled team of ENT specialists uses the latest equipments and technologies to perform endoscopic nasal surgeries, ear surgeries, and all types of routine & complex treatments."} /></p>
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
-                  <p className="font-semibold text-gray-800">
-                    Supported by the latest modular operation theatres and
-                    advanced diagnostic facilities, our department ensures
-                    patients receive prompt, appropriate, and quality medical
-                    care.
-                  </p>
+                  <p className="font-semibold text-gray-800"><T k="departments-ent_da79fc" d={"Supported by the latest modular operation theatres and advanced diagnostic facilities, our department ensures patients receive prompt, appropriate, and quality medical care."} /></p>
                 </div>
-                <p>
-                  Our team specializes in treating pediatric ENT defects, voice
-                  and airway disorders, sinus conditions, and head & neck
-                  cancers with high precision and clinical excellence.
-                </p>
+                <p><T k="departments-ent_b8b9f7" d={"Our team specializes in treating pediatric ENT defects, voice and airway disorders, sinus conditions, and head & neck cancers with high precision and clinical excellence."} /></p>
               </div>
             </div>
 
@@ -184,11 +160,8 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
           {/* Core Expertise Grid */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-                Our Specializations
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Core <span className="text-[#1e3a8a]">Expertise</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-ent_6a82a1" d={"Our Specializations"} /></span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-ent_81aab6" d={"Core "} /><span className="text-[#1e3a8a]"><T k="departments-ent_ecb6b2" d={"Expertise"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -225,10 +198,7 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
             {/* Left list of diseases */}
             <div className="lg:col-span-8 space-y-6">
               <SectionHeader title="Common Diseases &" highlight="Conditions" />
-              <p className="text-gray-650 text-sm md:text-base font-semibold leading-relaxed">
-                We provide complete diagnostics and treatment plans for a broad
-                range of ear, nose, and throat conditions:
-              </p>
+              <p className="text-gray-650 text-sm md:text-base font-semibold leading-relaxed"><T k="departments-ent_7d3d81" d={"We provide complete diagnostics and treatment plans for a broad range of ear, nose, and throat conditions:"} /></p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {commonDiseases.map((item, idx) => (
                   <div
@@ -249,7 +219,7 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
             {/* Right illustration image */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="relative w-full max-w-[340px] h-[400px] lg:h-[460px] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white ring-1 ring-slate-150">
-                <Image
+                <CImage k="departments-ent_85a9bf"
                   src="/images/departments-images/ent_diseases.png"
                   alt="ENT Diseases"
                   fill
@@ -257,12 +227,7 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-[#0b1c43]/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]">
-                    Clinical Diagnosis
-                  </p>
-                  Comprehensive screening and diagnostics to identify airway,
-                  hearing, or throat complications early.
-                </div>
+                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]"><T k="departments-ent_37effd" d={"Clinical Diagnosis"} /></p><T k="departments-ent_8bfc83" d={"Comprehensive screening and diagnostics to identify airway, hearing, or throat complications early."} /></div>
               </div>
             </div>
           </div>
@@ -276,7 +241,7 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
             {/* Left illustration image */}
             <div className="lg:col-span-4 flex justify-center order-2 lg:order-1">
               <div className="relative w-full max-w-[340px] h-[400px] lg:h-[460px] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white ring-1 ring-slate-150">
-                <Image
+                <CImage k="departments-ent_259f2b"
                   src="/images/departments-images/ent_treatment.png"
                   alt="ENT Treatments"
                   fill
@@ -284,12 +249,7 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-semibold leading-relaxed bg-[#0b1c43]/80 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]">
-                    Expert Therapeutics
-                  </p>
-                  Modern microsurgical and medical interventions to restore
-                  vital sensory functions.
-                </div>
+                  <p className="font-bold mb-1 text-blue-300 uppercase tracking-widest text-[9.5px]"><T k="departments-ent_7e64f5" d={"Expert Therapeutics"} /></p><T k="departments-ent_e9406a" d={"Modern microsurgical and medical interventions to restore vital sensory functions."} /></div>
               </div>
             </div>
 
@@ -299,10 +259,7 @@ export default function ENTClient({ doctors }: { doctors: DoctorCard[] }) {
                 title="Advanced Clinical"
                 highlight="Treatments & Services"
               />
-              <p className="text-gray-655 text-sm md:text-base font-semibold leading-relaxed">
-                Our specialists offer a range of advanced therapeutic
-                interventions and restorative surgical procedures:
-              </p>
+              <p className="text-gray-655 text-sm md:text-base font-semibold leading-relaxed"><T k="departments-ent_0293c4" d={"Our specialists offer a range of advanced therapeutic interventions and restorative surgical procedures:"} /></p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {whatWeOffer.map((item, idx) => (
                   <CheckItem key={idx} text={item} />

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { getImageUrl, type Branch } from "@/lib/api";
+import { T } from "@/components/content/Editable";
 
 export default function LocationSlider({ branches }: { branches: Branch[] }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -30,9 +31,8 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
     >
       <div className="mx-auto max-w-[1440px] min-[1920px]:max-w-[1366px] px-4 sm:px-6 lg:px-12">
         <div className="mb-8 text-center">
-          <h2 className="font-jakarta text-3xl font-black leading-tight tracking-normal text-[#1e3a8a] sm:text-4xl lg:text-5xl">
-            Our Branches.{" "}
-            <span className="text-[#6e6e73]">Always within reach.</span>
+          <h2 className="font-jakarta text-3xl font-black leading-tight tracking-normal text-[#1e3a8a] sm:text-4xl lg:text-5xl"><T k="home_10e716" d={"Our Branches."} />{" "}
+            <span className="text-[#6e6e73]"><T k="home_24b73a" d={"Always within reach."} /></span>
           </h2>
         </div>
 
@@ -41,20 +41,12 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
 
           <div className="relative z-10 grid gap-8 lg:grid-cols-[300px_1fr] xl:grid-cols-[330px_1fr]">
             <div className="flex flex-col justify-center text-white">
-              <h3 className="font-jakarta text-2xl font-black leading-tight sm:text-3xl">
-                Our Hospital Network
-              </h3>
-              <p className="mt-4 max-w-[310px] text-sm font-semibold leading-6 text-white/88 sm:text-base">
-                Popular Hospital brings trusted healthcare closer with connected
-                branches for OPD, diagnostics, emergency support, and specialist
-                care.
-              </p>
+              <h3 className="font-jakarta text-2xl font-black leading-tight sm:text-3xl"><T k="home_156a0d" d={"Our Hospital Network"} /></h3>
+              <p className="mt-4 max-w-[310px] text-sm font-semibold leading-6 text-white/88 sm:text-base"><T k="home_86592b" d={"Popular Hospital brings trusted healthcare closer with connected branches for OPD, diagnostics, emergency support, and specialist care."} /></p>
               <Link
                 href="/our-locations"
                 className="group mt-6 inline-flex h-14 w-full max-w-[290px] items-center justify-between overflow-hidden rounded bg-[#E85222] pl-6 font-jakarta text-sm font-black text-white shadow-[0_10px_24px_rgba(232,82,34,0.28)] transition hover:bg-[#d8471e] sm:text-base"
-              >
-                Find Hospital Near You
-                <span className="ml-4 flex h-full w-[52px] shrink-0 items-center justify-center bg-[#f05a28] text-white transition group-hover:bg-[#E85222]">
+              ><T k="home_501450" d={"Find Hospital Near You"} /><span className="ml-4 flex h-full w-[52px] shrink-0 items-center justify-center bg-[#f05a28] text-white transition group-hover:bg-[#E85222]">
                   <svg
                     className="h-5 w-5"
                     fill="none"
@@ -149,17 +141,13 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
                       <Link
                         href={`/locations/${location.slug || ""}`}
                         className="mt-auto inline-flex h-9 items-center justify-center rounded bg-[#0b467d] px-3 font-jakarta text-xs font-black text-white transition hover:bg-[#083c72]"
-                      >
-                        Get Direction
-                      </Link>
+                      ><T k="home_2caf3c" d={"Get Direction"} /></Link>
                     </div>
                   </article>
                 ))}
               </div>
 
-              <p className="mt-4 text-center text-xs font-bold text-white/70 sm:hidden">
-                Swipe right to see more locations
-              </p>
+              <p className="mt-4 text-center text-xs font-bold text-white/70 sm:hidden"><T k="home_04cbce" d={"Swipe right to see more locations"} /></p>
             </div>
           </div>
         </div>

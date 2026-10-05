@@ -5,6 +5,7 @@ import { Metadata } from "next";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/services/wellness-packages/cardiac-screening-1", {
@@ -33,25 +34,19 @@ export default function PackagePage() {
       <section className="relative h-[250px] md:h-[300px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight">
-              Cardiac Screening 1
-            </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 font-heading tracking-tight"><T k="services-wellness-packages-cardiac-screening-1_8b0d68" d={"Cardiac Screening 1"} /></h1>
             <nav
               className="flex items-center text-sm md:text-base text-white/90 font-medium"
               aria-label="Breadcrumb"
             >
-              <Link href="/" className="hover:text-blue-300 transition-colors">
-                Home
-              </Link>
+              <Link href="/" className="hover:text-blue-300 transition-colors"><T k="services-wellness-packages-cardiac-screening-1_70f8bb" d={"Home"} /></Link>
               <span className="mx-2 text-red-600 font-bold">|</span>
               <Link
                 href="/services/wellness-packages"
                 className="hover:text-blue-300 transition-colors"
-              >
-                Wellness Packages
-              </Link>
+              ><T k="services-wellness-packages-cardiac-screening-1_be56d1" d={"Wellness Packages"} /></Link>
               <span className="mx-2 text-red-600 font-bold">|</span>
-              <span className="text-white">Cardiac Screening 1</span>
+              <span className="text-white"><T k="services-wellness-packages-cardiac-screening-1_8b0d68_2" d={"Cardiac Screening 1"} /></span>
             </nav>
           </div>
         </div>
@@ -64,7 +59,7 @@ export default function PackagePage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-10 mb-20">
             <div className="w-full md:w-[70%] bg-white rounded-[32px] shadow-[0_8px_40px_rgba(0,0,0,0.06)] border border-gray-100 flex overflow-hidden group">
               <div className="w-[160px] sm:w-[220px] relative bg-[#f5f5f7] flex-shrink-0">
-                <Image
+                <CImage k="services-wellness-packages-cardiac-screening-1_d0b1b3"
                   src="/images/wellness_packages/cardiac-health-scanning.jpg"
                   alt="Cardiac Screening 1"
                   fill
@@ -72,15 +67,9 @@ export default function PackagePage() {
                 />
               </div>
               <div className="p-10 flex flex-col justify-center flex-1">
-                <h2 className="text-[#1d1d1f] font-bold text-xl sm:text-2xl tracking-tight mb-4 uppercase">
-                  Cardiac Screening 1
-                </h2>
-                <div className="text-gray-800 text-[15px] font-bold line-through">
-                  Package Price ₹ 1700
-                </div>
-                <div className="text-[#1a3a6b] text-2xl font-black mt-1">
-                  Now at ₹ 499/-
-                </div>
+                <h2 className="text-[#1d1d1f] font-bold text-xl sm:text-2xl tracking-tight mb-4 uppercase"><T k="services-wellness-packages-cardiac-screening-1_8b0d68_3" d={"Cardiac Screening 1"} /></h2>
+                <div className="text-gray-800 text-[15px] font-bold line-through"><T k="services-wellness-packages-cardiac-screening-1_742f9d" d={"Package Price ₹ 1700"} /></div>
+                <div className="text-[#1a3a6b] text-2xl font-black mt-1"><T k="services-wellness-packages-cardiac-screening-1_4d8288" d={"Now at ₹ 499/-"} /></div>
               </div>
             </div>
 
@@ -89,7 +78,7 @@ export default function PackagePage() {
                 href="/book"
                 className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#E85222] text-white rounded-full text-[15px] font-bold shadow-md hover:bg-[#d1451a] transition-all duration-300 transform hover:scale-[1.02] active:scale-95"
               >
-                <span>Book Now</span>
+                <span><T k="services-wellness-packages-cardiac-screening-1_27a127" d={"Book Now"} /></span>
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -110,9 +99,7 @@ export default function PackagePage() {
           {/* Details Section */}
           <div className="bg-[#fbfbfd] p-10 sm:p-14 rounded-[40px] border border-gray-100/50 shadow-sm">
             <div className="mb-10">
-              <h2 className="text-[#1d1d1f] text-2xl font-bold tracking-tight mb-2 uppercase">
-                PACKAGE INCLUDES
-              </h2>
+              <h2 className="text-[#1d1d1f] text-2xl font-bold tracking-tight mb-2 uppercase"><T k="services-wellness-packages-cardiac-screening-1_2d3af5" d={"PACKAGE INCLUDES"} /></h2>
               <div className="w-12 h-1 bg-[#E85222] rounded-full"></div>
             </div>
 

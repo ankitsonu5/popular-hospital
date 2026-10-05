@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Eye, ShieldCheck, Activity, Glasses, Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data (Transcribed from Uploaded Image) ─── */
 
@@ -93,7 +94,7 @@ export default function OphthalmologyClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-ophthalmology_be897d"
             src="/images/banners/ophthalmology_banner.png"
             alt="Ophthalmology Department Banner"
             fill
@@ -104,25 +105,17 @@ export default function OphthalmologyClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Centre for Comprehensive Eye Care
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Ophthalmology — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-ophthalmology_cbe9ea" d={"Centre for Comprehensive Eye Care"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-ophthalmology_f71341" d={"Department of Ophthalmology — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-ophthalmology_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Ophthalmology"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-ophthalmology_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -136,26 +129,12 @@ export default function OphthalmologyClient({
             <div className="lg:col-span-8 space-y-6">
               <SectionHeader title="Department of" highlight="Ophthalmology" />
               <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Ophthalmology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-ophthalmology_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-ophthalmology_2e5e0c" d={"best Ophthalmology hospital in Varanasi"} /></strong><T k="departments-ophthalmology_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-ophthalmology_200859" d={"Purvanchal"} /></strong><T k="departments-ophthalmology_4f4133" d={" and "} /><strong><T k="departments-ophthalmology_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
-                  <p className="font-semibold text-gray-800">
-                    The Ophthalmology Department is designed to provide a
-                    comprehensive range of medical and surgical eye care to
-                    patients of all age groups. Our treatment plans focus on
-                    protection, preservation, enhancement, and restoration of
-                    vision.
-                  </p>
+                  <p className="font-semibold text-gray-800"><T k="departments-ophthalmology_9328c4" d={"The Ophthalmology Department is designed to provide a comprehensive range of medical and surgical eye care to patients of all age groups. Our treatment plans focus on protection, preservation, enhancement, and restoration of vision."} /></p>
                 </div>
-                <p>
-                  Our department is fully equipped with state-of-the-art
-                  diagnostic and therapeutic equipment for managing glaucoma,
-                  cataracts, corneal and external diseases, and pediatric
-                  ophthalmic disorders. We are committed to providing
-                  world-class eye care with advanced diagnostic technology and
-                  warm hospitality.
-                </p>
+                <p><T k="departments-ophthalmology_6a8263" d={"Our department is fully equipped with state-of-the-art diagnostic and therapeutic equipment for managing glaucoma, cataracts, corneal and external diseases, and pediatric ophthalmic disorders. We are committed to providing world-class eye care with advanced diagnostic technology and warm hospitality."} /></p>
               </div>
             </div>
 
@@ -174,11 +153,8 @@ export default function OphthalmologyClient({
           {/* Core Expertise Grid */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-                Our Specializations
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Core <span className="text-[#1e3a8a]">Expertise</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-ophthalmology_6a82a1" d={"Our Specializations"} /></span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-ophthalmology_81aab6" d={"Core "} /><span className="text-[#1e3a8a]"><T k="departments-ophthalmology_ecb6b2" d={"Expertise"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -209,11 +185,8 @@ export default function OphthalmologyClient({
           {/* Outpatient Procedures Section */}
           <div className="mt-20 border-t border-slate-100 pt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-                Diagnostics
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Outpatient <span className="text-[#1e3a8a]">Procedures</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-ophthalmology_3af227" d={"Diagnostics"} /></span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-ophthalmology_5d3b20" d={"Outpatient "} /><span className="text-[#1e3a8a]"><T k="departments-ophthalmology_d682fc" d={"Procedures"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -241,7 +214,7 @@ export default function OphthalmologyClient({
               {/* Left Column (Illustration Image) */}
               <div className="lg:w-4/12 w-full flex justify-center">
                 <div className="relative w-full max-w-[280px] h-[320px] lg:h-[380px] rounded-[2rem] overflow-hidden shadow-xl border-6 border-white ring-1 ring-slate-100">
-                  <Image
+                  <CImage k="departments-ophthalmology_e2a204"
                     src="/images/departments-images/ophthalmology_specialised.jpg"
                     alt="Specialised Eye Care"
                     fill
@@ -249,22 +222,14 @@ export default function OphthalmologyClient({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/60 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white text-[11px] leading-snug bg-[#0b1c43]/85 backdrop-blur-sm p-3.5 rounded-xl border border-white/10">
-                    <p className="font-bold mb-0.5 text-blue-300 uppercase tracking-widest text-[8.5px]">
-                      Specialised Eye Care
-                    </p>
-                    Comprehensive clinical interventions and micro-surgeries to
-                    protect and restore your vision.
-                  </div>
+                    <p className="font-bold mb-0.5 text-blue-300 uppercase tracking-widest text-[8.5px]"><T k="departments-ophthalmology_055f5a" d={"Specialised Eye Care"} /></p><T k="departments-ophthalmology_43e5ee" d={"Comprehensive clinical interventions and micro-surgeries to protect and restore your vision."} /></div>
                 </div>
               </div>
 
               {/* Right Column (Clinical Offers) */}
               <div className="lg:w-8/12 w-full space-y-6">
                 <SectionHeader title="Specialised" highlight="Programmes" />
-                <p className="text-gray-600 text-sm md:text-base font-semibold leading-relaxed">
-                  Our clinicians perform advanced interventions and specialised
-                  therapies for various ophthalmic conditions:
-                </p>
+                <p className="text-gray-600 text-sm md:text-base font-semibold leading-relaxed"><T k="departments-ophthalmology_0e35b8" d={"Our clinicians perform advanced interventions and specialised therapies for various ophthalmic conditions:"} /></p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {specialisedProgrammes.map((item, idx) => (
                     <div

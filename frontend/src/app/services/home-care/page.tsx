@@ -6,6 +6,7 @@ import {
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/services/home-care", {
@@ -41,17 +42,8 @@ const sections: ServiceSection[] = [
     highlight: "Doorstep",
     content: (
       <div className="space-y-4">
-        <p className={textClass}>
-          With the introduction of Home Care Services, Popular Hospital has
-          focused on providing quality care at the comfort of your doorsteps
-          with an aim to making healthcare more affordable as well as convenient
-          to the consumer.
-        </p>
-        <p className={textClass}>
-          Many patients struggle to get to the hospitals, and this initiative
-          helps crucial medical services reach more individuals without the
-          hassle of regular travel.
-        </p>
+        <p className={textClass}><T k="services-home-care_d19e09" d={"With the introduction of Home Care Services, Popular Hospital has focused on providing quality care at the comfort of your doorsteps with an aim to making healthcare more affordable as well as convenient to the consumer."} /></p>
+        <p className={textClass}><T k="services-home-care_3117a0" d={"Many patients struggle to get to the hospitals, and this initiative helps crucial medical services reach more individuals without the hassle of regular travel."} /></p>
       </div>
     ),
     image: "/images/departments-images/home_care_nurse_patient.png",
@@ -63,16 +55,8 @@ const sections: ServiceSection[] = [
     highlight: "at Home",
     content: (
       <div className="space-y-4">
-        <p className={textClass}>
-          Our services include doctor consultations for expert medical advice,
-          24/7 nursing care for continuous monitoring, physiotherapy sessions to
-          aid recovery and mobility, and blood sample collection at home for
-          timely diagnosis.
-        </p>
-        <p className={textClass}>
-          This is not merely a service but a genuine effort by Popular Hospital
-          to offer caring health care beyond the four walls of a hospital.
-        </p>
+        <p className={textClass}><T k="services-home-care_091c22" d={"Our services include doctor consultations for expert medical advice, 24/7 nursing care for continuous monitoring, physiotherapy sessions to aid recovery and mobility, and blood sample collection at home for timely diagnosis."} /></p>
+        <p className={textClass}><T k="services-home-care_0eae20" d={"This is not merely a service but a genuine effort by Popular Hospital to offer caring health care beyond the four walls of a hospital."} /></p>
       </div>
     ),
     image: "/images/departments-images/doctors-emergency.jpg",

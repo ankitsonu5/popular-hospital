@@ -3,6 +3,7 @@ import Image from "next/image";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/about/cashless-empanelment", {
@@ -177,7 +178,7 @@ export default function CashlessEmpanelmentPage() {
       {/* Hero Section */}
       <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="about-cashless-empanelment_905914"
             src="/images/banners/health_packages.png"
             alt="Cashless Banner"
             fill
@@ -187,14 +188,8 @@ export default function CashlessEmpanelmentPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
         </div>
         <div className="relative z-10 text-center px-6 sm:px-4 max-w-4xl mx-auto font-heading uppercase tracking-tight">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-2xl 2xl:text-5xl font-bold mb-4 text-white">
-            Cashless Empanelment
-          </h1>
-          <p className="text-sm sm:text-base md:text-xl xl:text-base 2xl:text-xl text-blue-100 leading-relaxed max-w-2xl 2xl:max-w-4xl mx-auto font-light normal-case tracking-normal">
-            Popular Hospital is proudly empanelled with leading Government
-            bodies, PSUs, Private Corporates, and International TPAs — ensuring
-            hassle-free cashless treatment for you and your family.
-          </p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-2xl 2xl:text-5xl font-bold mb-4 text-white"><T k="about-cashless-empanelment_b78d1d" d={"Cashless Empanelment"} /></h1>
+          <p className="text-sm sm:text-base md:text-xl xl:text-base 2xl:text-xl text-blue-100 leading-relaxed max-w-2xl 2xl:max-w-4xl mx-auto font-light normal-case tracking-normal"><T k="about-cashless-empanelment_7cd910" d={"Popular Hospital is proudly empanelled with leading Government bodies, PSUs, Private Corporates, and International TPAs — ensuring hassle-free cashless treatment for you and your family."} /></p>
         </div>
       </div>
 
@@ -419,14 +414,8 @@ export default function CashlessEmpanelmentPage() {
 
         {/* CTA Section */}
         <div className="mt-16 xl:mt-12 2xl:mt-24 bg-gradient-to-r from-[#0b1c43] to-[#1a3a6b] rounded-2xl p-8 md:p-12 xl:p-10 2xl:p-16 text-white text-center">
-          <h3 className="text-2xl md:text-3xl font-bold font-heading mb-4">
-            Can&apos;t find your organization?
-          </h3>
-          <p className="text-blue-100 max-w-2xl mx-auto mb-8 text-lg">
-            We are constantly adding new partners. Contact our billing
-            department to check if your employer or insurer is empanelled with
-            us.
-          </p>
+          <h3 className="text-2xl md:text-3xl font-bold font-heading mb-4"><T k="about-cashless-empanelment_91192e" d={"Can't find your organization?"} /></h3>
+          <p className="text-blue-100 max-w-2xl mx-auto mb-8 text-lg"><T k="about-cashless-empanelment_c3b0e2" d={"We are constantly adding new partners. Contact our billing department to check if your employer or insurer is empanelled with us."} /></p>
           <a
             href="tel:+917800001895"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#0b1c43] rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg"
@@ -443,9 +432,7 @@ export default function CashlessEmpanelmentPage() {
                 strokeWidth={2}
                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
               />
-            </svg>
-            Call +91-7800001895 / 96
-          </a>
+            </svg><T k="about-cashless-empanelment_69315d" d={"Call +91-7800001895 / 96"} /></a>
         </div>
       </div>
     </div>

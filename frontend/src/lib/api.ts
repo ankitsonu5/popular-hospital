@@ -555,7 +555,7 @@ export async function fetchUpdates(
 ): Promise<UpdateItem[]> {
   try {
     const url = all ? api("/updates?all=true") : api("/updates");
-    const res = await fetch(url, { next: { revalidate: 60 } });
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return [];
     return await res.json();
   } catch (e) {

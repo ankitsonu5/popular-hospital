@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { type Speciality } from "@/lib/api";
+import { CImage, T } from "@/components/content/Editable";
 
 const COUNTRIES = [
   "Afghanistan",
@@ -275,7 +276,7 @@ export default function InternationalPatients({
       {/* Mobile Only Background Image */}
       {!formOnly && (
         <div className="absolute inset-0 z-0 lg:hidden">
-          <Image
+          <CImage k="home_760954"
             src="/images/international_patients.png"
             alt="International Patients Background"
             fill
@@ -303,9 +304,7 @@ export default function InternationalPatients({
               : "For International Patients"}
           </h2>
           {!formOnly && (
-            <p className="text-sm sm:text-base xl:text-xs xl:sm:text-sm font-bold text-[#FF6B00] uppercase tracking-wider drop-shadow-md lg:drop-shadow-none">
-              Send Your Inquiry to Assist You
-            </p>
+            <p className="text-sm sm:text-base xl:text-xs xl:sm:text-sm font-bold text-[#FF6B00] uppercase tracking-wider drop-shadow-md lg:drop-shadow-none"><T k="home_d87766_2" d={"Send Your Inquiry to Assist You"} /></p>
           )}
         </div>
 
@@ -318,9 +317,7 @@ export default function InternationalPatients({
           >
             <div className="bg-[#333333] lg:bg-[#333333] p-1 shadow-2xl rounded-sm">
               <div className="bg-[#333333] px-6 py-8 sm:px-10 sm:py-12 xl:px-8 xl:py-10">
-                <h3 className="text-2xl font-black text-white text-center mb-8 sm:mb-10 font-heading tracking-tight">
-                  Book An Appointment
-                </h3>
+                <h3 className="text-2xl font-black text-white text-center mb-8 sm:mb-10 font-heading tracking-tight"><T k="home_687bd9" d={"Book An Appointment"} /></h3>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="relative group">
@@ -495,7 +492,7 @@ export default function InternationalPatients({
           {/* Desktop Only Side Image */}
           {!formOnly && (
             <div className="relative hidden lg:block flex-1 w-full max-w-[720px] xl:max-w-[660px] h-[600px] xl:h-[520px] overflow-hidden rounded-2xl shadow-xl mx-auto">
-              <Image
+              <CImage k="home_760954_2"
                 src="/images/international_patients.png"
                 alt="International Patient Inquiry"
                 fill

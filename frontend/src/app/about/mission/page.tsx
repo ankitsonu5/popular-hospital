@@ -2,6 +2,7 @@ import Image from "next/image";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/about/mission", {
@@ -21,7 +22,7 @@ export default function VisionMissionPage() {
       {/* ─── Clean Hero Section ─── */}
       <section className="relative bg-[#0b1c43] overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0">
-          <Image
+          <CImage k="about-mission_f433b3"
             src="/images/banners/about_us_mission.jpg"
             alt="Vision Banner"
             fill
@@ -30,13 +31,8 @@ export default function VisionMissionPage() {
           />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-3xl font-bold font-heading text-white tracking-tight leading-tight">
-            Our Mission
-          </h1>
-          <p className="mt-6 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Guiding principles that drive Popular Hospital towards excellence in
-            healthcare and patient safety.
-          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-3xl font-bold font-heading text-white tracking-tight leading-tight"><T k="about-mission_e36a91" d={"Our Mission"} /></h1>
+          <p className="mt-6 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed"><T k="about-mission_1a32c1" d={"Guiding principles that drive Popular Hospital towards excellence in healthcare and patient safety."} /></p>
         </div>
       </section>
 
@@ -71,14 +67,9 @@ export default function VisionMissionPage() {
                     <circle cx="12" cy="12" r="2" fill="currentColor" />
                   </svg>
                 </div>
-                <h2 className="text-3xl md:text-4xl xl:text-2xl font-black font-heading text-[#056b46] tracking-tight uppercase">
-                  MISSION
-                </h2>
+                <h2 className="text-3xl md:text-4xl xl:text-2xl font-black font-heading text-[#056b46] tracking-tight uppercase"><T k="about-mission_89baf8" d={"MISSION"} /></h2>
               </div>
-              <p className="text-2xl md:text-3xl xl:text-lg font-bold text-gray-800 leading-[1.3] font-heading">
-                "To be the Preferred Destination for all patients for Quality
-                Health Care Services."
-              </p>
+              <p className="text-2xl md:text-3xl xl:text-lg font-bold text-gray-800 leading-[1.3] font-heading"><T k="about-mission_db85d8" d={"\"To be the Preferred Destination for all patients for Quality Health Care Services.\""} /></p>
             </div>
 
             {/* Vision Card */}
@@ -105,14 +96,9 @@ export default function VisionMissionPage() {
                     />
                   </svg>
                 </div>
-                <h2 className="text-3xl md:text-4xl xl:text-2xl font-black font-heading text-[#005696] tracking-tight uppercase">
-                  VISION
-                </h2>
+                <h2 className="text-3xl md:text-4xl xl:text-2xl font-black font-heading text-[#005696] tracking-tight uppercase"><T k="about-mission_927e44" d={"VISION"} /></h2>
               </div>
-              <p className="text-2xl md:text-3xl xl:text-lg font-bold text-gray-800 leading-[1.3] font-heading">
-                "To Provide Quality Health Care Services to Every Patient at
-                Affordable Cost."
-              </p>
+              <p className="text-2xl md:text-3xl xl:text-lg font-bold text-gray-800 leading-[1.3] font-heading"><T k="about-mission_2723c6" d={"\"To Provide Quality Health Care Services to Every Patient at Affordable Cost.\""} /></p>
             </div>
           </div>
         </div>
@@ -122,14 +108,9 @@ export default function VisionMissionPage() {
       <section className="py-20 xl:py-12 bg-white relative overflow-hidden">
         <div className="max-w-[1366px] xl:max-w-5xl min-[1920px]:max-w-[1366px] mx-auto px-6 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-hospital-orange/10 border border-hospital-orange/20 mb-8">
-            <span className="text-sm font-bold text-hospital-orange tracking-widest uppercase">
-              Immediate Assistance
-            </span>
+            <span className="text-sm font-bold text-hospital-orange tracking-widest uppercase"><T k="about-mission_f1b85d" d={"Immediate Assistance"} /></span>
           </div>
-          <h2 className="text-3xl md:text-5xl xl:text-2xl font-black font-heading text-[#0b1c43] mb-8 xl:mb-6">
-            Reach Out to Us <br className="hidden md:block" />
-            Anytime
-          </h2>
+          <h2 className="text-3xl md:text-5xl xl:text-2xl font-black font-heading text-[#0b1c43] mb-8 xl:mb-6"><T k="about-mission_1fecca" d={"Reach Out to Us "} /><br className="hidden md:block" /><T k="about-mission_7c01fd" d={"Anytime"} /></h2>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
             <a
@@ -151,12 +132,8 @@ export default function VisionMissionPage() {
                   />
                 </svg>
               </div>
-              <span className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-1">
-                Reception
-              </span>
-              <span className="text-xl md:text-2xl xl:text-lg font-black text-[#0b1c43]">
-                +91-7800001895
-              </span>
+              <span className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-1"><T k="about-mission_d928bf" d={"Reception"} /></span>
+              <span className="text-xl md:text-2xl xl:text-lg font-black text-[#0b1c43]"><T k="about-mission_951297" d={"+91-7800001895"} /></span>
             </a>
 
             <div className="hidden md:block w-px h-24 bg-gray-200" />
@@ -180,12 +157,8 @@ export default function VisionMissionPage() {
                   />
                 </svg>
               </div>
-              <span className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-1">
-                Emergency
-              </span>
-              <span className="text-xl md:text-2xl xl:text-lg font-black text-[#0b1c43]">
-                +91-7800001896
-              </span>
+              <span className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-1"><T k="about-mission_3efeb7" d={"Emergency"} /></span>
+              <span className="text-xl md:text-2xl xl:text-lg font-black text-[#0b1c43]"><T k="about-mission_1ee59d" d={"+91-7800001896"} /></span>
             </a>
           </div>
         </div>

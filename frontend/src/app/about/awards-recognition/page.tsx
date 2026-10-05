@@ -8,6 +8,7 @@ import {
   Handshake,
   Trophy,
 } from "lucide-react";
+import { CImage, T } from "@/components/content/Editable";
 
 const awardsData = [
   {
@@ -85,7 +86,7 @@ export default function AwardsRecognitionPage() {
       {/* ─── Simple & Clean Hero Section ─── */}
       <div className="bg-[#0b1c43] text-white py-10 relative overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center">
         <div className="absolute inset-0">
-          <Image
+          <CImage k="about-awards-recognition_b6eb4f"
             src="/images/banners/about_us_reward.jpg"
             alt="Awards and recognition banner"
             fill
@@ -103,9 +104,8 @@ export default function AwardsRecognitionPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-5xl xl:max-w-6xl min-[1920px]:max-w-[1366px] px-6 sm:px-12 text-center">
-          <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-2xl font-black font-heading tracking-tight leading-tight mb-6 text-white drop-shadow-md uppercase">
-            The Face: Dr. A.K. Kaushik - A Healthcare{" "}
-            <span className="text-[#00B4D8]">ICON</span>
+          <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-2xl font-black font-heading tracking-tight leading-tight mb-6 text-white drop-shadow-md uppercase"><T k="about-awards-recognition_eebffa" d={"The Face: Dr. A.K. Kaushik - A Healthcare"} />{" "}
+            <span className="text-[#00B4D8]"><T k="about-awards-recognition_b319fc" d={"ICON"} /></span>
           </h1>
           <div className="w-24 h-1 bg-hospital-orange rounded-full mx-auto mb-8"></div>
 
@@ -115,9 +115,7 @@ export default function AwardsRecognitionPage() {
             className="inline-flex items-center gap-2.5 px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all duration-300 backdrop-blur-md group hover:scale-105 active:scale-95 shadow-lg shadow-black/20"
           >
             <Share2 className="w-4 h-4 text-[#00B4D8] group-hover:animate-pulse" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em]">
-              Share Profile
-            </span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em]"><T k="about-awards-recognition_5f83e2" d={"Share Profile"} /></span>
           </button>
         </div>
       </div>
@@ -137,7 +135,7 @@ export default function AwardsRecognitionPage() {
                   <div className="flex flex-col md:flex-row lg:flex-col gap-6 md:gap-8 lg:gap-6 items-center md:items-start lg:items-center">
                     {/* Photo in refined container */}
                     <div className="relative w-48 h-56 md:w-56 md:h-64 lg:w-full lg:h-[320px] overflow-hidden rounded-2xl border border-gray-100 flex-shrink-0 bg-white">
-                      <Image
+                      <CImage k="about-awards-recognition_a8776d"
                         src="/images/dr_ak_kaushik.png"
                         alt="Dr. A.K. Kaushik"
                         fill
@@ -149,7 +147,7 @@ export default function AwardsRecognitionPage() {
                     <div className="flex-1 text-center md:text-left lg:text-center w-full">
                       {/* Logo positioned at top-right of text area as in image */}
                       <div className="flex justify-center md:justify-end lg:justify-center mb-6">
-                        <Image
+                        <CImage k="about-awards-recognition_5c6ca6"
                           src="/logo.png"
                           alt="Popular Hospital"
                           width={120}
@@ -158,26 +156,18 @@ export default function AwardsRecognitionPage() {
                         />
                       </div>
 
-                      <h2 className="text-4xl md:text-5xl lg:text-3xl font-black text-[#0b1c43] mb-1 font-heading tracking-tight leading-none">
-                        Dr. A.K. Kaushik
-                      </h2>
-                      <p className="text-gray-400 font-bold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-8 lg:mb-10 block">
-                        Chairman & Managing Director
-                      </p>
+                      <h2 className="text-4xl md:text-5xl lg:text-3xl font-black text-[#0b1c43] mb-1 font-heading tracking-tight leading-none"><T k="about-awards-recognition_cf7a53" d={"Dr. A.K. Kaushik"} /></h2>
+                      <p className="text-gray-400 font-bold text-[10px] md:text-xs uppercase tracking-[0.25em] mb-8 lg:mb-10 block"><T k="about-awards-recognition_da7b25" d={"Chairman & Managing Director"} /></p>
 
                       {/* Teal Dot Bullet List as in Image */}
                       <div className="space-y-6 text-left inline-block w-full">
                         <div className="flex items-start gap-4">
                           <div className="mt-1 w-2.5 h-2.5 rounded-full bg-hospital-teal shrink-0 border-2 border-hospital-teal/20"></div>
-                          <p className="text-[15px] md:text-base lg:text-sm font-semibold text-slate-700 leading-snug">
-                            General, Laparoscopic, & Minimal Invasive Surgeon
-                          </p>
+                          <p className="text-[15px] md:text-base lg:text-sm font-semibold text-slate-700 leading-snug"><T k="about-awards-recognition_d242bb" d={"General, Laparoscopic, & Minimal Invasive Surgeon"} /></p>
                         </div>
                         <div className="flex items-start gap-4">
                           <div className="mt-1 w-2.5 h-2.5 rounded-full bg-hospital-teal shrink-0 border-2 border-hospital-teal/20"></div>
-                          <p className="text-[15px] md:text-base lg:text-sm font-semibold text-slate-700 leading-snug">
-                            MBBS, MS (General Surgery) IMS-BHU
-                          </p>
+                          <p className="text-[15px] md:text-base lg:text-sm font-semibold text-slate-700 leading-snug"><T k="about-awards-recognition_8d3559" d={"MBBS, MS (General Surgery) IMS-BHU"} /></p>
                         </div>
                       </div>
                     </div>
@@ -209,24 +199,14 @@ export default function AwardsRecognitionPage() {
             {/* Right Section: Strategic Profile Summary & Grid */}
             <div className="lg:col-span-7 flex flex-col pt-4">
               <h2 className="text-3xl font-black text-[#0b1c43] font-heading mb-8 tracking-tight uppercase leading-none flex items-center gap-3">
-                <span className="w-1.5 h-7 bg-[#E85222] rounded-full inline-block"></span>
-                Profile Summary
-              </h2>
+                <span className="w-1.5 h-7 bg-[#E85222] rounded-full inline-block"></span><T k="about-awards-recognition_61613c" d={"Profile Summary"} /></h2>
 
               {/* Redesigned Blockquote Card */}
               <div className="relative overflow-hidden bg-gradient-to-r from-blue-50/70 to-slate-50/55 rounded-2xl border-l-4 border-[#0b467d] p-6 mb-10 shadow-sm border border-slate-100/50">
                 <span className="absolute -top-3 -right-2 text-[120px] text-blue-900/5 font-serif leading-none select-none">
                   “
                 </span>
-                <p className="relative z-10 text-slate-700 font-jakarta font-medium text-base md:text-lg leading-relaxed italic">
-                  &quot;The single greatest asset and the primary de-risking
-                  factor of this investment is the promoter himself,
-                  <span className="font-extrabold text-[#0b1c43] not-italic ml-1 inline-block border-b-2 border-[#E85222]/30">
-                    Dr. A.K. Kaushik
-                  </span>
-                  . He is a pioneer in General, Laparoscopic, Laser & Minimal
-                  Invasive Surgery in the region.&quot;
-                </p>
+                <p className="relative z-10 text-slate-700 font-jakarta font-medium text-base md:text-lg leading-relaxed italic"><T k="about-awards-recognition_a3605a" d={"\"The single greatest asset and the primary de-risking factor of this investment is the promoter himself,"} /><span className="font-extrabold text-[#0b1c43] not-italic ml-1 inline-block border-b-2 border-[#E85222]/30"><T k="about-awards-recognition_cf7a53_2" d={"Dr. A.K. Kaushik"} /></span><T k="about-awards-recognition_a2aae5" d={". He is a pioneer in General, Laparoscopic, Laser & Minimal Invasive Surgery in the region.\""} /></p>
               </div>
 
               {/* Info Grid of Redesigned Cards */}
@@ -294,24 +274,16 @@ export default function AwardsRecognitionPage() {
         {/* Section 2: Awards Table (Properly Mobile Responsive) */}
         <div className="space-y-6">
           <h2 className="text-2xl font-bold text-[#0b1c43] font-heading uppercase tracking-tight flex items-center gap-3">
-            <span className="w-1.5 h-6 bg-[#E85222] rounded-full inline-block"></span>
-            Awards Timeline
-          </h2>
+            <span className="w-1.5 h-6 bg-[#E85222] rounded-full inline-block"></span><T k="about-awards-recognition_4cba49" d={"Awards Timeline"} /></h2>
 
           <div className="bg-white rounded-2xl border border-slate-200/80 shadow-md shadow-slate-100 overflow-hidden">
             <div className="hidden md:block">
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-gradient-to-r from-slate-50 to-slate-100/70 border-b border-slate-200">
-                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider w-[120px]">
-                      Year
-                    </th>
-                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider">
-                      Award Name
-                    </th>
-                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider">
-                      Conferred By
-                    </th>
+                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider w-[120px]"><T k="about-awards-recognition_879e32" d={"Year"} /></th>
+                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider"><T k="about-awards-recognition_2a2df4" d={"Award Name"} /></th>
+                    <th className="px-8 py-5 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider"><T k="about-awards-recognition_720d4c" d={"Conferred By"} /></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -334,17 +306,12 @@ export default function AwardsRecognitionPage() {
                     </tr>
                   ))}
                   <tr className="bg-gradient-to-r from-[#0b1c43]/5 to-[#0b1c43]/10 border-t border-slate-200">
-                    <td className="px-8 py-6 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider">
-                      Special Honor
-                    </td>
+                    <td className="px-8 py-6 font-bold font-jakarta text-xs text-[#0b1c43] uppercase tracking-wider"><T k="about-awards-recognition_3d33e3" d={"Special Honor"} /></td>
                     <td
                       className="px-8 py-6 font-black font-jakarta text-[#0b1c43] text-base"
                       colSpan={2}
                     >
-                      <span className="text-[#E85222] font-black mr-2">★</span>
-                      Honored by Hon&apos;ble Chief Minister of Uttar Pradesh,
-                      Shri Yogi Adityanath Ji
-                    </td>
+                      <span className="text-[#E85222] font-black mr-2">★</span><T k="about-awards-recognition_672513" d={"Honored by Hon'ble Chief Minister of Uttar Pradesh, Shri Yogi Adityanath Ji"} /></td>
                   </tr>
                 </tbody>
               </table>
@@ -367,20 +334,15 @@ export default function AwardsRecognitionPage() {
                       {row.award}
                     </p>
                     <p className="text-xs text-slate-500 font-medium font-jakarta flex items-center gap-1.5 pt-0.5">
-                      <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                      Conferred by: {row.conferred}
+                      <span className="w-1 h-1 rounded-full bg-slate-300"></span><T k="about-awards-recognition_e389a3" d={"Conferred by: "} />{row.conferred}
                     </p>
                   </div>
                 </div>
               ))}
               <div className="p-6 bg-gradient-to-br from-[#0b1c43]/5 to-[#0b1c43]/10 border-t border-slate-200 space-y-2">
                 <p className="text-[10px] font-black text-[#E85222] uppercase tracking-widest flex items-center gap-1.5">
-                  <span>★</span> Special Honor
-                </p>
-                <p className="font-black text-[#0b1c43] leading-snug text-sm font-jakarta">
-                  Honored by Hon&apos;ble Chief Minister of Uttar Pradesh, Shri
-                  Yogi Adityanath Ji
-                </p>
+                  <span>★</span><T k="about-awards-recognition_bd4404" d={" Special Honor"} /></p>
+                <p className="font-black text-[#0b1c43] leading-snug text-sm font-jakarta"><T k="about-awards-recognition_672513_2" d={"Honored by Hon'ble Chief Minister of Uttar Pradesh, Shri Yogi Adityanath Ji"} /></p>
               </div>
             </div>
           </div>
@@ -388,9 +350,7 @@ export default function AwardsRecognitionPage() {
 
         {/* Section 3: Strategic Value */}
         <div className="space-y-8 pb-10">
-          <h2 className="text-2xl font-bold text-[#0b1c43] font-heading uppercase tracking-tight">
-            Strategic Value
-          </h2>
+          <h2 className="text-2xl font-bold text-[#0b1c43] font-heading uppercase tracking-tight"><T k="about-awards-recognition_7e2742" d={"Strategic Value"} /></h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {strategicValueData.map((item, index) => (

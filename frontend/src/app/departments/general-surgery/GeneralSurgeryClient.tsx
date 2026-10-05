@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data (exact from original page) ─── */
 
@@ -59,7 +60,7 @@ export default function GeneralSurgeryClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-general-surgery_fdb308"
             src="/images/banners/genral_surgery.png"
             alt="General Surgery Banner"
             fill
@@ -70,25 +71,17 @@ export default function GeneralSurgeryClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Department of
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Laparoscopy & General Surgery — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-general-surgery_4c5284" d={"Department of"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-general-surgery_551881" d={"Department of Laparoscopy & General Surgery — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-general-surgery_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="General Surgery"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-general-surgery_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -102,44 +95,19 @@ export default function GeneralSurgeryClient({
             <div className="lg:col-span-8 space-y-8">
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Department of General &amp;{" "}
-                  <span className="text-[#1e3a8a]">Laparoscopic Surgery</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-general-surgery_a2783c" d={"Department of General &"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-general-surgery_e445c8" d={"Laparoscopic Surgery"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <div className="space-y-4">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Laparoscopy & General Surgery hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-general-surgery_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-general-surgery_607e16" d={"best Laparoscopy & General Surgery hospital in Varanasi"} /></strong><T k="departments-general-surgery_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-general-surgery_200859" d={"Purvanchal"} /></strong><T k="departments-general-surgery_4f4133" d={" and "} /><strong><T k="departments-general-surgery_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The Department of General and Laparoscopic Surgery at Popular
-                  Hospital is manned 24x7 by an experienced and dedicated team
-                  of consultants that aim to provide modern surgical treatment
-                  and advice to the patients. The department is committed to the
-                  principles and practices of &apos;Safe Surgery Saves
-                  Lives&apos; to provide ethical &amp; evidence-based surgical
-                  options to the patients.
-                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-general-surgery_fc6809" d={"The Department of General and Laparoscopic Surgery at Popular Hospital is manned 24x7 by an experienced and dedicated team of consultants that aim to provide modern surgical treatment and advice to the patients. The department is committed to the principles and practices of 'Safe Surgery Saves Lives' to provide ethical & evidence-based surgical options to the patients."} /></p>
 
                 <div className="border-l-4 border-blue-600 pl-5 py-3 bg-blue-50/30 rounded-r-2xl">
-                  <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                    Laparoscopic Surgery is a technique wherein surgical
-                    procedures like removal of gallbladder can be successfully
-                    done with small keyhole incisions in place of opening up of
-                    the abdomen with large incision. Carbon dioxide gas is used
-                    to inflate the abdomen so as to open up space for putting in
-                    instruments and then performing required surgical
-                    procedures. Patients are mobilised the same evening and
-                    discharged the very next day. The benefits of Laparoscopic
-                    surgery are early return to work, less pain, faster recovery
-                    &amp; better cosmetics. With a dedicated and experienced
-                    team doing evidence-based surgical procedures, the outcomes
-                    are excellent. Safety in surgery to reduce or eliminate
-                    complications during treatment is the main motto of the
-                    consultants.
-                  </p>
+                  <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-general-surgery_2b70f8" d={"Laparoscopic Surgery is a technique wherein surgical procedures like removal of gallbladder can be successfully done with small keyhole incisions in place of opening up of the abdomen with large incision. Carbon dioxide gas is used to inflate the abdomen so as to open up space for putting in instruments and then performing required surgical procedures. Patients are mobilised the same evening and discharged the very next day. The benefits of Laparoscopic surgery are early return to work, less pain, faster recovery & better cosmetics. With a dedicated and experienced team doing evidence-based surgical procedures, the outcomes are excellent. Safety in surgery to reduce or eliminate complications during treatment is the main motto of the consultants."} /></p>
                 </div>
               </div>
             </div>
@@ -164,7 +132,7 @@ export default function GeneralSurgeryClient({
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-stretch">
             {/* Left — Tall Image */}
             <div className="lg:col-span-2 relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] mx-auto lg:mx-0 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white group lg:self-center">
-              <Image
+              <CImage k="departments-general-surgery_2dbc6a"
                 src="/images/departments-images/laparoscopic.jpeg"
                 alt="Laparoscopic Surgery"
                 fill
@@ -172,24 +140,17 @@ export default function GeneralSurgeryClient({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/40 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
-                <span className="inline-block bg-white/90 backdrop-blur-sm text-[#0b1c43] text-xs font-bold px-4 py-2 rounded-full shadow">
-                  Advanced Laparoscopic Care
-                </span>
+                <span className="inline-block bg-white/90 backdrop-blur-sm text-[#0b1c43] text-xs font-bold px-4 py-2 rounded-full shadow"><T k="departments-general-surgery_0403a9" d={"Advanced Laparoscopic Care"} /></span>
               </div>
             </div>
 
             {/* Right — Numbered USP List */}
             <div className="lg:col-span-3 flex flex-col justify-center">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Why Us
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-general-surgery_c06952" d={"Why Us"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  USP of General &amp;{" "}
-                  <span className="text-[#1e3a8a]">
-                    Laparoscopic Surgery Dept.
-                  </span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-general-surgery_eb9252" d={"USP of General &"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-general-surgery_0e4651" d={"Laparoscopic Surgery Dept."} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-8" />
@@ -217,20 +178,14 @@ export default function GeneralSurgeryClient({
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-stretch">
             {/* Left — Procedures List */}
             <div className="lg:col-span-3 flex flex-col justify-center">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Diagnostic &amp; Procedural Care
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-general-surgery_e0940e" d={"Diagnostic & Procedural Care"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Our <span className="text-[#1e3a8a]">Procedures</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-general-surgery_bb463f" d={"Our "} /><span className="text-[#1e3a8a]"><T k="departments-general-surgery_d682fc" d={"Procedures"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-4" />
-              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mb-8">
-                Comprehensive surgical solutions for a wide range of abdominal
-                and general surgical conditions.
-              </p>
+              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mb-8"><T k="departments-general-surgery_6ed8fe" d={"Comprehensive surgical solutions for a wide range of abdominal and general surgical conditions."} /></p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
                 {procedures.map((item, idx) => (
@@ -248,7 +203,7 @@ export default function GeneralSurgeryClient({
 
             {/* Right — Tall Image */}
             <div className="lg:col-span-2 relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] mx-auto lg:ml-auto lg:mr-0 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50 group order-first lg:order-last lg:self-center">
-              <Image
+              <CImage k="departments-general-surgery_f61687"
                 src="/images/departments-images/general_surgery.png"
                 alt="General Surgery Procedures"
                 fill
@@ -256,9 +211,7 @@ export default function GeneralSurgeryClient({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/40 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
-                <span className="inline-block bg-white/90 backdrop-blur-sm text-[#0b1c43] text-xs font-bold px-4 py-2 rounded-full shadow">
-                  Expert Surgical Outcomes
-                </span>
+                <span className="inline-block bg-white/90 backdrop-blur-sm text-[#0b1c43] text-xs font-bold px-4 py-2 rounded-full shadow"><T k="departments-general-surgery_1a87f5" d={"Expert Surgical Outcomes"} /></span>
               </div>
             </div>
           </div>

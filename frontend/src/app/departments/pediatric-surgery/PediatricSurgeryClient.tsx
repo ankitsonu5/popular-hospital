@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data (exact from original page) ─── */
 
@@ -74,7 +75,7 @@ export default function PediatricSurgeryClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-pediatric-surgery_6e9db8"
             src="/images/banners/pediatric_surgery.png"
             alt="Pediatric Surgery Banner"
             fill
@@ -86,25 +87,17 @@ export default function PediatricSurgeryClient({
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Department of
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Pediatric Surgery — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-pediatric-surgery_4c5284" d={"Department of"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-pediatric-surgery_c1f048" d={"Department of Pediatric Surgery — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-pediatric-surgery_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Pediatric Surgery"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-pediatric-surgery_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -118,42 +111,18 @@ export default function PediatricSurgeryClient({
             <div className="lg:col-span-8 space-y-8">
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Department of{" "}
-                  <span className="text-[#1e3a8a]">Pediatric Surgery</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-surgery_4c5284_2" d={"Department of"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-pediatric-surgery_2030d8" d={"Pediatric Surgery"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <div className="space-y-4">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Pediatric Surgery hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-pediatric-surgery_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-pediatric-surgery_93b73f" d={"best Pediatric Surgery hospital in Varanasi"} /></strong><T k="departments-pediatric-surgery_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-pediatric-surgery_200859" d={"Purvanchal"} /></strong><T k="departments-pediatric-surgery_4f4133" d={" and "} /><strong><T k="departments-pediatric-surgery_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  Pediatric Surgery is a specialization in medicine dealing with
-                  surgery of infants, children, and adolescents. It covers a
-                  large number of health issues that demand surgical operations
-                  with treatments being suitably adjusted to the overall anatomy
-                  and needs of the young patients. The Pediatric Surgery
-                  Department at Popular Hospital is a unit that blends
-                  technological superiority, an exceptional aptitude to perform
-                  surgery, and a sensitive treatment to provide ample treatment
-                  with effective and secure end-results, child-friendly.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The Pediatric surgical care involves several disciplines such
-                  as Neuro, Cardiac, Urologic, Orthopedics, and General surgical
-                  care. Our experts focus on lowering the level of discomfort,
-                  minimising risk and accelerating patient recovery utilising
-                  both low invasive and conventional surgical procedures.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  A large number of procedures are being carried out on daycare
-                  or short-stay basis providing children with quicker entry to
-                  home and continuation with normal activities. Such a strategy
-                  can alleviate stress on both the family and the child, and
-                  high standard of surgical treatment is achieved.
-                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-pediatric-surgery_4d3618" d={"Pediatric Surgery is a specialization in medicine dealing with surgery of infants, children, and adolescents. It covers a large number of health issues that demand surgical operations with treatments being suitably adjusted to the overall anatomy and needs of the young patients. The Pediatric Surgery Department at Popular Hospital is a unit that blends technological superiority, an exceptional aptitude to perform surgery, and a sensitive treatment to provide ample treatment with effective and secure end-results, child-friendly."} /></p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-pediatric-surgery_ee0274" d={"The Pediatric surgical care involves several disciplines such as Neuro, Cardiac, Urologic, Orthopedics, and General surgical care. Our experts focus on lowering the level of discomfort, minimising risk and accelerating patient recovery utilising both low invasive and conventional surgical procedures."} /></p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-pediatric-surgery_978d71" d={"A large number of procedures are being carried out on daycare or short-stay basis providing children with quicker entry to home and continuation with normal activities. Such a strategy can alleviate stress on both the family and the child, and high standard of surgical treatment is achieved."} /></p>
               </div>
             </div>
 
@@ -176,32 +145,21 @@ export default function PediatricSurgeryClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="order-2 lg:order-1">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Specialist Care
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatric-surgery_daeec0" d={"Specialist Care"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Knowing a{" "}
-                  <span className="text-[#1e3a8a]">Pediatric Surgeon</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-surgery_5cb030" d={"Knowing a"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-pediatric-surgery_0c1da4" d={"Pediatric Surgeon"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
-              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6">
-                A pediatric surgeon is a uniquely qualified provider whose
-                expertise consists of conducting surgeries that are specific to
-                children. Those caregivers learn the physical or emotional
-                requirements of small patients and collaborate with pediatric
-                anesthesiologists, neurologists, cardiologists, orthopedic
-                surgeons, and urologists to maintain the safest and efficacy
-                procedures.
-              </p>
+              <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6"><T k="departments-pediatric-surgery_8b9e14" d={"A pediatric surgeon is a uniquely qualified provider whose expertise consists of conducting surgeries that are specific to children. Those caregivers learn the physical or emotional requirements of small patients and collaborate with pediatric anesthesiologists, neurologists, cardiologists, orthopedic surgeons, and urologists to maintain the safest and efficacy procedures."} /></p>
             </div>
 
             <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
-                <Image
+                <CImage k="departments-pediatric-surgery_81ccc6"
                   src="/images/departments-images/pediatric_surgery.avif"
                   alt="Knowing a Pediatric Surgeon Illustration"
                   fill
@@ -218,22 +176,16 @@ export default function PediatricSurgeryClient({
       <section className="py-16 xl:py-12 2xl:py-20 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="max-w-3xl mb-12">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Patient-Centric Benefits
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatric-surgery_b41006" d={"Patient-Centric Benefits"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Pediatric Surgery at{" "}
-                <span className="text-[#1e3a8a]">Popular Hospital</span>
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-surgery_b14281" d={"Pediatric Surgery at"} />{" "}
+                <span className="text-[#1e3a8a]"><T k="departments-pediatric-surgery_259065" d={"Popular Hospital"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
-            <p className="text-gray-800 text-lg font-bold mt-6 leading-relaxed">
-              At Popular Hospital, pediatric surgery offers several benefits,
-              including:
-            </p>
+            <p className="text-gray-800 text-lg font-bold mt-6 leading-relaxed"><T k="departments-pediatric-surgery_10778b" d={"At Popular Hospital, pediatric surgery offers several benefits, including:"} /></p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -262,7 +214,7 @@ export default function PediatricSurgeryClient({
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
-                <Image
+                <CImage k="departments-pediatric-surgery_34de64"
                   src="/images/departments-images/pediatric_surgery.png"
                   alt="Specialized Areas of Pediatric Surgery"
                   fill
@@ -273,13 +225,10 @@ export default function PediatricSurgeryClient({
             </div>
 
             <div>
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Surgical Specializations
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatric-surgery_d662b8" d={"Surgical Specializations"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Specialized <span className="text-[#1e3a8a]">Areas</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-surgery_01f4df" d={"Specialized "} /><span className="text-[#1e3a8a]"><T k="departments-pediatric-surgery_14ce09" d={"Areas"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -312,19 +261,8 @@ export default function PediatricSurgeryClient({
           <div className="bg-blue-50/30 p-8 md:p-12 rounded-[2.5rem] border border-blue-100 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/40 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
             <div className="relative z-10">
-              <h3 className="text-xl font-bold text-[#0b1c43] mb-4 font-heading uppercase tracking-wider">
-                In Conclusion
-              </h3>
-              <p className="text-gray-700 leading-relaxed text-base md:text-[16px] font-medium italic">
-                At Popular Hospital, we understand that surgery of a child is
-                not only a medical condition needing highest amount of medical
-                care but also an emotional one to the entire family. Our
-                Pediatric Surgery Department provides high-quality medical
-                treatment in various fields, and its experienced staff treats
-                each of the patients with care, understanding, and respect. As
-                these parameters are our key offerings, our parents can be
-                assured of the best surgical care to their children.
-              </p>
+              <h3 className="text-xl font-bold text-[#0b1c43] mb-4 font-heading uppercase tracking-wider"><T k="departments-pediatric-surgery_dd0489" d={"In Conclusion"} /></h3>
+              <p className="text-gray-700 leading-relaxed text-base md:text-[16px] font-medium italic"><T k="departments-pediatric-surgery_271991" d={"At Popular Hospital, we understand that surgery of a child is not only a medical condition needing highest amount of medical care but also an emotional one to the entire family. Our Pediatric Surgery Department provides high-quality medical treatment in various fields, and its experienced staff treats each of the patients with care, understanding, and respect. As these parameters are our key offerings, our parents can be assured of the best surgical care to their children."} /></p>
             </div>
           </div>
         </div>

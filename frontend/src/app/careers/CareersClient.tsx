@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { fetchCareers } from "@/lib/api";
 import type { CareerItem } from "@/lib/api";
+import { T } from "@/components/content/Editable";
 
 export default function CareerPage() {
   const [activeTab, setActiveTab] = useState<
@@ -42,15 +43,9 @@ export default function CareerPage() {
       <div className="max-w-[1366px] mx-auto px-6 lg:px-12">
         {/* Hero Section */}
         <div className="mb-16">
-          <h1 className="text-4xl md:text-5xl font-black text-[#1a3a5c] mb-6 font-heading tracking-tight leading-tight">
-            Careers at <span className="text-[#E85222]">Popular Hospital</span>
+          <h1 className="text-4xl md:text-5xl font-black text-[#1a3a5c] mb-6 font-heading tracking-tight leading-tight"><T k="careers_3c004a" d={"Careers at "} /><span className="text-[#E85222]"><T k="careers_259065" d={"Popular Hospital"} /></span>
           </h1>
-          <p className="text-gray-500 text-lg sm:text-xl leading-relaxed max-w-4xl">
-            Popular Group of Hospitals provides a solid foundation for
-            developing a fulfilling professional career. Join our team of
-            dedicated medical professionals and make a real difference in
-            patient care.
-          </p>
+          <p className="text-gray-500 text-lg sm:text-xl leading-relaxed max-w-4xl"><T k="careers_f7829b" d={"Popular Group of Hospitals provides a solid foundation for developing a fulfilling professional career. Join our team of dedicated medical professionals and make a real difference in patient care."} /></p>
         </div>
 
         {/* Categories Tab */}
@@ -62,9 +57,7 @@ export default function CareerPage() {
                 ? "bg-[#1a3a5c] text-white shadow-xl shadow-blue-900/20 px-10"
                 : "bg-transparent text-gray-400 hover:text-[#1a3a5c]"
             }`}
-          >
-            Medical Openings
-          </button>
+          ><T k="careers_ddb18f" d={"Medical Openings"} /></button>
           <button
             onClick={() => setActiveTab("Non-Medical")}
             className={`px-8 py-3 rounded-[1.5rem] font-black uppercase tracking-widest text-[11px] transition-all duration-300 ${
@@ -72,9 +65,7 @@ export default function CareerPage() {
                 ? "bg-[#1a3a5c] text-white shadow-xl shadow-blue-900/20 px-10"
                 : "bg-transparent text-gray-400 hover:text-[#1a3a5c]"
             }`}
-          >
-            Non-Medical
-          </button>
+          ><T k="careers_937cdd" d={"Non-Medical"} /></button>
           <button
             onClick={() => setActiveTab("Admin")}
             className={`px-8 py-3 rounded-[1.5rem] font-black uppercase tracking-widest text-[11px] transition-all duration-300 ${
@@ -82,9 +73,7 @@ export default function CareerPage() {
                 ? "bg-[#1a3a5c] text-white shadow-xl shadow-blue-900/20 px-10"
                 : "bg-transparent text-gray-400 hover:text-[#1a3a5c]"
             }`}
-          >
-            Administration
-          </button>
+          ><T k="careers_b8be3d" d={"Administration"} /></button>
         </div>
 
         {/* Job Listings Grid */}
@@ -97,9 +86,7 @@ export default function CareerPage() {
             {currentOpenings.length === 0 ? (
               <div className="col-span-full py-20 text-center">
                 <Briefcase className="w-16 h-16 text-gray-200 mx-auto mb-4" />
-                <p className="text-gray-400 font-bold italic">
-                  No active openings in this category at the moment.
-                </p>
+                <p className="text-gray-400 font-bold italic"><T k="careers_ca6ae5" d={"No active openings in this category at the moment."} /></p>
               </div>
             ) : (
               currentOpenings.map((job) => (
@@ -112,8 +99,7 @@ export default function CareerPage() {
                       <div className="bg-[#f0f7ff] text-[#2a7a8c] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
                         {job.department}
                       </div>
-                      <div className="text-gray-300 text-[11px] font-bold">
-                        Posted: {job.postedOn}
+                      <div className="text-gray-300 text-[11px] font-bold"><T k="careers_9c4544" d={"Posted: "} />{job.postedOn}
                       </div>
                     </div>
 
@@ -131,14 +117,12 @@ export default function CareerPage() {
                       <div className="flex items-center gap-4 text-slate-500 text-sm font-bold">
                         <div className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100">
                           <Users className="w-4 h-4" strokeWidth={2.5} />
-                        </div>
-                        Positions: {job.position}
+                        </div><T k="careers_6445fb" d={"Positions: "} />{job.position}
                       </div>
                       <div className="flex items-center gap-4 text-slate-500 text-sm font-bold">
                         <div className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100">
                           <Calendar className="w-4 h-4" strokeWidth={2.5} />
-                        </div>
-                        Last Date:{" "}
+                        </div><T k="careers_8c4b3b" d={"Last Date:"} />{" "}
                         <span
                           className={
                             job.lastDate === "-"
@@ -156,15 +140,11 @@ export default function CareerPage() {
                     <button
                       onClick={() => setSelectedJob(job)}
                       className="w-full py-3 bg-[#f8fafc] text-[#1a3a5c] rounded-xl font-black text-[11px] uppercase tracking-widest hover:bg-[#1a3a5c] hover:text-white transition-all border border-slate-100 shadow-sm"
-                    >
-                      View Job Details
-                    </button>
+                    ><T k="careers_7243f7" d={"View Job Details"} /></button>
                     <Link
                       href={`/apply?job=${job._id}`}
                       className="w-full py-3 bg-[#1a3a5c] text-white rounded-xl text-center font-black text-xs uppercase tracking-widest hover:bg-[#E85222] transition-all shadow-md hover:shadow-orange-900/20 active:scale-95 flex items-center justify-center gap-2"
-                    >
-                      Apply Now
-                    </Link>
+                    ><T k="careers_802840" d={"Apply Now"} /></Link>
                   </div>
                 </div>
               ))
@@ -188,8 +168,7 @@ export default function CareerPage() {
                     {selectedJob.designation}
                   </h3>
                   <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1.5">
-                    {selectedJob.department} Division
-                  </p>
+                    {selectedJob.department}<T k="careers_7d7940" d={" Division"} /></p>
                 </div>
               </div>
               <button
@@ -213,8 +192,7 @@ export default function CareerPage() {
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-100">
                   <Users className="w-3.5 h-3.5 text-blue-500" />
                   <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wider">
-                    {selectedJob.position} Positions
-                  </span>
+                    {selectedJob.position}<T k="careers_4acf41" d={" Positions"} /></span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-100">
                   <Calendar className="w-3.5 h-3.5 text-orange-400" />
@@ -235,23 +213,19 @@ export default function CareerPage() {
               {/* Contact */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
                 <h4 className="text-[11px] font-bold text-slate-800 uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-                  <ArrowRight className="w-3.5 h-3.5 text-[#E85222]" />{" "}
-                  Recruitment Inquiry
-                </h4>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#E85222]" />{" "}<T k="careers_4090da" d={"Recruitment Inquiry"} /></h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="flex items-center gap-2.5 text-[11px] text-slate-600 font-bold">
                     <div className="w-7 h-7 rounded-md bg-white flex items-center justify-center text-blue-400 border border-slate-200 shrink-0">
                       <Mail className="w-3.5 h-3.5" />
                     </div>
-                    <span className="truncate">
-                      popularhospitalhelpline@gmail.com
-                    </span>
+                    <span className="truncate"><T k="careers_4e5e42" d={"popularhospitalhelpline@gmail.com"} /></span>
                   </div>
                   <div className="flex items-center gap-2.5 text-[11px] text-slate-600 font-bold">
                     <div className="w-7 h-7 rounded-md bg-white flex items-center justify-center text-blue-400 border border-slate-200 shrink-0">
                       <Phone className="w-3.5 h-3.5" />
                     </div>
-                    <span>+91 7800001895 / 96</span>
+                    <span><T k="careers_932b83" d={"+91 7800001895 / 96"} /></span>
                   </div>
                 </div>
               </div>
@@ -261,15 +235,11 @@ export default function CareerPage() {
                 <Link
                   href={`/apply?job=${selectedJob._id}`}
                   className="flex-[2] py-3 bg-[#1a3a5c] text-white rounded-lg text-center font-bold text-[11px] uppercase tracking-widest hover:bg-[#E85222] transition-all shadow-md active:scale-[0.98]"
-                >
-                  Confirm Application
-                </Link>
+                ><T k="careers_e39438" d={"Confirm Application"} /></Link>
                 <button
                   onClick={() => setSelectedJob(null)}
                   className="flex-1 py-3 bg-slate-100 text-slate-500 hover:text-slate-900 rounded-lg font-bold text-[11px] uppercase tracking-widest hover:bg-slate-200 transition-all border border-slate-200 shadow-sm"
-                >
-                  Close
-                </button>
+                ><T k="careers_bbfa77" d={"Close"} /></button>
               </div>
             </div>
           </div>

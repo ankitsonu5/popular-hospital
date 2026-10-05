@@ -16,6 +16,7 @@ import {
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
 import DepartmentGallerySection from "@/components/DepartmentGallerySection";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -86,7 +87,7 @@ export default function DiabeticFootClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-diabetic-foot_c4bf6b"
             src="/images/banners/adv_diabetic_foot_unit.jpg"
             alt="Advanced Diabetic Foot Unit Banner"
             fill
@@ -97,25 +98,17 @@ export default function DiabeticFootClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/20 text-blue-200 text-xs md:text-sm font-bold mb-6 border border-blue-400/30 backdrop-blur-sm uppercase tracking-wider">
-              Department of
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Department of Diabetic Foot — Varanasi
-            </h1>
+            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/20 text-blue-200 text-xs md:text-sm font-bold mb-6 border border-blue-400/30 backdrop-blur-sm uppercase tracking-wider"><T k="departments-diabetic-foot_4c5284" d={"Department of"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-diabetic-foot_85b3a6" d={"Department of Diabetic Foot — Varanasi"} /></h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-diabetic-foot_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Advanced Diabetic Foot Unit"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-diabetic-foot_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -129,8 +122,7 @@ export default function DiabeticFootClient({
             <div className="lg:col-span-8 space-y-12">
               {/* Introduction & Overview */}
               <div className="space-y-8">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Diabetic Foot hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-diabetic-foot_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-diabetic-foot_c695d4" d={"best Diabetic Foot hospital in Varanasi"} /></strong><T k="departments-diabetic-foot_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-diabetic-foot_200859" d={"Purvanchal"} /></strong><T k="departments-diabetic-foot_4f4133" d={" and "} /><strong><T k="departments-diabetic-foot_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
                 <SectionHeader
                   eyebrow="Overview"
@@ -142,17 +134,8 @@ export default function DiabeticFootClient({
                   <div className="absolute -right-3 -top-3 w-12 h-12 rounded-full bg-blue-50/50 flex items-center justify-center text-[#1e3a8a]/10 pointer-events-none">
                     <Stethoscope className="w-8 h-8" />
                   </div>
-                  <p className="font-bold text-slate-700 text-[15px] sm:text-base leading-relaxed text-justify">
-                    The Advanced Diabetic Foot Unit at Popular Hospital,
-                    Varanasi is a dedicated multidisciplinary unit for diabetic
-                    foot wounds, ulcers, neuropathy, infection, and
-                    circulation-related complications.
-                  </p>
-                  <p className="font-semibold text-slate-500 text-[14px] sm:text-[15px] leading-relaxed text-justify mt-3">
-                    Our care model combines wound management, sugar monitoring,
-                    vascular assessment, pressure offloading, and surgical
-                    support to prevent complications and accelerate healing.
-                  </p>
+                  <p className="font-bold text-slate-700 text-[15px] sm:text-base leading-relaxed text-justify"><T k="departments-diabetic-foot_5ecbb3" d={"The Advanced Diabetic Foot Unit at Popular Hospital, Varanasi is a dedicated multidisciplinary unit for diabetic foot wounds, ulcers, neuropathy, infection, and circulation-related complications."} /></p>
+                  <p className="font-semibold text-slate-500 text-[14px] sm:text-[15px] leading-relaxed text-justify mt-3"><T k="departments-diabetic-foot_7b17ae" d={"Our care model combines wound management, sugar monitoring, vascular assessment, pressure offloading, and surgical support to prevent complications and accelerate healing."} /></p>
                 </div>
               </div>
             </div>
@@ -287,34 +270,21 @@ export default function DiabeticFootClient({
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               {/* Left Column: Image in premium container */}
               <div className="md:col-span-5 relative h-[360px] w-full rounded-2xl overflow-hidden shadow-lg border border-slate-100">
-                <Image
+                <CImage k="departments-diabetic-foot_7cb93f"
                   src="/images/departments-images/diabitic_foot_care.jpg"
                   alt="Diabetic foot care illustration"
                   fill
                   className="object-cover transition-transform duration-700 group-hover/img:scale-105"
                 />
                 {/* Premium Badge */}
-                <div className="absolute top-4 left-4 bg-gradient-to-r from-[#1e3a8a] to-blue-700 text-white text-[9px] font-extrabold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-blue-500/20">
-                  Integrated Care
-                </div>
+                <div className="absolute top-4 left-4 bg-gradient-to-r from-[#1e3a8a] to-blue-700 text-white text-[9px] font-extrabold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-blue-500/20"><T k="departments-diabetic-foot_5b8f9f" d={"Integrated Care"} /></div>
               </div>
 
               {/* Right Column: Elegant content */}
               <div className="md:col-span-7 space-y-4 md:pl-4">
-                <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a] bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-                  Care Model
-                </span>
-                <h4 className="text-xl md:text-2xl font-extrabold text-[#0b1c43] leading-snug font-heading">
-                  Screening, treatment and prevention in one unit.
-                </h4>
-                <p className="text-slate-500 text-[15px] sm:text-base leading-relaxed text-justify">
-                  Our integrated care model ensures that every diabetic foot
-                  complication is caught early and managed by a
-                  multidisciplinary team. By bringing together diagnostics,
-                  advanced wound care therapies, pressure-offloading solutions,
-                  and specialized clinical expertise, we provide a unified path
-                  to healing and prevent serious complications.
-                </p>
+                <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a] bg-blue-50 px-3 py-1 rounded-full border border-blue-100"><T k="departments-diabetic-foot_7bd6df" d={"Care Model"} /></span>
+                <h4 className="text-xl md:text-2xl font-extrabold text-[#0b1c43] leading-snug font-heading"><T k="departments-diabetic-foot_5e5829" d={"Screening, treatment and prevention in one unit."} /></h4>
+                <p className="text-slate-500 text-[15px] sm:text-base leading-relaxed text-justify"><T k="departments-diabetic-foot_f6bdcd" d={"Our integrated care model ensures that every diabetic foot complication is caught early and managed by a multidisciplinary team. By bringing together diagnostics, advanced wound care therapies, pressure-offloading solutions, and specialized clinical expertise, we provide a unified path to healing and prevent serious complications."} /></p>
               </div>
             </div>
           </div>
@@ -325,24 +295,18 @@ export default function DiabeticFootClient({
       <section className="py-20 xl:py-16 bg-gradient-to-b from-slate-50/50 to-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-550/10 border border-blue-100 text-[#1e3a8a] text-xs font-bold mb-3 uppercase tracking-wider">
-              Clinical Offerings
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading">
-              Specialized Care &{" "}
-              <span className="text-[#1e3a8a]">Advanced Procedures</span>
+            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-550/10 border border-blue-100 text-[#1e3a8a] text-xs font-bold mb-3 uppercase tracking-wider"><T k="departments-diabetic-foot_f4084b" d={"Clinical Offerings"} /></span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading"><T k="departments-diabetic-foot_736338" d={"Specialized Care &"} />{" "}
+              <span className="text-[#1e3a8a]"><T k="departments-diabetic-foot_2e42a5" d={"Advanced Procedures"} /></span>
             </h2>
-            <p className="text-gray-500 text-sm md:text-base mt-3 leading-relaxed">
-              We offer comprehensive screening, state-of-the-art therapies, and
-              expert surgical interventions to ensure the best patient outcomes.
-            </p>
+            <p className="text-gray-500 text-sm md:text-base mt-3 leading-relaxed"><T k="departments-diabetic-foot_43fdda" d={"We offer comprehensive screening, state-of-the-art therapies, and expert surgical interventions to ensure the best patient outcomes."} /></p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* Specialized Services */}
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(30,58,138,0.06)] hover:border-blue-100/50 transition-all duration-500 flex flex-col h-full group">
               <div className="relative h-80 w-full overflow-hidden">
-                <Image
+                <CImage k="departments-diabetic-foot_bdd44d"
                   src="/images/departments-images/foot_care_with_a_limb_two.jpg"
                   alt="Specialized Diabetic Foot Services"
                   fill
@@ -350,11 +314,8 @@ export default function DiabeticFootClient({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/90 via-[#0b1c43]/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6 md:p-8">
-                  <span className="inline-block px-2.5 py-1 rounded bg-blue-500/20 text-blue-200 text-[10px] font-extrabold uppercase tracking-widest mb-2 border border-blue-400/20 backdrop-blur-sm">
-                    Patient Care
-                  </span>
-                  <h3 className="text-2xl font-bold text-white font-heading">
-                    Specialized <span className="text-blue-300">Services</span>
+                  <span className="inline-block px-2.5 py-1 rounded bg-blue-500/20 text-blue-200 text-[10px] font-extrabold uppercase tracking-widest mb-2 border border-blue-400/20 backdrop-blur-sm"><T k="departments-diabetic-foot_719d03" d={"Patient Care"} /></span>
+                  <h3 className="text-2xl font-bold text-white font-heading"><T k="departments-diabetic-foot_01f4df" d={"Specialized "} /><span className="text-blue-300"><T k="departments-diabetic-foot_5cbd58" d={"Services"} /></span>
                   </h3>
                 </div>
               </div>
@@ -388,7 +349,7 @@ export default function DiabeticFootClient({
             {/* Common Procedures */}
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(30,58,138,0.06)] hover:border-orange-100/50 transition-all duration-500 flex flex-col h-full group">
               <div className="relative h-80 w-full overflow-hidden">
-                <Image
+                <CImage k="departments-diabetic-foot_96c822"
                   src="/images/departments-images/diabitic_wound_care.jpg"
                   alt="Common Procedures"
                   fill
@@ -396,11 +357,8 @@ export default function DiabeticFootClient({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/90 via-[#0b1c43]/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6 md:p-8">
-                  <span className="inline-block px-2.5 py-1 rounded bg-[#E85222]/20 text-orange-200 text-[10px] font-extrabold uppercase tracking-widest mb-2 border border-orange-400/20 backdrop-blur-sm">
-                    Clinical Precision
-                  </span>
-                  <h3 className="text-2xl font-bold text-white font-heading">
-                    Common <span className="text-orange-300">Procedures</span>
+                  <span className="inline-block px-2.5 py-1 rounded bg-[#E85222]/20 text-orange-200 text-[10px] font-extrabold uppercase tracking-widest mb-2 border border-orange-400/20 backdrop-blur-sm"><T k="departments-diabetic-foot_852225" d={"Clinical Precision"} /></span>
+                  <h3 className="text-2xl font-bold text-white font-heading"><T k="departments-diabetic-foot_1c4b91" d={"Common "} /><span className="text-orange-300"><T k="departments-diabetic-foot_d682fc" d={"Procedures"} /></span>
                   </h3>
                 </div>
               </div>

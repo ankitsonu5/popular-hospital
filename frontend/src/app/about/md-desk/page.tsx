@@ -20,6 +20,7 @@ const mdData = {
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/about/md-desk", {
@@ -39,7 +40,7 @@ export default function MDDeskPage() {
       {/* Hero Header */}
       <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="about-md-desk_6ed91b"
             src="/images/banners/about_us_cmd_md.jpg"
             alt="MD Desk Banner"
             fill
@@ -49,12 +50,8 @@ export default function MDDeskPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-hospital-orange font-bold text-xs uppercase tracking-[0.3em] mb-3 block">
-            Perspective
-          </span>
-          <h1 className="text-3xl md:text-5xl xl:text-4xl font-black font-heading mb-4 text-white uppercase tracking-tight">
-            From MD&apos;s Desk
-          </h1>
+          <span className="text-hospital-orange font-bold text-xs uppercase tracking-[0.3em] mb-3 block"><T k="about-md-desk_cc68eb" d={"Perspective"} /></span>
+          <h1 className="text-3xl md:text-5xl xl:text-4xl font-black font-heading mb-4 text-white uppercase tracking-tight"><T k="about-md-desk_6f26ea" d={"From MD's Desk"} /></h1>
           <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full"></div>
         </div>
       </div>
@@ -83,8 +80,8 @@ export default function MDDeskPage() {
                     {mdData.role}
                   </p>
                   <div className="space-y-1 text-xs md:text-sm font-medium uppercase opacity-90 leading-snug">
-                    <p>POPULAR GROUP OF</p>
-                    <p>HOSPITALS & ACADEMICS</p>
+                    <p><T k="about-md-desk_788360" d={"POPULAR GROUP OF"} /></p>
+                    <p><T k="about-md-desk_640c4f" d={"HOSPITALS & ACADEMICS"} /></p>
                     <p className="pt-1">{mdData.subtitle}</p>
                     <p>{mdData.extra}</p>
                   </div>
@@ -95,11 +92,8 @@ export default function MDDeskPage() {
             {/* Right Column: Text Content Area */}
             <div className="lg:col-span-7 relative pt-2">
               <div className="mt-8 mb-6 xl:mt-4 2xl:mb-8 text-left">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic">
-                  A Commitment to <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
-                    Clinical Excellence
-                  </span>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic"><T k="about-md-desk_e44eaf" d={"A Commitment to "} /><br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]"><T k="about-md-desk_19a228" d={"Clinical Excellence"} /></span>
                 </h3>
               </div>
 

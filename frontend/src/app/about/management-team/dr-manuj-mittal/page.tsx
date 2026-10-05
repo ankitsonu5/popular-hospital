@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { generatePageMetadata } from "@/lib/seoApi";
 import { managementTeam, drManujMittalSections, type Block } from "../profileData";
+import { CImage, T } from "@/components/content/Editable";
 
 const member = managementTeam[0];
 
@@ -154,7 +155,7 @@ export default function DrManujMittalPage() {
       {/* Hero Header */}
       <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="about-management-team-dr-manuj-mittal_6ed91b"
             src="/images/banners/about_us_cmd_md.jpg"
             alt="Management Team Banner"
             fill
@@ -164,9 +165,7 @@ export default function DrManujMittalPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-[#E85222] font-bold text-xs uppercase tracking-[0.3em] mb-3 block">
-            Management Team
-          </span>
+          <span className="text-[#E85222] font-bold text-xs uppercase tracking-[0.3em] mb-3 block"><T k="about-management-team-dr-manuj-mittal_e5af33" d={"Management Team"} /></span>
           <h1 className="text-3xl md:text-5xl xl:text-4xl font-black font-heading mb-4 text-white uppercase tracking-tight">
             {member.name}
           </h1>
@@ -188,9 +187,7 @@ export default function DrManujMittalPage() {
             aria-hidden="true"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Management Team
-        </Link>
+          </svg><T k="about-management-team-dr-manuj-mittal_761116" d={"Back to Management Team"} /></Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left Column: Photo & Designations */}
@@ -227,10 +224,8 @@ export default function DrManujMittalPage() {
           <div className="lg:col-span-7 relative pt-2">
             <div className="mt-2 mb-8 xl:mt-0 text-left">
               <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic mb-4">
-                <span className="block">Strategic Transformation</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
-                  &amp; Healthcare Innovation
-                </span>
+                <span className="block"><T k="about-management-team-dr-manuj-mittal_0a04af" d={"Strategic Transformation"} /></span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]"><T k="about-management-team-dr-manuj-mittal_fc4ae1" d={"& Healthcare Innovation"} /></span>
               </h3>
               <p className="text-[13px] md:text-[13.5px] font-semibold text-gray-500 leading-relaxed">
                 {member.tagline}

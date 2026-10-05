@@ -62,6 +62,9 @@ import {
   deleteComment,
   upload,
   uploadBlogImage,
+  getBlogCategories,
+  createBlogCategory,
+  deleteBlogCategory,
 } from "../controllers/blogController.js";
 import {
   getAdminEvents,
@@ -143,6 +146,21 @@ import {
   forceLogoutAllSubAdmins,
   subAdminLogout,
 } from "../controllers/authController.js";
+import {
+  getAdminNavMenus,
+  toggleMenuGroup,
+  toggleMenuItem,
+  resetNavMenus,
+} from "../controllers/navMenuController.js";
+import {
+  getAdminPageContent,
+  getAdminPageContentByKey,
+  updatePageContent,
+  uploadPageContentImage,
+  uploadPageImage,
+  resetPageContent,
+  resetPageContentByKey,
+} from "../controllers/pageContentController.js";
 
 const router = Router();
 
@@ -291,6 +309,9 @@ router.delete("/news/:id", deleteNews);
 
 // Blogs CRUD
 router.get("/blogs", getAdminBlogs);
+router.get("/blogs/categories", getBlogCategories);
+router.post("/blogs/categories", createBlogCategory);
+router.delete("/blogs/categories/:id", deleteBlogCategory);
 router.post(
   "/blogs/image-upload-direct",
   upload.single("file"),
@@ -381,5 +402,23 @@ router.get("/schemas", getAllSchemas);
 router.get("/schemas/:pageKey", getSchemaByKey);
 router.put("/schemas", upsertSchema);
 router.delete("/schemas/:pageKey", deleteSchema);
+
+// ── Nav Menu Management ──────────────────────────────────────────────────────
+router.get("/nav-menus", getAdminNavMenus);
+router.patch("/nav-menus/:menuKey/toggle", toggleMenuGroup);
+router.patch("/nav-menus/:menuKey/items/:itemIndex/toggle", toggleMenuItem);
+router.put("/nav-menus/reset", resetNavMenus);
+
+// ── Page Content Management ─────────────────────────────────────────────────
+router.get("/page-content", getAdminPageContent);
+router.put("/page-content/reset", resetPageContent);
+router.get("/page-content/:pageKey", getAdminPageContentByKey);
+router.put("/page-content/:pageKey", updatePageContent);
+router.delete("/page-content/:pageKey/overrides", resetPageContentByKey);
+router.post(
+  "/page-content/:pageKey/upload-image",
+  uploadPageImage.single("image"),
+  uploadPageContentImage
+);
 
 export default router;

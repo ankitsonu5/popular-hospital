@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -170,7 +171,7 @@ export default function OrthopedicsClient({
       ══════════════════════════════════════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-orthopedics_241106"
             src="/images/banners/orthopedics_banner.png"
             alt="Orthopedics Banner"
             fill
@@ -181,25 +182,17 @@ export default function OrthopedicsClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-sm font-semibold mb-6 border border-white/30 backdrop-blur-sm uppercase tracking-wider">
-              Centre for Bone & Joint Care
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading">
-              Department of Orthopedics & Joint Replacement — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-sm font-semibold mb-6 border border-white/30 backdrop-blur-sm uppercase tracking-wider"><T k="departments-orthopedics_f960a5" d={"Centre for Bone & Joint Care"} /></span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-orthopedics_c6987c" d={"Department of Orthopedics & Joint Replacement — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-orthopedics_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Orthopedics & Joint Replacement"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-orthopedics_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -215,17 +208,13 @@ export default function OrthopedicsClient({
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Department of{" "}
-                  <span className="text-[#1e3a8a]">
-                    Orthopedics , Joint Replacement and Spine Surgery
-                  </span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-orthopedics_4c5284" d={"Department of"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-orthopedics_e2329d" d={"Orthopedics , Joint Replacement and Spine Surgery"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
               <div className="space-y-5 text-gray-700 text-base md:text-[15px] font-medium leading-relaxed">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Orthopedics & Joint Replacement hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-orthopedics_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-orthopedics_e4cc52" d={"best Orthopedics & Joint Replacement hospital in Varanasi"} /></strong><T k="departments-orthopedics_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-orthopedics_200859" d={"Purvanchal"} /></strong><T k="departments-orthopedics_4f4133" d={" and "} /><strong><T k="departments-orthopedics_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
                 <p>{introParagraphs[0]}</p>
                 <div className="border-l-4 border-blue-500 pl-5 py-3 bg-blue-50/40 rounded-r-2xl">
@@ -282,13 +271,10 @@ export default function OrthopedicsClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           {/* Heading */}
           <div className="mb-10">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Our Specialties
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-orthopedics_4bd964" d={"Our Specialties"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Treatment <span className="text-[#1e3a8a]">Categories</span>
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-orthopedics_696dbf" d={"Treatment "} /><span className="text-[#1e3a8a]"><T k="departments-orthopedics_6ccb60" d={"Categories"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent" />
@@ -346,13 +332,10 @@ export default function OrthopedicsClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           {/* Heading */}
           <div className="mb-10">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Why Choose Us
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-orthopedics_aa3c9c" d={"Why Choose Us"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Our <span className="text-[#1e3a8a]">Strengths</span>
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-orthopedics_bb463f" d={"Our "} /><span className="text-[#1e3a8a]"><T k="departments-orthopedics_739a7c" d={"Strengths"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent" />
@@ -381,7 +364,7 @@ export default function OrthopedicsClient({
 
             {/* Right – Image */}
             <div className="relative w-full aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-md border-8 border-slate-100">
-              <Image
+              <CImage k="departments-orthopedics_40d6a2"
                 src="/images/departments-images/orthopedics.jpg"
                 alt="Orthopedics Expertise"
                 fill

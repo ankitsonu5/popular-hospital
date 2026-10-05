@@ -1,8 +1,21 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
-import { apiBaseUrl } from "@/lib/api";
+import { apiBaseUrl, api } from "@/lib/api";
 import LayoutShell from "@/components/LayoutShell";
+import { ContentProvider } from "@/components/content/Editable";
+
+// Admin "Page Content" overrides (only values that differ from the original text/images)
+async function getContentOverrides(): Promise<Record<string, string>> {
+  try {
+    const res = await fetch(api("/page-content"), { next: { revalidate: 10 } });
+    if (!res.ok) return {};
+    const data = await res.json();
+    return data && typeof data === "object" ? data : {};
+  } catch {
+    return {};
+  }
+}
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -52,11 +65,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const contentOverrides = await getContentOverrides();
   return (
     <html lang="en" className="overflow-x-hidden">
       <head>
@@ -149,7 +163,9 @@ export default function RootLayout({
         className="min-h-screen flex flex-col overflow-x-hidden"
         suppressHydrationWarning
       >
-        <LayoutShell>{children}</LayoutShell>
+        <ContentProvider overrides={contentOverrides}>
+          <LayoutShell>{children}</LayoutShell>
+        </ContentProvider>
       </body>
     </html>
   );

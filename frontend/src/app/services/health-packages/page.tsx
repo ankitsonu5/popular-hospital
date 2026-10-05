@@ -13,6 +13,7 @@ import {
   Upload,
   ArrowLeft,
 } from "lucide-react";
+import { CImage, T } from "@/components/content/Editable";
 
 // Types for members
 interface Member {
@@ -123,16 +124,12 @@ const WellnessPage = () => {
                 >
                   <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
                 </button>
-                <h2 className="text-xl md:text-2xl font-black text-white font-heading uppercase tracking-tight">
-                  Health-Fit Card Application
-                </h2>
+                <h2 className="text-xl md:text-2xl font-black text-white font-heading uppercase tracking-tight"><T k="services-health-packages_125db3" d={"Health-Fit Card Application"} /></h2>
               </div>
 
               {/* Selected Plan Badge - Mini Version for Header */}
               <div className="hidden md:flex bg-[#E85222] px-6 py-2 rounded-full border border-orange-400 shadow-sm items-center gap-3">
-                <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">
-                  Selected:
-                </span>
+                <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]"><T k="services-health-packages_2e0844" d={"Selected:"} /></span>
                 <span className="text-sm font-black text-white">
                   {selectedCard}
                 </span>
@@ -143,21 +140,13 @@ const WellnessPage = () => {
               <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16 pb-12">
                 <div className="relative">
                   <div className="w-24 h-1.5 bg-[#E85222] rounded-full mb-6"></div>
-                  <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading tracking-tight leading-tight uppercase">
-                    Application-cum-consent
-                    <br />
-                    Form
-                  </h2>
-                  <h3 className="text-lg md:text-2xl font-black text-[#E85222] italic font-heading mt-2">
-                    For Family Health Card
-                  </h3>
+                  <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading tracking-tight leading-tight uppercase"><T k="services-health-packages_a4a3ee" d={"Application-cum-consent"} /><br /><T k="services-health-packages_804463" d={"Form"} /></h2>
+                  <h3 className="text-lg md:text-2xl font-black text-[#E85222] italic font-heading mt-2"><T k="services-health-packages_c3654d" d={"For Family Health Card"} /></h3>
                 </div>
 
                 {/* Selected Plan Badge - Premium Style (Matches User Image) */}
                 <div className="bg-[#FFF5F0] px-6 py-4 rounded-full border border-orange-100 shadow-md shrink-0 flex flex-col items-center min-w-[200px] hover:scale-105 transition-transform duration-300">
-                  <span className="text-[10px] font-black text-[#E85222] uppercase tracking-[0.3em] block mb-1">
-                    Selected Plan
-                  </span>
+                  <span className="text-[10px] font-black text-[#E85222] uppercase tracking-[0.3em] block mb-1"><T k="services-health-packages_af8c8e" d={"Selected Plan"} /></span>
                   <span className="text-base md:text-lg font-black text-[#0b1c43] text-center">
                     {selectedCard}
                   </span>
@@ -166,23 +155,11 @@ const WellnessPage = () => {
 
               {/* Consent Text */}
               <div className="bg-slate-50/70 p-10 md:p-14 rounded-[3.5rem] border border-slate-100 mb-16 shadow-inner">
-                <p className="text-xl text-slate-600 leading-[1.8] font-medium text-justify">
-                  I{" "}
+                <p className="text-xl text-slate-600 leading-[1.8] font-medium text-justify"><T k="services-health-packages_ca73ab" d={"I"} />{" "}
                   <span className="inline-block px-4 py-0.5 border-b-2 border-[#0b1c43] text-[#0b1c43] font-black italic">
                     {userDetails.name}
-                  </span>{" "}
-                  would like to apply for the Family Health Card offered by
-                  Popular Group of Hospitals. I have been informed and satisfied
-                  for the information provided. Therefore, agreed to apply for
-                  the same and here by do grant my consent for Popular Group of
-                  Hospital to use my information provided below.
-                </p>
-                <p className="mt-8 text-xl text-slate-600 leading-[1.8] font-medium text-justify">
-                  I would like to add following members to Family Health Card as
-                  per my wish, they are in my close blood relation. I am aware
-                  that as per Family Health Card policy, following members will
-                  only be covered.
-                </p>
+                  </span>{" "}<T k="services-health-packages_341a2b" d={"would like to apply for the Family Health Card offered by Popular Group of Hospitals. I have been informed and satisfied for the information provided. Therefore, agreed to apply for the same and here by do grant my consent for Popular Group of Hospital to use my information provided below."} /></p>
+                <p className="mt-8 text-xl text-slate-600 leading-[1.8] font-medium text-justify"><T k="services-health-packages_963099" d={"I would like to add following members to Family Health Card as per my wish, they are in my close blood relation. I am aware that as per Family Health Card policy, following members will only be covered."} /></p>
               </div>
 
               {/* Membership Table */}
@@ -190,13 +167,13 @@ const WellnessPage = () => {
                 <table className="w-full border-collapse min-w-[1000px]">
                   <thead>
                     <tr className="bg-[#0b1c43] text-white uppercase tracking-widest text-xs font-black">
-                      <th className="px-6 py-6 text-left w-16">SN</th>
-                      <th className="px-6 py-6 text-left">Full Name</th>
-                      <th className="px-6 py-6 text-left w-24">Age</th>
-                      <th className="px-6 py-6 text-left w-24">Sex</th>
-                      <th className="px-6 py-6 text-left">Mobile No</th>
-                      <th className="px-6 py-6 text-left">Aadhaar Card No</th>
-                      <th className="px-6 py-6 text-left">Relation</th>
+                      <th className="px-6 py-6 text-left w-16"><T k="services-health-packages_c9d50d" d={"SN"} /></th>
+                      <th className="px-6 py-6 text-left"><T k="services-health-packages_64346b" d={"Full Name"} /></th>
+                      <th className="px-6 py-6 text-left w-24"><T k="services-health-packages_ff9f1f" d={"Age"} /></th>
+                      <th className="px-6 py-6 text-left w-24"><T k="services-health-packages_e301dd" d={"Sex"} /></th>
+                      <th className="px-6 py-6 text-left"><T k="services-health-packages_c78534" d={"Mobile No"} /></th>
+                      <th className="px-6 py-6 text-left"><T k="services-health-packages_4144c0" d={"Aadhaar Card No"} /></th>
+                      <th className="px-6 py-6 text-left"><T k="services-health-packages_33a5a7" d={"Relation"} /></th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -267,8 +244,7 @@ const WellnessPage = () => {
                               }
                             />
                             <label className="flex items-center justify-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg cursor-pointer transition-colors text-[9px] uppercase font-black tracking-widest text-[#0b1c43] border border-slate-200">
-                              <Upload className="w-3 h-3" /> Choose File
-                              <input type="file" className="hidden" />
+                              <Upload className="w-3 h-3" /><T k="services-health-packages_5c01bf" d={" Choose File"} /><input type="file" className="hidden" />
                             </label>
                           </div>
                         </td>
@@ -299,9 +275,7 @@ const WellnessPage = () => {
                     checked={agreedToTerms}
                     onChange={() => setAgreedToTerms(!agreedToTerms)}
                   />
-                  <span className="text-xl font-bold text-slate-700 group-hover:text-[#0b1c43] transition-colors">
-                    I have read the terms and conditions.
-                  </span>
+                  <span className="text-xl font-bold text-slate-700 group-hover:text-[#0b1c43] transition-colors"><T k="services-health-packages_b8eca2" d={"I have read the terms and conditions."} /></span>
                 </label>
 
                 <button
@@ -314,9 +288,7 @@ const WellnessPage = () => {
                   onClick={() => {
                     alert("Redirecting to Secure Payment Gateway...");
                   }}
-                >
-                  Pay Now
-                </button>
+                ><T k="services-health-packages_124af6" d={"Pay Now"} /></button>
               </div>
             </div>
           </div>
@@ -326,7 +298,7 @@ const WellnessPage = () => {
           {/* ═══════ HERO ═══════ */}
           <section className="relative h-[150px] md:h-[200px] w-full bg-[#1a2b3c] overflow-hidden flex items-center">
             <div className="absolute inset-0 z-0">
-              <Image
+              <CImage k="services-health-packages_905914"
                 src="/images/banners/health_packages.png"
                 alt="Wellness Services"
                 fill
@@ -338,9 +310,7 @@ const WellnessPage = () => {
 
             <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
               <div className="max-w-4xl">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 font-heading tracking-tight text-shadow-lg">
-                  Health Card
-                </h1>
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 font-heading tracking-tight text-shadow-lg"><T k="services-health-packages_4a2137" d={"Health Card"} /></h1>
                 <nav
                   className="flex items-center text-sm md:text-base text-white/90 font-medium"
                   aria-label="Breadcrumb"
@@ -348,18 +318,14 @@ const WellnessPage = () => {
                   <Link
                     href="/"
                     className="hover:text-blue-300 transition-colors"
-                  >
-                    Home
-                  </Link>
+                  ><T k="services-health-packages_70f8bb" d={"Home"} /></Link>
                   <span className="mx-2 text-red-600 font-bold">|</span>
                   <Link
                     href="/services"
                     className="hover:text-blue-300 transition-colors"
-                  >
-                    Services
-                  </Link>
+                  ><T k="services-health-packages_5cbd58" d={"Services"} /></Link>
                   <span className="mx-2 text-red-600 font-bold">|</span>
-                  <span className="text-white">Health Card</span>
+                  <span className="text-white"><T k="services-health-packages_4a2137_2" d={"Health Card"} /></span>
                 </nav>
               </div>
             </div>
@@ -371,7 +337,7 @@ const WellnessPage = () => {
               <div className="flex flex-col lg:flex-row items-center gap-16">
                 <div className="w-full lg:w-1/2">
                   <div className="relative w-full aspect-[4/3] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-lg border-4 md:border-8 border-white bg-white">
-                    <Image
+                    <CImage k="services-health-packages_7e2c84"
                       src="/images/wellness/1.jpeg"
                       alt="Health Packages"
                       fill
@@ -381,31 +347,16 @@ const WellnessPage = () => {
                   </div>
                 </div>
                 <div className="lg:w-1/2">
-                  <h2 className="text-3xl md:text-5xl font-black text-[#0b1c43] mb-6 font-heading tracking-tight">
-                    One card for all your{" "}
-                    <span className="text-hospital-teal text-outline">
-                      family Health needs
-                    </span>
+                  <h2 className="text-3xl md:text-5xl font-black text-[#0b1c43] mb-6 font-heading tracking-tight"><T k="services-health-packages_6c67e1" d={"One card for all your"} />{" "}
+                    <span className="text-hospital-teal text-outline"><T k="services-health-packages_807b2a" d={"family Health needs"} /></span>
                   </h2>
                   <div className="prose prose-lg text-gray-600 space-y-4">
-                    <p className="text-lg leading-relaxed">
-                      Health-fit Card is the perfect solution for all your
-                      hospital care needs. Get access to hospital services with
-                      just a swipe of your card. Benefit from discounts on
-                      diagnostics and medicines. Enjoy hassle-free
-                      hospitalization with the help of this card. Get fit and
-                      stay healthy with the Health-fit Card. Get unlimited
-                      access to doctor's consultations (OPD) and get free health
-                      checkups and screenings. Enjoy the benefits of staying
-                      healthy with the Health-fit Card.
-                    </p>
+                    <p className="text-lg leading-relaxed"><T k="services-health-packages_a1026d" d={"Health-fit Card is the perfect solution for all your hospital care needs. Get access to hospital services with just a swipe of your card. Benefit from discounts on diagnostics and medicines. Enjoy hassle-free hospitalization with the help of this card. Get fit and stay healthy with the Health-fit Card. Get unlimited access to doctor's consultations (OPD) and get free health checkups and screenings. Enjoy the benefits of staying healthy with the Health-fit Card."} /></p>
                   </div>
 
                   {/* Health-fit Card benefits */}
                   <div className="mt-16">
-                    <h3 className="text-xl md:text-2xl font-black text-[#0b1c43] mb-8 font-heading text-center sm:text-left">
-                      Health-fit Card benefits
-                    </h3>
+                    <h3 className="text-xl md:text-2xl font-black text-[#0b1c43] mb-8 font-heading text-center sm:text-left"><T k="services-health-packages_0aa33e" d={"Health-fit Card benefits"} /></h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                       {[
                         {
@@ -421,9 +372,7 @@ const WellnessPage = () => {
                           title: "24X7 available in-need",
                           icon: (
                             <div className="relative flex items-center justify-center">
-                              <span className="text-[12px] font-black text-slate-600">
-                                24/7
-                              </span>
+                              <span className="text-[12px] font-black text-slate-600"><T k="services-health-packages_c41127" d={"24/7"} /></span>
                               <svg
                                 className="absolute w-12 h-12 text-slate-300"
                                 viewBox="0 0 24 24"
@@ -475,9 +424,8 @@ const WellnessPage = () => {
             <div className="container mx-auto max-w-[1366px]">
               <div className="bg-white rounded-[4rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row shadow-blue-900/10">
                 <div className="lg:w-1/2 bg-[#0b1c43] p-8 md:p-16 text-white flex flex-col justify-center">
-                  <h2 className="text-4xl md:text-5xl font-black mb-8 font-heading tracking-tight">
-                    If you wish to know more about Health Fit Card{" "}
-                    <span className="text-[#E85222]">contact us</span>
+                  <h2 className="text-4xl md:text-5xl font-black mb-8 font-heading tracking-tight"><T k="services-health-packages_0b020e" d={"If you wish to know more about Health Fit Card"} />{" "}
+                    <span className="text-[#E85222]"><T k="services-health-packages_6cf272" d={"contact us"} /></span>
                   </h2>
                   <p className="text-xl text-gray-300 mb-10 leading-relaxed font-medium"></p>
                   <div className="space-y-6">
@@ -486,12 +434,8 @@ const WellnessPage = () => {
                         📞
                       </div>
                       <div>
-                        <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs">
-                          Call Helpline
-                        </span>
-                        <span className="text-xl font-bold">
-                          +91 7800001895 / 96
-                        </span>
+                        <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs"><T k="services-health-packages_b97a40" d={"Call Helpline"} /></span>
+                        <span className="text-xl font-bold"><T k="services-health-packages_932b83" d={"+91 7800001895 / 96"} /></span>
                       </div>
                     </div>
                     <div className="flex items-center gap-6 group">
@@ -499,12 +443,8 @@ const WellnessPage = () => {
                         ✉️
                       </div>
                       <div>
-                        <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs">
-                          Email Us
-                        </span>
-                        <span className="text-lg md:text-xl font-bold break-all leading-tight">
-                          info@popularhospitals.in
-                        </span>
+                        <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs"><T k="services-health-packages_fb1d12" d={"Email Us"} /></span>
+                        <span className="text-lg md:text-xl font-bold break-all leading-tight"><T k="services-health-packages_3ddf84" d={"info@popularhospitals.in"} /></span>
                       </div>
                     </div>
                   </div>
@@ -513,9 +453,7 @@ const WellnessPage = () => {
                   <form onSubmit={handleInquirySubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                          Full Name
-                        </label>
+                        <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1"><T k="services-health-packages_64346b_2" d={"Full Name"} /></label>
                         <input
                           required
                           type="text"
@@ -531,9 +469,7 @@ const WellnessPage = () => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                          Phone Number
-                        </label>
+                        <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1"><T k="services-health-packages_ab25d6" d={"Phone Number"} /></label>
                         <input
                           required
                           type="tel"
@@ -550,9 +486,7 @@ const WellnessPage = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                        email
-                      </label>
+                      <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1"><T k="services-health-packages_a88b7d" d={"email"} /></label>
                       <input
                         required
                         type="email"
@@ -568,9 +502,7 @@ const WellnessPage = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1">
-                        Message (Optional)
-                      </label>
+                      <label className="text-sm font-black text-[#0b1c43] uppercase tracking-widest ml-1"><T k="services-health-packages_0c77a5" d={"Message (Optional)"} /></label>
                       <textarea
                         rows={4}
                         className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#E85222] outline-none transition-all font-medium"
@@ -586,15 +518,11 @@ const WellnessPage = () => {
                     </div>
 
                     {submitStatus === "success" && (
-                      <div className="p-4 bg-green-50 text-green-700 rounded-xl border border-green-200 font-bold text-sm">
-                        Thank you! Your inquiry has been submitted successfully.
-                      </div>
+                      <div className="p-4 bg-green-50 text-green-700 rounded-xl border border-green-200 font-bold text-sm"><T k="services-health-packages_2cec1c" d={"Thank you! Your inquiry has been submitted successfully."} /></div>
                     )}
 
                     {submitStatus === "error" && (
-                      <div className="p-4 bg-red-50 text-red-700 rounded-xl border border-red-200 font-bold text-sm">
-                        Oops! Something went wrong. Please try again.
-                      </div>
+                      <div className="p-4 bg-red-50 text-red-700 rounded-xl border border-red-200 font-bold text-sm"><T k="services-health-packages_270428" d={"Oops! Something went wrong. Please try again."} /></div>
                     )}
 
                     <button
@@ -613,9 +541,7 @@ const WellnessPage = () => {
           <section className="py-24 px-6 relative">
             <div className="container mx-auto max-w-[1366px]">
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase">
-                  Health Cards
-                </h2>
+                <h2 className="text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase"><T k="services-health-packages_25ce67" d={"Health Cards"} /></h2>
                 <div className="w-24 h-1.5 bg-[#E85222] mx-auto rounded-full"></div>
               </div>
 
@@ -624,20 +550,13 @@ const WellnessPage = () => {
                 <div className="bg-white rounded-[3rem] p-8 shadow-xl border border-slate-100 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFB800] opacity-5 rounded-bl-full"></div>
                   <div className="mb-8">
-                    <h3 className="text-2xl font-black text-[#0b1c43] mb-2 font-heading">
-                      Health-Fit <span className="text-[#FFB800]">Gold</span>
+                    <h3 className="text-2xl font-black text-[#0b1c43] mb-2 font-heading"><T k="services-health-packages_603590" d={"Health-Fit "} /><span className="text-[#FFB800]"><T k="services-health-packages_c57604" d={"Gold"} /></span>
                     </h3>
                     <div className="flex flex-col gap-1">
-                      <span className="text-hospital-teal font-black uppercase tracking-widest text-[10px] md:text-xs">
-                        Upto 4 Members
-                      </span>
+                      <span className="text-hospital-teal font-black uppercase tracking-widest text-[10px] md:text-xs"><T k="services-health-packages_211ebf" d={"Upto 4 Members"} /></span>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-black text-[#0b1c43]">
-                          ₹799
-                        </span>
-                        <span className="text-xl text-gray-400 line-through">
-                          ₹1299
-                        </span>
+                        <span className="text-3xl font-black text-[#0b1c43]"><T k="services-health-packages_3d5db8" d={"₹799"} /></span>
+                        <span className="text-xl text-gray-400 line-through"><T k="services-health-packages_0d14a1" d={"₹1299"} /></span>
                       </div>
                     </div>
                   </div>
@@ -645,42 +564,29 @@ const WellnessPage = () => {
                     <li className="flex items-center gap-3 font-bold text-gray-700 text-sm">
                       <div className="w-6 h-6 rounded-full bg-orange-100 text-[#E85222] flex items-center justify-center text-xs">
                         ✓
-                      </div>
-                      Validity 365 Days
-                    </li>
+                      </div><T k="services-health-packages_4275b7" d={"Validity 365 Days"} /></li>
                     <li className="flex items-center gap-3 font-bold text-gray-700 text-sm">
                       <div className="w-6 h-6 rounded-full bg-orange-100 text-[#E85222] flex items-center justify-center text-xs">
                         ✓
-                      </div>
-                      Priority Support
-                    </li>
+                      </div><T k="services-health-packages_ba435c" d={"Priority Support"} /></li>
                   </ul>
                   <button
                     onClick={() => handleBuyNow("Health-Fit Gold (365 Days)")}
                     className="w-full py-4 bg-[#0b1c43] text-white rounded-2xl font-black hover:bg-hospital-teal transition-all shadow-lg shadow-blue-900/10 uppercase tracking-widest text-xs"
-                  >
-                    Buy Now
-                  </button>
+                  ><T k="services-health-packages_16c2c5" d={"Buy Now"} /></button>
                 </div>
 
                 {/* Gold Card - 730 Days */}
                 <div className="bg-white rounded-[3rem] p-8 shadow-xl border border-slate-100 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFB800] opacity-5 rounded-bl-full"></div>
                   <div className="mb-8">
-                    <h3 className="text-2xl font-black text-[#0b1c43] mb-2 font-heading">
-                      Health-Fit <span className="text-[#FFB800]">Gold</span>
+                    <h3 className="text-2xl font-black text-[#0b1c43] mb-2 font-heading"><T k="services-health-packages_603590_2" d={"Health-Fit "} /><span className="text-[#FFB800]"><T k="services-health-packages_c57604_2" d={"Gold"} /></span>
                     </h3>
                     <div className="flex flex-col gap-1">
-                      <span className="text-hospital-teal font-black uppercase tracking-widest text-[10px] md:text-xs">
-                        Upto 4 Members
-                      </span>
+                      <span className="text-hospital-teal font-black uppercase tracking-widest text-[10px] md:text-xs"><T k="services-health-packages_211ebf_2" d={"Upto 4 Members"} /></span>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-black text-[#0b1c43]">
-                          ₹1249
-                        </span>
-                        <span className="text-xl text-gray-400 line-through">
-                          ₹2598
-                        </span>
+                        <span className="text-3xl font-black text-[#0b1c43]"><T k="services-health-packages_3fbe8b" d={"₹1249"} /></span>
+                        <span className="text-xl text-gray-400 line-through"><T k="services-health-packages_4f53a7" d={"₹2598"} /></span>
                       </div>
                     </div>
                   </div>
@@ -688,43 +594,30 @@ const WellnessPage = () => {
                     <li className="flex items-center gap-3 font-bold text-gray-700 text-sm">
                       <div className="w-6 h-6 rounded-full bg-blue-100 text-[#0b1c43] flex items-center justify-center text-xs">
                         ✓
-                      </div>
-                      Validity 730 Days
-                    </li>
+                      </div><T k="services-health-packages_e13375" d={"Validity 730 Days"} /></li>
                     <li className="flex items-center gap-3 font-bold text-gray-700 text-sm">
                       <div className="w-6 h-6 rounded-full bg-blue-100 text-[#0b1c43] flex items-center justify-center text-xs">
                         ✓
-                      </div>
-                      Extended Benefits
-                    </li>
+                      </div><T k="services-health-packages_8e9e1d" d={"Extended Benefits"} /></li>
                   </ul>
                   <button
                     onClick={() => handleBuyNow("Health-Fit Gold (730 Days)")}
                     className="w-full py-4 bg-[#0b1c43] text-white rounded-2xl font-black hover:bg-hospital-teal transition-all shadow-lg shadow-blue-900/10 uppercase tracking-widest text-xs"
-                  >
-                    Buy Now
-                  </button>
+                  ><T k="services-health-packages_16c2c5_2" d={"Buy Now"} /></button>
                 </div>
 
                 {/* Platinum Card - 365 Days */}
                 <div className="bg-[#0b1c43] rounded-[3rem] p-8 shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 text-white">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-hospital-teal opacity-10 rounded-bl-full"></div>
                   <div className="mb-8">
-                    <h3 className="text-2xl font-black mb-2 font-heading text-white">
-                      Health-Fit{" "}
-                      <span className="text-hospital-teal">Platinum</span>
+                    <h3 className="text-2xl font-black mb-2 font-heading text-white"><T k="services-health-packages_1be63c" d={"Health-Fit"} />{" "}
+                      <span className="text-hospital-teal"><T k="services-health-packages_c93fa0" d={"Platinum"} /></span>
                     </h3>
                     <div className="flex flex-col gap-1">
-                      <span className="text-hospital-teal font-black uppercase tracking-widest text-[10px] md:text-xs">
-                        Upto 6 Members
-                      </span>
+                      <span className="text-hospital-teal font-black uppercase tracking-widest text-[10px] md:text-xs"><T k="services-health-packages_c60e9d" d={"Upto 6 Members"} /></span>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-black text-white">
-                          ₹999
-                        </span>
-                        <span className="text-xl text-gray-400 line-through">
-                          ₹1899
-                        </span>
+                        <span className="text-3xl font-black text-white"><T k="services-health-packages_20eada" d={"₹999"} /></span>
+                        <span className="text-xl text-gray-400 line-through"><T k="services-health-packages_a7ff04" d={"₹1899"} /></span>
                       </div>
                     </div>
                   </div>
@@ -732,45 +625,32 @@ const WellnessPage = () => {
                     <li className="flex items-center gap-3 font-bold text-gray-200 text-sm">
                       <div className="w-6 h-6 rounded-full bg-hospital-teal/20 text-hospital-teal flex items-center justify-center text-xs">
                         ✓
-                      </div>
-                      Validity 365 Days
-                    </li>
+                      </div><T k="services-health-packages_4275b7_2" d={"Validity 365 Days"} /></li>
                     <li className="flex items-center gap-3 font-bold text-gray-200 text-sm">
                       <div className="w-6 h-6 rounded-full bg-hospital-teal/20 text-hospital-teal flex items-center justify-center text-xs">
                         ✓
-                      </div>
-                      Dedicated Priority Desk
-                    </li>
+                      </div><T k="services-health-packages_c5fe79" d={"Dedicated Priority Desk"} /></li>
                   </ul>
                   <button
                     onClick={() =>
                       handleBuyNow("Health-Fit Platinum (365 Days)")
                     }
                     className="w-full py-4 bg-hospital-teal text-white rounded-2xl font-black hover:bg-white hover:text-hospital-teal transition-all shadow-lg shadow-teal-900/40 uppercase tracking-widest text-xs"
-                  >
-                    Buy Now
-                  </button>
+                  ><T k="services-health-packages_16c2c5_3" d={"Buy Now"} /></button>
                 </div>
 
                 {/* Platinum Card - 730 Days */}
                 <div className="bg-[#0b1c43] rounded-[3rem] p-8 shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 text-white border-2 border-hospital-teal/30">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-hospital-teal opacity-20 rounded-bl-full"></div>
                   <div className="mb-8">
-                    <h3 className="text-2xl font-black mb-2 font-heading text-white">
-                      Health-Fit{" "}
-                      <span className="text-hospital-teal">Platinum</span>
+                    <h3 className="text-2xl font-black mb-2 font-heading text-white"><T k="services-health-packages_1be63c_2" d={"Health-Fit"} />{" "}
+                      <span className="text-hospital-teal"><T k="services-health-packages_c93fa0_2" d={"Platinum"} /></span>
                     </h3>
                     <div className="flex flex-col gap-1">
-                      <span className="text-hospital-teal font-black uppercase tracking-widest text-[10px] md:text-xs">
-                        Upto 6 Members
-                      </span>
+                      <span className="text-hospital-teal font-black uppercase tracking-widest text-[10px] md:text-xs"><T k="services-health-packages_c60e9d_2" d={"Upto 6 Members"} /></span>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-black text-white">
-                          ₹1799
-                        </span>
-                        <span className="text-xl text-gray-400 line-through">
-                          ₹3798
-                        </span>
+                        <span className="text-3xl font-black text-white"><T k="services-health-packages_5c66cf" d={"₹1799"} /></span>
+                        <span className="text-xl text-gray-400 line-through"><T k="services-health-packages_bbd164" d={"₹3798"} /></span>
                       </div>
                     </div>
                   </div>
@@ -778,24 +658,18 @@ const WellnessPage = () => {
                     <li className="flex items-center gap-3 font-bold text-gray-200 text-sm">
                       <div className="w-6 h-6 rounded-full bg-hospital-teal/20 text-hospital-teal flex items-center justify-center text-xs">
                         ✓
-                      </div>
-                      Validity 730 Days
-                    </li>
+                      </div><T k="services-health-packages_e13375_2" d={"Validity 730 Days"} /></li>
                     <li className="flex items-center gap-3 font-bold text-gray-200 text-sm">
                       <div className="w-6 h-6 rounded-full bg-hospital-teal/20 text-hospital-teal flex items-center justify-center text-xs">
                         ✓
-                      </div>
-                      Elite Priority Access
-                    </li>
+                      </div><T k="services-health-packages_7ddac3" d={"Elite Priority Access"} /></li>
                   </ul>
                   <button
                     onClick={() =>
                       handleBuyNow("Health-Fit Platinum (730 Days)")
                     }
                     className="w-full py-4 bg-hospital-teal text-white rounded-2xl font-black hover:bg-white hover:text-hospital-teal transition-all shadow-lg shadow-teal-900/40 uppercase tracking-widest text-xs"
-                  >
-                    Buy Now
-                  </button>
+                  ><T k="services-health-packages_16c2c5_4" d={"Buy Now"} /></button>
                 </div>
               </div>
             </div>
@@ -810,9 +684,7 @@ const WellnessPage = () => {
 
             <div className="container mx-auto max-w-[1366px] relative z-10">
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-black text-white mb-4 font-heading tracking-tight uppercase">
-                  Card Benefits
-                </h2>
+                <h2 className="text-4xl font-black text-white mb-4 font-heading tracking-tight uppercase"><T k="services-health-packages_1eaea5" d={"Card Benefits"} /></h2>
               </div>
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -892,14 +764,10 @@ const WellnessPage = () => {
           <section className="py-24 px-6 bg-slate-50">
             <div className="container mx-auto max-w-[1366px]">
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight">
-                  Free Health Checkups{" "}
-                  <span className="text-[#E85222]">Included</span>
+                <h2 className="text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight"><T k="services-health-packages_77c742" d={"Free Health Checkups"} />{" "}
+                  <span className="text-[#E85222]"><T k="services-health-packages_3e2c57" d={"Included"} /></span>
                 </h2>
-                <p className="text-gray-500 text-lg max-w-2xl mx-auto font-medium">
-                  Monitor your health regularly with these vital tests available
-                  at no extra cost.
-                </p>
+                <p className="text-gray-500 text-lg max-w-2xl mx-auto font-medium"><T k="services-health-packages_63ab9f" d={"Monitor your health regularly with these vital tests available at no extra cost."} /></p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -954,16 +822,10 @@ const WellnessPage = () => {
           <section className="py-24 px-6 bg-white relative overflow-hidden">
             <div className="container mx-auto max-w-[1366px] relative z-10">
               <div className="text-center mb-20">
-                <h2 className="text-4xl md:text-5xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase">
-                  Women's Health{" "}
-                  <span className="text-pink-500 underline decoration-pink-200 underline-offset-8">
-                    Care
-                  </span>
+                <h2 className="text-4xl md:text-5xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase"><T k="services-health-packages_1ea147" d={"Women's Health"} />{" "}
+                  <span className="text-pink-500 underline decoration-pink-200 underline-offset-8"><T k="services-health-packages_779db9" d={"Care"} /></span>
                 </h2>
-                <p className="text-gray-500 text-lg max-w-3xl mx-auto font-medium">
-                  With the Health Fit Card, we ensure that every woman receives
-                  the priority attention and medical support she deserves.
-                </p>
+                <p className="text-gray-500 text-lg max-w-3xl mx-auto font-medium"><T k="services-health-packages_48efcb" d={"With the Health Fit Card, we ensure that every woman receives the priority attention and medical support she deserves."} /></p>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -975,28 +837,16 @@ const WellnessPage = () => {
                       <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-[1.5rem] md:rounded-[2.5rem] flex items-center justify-center text-3xl md:text-5xl mb-8 md:mb-10 shadow-2xl shadow-pink-200 transform group-hover:rotate-6 transition-transform">
                         🤰
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-black text-[#0b1c43] mb-6 md:mb-8 font-heading italic">
-                        For Pregnant Women
-                      </h3>
+                      <h3 className="text-2xl md:text-3xl font-black text-[#0b1c43] mb-6 md:mb-8 font-heading italic"><T k="services-health-packages_0bc23e" d={"For Pregnant Women"} /></h3>
                       <div className="space-y-6 md:space-y-8">
                         <div className="flex items-start gap-4 md:gap-6 bg-pink-50/30 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-pink-100/50">
-                          <span className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-pink-500 text-white flex items-center justify-center flex-shrink-0 font-black shadow-lg text-sm md:text-base">
-                            01
-                          </span>
-                          <p className="text-gray-700 font-bold text-base md:text-lg leading-relaxed">
-                            Free first Antenatal Checkup for pregnant women
-                            during nine month of pregnancy
-                          </p>
+                          <span className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-pink-500 text-white flex items-center justify-center flex-shrink-0 font-black shadow-lg text-sm md:text-base"><T k="services-health-packages_ddfe16" d={"01"} /></span>
+                          <p className="text-gray-700 font-bold text-base md:text-lg leading-relaxed"><T k="services-health-packages_dbfee0" d={"Free first Antenatal Checkup for pregnant women during nine month of pregnancy"} /></p>
                         </div>
                         <div className="bg-white p-5 md:p-8 rounded-[2rem] md:rounded-[3rem] border border-pink-100 shadow-inner">
                           <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-6">
-                            <span className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center flex-shrink-0 font-black text-sm md:text-base">
-                              02
-                            </span>
-                            <h4 className="text-lg md:text-xl font-black text-[#0b1c43] leading-snug">
-                              Free Blood test of pregnant women once during
-                              pregnancy
-                            </h4>
+                            <span className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center flex-shrink-0 font-black text-sm md:text-base"><T k="services-health-packages_bcac9d" d={"02"} /></span>
+                            <h4 className="text-lg md:text-xl font-black text-[#0b1c43] leading-snug"><T k="services-health-packages_0ff268" d={"Free Blood test of pregnant women once during pregnancy"} /></h4>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                             {[
@@ -1027,12 +877,8 @@ const WellnessPage = () => {
                       <div className="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-hospital-teal to-blue-500 rounded-[1.5rem] md:rounded-[2.5rem] flex items-center justify-center text-3xl md:text-5xl mb-8 md:mb-10 shadow-2xl shadow-teal-100 transform group-hover:-rotate-6 transition-transform">
                         👩‍💼
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-black text-[#0b1c43] mb-2 font-heading italic">
-                        For Non-Pregnant Women
-                      </h3>
-                      <p className="text-hospital-teal text-xs md:text-sm font-black uppercase tracking-[0.2em] mb-8 md:mb-10 opacity-80">
-                        (Recommended for 35+ Years of Age)
-                      </p>
+                      <h3 className="text-2xl md:text-3xl font-black text-[#0b1c43] mb-2 font-heading italic"><T k="services-health-packages_d5678d" d={"For Non-Pregnant Women"} /></h3>
+                      <p className="text-hospital-teal text-xs md:text-sm font-black uppercase tracking-[0.2em] mb-8 md:mb-10 opacity-80"><T k="services-health-packages_7a266d" d={"(Recommended for 35+ Years of Age)"} /></p>
                       <div className="space-y-3 md:space-y-4">
                         {[
                           { title: "Pap Smear once in a Year", icon: "🔬" },
@@ -1081,12 +927,8 @@ const WellnessPage = () => {
           <section className="py-24 px-4 sm:px-6">
             <div className="container mx-auto max-w-[1366px]">
               <div className="text-center mb-16 px-4">
-                <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase">
-                  Why Health Fit Card
-                </h2>
-                <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto font-medium">
-                  Health Insurance Vs Health-fit Card
-                </p>
+                <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] mb-4 font-heading tracking-tight uppercase"><T k="services-health-packages_a279e9" d={"Why Health Fit Card"} /></h2>
+                <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto font-medium"><T k="services-health-packages_f8ab1b" d={"Health Insurance Vs Health-fit Card"} /></p>
               </div>
 
               <div className="w-full overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 custom-scrollbar">
@@ -1094,12 +936,8 @@ const WellnessPage = () => {
                   <table className="w-full table-fixed">
                     <thead className="bg-[#0b1c43] text-white">
                       <tr>
-                        <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading leading-tight w-1/2">
-                          Health Insurance
-                        </th>
-                        <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading bg-[#E85222] border-l border-white/10 w-1/2">
-                          Health-fit Card
-                        </th>
+                        <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading leading-tight w-1/2"><T k="services-health-packages_1a3985" d={"Health Insurance"} /></th>
+                        <th className="px-4 md:px-8 py-4 md:py-6 text-center text-[13px] md:text-xl font-black font-heading bg-[#E85222] border-l border-white/10 w-1/2"><T k="services-health-packages_6d5ad8" d={"Health-fit Card"} /></th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -1151,9 +989,7 @@ const WellnessPage = () => {
                   </table>
                 </div>
               </div>
-              <p className="text-center text-gray-400 text-[10px] md:hidden mt-2">
-                ← Swipe to see full comparison →
-              </p>
+              <p className="text-center text-gray-400 text-[10px] md:hidden mt-2"><T k="services-health-packages_fd8aab" d={"← Swipe to see full comparison →"} /></p>
             </div>
           </section>
 
@@ -1165,27 +1001,15 @@ const WellnessPage = () => {
                   <div className="w-16 h-16 md:w-20 md:h-20 bg-[#0b1c43] text-white rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center text-3xl md:text-4xl mb-6 mx-auto md:mx-0 shadow-xl shadow-blue-900/20 transform hover:scale-110 transition-transform">
                     💡
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading tracking-tight uppercase">
-                    How to <span className="text-hospital-teal">Use?</span>
+                  <h2 className="text-3xl md:text-4xl font-black text-[#0b1c43] font-heading tracking-tight uppercase"><T k="services-health-packages_f109e7" d={"How to "} /><span className="text-hospital-teal"><T k="services-health-packages_c28350" d={"Use?"} /></span>
                   </h2>
                 </div>
                 <div className="md:w-2/3 space-y-6">
                   <div className="bg-white p-5 md:p-8 rounded-3xl shadow-inner border border-slate-100">
-                    <p className="text-base md:text-lg text-gray-700 font-bold leading-relaxed mb-6">
-                      In case of consultation, emergency or planned
-                      hospitalization, just use your health ID card at the
-                      reception of any of our branches. They will trace your
-                      details with the unique Family health-fit card ID.
-                    </p>
+                    <p className="text-base md:text-lg text-gray-700 font-bold leading-relaxed mb-6"><T k="services-health-packages_2d5489" d={"In case of consultation, emergency or planned hospitalization, just use your health ID card at the reception of any of our branches. They will trace your details with the unique Family health-fit card ID."} /></p>
                     <div className="flex items-start gap-3 md:gap-4 p-4 md:p-5 bg-orange-50/50 border border-orange-100 rounded-2xl">
                       <div className="text-orange-900 font-black text-xs md:text-sm uppercase tracking-wide leading-relaxed">
-                        <span className="text-orange-600 block mb-1">
-                          Important Note:
-                        </span>
-                        During OPD Consultation or IPD admissions, the health
-                        card possession is to be informed before hand & prior to
-                        the bill generation.
-                      </div>
+                        <span className="text-orange-600 block mb-1"><T k="services-health-packages_290803" d={"Important Note:"} /></span><T k="services-health-packages_81d314" d={"During OPD Consultation or IPD admissions, the health card possession is to be informed before hand & prior to the bill generation."} /></div>
                     </div>
                   </div>
                 </div>
@@ -1199,14 +1023,10 @@ const WellnessPage = () => {
               <div className="bg-white rounded-[4rem] p-10 md:p-16 shadow-xl border border-slate-100">
                 <div className="flex flex-col md:flex-row gap-12">
                   <div className="md:w-1/3">
-                    <h2 className="text-3xl font-black text-[#0b1c43] font-heading tracking-tight mb-4 uppercase">
-                      Terms & <span className="text-[#E85222]">Conditions</span>
+                    <h2 className="text-3xl font-black text-[#0b1c43] font-heading tracking-tight mb-4 uppercase"><T k="services-health-packages_c0bf4e" d={"Terms & "} /><span className="text-[#E85222]"><T k="services-health-packages_5506eb" d={"Conditions"} /></span>
                     </h2>
                     <div className="w-20 h-1.5 bg-[#E85222] rounded-full"></div>
-                    <p className="mt-6 text-gray-500 font-medium">
-                      Please review these terms carefully to ensure a seamless
-                      experience with your Health Fit Card.
-                    </p>
+                    <p className="mt-6 text-gray-500 font-medium"><T k="services-health-packages_ca5856" d={"Please review these terms carefully to ensure a seamless experience with your Health Fit Card."} /></p>
                   </div>
                   <div className="md:w-2/3">
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1240,20 +1060,7 @@ const WellnessPage = () => {
           {/* Footer Info Section */}
           <section className="py-12 px-6 bg-white border-t border-slate-100">
             <div className="container mx-auto max-w-[1366px]">
-              <p className="text-gray-400 text-sm leading-relaxed text-center max-w-4xl mx-auto italic">
-                Our Health Fit Card is not just limited to Popular Hospital, but
-                also applicable to all Popular Group Hospital branches,
-                including exclusive access to Niraamaya Diagnostics in Lanka,
-                Varanasi. The best part? We offer 24/7 support and no charges
-                for including a new member in the existing card (up to the card
-                limit). Existing diseases do not restrict you from getting the
-                Health Fit Card, and it is available for the whole family,
-                including parents, in-laws, dependents below 25 years, widow,
-                widower, divorced members, and their dependents. With Popular
-                Hospital's Health Fit Card, you can prioritise your health and
-                wellness without worrying about the expenses. Get yours today
-                and take the first step towards a healthier and happier life!
-              </p>
+              <p className="text-gray-400 text-sm leading-relaxed text-center max-w-4xl mx-auto italic"><T k="services-health-packages_1649bc" d={"Our Health Fit Card is not just limited to Popular Hospital, but also applicable to all Popular Group Hospital branches, including exclusive access to Niraamaya Diagnostics in Lanka, Varanasi. The best part? We offer 24/7 support and no charges for including a new member in the existing card (up to the card limit). Existing diseases do not restrict you from getting the Health Fit Card, and it is available for the whole family, including parents, in-laws, dependents below 25 years, widow, widower, divorced members, and their dependents. With Popular Hospital's Health Fit Card, you can prioritise your health and wellness without worrying about the expenses. Get yours today and take the first step towards a healthier and happier life!"} /></p>
             </div>
           </section>
 
@@ -1269,20 +1076,14 @@ const WellnessPage = () => {
                 </button>
 
                 <div className="text-center mb-10">
-                  <h2 className="text-3xl font-black text-[#0b1c43] mb-3 font-heading tracking-tight italic">
-                    Getting Started
-                  </h2>
-                  <p className="text-gray-500 font-bold uppercase tracking-widest text-[10px]">
-                    Please provide basic details to proceed
-                  </p>
+                  <h2 className="text-3xl font-black text-[#0b1c43] mb-3 font-heading tracking-tight italic"><T k="services-health-packages_010b85" d={"Getting Started"} /></h2>
+                  <p className="text-gray-500 font-bold uppercase tracking-widest text-[10px]"><T k="services-health-packages_c8b91c" d={"Please provide basic details to proceed"} /></p>
                   <div className="w-16 h-1.5 bg-[#E85222] mx-auto mt-4 rounded-full"></div>
                 </div>
 
                 <form onSubmit={handleSmallFormSubmit} className="space-y-6">
                   <div className="space-y-3">
-                    <label className="text-xs font-black text-[#0b1c43] uppercase tracking-[0.2em] ml-2">
-                      Full Name
-                    </label>
+                    <label className="text-xs font-black text-[#0b1c43] uppercase tracking-[0.2em] ml-2"><T k="services-health-packages_64346b_3" d={"Full Name"} /></label>
                     <input
                       required
                       type="text"
@@ -1295,9 +1096,7 @@ const WellnessPage = () => {
                     />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-xs font-black text-[#0b1c43] uppercase tracking-[0.2em] ml-2">
-                      Mobile Number
-                    </label>
+                    <label className="text-xs font-black text-[#0b1c43] uppercase tracking-[0.2em] ml-2"><T k="services-health-packages_5968ac" d={"Mobile Number"} /></label>
                     <input
                       required
                       type="tel"
@@ -1315,8 +1114,7 @@ const WellnessPage = () => {
                   <button
                     type="submit"
                     className="w-full py-6 bg-[#E85222] text-white rounded-[2rem] font-black uppercase tracking-[0.25em] text-xs hover:bg-[#d1451a] shadow-2xl shadow-orange-900/30 transition-all transform active:scale-[0.98] mt-4 flex items-center justify-center gap-3 group"
-                  >
-                    Proceed to Application{" "}
+                  ><T k="services-health-packages_07d398" d={"Proceed to Application"} />{" "}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                   </button>
                 </form>

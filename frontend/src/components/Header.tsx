@@ -245,6 +245,63 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
+  // ── Nav Menu Visibility (from admin panel) ──────────────────────────────
+  const [hiddenMenus, setHiddenMenus] = useState<string[]>([]);
+  const [hiddenHrefs, setHiddenHrefs] = useState<string[]>([]);
+
+  useEffect(() => {
+    // DB se menu visibility fetch karo (silently fail karega)
+    fetch("/api-backend/nav-menus", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data: any[]) => {
+        if (!Array.isArray(data)) return;
+        const menus: string[] = [];
+        const hrefs: string[] = [];
+        data.forEach((menu) => {
+          if (menu.hidden) menus.push(menu.label);
+          if (Array.isArray(menu.items)) {
+            menu.items.forEach((item: { href: string; hidden: boolean }) => {
+              if (item.hidden) hrefs.push(item.href);
+            });
+          }
+        });
+        setHiddenMenus(menus);
+        setHiddenHrefs(hrefs);
+      })
+      .catch(() => {
+        // API fail hone par default (sab visible) chalega
+      });
+  }, []);
+
+  const isHrefVisible = (href: string) => !hiddenHrefs.includes(href);
+
+  // Departments mega-menu: column hide + individual department hide
+  const superDepartments = isHrefVisible("/departments/super")
+    ? specialtiesContent["Super Specialties"].filter((s) => isHrefVisible(s.href))
+    : [];
+  const coreDepartments = isHrefVisible("/departments/core")
+    ? specialtiesContent["Specialties"].filter((s) => isHrefVisible(s.href))
+    : [];
+  const hasVisibleDepartments = superDepartments.length + coreDepartments.length > 0;
+
+  // Filter kiya hua menuItems (DB se visibility apply)
+  const visibleMenuItems = menuItems
+    .filter((item) => {
+      if (!item.dropdown) return true; // Home / Careers
+      if (hiddenMenus.includes(item.label)) return false; // Poora group hidden
+      if (item.label === "Departments" && !hasVisibleDepartments) return false;
+      return true;
+    })
+    .map((item) => {
+      if (!item.dropdown) return item;
+      return {
+        ...item,
+        dropdown: item.dropdown.filter((d) => isHrefVisible(d.href)),
+      };
+    })
+    .filter((item) => !item.dropdown || item.dropdown.length > 0);
+  // ────────────────────────────────────────────────────────────────────────
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (activeDropdown) {
@@ -742,7 +799,7 @@ export function Header() {
               className="hidden xl:flex xl:items-center xl:flex-1 xl:justify-center xl:gap-0.5"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
-              {menuItems.map((item) => (
+              {visibleMenuItems.map((item) => (
                 <div
                   key={item.label}
                   className="relative h-full flex items-center"
@@ -792,14 +849,13 @@ export function Header() {
                             <div className="w-[1050px] min-[1366px]:w-[1150px] rounded-xl bg-white shadow-xl border border-gray-100">
                               <div className="flex">
                                 {/* Left Side: Super Specialties */}
+                                {superDepartments.length > 0 && (
                                 <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5 border-r border-gray-100">
                                   <h3 className="text-hospital-teal font-heading font-bold text-[11px] min-[1440px]:text-xs uppercase tracking-widest mb-3 min-[1440px]:mb-4 pb-2 border-b-2 border-hospital-teal/20">
                                     Super Specialties
                                   </h3>
                                   <div className="flex flex-col gap-0.5">
-                                    {specialtiesContent[
-                                      "Super Specialties"
-                                    ].map((subItem) => (
+                                    {superDepartments.map((subItem) => (
                                       <Link
                                         key={subItem.label}
                                         href={subItem.href}
@@ -814,13 +870,15 @@ export function Header() {
                                     ))}
                                   </div>
                                 </div>
+                                )}
                                 {/* Middle: Specialties Part 1 */}
-                                <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5 border-r border-gray-100">
+                                {coreDepartments.length > 0 && (
+                                <div className={`flex-1 p-5 xl:p-4 min-[1440px]:p-5${coreDepartments.length > 11 ? " border-r border-gray-100" : ""}`}>
                                   <h3 className="text-hospital-teal font-heading font-bold text-[11px] min-[1440px]:text-xs uppercase tracking-widest mb-3 min-[1440px]:mb-4 pb-2 border-b-2 border-hospital-teal/20">
                                     Specialties
                                   </h3>
                                   <div className="flex flex-col gap-0.5">
-                                    {specialtiesContent["Specialties"]
+                                    {coreDepartments
                                       .slice(0, 11)
                                       .map((subItem) => (
                                         <Link
@@ -839,13 +897,15 @@ export function Header() {
                                       ))}
                                   </div>
                                 </div>
+                                )}
                                 {/* Right Side: Specialties Part 2 */}
+                                {coreDepartments.length > 11 && (
                                 <div className="flex-1 p-5 xl:p-4 min-[1440px]:p-5">
                                   <h3 className="text-hospital-teal font-heading font-bold text-[11px] min-[1440px]:text-xs uppercase tracking-widest mb-3 min-[1440px]:mb-4 pb-2 border-b-2 border-hospital-teal/20 opacity-0 select-none">
                                     Specialties
                                   </h3>
                                   <div className="flex flex-col gap-0.5">
-                                    {specialtiesContent["Specialties"]
+                                    {coreDepartments
                                       .slice(11)
                                       .map((subItem) => (
                                         <Link
@@ -864,6 +924,7 @@ export function Header() {
                                       ))}
                                   </div>
                                 </div>
+                                )}
                               </div>
                             </div>
                           ) : item.label === "Services" ? (
@@ -991,7 +1052,7 @@ export function Header() {
               className="px-4 py-4 space-y-1"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
-              {menuItems.map((item) => (
+              {visibleMenuItems.map((item) => (
                 <div key={item.label}>
                   {item.dropdown ? (
                     <div className="flex flex-col">
@@ -1070,7 +1131,7 @@ export function Header() {
                                   <div
                                     className={`pl-4 overflow-hidden transition-all duration-300 ${activeMobileSubCategory === dropdownItem.label ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}
                                   >
-                                    {contentMap[dropdownItem.label]?.map(
+                                    {contentMap[dropdownItem.label]?.filter((s) => isHrefVisible(s.href)).map(
                                       (subItem) => (
                                         <Link
                                           key={subItem.label}

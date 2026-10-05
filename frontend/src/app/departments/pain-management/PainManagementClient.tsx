@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -217,7 +218,7 @@ export default function PainManagementClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-pain-management_7df23c"
             src="/images/banners/pain_management_banner.png"
             alt="Pain Management Banner"
             fill
@@ -229,25 +230,17 @@ export default function PainManagementClient({
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Specialized Care
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Pain Management Clinic — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-pain-management_9e3766" d={"Specialized Care"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-pain-management_d35bc2" d={"Department of Pain Management Clinic — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#d04420] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-pain-management_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Pain Medicine"
                 className="bg-transparent hover:bg-white/10 text-white px-8 py-3.5 rounded-full font-bold border border-white/20 transition-all flex items-center gap-2"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-pain-management_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -263,13 +256,7 @@ export default function PainManagementClient({
               <SectionLabel text="About the Department" />
               <SectionHeader title="Pain" highlight="Medicine Clinic" />
               <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/60 to-transparent rounded-r-3xl shadow-sm">
-                <p className="font-semibold text-gray-700 text-base md:text-[15px] leading-relaxed">
-                  The Pain Management Clinic at Popular Hospital is the only
-                  dedicated Pain Clinic in the Purvanchal area from a corporate
-                  hospital, offering cashless facilities. Our specialists treat
-                  chronic pain conditions unresponsive to conventional treatment
-                  through advanced Interventional Pain Procedures.
-                </p>
+                <p className="font-semibold text-gray-700 text-base md:text-[15px] leading-relaxed"><T k="departments-pain-management_b7a981" d={"The Pain Management Clinic at Popular Hospital is the only dedicated Pain Clinic in the Purvanchal area from a corporate hospital, offering cashless facilities. Our specialists treat chronic pain conditions unresponsive to conventional treatment through advanced Interventional Pain Procedures."} /></p>
               </div>
 
               {/* Key features strip */}
@@ -307,8 +294,7 @@ export default function PainManagementClient({
           <div className="mt-20 border-t border-slate-100 pt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
               <SectionLabel text="Frequently Asked Questions" />
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                About <span className="text-[#1e3a8a]">Pain Management</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-pain-management_dae445" d={"About "} /><span className="text-[#1e3a8a]"><T k="departments-pain-management_4ef5a2" d={"Pain Management"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -330,14 +316,9 @@ export default function PainManagementClient({
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
             <div className="relative z-10">
               <div className="mb-10 text-center space-y-3">
-                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block">
-                  Interventional Neurology
-                </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
-                  Trigeminal{" "}
-                  <span className="text-blue-300">
-                    Neuralgia & Neck / Back Pain
-                  </span>
+                <span className="text-blue-400 font-bold tracking-widest text-xs uppercase block"><T k="departments-pain-management_83cb7b" d={"Interventional Neurology"} /></span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight"><T k="departments-pain-management_f2d655" d={"Trigeminal"} />{" "}
+                  <span className="text-blue-300"><T k="departments-pain-management_018037" d={"Neuralgia & Neck / Back Pain"} /></span>
                 </h2>
                 <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
               </div>
@@ -378,9 +359,8 @@ export default function PainManagementClient({
           <div className="mt-20 border-t border-slate-100 pt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
               <SectionLabel text="Regenerative Medicine" />
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Platelet Rich Plasma{" "}
-                <span className="text-[#1e3a8a]">(PRP) Therapy</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-pain-management_bfbbc9" d={"Platelet Rich Plasma"} />{" "}
+                <span className="text-[#1e3a8a]"><T k="departments-pain-management_5cc0ab" d={"(PRP) Therapy"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -400,8 +380,7 @@ export default function PainManagementClient({
           <div className="mt-20 border-t border-slate-100 pt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
               <SectionLabel text="Palliative Care" />
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Cancer <span className="text-[#1e3a8a]">Pain Management</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-pain-management_5d4d94" d={"Cancer "} /><span className="text-[#1e3a8a]"><T k="departments-pain-management_4ef5a2_2" d={"Pain Management"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -421,32 +400,21 @@ export default function PainManagementClient({
           <div className="mt-20 rounded-3xl overflow-hidden">
             <div className="relative bg-gradient-to-br from-[#0b1c43] to-[#1e3a8a] px-8 py-14 text-center">
               <div className="relative z-10 max-w-2xl mx-auto space-y-5">
-                <p className="text-blue-300 text-xs font-bold uppercase tracking-widest">
-                  Expert Pain Relief at Popular Hospital
-                </p>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-white font-heading leading-tight">
-                  Live Pain-Free with the{" "}
-                  <span className="text-[#E85222]">Pain Management Clinic</span>{" "}
-                  at Popular Hospital.
-                </h2>
-                <p className="text-blue-100/70 text-sm md:text-base font-medium leading-relaxed">
-                  Advanced interventional procedures for chronic pain — cashless
-                  facilities available. Our team of Pain Medicine specialists is
-                  here to help you reclaim your life.
-                </p>
+                <p className="text-blue-300 text-xs font-bold uppercase tracking-widest"><T k="departments-pain-management_c7954e" d={"Expert Pain Relief at Popular Hospital"} /></p>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-white font-heading leading-tight"><T k="departments-pain-management_053fe7" d={"Live Pain-Free with the"} />{" "}
+                  <span className="text-[#E85222]"><T k="departments-pain-management_8e7ee9" d={"Pain Management Clinic"} /></span>{" "}<T k="departments-pain-management_b327ba" d={"at Popular Hospital."} /></h2>
+                <p className="text-blue-100/70 text-sm md:text-base font-medium leading-relaxed"><T k="departments-pain-management_37fcef" d={"Advanced interventional procedures for chronic pain — cashless facilities available. Our team of Pain Medicine specialists is here to help you reclaim your life."} /></p>
                 <div className="flex flex-wrap justify-center gap-4 pt-2">
                   <Link
                     href="/book"
                     className="bg-[#E85222] hover:bg-[#d04420] text-white px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-xs tracking-widest"
-                  >
-                    Book Appointment <ArrowRight className="h-4 w-4" />
+                  ><T k="departments-pain-management_ed4a56" d={"Book Appointment "} /><ArrowRight className="h-4 w-4" />
                   </Link>
                   <GetCallBackButton
                     department="Pain Management"
                     className="bg-white/10 hover:bg-white/20 text-white px-7 py-3 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-xs tracking-widest"
                   >
-                    <Phone className="h-4 w-4" /> Get a Call Back
-                  </GetCallBackButton>
+                    <Phone className="h-4 w-4" /><T k="departments-pain-management_3d6ea0" d={" Get a Call Back"} /></GetCallBackButton>
                 </div>
               </div>
             </div>

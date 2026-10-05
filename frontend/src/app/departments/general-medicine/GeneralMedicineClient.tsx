@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -143,7 +144,7 @@ export default function GeneralMedicineClient({
       {/* ═══════ HERO (UNCHANGED LAYOUT) ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-general-medicine_20df70"
             src="/images/banners/general_medicine.png"
             alt="General Medicine Banner"
             fill
@@ -154,25 +155,17 @@ export default function GeneralMedicineClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Centre of Internal Medicine
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of General Medicine — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-general-medicine_c2003a" d={"Centre of Internal Medicine"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-general-medicine_df1753" d={"Department of General Medicine — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-general-medicine_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="General Medicine"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-general-medicine_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -185,17 +178,13 @@ export default function GeneralMedicineClient({
             {/* Left Content */}
             <div className="lg:col-span-8 space-y-8">
               <div className="space-y-4">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best General Medicine hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-general-medicine_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-general-medicine_2cf8ab" d={"best General Medicine hospital in Varanasi"} /></strong><T k="departments-general-medicine_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-general-medicine_200859" d={"Purvanchal"} /></strong><T k="departments-general-medicine_4f4133" d={" and "} /><strong><T k="departments-general-medicine_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <span className="inline-block text-[#1e3a8a] font-bold tracking-widest text-xs uppercase">
-                  Introduction
-                </span>
+                <span className="inline-block text-[#1e3a8a] font-bold tracking-widest text-xs uppercase"><T k="departments-general-medicine_2473e9" d={"Introduction"} /></span>
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-10 rounded-full bg-[#1e3a8a] inline-block" />
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Department of{" "}
-                    <span className="text-[#1e3a8a]">General Medicine</span>
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-general-medicine_4c5284" d={"Department of"} />{" "}
+                    <span className="text-[#1e3a8a]"><T k="departments-general-medicine_b06d55" d={"General Medicine"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -206,23 +195,10 @@ export default function GeneralMedicineClient({
                   <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">
                     “
                   </span>
-                  <p className="text-gray-700 leading-relaxed text-base md:text-[15.5px] font-semibold italic relative z-10">
-                    The department of Medicine initially covered all specialties
-                    till super-specialties like Gastroenterology and Nephrology
-                    were created, to which Neurology was added and are now
-                    working as full-fledged departments.
-                  </p>
+                  <p className="text-gray-700 leading-relaxed text-base md:text-[15.5px] font-semibold italic relative z-10"><T k="departments-general-medicine_28fdf2" d={"The department of Medicine initially covered all specialties till super-specialties like Gastroenterology and Nephrology were created, to which Neurology was added and are now working as full-fledged departments."} /></p>
                 </div>
 
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium text-justify">
-                  The department continues to have specialties such as Oncology,
-                  Respiratory and Sleep Medicine and Endocrinology. It has
-                  consultants who are capable of diagnosing and treating
-                  complicated medical problems in the fields of diabetes,
-                  rheumatology, clinical haematology, medical oncology,
-                  infectious diseases, HIV and AIDS and primary immunological
-                  disorders.
-                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium text-justify"><T k="departments-general-medicine_413ec6" d={"The department continues to have specialties such as Oncology, Respiratory and Sleep Medicine and Endocrinology. It has consultants who are capable of diagnosing and treating complicated medical problems in the fields of diabetes, rheumatology, clinical haematology, medical oncology, infectious diseases, HIV and AIDS and primary immunological disorders."} /></p>
               </div>
             </div>
 
@@ -276,11 +252,8 @@ export default function GeneralMedicineClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           {/* Header */}
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-              Areas of Care
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-              Medical <span className="text-[#1e3a8a]">Specialties</span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-general-medicine_78220b" d={"Areas of Care"} /></span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-general-medicine_0bd1b8" d={"Medical "} /><span className="text-[#1e3a8a]"><T k="departments-general-medicine_1b0cec" d={"Specialties"} /></span>
             </h2>
             <div className="h-[2px] w-24 bg-gradient-to-r from-blue-500 to-indigo-650 mx-auto" />
           </div>
@@ -332,9 +305,7 @@ export default function GeneralMedicineClient({
                           <Icon className="w-7 h-7" />
                         </div>
                         <div>
-                          <span className="text-blue-500 text-xs font-bold uppercase tracking-wider block">
-                            Specialty Service
-                          </span>
+                          <span className="text-blue-500 text-xs font-bold uppercase tracking-wider block"><T k="departments-general-medicine_60b80a" d={"Specialty Service"} /></span>
                           <h3 className="text-xl md:text-2xl font-extrabold text-[#0b1c43] tracking-tight">
                             {service.title}
                           </h3>
@@ -349,15 +320,13 @@ export default function GeneralMedicineClient({
                     <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap gap-4 items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Check className="w-4 h-4 text-green-500" />
-                        <span className="text-xs text-gray-500 font-bold uppercase tracking-wider">
-                          Supervised Clinical Care
-                        </span>
+                        <span className="text-xs text-gray-500 font-bold uppercase tracking-wider"><T k="departments-general-medicine_a51296" d={"Supervised Clinical Care"} /></span>
                       </div>
                       <Link
                         href="/book"
                         className="flex items-center gap-2 text-sm font-bold text-[#1e3a8a] hover:text-[#0b1c43] transition-colors"
                       >
-                        <span>Schedule a Consultation</span>
+                        <span><T k="departments-general-medicine_4f6d00" d={"Schedule a Consultation"} /></span>
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>

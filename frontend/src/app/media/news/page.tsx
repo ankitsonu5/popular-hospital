@@ -18,6 +18,7 @@ export async function generateMetadata() {
 
 
 import { fetchNews, getImageUrl } from "@/lib/api";
+import { CImage, T } from "@/components/content/Editable";
 
 export const revalidate = 60;
 
@@ -31,7 +32,7 @@ export default async function NewsPage() {
       <section className="relative bg-[#0b1c43] py-8 sm:py-10 lg:py-12 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image
+          <CImage k="media-news_f1c9fe"
             src="/images/news-sm-inner.jpg"
             alt="Latest News"
             fill
@@ -47,19 +48,13 @@ export default async function NewsPage() {
             className="mb-4 text-xs sm:text-sm text-white/60"
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
+            <Link href="/" className="hover:text-white transition-colors"><T k="media-news_70f8bb" d={"Home"} /></Link>
             <span className="mx-2">/</span>
-            <span className="text-white">Latest News & Updates</span>
+            <span className="text-white"><T k="media-news_531dc6" d={"Latest News & Updates"} /></span>
           </nav>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
-            Latest News <span className="text-[#00B4D8]">& Updates</span>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight max-w-3xl"><T k="media-news_01c612" d={"Latest News "} /><span className="text-[#00B4D8]"><T k="media-news_da0fdf" d={"& Updates"} /></span>
           </h1>
-          <p className="mt-2 text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed">
-            Stay informed with the latest health news, articles, expert tips,
-            and announcements from Popular Hospital.
-          </p>
+          <p className="mt-2 text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed"><T k="media-news_dd847c" d={"Stay informed with the latest health news, articles, expert tips, and announcements from Popular Hospital."} /></p>
         </div>
       </section>
 
@@ -121,7 +116,7 @@ export default async function NewsPage() {
                   href={`/media/news/${article.slug}`}
                   className="inline-flex items-center gap-2 text-[#E85222] font-semibold hover:text-[#d1451a] transition-colors text-sm group/link"
                 >
-                  <span>Read More</span>
+                  <span><T k="media-news_646061" d={"Read More"} /></span>
                   <svg
                     className="w-4 h-4 transition-transform group-hover/link:translate-x-1"
                     fill="none"

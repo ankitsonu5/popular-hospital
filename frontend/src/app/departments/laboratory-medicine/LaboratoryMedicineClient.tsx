@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 const doctors = [
   {
@@ -66,7 +67,7 @@ export default function LaboratoryMedicineClient() {
       {/* ═══════ HERO SECTION ═══════ */}
       <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-laboratory-medicine_92bc7e"
             src="/images/banners/laboratory_medicine.png"
             alt="Laboratory Medicine Research"
             fill
@@ -78,12 +79,8 @@ export default function LaboratoryMedicineClient() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold mb-6 border border-blue-400/30 backdrop-blur-md uppercase tracking-widest">
-              Centre of Diagnostic Excellence
-            </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[1.1] font-heading tracking-tight">
-              Department of Laboratory Medicine — Varanasi
-            </h1>
+            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold mb-6 border border-blue-400/30 backdrop-blur-md uppercase tracking-widest"><T k="departments-laboratory-medicine_f1f9df" d={"Centre of Diagnostic Excellence"} /></span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[1.1] font-heading tracking-tight"><T k="departments-laboratory-medicine_39cea3" d={"Department of Laboratory Medicine — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4 mt-8">
               <Link
                 href="/book"
@@ -101,12 +98,8 @@ export default function LaboratoryMedicineClient() {
                     strokeWidth={2.5}
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
-                </svg>
-                Book a Test
-              </Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-bold backdrop-blur-md transition-all border border-white/20 flex items-center gap-2 group uppercase text-sm tracking-wide">
-                Download Reports
-                <svg
+                </svg><T k="departments-laboratory-medicine_83ca2a" d={"Book a Test"} /></Link>
+              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-bold backdrop-blur-md transition-all border border-white/20 flex items-center gap-2 group uppercase text-sm tracking-wide"><T k="departments-laboratory-medicine_8e3070" d={"Download Reports"} /><svg
                   className="w-5 h-5 group-hover:translate-y-1 transition-transform"
                   fill="none"
                   stroke="currentColor"
@@ -136,42 +129,22 @@ export default function LaboratoryMedicineClient() {
                 highlight="Pure Science"
               />
               <div className="space-y-4 text-gray-800 text-base md:text-lg font-medium leading-relaxed mb-10 text-justify">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Laboratory Medicine hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-laboratory-medicine_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-laboratory-medicine_da97f8" d={"best Laboratory Medicine hospital in Varanasi"} /></strong><T k="departments-laboratory-medicine_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-laboratory-medicine_200859" d={"Purvanchal"} /></strong><T k="departments-laboratory-medicine_4f4133" d={" and "} /><strong><T k="departments-laboratory-medicine_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <p>
-                  At Popular Hospital, our Laboratory Medicine department is
-                  more than just a testing facility. It is a hub of clinical
-                  excellence where state-of-the-art technology meets seasoned
-                  expertise.
-                </p>
+                <p><T k="departments-laboratory-medicine_e61e66" d={"At Popular Hospital, our Laboratory Medicine department is more than just a testing facility. It is a hub of clinical excellence where state-of-the-art technology meets seasoned expertise."} /></p>
                 <div className="bg-blue-50/50 p-8 rounded-2xl border-l-4 border-blue-600 shadow-sm font-bold italic">
-                  <p>
-                    &quot;We are committed to providing the highest standards of
-                    diagnostic accuracy. Our laboratory is operational 24/7,
-                    supporting the emergency and indoor departments with rapid
-                    turnaround times for critical pathology and biochemistry
-                    results.&quot;
-                  </p>
+                  <p><T k="departments-laboratory-medicine_742168" d={"\"We are committed to providing the highest standards of diagnostic accuracy. Our laboratory is operational 24/7, supporting the emergency and indoor departments with rapid turnaround times for critical pathology and biochemistry results.\""} /></p>
                 </div>
               </div>
 
               <div className="mt-12 grid grid-cols-2 gap-8 w-full border-t border-gray-100 pt-12">
                 <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-inner group hover:bg-white hover:shadow-md transition-all">
-                  <p className="text-5xl font-black text-[#1e3a8a] mb-2 group-hover:scale-110 transition-transform">
-                    NABL
-                  </p>
-                  <p className="text-slate-500 font-bold uppercase text-xs tracking-[0.2em]">
-                    Accredited Quality
-                  </p>
+                  <p className="text-5xl font-black text-[#1e3a8a] mb-2 group-hover:scale-110 transition-transform"><T k="departments-laboratory-medicine_da9efc" d={"NABL"} /></p>
+                  <p className="text-slate-500 font-bold uppercase text-xs tracking-[0.2em]"><T k="departments-laboratory-medicine_670b76" d={"Accredited Quality"} /></p>
                 </div>
                 <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-inner group hover:bg-white hover:shadow-md transition-all">
-                  <p className="text-5xl font-black text-[#1e3a8a] mb-2 group-hover:scale-110 transition-transform">
-                    100%
-                  </p>
-                  <p className="text-slate-500 font-bold uppercase text-xs tracking-[0.2em]">
-                    Automated Systems
-                  </p>
+                  <p className="text-5xl font-black text-[#1e3a8a] mb-2 group-hover:scale-110 transition-transform"><T k="departments-laboratory-medicine_fae31e" d={"100%"} /></p>
+                  <p className="text-slate-500 font-bold uppercase text-xs tracking-[0.2em]"><T k="departments-laboratory-medicine_3d1224" d={"Automated Systems"} /></p>
                 </div>
               </div>
             </div>
@@ -199,19 +172,12 @@ export default function LaboratoryMedicineClient() {
                       d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
                     />
                   </svg>
-                  <h4 className="text-xl font-bold mb-4">
-                    Precision Diagnostic Reports
-                  </h4>
-                  <p className="text-blue-200 text-sm mb-6 leading-relaxed">
-                    Available online for your convenience. Secure, accurate, and
-                    fast.
-                  </p>
+                  <h4 className="text-xl font-bold mb-4"><T k="departments-laboratory-medicine_236d68" d={"Precision Diagnostic Reports"} /></h4>
+                  <p className="text-blue-200 text-sm mb-6 leading-relaxed"><T k="departments-laboratory-medicine_01946f" d={"Available online for your convenience. Secure, accurate, and fast."} /></p>
                   <Link
                     href="/reports"
                     className="bg-white text-[#0b1c43] px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-blue-50 transition-all"
-                  >
-                    Access Now
-                  </Link>
+                  ><T k="departments-laboratory-medicine_6bfd17" d={"Access Now"} /></Link>
                 </div>
               </div>
             </div>
@@ -223,12 +189,8 @@ export default function LaboratoryMedicineClient() {
       <section className="py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent" />
         <div className="mx-auto w-full max-w-[1366px] px-6 text-center mb-16">
-          <span className="text-[#1e3a8a] font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">
-            Excellence in Diagnostics
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-[#0b1c43] mb-4 font-heading uppercase tracking-tight">
-            Complete Test Range
-          </h2>
+          <span className="text-[#1e3a8a] font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block"><T k="departments-laboratory-medicine_41c9b4" d={"Excellence in Diagnostics"} /></span>
+          <h2 className="text-3xl md:text-5xl font-black text-[#0b1c43] mb-4 font-heading uppercase tracking-tight"><T k="departments-laboratory-medicine_93e88d" d={"Complete Test Range"} /></h2>
           <div className="w-24 h-1.5 bg-[#1e3a8a] mx-auto rounded-full"></div>
         </div>
 

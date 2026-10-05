@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { getImageUrl } from "@/lib/api";
+import { T } from "@/components/content/Editable";
 
 interface ComponentCoverageItem {
   slug: string;
@@ -94,9 +95,7 @@ export default function MediaCoverageClient({
                   />
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-[#1e3a8a]/0 group-hover:bg-[#1e3a8a]/10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <span className="bg-[#1e3a8a] text-white px-4 py-2 rounded-full text-xs font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
-                      View Clipping
-                    </span>
+                    <span className="bg-[#1e3a8a] text-white px-4 py-2 rounded-full text-xs font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg"><T k="media-coverage_32e9f5" d={"View Clipping"} /></span>
                   </div>
                 </div>
 
@@ -134,8 +133,7 @@ export default function MediaCoverageClient({
                       href={`/media/coverage/${item.slug}`}
                       onClick={(e) => e.stopPropagation()}
                       className="text-[11px] font-bold text-[#1e3a8a] hover:underline flex items-center gap-1"
-                    >
-                      Read Details <span>→</span>
+                    ><T k="media-coverage_7050e8" d={"Read Details "} /><span>→</span>
                     </Link>
                   </div>
                 </div>
@@ -206,8 +204,7 @@ export default function MediaCoverageClient({
               <h3 className="text-lg sm:text-2xl font-bold leading-tight drop-shadow-md">
                 {items[selectedImageIndex].title}
               </h3>
-              <p className="text-white/40 text-[11px] uppercase tracking-widest pt-2">
-                Image {selectedImageIndex + 1} of {items.length}
+              <p className="text-white/40 text-[11px] uppercase tracking-widest pt-2"><T k="media-coverage_619fe1" d={"Image "} />{selectedImageIndex + 1}<T k="media-coverage_607f2d" d={" of "} />{items.length}
               </p>
             </div>
           </div>

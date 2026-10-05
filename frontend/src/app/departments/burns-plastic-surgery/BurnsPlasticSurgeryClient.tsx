@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data (exact from original page) ─── */
 
@@ -61,7 +62,7 @@ export default function BurnsPlasticSurgeryClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-burns-plastic-surgery_1812b3"
             src="/images/banners/plastic_surgery.png"
             alt="Burns & Plastic Surgery Banner"
             fill
@@ -73,25 +74,17 @@ export default function BurnsPlasticSurgeryClient({
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Department of
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Burns & Plastic Surgery — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-burns-plastic-surgery_4c5284" d={"Department of"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-burns-plastic-surgery_a6b188" d={"Department of Burns & Plastic Surgery — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-burns-plastic-surgery_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Burns & Plastic Surgery"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-burns-plastic-surgery_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -105,33 +98,20 @@ export default function BurnsPlasticSurgeryClient({
             <div className="lg:col-span-8 space-y-8">
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Department of{" "}
-                  <span className="text-[#1e3a8a]">
-                    Burns &amp; Plastic Surgery
-                  </span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-burns-plastic-surgery_4c5284_2" d={"Department of"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-burns-plastic-surgery_54fd54" d={"Burns & Plastic Surgery"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               {/* Burns */}
               <div>
-                <h3 className="text-xl font-bold text-[#0b1c43] mb-3 font-heading uppercase tracking-tight">
-                  Burns
-                </h3>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  A burn is an injury to the skin or other organic tissue
-                  primarily caused by heat ordue to radiation, radioactivity,
-                  electricity, friction or contact with chemicals.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-4">
-                  Thermal (heat) burns occur when some or all of the cells in
-                  the skin or other tissues are destroyed by:
-                </p>
+                <h3 className="text-xl font-bold text-[#0b1c43] mb-3 font-heading uppercase tracking-tight"><T k="departments-burns-plastic-surgery_b13893" d={"Burns"} /></h3>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-burns-plastic-surgery_9f47b6" d={"A burn is an injury to the skin or other organic tissue primarily caused by heat ordue to radiation, radioactivity, electricity, friction or contact with chemicals."} /></p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-4"><T k="departments-burns-plastic-surgery_8b872d" d={"Thermal (heat) burns occur when some or all of the cells in the skin or other tissues are destroyed by:"} /></p>
 
                 <div className="space-y-4 mt-6">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Burns & Plastic Surgery hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-burns-plastic-surgery_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-burns-plastic-surgery_5535b2" d={"best Burns & Plastic Surgery hospital in Varanasi"} /></strong><T k="departments-burns-plastic-surgery_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-burns-plastic-surgery_200859" d={"Purvanchal"} /></strong><T k="departments-burns-plastic-surgery_4f4133" d={" and "} /><strong><T k="departments-burns-plastic-surgery_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
                   {burnsCauses.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-4">
@@ -166,14 +146,11 @@ export default function BurnsPlasticSurgeryClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="order-2 lg:order-1">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Clinical Metrics
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-burns-plastic-surgery_76a051" d={"Clinical Metrics"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Classifications of{" "}
-                  <span className="text-[#1e3a8a]">Burns</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-burns-plastic-surgery_d281b1" d={"Classifications of"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-burns-plastic-surgery_b13893_2" d={"Burns"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -194,7 +171,7 @@ export default function BurnsPlasticSurgeryClient({
 
             <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
-                <Image
+                <CImage k="departments-burns-plastic-surgery_da5a6c"
                   src="/images/departments-images/AdobeStock_222372294.jpeg"
                   alt="Burns Classification Illustration"
                   fill
@@ -213,7 +190,7 @@ export default function BurnsPlasticSurgeryClient({
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50 hover:border-blue-50 transition-colors duration-500 group">
-                <Image
+                <CImage k="departments-burns-plastic-surgery_b60551"
                   src="/images/departments-images/plastic_surgery.jpg"
                   alt="Plastic Surgery Art & Science"
                   fill
@@ -224,41 +201,22 @@ export default function BurnsPlasticSurgeryClient({
             </div>
 
             <div>
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Art of Restoration
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-burns-plastic-surgery_988eb3" d={"Art of Restoration"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Plastic <span className="text-[#1e3a8a]">Surgery</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-burns-plastic-surgery_140077" d={"Plastic "} /><span className="text-[#1e3a8a]"><T k="departments-burns-plastic-surgery_f386e2" d={"Surgery"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                <p>
-                  Plastic surgery is a surgical speciality which involves
-                  reconstruction, restoration, or alteration of the human body.
-                  Plastic Surgery is the art of treating with aims to improve
-                  the appearance of the human body or improve the functioning of
-                  a part of the body.
-                </p>
+                <p><T k="departments-burns-plastic-surgery_2e2644" d={"Plastic surgery is a surgical speciality which involves reconstruction, restoration, or alteration of the human body. Plastic Surgery is the art of treating with aims to improve the appearance of the human body or improve the functioning of a part of the body."} /></p>
 
                 <div className="border-l-4 border-blue-600 pl-4 py-2 bg-blue-50/30 rounded-r-xl">
-                  <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium italic">
-                    At Popular Hospital we have a team of highly qualified and
-                    dedicated plastic surgeons to deliver the best care at an
-                    affordable price with the proverbial best in latest
-                    technology.
-                  </p>
+                  <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium italic"><T k="departments-burns-plastic-surgery_a4c3a9" d={"At Popular Hospital we have a team of highly qualified and dedicated plastic surgeons to deliver the best care at an affordable price with the proverbial best in latest technology."} /></p>
                 </div>
 
-                <p>
-                  We work both independently and in Conjunction with many other
-                  Surgical Services including: ENT, General Surgery, Surgical
-                  Oncology, Orthopedics, Urology, Gynecology and Neurosurgery
-                  for giving comprehensive care to all the patients.
-                </p>
+                <p><T k="departments-burns-plastic-surgery_1f02ed" d={"We work both independently and in Conjunction with many other Surgical Services including: ENT, General Surgery, Surgical Oncology, Orthopedics, Urology, Gynecology and Neurosurgery for giving comprehensive care to all the patients."} /></p>
               </div>
             </div>
           </div>
@@ -269,11 +227,8 @@ export default function BurnsPlasticSurgeryClient({
       <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Advanced Treatments
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading">
-              Our <span className="text-[#1e3a8a]">Procedures</span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-burns-plastic-surgery_fdd0a3" d={"Advanced Treatments"} /></span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-burns-plastic-surgery_bb463f" d={"Our "} /><span className="text-[#1e3a8a]"><T k="departments-burns-plastic-surgery_d682fc" d={"Procedures"} /></span>
             </h2>
             <div className="flex items-center justify-center gap-2 mt-3">
               <div className="w-2 h-2 rounded-full bg-[#1e3a8a]" />

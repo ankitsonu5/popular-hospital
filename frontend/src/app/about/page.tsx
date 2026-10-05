@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata("/about", {
@@ -36,7 +37,7 @@ export default function AboutPage() {
       {/* ─── Hero Section ─── */}
       <section className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="about_66e7fe"
             src="/images/banners/about_us_overview.jpg"
             alt="About Us Hero"
             fill
@@ -47,9 +48,7 @@ export default function AboutPage() {
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl xl:text-2xl 2xl:text-5xl font-bold text-white mb-2 md:mb-4 xl:mb-2 2xl:mb-6 font-heading tracking-tight drop-shadow-lg uppercase">
-            About Us
-          </h1>
+          <h1 className="text-3xl md:text-5xl xl:text-2xl 2xl:text-5xl font-bold text-white mb-2 md:mb-4 xl:mb-2 2xl:mb-6 font-heading tracking-tight drop-shadow-lg uppercase"><T k="about_c887b9" d={"About Us"} /></h1>
         </div>
       </section>
 
@@ -62,24 +61,13 @@ export default function AboutPage() {
               <h2 className="flex items-center text-xl sm:text-2xl xl:text-lg 2xl:text-3xl font-black text-[#1e3a8a] mb-4 xl:mb-3 2xl:mb-6 uppercase tracking-wider font-heading">
                 <span className="mr-3 text-2xl xl:text-lg 2xl:text-3xl">
                   🏥
-                </span>
-                WELCOME TO POPULAR HOSPITAL
-              </h2>
-              <p className="text-justify text-gray-900 font-bold italic text-lg sm:text-xl md:text-2xl xl:text-lg 2xl:text-2xl leading-relaxed font-heading">
-                POPULAR HOSPITAL
-                <span className="font-semibold italic text-base md:text-lg xl:text-sm 2xl:text-lg">
-                  (a Unit of POPULAR MEDICARE LTD)
-                </span>
-                , one of Varanasi's best Multi Super Speciality Hospital that
-                redefines standards of excellence in healthcare delivery by
-                bringing together the best of infrastructure, technology,
-                training, education and medical intelligentsia.
-              </p>
+                </span><T k="about_b5b00f" d={"WELCOME TO POPULAR HOSPITAL"} /></h2>
+              <p className="text-justify text-gray-900 font-bold italic text-lg sm:text-xl md:text-2xl xl:text-lg 2xl:text-2xl leading-relaxed font-heading"><T k="about_294755" d={"POPULAR HOSPITAL"} /><span className="font-semibold italic text-base md:text-lg xl:text-sm 2xl:text-lg"><T k="about_cac7a9" d={"(a Unit of POPULAR MEDICARE LTD)"} /></span><T k="about_e2a0a7" d={", one of Varanasi's best Multi Super Speciality Hospital that redefines standards of excellence in healthcare delivery by bringing together the best of infrastructure, technology, training, education and medical intelligentsia."} /></p>
             </div>
 
             {/* Right Side: Actual Image */}
             <div className="relative w-full aspect-[4/3] lg:aspect-video rounded-tl-[3rem] rounded-br-[3rem] border-4 border-white shadow-xl bg-gray-200 overflow-hidden flex items-center justify-center">
-              <Image
+              <CImage k="about_e664d3"
                 src="/images/branches/varanasi-main/1.webp"
                 alt="Popular Hospital"
                 fill
@@ -90,22 +78,8 @@ export default function AboutPage() {
 
           {/* Bottom Section: Paragraphs */}
           <div className="space-y-6 max-w-5xl 2xl:max-w-7xl text-justify text-gray-600 text-[15px] sm:text-[17px] xl:text-[14px] 2xl:text-[18px] leading-relaxed font-medium">
-            <p>
-              POPULAR HOSPITAL is a 450 bedded Multi Super Speciality Hospital
-              in Varanasi providing all kinds of Medical, Surgical &amp;
-              Diagnostic services to the patients of Eastern UP, Bihar,
-              Jharkhand, Chhattisgarh and MP for more than 32+ years. We provide
-              best services in one roof like Cardiology, Nephrology, Medicine,
-              General Surgery, Neurology, Obs &amp; Gynecology, Urology,
-              Oncology, Pediatric, Orthopedic, ENT, Dental department.
-            </p>
-            <p>
-              We are having ultramodern facilities of Cath Lab, ICU, CCU, MICU,
-              SICU, NICU, PICU, Deluxe Room, Private Room, and General Ward etc.
-              In Diagnostics we have well equipped Pathology lab, CT-Scan, MRI,
-              Mammography Machine, Digital X-ray, USG, TMT, Colour Doppler, 2D
-              Echo, DSC, STRESS ECHO, PFT, ECG and EEG.
-            </p>
+            <p><T k="about_3f9f0a" d={"POPULAR HOSPITAL is a 450 bedded Multi Super Speciality Hospital in Varanasi providing all kinds of Medical, Surgical & Diagnostic services to the patients of Eastern UP, Bihar, Jharkhand, Chhattisgarh and MP for more than 32+ years. We provide best services in one roof like Cardiology, Nephrology, Medicine, General Surgery, Neurology, Obs & Gynecology, Urology, Oncology, Pediatric, Orthopedic, ENT, Dental department."} /></p>
+            <p><T k="about_27c156" d={"We are having ultramodern facilities of Cath Lab, ICU, CCU, MICU, SICU, NICU, PICU, Deluxe Room, Private Room, and General Ward etc. In Diagnostics we have well equipped Pathology lab, CT-Scan, MRI, Mammography Machine, Digital X-ray, USG, TMT, Colour Doppler, 2D Echo, DSC, STRESS ECHO, PFT, ECG and EEG."} /></p>
           </div>
         </div>
       </div>

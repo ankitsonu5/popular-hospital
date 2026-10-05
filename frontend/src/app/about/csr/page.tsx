@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { CImage, T } from "@/components/content/Editable";
 
 const outreachPrograms = [
   {
@@ -119,7 +120,7 @@ export default function CSRPage() {
       {/* ─── Hero Section ─── */}
       <section className="relative min-h-[180px] md:min-h-[220px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="about-csr_aa6ee5"
             src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
             alt="CSR Banner"
             fill
@@ -131,9 +132,8 @@ export default function CSRPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-5xl px-6">
           <div className="animate-fade-in-up max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading">
-              Social <br />
-              <span className="text-blue-400">Responsibility</span>
+            <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-3xl font-bold text-white mb-6 leading-tight font-heading"><T k="about-csr_4c1de3" d={"Social "} /><br />
+              <span className="text-blue-400"><T k="about-csr_2550b1" d={"Responsibility"} /></span>
             </h1>
           </div>
         </div>

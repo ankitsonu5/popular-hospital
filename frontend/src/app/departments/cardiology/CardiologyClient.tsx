@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import DoctorSlider from "@/components/DoctorSlider";
 import DepartmentGallerySection from "@/components/DepartmentGallerySection";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -178,7 +179,7 @@ export default function CardiologyPage({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-cardiology_280981"
             src="/images/banners/cardiology_banner.png"
             alt="Cardiac Care"
             fill
@@ -191,12 +192,8 @@ export default function CardiologyPage({
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              Department of
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Cardiology — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm"><T k="departments-cardiology_4c5284" d={"Department of"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-cardiology_abdc3c" d={"Department of Cardiology — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
@@ -214,9 +211,7 @@ export default function CardiologyPage({
                     strokeWidth={2}
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
-                </svg>
-                Book An Appointment
-              </Link>
+                </svg><T k="departments-cardiology_687bd9" d={"Book An Appointment"} /></Link>
               <button
                 onClick={() => {
                   setShowCallModal(true);
@@ -236,9 +231,7 @@ export default function CardiologyPage({
                     strokeWidth={2}
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
-                </svg>
-                Get a Call Back
-              </button>
+                </svg><T k="departments-cardiology_fef4e0" d={"Get a Call Back"} /></button>
             </div>
           </div>
         </div>
@@ -254,41 +247,16 @@ export default function CardiologyPage({
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                    Department of{" "}
-                    <span className="text-[#1e3a8a]">Cardiology</span>
+                  <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-cardiology_4c5284_2" d={"Department of"} />{" "}
+                    <span className="text-[#1e3a8a]"><T k="departments-cardiology_eb6663" d={"Cardiology"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
                 <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[17px] 2xl:text-lg font-medium text-justify">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Cardiology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-cardiology_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-cardiology_464ff9" d={"best Cardiology hospital in Varanasi"} /></strong><T k="departments-cardiology_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-cardiology_200859" d={"Purvanchal"} /></strong><T k="departments-cardiology_4f4133" d={" and "} /><strong><T k="departments-cardiology_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                  <p>
-                    Popular Hospital is a Top cardiac hospital of eastern Uttar
-                    Pradesh ensuring best treatment for Heart Diseases. The
-                    entire cardiology department is the only center in this
-                    region to perform all coronary procedures via transradial
-                    route. The center is well equipped with state-of-the-art
-                    equipment using cutting-edge technology. From high end 2D
-                    Echocardiography to the latest Catheterisation laboratory
-                    where complex coronary, peripheral and structural
-                    interventions are being carried out on a day to day basis
-                    using the most modern tools such as Fractional flow Reserve
-                    (FFR)/ Rotatory Atherectomy (Roatablation), Intravascular
-                    Ultrasound (IVUS)/Electrophysiology.
-                  </p>
-                  <p>
-                    The cardiac department at Popular is an integrated
-                    healthcare center with a highly experienced, qualified, and
-                    dedicated team of cardiologists who work in complete
-                    coordination to provide comprehensive and multidisciplinary
-                    care to the patients suffering from heart ailments. At
-                    Popular we have pioneered the &apos;Heart Team&apos;
-                    approach where all cardiovascular problems are
-                    comprehensively evaluated, jointly discussed and
-                    individually planned for appropriate indicated therapies.
-                  </p>
+                  <p><T k="departments-cardiology_9cd602" d={"Popular Hospital is a Top cardiac hospital of eastern Uttar Pradesh ensuring best treatment for Heart Diseases. The entire cardiology department is the only center in this region to perform all coronary procedures via transradial route. The center is well equipped with state-of-the-art equipment using cutting-edge technology. From high end 2D Echocardiography to the latest Catheterisation laboratory where complex coronary, peripheral and structural interventions are being carried out on a day to day basis using the most modern tools such as Fractional flow Reserve (FFR)/ Rotatory Atherectomy (Roatablation), Intravascular Ultrasound (IVUS)/Electrophysiology."} /></p>
+                  <p><T k="departments-cardiology_397504" d={"The cardiac department at Popular is an integrated healthcare center with a highly experienced, qualified, and dedicated team of cardiologists who work in complete coordination to provide comprehensive and multidisciplinary care to the patients suffering from heart ailments. At Popular we have pioneered the 'Heart Team' approach where all cardiovascular problems are comprehensively evaluated, jointly discussed and individually planned for appropriate indicated therapies."} /></p>
                 </div>
               </div>
             </div>
@@ -312,8 +280,7 @@ export default function CardiologyPage({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="flex items-center gap-3 mb-2">
             <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-              USP Of Cardiac <span className="text-[#1e3a8a]">Departments</span>
+            <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-cardiology_81cd88" d={"USP Of Cardiac "} /><span className="text-[#1e3a8a]"><T k="departments-cardiology_0c727f" d={"Departments"} /></span>
             </h2>
           </div>
           <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -348,7 +315,7 @@ export default function CardiologyPage({
             {/* What We Treat */}
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
               <div className="relative h-52 w-full">
-                <Image
+                <CImage k="departments-cardiology_a1795d"
                   src="/images/departments-images/coronary_angiography.jpeg"
                   alt="Cardiac Treatment"
                   fill
@@ -356,8 +323,7 @@ export default function CardiologyPage({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 p-5">
-                  <h2 className="text-xl md:text-2xl font-bold text-white font-heading">
-                    What we <span className="text-blue-300">treat:</span>
+                  <h2 className="text-xl md:text-2xl font-bold text-white font-heading"><T k="departments-cardiology_c57d28" d={"What we "} /><span className="text-blue-300"><T k="departments-cardiology_9feaed" d={"treat:"} /></span>
                   </h2>
                 </div>
               </div>
@@ -381,7 +347,7 @@ export default function CardiologyPage({
             {/* Non-Invasive */}
             <div className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
               <div className="relative h-52 w-full">
-                <Image
+                <CImage k="departments-cardiology_858763"
                   src="/images/departments-images/preventive_cardiology.jpeg"
                   alt="Preventive Cardiology"
                   fill
@@ -389,11 +355,8 @@ export default function CardiologyPage({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 p-5">
-                  <h2 className="text-xl md:text-2xl font-bold text-white font-heading">
-                    Non-invasive and{" "}
-                    <span className="text-blue-300">
-                      preventive Cardiology:
-                    </span>
+                  <h2 className="text-xl md:text-2xl font-bold text-white font-heading"><T k="departments-cardiology_4cb38f" d={"Non-invasive and"} />{" "}
+                    <span className="text-blue-300"><T k="departments-cardiology_91a964" d={"preventive Cardiology:"} /></span>
                   </h2>
                 </div>
               </div>
@@ -432,32 +395,22 @@ export default function CardiologyPage({
             >
               ×
             </button>
-            <h3 className="text-2xl font-bold text-[#0b1c43] mb-2 font-heading">
-              Get a Call Back
-            </h3>
-            <p className="text-gray-500 text-sm mb-6">
-              Our team will call you shortly.
-            </p>
+            <h3 className="text-2xl font-bold text-[#0b1c43] mb-2 font-heading"><T k="departments-cardiology_fef4e0_2" d={"Get a Call Back"} /></h3>
+            <p className="text-gray-500 text-sm mb-6"><T k="departments-cardiology_0fbf3d" d={"Our team will call you shortly."} /></p>
 
             {callStatus === "success" ? (
               <div className="text-center py-6">
                 <div className="text-green-500 text-5xl mb-3">✓</div>
-                <p className="text-gray-700 font-semibold">
-                  Thank you! We will call you back soon.
-                </p>
+                <p className="text-gray-700 font-semibold"><T k="departments-cardiology_4372a3" d={"Thank you! We will call you back soon."} /></p>
                 <button
                   onClick={() => setShowCallModal(false)}
                   className="mt-4 bg-[#e11d48] text-white px-6 py-2 rounded-full font-semibold"
-                >
-                  Close
-                </button>
+                ><T k="departments-cardiology_bbfa77" d={"Close"} /></button>
               </div>
             ) : (
               <form onSubmit={handleCallBackSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Name
-                  </label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1"><T k="departments-cardiology_709a23" d={"Name"} /></label>
                   <input
                     type="text"
                     required
@@ -470,9 +423,7 @@ export default function CardiologyPage({
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Phone Number
-                  </label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1"><T k="departments-cardiology_ab25d6" d={"Phone Number"} /></label>
                   <input
                     type="tel"
                     required
@@ -485,9 +436,7 @@ export default function CardiologyPage({
                   />
                 </div>
                 {callStatus === "error" && (
-                  <p className="text-red-500 text-sm">
-                    Something went wrong. Please try again.
-                  </p>
+                  <p className="text-red-500 text-sm"><T k="departments-cardiology_9a3ea0" d={"Something went wrong. Please try again."} /></p>
                 )}
                 <button
                   type="submit"

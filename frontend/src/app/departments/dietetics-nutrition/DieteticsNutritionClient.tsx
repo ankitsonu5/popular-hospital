@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 interface DoctorCard {
   name: string;
@@ -100,7 +101,7 @@ export default function DieteticsNutritionClient({
       {/* ═══════ HERO SECTION ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-dietetics-nutrition_11a6e6"
             src="/images/banners/dietetics_nutrition.jpg"
             alt="Dietetics and Nutrition Center"
             fill
@@ -112,25 +113,17 @@ export default function DieteticsNutritionClient({
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Nourishing Health Professionally
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Dietetics & Nutrition — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-dietetics-nutrition_e8a516" d={"Nourishing Health Professionally"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-dietetics-nutrition_d54ca5" d={"Department of Dietetics & Nutrition — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-dietetics-nutrition_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Dietetics & Nutrition"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-dietetics-nutrition_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -147,33 +140,13 @@ export default function DieteticsNutritionClient({
                 highlight="Dietetics & Nutrition"
               />
               <div className="space-y-6 text-gray-700 text-base md:text-lg xl:text-[15px] 2xl:text-lg leading-relaxed font-medium text-justify">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Dietetics & Nutrition hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-dietetics-nutrition_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-dietetics-nutrition_72fa2d" d={"best Dietetics & Nutrition hospital in Varanasi"} /></strong><T k="departments-dietetics-nutrition_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-dietetics-nutrition_200859" d={"Purvanchal"} /></strong><T k="departments-dietetics-nutrition_4f4133" d={" and "} /><strong><T k="departments-dietetics-nutrition_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <p>
-                  At Popular Hospital, Varanasi, our Department of Dietetics and
-                  Nutrition is dedicated to improving overall health and
-                  accelerating recovery through personalized, science-based
-                  nutritional strategies. We believe that proper nutrition is a
-                  cornerstone of medical treatment and disease prevention,
-                  playing a crucial role in healing and maintaining a high
-                  quality of life.
-                </p>
+                <p><T k="departments-dietetics-nutrition_a7cebd" d={"At Popular Hospital, Varanasi, our Department of Dietetics and Nutrition is dedicated to improving overall health and accelerating recovery through personalized, science-based nutritional strategies. We believe that proper nutrition is a cornerstone of medical treatment and disease prevention, playing a crucial role in healing and maintaining a high quality of life."} /></p>
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-6 shadow-sm">
-                  <p className="font-semibold text-gray-800">
-                    Led by Dt. Sakshi Pandey, an expert in Food Science and
-                    Clinical Nutrition, our department offers comprehensive
-                    dietary management customized to each patient’s unique
-                    medical history, lifestyle, and health goals.
-                  </p>
+                  <p className="font-semibold text-gray-800"><T k="departments-dietetics-nutrition_ea3ad3" d={"Led by Dt. Sakshi Pandey, an expert in Food Science and Clinical Nutrition, our department offers comprehensive dietary management customized to each patient’s unique medical history, lifestyle, and health goals."} /></p>
                 </div>
-                <p>
-                  Our services are backed by a complete dietary mapping
-                  protocol, continuous medical checks, and targeted lifestyle
-                  modifications. From managing medical conditions to therapeutic
-                  diets, we help you formulate sustainable, realistic dietary
-                  changes.
-                </p>
+                <p><T k="departments-dietetics-nutrition_63e7c9" d={"Our services are backed by a complete dietary mapping protocol, continuous medical checks, and targeted lifestyle modifications. From managing medical conditions to therapeutic diets, we help you formulate sustainable, realistic dietary changes."} /></p>
               </div>
             </div>
 
@@ -192,11 +165,8 @@ export default function DieteticsNutritionClient({
           {/* Specialized Services */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-                Our Specialities
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Nutrition <span className="text-[#1e3a8a]">Services</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-dietetics-nutrition_1e52db" d={"Our Specialities"} /></span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-dietetics-nutrition_e8c43d" d={"Nutrition "} /><span className="text-[#1e3a8a]"><T k="departments-dietetics-nutrition_5cbd58" d={"Services"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -238,11 +208,8 @@ export default function DieteticsNutritionClient({
           {/* Diet Plans Grid */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-                Structure
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Dietary <span className="text-[#1e3a8a]">Care Plans</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-dietetics-nutrition_9482c5" d={"Structure"} /></span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-dietetics-nutrition_1e66a9" d={"Dietary "} /><span className="text-[#1e3a8a]"><T k="departments-dietetics-nutrition_1355ee" d={"Care Plans"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>
@@ -276,11 +243,8 @@ export default function DieteticsNutritionClient({
           {/* Why Choose Us */}
           <div className="mt-20">
             <div className="mb-10 text-center max-w-2xl mx-auto space-y-3">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-                Why Choose Us
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Our Nutrition <span className="text-[#1e3a8a]">Advantages</span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-dietetics-nutrition_aa3c9c" d={"Why Choose Us"} /></span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-dietetics-nutrition_842416" d={"Our Nutrition "} /><span className="text-[#1e3a8a]"><T k="departments-dietetics-nutrition_98b9cd" d={"Advantages"} /></span>
               </h2>
               <div className="h-[2px] w-24 bg-blue-500 mx-auto" />
             </div>

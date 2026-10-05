@@ -158,6 +158,7 @@ const services = [
 
 import { Metadata } from "next";
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata("/departments", {
@@ -176,7 +177,7 @@ export default function ServicesPage() {
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[180px] md:min-h-[220px] w-full bg-[#1a2b3c] overflow-hidden flex items-center py-10 md:py-12">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments_88906d"
             src="/images/banners/department_banner.jpg"
             alt="Our Departments"
             fill
@@ -188,18 +189,14 @@ export default function ServicesPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-5xl px-6">
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-3xl font-black text-white mb-4 font-heading tracking-tight">
-              Our Departments
-            </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-3xl font-black text-white mb-4 font-heading tracking-tight"><T k="departments_738596" d={"Our Departments"} /></h1>
             <nav
               className="flex items-center text-sm md:text-base text-white/90 font-medium"
               aria-label="Breadcrumb"
             >
-              <Link href="/" className="hover:text-blue-300 transition-colors">
-                Home
-              </Link>
+              <Link href="/" className="hover:text-blue-300 transition-colors"><T k="departments_70f8bb" d={"Home"} /></Link>
               <span className="mx-2 text-red-600 font-bold">|</span>
-              <span className="text-white font-bold">Departments</span>
+              <span className="text-white font-bold"><T k="departments_0c727f" d={"Departments"} /></span>
             </nav>
           </div>
         </div>
@@ -230,9 +227,7 @@ export default function ServicesPage() {
                 {/* Content Section */}
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="mb-4">
-                    <span className="text-[13px] font-extrabold uppercase tracking-wider mb-2 block text-[#2F5597]">
-                      Department of
-                    </span>
+                    <span className="text-[13px] font-extrabold uppercase tracking-wider mb-2 block text-[#2F5597]"><T k="departments_4c5284" d={"Department of"} /></span>
                     <h3 className="text-xl md:text-2xl font-bold text-[#1d1d1f] mb-3 font-heading leading-tight group-hover:text-[#E85222] transition-colors">
                       {service.title}
                     </h3>

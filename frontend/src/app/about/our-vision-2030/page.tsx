@@ -2,6 +2,7 @@ import Image from "next/image";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/about/our-vision-2030", {
@@ -67,7 +68,7 @@ export default function OurVision2030Page() {
     <main className="min-h-screen bg-[#f7fafc]">
       <section className="relative flex min-h-[180px] items-center overflow-hidden bg-[#0b1c43] py-10 md:min-h-[220px]">
         <div className="absolute inset-0">
-          <Image
+          <CImage k="about-our-vision-2030_46a294"
             src="/images/banners/about_us_vision.jpg"
             alt="Our Vision"
             fill
@@ -78,29 +79,17 @@ export default function OurVision2030Page() {
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 text-center">
-          <p className="mb-4 text-sm font-bold uppercase tracking-[0.22em] text-white/80">
-            Future Ready Healthcare
-          </p>
-          <h1 className="font-heading text-4xl font-black tracking-tight text-white md:text-5xl lg:text-6xl">
-            Our Vision
-          </h1>
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.22em] text-white/80"><T k="about-our-vision-2030_6f7443" d={"Future Ready Healthcare"} /></p>
+          <h1 className="font-heading text-4xl font-black tracking-tight text-white md:text-5xl lg:text-6xl"><T k="about-our-vision-2030_bbfe94" d={"Our Vision"} /></h1>
         </div>
       </section>
 
       <section className="py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-10 max-w-3xl">
-            <p className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-[#E85222]">
-              Growth Targets
-            </p>
-            <h2 className="font-heading text-2xl font-black leading-tight text-[#0b1c43] md:text-4xl">
-              Building a stronger healthcare future
-            </h2>
-            <p className="mt-5 text-base font-medium leading-8 text-gray-600 md:text-lg">
-              Our vision serves as a roadmap for expanding hospital capacity,
-              creating a wider clinic network, and growing with sustainable
-              healthcare delivery.
-            </p>
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-[#E85222]"><T k="about-our-vision-2030_fc7699" d={"Growth Targets"} /></p>
+            <h2 className="font-heading text-2xl font-black leading-tight text-[#0b1c43] md:text-4xl"><T k="about-our-vision-2030_b83eb8" d={"Building a stronger healthcare future"} /></h2>
+            <p className="mt-5 text-base font-medium leading-8 text-gray-600 md:text-lg"><T k="about-our-vision-2030_a415c9" d={"Our vision serves as a roadmap for expanding hospital capacity, creating a wider clinic network, and growing with sustainable healthcare delivery."} /></p>
           </div>
 
           <div className="grid gap-5 md:grid-cols-3">
@@ -150,42 +139,23 @@ export default function OurVision2030Page() {
 
             <div className="relative flex h-full flex-col justify-between gap-10">
               <div>
-                <p className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-[#ff8a66]">
-                  Roadmap
-                </p>
-                <h2 className="font-heading text-3xl font-black leading-tight md:text-4xl">
-                  Expanding care with scale, discipline, and trust
-                </h2>
-                <p className="mt-5 text-sm font-semibold leading-7 text-white/72 md:text-base">
-                  A structured growth plan focused on reach, systems,
-                  infrastructure, and leadership-led healthcare delivery.
-                </p>
+                <p className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-[#ff8a66]"><T k="about-our-vision-2030_8119e7" d={"Roadmap"} /></p>
+                <h2 className="font-heading text-3xl font-black leading-tight md:text-4xl"><T k="about-our-vision-2030_8e55cb" d={"Expanding care with scale, discipline, and trust"} /></h2>
+                <p className="mt-5 text-sm font-semibold leading-7 text-white/72 md:text-base"><T k="about-our-vision-2030_358964" d={"A structured growth plan focused on reach, systems, infrastructure, and leadership-led healthcare delivery."} /></p>
               </div>
 
               <div className="grid grid-cols-3 gap-3 border-t border-white/15 pt-5">
                 <div>
-                  <div className="font-heading text-2xl font-black text-white">
-                    16
-                  </div>
-                  <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-white/55">
-                    Hospitals
-                  </p>
+                  <div className="font-heading text-2xl font-black text-white"><T k="about-our-vision-2030_1574bd" d={"16"} /></div>
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-white/55"><T k="about-our-vision-2030_24284b" d={"Hospitals"} /></p>
                 </div>
                 <div>
-                  <div className="font-heading text-2xl font-black text-white">
-                    300
-                  </div>
-                  <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-white/55">
-                    Clinics
-                  </p>
+                  <div className="font-heading text-2xl font-black text-white"><T k="about-our-vision-2030_e26973" d={"300"} /></div>
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-white/55"><T k="about-our-vision-2030_504a58" d={"Clinics"} /></p>
                 </div>
                 <div>
-                  <div className="font-heading text-2xl font-black text-white">
-                    Future
-                  </div>
-                  <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-white/55">
-                    Goals
-                  </p>
+                  <div className="font-heading text-2xl font-black text-white"><T k="about-our-vision-2030_047ca5" d={"Future"} /></div>
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-white/55"><T k="about-our-vision-2030_48d8c6" d={"Goals"} /></p>
                 </div>
               </div>
             </div>
@@ -199,16 +169,14 @@ export default function OurVision2030Page() {
               >
                 <div className="absolute bottom-0 left-0 top-0 w-1.5 bg-[#E85222] opacity-90" />
                 <div className="flex gap-4 pl-2">
-                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-[#fff2ed] font-heading text-sm font-black text-[#E85222] ring-1 ring-[#ffd8cb]">
-                    0{index + 1}
+                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-[#fff2ed] font-heading text-sm font-black text-[#E85222] ring-1 ring-[#ffd8cb]"><T k="about-our-vision-2030_b6589f" d={"0"} />{index + 1}
                   </span>
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-3">
                       <h3 className="font-heading text-xl font-black text-[#0b1c43]">
                         {item.title}
                       </h3>
-                      <span className="rounded-full bg-[#f0fbfb] px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#008f8f]">
-                        Step {index + 1}
+                      <span className="rounded-full bg-[#f0fbfb] px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#008f8f]"><T k="about-our-vision-2030_37d11c" d={"Step "} />{index + 1}
                       </span>
                     </div>
                     <p className="text-sm font-semibold leading-6 text-slate-700 md:text-[15px]">

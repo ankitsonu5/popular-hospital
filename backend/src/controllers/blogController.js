@@ -2,7 +2,37 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import Blog from "../models/Blog.js";
+import BlogCategory from "../models/BlogCategory.js";
 import { escapeRegex } from "../middleware/security.js";
+
+export const DEFAULT_BLOG_CATEGORIES = [
+  "Best Cancer Specialist Hospital in Varanasi",
+  "Best Cardiology Hospital in Varanasi",
+  "Best Dental Hospital in Varanasi",
+  "Best Eye Specialist Hospital in Varanasi",
+  "Best Gynaecologist in Varanasi",
+  "Best Heart Hospital in Varanasi",
+  "Best Joint Replacement Hospital in Varanasi",
+  "Best Medicine Doctor in Varanasi",
+  "Best Microbiology Lab in Varanasi",
+  "Best Neurology Hospital in Varanasi",
+  "Best Orthopedic Hospital in Varanasi",
+  "Best Plastic Surgery Hospital in Varanasi",
+  "Best Urologist Hospital in Varanasi",
+  "Gastroenterology in Varanasi",
+  "Cardiology in Varanasi",
+  "Neurology in Varanasi",
+  "Orthopedics in Varanasi",
+  "ENT Care in Varanasi",
+  "Pediatrics in Varanasi",
+  "Emergency Care in Varanasi",
+  "Blood Bank in Varanasi",
+  "Critical Care & ICU in Varanasi",
+  "Endocrinology Center in Varanasi",
+  "Nephrology Specialist Center in Varanasi",
+  "Neuro Surgery Center in Varanasi",
+  "Laparoscopic Surgeon in Varanasi",
+];
 
 const normalizeUploadPath = (value = "") => {
   if (typeof value !== "string" || !value) return "";
@@ -448,5 +478,123 @@ export const uploadBlogImage = (req, res) => {
     res.json({ location: imagePath, path: imagePath });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+// ─── BLOG CATEGORIES MANAGEMENT ────────────────────────────────
+
+export const getBlogCategories = async (req, res) => {
+  try {
+    let categories = await BlogCategory.find().sort({ name: 1 });
+
+    // Seed defaults if collection is empty
+    if (categories.length === 0) {
+      const defaultDocs = DEFAULT_BLOG_CATEGORIES.map((name) => ({
+        name,
+        slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""),
+        isDefault: true,
+      }));
+      await BlogCategory.insertMany(defaultDocs).catch(() => {});
+      categories = await BlogCategory.find().sort({ name: 1 });
+    }
+
+    // Count publications per category
+    const blogCounts = await Blog.aggregate([
+      { $match: { isUncategorized: { $ne: true } } },
+      { $group: { _id: "$category", count: { $sum: 1 } } },
+    ]);
+    const countMap = {};
+    blogCounts.forEach((b) => {
+      if (b._id) countMap[b._id.trim()] = b.count;
+    });
+
+    // Check if any existing blogs have categories not yet in BlogCategory
+    const existingCatNames = new Set(categories.map((c) => c.name.toLowerCase().trim()));
+    const unlistedFromBlogs = [];
+    for (const b of blogCounts) {
+      if (b._id && !existingCatNames.has(b._id.toLowerCase().trim())) {
+        unlistedFromBlogs.push({
+          name: b._id.trim(),
+          slug: b._id.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""),
+          isDefault: false,
+        });
+        existingCatNames.add(b._id.toLowerCase().trim());
+      }
+    }
+    if (unlistedFromBlogs.length > 0) {
+      await BlogCategory.insertMany(unlistedFromBlogs).catch(() => {});
+      categories = await BlogCategory.find().sort({ name: 1 });
+    }
+
+    const result = categories.map((c) => ({
+      _id: c._id,
+      name: c.name,
+      slug: c.slug,
+      isDefault: c.isDefault,
+      count: countMap[c.name.trim()] || 0,
+      createdAt: c.createdAt,
+    }));
+
+    res.json(result);
+  } catch (error) {
+    console.error("[BLOG CATEGORIES]", error);
+    res.status(500).json({ error: "Failed to fetch blog categories" });
+  }
+};
+
+export const createBlogCategory = async (req, res) => {
+  try {
+    const { name, description } = req.body;
+    if (!name || typeof name !== "string" || !name.trim()) {
+      return res.status(400).json({ error: "Category name is required" });
+    }
+
+    const trimmedName = name.trim();
+    // Case-insensitive duplicate check
+    const existing = await BlogCategory.findOne({
+      name: { $regex: new RegExp(`^${escapeRegex(trimmedName)}$`, "i") },
+    });
+    if (existing) {
+      return res.status(400).json({ error: "This category already exists" });
+    }
+
+    const slug = trimmedName
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+    const newCategory = await BlogCategory.create({
+      name: trimmedName,
+      slug,
+      description: description || "",
+      isDefault: false,
+    });
+
+    res.status(201).json(newCategory);
+  } catch (error) {
+    console.error("[CREATE BLOG CATEGORY]", error);
+    res.status(500).json({ error: "Failed to create category" });
+  }
+};
+
+export const deleteBlogCategory = async (req, res) => {
+  try {
+    const category = await BlogCategory.findById(req.params.id);
+    if (!category) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    const blogCount = await Blog.countDocuments({ category: category.name });
+    if (blogCount > 0) {
+      return res.status(400).json({
+        error: `Cannot delete category "${category.name}" because ${blogCount} publication(s) are currently assigned to it. Please reassign those publications first.`,
+      });
+    }
+
+    await BlogCategory.findByIdAndDelete(req.params.id);
+    res.json({ message: "Category deleted successfully" });
+  } catch (error) {
+    console.error("[DELETE BLOG CATEGORY]", error);
+    res.status(500).json({ error: "Failed to delete category" });
   }
 };

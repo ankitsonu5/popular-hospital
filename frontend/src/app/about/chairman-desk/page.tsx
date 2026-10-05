@@ -18,6 +18,7 @@ const chairmanData = {
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/about/chairman-desk", {
@@ -39,7 +40,7 @@ export default function ChairmanDeskPage() {
         {/* Hero Header */}
         <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
           <div className="absolute inset-0 z-0">
-            <Image
+            <CImage k="about-chairman-desk_6ed91b"
               src="/images/banners/about_us_cmd_md.jpg"
               alt="Chairman Desk Banner"
               fill
@@ -49,12 +50,8 @@ export default function ChairmanDeskPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
           </div>
           <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <span className="text-hospital-orange font-bold text-xs uppercase tracking-[0.3em] mb-3 block">
-              Foundation
-            </span>
-            <h1 className="text-3xl md:text-5xl xl:text-2xl font-black font-heading mb-3 text-white uppercase tracking-tight">
-              From Chairman&apos;s Desk
-            </h1>
+            <span className="text-hospital-orange font-bold text-xs uppercase tracking-[0.3em] mb-3 block"><T k="about-chairman-desk_fdde6a" d={"Foundation"} /></span>
+            <h1 className="text-3xl md:text-5xl xl:text-2xl font-black font-heading mb-3 text-white uppercase tracking-tight"><T k="about-chairman-desk_071642" d={"From Chairman's Desk"} /></h1>
             <div className="w-12 h-1 bg-hospital-orange mx-auto rounded-full"></div>
           </div>
         </div>
@@ -86,8 +83,8 @@ export default function ChairmanDeskPage() {
 
                     <div className="space-y-1 text-xs md:text-sm font-medium uppercase opacity-90 leading-snug">
                       <p>{chairmanData.subtitle}</p>
-                      <p>INSTITUTE OF MEDICAL SCIENCES</p>
-                      <p>BHU, VARANASI</p>
+                      <p><T k="about-chairman-desk_0f80fa" d={"INSTITUTE OF MEDICAL SCIENCES"} /></p>
+                      <p><T k="about-chairman-desk_3e8b05" d={"BHU, VARANASI"} /></p>
                     </div>
                   </div>
                 </div>
@@ -96,11 +93,8 @@ export default function ChairmanDeskPage() {
               {/* Right Column: Text Content Area */}
               <div className="lg:col-span-7 relative pt-2">
                 <div className="mb-6 xl:mb-4 2xl:mb-8">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic">
-                    A Vision for Excellence <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]">
-                      in Modern Healthcare
-                    </span>
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-black text-[#0b1c43] font-heading leading-tight italic"><T k="about-chairman-desk_7ff46b" d={"A Vision for Excellence "} /><br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-hospital-teal to-[#2563eb]"><T k="about-chairman-desk_2ff179" d={"in Modern Healthcare"} /></span>
                   </h3>
                 </div>
 

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -155,7 +156,7 @@ export default function PediatricsClient({
       ══════════════════════════════════════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-pediatrics_15f4f8"
             src="/images/banners/neonatology_banner.png"
             alt="Pediatrics Banner"
             fill
@@ -166,25 +167,17 @@ export default function PediatricsClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Centre of Pediatrics & Neonatology
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Pediatrics & Neonatology — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-pediatrics_6c086e" d={"Centre of Pediatrics & Neonatology"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-pediatrics_368aa7" d={"Department of Pediatrics & Neonatology — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-pediatrics_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Pediatrics & Neonatology"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-pediatrics_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -199,19 +192,13 @@ export default function PediatricsClient({
             {/* Left Content */}
             <div className="lg:col-span-8 space-y-8">
               <div className="space-y-4">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Pediatrics & Neonatology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-pediatrics_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-pediatrics_6732bb" d={"best Pediatrics & Neonatology hospital in Varanasi"} /></strong><T k="departments-pediatrics_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-pediatrics_200859" d={"Purvanchal"} /></strong><T k="departments-pediatrics_4f4133" d={" and "} /><strong><T k="departments-pediatrics_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <span className="inline-block text-[#1e3a8a] font-bold tracking-widest text-xs uppercase">
-                  Introduction
-                </span>
+                <span className="inline-block text-[#1e3a8a] font-bold tracking-widest text-xs uppercase"><T k="departments-pediatrics_2473e9" d={"Introduction"} /></span>
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-10 rounded-full bg-[#1e3a8a] inline-block" />
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Department of{" "}
-                    <span className="text-[#1e3a8a]">
-                      Pediatrics &amp; Neonatology
-                    </span>
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-pediatrics_4c5284" d={"Department of"} />{" "}
+                    <span className="text-[#1e3a8a]"><T k="departments-pediatrics_f262b6" d={"Pediatrics & Neonatology"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -291,13 +278,10 @@ export default function PediatricsClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           {/* Heading */}
           <div className="mb-12">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              What We Offer
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatrics_3c5879" d={"What We Offer"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                Services <span className="text-[#1e3a8a]">Offered</span>
+              <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-pediatrics_766475" d={"Services "} /><span className="text-[#1e3a8a]"><T k="departments-pediatrics_a1bf1a" d={"Offered"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -339,7 +323,7 @@ export default function PediatricsClient({
             {/* Left – Image */}
             <div className="lg:col-span-5 flex items-center justify-center">
               <div className="relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white/10 hover:border-white/20 transition-all duration-500 group lg:self-center">
-                <Image
+                <CImage k="departments-pediatrics_c66d7c"
                   src="/images/departments-images/pediatric_opd_realistic.png"
                   alt="Pediatric Indoor Services"
                   fill
@@ -347,23 +331,18 @@ export default function PediatricsClient({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/45 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100">
-                    State-of-the-Art Pediatric Care
-                  </span>
+                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100"><T k="departments-pediatrics_057707" d={"State-of-the-Art Pediatric Care"} /></span>
                 </div>
               </div>
             </div>
 
             {/* Right – List */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              <span className="text-blue-400 font-bold tracking-widest text-xs uppercase mb-3 block">
-                Inpatient Care
-              </span>
+              <span className="text-blue-400 font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatrics_6d5b23" d={"Inpatient Care"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1.5 h-8 rounded-full bg-blue-400 inline-block" />
-                <h2 className="text-3xl font-extrabold text-white font-heading tracking-tight">
-                  Pediatric Indoor{" "}
-                  <span className="text-blue-400">Services</span>
+                <h2 className="text-3xl font-extrabold text-white font-heading tracking-tight"><T k="departments-pediatrics_500ab4" d={"Pediatric Indoor"} />{" "}
+                  <span className="text-blue-400"><T k="departments-pediatrics_5cbd58" d={"Services"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-700 to-transparent mb-8" />
@@ -395,13 +374,10 @@ export default function PediatricsClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           {/* Heading */}
           <div className="mb-12">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Why Choose Us
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatrics_aa3c9c" d={"Why Choose Us"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1.5 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight animate-fade-in">
-                Department <span className="text-[#1e3a8a]">Highlights</span>
+              <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight animate-fade-in"><T k="departments-pediatrics_4ca3aa" d={"Department "} /><span className="text-[#1e3a8a]"><T k="departments-pediatrics_1f9c9c" d={"Highlights"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -433,7 +409,7 @@ export default function PediatricsClient({
             {/* Right – Image */}
             <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
               <div className="relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-100 hover:border-blue-100 transition-colors duration-500 group lg:self-center">
-                <Image
+                <CImage k="departments-pediatrics_e560b1"
                   src="/images/departments-images/neonatology.jpeg"
                   alt="Pediatrics Highlights"
                   fill
@@ -441,9 +417,7 @@ export default function PediatricsClient({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/20 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100">
-                    24/7 Neonatologist Support
-                  </span>
+                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100"><T k="departments-pediatrics_ac9781" d={"24/7 Neonatologist Support"} /></span>
                 </div>
               </div>
             </div>

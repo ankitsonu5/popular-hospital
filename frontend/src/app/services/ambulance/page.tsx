@@ -6,6 +6,7 @@ import {
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/services/ambulance", {
@@ -29,26 +30,11 @@ const sections: ServiceSection[] = [
     highlight: "Ambulance",
     content: (
       <div className="space-y-4">
-        <div className="inline-flex rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-bold text-[#284a91]">
-          For Ambulance Service in Varanasi, Call at +91-9519999280
-        </div>
-        <h3 className="text-base font-bold text-[#284a91] lg:text-lg">
-          Meet the World's Best Doctors or Consultant
-        </h3>
-        <p className={textClass}>
-          Popular Hospital provides prompt emergency transport support so
-          patients can reach the Emergency Team with minimum delay.
-        </p>
-        <p className={textClass}>
-          The nearest ambulance available in your locality will be rushed to
-          your place, wherever you are, to bring your patient directly to
-          Popular Hospital in the shortest possible time.
-        </p>
-        <p className={textClass}>
-          While the patient is on the way, the Emergency Team at Popular
-          Hospital prepares the ICU bed, O.T. and other critical support so that
-          little time is lost after reaching the hospital.
-        </p>
+        <div className="inline-flex rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-bold text-[#284a91]"><T k="services-ambulance_24b96a" d={"For Ambulance Service in Varanasi, Call at +91-9519999280"} /></div>
+        <h3 className="text-base font-bold text-[#284a91] lg:text-lg"><T k="services-ambulance_99e188" d={"Meet the World's Best Doctors or Consultant"} /></h3>
+        <p className={textClass}><T k="services-ambulance_277108" d={"Popular Hospital provides prompt emergency transport support so patients can reach the Emergency Team with minimum delay."} /></p>
+        <p className={textClass}><T k="services-ambulance_e8f41f" d={"The nearest ambulance available in your locality will be rushed to your place, wherever you are, to bring your patient directly to Popular Hospital in the shortest possible time."} /></p>
+        <p className={textClass}><T k="services-ambulance_b0cdb8" d={"While the patient is on the way, the Emergency Team at Popular Hospital prepares the ICU bed, O.T. and other critical support so that little time is lost after reaching the hospital."} /></p>
       </div>
     ),
     image: "/images/departments-images/ambulance_department_v2.jpeg",
@@ -60,11 +46,7 @@ const sections: ServiceSection[] = [
     highlight: "Hospitals",
     eyebrow: "Why patients like Popular Hospital",
     content: (
-      <p className={textClass}>
-        Popular Hospital is backed by round-the-clock departments, prompt
-        emergency response, specialist doctors and diagnostic support that helps
-        reduce waiting time and improve treatment decisions during urgent care.
-      </p>
+      <p className={textClass}><T k="services-ambulance_0c9ebe" d={"Popular Hospital is backed by round-the-clock departments, prompt emergency response, specialist doctors and diagnostic support that helps reduce waiting time and improve treatment decisions during urgent care."} /></p>
     ),
     image: "/images/departments-images/ambulance_department_v2.jpeg",
     imgAlt: "Emergency medical team",
@@ -75,11 +57,7 @@ const sections: ServiceSection[] = [
     title: "Safest Hospital for",
     highlight: "Any Operation",
     content: (
-      <p className={textClass}>
-        Popular Hospital has advanced operation theatre infrastructure and
-        trained post-operative care teams, helping patients remain under the
-        best care of doctors and nurses after surgery.
-      </p>
+      <p className={textClass}><T k="services-ambulance_c921f3" d={"Popular Hospital has advanced operation theatre infrastructure and trained post-operative care teams, helping patients remain under the best care of doctors and nurses after surgery."} /></p>
     ),
     image: "/images/departments-images/safest_hospital.jpg",
     imgAlt: "Hospital operation theatre",
@@ -89,11 +67,7 @@ const sections: ServiceSection[] = [
     title: "Specialist Doctors Round",
     highlight: "the Clock",
     content: (
-      <p className={textClass}>
-        With multiple medical departments and in-house specialist doctors,
-        complications during a patient's stay can be handled quickly by the
-        relevant team at Popular Hospital.
-      </p>
+      <p className={textClass}><T k="services-ambulance_5c0a8a" d={"With multiple medical departments and in-house specialist doctors, complications during a patient's stay can be handled quickly by the relevant team at Popular Hospital."} /></p>
     ),
     image: "/images/departments-images/ambulance_doctor.jpg",
     imgAlt: "Doctor near ambulance",

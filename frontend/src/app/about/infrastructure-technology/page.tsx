@@ -2,6 +2,7 @@ import Image from "next/image";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/about/infrastructure-technology", {
@@ -107,7 +108,7 @@ export default function InfrastructureTechnologyPage() {
     <main className="min-h-screen bg-white">
       <section className="relative flex min-h-[180px] items-center overflow-hidden bg-[#0b1c43] py-10 md:min-h-[220px]">
         <div className="absolute inset-0">
-          <Image
+          <CImage k="about-infrastructure-technology_803a5e"
             src="/images/banners/about_us_infra.jpg"
             alt="Infrastructure and technology"
             fill
@@ -119,9 +120,7 @@ export default function InfrastructureTechnologyPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <div className="max-w-3xl">
-            <h1 className="font-heading text-4xl font-black tracking-tight text-white md:text-5xl lg:text-6xl">
-              Infrastructure & Technology
-            </h1>
+            <h1 className="font-heading text-4xl font-black tracking-tight text-white md:text-5xl lg:text-6xl"><T k="about-infrastructure-technology_57cb78" d={"Infrastructure & Technology"} /></h1>
           </div>
         </div>
       </section>
@@ -149,24 +148,13 @@ export default function InfrastructureTechnologyPage() {
 
           <div className="mt-12 grid grid-cols-1 gap-8 rounded-3xl bg-white p-6 shadow-sm md:grid-cols-[1.1fr_0.9fr] md:p-10">
             <div>
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-[#E85222]">
-                Patient First Technology
-              </p>
-              <h2 className="mb-5 font-heading text-3xl font-black text-[#0b1c43] md:text-4xl">
-                Technology that supports doctors at every step
-              </h2>
-              <p className="text-base leading-7 text-gray-600">
-                From high-dependency ICU care to diagnostic decision support and
-                modern operating environments, Popular Hospital focuses on
-                practical medical infrastructure that helps teams deliver
-                timely, coordinated, and quality care.
-              </p>
+              <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-[#E85222]"><T k="about-infrastructure-technology_1b551b" d={"Patient First Technology"} /></p>
+              <h2 className="mb-5 font-heading text-3xl font-black text-[#0b1c43] md:text-4xl"><T k="about-infrastructure-technology_0fbd3b" d={"Technology that supports doctors at every step"} /></h2>
+              <p className="text-base leading-7 text-gray-600"><T k="about-infrastructure-technology_06be54" d={"From high-dependency ICU care to diagnostic decision support and modern operating environments, Popular Hospital focuses on practical medical infrastructure that helps teams deliver timely, coordinated, and quality care."} /></p>
             </div>
 
             <div className="rounded-2xl bg-[#0b1c43] p-6 text-white">
-              <h3 className="mb-4 font-heading text-2xl font-bold">
-                Core Facilities
-              </h3>
+              <h3 className="mb-4 font-heading text-2xl font-bold"><T k="about-infrastructure-technology_e18517" d={"Core Facilities"} /></h3>
               <div className="space-y-3">
                 {technologyHighlights.map((item) => (
                   <div

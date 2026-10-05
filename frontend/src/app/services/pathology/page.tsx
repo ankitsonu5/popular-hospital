@@ -8,6 +8,7 @@ import DoctorSlider from "@/components/DoctorSlider";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/services/pathology", {
@@ -33,17 +34,8 @@ const sections: ServiceSection[] = [
     highlight: "Pathology",
     content: (
       <div className="space-y-4">
-        <p className={textClass}>
-          Popular Hospitals has its in-house state-of-the-art laboratory
-          services, catering to all the needs of the patients, with the utmost
-          integrity. Popular Clinical Laboratory offers 24x7 operational
-          supports to the medical teams in the hospital.
-        </p>
-        <p className={textClass}>
-          At Popular we believe, quality is never an accident; it is always the
-          result of high intention, sincere effort, intelligent direction and
-          skilful execution.
-        </p>
+        <p className={textClass}><T k="services-pathology_258703" d={"Popular Hospitals has its in-house state-of-the-art laboratory services, catering to all the needs of the patients, with the utmost integrity. Popular Clinical Laboratory offers 24x7 operational supports to the medical teams in the hospital."} /></p>
+        <p className={textClass}><T k="services-pathology_3f1f45" d={"At Popular we believe, quality is never an accident; it is always the result of high intention, sincere effort, intelligent direction and skilful execution."} /></p>
       </div>
     ),
     image: "/images/departments-images/pathology.jpg",
@@ -56,17 +48,8 @@ const sections: ServiceSection[] = [
     eyebrow: "NABL Accredited",
     content: (
       <div className="space-y-4">
-        <p className={textClass}>
-          Popular Pathology Laboratory is committed to providing quality with
-          care even in emergency situations. Popular hospitals unique and
-          hi-tech laboratory has world-class instruments and well-trained,
-          efficient staff.
-        </p>
-        <p className={textClass}>
-          Popular Pathology Laboratory is accredited by the NABL (National
-          Accreditation Board of Calibration, Testing Laboratory), giving
-          patients dependable testing support round the clock.
-        </p>
+        <p className={textClass}><T k="services-pathology_95be93" d={"Popular Pathology Laboratory is committed to providing quality with care even in emergency situations. Popular hospitals unique and hi-tech laboratory has world-class instruments and well-trained, efficient staff."} /></p>
+        <p className={textClass}><T k="services-pathology_f95b4e" d={"Popular Pathology Laboratory is accredited by the NABL (National Accreditation Board of Calibration, Testing Laboratory), giving patients dependable testing support round the clock."} /></p>
       </div>
     ),
     image: "/images/departments-images/pathology.jpeg",
@@ -148,12 +131,7 @@ const sections: ServiceSection[] = [
     title: "External Quality",
     highlight: "Assessment Scheme",
     content: (
-      <p className={textClass}>
-        External quality assessment schemes are accepted around the world as
-        invaluable tools for laboratories. Popular has a tie-up with BIORAD for
-        analyzing hematology, biochemistry and immunology panels, improving
-        laboratory performance, patient care and safety.
-      </p>
+      <p className={textClass}><T k="services-pathology_d5ac26" d={"External quality assessment schemes are accepted around the world as invaluable tools for laboratories. Popular has a tie-up with BIORAD for analyzing hematology, biochemistry and immunology panels, improving laboratory performance, patient care and safety."} /></p>
     ),
   },
 ];

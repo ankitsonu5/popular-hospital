@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { T } from "@/components/content/Editable";
 
 export default function EmergencyServices() {
   return (
@@ -34,9 +35,7 @@ export default function EmergencyServices() {
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-5xl font-extrabold text-[#1e3a8a] font-jakarta tracking-tight">
-                24x7 Services
-              </h2>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-5xl font-extrabold text-[#1e3a8a] font-jakarta tracking-tight"><T k="home_a40eec" d={"24x7 Services"} /></h2>
             </div>
             <div className="mt-4 inline-flex items-center justify-center gap-2 w-full">
               <span className="h-[3px] w-6 rounded-full bg-[#ffb088]" />
@@ -46,10 +45,7 @@ export default function EmergencyServices() {
           </div>
 
           {/* Subtitle */}
-          <p className="text-slate-600 text-lg sm:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
-            We cover a big variety of medical services, ensuring you have access
-            to critical care whenever you need it.
-          </p>
+          <p className="text-slate-600 text-lg sm:text-xl max-w-3xl mx-auto font-medium leading-relaxed"><T k="home_a60795" d={"We cover a big variety of medical services, ensuring you have access to critical care whenever you need it."} /></p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
@@ -212,9 +208,7 @@ export default function EmergencyServices() {
                   <Link
                     href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-").replace("&", "and")}`}
                     className="inline-flex items-center justify-center px-8 py-3 bg-[#E85222] text-white text-[11px] font-black rounded-full uppercase tracking-widest hover:bg-black transition-all shadow-md mt-auto md:mt-0"
-                  >
-                    Read more
-                  </Link>
+                  ><T k="home_ad086c" d={"Read more"} /></Link>
                 </div>
               </div>
             </div>

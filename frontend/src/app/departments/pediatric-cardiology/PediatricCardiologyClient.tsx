@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Check, AlertCircle, Heart } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -79,7 +80,7 @@ export default function PediatricCardiologyClient({
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-pediatric-cardiology_280981"
             src="/images/banners/cardiology_banner.png"
             alt="Pediatric Cardiology Banner"
             fill
@@ -91,25 +92,17 @@ export default function PediatricCardiologyClient({
 
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Department of
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Pediatric Cardiology — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-pediatric-cardiology_4c5284" d={"Department of"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-pediatric-cardiology_e4913a" d={"Department of Pediatric Cardiology — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-pediatric-cardiology_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Pediatric Cardiology"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-pediatric-cardiology_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -123,43 +116,19 @@ export default function PediatricCardiologyClient({
             <div className="lg:col-span-8 space-y-8">
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Popular Hospital's{" "}
-                  <span className="text-[#1e3a8a]">
-                    Pediatric Cardiologist & Intensivist
-                  </span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-cardiology_07fe26" d={"Popular Hospital's"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-pediatric-cardiology_ac003c" d={"Pediatric Cardiologist & Intensivist"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
               <div className="space-y-4">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Pediatric Cardiology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-pediatric-cardiology_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-pediatric-cardiology_aaeab5" d={"best Pediatric Cardiology hospital in Varanasi"} /></strong><T k="departments-pediatric-cardiology_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-pediatric-cardiology_200859" d={"Purvanchal"} /></strong><T k="departments-pediatric-cardiology_4f4133" d={" and "} /><strong><T k="departments-pediatric-cardiology_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  At Popular Hospital, Varanasi, our Pediatric Cardiology
-                  Department is dedicated to providing advanced, compassionate,
-                  and child-friendly care to Fragile hearts of
-                  Neonatal/pediatric patients.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The department is led by Dr Rajesh Kumar Singh, the first
-                  full-time pediatric cardiologist and Intensivist in
-                  Purvanchal, bringing specialised cardiac care closer to
-                  families in Eastern Uttar Pradesh and nearby regions.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  With a focus on early diagnosis, accurate treatment, and
-                  long-term follow-up, we ensure that infants, children, and
-                  adolescents receive world-class cardiac care under one roof.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  Dr Rajesh Kumar Singh is a highly respected name in pediatric
-                  cardiology and is known for pioneering specialised heart care
-                  for children in Purvanchal. His vast experience, combined with
-                  a child-centric approach, ensures accurate diagnosis and
-                  effective treatment even in complex heart conditions.
-                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-pediatric-cardiology_7ce4c9" d={"At Popular Hospital, Varanasi, our Pediatric Cardiology Department is dedicated to providing advanced, compassionate, and child-friendly care to Fragile hearts of Neonatal/pediatric patients."} /></p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-pediatric-cardiology_e45ef4" d={"The department is led by Dr Rajesh Kumar Singh, the first full-time pediatric cardiologist and Intensivist in Purvanchal, bringing specialised cardiac care closer to families in Eastern Uttar Pradesh and nearby regions."} /></p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-pediatric-cardiology_189731" d={"With a focus on early diagnosis, accurate treatment, and long-term follow-up, we ensure that infants, children, and adolescents receive world-class cardiac care under one roof."} /></p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-pediatric-cardiology_168401" d={"Dr Rajesh Kumar Singh is a highly respected name in pediatric cardiology and is known for pioneering specialised heart care for children in Purvanchal. His vast experience, combined with a child-centric approach, ensures accurate diagnosis and effective treatment even in complex heart conditions."} /></p>
               </div>
             </div>
 
@@ -182,21 +151,16 @@ export default function PediatricCardiologyClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="order-2 lg:order-1">
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Pioneering Care
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatric-cardiology_8bfb04" d={"Pioneering Care"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  Why parents trust{" "}
-                  <span className="text-[#1e3a8a]">Popular Hospital</span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-cardiology_1dd88d" d={"Why parents trust"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-pediatric-cardiology_259065" d={"Popular Hospital"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mt-6 mb-3 block">
-                Pediatric Cardiologist and Intensivist
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mt-6 mb-3 block"><T k="departments-pediatric-cardiology_2b02b3" d={"Pediatric Cardiologist and Intensivist"} /></span>
 
               <div className="space-y-4">
                 {trustFactors.map((item, idx) => (
@@ -214,7 +178,7 @@ export default function PediatricCardiologyClient({
 
             <div className="order-1 lg:order-2 mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
-                <Image
+                <CImage k="departments-pediatric-cardiology_2dd658"
                   src="/images/departments-images/cardiology.jpeg"
                   alt="Pediatric Cardiology Diagnostic Care"
                   fill
@@ -231,22 +195,16 @@ export default function PediatricCardiologyClient({
       <section className="py-16 xl:py-12 2xl:py-20 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="max-w-3xl mb-12">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Clinical Specialities
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatric-cardiology_9f6ae1" d={"Clinical Specialities"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Pediatric Heart Conditions{" "}
-                <span className="text-[#1e3a8a]">We Treat</span>
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-cardiology_29b558" d={"Pediatric Heart Conditions"} />{" "}
+                <span className="text-[#1e3a8a]"><T k="departments-pediatric-cardiology_d0f98a" d={"We Treat"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
-            <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6">
-              Our department specialises in diagnosing and managing a wide range
-              of heart conditions in children, including:
-            </p>
+            <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6"><T k="departments-pediatric-cardiology_186aa0" d={"Our department specialises in diagnosing and managing a wide range of heart conditions in children, including:"} /></p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -256,9 +214,7 @@ export default function PediatricCardiologyClient({
                 <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#1e3a8a] flex items-center justify-center border border-blue-100 shrink-0">
                   <Heart className="w-6 h-6" />
                 </div>
-                <h4 className="font-bold text-[#0b1c43] text-lg leading-snug">
-                  Congenital Heart Diseases (CHD)
-                </h4>
+                <h4 className="font-bold text-[#0b1c43] text-lg leading-snug"><T k="departments-pediatric-cardiology_70d5d5" d={"Congenital Heart Diseases (CHD)"} /></h4>
               </div>
               <div className="space-y-4 mt-auto">
                 {chdConditions.map((item, idx) => (
@@ -280,9 +236,7 @@ export default function PediatricCardiologyClient({
                 <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center border border-orange-100 shrink-0">
                   <Heart className="w-6 h-6 text-orange-500" />
                 </div>
-                <h4 className="font-bold text-[#0b1c43] text-lg leading-snug">
-                  Acquired Heart Diseases
-                </h4>
+                <h4 className="font-bold text-[#0b1c43] text-lg leading-snug"><T k="departments-pediatric-cardiology_7585d0" d={"Acquired Heart Diseases"} /></h4>
               </div>
               <div className="space-y-3 mt-auto">
                 {acquiredConditions.map((item, idx) => (
@@ -306,12 +260,8 @@ export default function PediatricCardiologyClient({
                     <AlertCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <h5 className="font-bold text-[#0b1c43] text-base mb-1">
-                      Cardiac Rhythm Disorder
-                    </h5>
-                    <p className="text-gray-700 text-sm font-medium">
-                      Tachycardia, Bradycardia
-                    </p>
+                    <h5 className="font-bold text-[#0b1c43] text-base mb-1"><T k="departments-pediatric-cardiology_d2d58c" d={"Cardiac Rhythm Disorder"} /></h5>
+                    <p className="text-gray-700 text-sm font-medium"><T k="departments-pediatric-cardiology_2d7bdc" d={"Tachycardia, Bradycardia"} /></p>
                   </div>
                 </div>
 
@@ -320,12 +270,8 @@ export default function PediatricCardiologyClient({
                     <AlertCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <h5 className="font-bold text-[#0b1c43] text-base mb-1">
-                      Heart Failure
-                    </h5>
-                    <p className="text-gray-700 text-sm font-medium">
-                      In infants and children
-                    </p>
+                    <h5 className="font-bold text-[#0b1c43] text-base mb-1"><T k="departments-pediatric-cardiology_5eb266" d={"Heart Failure"} /></h5>
+                    <p className="text-gray-700 text-sm font-medium"><T k="departments-pediatric-cardiology_68f4ab" d={"In infants and children"} /></p>
                   </div>
                 </div>
 
@@ -334,12 +280,8 @@ export default function PediatricCardiologyClient({
                     <AlertCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <h5 className="font-bold text-[#0b1c43] text-base mb-1">
-                      Cardiomyopathy & Blood Pressure
-                    </h5>
-                    <p className="text-gray-700 text-sm font-medium">
-                      Abnormal blood pressure (High/Low BP)
-                    </p>
+                    <h5 className="font-bold text-[#0b1c43] text-base mb-1"><T k="departments-pediatric-cardiology_b0500a" d={"Cardiomyopathy & Blood Pressure"} /></h5>
+                    <p className="text-gray-700 text-sm font-medium"><T k="departments-pediatric-cardiology_ffc35a" d={"Abnormal blood pressure (High/Low BP)"} /></p>
                   </div>
                 </div>
               </div>
@@ -354,7 +296,7 @@ export default function PediatricCardiologyClient({
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="mb-12 lg:mb-0 relative">
               <div className="relative w-full aspect-[4/3] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-50 transition-colors duration-500 group">
-                <Image
+                <CImage k="departments-pediatric-cardiology_864152"
                   src="/images/departments-images/cardiac_treatment.jpeg"
                   alt="When to meet a pediatric cardiologist"
                   fill
@@ -365,23 +307,16 @@ export default function PediatricCardiologyClient({
             </div>
 
             <div>
-              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-                Critical Indicators
-              </span>
+              <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatric-cardiology_34b99f" d={"Critical Indicators"} /></span>
               <div className="flex items-center gap-3 mb-2">
                 <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                  When should you meet a{" "}
-                  <span className="text-[#1e3a8a]">
-                    pediatric cardiologist?
-                  </span>
+                <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-cardiology_9e1873" d={"When should you meet a"} />{" "}
+                  <span className="text-[#1e3a8a]"><T k="departments-pediatric-cardiology_bcfbd6" d={"pediatric cardiologist?"} /></span>
                 </h2>
               </div>
               <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
-              <p className="text-gray-800 text-lg font-bold mt-6 mb-4">
-                If your child is suffering from:
-              </p>
+              <p className="text-gray-800 text-lg font-bold mt-6 mb-4"><T k="departments-pediatric-cardiology_4a3e65" d={"If your child is suffering from:"} /></p>
 
               <div className="space-y-4">
                 {symptoms.map((item, idx) => (
@@ -404,22 +339,16 @@ export default function PediatricCardiologyClient({
       <section className="py-16 xl:py-12 2xl:py-20 bg-white border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="max-w-3xl mb-12">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Advanced Solutions
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatric-cardiology_2f3d77" d={"Advanced Solutions"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Pediatric Cardiac Services{" "}
-                <span className="text-[#1e3a8a]">at Popular Hospital</span>
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-cardiology_c4591c" d={"Pediatric Cardiac Services"} />{" "}
+                <span className="text-[#1e3a8a]"><T k="departments-pediatric-cardiology_a4ba4d" d={"at Popular Hospital"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
 
-            <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6">
-              We provide comprehensive pediatric cardiology services using
-              modern technology and evidence based treatment protocols:
-            </p>
+            <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium mt-6"><T k="departments-pediatric-cardiology_382b17" d={"We provide comprehensive pediatric cardiology services using modern technology and evidence based treatment protocols:"} /></p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -443,14 +372,11 @@ export default function PediatricCardiologyClient({
       <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="max-w-3xl mb-12">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block">
-              Our Value Proposition
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase mb-3 block"><T k="departments-pediatric-cardiology_347f3c" d={"Our Value Proposition"} /></span>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-1 h-8 rounded-full bg-[#1e3a8a] inline-block" />
-              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading">
-                Why Choose{" "}
-                <span className="text-[#1e3a8a]">Popular Hospital?</span>
+              <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-[#0b1c43] font-heading"><T k="departments-pediatric-cardiology_011a66" d={"Why Choose"} />{" "}
+                <span className="text-[#1e3a8a]"><T k="departments-pediatric-cardiology_1d211b" d={"Popular Hospital?"} /></span>
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
@@ -480,15 +406,8 @@ export default function PediatricCardiologyClient({
           <div className="bg-blue-50/30 p-8 md:p-12 rounded-[2.5rem] border border-blue-100 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/40 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
             <div className="relative z-10">
-              <h3 className="text-xl font-bold text-[#0b1c43] mb-4 font-heading uppercase tracking-wider">
-                In Support of Families
-              </h3>
-              <p className="text-gray-700 leading-relaxed text-base md:text-[16px] font-medium italic">
-                We understand that a child’s heart condition can be emotionally
-                challenging for families. Our expert team ensures clarity,
-                compassion, and continuous support at every step of the
-                treatment journey.
-              </p>
+              <h3 className="text-xl font-bold text-[#0b1c43] mb-4 font-heading uppercase tracking-wider"><T k="departments-pediatric-cardiology_0f99b7" d={"In Support of Families"} /></h3>
+              <p className="text-gray-700 leading-relaxed text-base md:text-[16px] font-medium italic"><T k="departments-pediatric-cardiology_2c11f0" d={"We understand that a child’s heart condition can be emotionally challenging for families. Our expert team ensures clarity, compassion, and continuous support at every step of the treatment journey."} /></p>
             </div>
           </div>
         </div>

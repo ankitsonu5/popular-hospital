@@ -6,6 +6,7 @@ import MediaCoverageClient from "./MediaCoverageClient";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/media/coverage", {
@@ -37,7 +38,7 @@ export default async function MediaCoveragePage() {
       {/* ─── Hero Section ─── */}
       <section className="relative bg-[#0b1c43] py-20 sm:py-24 lg:py-28 overflow-hidden">
         {/* Subtle Background Image */}
-        <Image
+        <CImage k="media-coverage_ba66cd"
           src="/about-section-image.png"
           alt=""
           fill
@@ -55,20 +56,13 @@ export default async function MediaCoveragePage() {
         />
         <div className="relative z-10 max-w-[1366px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           <nav className="mb-6 text-sm text-white/60" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
+            <Link href="/" className="hover:text-white transition-colors"><T k="media-coverage_70f8bb" d={"Home"} /></Link>
             <span className="mx-2">/</span>
-            <span className="text-white">Media Coverage</span>
+            <span className="text-white"><T k="media-coverage_d45de6" d={"Media Coverage"} /></span>
           </nav>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-3xl">
-            Media <span className="text-[#00B4D8]">Coverage</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-3xl"><T k="media-coverage_5dd6b2" d={"Media "} /><span className="text-[#00B4D8]"><T k="media-coverage_80e135" d={"Coverage"} /></span>
           </h1>
-          <p className="mt-4 text-lg text-white/70 max-w-2xl leading-relaxed">
-            Explore our presence in newspapers, media, and press — highlighting
-            milestones, achievements, and healthcare excellence at Popular
-            Hospital.
-          </p>
+          <p className="mt-4 text-lg text-white/70 max-w-2xl leading-relaxed"><T k="media-coverage_155e7e" d={"Explore our presence in newspapers, media, and press — highlighting milestones, achievements, and healthcare excellence at Popular Hospital."} /></p>
         </div>
       </section>
 

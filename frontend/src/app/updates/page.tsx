@@ -102,7 +102,8 @@ export default function UpdatesPage() {
                       .map((update) => (
                         <div
                           key={update._id}
-                          className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-l-4 border-[#E85222] p-8 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all transform hover:-translate-y-1"
+                          id={update._id}
+                          className="scroll-mt-28 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-l-4 border-[#E85222] p-8 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all transform hover:-translate-y-1"
                         >
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
                             <div className="flex items-center gap-2 text-[#E85222] font-black text-xs uppercase tracking-widest bg-orange-50 px-3 py-1.5 rounded-lg w-fit">
@@ -201,7 +202,8 @@ export default function UpdatesPage() {
                       .map((update) => (
                         <div
                           key={update._id}
-                          className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col hover:border-[#0d9488]/30 hover:shadow-xl transition-all group"
+                          id={update._id}
+                          className="scroll-mt-28 bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col hover:border-[#0d9488]/30 hover:shadow-xl transition-all group"
                         >
                           <div className="flex items-center gap-4 mb-6">
                             <div className="p-3.5 rounded-xl bg-gray-50 text-[#0d9488] group-hover:bg-[#0d9488] group-hover:text-white transition-colors shadow-inner">

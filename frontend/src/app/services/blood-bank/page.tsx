@@ -5,6 +5,7 @@ import { Metadata } from "next";
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/services/blood-bank", {
@@ -24,22 +25,10 @@ const sections = [
     title: "Department of Blood Bank",
     content: (
       <div className="space-y-4">
-        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-          There is a always a significant, ongoing need for blood and blood
-          products.
-        </p>
-        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-          Because there is no substitute for human blood, the generosity of
-          blood donors helps to ensure that we maintain an adequate supply for
-          our patients. Giving just one pint of your blood can help save the
-          lives of three patients, and the entire process of blood donation only
-          takes about an hour.
-        </p>
+        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_26a094" d={"There is a always a significant, ongoing need for blood and blood products."} /></p>
+        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_d7e715" d={"Because there is no substitute for human blood, the generosity of blood donors helps to ensure that we maintain an adequate supply for our patients. Giving just one pint of your blood can help save the lives of three patients, and the entire process of blood donation only takes about an hour."} /></p>
 
-        <h3 className="text-[#284a91] font-bold text-sm lg:text-base mt-2">
-          The donation process is simple. You may be eligible to donate blood if
-          you:
-        </h3>
+        <h3 className="text-[#284a91] font-bold text-sm lg:text-base mt-2"><T k="services-blood-bank_3dacac" d={"The donation process is simple. You may be eligible to donate blood if you:"} /></h3>
         <ul className="space-y-2 text-sm lg:text-base text-gray-700 font-medium">
           {[
             "are 18 - 60 years old",
@@ -57,40 +46,13 @@ const sections = [
           ))}
         </ul>
 
-        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-          Latest techniques are used for immune-hematological testing, for blood
-          compatibility and for diagnosis. The department is committed to ensure
-          availability of safe blood. We supply best quality blood and
-          components, prepared from unremunerated donors, screened by
-          appropriate methods and stored and transported at night temperature.
-          We also maintain a quality system which is compliant of all existing
-          statutory provisions of the Drugs and cosmetic act 1940 and
-          amendments, other directives from Drug Controller General of India,
-          National Blood Policy, NACO guidelines on HIV screening and NABH
-          guidelines. Blood is carefully screened for transfusion transmitted
-          infections (HBsAg, HCV, HIV I& II- using CMIA technology along with
-          RPR and malarial antigen testing). Stringent quality control practices
-          include testing of a defined number of units of each product for the
-          appropriate parameters. The facility is licensed by Drug controller
-          General India.
-        </p>
+        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_21c172" d={"Latest techniques are used for immune-hematological testing, for blood compatibility and for diagnosis. The department is committed to ensure availability of safe blood. We supply best quality blood and components, prepared from unremunerated donors, screened by appropriate methods and stored and transported at night temperature. We also maintain a quality system which is compliant of all existing statutory provisions of the Drugs and cosmetic act 1940 and amendments, other directives from Drug Controller General of India, National Blood Policy, NACO guidelines on HIV screening and NABH guidelines. Blood is carefully screened for transfusion transmitted infections (HBsAg, HCV, HIV I& II- using CMIA technology along with RPR and malarial antigen testing). Stringent quality control practices include testing of a defined number of units of each product for the appropriate parameters. The facility is licensed by Drug controller General India."} /></p>
 
-        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-          The department has adopted Leukoreduction technology (Opti) to provide
-          Leukoreduced Red Cells.
-        </p>
+        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_344992" d={"The department has adopted Leukoreduction technology (Opti) to provide Leukoreduced Red Cells."} /></p>
 
-        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-          Red cell grouping, antibody screening, antihuman globulin test & cross
-          match are being done routinely using latest technique of gel
-          technology. We have facility for advanced tests (Identification of
-          antigen, antibody & rare blood groups)
-        </p>
+        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_2e253e" d={"Red cell grouping, antibody screening, antihuman globulin test & cross match are being done routinely using latest technique of gel technology. We have facility for advanced tests (Identification of antigen, antibody & rare blood groups)"} /></p>
 
-        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-          The Department provides round the clock service including platelet
-          apheresis and peripheral stem cell harvesting.
-        </p>
+        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_0e0c8e" d={"The Department provides round the clock service including platelet apheresis and peripheral stem cell harvesting."} /></p>
       </div>
     ),
     image: "/images/departments-images/blood_bank.jpg",
@@ -102,15 +64,7 @@ const sections = [
     subtitle: "Reduces chances of",
     subtitleHighlight: "heart attack:",
     content: (
-      <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-        It has been observed that increase in blood iron level increases the
-        chance of heart disease. Iron is involved in the oxidation of
-        cholesterol and this process is believed to be detrimental for the
-        arteries. Increases blood iron level favors this process of cholesterol
-        oxidation and thus leads to heart disease. Regular blood donation helps
-        in loosing iron on regular basis. It helps in reducing the chance of
-        heart attack to one third.
-      </p>
+      <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_a1168c" d={"It has been observed that increase in blood iron level increases the chance of heart disease. Iron is involved in the oxidation of cholesterol and this process is believed to be detrimental for the arteries. Increases blood iron level favors this process of cholesterol oxidation and thus leads to heart disease. Regular blood donation helps in loosing iron on regular basis. It helps in reducing the chance of heart attack to one third."} /></p>
     ),
     image: "/images/departments-images/reduces_heart_attack.jpg",
     imgAlt: "Medical checkup",
@@ -122,20 +76,8 @@ const sections = [
     subtitleHighlight: "cells:",
     content: (
       <div className="space-y-4">
-        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-          As the blood is withdrawn from the donors body there is decrease in
-          blood cells. To replenish it, immediately new cells are produced by
-          marrow and this way blood gets refreshed. Therefore donating blood
-          helps in stimulating generation of new blood cells.
-        </p>
-        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-          Apart from all these benefits a donor gets a mini blood test done
-          before donating blood. This includes Hematocrit i.e. Hb level test,
-          Blood pressure is measured, body weight is checked. After this blood
-          is collected it tested for 5 major diseases. Those are Hepatitis B,
-          Hepatitis C, HIV, Syphilis and malaria. Donor is informed if any of
-          these test found to be positive.
-        </p>
+        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_5f45b5" d={"As the blood is withdrawn from the donors body there is decrease in blood cells. To replenish it, immediately new cells are produced by marrow and this way blood gets refreshed. Therefore donating blood helps in stimulating generation of new blood cells."} /></p>
+        <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_527055" d={"Apart from all these benefits a donor gets a mini blood test done before donating blood. This includes Hematocrit i.e. Hb level test, Blood pressure is measured, body weight is checked. After this blood is collected it tested for 5 major diseases. Those are Hepatitis B, Hepatitis C, HIV, Syphilis and malaria. Donor is informed if any of these test found to be positive."} /></p>
       </div>
     ),
     image: "/images/departments-images/enhance_red_blood_cells.jpg",
@@ -147,13 +89,7 @@ const sections = [
     subtitle: "Blood",
     subtitleHighlight: "components:",
     content: (
-      <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium">
-        Thanks to advances in medical technology, blood can be separated into
-        its different components. Hence, one unit is used to prepare red blood
-        cells, platelet concentrate and plasma each of which can be given to
-        three different patients and therefore one unit of blood when separated
-        into component can save 3 lives.
-      </p>
+      <p className="text-gray-700 leading-relaxed text-sm lg:text-base text-justify font-medium"><T k="services-blood-bank_8822e6" d={"Thanks to advances in medical technology, blood can be separated into its different components. Hence, one unit is used to prepare red blood cells, platelet concentrate and plasma each of which can be given to three different patients and therefore one unit of blood when separated into component can save 3 lives."} /></p>
     ),
     image: "/images/departments-images/blood_components.jpg",
     imgAlt: "Patient giving blood",
@@ -218,7 +154,7 @@ export default function BloodBankPage() {
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-[300px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 font-sans md:h-[300px] md:py-0 lg:h-[320px]">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="services-blood-bank_555365"
             src="/images/banners/blood_bank_services.png"
             alt="Blood Bank"
             fill
@@ -230,9 +166,7 @@ export default function BloodBankPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6">
           <div className="animate-fade-in-up max-w-4xl">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight leading-[1.08]">
-              Blood Bank
-            </h1>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight leading-[1.08]"><T k="services-blood-bank_c39d7f" d={"Blood Bank"} /></h1>
             <nav
               className="flex items-center text-xs md:text-base text-white/90 font-bold"
               aria-label="Breadcrumb"
@@ -240,20 +174,14 @@ export default function BloodBankPage() {
               <Link
                 href="/"
                 className="hover:text-blue-300 transition-colors uppercase tracking-wider"
-              >
-                Home
-              </Link>
+              ><T k="services-blood-bank_70f8bb" d={"Home"} /></Link>
               <span className="mx-3 text-red-500 font-black">/</span>
               <Link
                 href="/services"
                 className="hover:text-blue-300 transition-colors uppercase tracking-wider"
-              >
-                Services
-              </Link>
+              ><T k="services-blood-bank_5cbd58" d={"Services"} /></Link>
               <span className="mx-3 text-red-500 font-black">/</span>
-              <span className="text-white uppercase tracking-wider">
-                Blood Bank
-              </span>
+              <span className="text-white uppercase tracking-wider"><T k="services-blood-bank_c39d7f_2" d={"Blood Bank"} /></span>
             </nav>
           </div>
         </div>
@@ -343,13 +271,8 @@ export default function BloodBankPage() {
       <section className="px-4 pb-16 sm:px-6 lg:px-10">
         <div className="relative mx-auto max-w-[1366px] overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-white px-5 py-12 text-center shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:px-8">
           <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#cf2e2e] via-[#284a91] to-[#0b1c43]" />
-          <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] mb-4">
-            Ready to save a life?
-          </h2>
-          <p className="text-gray-600 mb-8 text-base max-w-2xl mx-auto">
-            Donating blood is safe and simple, taking only about an hour. Call
-            our Blood Bank to schedule your donation.
-          </p>
+          <h2 className="text-2xl lg:text-3xl font-black text-[#0b1c43] mb-4"><T k="services-blood-bank_1aeeda" d={"Ready to save a life?"} /></h2>
+          <p className="text-gray-600 mb-8 text-base max-w-2xl mx-auto"><T k="services-blood-bank_16d079" d={"Donating blood is safe and simple, taking only about an hour. Call our Blood Bank to schedule your donation."} /></p>
           <div className="inline-flex flex-col items-center gap-5 rounded-2xl border border-slate-100 bg-slate-50/70 p-5 sm:flex-row md:p-6">
             <div className="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center flex-shrink-0">
               <svg
@@ -367,15 +290,11 @@ export default function BloodBankPage() {
               </svg>
             </div>
             <div className="text-center sm:text-left">
-              <p className="text-sm text-gray-500 font-bold uppercase tracking-[0.1em] mb-1">
-                Blood Bank Team
-              </p>
+              <p className="text-sm text-gray-500 font-bold uppercase tracking-[0.1em] mb-1"><T k="services-blood-bank_9a34e4" d={"Blood Bank Team"} /></p>
               <a
                 href="tel:+917800001895"
                 className="text-xl md:text-2xl font-black text-red-600 hover:text-red-700 transition-colors"
-              >
-                +91-7800001895 / 96
-              </a>
+              ><T k="services-blood-bank_6dff38" d={"+91-7800001895 / 96"} /></a>
             </div>
           </div>
         </div>

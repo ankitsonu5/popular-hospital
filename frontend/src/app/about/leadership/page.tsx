@@ -19,6 +19,7 @@ const leaders = [
 
 
 import { generatePageMetadata } from "@/lib/seoApi";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/about/leadership", {
@@ -38,7 +39,7 @@ export default function LeadershipPage() {
       {/* Hero Section */}
       <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="about-leadership_c1e652"
             src="/images/banners/about_us_leadership.jpg"
             alt="Leadership Banner"
             fill
@@ -48,27 +49,16 @@ export default function LeadershipPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/60 via-[#0b1c43]/40 to-[#0b1c43]" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl 2xl:max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl xl:text-2xl 2xl:text-5xl font-bold font-heading mb-4 text-white uppercase tracking-tight">
-            Leadership Team
-          </h1>
-          <p className="text-lg md:text-xl xl:text-base 2xl:text-xl text-blue-100 leading-relaxed max-w-2xl 2xl:max-w-4xl mx-auto font-light">
-            Meet the visionaries guiding Popular Hospital towards a healthier
-            future.
-          </p>
+          <h1 className="text-4xl md:text-5xl xl:text-2xl 2xl:text-5xl font-bold font-heading mb-4 text-white uppercase tracking-tight"><T k="about-leadership_b847b3" d={"Leadership Team"} /></h1>
+          <p className="text-lg md:text-xl xl:text-base 2xl:text-xl text-blue-100 leading-relaxed max-w-2xl 2xl:max-w-4xl mx-auto font-light"><T k="about-leadership_52eba9" d={"Meet the visionaries guiding Popular Hospital towards a healthier future."} /></p>
         </div>
       </div>
 
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 py-16 xl:py-12 2xl:py-24">
         {/* Intro */}
         <div className="text-center max-w-3xl 2xl:max-w-5xl mx-auto mb-20 xl:mb-12 2xl:mb-24">
-          <h2 className="text-3xl font-bold text-[#0b1c43] mb-4 font-heading xl:text-2xl 2xl:text-4xl">
-            Guiding with Purpose
-          </h2>
-          <p className="text-gray-600 leading-relaxed text-lg xl:text-[15px] 2xl:text-xl">
-            Our leadership team includes experienced experts from both medical
-            and management fields, all working together with a shared focus on
-            providing high-quality treatment and putting patients first.
-          </p>
+          <h2 className="text-3xl font-bold text-[#0b1c43] mb-4 font-heading xl:text-2xl 2xl:text-4xl"><T k="about-leadership_9e3969" d={"Guiding with Purpose"} /></h2>
+          <p className="text-gray-600 leading-relaxed text-lg xl:text-[15px] 2xl:text-xl"><T k="about-leadership_d60d46" d={"Our leadership team includes experienced experts from both medical and management fields, all working together with a shared focus on providing high-quality treatment and putting patients first."} /></p>
         </div>
 
         {/* Leaders Grid */}
@@ -108,12 +98,8 @@ export default function LeadershipPage() {
 
             <div className="relative z-10 w-full flex flex-col items-center">
               <div className="w-16 h-1 bg-[#E85222] rounded-full mb-8"></div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-bold text-white leading-tight font-heading mb-6">
-                "Our every employee is a leader of our hospital."
-              </h2>
-              <p className="text-blue-200 text-sm xl:text-xs 2xl:text-sm tracking-[0.2em] uppercase font-bold">
-                - The Popular Hospital Philosophy
-              </p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-2xl 2xl:text-5xl font-bold text-white leading-tight font-heading mb-6"><T k="about-leadership_234968" d={"\"Our every employee is a leader of our hospital.\""} /></h2>
+              <p className="text-blue-200 text-sm xl:text-xs 2xl:text-sm tracking-[0.2em] uppercase font-bold"><T k="about-leadership_7694f8" d={"- The Popular Hospital Philosophy"} /></p>
             </div>
 
             {/* Decorative Pattern */}

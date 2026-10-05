@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import DoctorSlider from "@/components/DoctorSlider";
 import GetCallBackButton from "@/components/GetCallBackButton";
+import { CImage, T } from "@/components/content/Editable";
 
 /* ─── Data ─── */
 
@@ -166,7 +167,7 @@ export default function GynaecologyClient({
       {/* ═══════ HERO (UNCHANGED) ═══════ */}
       <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="departments-gynaecology_1de278"
             src="/images/banners/obstetrics_banner.png"
             alt="Obstetrics & Gynaecology Banner"
             fill
@@ -177,25 +178,17 @@ export default function GynaecologyClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-100 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide">
-              Centre of Excellence for Women
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
-              Department of Obstetrics & Gynaecology — Varanasi
-            </h1>
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-100 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-gynaecology_b53910" d={"Centre of Excellence for Women"} /></span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-gynaecology_c242d7" d={"Department of Obstetrics & Gynaecology — Varanasi"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
                 className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Book Appointment
-              </Link>
+              ><T k="departments-gynaecology_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Obstetrics & Gynaecology"
                 className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
-              >
-                Get a Call Back
-              </GetCallBackButton>
+              ><T k="departments-gynaecology_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
@@ -208,57 +201,29 @@ export default function GynaecologyClient({
             {/* Left Content */}
             <div className="lg:col-span-8 space-y-8">
               <div className="space-y-4">
-                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
-                  Popular Hospital is widely recognized as the <strong>best Obstetrics & Gynaecology hospital in Varanasi</strong>. We are committed to delivering world-class healthcare and advanced medical facilities to patients across <strong>Purvanchal</strong> and <strong>Uttar Pradesh</strong>.
+                <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-gynaecology_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-gynaecology_f53cf8" d={"best Obstetrics & Gynaecology hospital in Varanasi"} /></strong><T k="departments-gynaecology_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-gynaecology_200859" d={"Purvanchal"} /></strong><T k="departments-gynaecology_4f4133" d={" and "} /><strong><T k="departments-gynaecology_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
-                <span className="inline-block text-[#1e3a8a] font-bold tracking-widest text-xs uppercase">
-                  Introduction
-                </span>
+                <span className="inline-block text-[#1e3a8a] font-bold tracking-widest text-xs uppercase"><T k="departments-gynaecology_2473e9" d={"Introduction"} /></span>
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-10 rounded-full bg-[#1e3a8a] inline-block" />
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Department of{" "}
-                    <span className="text-[#1e3a8a]">
-                      Obstetrics &amp; Gynaecology
-                    </span>
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-gynaecology_4c5284" d={"Department of"} />{" "}
+                    <span className="text-[#1e3a8a]"><T k="departments-gynaecology_679ff7" d={"Obstetrics & Gynaecology"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
               </div>
 
               <div className="space-y-6">
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The Obstetrics and Gynaecology Department of Popular Hospital
-                  offers world-level women healthcare services involving unborn
-                  children and pregnant women. Popular Hospital is also known
-                  for its efficient management of other related diseases.
-                  Popular provides expert gynaecological and obstetrical
-                  treatment along with specialist services for specific disease
-                  groups.
-                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-gynaecology_e55731" d={"The Obstetrics and Gynaecology Department of Popular Hospital offers world-level women healthcare services involving unborn children and pregnant women. Popular Hospital is also known for its efficient management of other related diseases. Popular provides expert gynaecological and obstetrical treatment along with specialist services for specific disease groups."} /></p>
 
                 <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/40 to-blue-50/10 rounded-r-3xl my-8 shadow-sm">
                   <span className="absolute -top-3 -left-3 text-blue-200 text-6xl font-serif pointer-events-none">
                     “
                   </span>
-                  <p className="text-gray-700 leading-relaxed text-[15px] font-semibold italic relative z-10">
-                    Different age group females face different health issues,
-                    which are appropriately assessed and addressed with utmost
-                    care. Popular ensures total safety and comfort of female
-                    patients as well as their children. A well-trained team of
-                    Doctors from Popular performs procedures that are completely
-                    safe and well tested.
-                  </p>
+                  <p className="text-gray-700 leading-relaxed text-[15px] font-semibold italic relative z-10"><T k="departments-gynaecology_9fc651" d={"Different age group females face different health issues, which are appropriately assessed and addressed with utmost care. Popular ensures total safety and comfort of female patients as well as their children. A well-trained team of Doctors from Popular performs procedures that are completely safe and well tested."} /></p>
                 </div>
 
-                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium">
-                  The Dept. of Obs. & Gynae offers a comprehensive range of
-                  inpatient and outpatient services spanning the needs of women
-                  from their teen years, through pregnancy to menopause and
-                  beyond. Routine screening and check-ups including screening
-                  for various cancers as well as diagnostic workups for
-                  specialized problems are available.
-                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-[15px] font-medium"><T k="departments-gynaecology_5b5e67" d={"The Dept. of Obs. & Gynae offers a comprehensive range of inpatient and outpatient services spanning the needs of women from their teen years, through pregnancy to menopause and beyond. Routine screening and check-ups including screening for various cancers as well as diagnostic workups for specialized problems are available."} /></p>
               </div>
             </div>
 
@@ -283,14 +248,11 @@ export default function GynaecologyClient({
             {/* Left — Facilities List */}
             <div className="lg:col-span-3 flex flex-col justify-center space-y-8">
               <div className="space-y-3">
-                <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-                  What We Offer
-                </span>
+                <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-gynaecology_3c5879" d={"What We Offer"} /></span>
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-8 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 inline-block" />
-                  <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Department{" "}
-                    <span className="text-[#1e3a8a]">Facilities</span>
+                  <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-gynaecology_db4010" d={"Department"} />{" "}
+                    <span className="text-[#1e3a8a]"><T k="departments-gynaecology_9d0a83" d={"Facilities"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -325,7 +287,7 @@ export default function GynaecologyClient({
             {/* Right — Image (Optimized Size) */}
             <div className="lg:col-span-2 flex items-center justify-center lg:justify-end">
               <div className="relative w-full max-w-[340px] h-[340px] md:h-[400px] lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white hover:border-blue-100 transition-colors duration-500 group lg:self-center">
-                <Image
+                <CImage k="departments-gynaecology_bd807c"
                   src="/images/departments-images/obstetrics_and_gynaecology.jpeg"
                   alt="Gynaecology Facility"
                   fill
@@ -333,9 +295,7 @@ export default function GynaecologyClient({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/45 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100">
-                    Comprehensive Women's Care
-                  </span>
+                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100"><T k="departments-gynaecology_b0fce5" d={"Comprehensive Women's Care"} /></span>
                 </div>
               </div>
             </div>
@@ -350,7 +310,7 @@ export default function GynaecologyClient({
             {/* Left — Image (Optimized Size) */}
             <div className="lg:col-span-2 flex items-center justify-center lg:justify-start">
               <div className="relative w-full max-w-[340px] h-[260px] sm:h-[300px] lg:h-[340px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50 hover:border-blue-50 transition-colors duration-500 group lg:self-center">
-                <Image
+                <CImage k="departments-gynaecology_9bd4ae"
                   src="/images/departments-images/obstetrics_care.jpg"
                   alt="Obstetrics Care"
                   fill
@@ -358,9 +318,7 @@ export default function GynaecologyClient({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/45 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100">
-                    24/7 Maternity Support
-                  </span>
+                  <span className="inline-block bg-white/95 backdrop-blur-sm text-[#0b1c43] text-xs font-extrabold px-4 py-2 rounded-full shadow border border-blue-100"><T k="departments-gynaecology_f96d2e" d={"24/7 Maternity Support"} /></span>
                 </div>
               </div>
             </div>
@@ -368,13 +326,10 @@ export default function GynaecologyClient({
             {/* Right — Obstetrics List */}
             <div className="lg:col-span-3 flex flex-col justify-center space-y-8">
               <div className="space-y-3">
-                <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-                  Maternity Services
-                </span>
+                <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-gynaecology_6e0d38" d={"Maternity Services"} /></span>
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-8 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 inline-block" />
-                  <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-                    Our <span className="text-[#1e3a8a]">Obstetrics Care</span>
+                  <h2 className="text-3xl font-extrabold text-[#0b1c43] font-heading tracking-tight"><T k="departments-gynaecology_bb463f" d={"Our "} /><span className="text-[#1e3a8a]"><T k="departments-gynaecology_471666" d={"Obstetrics Care"} /></span>
                   </h2>
                 </div>
                 <div className="h-[2px] w-full bg-gradient-to-r from-blue-200 to-transparent" />
@@ -405,18 +360,15 @@ export default function GynaecologyClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           {/* Heading */}
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block">
-              Surgical Expertise
-            </span>
+            <span className="text-[#1e3a8a] font-bold tracking-widest text-xs uppercase block"><T k="departments-gynaecology_b26d52" d={"Surgical Expertise"} /></span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0b1c43] font-heading tracking-tight">
-              <span className="text-[#1e3a8a]">Gynaecology</span> Procedures
-            </h2>
+              <span className="text-[#1e3a8a]"><T k="departments-gynaecology_5692be" d={"Gynaecology"} /></span><T k="departments-gynaecology_45659b" d={" Procedures"} /></h2>
             <div className="h-[2px] w-24 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto" />
           </div>
 
           {/* Wide Banner Image (Preserved Style) */}
           <div className="relative w-full md:w-2/3 mx-auto h-56 md:h-72 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white mb-12 group">
-            <Image
+            <CImage k="departments-gynaecology_6c8265"
               src="/images/departments-images/gynaecology_expertise_surgery.png"
               alt="Gynaecology Expertise"
               fill

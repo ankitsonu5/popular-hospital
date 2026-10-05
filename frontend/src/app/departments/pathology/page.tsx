@@ -5,6 +5,7 @@ import Link from "next/link";
 import DoctorSlider from "@/components/DoctorSlider";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
+import { CImage, T } from "@/components/content/Editable";
 const doctors: never[] = []; // No doctors for now
 
 export default function PathologyPage() {
@@ -26,7 +27,7 @@ export default function PathologyPage() {
         <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#004d61] overflow-hidden flex items-center py-10 md:py-12">
           {/* Background Image Overlay */}
           <div className="absolute inset-0 z-0">
-            <Image
+            <CImage k="departments-pathology_0879b3"
               src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=2000"
               alt="Laboratory Research"
               fill
@@ -38,18 +39,9 @@ export default function PathologyPage() {
 
           <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
             <div className="animate-fade-in-up max-w-3xl">
-              <span className="inline-block py-1 px-3 rounded-full bg-teal-500/20 text-teal-200 text-sm font-semibold mb-6 border border-teal-400/30 backdrop-blur-sm uppercase tracking-widest">
-                Department of Pathology
-              </span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading">
-                Laboratory & <br />
-                Medical Research
-              </h1>
-              <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
-                Advanced diagnostic solutions powered by cutting-edge technology
-                and expert pathologists. We deliver precise results for better
-                patient outcomes.
-              </p>
+              <span className="inline-block py-1 px-3 rounded-full bg-teal-500/20 text-teal-200 text-sm font-semibold mb-6 border border-teal-400/30 backdrop-blur-sm uppercase tracking-widest"><T k="departments-pathology_954a65" d={"Department of Pathology"} /></span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-pathology_b04bbe" d={"Laboratory & "} /><br /><T k="departments-pathology_b5368e" d={"Medical Research"} /></h1>
+              <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium"><T k="departments-pathology_90542f" d={"Advanced diagnostic solutions powered by cutting-edge technology and expert pathologists. We deliver precise results for better patient outcomes."} /></p>
               <div className="flex flex-wrap gap-4">
                 <button className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-teal-500/30 flex items-center gap-2 uppercase text-sm tracking-wide">
                   <svg
@@ -64,9 +56,7 @@ export default function PathologyPage() {
                       strokeWidth={2}
                       d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
-                  </svg>
-                  Book a Test
-                </button>
+                  </svg><T k="departments-pathology_83ca2a" d={"Book a Test"} /></button>
                 <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide">
                   <svg
                     className="w-5 h-5"
@@ -80,9 +70,7 @@ export default function PathologyPage() {
                       strokeWidth={2}
                       d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
-                  </svg>
-                  View Reports
-                </button>
+                  </svg><T k="departments-pathology_d8ec6d" d={"View Reports"} /></button>
               </div>
             </div>
           </div>
@@ -172,22 +160,14 @@ export default function PathologyPage() {
                       strokeWidth={3}
                       d="M13 10V3L4 14h7v7l9-11h-7z"
                     />
-                  </svg>
-                  BETTER FOR YOU
-                </span>
+                  </svg><T k="departments-pathology_d82d6e" d={"BETTER FOR YOU"} /></span>
 
-                <h2 className="text-4xl md:text-5xl font-bold text-[#004d61] mb-6 font-heading leading-tight uppercase tracking-tight">
-                  Experiment With <br />
-                  <span>Best Lab Product</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#004d61] mb-6 font-heading leading-tight uppercase tracking-tight"><T k="departments-pathology_a14e22" d={"Experiment With "} /><br />
+                  <span><T k="departments-pathology_8ea760" d={"Best Lab Product"} /></span>
                 </h2>
 
-                <h3 className="text-xl font-bold text-[#334155] mb-3 uppercase tracking-wide">
-                  Basic Health Check-up
-                </h3>
-                <p className="text-gray-500 mb-8 text-sm leading-relaxed max-w-md font-medium">
-                  Our laboratory offers comprehensive health check-up packages
-                  designed for early detection and prevention.
-                </p>
+                <h3 className="text-xl font-bold text-[#334155] mb-3 uppercase tracking-wide"><T k="departments-pathology_752b37" d={"Basic Health Check-up"} /></h3>
+                <p className="text-gray-500 mb-8 text-sm leading-relaxed max-w-md font-medium"><T k="departments-pathology_71741c" d={"Our laboratory offers comprehensive health check-up packages designed for early detection and prevention."} /></p>
 
                 <div className="space-y-4 mb-4 w-full">
                   {[
@@ -223,7 +203,7 @@ export default function PathologyPage() {
               {/* Center Column: Image (4 cols) */}
               <div className="lg:col-span-4 relative flex justify-center py-10">
                 <div className="relative w-full aspect-[3/4] max-w-[400px]">
-                  <Image
+                  <CImage k="departments-pathology_4669a3"
                     src="/images/microscope.png"
                     alt="Best Lab Product Microscope"
                     fill
@@ -267,10 +247,7 @@ export default function PathologyPage() {
                       <h4 className="text-[#004d61] font-bold text-lg mb-1 font-heading uppercase tracking-tight">
                         {feature.title}
                       </h4>
-                      <p className="text-gray-500 text-xs leading-relaxed max-w-[200px] font-medium">
-                        Delivering accurate results with maximum efficiency and
-                        precision.
-                      </p>
+                      <p className="text-gray-500 text-xs leading-relaxed max-w-[200px] font-medium"><T k="departments-pathology_58139d" d={"Delivering accurate results with maximum efficiency and precision."} /></p>
                       <div className="h-px bg-gray-100 w-full mt-5 group-hover:bg-teal-500 transition-colors"></div>
                     </div>
                   </div>
@@ -291,16 +268,9 @@ export default function PathologyPage() {
         <section className="bg-[#00A99D] py-24 text-white">
           <div className="mx-auto w-full max-w-[1366px] px-4">
             <div className="text-center mb-16 max-w-2xl mx-auto">
-              <span className="text-teal-200 font-bold tracking-widest text-sm uppercase mb-3 block">
-                Our Services
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-white font-heading mb-6 uppercase tracking-tight">
-                High Quality Test Services
-              </h2>
-              <p className="text-teal-100 text-lg opacity-90 font-medium">
-                Comprehensive diagnostic services covering everything from
-                routine blood work to advanced genetic testing.
-              </p>
+              <span className="text-teal-200 font-bold tracking-widest text-sm uppercase mb-3 block"><T k="departments-pathology_7a7725" d={"Our Services"} /></span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white font-heading mb-6 uppercase tracking-tight"><T k="departments-pathology_1b588a" d={"High Quality Test Services"} /></h2>
+              <p className="text-teal-100 text-lg opacity-90 font-medium"><T k="departments-pathology_271b98" d={"Comprehensive diagnostic services covering everything from routine blood work to advanced genetic testing."} /></p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -343,9 +313,7 @@ export default function PathologyPage() {
                     <h4 className="text-xl font-bold mb-1 group-hover:translate-x-1 transition-transform font-heading uppercase tracking-tight">
                       {service.title}
                     </h4>
-                    <p className="text-teal-100 text-sm opacity-80 font-bold">
-                      Advanced comprehensive analysis
-                    </p>
+                    <p className="text-teal-100 text-sm opacity-80 font-bold"><T k="departments-pathology_3a16e5" d={"Advanced comprehensive analysis"} /></p>
                   </div>
                   <svg
                     className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1"

@@ -9,10 +9,12 @@ import {
   fetchSpecialities,
   fetchHeroBanners,
   fetchPatientStories,
+  fetchUpdates,
 } from "@/lib/api";
 
-// Always fetch fresh data so new banners appear immediately after admin upload
-export const revalidate = 60;
+// Always fetch fresh data so new banners and updates appear immediately after admin upload
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import { generatePageMetadata } from "@/lib/seoApi";
 
@@ -35,6 +37,7 @@ export default async function HomePage() {
     specialitiesData,
     bannersData,
     patientStoriesData,
+    updatesData,
   ] = await Promise.all([
     fetchNews(),
     fetchBranches(),
@@ -42,6 +45,7 @@ export default async function HomePage() {
     fetchSpecialities(),
     fetchHeroBanners(),
     fetchPatientStories(),
+    fetchUpdates(),
   ]);
 
   return (
@@ -54,6 +58,7 @@ export default async function HomePage() {
         specialities={specialitiesData}
         heroBanners={bannersData}
         patientStories={patientStoriesData.slice(0, 7)}
+        updates={updatesData}
       />
     </>
   );

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -230,6 +230,58 @@ function BlogActionForm() {
   const [copied, setCopied] = useState(false);
   const [editorDevice, setEditorDevice] = useState<EditorDevice>("desktop");
   const [editorMode, setEditorMode] = useState<EditorMode>("edit");
+
+  // Dynamic Categories State
+  const [categoriesList, setCategoriesList] = useState<string[]>(CATEGORIES);
+  const [isAddingCategory, setIsAddingCategory] = useState(false);
+  const [newCatName, setNewCatName] = useState("");
+  const [isSavingCategory, setIsSavingCategory] = useState(false);
+
+  useEffect(() => {
+    fetch("/api-backend/blogs/categories")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const names = Array.from(
+            new Set([...CATEGORIES, ...data.map((c: any) => c.name)]),
+          ).sort();
+          setCategoriesList(names);
+        }
+      })
+      .catch((err) =>
+        console.error("Failed to load categories in editor:", err),
+      );
+  }, []);
+
+  const handleQuickAddCategory = async () => {
+    if (!newCatName.trim()) return;
+    setIsSavingCategory(true);
+    try {
+      const res = await fetch("/api-backend/cms/blogs/categories", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: newCatName.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || "Failed to add category");
+        return;
+      }
+      setCategoriesList((prev) =>
+        Array.from(new Set([data.name, ...prev])).sort(),
+      );
+      setFormData((prev) => ({ ...prev, category: data.name }));
+      setNewCatName("");
+      setIsAddingCategory(false);
+    } catch (err: any) {
+      alert(err.message || "Failed to add category");
+    } finally {
+      setIsSavingCategory(false);
+    }
+  };
 
   const handleCopyLink = () => {
     const url = `https://www.popularhospital.in/blog/${formData.slug}`;
@@ -1059,19 +1111,56 @@ function BlogActionForm() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase mb-2">
-                  Category
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-xs font-bold text-gray-400 uppercase">
+                    Category
+                  </label>
+                  {!formData.isUncategorized && (
+                    <button
+                      type="button"
+                      onClick={() => setIsAddingCategory(!isAddingCategory)}
+                      className="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors"
+                    >
+                      {isAddingCategory ? "Cancel" : "+ New Category"}
+                    </button>
+                  )}
+                </div>
+
+                {isAddingCategory && (
+                  <div className="mb-3 p-3 bg-indigo-50 border border-indigo-100 rounded-xl space-y-2">
+                    <p className="text-[11px] font-bold text-indigo-900 uppercase tracking-wide">
+                      Add New Category
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        placeholder="Enter category name..."
+                        value={newCatName}
+                        onChange={(e) => setNewCatName(e.target.value)}
+                        className="flex-1 px-3 py-2 text-xs font-semibold bg-white border border-indigo-200 rounded-lg outline-none focus:border-indigo-600"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleQuickAddCategory}
+                        disabled={isSavingCategory || !newCatName.trim()}
+                        className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition-all disabled:opacity-50"
+                      >
+                        {isSavingCategory ? "Adding..." : "Add"}
+                      </button>
+                    </div>
+                  </div>
+                )}
+
                 <select
                   disabled={formData.isUncategorized}
                   value={formData.category}
                   onChange={(e) =>
                     setFormData({ ...formData, category: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold"
+                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold cursor-pointer"
                 >
                   <option value="">Select Speciality</option>
-                  {CATEGORIES.map((c) => (
+                  {categoriesList.map((c) => (
                     <option key={c} value={c}>
                       {c}
                     </option>

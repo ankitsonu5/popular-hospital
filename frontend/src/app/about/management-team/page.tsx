@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { generatePageMetadata } from "@/lib/seoApi";
 import { managementTeam } from "./profileData";
+import { CImage, T } from "@/components/content/Editable";
 
 export async function generateMetadata() {
   return generatePageMetadata("/about/management-team", {
@@ -20,7 +21,7 @@ export default function ManagementTeamPage() {
       {/* Hero Header */}
       <div className="relative bg-[#0b1c43] text-white overflow-hidden min-h-[180px] md:min-h-[220px] flex flex-col justify-center py-10">
         <div className="absolute inset-0 z-0">
-          <Image
+          <CImage k="about-management-team_6ed91b"
             src="/images/banners/about_us_cmd_md.jpg"
             alt="Management Team Banner"
             fill
@@ -30,26 +31,16 @@ export default function ManagementTeamPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1c43]/70 via-[#0b1c43]/40 to-[#0b1c43]/70" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-[#E85222] font-bold text-xs uppercase tracking-[0.3em] mb-3 block">
-            Leadership &amp; Growth
-          </span>
-          <h1 className="text-3xl md:text-5xl xl:text-4xl font-black font-heading mb-4 text-white uppercase tracking-tight">
-            Management Team
-          </h1>
+          <span className="text-[#E85222] font-bold text-xs uppercase tracking-[0.3em] mb-3 block"><T k="about-management-team_50c19c" d={"Leadership & Growth"} /></span>
+          <h1 className="text-3xl md:text-5xl xl:text-4xl font-black font-heading mb-4 text-white uppercase tracking-tight"><T k="about-management-team_e5af33" d={"Management Team"} /></h1>
           <div className="w-12 h-1 bg-[#E85222] mx-auto rounded-full"></div>
         </div>
       </div>
 
       <div className="mx-auto w-full max-w-[1366px] xl:max-w-5xl min-[1920px]:max-w-[1366px] px-4 py-16 lg:py-24 xl:py-12">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold text-[#0b1c43] mb-4 font-heading xl:text-2xl 2xl:text-4xl">
-            Leading with Strategy
-          </h2>
-          <p className="text-gray-600 leading-relaxed text-lg xl:text-[15px] 2xl:text-xl">
-            Our management team brings together healthcare strategy, operational
-            discipline and technology leadership to build institutions that serve
-            patients better, for generations.
-          </p>
+          <h2 className="text-3xl font-bold text-[#0b1c43] mb-4 font-heading xl:text-2xl 2xl:text-4xl"><T k="about-management-team_161a0c" d={"Leading with Strategy"} /></h2>
+          <p className="text-gray-600 leading-relaxed text-lg xl:text-[15px] 2xl:text-xl"><T k="about-management-team_6fb63d" d={"Our management team brings together healthcare strategy, operational discipline and technology leadership to build institutions that serve patients better, for generations."} /></p>
         </div>
 
         {/* Profile Thumbnails */}
@@ -80,9 +71,7 @@ export default function ManagementTeamPage() {
                 <p className="text-gray-500 text-[11px] uppercase tracking-wide mb-4">
                   {member.org}
                 </p>
-                <span className="inline-flex items-center justify-center gap-1.5 text-[13px] font-bold text-[#1e5eb2] group-hover:text-[#E85222] transition-colors">
-                  View Full Profile
-                  <svg
+                <span className="inline-flex items-center justify-center gap-1.5 text-[13px] font-bold text-[#1e5eb2] group-hover:text-[#E85222] transition-colors"><T k="about-management-team_41880f" d={"View Full Profile"} /><svg
                     className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"

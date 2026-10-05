@@ -46,6 +46,8 @@ import departmentGalleryRouter from "./routes/departmentGallery.js";
 import seoRouter from "./routes/seoRoutes.js";
 import { getActivePopup } from "./controllers/popupController.js";
 import { getPublicSchema } from "./controllers/schemaContentController.js";
+import { getPublicNavMenus } from "./controllers/navMenuController.js";
+import { getPublicPageContent, getAllPublicPageContent } from "./controllers/pageContentController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -124,6 +126,11 @@ app.use("/api/callback-requests", callbackRequestsRouter);
 app.use("/api/seo", seoRouter);
 app.get("/api/popup", getActivePopup);
 app.get("/api/schemas/:pageKey", getPublicSchema);
+// Nav Menu (public — header ke liye)
+app.get("/api/nav-menus", getPublicNavMenus);
+// Page Content (public — pages ke liye)
+app.get("/api/page-content", getAllPublicPageContent);
+app.get("/api/page-content/:pageKey", getPublicPageContent);
 
 // Serve uploads (static files)
 app.use(
