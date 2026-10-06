@@ -81,7 +81,7 @@ export default function LeadershipPage() {
                     src={leader.image}
                     alt={leader.name}
                     fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-top"
                     unoptimized
                   />
                 </div>
