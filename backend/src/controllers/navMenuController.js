@@ -48,6 +48,7 @@ const DEFAULT_MENUS = [
       { label: "Our Vision", href: "/about/our-vision-2030", hidden: false },
       { label: "Our Mission", href: "/about/mission", hidden: false },
       { label: "From Chairman's Desk", href: "/about/chairman-desk", hidden: false },
+      { label: "From Vice Chairman's Desk", href: "/about/vice-chairman-desk", hidden: false },
       { label: "From MD's Desk", href: "/about/md-desk", hidden: false },
       { label: "Leadership Team", href: "/about/leadership", hidden: false },
       { label: "Management Team", href: "/about/management-team", hidden: false },
