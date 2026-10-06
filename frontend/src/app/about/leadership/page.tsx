@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const leaders = [
   {
@@ -6,12 +7,21 @@ const leaders = [
     role: "Founder & Chairman",
     image: "/images/dr_ak_kaushik.png",
     bio: "A visionary leader with over 40 years of experience in healthcare. Dr. Kaushik established Popular Hospital with the dream of providing world-class medical care to the community.",
+    href: "/about/chairman-desk",
   },
   {
     name: "Dr. Kiran Kaushik",
     role: "Managing Director",
     image: "/images/leadership/kiran.png",
     bio: "Dr. Kiran Kaushik brings clinical excellence and strategic leadership, focusing on advancing healthcare standards and academic growth.",
+    href: "/about/md-desk",
+  },
+  {
+    name: "Dr. Mohit Kaushik",
+    role: "Vice Chairman",
+    image: "/images/departments_doctor/dr_mohit_kaushik.png",
+    bio: "Dr. Mohit Kaushik brings together clinical medicine and healthcare transformation, with a vision to build an environment of clinical excellence and responsible adoption of technology.",
+    href: "/about/vice-chairman-desk",
   },
 ];
 
@@ -62,35 +72,51 @@ export default function LeadershipPage() {
         </div>
 
         {/* Leaders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-6 2xl:gap-10 max-w-3xl mx-auto">
-          {leaders.map((leader, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col p-4 pb-0"
-            >
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-50">
-                <Image
-                  src={leader.image}
-                  alt={leader.name}
-                  fill
-                  className="object-cover object-top"
-                  unoptimized
-                />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-6 2xl:gap-10 max-w-5xl mx-auto">
+          {leaders.map((leader, index) => {
+            const CardContent = (
+              <>
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-50 group">
+                  <Image
+                    src={leader.image}
+                    alt={leader.name}
+                    fill
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    unoptimized
+                  />
+                </div>
+                <div className="py-5 text-center relative bg-white flex-1 flex flex-col justify-end">
+                  {/* Name & Role */}
+                  <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading uppercase tracking-tight xl:text-lg 2xl:text-2xl group-hover:text-[#E85222] transition-colors">
+                    {leader.name}
+                  </h3>
+                  <p className="text-gray-500 text-[10px] 2xl:text-xs font-bold uppercase tracking-widest">
+                    {leader.role}
+                  </p>
+                </div>
+              </>
+            );
+
+            return leader.href ? (
+              <Link
+                href={leader.href}
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col p-4 pb-0 transition-all hover:shadow-lg cursor-pointer group"
+              >
+                {CardContent}
+              </Link>
+            ) : (
+              <div
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col p-4 pb-0 group"
+              >
+                {CardContent}
               </div>
-              <div className="py-5 text-center relative bg-white flex-1 flex flex-col justify-end">
-                {/* Name & Role */}
-                <h3 className="text-xl font-bold text-[#0b1c43] mb-1 font-heading uppercase tracking-tight xl:text-lg 2xl:text-2xl">
-                  {leader.name}
-                </h3>
-                <p className="text-gray-500 text-[10px] 2xl:text-xs font-bold uppercase tracking-widest">
-                  {leader.role}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
 
           {/* Quote Box */}
-          <div className="lg:col-span-2 bg-[#0b1c43] rounded-2xl overflow-hidden shadow-sm relative flex flex-col items-center justify-center p-12 xl:p-8 2xl:p-16 text-center h-[100%] aspect-[auto] lg:aspect-[auto] md:col-span-2 mt-8 md:mt-0">
+          <div className="lg:col-span-3 bg-[#0b1c43] rounded-2xl overflow-hidden shadow-sm relative flex flex-col items-center justify-center p-12 xl:p-8 2xl:p-16 text-center h-[100%] aspect-[auto] lg:aspect-[auto] md:col-span-3 mt-8 md:mt-0">
             {/* Large Background Quote Mark */}
             <span className="absolute -top-6 -left-2 text-[200px] text-white/5 font-serif leading-none select-none">
               "
