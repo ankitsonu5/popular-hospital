@@ -40,6 +40,14 @@ const toItems = (list, group) =>
 // Default menu structure (Header.tsx se match karta hai)
 const DEFAULT_MENUS = [
   {
+    menuKey: "home",
+    label: "Home",
+    hidden: false,
+    items: [
+      { label: "Home Page", href: "/", hidden: false }
+    ],
+  },
+  {
     menuKey: "about-us",
     label: "About Us",
     hidden: false,
@@ -94,6 +102,14 @@ const DEFAULT_MENUS = [
       { label: "Pathological Services", href: "/services/pathology", hidden: false },
       { label: "Radiological Services", href: "/services/radiology", hidden: false },
       { label: "Home Care Services", href: "/services/home-care", hidden: false },
+    ],
+  },
+  {
+    menuKey: "careers",
+    label: "Careers",
+    hidden: false,
+    items: [
+      { label: "Careers", href: "/careers", hidden: false }
     ],
   },
   {

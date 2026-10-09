@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-05T06:40:11.798Z",
+ "generatedAt": "2026-10-09T05:52:47.247Z",
  "pages": [
   {
    "pageKey": "home",
@@ -31,39 +31,69 @@
      "items": [
       {
        "key": "home_c76d18",
-       "type": "text",
-       "label": "Text 1",
+       "type": "link",
+       "label": "Button / Link 1",
        "default": "Updates"
       },
       {
-       "key": "home_fb91e2",
+       "key": "home_aaf691",
+       "type": "text",
+       "label": "Text 1",
+       "default": "Popular Hospital Varanasi — Delivering Excellence in Healthcare."
+      },
+      {
+       "key": "home_2997a7",
        "type": "text",
        "label": "Text 2",
-       "default": "Update"
-      },
-      {
-       "key": "home_6f0d92",
-       "type": "text",
-       "label": "Text 3",
-       "default": "Welcome to Popular Hospital Varanasi — Delivering Excellence in Healthcare."
-      },
-      {
-       "key": "home_6257fc",
-       "type": "text",
-       "label": "Text 4",
-       "default": "Cashless facility available for CGHS, ECHS, Ayushman Bharat & major health insurances."
-      },
-      {
-       "key": "home_b1ef98",
-       "type": "text",
-       "label": "Text 5",
-       "default": "Emergency & Trauma Center is fully operational 24/7. Call: +91-9519999280"
+       "default": "(Details →)"
       }
      ]
     },
     {
      "key": "s3",
-     "label": "Section 3 — Trusted care, proven outcomes",
+     "label": "Section 3 — General",
+     "items": [
+      {
+       "key": "home_e8b804",
+       "type": "link",
+       "label": "Button / Link 1",
+       "default": "View PDF Details"
+      },
+      {
+       "key": "home_646061_2",
+       "type": "link",
+       "label": "Button / Link 2",
+       "default": "Read More"
+      },
+      {
+       "key": "home_caee74",
+       "type": "link",
+       "label": "Button / Link 3",
+       "default": "All Announcements →"
+      },
+      {
+       "key": "home_16228c_7",
+       "type": "link",
+       "label": "Button / Link 4",
+       "default": "Know More"
+      },
+      {
+       "key": "home_378cbb",
+       "type": "text",
+       "label": "Text 1",
+       "default": "Learn More"
+      },
+      {
+       "key": "home_bdda9f",
+       "type": "text",
+       "label": "Text 2",
+       "default": "Learn more →"
+      }
+     ]
+    },
+    {
+     "key": "s4",
+     "label": "Section 4 — Trusted care, proven outcomes",
      "items": [
       {
        "key": "home_259065",
@@ -80,8 +110,8 @@
      ]
     },
     {
-     "key": "s4",
-     "label": "Section 4 — About ",
+     "key": "s5",
+     "label": "Section 5 — About ",
      "items": [
       {
        "key": "home_dae445",
@@ -171,8 +201,8 @@
      ]
     },
     {
-     "key": "s5",
-     "label": "Section 5 — Why ",
+     "key": "s6",
+     "label": "Section 6 — Why ",
      "items": [
       {
        "key": "home_e3a9c0",
@@ -226,8 +256,8 @@
      ]
     },
     {
-     "key": "s6",
-     "label": "Section 6 — Centres Of ",
+     "key": "s7",
+     "label": "Section 7 — Centres Of ",
      "items": [
       {
        "key": "home_834285",
@@ -250,8 +280,8 @@
      ]
     },
     {
-     "key": "s7",
-     "label": "Section 7 — Our Departments",
+     "key": "s8",
+     "label": "Section 8 — Our Departments",
      "items": [
       {
        "key": "home_de44f9",
@@ -280,8 +310,8 @@
      ]
     },
     {
-     "key": "s8",
-     "label": "Section 8 — Popular Hospital Model of Care",
+     "key": "s9",
+     "label": "Section 9 — Popular Hospital Model of Care",
      "items": [
       {
        "key": "home_f57b6c",
@@ -398,30 +428,6 @@
        "type": "link",
        "label": "Button / Link 6",
        "default": "Know More"
-      }
-     ]
-    },
-    {
-     "key": "s9",
-     "label": "Section 9 — General",
-     "items": [
-      {
-       "key": "home_16228c_7",
-       "type": "link",
-       "label": "Button / Link 1",
-       "default": "Know More"
-      },
-      {
-       "key": "home_378cbb",
-       "type": "text",
-       "label": "Text 1",
-       "default": "Learn More"
-      },
-      {
-       "key": "home_bdda9f",
-       "type": "text",
-       "label": "Text 2",
-       "default": "Learn more →"
       }
      ]
     },
@@ -1834,6 +1840,250 @@
        "type": "text",
        "label": "Text 5",
        "default": "Step "
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "pageKey": "about-vice-chairman-desk",
+   "route": "/about/vice-chairman-desk",
+   "label": "About Us › Vice Chairman Desk",
+   "group": "About Us",
+   "sections": [
+    {
+     "key": "s1",
+     "label": "Section 1 — General",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_banner",
+       "type": "image",
+       "label": "Image 1",
+       "default": "/images/banners/about_us_cmd_md.jpg",
+       "alt": "Vice Chairman Desk Banner"
+      },
+      {
+       "key": "about-vice-chairman-desk_foundation",
+       "type": "text",
+       "label": "Text 1",
+       "default": "Leadership"
+      },
+      {
+       "key": "about-vice-chairman-desk_heading",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "From Vice Chairman's Desk"
+      },
+      {
+       "key": "about-vice-chairman-desk_6e8882",
+       "type": "image",
+       "label": "Image 2",
+       "default": "/images/departments_doctor/dr_mohit_kaushik.png",
+       "alt": "Dr. Mohit Kaushik"
+      },
+      {
+       "key": "about-vice-chairman-desk_d63a14",
+       "type": "heading",
+       "label": "Heading 2",
+       "default": "Dr. Mohit Kaushik"
+      },
+      {
+       "key": "about-vice-chairman-desk_9be727",
+       "type": "paragraph",
+       "label": "Paragraph 1",
+       "default": "VICE CHAIRMAN"
+      },
+      {
+       "key": "about-vice-chairman-desk_03cfd8",
+       "type": "paragraph",
+       "label": "Paragraph 2",
+       "default": "MBBS - IMS, BHU"
+      },
+      {
+       "key": "about-vice-chairman-desk_7d2330",
+       "type": "paragraph",
+       "label": "Paragraph 3",
+       "default": "MS (General Surgery) - AIIMS New Delhi"
+      },
+      {
+       "key": "about-vice-chairman-desk_e20756",
+       "type": "paragraph",
+       "label": "Paragraph 4",
+       "default": "3 YEARS Renal-transplant exposure"
+      },
+      {
+       "key": "about-vice-chairman-desk_title_1",
+       "type": "heading",
+       "label": "Heading 3",
+       "default": "Surgical Innovation & "
+      },
+      {
+       "key": "about-vice-chairman-desk_title_2",
+       "type": "text",
+       "label": "Text 2",
+       "default": "Healthcare Leadership"
+      }
+     ]
+    },
+    {
+     "key": "s2",
+     "label": "Section 2 — A surgeon shaped by clinical excellence, research and hea…",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_0ef2eb",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "A surgeon shaped by clinical excellence, research and healthcare leadership."
+      },
+      {
+       "key": "about-vice-chairman-desk_b66aea",
+       "type": "paragraph",
+       "label": "Paragraph 1",
+       "default": "Dr. Mohit Kaushik combines AIIMS New Delhi surgical training, substantial renal transplant exposure, robotic surgery research and hands-on healthcare operations experience—bringing together medicine, innovation and systems thinking."
+      }
+     ]
+    },
+    {
+     "key": "s3",
+     "label": "Section 3 — PATIENT FIRST",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_556576",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "PATIENT FIRST"
+      },
+      {
+       "key": "about-vice-chairman-desk_5a4856",
+       "type": "paragraph",
+       "label": "Paragraph 1",
+       "default": "“Patient First, Always.”"
+      },
+      {
+       "key": "about-vice-chairman-desk_2c1510",
+       "type": "paragraph",
+       "label": "Paragraph 2",
+       "default": "A patient-centred approach to clinical care, innovation and healthcare transformation."
+      }
+     ]
+    },
+    {
+     "key": "s4",
+     "label": "Section 4 — Profile At A Glance",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_81df07",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "Profile At A Glance"
+      }
+     ]
+    },
+    {
+     "key": "s5",
+     "label": "Section 5 — Academic & Professional Journey",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_78c8d2",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "Academic & Professional Journey"
+      }
+     ]
+    },
+    {
+     "key": "s6",
+     "label": "Section 6 — Key Achievements & Recognition",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_851f90",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "Key Achievements & Recognition"
+      }
+     ]
+    },
+    {
+     "key": "s7",
+     "label": "Section 7 — Surgical Expertise & Areas Of Interest",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_965bd3",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "Surgical Expertise & Areas Of Interest"
+      }
+     ]
+    },
+    {
+     "key": "s8",
+     "label": "Section 8 — Research & Academic Contribution",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_e77233",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "Research & Academic Contribution"
+      },
+      {
+       "key": "about-vice-chairman-desk_c422ac",
+       "type": "paragraph",
+       "label": "Paragraph 1",
+       "default": "Research has been a consistent part of Dr. Mohit Kaushik’s medical journey—from ICMR-supported undergraduate research to postgraduate work at AIIMS New Delhi. His work has focused particularly on robotic surgery, surgical ergonomics, human factors and surgeon performance. His 2026 Surgical Endoscopy publication reports a randomized controlled trial examining visual, physical and mental strain during simulated robotic surgical tasks and the impact of structured microbreaks."
+      },
+      {
+       "key": "about-vice-chairman-desk_10a4b4",
+       "type": "paragraph",
+       "label": "Paragraph 2",
+       "default": "His academic work has also been presented at national and international forums, including the European Colorectal Congress in St. Gallen, Switzerland, SAGES 2026 in Tampa, Florida, and major Indian surgical meetings."
+      }
+     ]
+    },
+    {
+     "key": "s9",
+     "label": "Section 9 — Healthcare Leadership & Transformation",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_bc6a74",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "Healthcare Leadership & Transformation"
+      },
+      {
+       "key": "about-vice-chairman-desk_1eecd7",
+       "type": "paragraph",
+       "label": "Paragraph 1",
+       "default": "Dr. Mohit’s perspective extends beyond the operating room. During his MBBS years, he worked with Popular Medicare Ltd. in hospital operations, gaining practical exposure to clinical workflows, people, processes, infrastructure, technology and patient experience."
+      },
+      {
+       "key": "about-vice-chairman-desk_d8ecf7",
+       "type": "paragraph",
+       "label": "Paragraph 2",
+       "default": "This experience shaped his interest in healthcare transformation: building systems that are clinically strong, operationally efficient, technology-enabled and genuinely patient-centred."
+      }
+     ]
+    },
+    {
+     "key": "s10",
+     "label": "Section 10 — Vision As Vice Chairman",
+     "items": [
+      {
+       "key": "about-vice-chairman-desk_0b3f16",
+       "type": "heading",
+       "label": "Heading 1",
+       "default": "Vision As Vice Chairman"
+      },
+      {
+       "key": "about-vice-chairman-desk_80561b",
+       "type": "paragraph",
+       "label": "Paragraph 1",
+       "default": "“Better Surgery. Better Systems. Better Healthcare. Always, the Patient First.”"
+      },
+      {
+       "key": "about-vice-chairman-desk_484d77",
+       "type": "paragraph",
+       "label": "Paragraph 2",
+       "default": "As Vice Chairman, Dr. Mohit Kaushik aims to bring together clinical excellence, surgical innovation, research, technology and healthcare systems to help build more advanced, accessible and patient-centred healthcare."
       }
      ]
     }

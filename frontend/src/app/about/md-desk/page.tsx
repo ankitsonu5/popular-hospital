@@ -58,10 +58,10 @@ export default function MDDeskPage() {
 
       <div className="mx-auto w-full max-w-[1366px] xl:max-w-5xl min-[1920px]:max-w-[1366px] px-4 py-16 lg:py-24 xl:py-12">
         <div className="bg-white relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
             {/* Left Column: MD Info & Photo */}
             <div className="lg:col-span-5 mb-10 lg:mb-0">
-              <div className="space-y-6 sticky top-24 w-[85%] md:w-3/4 lg:w-[90%] xl:w-[85%] mx-auto">
+              <div className="space-y-6 w-[85%] md:w-3/4 lg:w-[90%] xl:w-[85%] mx-auto">
                 <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
                   <Image
                     src={mdData.image}
@@ -98,7 +98,7 @@ export default function MDDeskPage() {
               </div>
 
               <div className="space-y-4 md:space-y-4.5">
-                {mdData.message.map((para, i) => (
+                {mdData.message.slice(0, 4).map((para, i) => (
                   <p
                     key={i}
                     className="text-[14px] md:text-[15px] xl:text-[14.5px] 2xl:text-[15.5px] text-gray-600 leading-relaxed font-normal text-justify"
@@ -108,6 +108,18 @@ export default function MDDeskPage() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Full-Width Section Below Left Card */}
+          <div className="mt-8 lg:mt-12 w-full space-y-4 md:space-y-4.5">
+            {mdData.message.slice(4).map((para, i) => (
+              <p
+                key={i}
+                className="text-[14px] md:text-[15px] xl:text-[14.5px] 2xl:text-[15.5px] text-gray-600 leading-relaxed font-normal text-justify"
+              >
+                {para}
+              </p>
+            ))}
           </div>
         </div>
       </div>

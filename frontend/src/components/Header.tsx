@@ -288,8 +288,8 @@ export function Header() {
   // Filter kiya hua menuItems (DB se visibility apply)
   const visibleMenuItems = menuItems
     .filter((item) => {
-      if (!item.dropdown) return true; // Home / Careers
       if (hiddenMenus.includes(item.label)) return false; // Poora group hidden
+      if (!item.dropdown && item.href && !isHrefVisible(item.href)) return false;
       if (item.label === "Departments" && !hasVisibleDepartments) return false;
       return true;
     })

@@ -620,7 +620,7 @@ export default function HomeClient({
           <div className="flex items-center pl-32 sm:pl-36 pr-6 opacity-95 group-hover:opacity-100 transition-opacity">
             <span className="flex items-center gap-3 text-xs sm:text-sm font-medium tracking-wide text-gray-200 group-hover:text-white truncate">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E85222] shrink-0"></span>
-              <span>Popular Hospital Varanasi — Delivering Excellence in Healthcare.</span>
+              <span><T k="home_aaf691" d={"Popular Hospital Varanasi — Delivering Excellence in Healthcare."} /></span>
             </span>
           </div>
         ) : activeUpdates.length === 1 ? (
@@ -644,9 +644,7 @@ export default function HomeClient({
               <span className="font-semibold text-white/95 group-hover/item:text-[#E85222] group-hover/item:underline underline-offset-4 decoration-[#E85222] transition-colors truncate">
                 {activeUpdates[0].title}
               </span>
-              <span className="text-[11px] text-[#E85222] font-semibold flex items-center ml-1 group-hover/item:translate-x-0.5 transition-transform shrink-0">
-                (Details →)
-              </span>
+              <span className="text-[11px] text-[#E85222] font-semibold flex items-center ml-1 group-hover/item:translate-x-0.5 transition-transform shrink-0"><T k="home_2997a7" d={"(Details →)"} /></span>
             </button>
           </div>
         ) : (
@@ -759,9 +757,7 @@ export default function HomeClient({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-[#E85222] text-white text-xs sm:text-sm font-bold rounded-lg hover:bg-[#d1451a] transition-all shadow-sm active:scale-95"
                 >
-                  <FileText className="w-4 h-4" />
-                  View PDF Details
-                </a>
+                  <FileText className="w-4 h-4" /><T k="home_e8b804" d={"View PDF Details"} /></a>
               )}
               {selectedUpdate.linkUrl && (
                 <a
@@ -770,17 +766,13 @@ export default function HomeClient({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-[#0b1c43] text-white text-xs sm:text-sm font-bold rounded-lg hover:bg-[#0e2455] transition-all shadow-sm active:scale-95"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  Read More
-                </a>
+                  <ExternalLink className="w-4 h-4" /><T k="home_646061_2" d={"Read More"} /></a>
               )}
               <Link
                 href="/updates"
                 onClick={() => setSelectedUpdate(null)}
                 className="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-300 text-gray-700 text-xs sm:text-sm font-bold rounded-lg hover:bg-gray-100 transition-colors ml-auto"
-              >
-                All Announcements →
-              </Link>
+              ><T k="home_caee74" d={"All Announcements →"} /></Link>
             </div>
           </div>
         </div>
