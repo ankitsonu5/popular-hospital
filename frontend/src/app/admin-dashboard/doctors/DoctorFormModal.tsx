@@ -193,10 +193,10 @@ export default function DoctorFormModal({
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Department *
+                Department {lockSpeciality ? "*" : "(Optional)"}
               </label>
               <select
-                required
+                required={!!lockSpeciality}
                 disabled={lockSpeciality}
                 value={formData.speciality}
                 onChange={(e) =>
@@ -204,7 +204,7 @@ export default function DoctorFormModal({
                 }
                 className="w-full px-3 py-2.5 rounded-xl border-2 border-gray-200 text-sm focus:border-[#0d9488] outline-none transition-all disabled:bg-gray-50 disabled:text-gray-500"
               >
-                <option value="">Select</option>
+                <option value="">Select Department (Optional)</option>
                 {specialities.map((s: any) => (
                   <option key={s._id} value={s._id}>
                     {s.name} (/{s.slug})

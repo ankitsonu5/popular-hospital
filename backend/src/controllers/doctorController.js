@@ -190,9 +190,19 @@ export const createDoctor = async (req, res) => {
       opd_timings,
       designation,
     } = req.body;
-    if (!name || !slug || !speciality) {
-      return res.status(400).json({ error: "name, slug, speciality required" });
+    if (!name || !slug) {
+      return res.status(400).json({ error: "name and slug required" });
     }
+
+    const specialityId =
+      speciality && speciality !== "" && speciality !== "null"
+        ? speciality
+        : null;
+
+    const designationId =
+      designation && designation !== "" && designation !== "null"
+        ? designation
+        : null;
 
     const image_url = req.file
       ? `/uploads/doctors/${req.file.filename}`
@@ -211,7 +221,7 @@ export const createDoctor = async (req, res) => {
     const doctor = await Doctor.create({
       name,
       slug,
-      speciality,
+      speciality: specialityId,
       qualification,
       experience_years: experience_years ? parseInt(experience_years) : null,
       experience_location,
@@ -221,7 +231,7 @@ export const createDoctor = async (req, res) => {
       available_days,
       opd_timings: parsedOpdTimings,
       branches: branches || [],
-      designation,
+      designation: designationId,
       is_active: is_active !== "false" && is_active !== false,
     });
     res.status(201).json(doctor);
@@ -235,6 +245,18 @@ export const updateDoctor = async (req, res) => {
   try {
     console.log("UPDATE DOCTOR REQ.BODY:", req.body);
     const updates = { ...req.body };
+    if (updates.speciality !== undefined) {
+      updates.speciality =
+        updates.speciality && updates.speciality !== "" && updates.speciality !== "null"
+          ? updates.speciality
+          : null;
+    }
+    if (updates.designation !== undefined) {
+      updates.designation =
+        updates.designation && updates.designation !== "" && updates.designation !== "null"
+          ? updates.designation
+          : null;
+    }
     if (updates.experience_years !== undefined) {
       updates.experience_years = updates.experience_years
         ? parseInt(updates.experience_years)

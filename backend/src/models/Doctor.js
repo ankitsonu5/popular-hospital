@@ -13,7 +13,7 @@ const doctorSchema = new mongoose.Schema(
     speciality: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Speciality",
-      required: true,
+      default: null,
     },
     qualification: { type: String, default: null },
     experience_years: { type: Number, default: null },
