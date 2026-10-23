@@ -1224,46 +1224,55 @@ export default function HomeClient({
               ].map((feature, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white p-6 sm:p-0 rounded-2xl border-2 border-hospital-teal/20 sm:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 pointer-events-auto cursor-default overflow-hidden h-auto sm:h-[210px] md:h-[230px] transform-gpu"
-                  style={{
-                    transform: "translateZ(0)",
-                    WebkitTransform: "translateZ(0)",
-                    isolation: "isolate",
-                    maskImage: "radial-gradient(white, black)",
-                    WebkitMaskImage: "radial-gradient(white, black)",
-                  }}
+                  className="group relative bg-white rounded-2xl border-2 border-hospital-teal/20 hover:border-hospital-teal/60 shadow-sm hover:shadow-xl transition-all duration-400 pointer-events-auto cursor-default overflow-hidden h-[210px] md:h-[230px]"
                 >
-                  {/* Background Image (Desktop Only - Fades out on hover) */}
+                  {/* ── Layer 0: Background photo (desktop, fades on hover) ── */}
                   <div className="absolute inset-0 hidden sm:block pointer-events-none z-0 transition-opacity duration-500 group-hover:opacity-0">
                     <Image
                       src={feature.bgImage}
                       alt={feature.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover"
                       sizes="(max-width: 640px) 0vw, 400px"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                   </div>
 
-                  {/* Unified Content Container */}
-                  <div className="relative z-10 flex flex-col h-full sm:absolute sm:inset-0 sm:p-8 sm:justify-end sm:group-hover:justify-center transition-all duration-500">
-                    
-                    {/* Header (Icon + Title) */}
-                    <div className="flex flex-col sm:flex-row sm:group-hover:flex-col sm:items-center sm:group-hover:items-start gap-4 sm:translate-y-0 sm:group-hover:-translate-y-2 transition-transform duration-500">
-                      <div className="w-12 h-12 sm:w-10 sm:h-10 sm:group-hover:w-12 sm:group-hover:h-12 rounded-xl bg-white sm:bg-white/20 sm:backdrop-blur-md sm:group-hover:bg-hospital-teal/10 shadow-sm flex items-center justify-center shrink-0 text-hospital-teal sm:text-white sm:group-hover:text-hospital-teal border border-hospital-teal/10 sm:border-white/20 sm:group-hover:border-hospital-teal/20 transition-all duration-500">
-                        {feature.icon}
-                      </div>
-                      <h3 className="text-[18px] sm:text-[17px] sm:group-hover:text-[19px] font-bold text-[#0b1c43] sm:text-white sm:group-hover:text-[#0b1c43] font-jakarta leading-tight drop-shadow-none sm:drop-shadow-lg sm:group-hover:drop-shadow-none transition-all duration-500">
-                        {feature.title}
-                      </h3>
+                  {/* ── Layer 1 (DEFAULT): Icon + Title — fades OUT on hover (desktop only) ── */}
+                  <div className="absolute inset-0 z-10 flex flex-col justify-end gap-3 p-6 sm:p-7
+                                  transition-opacity duration-400
+                                  sm:opacity-100 sm:group-hover:opacity-0 sm:group-hover:pointer-events-none
+                                  pointer-events-none sm:pointer-events-auto">
+                    {/* Icon */}
+                    <div className="w-11 h-11 rounded-xl bg-white sm:bg-white/20 flex items-center justify-center shrink-0 text-hospital-teal sm:text-white border border-hospital-teal/10 sm:border-white/20">
+                      {feature.icon}
                     </div>
+                    {/* Title */}
+                    <h3 className="text-[17px] font-bold text-[#0b1c43] sm:text-white font-jakarta leading-snug sm:drop-shadow-lg">
+                      {feature.title}
+                    </h3>
+                  </div>
 
-                    {/* Paragraph */}
-                    <div className="mt-3 sm:mt-0 sm:max-h-0 sm:opacity-0 sm:overflow-hidden sm:group-hover:max-h-[300px] sm:group-hover:opacity-100 sm:group-hover:mt-4 transition-all duration-500 ease-in-out">
-                      <p className="text-[#0b1c43] font-semibold sm:font-bold text-[14px] sm:text-[15px] leading-relaxed font-jakarta">
-                        {feature.fullDesc}
-                      </p>
+                  {/* ── Layer 2 (HOVER): Paragraph only — fades IN on hover (desktop only) ── */}
+                  <div className="absolute inset-0 z-20 flex flex-col justify-center gap-3 p-6 sm:p-7
+                                  transition-opacity duration-400
+                                  hidden sm:flex sm:opacity-0 sm:group-hover:opacity-100 pointer-events-none">
+                    <p className="text-[#0b1c43] font-semibold text-[14px] leading-relaxed font-jakarta">
+                      {feature.fullDesc}
+                    </p>
+                  </div>
+
+                  {/* ── Mobile: simple static layout (icon + title + desc always visible) ── */}
+                  <div className="relative z-10 flex flex-col gap-3 p-6 h-full justify-start sm:hidden">
+                    <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shrink-0 text-hospital-teal border border-hospital-teal/10">
+                      {feature.icon}
                     </div>
+                    <h3 className="text-[17px] font-bold text-[#0b1c43] font-jakarta leading-snug">
+                      {feature.title}
+                    </h3>
+                    <p className="text-[#0b1c43] font-semibold text-[13px] leading-relaxed font-jakarta">
+                      {feature.fullDesc}
+                    </p>
                   </div>
                 </div>
               ))}
