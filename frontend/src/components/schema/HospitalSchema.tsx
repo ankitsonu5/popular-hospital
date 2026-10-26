@@ -15,6 +15,12 @@ export default function HospitalSchema() {
         "@type": "WebSite",
         "@id": "https://www.popularhospital.in/#website",
         name: "Popular Hospital",
+        alternateName: [
+          "Popular Hospital Varanasi",
+          "Popular Medicare",
+          "Popular Medicare Ltd",
+          "Popular Super Speciality Hospital",
+        ],
         url: "https://www.popularhospital.in/",
         publisher: { "@id": "https://www.popularhospital.in/#organization" },
         potentialAction: {

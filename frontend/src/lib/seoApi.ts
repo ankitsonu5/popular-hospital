@@ -43,7 +43,15 @@ export async function fetchSeoMetadata(route: string): Promise<SeoMetadataRespon
 export async function generatePageMetadata(route: string, defaultMeta: Metadata): Promise<Metadata> {
   const customSeo = await fetchSeoMetadata(route);
   
-  if (!customSeo) return defaultMeta;
+  if (!customSeo) {
+    return {
+      ...defaultMeta,
+      openGraph: {
+        siteName: "Popular Hospital",
+        ...(defaultMeta.openGraph || {}),
+      },
+    };
+  }
 
   return {
     title: customSeo.meta_title || defaultMeta.title,

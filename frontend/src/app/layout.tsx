@@ -26,8 +26,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.popularhospital.in"),
   title: {
-    default: "Popular Hospital Varanasi | Top Multi Super Speciality Hospital",
-    template: "%s | Popular Hospital Varanasi",
+    default: "Best Multi Super Speciality Hospital in Varanasi | Popular Hospital",
+    template: "%s | Popular Hospital",
   },
   description:
     "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
@@ -41,20 +41,20 @@ export const metadata: Metadata = {
       "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
     type: "website",
     locale: "en_IN",
-    siteName: "Popular Hospital Varanasi",
+    siteName: "Popular Hospital",
     url: "https://www.popularhospital.in",
     images: [
       {
         url: "https://www.popularhospital.in/logo.png",
         width: 512,
         height: 512,
-        alt: "Popular Hospital Varanasi Logo",
+        alt: "Popular Hospital Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Popular Hospital Varanasi | Top Multi Super Speciality Hospital",
+    title: "Best Multi Super Speciality Hospital in Varanasi | Popular Hospital",
     description:
       "Varanasi's best multi super speciality hospital — 450+ beds, 28 departments, 24/7 emergency & cashless treatment. Book appointment today.",
   },
@@ -122,6 +122,26 @@ export default async function RootLayout({
                 }
               })();
             `,
+          }}
+        />
+        {/* Google Search Site Name Schema — Primary signal for Google Search to show 'Popular Hospital' as Site Name */}
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Popular Hospital",
+              alternateName: [
+                "Popular Hospital Varanasi",
+                "Popular Medicare",
+                "Popular Medicare Ltd",
+                "Popular Super Speciality Hospital",
+              ],
+              url: "https://www.popularhospital.in/",
+            }),
           }}
         />
         {/* LocalBusiness Schema for NAP (Name, Address, Phone, Email) */}
