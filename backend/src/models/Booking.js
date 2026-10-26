@@ -23,6 +23,7 @@ const bookingSchema = new mongoose.Schema(
       default: "pending",
     },
     notes: { type: String, default: null },
+    source: { type: String, enum: ["website", "chatbot"], default: "website" },
     adminNotes: { type: String, default: "" },
     isRead: { type: Boolean, default: false },
   },

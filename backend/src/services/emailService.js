@@ -273,6 +273,8 @@ export const sendBookingEmail = async (booking) => {
   const slotDate = booking.slot_date;
   const slotTime = booking.slot_time;
   const notes = booking.notes || "No additional notes provided";
+  const viaChatbot = booking.source === "chatbot";
+  const sourceLabel = viaChatbot ? "Website Chatbot" : "Website Booking Form";
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -310,7 +312,7 @@ export const sendBookingEmail = async (booking) => {
         <div class="header">
           <h1>Popular Hospitals</h1>
           <p>Excellence in Healthcare</p>
-          <div class="status-badge">New Appointment Booking</div>
+          <div class="status-badge">${viaChatbot ? "🤖 New Booking via Chatbot" : "New Appointment Booking"}</div>
         </div>
         
         <div class="content">
@@ -331,6 +333,10 @@ export const sendBookingEmail = async (booking) => {
             <div class="info-row">
               <div class="info-label">Time</div>
               <div class="info-value">${slotTime}</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Booked Via</div>
+              <div class="info-value">${sourceLabel}</div>
             </div>
           </div>
 
@@ -369,7 +375,7 @@ export const sendBookingEmail = async (booking) => {
   const mailOptions = {
     from: '"Online Bookings System" <' + process.env.GMAIL_USER + ">",
     to: process.env.NOTIFICATION_EMAILS,
-    subject: `🗓️ New Booking: ${patientName} for ${doctorName} (${slotDate})`,
+    subject: `🗓️ New Booking${viaChatbot ? " (Chatbot)" : ""}: ${patientName} for ${doctorName} (${slotDate})`,
     html: htmlContent,
   };
 

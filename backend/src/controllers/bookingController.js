@@ -14,6 +14,7 @@ export const createBooking = async (req, res) => {
       slot_date,
       slot_time,
       notes,
+      source,
     } = req.body;
     if (
       !patient_name ||
@@ -56,6 +57,7 @@ export const createBooking = async (req, res) => {
       slot_date,
       slot_time,
       notes: notes ? String(notes).trim().substring(0, 1000) : null,
+      source: source === "chatbot" ? "chatbot" : "website",
     });
 
     // Populate references for email notification readability

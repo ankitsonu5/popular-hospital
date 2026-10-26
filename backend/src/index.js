@@ -44,6 +44,7 @@ import patientStoriesRouter from "./routes/patientStories.js";
 import callbackRequestsRouter from "./routes/callbackRequests.js";
 import departmentGalleryRouter from "./routes/departmentGallery.js";
 import seoRouter from "./routes/seoRoutes.js";
+import chatbotRouter from "./routes/chatbot.js";
 import { getActivePopup } from "./controllers/popupController.js";
 import { getPublicSchema } from "./controllers/schemaContentController.js";
 import { getPublicNavMenus } from "./controllers/navMenuController.js";
@@ -124,6 +125,7 @@ app.use("/api/patient-stories", patientStoriesRouter);
 app.use("/api/department-gallery", departmentGalleryRouter);
 app.use("/api/callback-requests", callbackRequestsRouter);
 app.use("/api/seo", seoRouter);
+app.use("/api/chatbot", chatbotRouter);
 app.get("/api/popup", getActivePopup);
 app.get("/api/schemas/:pageKey", getPublicSchema);
 // Nav Menu (public — header ke liye)

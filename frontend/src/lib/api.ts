@@ -200,6 +200,33 @@ export async function createBooking(
   return res.json();
 }
 
+export interface ChatbotAiResponse {
+  success: boolean;
+  departmentSlug?: string;
+  departmentName?: string;
+  isEmergency?: boolean;
+  reply?: string;
+  reason?: string;
+}
+
+export async function askChatbotAi(
+  message: string,
+  lang: "hi" | "hinglish" | "en",
+  specialities: Speciality[],
+): Promise<ChatbotAiResponse | null> {
+  try {
+    const res = await fetch(api("/chatbot/ai"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message, lang, specialities }),
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    return null;
+  }
+}
+
 export async function fetchNews(): Promise<NewsItem[]> {
   try {
     const res = await fetch(api("/news"), { next: { revalidate: 60 } });
@@ -470,6 +497,7 @@ export interface BookingInput {
   slot_date: string;
   slot_time: string;
   notes?: string;
+  source?: "website" | "chatbot";
 }
 
 export interface NewsItem {

@@ -37,6 +37,7 @@ interface Booking {
   slot_time: string;
   status: "pending" | "confirmed" | "done" | "rejected";
   notes: string;
+  source?: "website" | "chatbot";
   adminNotes: string;
   isRead: boolean;
   createdAt: string;
@@ -508,6 +509,11 @@ export default function BookingsAdminPage() {
                   >
                     {STATUS_LABEL[selected.status]}
                   </span>
+                  {selected.source === "chatbot" && (
+                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-orange-100 text-orange-700 border border-orange-200">
+                      🤖 Booked via Chatbot
+                    </span>
+                  )}
                   {!selected.isRead && (
                     <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700 border border-blue-200">
                       Unread
@@ -927,6 +933,11 @@ function BookingRow({
         >
           {booking.patient_name}
         </span>
+        {booking.source === "chatbot" && (
+          <span className="shrink-0 rounded-full border border-orange-200 bg-orange-100 px-2 py-0.5 text-[10px] font-bold text-orange-700">
+            🤖 Chatbot
+          </span>
+        )}
       </div>
 
       {/* Middle info */}

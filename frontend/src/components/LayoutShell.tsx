@@ -9,6 +9,7 @@ import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
 import PopupBanner from "@/components/PopupBanner";
+import ChatbotWidget from "@/components/ChatbotWidget";
 import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema";
 
 const ZOOM_PATHS = [
@@ -87,6 +88,7 @@ export default function LayoutShell({
       </main>
       <MobileBottomNav />
       <MobileWhatsAppFAB />
+      <ChatbotWidget />
       <BackToTop />
       <Footer />
     </>
