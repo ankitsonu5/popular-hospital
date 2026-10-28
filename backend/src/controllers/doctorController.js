@@ -85,38 +85,38 @@ export const getAllDoctors = async (req, res) => {
       .populate("branches", "name slug")
       .populate("designation", "name");
 
-    // Custom sorting in-memory
+    const getLockedRank = (doc) => {
+      if (!doc) return -1;
+      const s = (doc.slug || "").toLowerCase();
+      const n = (doc.name || "").toLowerCase();
+      // 1. Dr. A.K Kaushik
+      if (s === "dr-a-k-kaushik" || (n.includes("kaushik") && (n.includes("a.k") || n.includes("a k")))) return 0;
+      // 2. Dr. Kiran Kaushik
+      if (s === "dr-kiran-kaushik" || (n.includes("kaushik") && n.includes("kiran"))) return 1;
+      // 3. Dr. Mohit Kaushik
+      if (s === "dr-mohit-kaushik" || (n.includes("kaushik") && n.includes("mohit"))) return 2;
+      return -1;
+    };
+
+    // Custom sorting in-memory:
+    // Respects sortIndex, with guaranteed tie-breaking for locked top 3 doctors
     doctors.sort((a, b) => {
-      // First sort by sortIndex if they differ (default to 0 if undefined)
-      const aIndex = typeof a.sortIndex === "number" ? a.sortIndex : 0;
-      const bIndex = typeof b.sortIndex === "number" ? b.sortIndex : 0;
+      const aIndex = typeof a.sortIndex === "number" ? a.sortIndex : 999999;
+      const bIndex = typeof b.sortIndex === "number" ? b.sortIndex : 999999;
 
       if (aIndex !== bIndex) {
         return aIndex - bIndex;
       }
 
-      const priorityNames = [
-        "General Surgeon / Surgery",
-        "Gynecologist / OBGY",
-      ];
-      const aSpec = a.speciality?.name || "";
-      const bSpec = b.speciality?.name || "";
+      // If sortIndexes match or tie, top locked doctors always come first in order:
+      // 1. Dr. A.K Kaushik, 2. Dr. Kiran Kaushik, 3. Dr. Mohit Kaushik
+      const aRank = getLockedRank(a);
+      const bRank = getLockedRank(b);
+      if (aRank !== -1 && bRank !== -1) return aRank - bRank;
+      if (aRank !== -1) return -1;
+      if (bRank !== -1) return 1;
 
-      // If no speciality filter is applied, apply priority
-      if (!speciality) {
-        const aIndex = priorityNames.indexOf(aSpec);
-        const bIndex = priorityNames.indexOf(bSpec);
-
-        if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
-        if (aIndex !== -1) return -1;
-        if (bIndex !== -1) return 1;
-      }
-
-      // Group by speciality name
-      if (aSpec !== bSpec) return aSpec.localeCompare(bSpec);
-
-      // Sort by doctor name within group
-      return a.name.localeCompare(b.name);
+      return (a.name || "").localeCompare(b.name || "");
     });
 
     res.json(doctors);
@@ -218,6 +218,14 @@ export const createDoctor = async (req, res) => {
       }
     }
 
+    // Find highest sortIndex so newly added doctors are appended at the end
+    // and will NEVER displace the locked top 3 doctors (Dr. A.K Kaushik, Dr. Kiran Kaushik, Dr. Mohit Kaushik)
+    const maxDoc = await Doctor.findOne().sort("-sortIndex").select("sortIndex");
+    const nextSortIndex = Math.max(
+      (typeof maxDoc?.sortIndex === "number" ? maxDoc.sortIndex : 2) + 1,
+      3,
+    );
+
     const doctor = await Doctor.create({
       name,
       slug,
@@ -233,6 +241,7 @@ export const createDoctor = async (req, res) => {
       branches: branches || [],
       designation: designationId,
       is_active: is_active !== "false" && is_active !== false,
+      sortIndex: nextSortIndex,
     });
     res.status(201).json(doctor);
   } catch (error) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { PhoneCall, X } from "lucide-react";
 
@@ -8,6 +8,22 @@ export default function MobileWhatsAppFAB() {
   const [activeMenu, setActiveMenu] = useState<"call" | "whatsapp" | null>(
     null,
   );
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  useEffect(() => {
+    const handleChatState = (e: Event) => {
+      const customEvent = e as CustomEvent<{ open: boolean }>;
+      const isOpen = Boolean(customEvent.detail?.open);
+      setIsChatOpen(isOpen);
+      if (isOpen) {
+        setActiveMenu(null);
+      }
+    };
+    window.addEventListener("chatbot:state", handleChatState);
+    return () => {
+      window.removeEventListener("chatbot:state", handleChatState);
+    };
+  }, []);
 
   const toggleMenu = (menu: "call" | "whatsapp") => {
     setActiveMenu((current) => (current === menu ? null : menu));
@@ -15,7 +31,11 @@ export default function MobileWhatsAppFAB() {
 
   return (
     <div
-      className="md:hidden fixed bottom-[100px] right-4 z-[100] flex flex-col items-end gap-2 pb-safe-bottom"
+      className={`md:hidden fixed bottom-[138px] right-4 z-[999] flex w-14 flex-col items-end gap-2.5 pb-safe-bottom transition-all duration-300 ${
+        isChatOpen
+          ? "pointer-events-none translate-y-4 opacity-0"
+          : "pointer-events-auto translate-y-0 opacity-100"
+      }`}
       style={{ marginBottom: "env(safe-area-inset-bottom)" }}
     >
       {/* Menu Options */}
@@ -88,7 +108,7 @@ export default function MobileWhatsAppFAB() {
       {/* Call Toggle Button */}
       <button
         onClick={() => toggleMenu("call")}
-        className={`flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_18px_rgba(11,122,117,0.28)] transition-all duration-300 ${
+        className={`flex h-11 w-11 self-center items-center justify-center rounded-full shadow-[0_4px_18px_rgba(11,122,117,0.28)] transition-all duration-300 ${
           activeMenu === "call"
             ? "rotate-90 scale-105 bg-gray-800 hover:bg-gray-900"
             : "bg-[#0b7a75] hover:scale-105 hover:bg-[#096a66]"
@@ -105,7 +125,7 @@ export default function MobileWhatsAppFAB() {
       {/* WhatsApp Toggle Button */}
       <button
         onClick={() => toggleMenu("whatsapp")}
-        className={`flex h-11 w-11 items-center justify-center rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.35)] transition-all duration-300 ${
+        className={`flex h-11 w-11 self-center items-center justify-center rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.35)] transition-all duration-300 ${
           activeMenu === "whatsapp"
             ? "rotate-90 scale-105 bg-gray-800 hover:bg-gray-900"
             : "bg-[#25D366] hover:scale-105 hover:bg-[#20bd5a]"

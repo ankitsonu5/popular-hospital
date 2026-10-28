@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import Image from "next/image";
@@ -27,18 +27,48 @@ export function DoctorsSearch() {
       revalidateOnFocus: false,
     },
   );
-  const { data: doctors = EMPTY_DOCTORS, isLoading: loading } = useSWR(
+  const { data: rawDoctors = EMPTY_DOCTORS, isLoading: loading } = useSWR(
     ["doctors", speciality, search],
     () => fetchDoctors({ speciality, search }),
     { keepPreviousData: true },
   );
+
+  const getLockedRank = (d: Doctor) => {
+    const s = (d.slug || "").toLowerCase();
+    const n = (d.name || "").toLowerCase();
+    if (s === "dr-a-k-kaushik" || (n.includes("kaushik") && (n.includes("a.k") || n.includes("a k")))) return 0;
+    if (s === "dr-kiran-kaushik" || (n.includes("kaushik") && n.includes("kiran"))) return 1;
+    if (s === "dr-mohit-kaushik" || (n.includes("kaushik") && n.includes("mohit"))) return 2;
+    return -1;
+  };
+
+  // Guarantee top three locked order when viewing all doctors on /doctors:
+  // 1. Dr. A.K Kaushik, 2. Dr. Kiran Kaushik, 3. Dr. Mohit Kaushik
+  const doctors = useMemo(() => {
+    if (!speciality && !search && Array.isArray(rawDoctors)) {
+      return [...rawDoctors].sort((a, b) => {
+        const aIndex = typeof a.sortIndex === "number" ? a.sortIndex : 999999;
+        const bIndex = typeof b.sortIndex === "number" ? b.sortIndex : 999999;
+        if (aIndex !== bIndex) return aIndex - bIndex;
+
+        const aRank = getLockedRank(a);
+        const bRank = getLockedRank(b);
+        if (aRank !== -1 && bRank !== -1) return aRank - bRank;
+        if (aRank !== -1) return -1;
+        if (bRank !== -1) return 1;
+
+        return (a.name || "").localeCompare(b.name || "");
+      });
+    }
+    return rawDoctors;
+  }, [rawDoctors, speciality, search]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setImageFallbackIndex({});
-  }, [doctors]);
+  }, [speciality, search]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

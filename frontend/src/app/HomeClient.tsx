@@ -1224,7 +1224,7 @@ export default function HomeClient({
               ].map((feature, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white rounded-2xl border-2 border-hospital-teal/20 hover:border-hospital-teal/60 shadow-sm hover:shadow-xl transition-all duration-400 pointer-events-auto cursor-default overflow-hidden h-[210px] md:h-[230px]"
+                  className="group relative bg-white rounded-2xl border-2 border-hospital-teal/20 hover:border-hospital-teal/60 shadow-sm hover:shadow-xl transition-all duration-400 pointer-events-auto cursor-default overflow-hidden h-auto min-h-[210px] sm:h-[210px] md:h-[230px]"
                 >
                   {/* ── Layer 0: Background photo (desktop, fades on hover) ── */}
                   <div className="absolute inset-0 hidden sm:block pointer-events-none z-0 transition-opacity duration-500 group-hover:opacity-0">
@@ -1239,7 +1239,7 @@ export default function HomeClient({
                   </div>
 
                   {/* ── Layer 1 (DEFAULT): Icon + Title — fades OUT on hover (desktop only) ── */}
-                  <div className="absolute inset-0 z-10 flex flex-col justify-end gap-3 p-6 sm:p-7
+                  <div className="absolute inset-0 z-10 hidden sm:flex flex-col justify-end gap-3 p-6 sm:p-7
                                   transition-opacity duration-400
                                   sm:opacity-100 sm:group-hover:opacity-0 sm:group-hover:pointer-events-none
                                   pointer-events-none sm:pointer-events-auto">

@@ -33,7 +33,14 @@ import Link from "next/link";
 import { getImageUrl } from "@/lib/api";
 import DoctorFormModal from "./DoctorFormModal";
 
-function SortableDoctorRow({ doc, onEdit, onDelete, isDragEnabled }: any) {
+function SortableDoctorRow({
+  doc,
+  index,
+  onEdit,
+  onDelete,
+  isDragEnabled,
+  isLockedTop,
+}: any) {
   const {
     attributes,
     listeners,
@@ -83,7 +90,24 @@ function SortableDoctorRow({ doc, onEdit, onDelete, isDragEnabled }: any) {
             )}
           </div>
           <div>
-            <p className="font-bold text-gray-900 leading-tight">{doc.name}</p>
+            <div className="flex items-center gap-2">
+              <p className="font-bold text-gray-900 leading-tight">{doc.name}</p>
+              {isLockedTop && index === 0 && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-amber-50 text-amber-700 border border-amber-200">
+                  🔒 #1 Fixed
+                </span>
+              )}
+              {isLockedTop && index === 1 && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-amber-50 text-amber-700 border border-amber-200">
+                  🔒 #2 Fixed
+                </span>
+              )}
+              {isLockedTop && index === 2 && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-amber-50 text-amber-700 border border-amber-200">
+                  🔒 #3 Fixed
+                </span>
+              )}
+            </div>
             <p className="text-[11px] text-[#0d9488] font-bold uppercase mt-0.5">
               {doc.designation?.name || doc.designation || "-"}
             </p>
@@ -216,7 +240,31 @@ export default function DoctorsPage() {
         desigRes.ok ? desigRes.json().catch(() => []) : Promise.resolve([]),
       ]);
 
-      setDoctors(Array.isArray(docsData) ? docsData : docsData?.doctors || []);
+      const rawDocs = Array.isArray(docsData) ? docsData : docsData?.doctors || [];
+      const getLockedRank = (d: any) => {
+        const s = (d.slug || "").toLowerCase();
+        const n = (d.name || "").toLowerCase();
+        if (s === "dr-a-k-kaushik" || (n.includes("kaushik") && (n.includes("a.k") || n.includes("a k")))) return 0;
+        if (s === "dr-kiran-kaushik" || (n.includes("kaushik") && n.includes("kiran"))) return 1;
+        if (s === "dr-mohit-kaushik" || (n.includes("kaushik") && n.includes("mohit"))) return 2;
+        return -1;
+      };
+
+      const sortedDocs = [...rawDocs].sort((a, b) => {
+        const aIndex = typeof a.sortIndex === "number" ? a.sortIndex : 999999;
+        const bIndex = typeof b.sortIndex === "number" ? b.sortIndex : 999999;
+        if (aIndex !== bIndex) return aIndex - bIndex;
+
+        const aRank = getLockedRank(a);
+        const bRank = getLockedRank(b);
+        if (aRank !== -1 && bRank !== -1) return aRank - bRank;
+        if (aRank !== -1) return -1;
+        if (bRank !== -1) return 1;
+
+        return (a.name || "").localeCompare(b.name || "");
+      });
+
+      setDoctors(sortedDocs);
       setSpecialities(
         Array.isArray(specsData) ? specsData : specsData?.specialities || [],
       );
@@ -433,13 +481,15 @@ export default function DoctorsPage() {
                     items={filteredDoctors.map((d) => d._id)}
                     strategy={verticalListSortingStrategy}
                   >
-                    {filteredDoctors.map((doc) => (
+                    {filteredDoctors.map((doc, idx) => (
                       <SortableDoctorRow
                         key={doc._id}
                         doc={doc}
+                        index={idx}
                         onEdit={handleEdit}
                         onDelete={handleDelete}
                         isDragEnabled={isDragEnabled}
+                        isLockedTop={!search && !filtSpec && !filtDesig && idx < 3}
                       />
                     ))}
                   </SortableContext>

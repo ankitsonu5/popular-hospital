@@ -45,7 +45,7 @@ const doctorSchema = new mongoose.Schema(
       default: null,
     },
     is_active: { type: Boolean, default: true },
-    sortIndex: { type: Number, default: 0 },
+    sortIndex: { type: Number, default: 9999 },
   },
   { timestamps: true },
 );

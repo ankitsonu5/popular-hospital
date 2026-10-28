@@ -403,6 +403,7 @@ export interface Speciality {
   name: string;
   slug: string;
   department_display_name?: string;
+  nameHi?: string;
   category?: "super_specialty" | "specialty";
 }
 
@@ -470,6 +471,7 @@ export interface Doctor {
   };
   branch_ids?: string;
   designation?: string | { _id: string; name: string };
+  sortIndex?: number;
 }
 
 export interface DepartmentGalleryItem {
