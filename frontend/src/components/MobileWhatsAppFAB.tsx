@@ -40,7 +40,7 @@ export default function MobileWhatsAppFAB() {
     >
       {/* Menu Options */}
       <div
-        className={`flex flex-col gap-2 transition-all duration-300 origin-bottom-right ${
+        className={`flex w-max max-w-[calc(100vw-2rem)] flex-col items-stretch gap-2 transition-all duration-300 origin-bottom-right ${
           activeMenu
             ? "scale-100 opacity-100"
             : "scale-0 opacity-0 pointer-events-none"
@@ -52,15 +52,16 @@ export default function MobileWhatsAppFAB() {
               href="https://wa.me/917800001895"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
+              className="flex min-w-[160px] items-center gap-2 whitespace-nowrap rounded-full border border-gray-100 bg-white px-3.5 py-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
             >
               <Image
                 src="/images/whatsapp_icon.png"
                 alt="WhatsApp"
                 width={20}
                 height={20}
+                className="shrink-0"
               />
-              <span className="text-[13px] font-bold tracking-wide text-gray-800">
+              <span className="whitespace-nowrap text-[13px] font-bold leading-none tracking-wide text-gray-800 tabular-nums">
                 +91-7800001895
               </span>
             </a>
@@ -68,15 +69,16 @@ export default function MobileWhatsAppFAB() {
               href="https://wa.me/917800001896"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
+              className="flex min-w-[160px] items-center gap-2 whitespace-nowrap rounded-full border border-gray-100 bg-white px-3.5 py-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
             >
               <Image
                 src="/images/whatsapp_icon.png"
                 alt="WhatsApp"
                 width={20}
                 height={20}
+                className="shrink-0"
               />
-              <span className="text-[13px] font-bold tracking-wide text-gray-800">
+              <span className="whitespace-nowrap text-[13px] font-bold leading-none tracking-wide text-gray-800 tabular-nums">
                 +91-7800001896
               </span>
             </a>
@@ -85,19 +87,19 @@ export default function MobileWhatsAppFAB() {
           <>
             <a
               href="tel:+917800001895"
-              className="flex items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
+              className="flex min-w-[160px] items-center gap-2 whitespace-nowrap rounded-full border border-gray-100 bg-white px-3.5 py-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
             >
-              <PhoneCall className="h-4 w-4 text-[#0b7a75]" />
-              <span className="text-[13px] font-bold tracking-wide text-gray-800">
+              <PhoneCall className="h-4 w-4 shrink-0 text-[#0b7a75]" />
+              <span className="whitespace-nowrap text-[13px] font-bold leading-none tracking-wide text-gray-800 tabular-nums">
                 +91-7800001895
               </span>
             </a>
             <a
               href="tel:+917800001896"
-              className="flex items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
+              className="flex min-w-[160px] items-center gap-2 whitespace-nowrap rounded-full border border-gray-100 bg-white px-3.5 py-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
             >
-              <PhoneCall className="h-4 w-4 text-[#0b7a75]" />
-              <span className="text-[13px] font-bold tracking-wide text-gray-800">
+              <PhoneCall className="h-4 w-4 shrink-0 text-[#0b7a75]" />
+              <span className="whitespace-nowrap text-[13px] font-bold leading-none tracking-wide text-gray-800 tabular-nums">
                 +91-7800001896
               </span>
             </a>
