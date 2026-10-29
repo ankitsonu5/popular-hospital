@@ -21,7 +21,6 @@ const ZOOM_PATHS = [
   "/about/management-team/dr-manuj-mittal",
   "/about/leadership",
   "/about/awards-recognition",
-  "/about/csr",
   "/about/cashless-empanelment",
   "/doctors",
   "/departments/cardiology",

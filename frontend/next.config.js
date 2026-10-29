@@ -66,7 +66,7 @@ const nextConfig = {
           // ─── Permissions Policy ──────────────────────
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(self), payment=()",
+            value: "camera=(), microphone=(self), geolocation=(self), payment=()",
           },
         ],
       },

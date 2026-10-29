@@ -62,7 +62,6 @@ const DEFAULT_MENUS = [
       { label: "Management Team", href: "/about/management-team", hidden: false },
       { label: "Awards & Recognition", href: "/about/awards-recognition", hidden: false },
       { label: "Infrastructure & Technology", href: "/about/infrastructure-technology", hidden: false },
-      { label: "Social Responsibility (SR)", href: "/about/csr", hidden: false },
       { label: "Cashless Empanelment", href: "/about/cashless-empanelment", hidden: false },
     ],
   },

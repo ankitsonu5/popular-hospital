@@ -42,10 +42,6 @@ const menuItems: MenuItem[] = [
         href: "/about/infrastructure-technology",
         separator: true,
       },
-      {
-        label: "Social Responsibility (SR)",
-        href: "/about/csr",
-      },
       { label: "Cashless Empanelment", href: "/about/cashless-empanelment" },
     ],
   },

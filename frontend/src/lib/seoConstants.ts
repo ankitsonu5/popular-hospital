@@ -11,7 +11,6 @@ export const STANDARD_PAGES = [
   { group: "About Us", label: "Management Team", route: "/about/management-team", defaultTitle: "Management Team | Popular Hospital", defaultDescription: "Meet the management team driving strategic transformation, operational excellence and growth at Popular Group of Hospitals." },
   { group: "About Us", label: "Awards & Recognition", route: "/about/awards-recognition" },
   { group: "About Us", label: "Infrastructure & Technology", route: "/about/infrastructure-technology", defaultTitle: "Infrastructure & Technology | Popular Hospital", defaultDescription: "Explore Popular Hospital's advanced infrastructure, robotics, modular operation theatres, ICU, and diagnostic facilities." },
-  { group: "About Us", label: "Social Responsibility (SR)", route: "/about/csr" },
   { group: "About Us", label: "Cashless Empanelment", route: "/about/cashless-empanelment", defaultTitle: "Cashless Empanelment | Popular Hospital", defaultDescription: "Popular Hospital is empanelled with leading Government PSUs, Private Corporates, Insurance Companies and International TPAs for cashless treatment." },
 
   // Popular Finds

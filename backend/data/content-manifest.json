@@ -1306,39 +1306,6 @@
    ]
   },
   {
-   "pageKey": "about-csr",
-   "route": "/about/csr",
-   "label": "About Us › CSR",
-   "group": "About Us",
-   "sections": [
-    {
-     "key": "s1",
-     "label": "Section 1 — Social ",
-     "items": [
-      {
-       "key": "about-csr_aa6ee5",
-       "type": "image",
-       "label": "Image 1",
-       "default": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop",
-       "alt": "CSR Banner"
-      },
-      {
-       "key": "about-csr_4c1de3",
-       "type": "heading",
-       "label": "Heading 1",
-       "default": "Social "
-      },
-      {
-       "key": "about-csr_2550b1",
-       "type": "text",
-       "label": "Text 1",
-       "default": "Responsibility"
-      }
-     ]
-    }
-   ]
-  },
-  {
    "pageKey": "about-infrastructure-technology",
    "route": "/about/infrastructure-technology",
    "label": "About Us › Infrastructure Technology",

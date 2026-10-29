@@ -36,7 +36,7 @@ const GROUP_BY_ROOT = {
   blog: "Media & Blog",
 };
 
-const ACRONYMS = new Set(["ctvs", "ent", "ivf", "csr", "md", "ppl", "opd", "icu", "nicu"]);
+const ACRONYMS = new Set(["ctvs", "ent", "ivf", "md", "ppl", "opd", "icu", "nicu"]);
 
 const FILE_RE = /^(page|.*Client.*|.*Sidebar)\.tsx$/;
 

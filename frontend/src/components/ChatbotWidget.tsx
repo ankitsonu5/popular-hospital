@@ -35,7 +35,20 @@ const PHONES = [
   { label: "+91 78000 01895", href: "tel:+917800001895" },
   { label: "+91 78000 01896", href: "tel:+917800001896" },
 ];
+const AMBULANCE_PHONE = {
+  label: "+91-9519999280",
+  href: "tel:+919519999280",
+};
+const EMERGENCY_CONTACTS = [
+  { label: "+91-7800001895", href: "tel:+917800001895" },
+  { label: "+91-7800001896", href: "tel:+917800001896" },
+];
+const APPOINTMENT_CONFIRMATION_PHONES = [
+  { label: "+91-7800001895", href: "tel:+917800001895" },
+  { label: "+91-7800001896", href: "tel:+917800001896" },
+];
 const DOCTORS_URL = "https://www.popularhospital.in/doctors";
+const HOSPITAL_MAP_URL = "https://maps.app.goo.gl/8KVyxNdETY219tRD6";
 const DEFAULT_SLOTS = [
   "10:00",
   "11:00",
@@ -46,6 +59,78 @@ const DEFAULT_SLOTS = [
 ];
 
 export type Lang = "hi" | "hinglish" | "en";
+
+type PopularHospitalIntent = "about" | "location";
+
+const POPULAR_HOSPITAL_REFERENCE_RE =
+  /(?:\b(?:popular|populer|poplar)\s+hospitals?\b|(?:पॉपुलर|पापुलर)\s+(?:हॉस्पिटल|अस्पताल))/i;
+
+function detectPopularHospitalIntent(
+  input: string,
+): PopularHospitalIntent | null {
+  const text = input.trim().toLowerCase().replace(/\s+/g, " ");
+  if (!POPULAR_HOSPITAL_REFERENCE_RE.test(text)) return null;
+
+  const isLocationQuery =
+    /\b(?:where|location|located|address|directions?|route|map|reach|kaha|kahan|kahaan|kidhar|pata|kaise\s+(?:jaye|jaaye|pahuche|pahunche|pahunch))\b/i.test(
+      text,
+    ) ||
+    /(?:कहाँ|कहां|किधर|पता|स्थान|लोकेशन|कैसे\s*(?:पहुंच|पहुँच|जाए))/.test(
+      input,
+    );
+
+  if (isLocationQuery) return "location";
+
+  const isAboutQuery =
+    /\b(?:what\s+is|what's|about|tell\s+me|information|info|details?|overview|describe|know\s+about|kya\s+(?:hai|h|he)|kaisa|kaisi|ke\s+baa?re|batao|bataiye|jaankari|jankari|parichay)\b/i.test(
+      text,
+    ) || /(?:क्या\s+है|के\s+बारे|बताओ|बताइए|जानकारी|परिचय)/.test(input);
+
+  if (isAboutQuery) return "about";
+
+  const brandOnly = text.replace(/[?!.,।]/g, "").trim();
+  return /^(?:(?:popular|populer|poplar)\s+hospitals?|(?:पॉपुलर|पापुलर)\s+(?:हॉस्पिटल|अस्पताल))(?:\s+(?:varanasi|banaras|वाराणसी|बनारस))?$/i.test(
+    brandOnly,
+  )
+    ? "about"
+    : null;
+}
+
+function getPopularHospitalAboutText(lang: Lang): string {
+  if (lang === "hi") {
+    return `🏥 **पॉपुलर हॉस्पिटल, वाराणसी**\n\nपॉपुलर हॉस्पिटल (पॉपुलर मेडिकेयर लिमिटेड की एक इकाई) वाराणसी का 450 बेड वाला मल्टी सुपर-स्पेशियलिटी अस्पताल है। यह 32+ वर्षों से पूर्वी उत्तर प्रदेश और आसपास के क्षेत्रों के मरीजों को चिकित्सा सेवाएं प्रदान कर रहा है।\n\n⭐ **मुख्य विशेषताएं:**\n• 28 विशेषज्ञ विभाग और 100+ अनुभवी डॉक्टर\n• 24x7 इमरजेंसी, ट्रॉमा और क्रिटिकल केयर\n• कार्डियोलॉजी, न्यूरोलॉजी, नेफ्रोलॉजी, ऑन्कोलॉजी, ऑर्थोपेडिक्स, गायनी और पीडियाट्रिक्स सहित प्रमुख विभाग\n• आधुनिक ICU, NICU, ऑपरेशन थिएटर, डायग्नोस्टिक्स और फार्मेसी\n\n📍 **मुख्य शाखा:** N-10/60, A-2, B.L.W. रोड, ककरमत्ता, वाराणसी, उत्तर प्रदेश – 221004\n📞 **24x7 हेल्पलाइन:** ${PHONES[0].label} / ${PHONES[1].label}`;
+  }
+
+  if (lang === "hinglish") {
+    return `🏥 **Popular Hospital, Varanasi**\n\nPopular Hospital (Popular Medicare Limited ki ek unit) Varanasi ka 450-bed multi super-speciality hospital hai. Yeh 32+ saalon se Eastern UP aur aas-paas ke regions ke patients ko healthcare services provide kar raha hai.\n\n⭐ **Key Highlights:**\n• 28 specialist departments aur 100+ experienced doctors\n• 24x7 Emergency, Trauma aur Critical Care\n• Cardiology, Neurology, Nephrology, Oncology, Orthopedics, Gynaecology aur Pediatrics jaise major departments\n• Modern ICU, NICU, Operation Theatres, Diagnostics aur Pharmacy\n\n📍 **Main Branch:** N-10/60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh – 221004\n📞 **24x7 Helpline:** ${PHONES[0].label} / ${PHONES[1].label}`;
+  }
+
+  return `🏥 **Popular Hospital, Varanasi**\n\nPopular Hospital (a unit of Popular Medicare Limited) is a 450-bed multi-super-speciality hospital in Varanasi. For over 32 years, it has provided medical, surgical and diagnostic care to patients across Eastern Uttar Pradesh and nearby regions.\n\n⭐ **Key Highlights:**\n• 28 specialist departments and 100+ experienced doctors\n• 24x7 Emergency, Trauma and Critical Care\n• Major departments including Cardiology, Neurology, Nephrology, Oncology, Orthopedics, Gynaecology and Pediatrics\n• Modern ICUs, NICU, operation theatres, diagnostics and pharmacy\n\n📍 **Main Branch:** N-10/60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh – 221004\n📞 **24x7 Helpline:** ${PHONES[0].label} / ${PHONES[1].label}`;
+}
+
+function getPopularHospitalLocationText(lang: Lang): string {
+  if (lang === "hi") {
+    return `📍 **पॉपुलर हॉस्पिटल कहाँ है?**\n\nपॉपुलर हॉस्पिटल की मुख्य शाखा **ककरमत्ता, B.L.W. रोड, वाराणसी** में DLW ग्राउंड के पास स्थित है।\n\n🏥 **पूरा पता:** N-10/60, A-2, B.L.W. रोड, ककरमत्ता, वाराणसी, उत्तर प्रदेश – 221004\n📞 **24x7 हेल्पलाइन:** ${PHONES[0].label} / ${PHONES[1].label}\n\nनीचे दिए गए लिंक से आप Google Maps पर रास्ता देख सकते हैं।`;
+  }
+
+  if (lang === "hinglish") {
+    return `📍 **Popular Hospital kahan hai?**\n\nPopular Hospital ki main branch **Kakarmatta, B.L.W. Road, Varanasi** me, DLW Ground ke paas hai.\n\n🏥 **Full Address:** N-10/60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh – 221004\n📞 **24x7 Helpline:** ${PHONES[0].label} / ${PHONES[1].label}\n\nNiche diye link se aap Google Maps par directions dekh sakte hain.`;
+  }
+
+  return `📍 **Where is Popular Hospital?**\n\nThe main branch of Popular Hospital is on **B.L.W. Road, Kakarmatta, Varanasi**, near DLW Ground.\n\n🏥 **Full Address:** N-10/60, A-2, B.L.W. Road, Kakarmatta, Varanasi, Uttar Pradesh – 221004\n📞 **24x7 Helpline:** ${PHONES[0].label} / ${PHONES[1].label}\n\nUse the link below to open directions in Google Maps.`;
+}
+
+function getAppointmentStatusHelpText(lang: Lang): string {
+  if (lang === "hi") {
+    return `📞 **अपॉइंटमेंट कन्फर्मेशन**\n\nआपकी अपॉइंटमेंट कन्फर्म हुई है या नहीं, इसकी जानकारी के लिए कृपया पॉपुलर हॉस्पिटल के नंबर **${APPOINTMENT_CONFIRMATION_PHONES[0].label}** या **${APPOINTMENT_CONFIRMATION_PHONES[1].label}** पर संपर्क करें।\n\nगोपनीयता और सुरक्षा के कारण चैटबॉट केवल मोबाइल नंबर के आधार पर बुकिंग विवरण प्रदर्शित नहीं करता।`;
+  }
+
+  if (lang === "hinglish") {
+    return `📞 **Appointment Confirmation**\n\nAapki appointment confirm hui hai ya nahi, iski jaankari ke liye kripya Popular Hospital ke numbers **${APPOINTMENT_CONFIRMATION_PHONES[0].label}** ya **${APPOINTMENT_CONFIRMATION_PHONES[1].label}** par contact karein.\n\nPrivacy aur security ke karan chatbot sirf mobile number ke basis par booking details show nahi karta.`;
+  }
+
+  return `📞 **Appointment Confirmation**\n\nTo find out whether your appointment has been confirmed, please contact Popular Hospital on **${APPOINTMENT_CONFIRMATION_PHONES[0].label}** or **${APPOINTMENT_CONFIRMATION_PHONES[1].label}**.\n\nFor privacy and security, the chatbot does not display booking details using only a mobile number.`;
+}
 
 export function detectLang(text: string): Lang {
   if (/[\u0900-\u097F]/.test(text)) return "hi";
@@ -112,6 +197,7 @@ type Step =
   | "name"
   | "name_confirm"
   | "phone"
+  | "phone_confirm"
   | "speciality"
   | "doctor"
   | "date"
@@ -135,6 +221,7 @@ interface Msg {
   doctorsPick?: boolean;
   chips?: string[];
   phones?: boolean;
+  emergencyPhones?: boolean;
   doctorsLink?: boolean;
   actionLink?: { label: string; href: string };
   success?: boolean;
@@ -254,6 +341,62 @@ function parseTime(input: string): string | null {
   if (m[3] === "pm" && h < 12) h += 12;
   if (m[3] === "am" && h === 12) h = 0;
   return `${String(h).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
+}
+
+function bookingDateForSpeech(date: string, lang: Lang): string {
+  const [year, month, day] = date.split("-").map(Number);
+  if (!year || !month || !day) return date;
+
+  const value = new Date(year, month - 1, day, 12);
+  if (Number.isNaN(value.getTime())) return date;
+
+  return new Intl.DateTimeFormat(lang === "hi" ? "hi-IN" : "en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(value);
+}
+
+function speakBookingConfirmation(
+  draft: Draft,
+  lang: Lang,
+  timeStr: string,
+) {
+  if (
+    typeof window === "undefined" ||
+    !("speechSynthesis" in window) ||
+    typeof SpeechSynthesisUtterance === "undefined" ||
+    !draft.name ||
+    !draft.date
+  ) {
+    return;
+  }
+
+  const spokenDate = bookingDateForSpeech(draft.date, lang);
+  const text =
+    lang === "hi"
+      ? `आपकी बुकिंग रिक्वेस्ट सफलतापूर्वक प्राप्त हो गई है। ${draft.name} जी, आपकी अपॉइंटमेंट ${spokenDate} को ${timeStr} बजे के लिए दर्ज की गई है।`
+      : lang === "hinglish"
+        ? `Aapki booking request successfully receive ho gayi hai. ${draft.name} ji, aapki appointment ${spokenDate} ko ${timeStr} baje ke liye register ki gayi hai.`
+        : `Your booking request has been received successfully. ${draft.name}, your appointment has been registered for ${spokenDate} at ${timeStr}.`;
+
+  const speech = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voiceLang = lang === "hi" ? "hi-IN" : "en-IN";
+  const voices = speech.getVoices();
+  const matchingVoice =
+    voices.find((voice) => voice.lang.toLowerCase() === voiceLang.toLowerCase()) ||
+    voices.find((voice) =>
+      voice.lang.toLowerCase().startsWith(voiceLang.slice(0, 2).toLowerCase()),
+    );
+
+  utterance.lang = voiceLang;
+  utterance.rate = lang === "hi" ? 0.9 : 0.95;
+  utterance.pitch = 1;
+  if (matchingVoice) utterance.voice = matchingVoice;
+
+  speech.cancel();
+  speech.speak(utterance);
 }
 
 const isYes = (text: string) =>
@@ -731,6 +874,14 @@ const EMERGENCY_RE =
   /heart attack|dil ka daura|saans (nahi|nhi|ruk)|can'?t breathe|cannot breathe|breathing (problem|difficulty)|behosh|unconscious|stroke|lakwa|paralys|zeher|poison|accident|bahut (zyada )?khoon|heavy bleeding|bleeding (nahi|nhi) ruk|severe chest|tez (seene|chest)|seizure|suicide|ambulance|emergency|हार्ट अटैक|बेहोश|एक्सीडेंट|एम्बुलेंस/i;
 
 const isEmergency = (text: string) => EMERGENCY_RE.test(text);
+
+const APPOINTMENT_TERM_RE =
+  /appointment|booking|booked|अपॉइंटमेंट|अपॉइन्टमेंट|बुकिंग|बुक\s*(?:है|हुआ|हुई)/i;
+const APPOINTMENT_STATUS_RE =
+  /status|confirm(?:ed|ation)?|check|verify|details?|booked|pata|maloom|जानकारी|स्थिति|पुष्टि|कन्फर्म|चेक|है\s*(?:या|yaa?|or)?\s*(?:नहीं|nahi|nhi)|हुआ|हुई|hui|hua|hai\s*(?:yaa?|or)?\s*(?:nahi|nhi)|any\s+appointment/i;
+
+const isAppointmentStatusQuery = (text: string) =>
+  APPOINTMENT_TERM_RE.test(text) && APPOINTMENT_STATUS_RE.test(text);
 
 function symptomSpec(text: string, list: Speciality[]): Speciality | null {
   const t = ` ${norm(text)} `;
@@ -1778,9 +1929,9 @@ const STRINGS = {
     hi: "ठीक है। कृपया मरीज का पूरा नाम दर्ज करें:",
   },
   emergencyAlert: {
-    en: "⚠️ This may be a medical emergency. Please call our hospital emergency helpline immediately or visit our 24x7 Casualty department:",
-    hinglish: "⚠️ Yeh emergency (aapaat sthiti) ho sakti hai. Kripya turant hamare hospital emergency helpline par call karein ya 24x7 Casualty aayein:",
-    hi: "⚠️ यह एक आपातकालीन स्थिति (Emergency) हो सकती है। कृपया तुरंत हमारे हॉस्पिटल हेल्पलाइन पर कॉल करें या आपातकालीन विभाग (Casualty) आएं:",
+    en: `⚠️ **This may be a medical emergency. Please call immediately.**\n\n🚑 **Ambulance Service in Varanasi, Call at:** ${AMBULANCE_PHONE.label}\n🏥 **Contact Us:** ${EMERGENCY_CONTACTS[0].label}\n🏥 **Contact Us:** ${EMERGENCY_CONTACTS[1].label}\n\nPlease call now or visit our 24x7 Emergency & Casualty department.`,
+    hinglish: `⚠️ **Yeh medical emergency ho sakti hai. Kripya turant call karein.**\n\n🚑 **Varanasi Ambulance Service, turant call karein:** ${AMBULANCE_PHONE.label}\n🏥 **Contact Us:** ${EMERGENCY_CONTACTS[0].label}\n🏥 **Contact Us:** ${EMERGENCY_CONTACTS[1].label}\n\nAmbulance ya emergency help ke liye abhi call karein, ya hamare 24x7 Emergency & Casualty department aayein.`,
+    hi: `⚠️ **यह मेडिकल इमरजेंसी हो सकती है। कृपया तुरंत कॉल करें।**\n\n🚑 **वाराणसी एम्बुलेंस सेवा, तुरंत कॉल करें:** ${AMBULANCE_PHONE.label}\n🏥 **संपर्क करें:** ${EMERGENCY_CONTACTS[0].label}\n🏥 **संपर्क करें:** ${EMERGENCY_CONTACTS[1].label}\n\nएम्बुलेंस या इमरजेंसी सहायता के लिए अभी कॉल करें, या हमारे 24x7 इमरजेंसी एवं कैजुअल्टी विभाग में आएं।`,
   },
   symptomAdvice: {
     en: (dept: string) =>
@@ -1833,6 +1984,29 @@ const STRINGS = {
     en: (name: string) => `Thanks ${name}! Please share your 10-digit mobile number.`,
     hinglish: (name: string) => `Shukriya ${name}! Kripya apna 10 digit ka mobile number batayein.`,
     hi: (name: string) => `धन्यवाद ${name}! कृपया अपना 10 अंकों का मोबाइल नंबर दर्ज करें।`,
+  },
+  phoneConfirmPrompt: {
+    en: (phone: string) =>
+      `Please confirm: Is **${phone}** your real and active mobile number? Our team may call this number regarding your appointment.`,
+    hinglish: (phone: string) =>
+      `Kripya confirm karein: Kya **${phone}** aapka real aur active mobile number hai? Appointment ke liye hamari team isi number par call kar sakti hai.`,
+    hi: (phone: string) =>
+      `कृपया पुष्टि करें: क्या **${phone}** आपका सही और चालू मोबाइल नंबर है? अपॉइंटमेंट के लिए हमारी टीम इसी नंबर पर कॉल कर सकती है।`,
+  },
+  phoneConfirmYesChip: {
+    en: "Yes, this is my number",
+    hinglish: "Haan, ye mera number hai",
+    hi: "हाँ, यह मेरा नंबर है",
+  },
+  phoneConfirmNoChip: {
+    en: "No, change number",
+    hinglish: "Nahi, number badlein",
+    hi: "नहीं, नंबर बदलें",
+  },
+  askNewPhone: {
+    en: "No problem. Please enter your correct 10-digit mobile number.",
+    hinglish: "Koi baat nahi. Kripya apna sahi 10 digit mobile number dobara batayein.",
+    hi: "कोई बात नहीं। कृपया अपना सही 10 अंकों का मोबाइल नंबर दोबारा दर्ज करें।",
   },
   datePrompt: {
     en: (doc: string) => `Great, ${doc}. Which date? (Pick below or type e.g. DD/MM/YYYY)`,
@@ -2360,6 +2534,20 @@ export default function ChatbotWidget() {
     });
   };
 
+  const askPhoneConfirmation = (
+    phone: string,
+    currentLang: Lang = lang,
+  ) => {
+    setStep("phone_confirm");
+    return botSay({
+      text: STRINGS.phoneConfirmPrompt[currentLang](phone),
+      chips: [
+        STRINGS.phoneConfirmYesChip[currentLang],
+        STRINGS.phoneConfirmNoChip[currentLang],
+      ],
+    });
+  };
+
   const confirmBooking = async (d: Draft, currentLang: Lang = lang) => {
     const branch = branches[0];
     if (!branch || !d.doctor) {
@@ -2383,15 +2571,17 @@ export default function ChatbotWidget() {
         source: "chatbot",
       });
       setTyping(false);
+      const timeStr = formatTimeToAmPm(d.time!);
       await botSay({
         text: STRINGS.bookingSuccess[currentLang](
           d,
           branch.name,
-          formatTimeToAmPm(d.time!),
+          timeStr,
         ),
         success: true,
         chips: [STRINGS.chips.findDoctor[currentLang]],
       });
+      speakBookingConfirmation(d, currentLang, timeStr);
     } catch {
       setTyping(false);
       await botSay({
@@ -2420,14 +2610,14 @@ export default function ChatbotWidget() {
 
   /* ── Main Input Handler ── */
 
-  const handleSend = async (raw?: string) => {
+  const handleSend = async (raw?: string, forcedLang?: Lang) => {
     const text = (raw ?? input).trim();
     if (!text || typing) return;
     setInput("");
     push({ role: "user", text });
 
     // Detect language dynamically from user input
-    const detected = detectLang(text);
+    const detected = forcedLang || detectLang(text);
     if (detected !== lang) {
       setLang(detected);
     }
@@ -2487,6 +2677,17 @@ export default function ChatbotWidget() {
       return;
     }
 
+    // Emergency/ambulance requests always take priority, even during booking.
+    if (isEmergency(text)) {
+      setStep("idle");
+      setDraft({});
+      lastSpecialityRef.current = null;
+      return botSay({
+        text: STRINGS.emergencyAlert[currentLang],
+        emergencyPhones: true,
+      });
+    }
+
     switch (step) {
       case "name": {
         const candidateName = extractIntroName(text) || cleanName(text);
@@ -2515,15 +2716,11 @@ export default function ChatbotWidget() {
       case "name_confirm": {
         const activeName = draft.name || userName;
 
-        // If user directly enters a 10-digit mobile number, they confirmed name AND gave phone
+        // A phone number here implicitly confirms the name, but the number still needs verification.
         const digits = text.replace(/[\s\-+]/g, "");
         if (/^\d{10,15}$/.test(digits)) {
           setDraft((d) => ({ ...d, phone: digits }));
-          if (draft.speciality) {
-            setStep("doctor");
-            return showDoctors(draft.speciality, true, currentLang);
-          }
-          return askSpeciality(currentLang);
+          return askPhoneConfirmation(digits, currentLang);
         }
 
         // Confirmed name
@@ -2589,11 +2786,39 @@ export default function ChatbotWidget() {
           return botSay({ text: errPhone });
         }
         setDraft((d) => ({ ...d, phone: digits }));
-        if (draft.speciality) {
-          setStep("doctor");
-          return showDoctors(draft.speciality, true, currentLang);
+        return askPhoneConfirmation(digits, currentLang);
+      }
+
+      case "phone_confirm": {
+        const digits = text.replace(/[\s\-+]/g, "");
+
+        // Allow the user to type a replacement number directly.
+        if (/^\d{10,15}$/.test(digits)) {
+          setDraft((d) => ({ ...d, phone: digits }));
+          return askPhoneConfirmation(digits, currentLang);
         }
-        return askSpeciality(currentLang);
+
+        if (isNameConfirmYes(text)) {
+          if (draft.speciality) {
+            setStep("doctor");
+            return showDoctors(draft.speciality, true, currentLang);
+          }
+          return askSpeciality(currentLang);
+        }
+
+        if (isNameConfirmNo(text)) {
+          setDraft((d) => ({ ...d, phone: undefined }));
+          setStep("phone");
+          return botSay({ text: STRINGS.askNewPhone[currentLang] });
+        }
+
+        return botSay({
+          text: STRINGS.phoneConfirmPrompt[currentLang](draft.phone || ""),
+          chips: [
+            STRINGS.phoneConfirmYesChip[currentLang],
+            STRINGS.phoneConfirmNoChip[currentLang],
+          ],
+        });
       }
 
       case "speciality": {
@@ -2750,12 +2975,13 @@ export default function ChatbotWidget() {
       });
     }
 
-    // 1. Emergency detection
-    if (isEmergency(text)) {
+    // 1. Existing booking / appointment confirmation intent. Never expose
+    // patient booking data using only a phone number; route confirmation to
+    // the hospital's dedicated second contact number instead.
+    if (isAppointmentStatusQuery(text)) {
       return botSay({
-        text: STRINGS.emergencyAlert[currentLang],
+        text: getAppointmentStatusHelpText(currentLang),
         phones: true,
-        chips: [STRINGS.chips.bookAppointment[currentLang]],
       });
     }
 
@@ -2780,21 +3006,28 @@ export default function ChatbotWidget() {
       return botSay({ text: callMsg, phones: true });
     }
 
-    // 3.5 About Popular Hospital intent
-    if (
-      /about (?:popular\s+)?hospital|tell me about popular|popular hospital ke baare|popular hospital ke bare|hospital ke baare|hospital information/i.test(
-        lower,
-      )
-    ) {
-      const aboutText =
-        currentLang === "hi"
-          ? `🏥 **पॉपुलर हॉस्पिटल, वाराणसी**\n\nपूर्वांचल का अग्रणी मल्टी सुपर-स्पेशियलिटी अस्पताल, जो 30+ वर्षों से उच्च गुणवत्तापूर्ण और विश्वसनीय स्वास्थ्य सेवाएं प्रदान कर रहा है।\n\n⭐ **मुख्य विशेषताएं:**\n• 24x7 इमरजेंसी, ट्रॉमा और एम्बुलेंस सेवाएं\n• 40+ विशेषज्ञ विभाग (कार्डियोलॉजी, न्यूरोलॉजी, गैस्ट्रो, ऑर्थोपेडिक्स, पीडियाट्रिक्स, गायनी आदि)\n• अत्याधुनिक ICU, NICU, डायलिसिस यूनिट और आधुनिक मॉड्यूलर OT\n• 24x7 एडवांस्ड पैथोलॉजी लैब, डिजिटल एक्स-रे, सीटी स्कैन और अल्ट्रासाउंड\n\n📍 **स्थान:** ककरमत्ता / DLW रोड, वाराणसी, उत्तर प्रदेश\n📞 **24x7 हेल्पलाइन:** ${PHONES[0].label} / ${PHONES[1].label}`
-          : currentLang === "hinglish"
-            ? `🏥 **Popular Hospital, Varanasi**\n\nPurvanchal ka leading multi-super specialty hospital jo 30+ saalon se vishwasniya healthcare services provide kar raha hai.\n\n⭐ **Key Highlights:**\n• 24x7 Emergency, Trauma aur Ambulance care\n• 40+ Super Specialties (Cardiology, Neurology, Gastro, Ortho, Gynecology, Pediatrics etc.)\n• Advanced ICUs, NICU, Dialysis aur Modular OTs\n• 24x7 Diagnostic Lab, CT Scan, Ultrasound, X-Ray & Pharmacy\n\n📍 **Address:** Kakarmatta / DLW Road, Varanasi, UP\n📞 **24x7 Helpline:** ${PHONES[0].label} / ${PHONES[1].label}`
-            : `🏥 **Popular Hospital, Varanasi**\n\nA premier multi-super specialty hospital providing trusted, high-quality healthcare to Purvanchal for over 30+ years.\n\n⭐ **Key Highlights:**\n• 24x7 Emergency, Trauma & Ambulance Services\n• 40+ Super Specialties including Cardiology, Neurology, Gastroenterology, Orthopedics, Gynecology & Pediatrics\n• Advanced ICUs, NICU, Dialysis Unit & Modular Operation Theatres\n• Comprehensive Diagnostic Imaging (CT, Ultrasound, Digital X-Ray) & 24x7 NABL Accredited Pathology\n\n📍 **Main Campus:** Kakarmatta / DLW Road, Varanasi, UP\n📞 **24x7 Helpline:** ${PHONES[0].label} / ${PHONES[1].label}`;
-
+    // 3.5 Popular Hospital brand information and location intent
+    const popularHospitalIntent = detectPopularHospitalIntent(text);
+    if (popularHospitalIntent) {
+      const isLocation = popularHospitalIntent === "location";
       return botSay({
-        text: aboutText,
+        text: isLocation
+          ? getPopularHospitalLocationText(currentLang)
+          : getPopularHospitalAboutText(currentLang),
+        actionLink: {
+          label: isLocation
+            ? currentLang === "hi"
+              ? "Google Maps पर रास्ता देखें"
+              : currentLang === "hinglish"
+                ? "Google Maps Directions Dekhein"
+                : "Open Google Maps Directions"
+            : currentLang === "hi"
+              ? "पॉपुलर हॉस्पिटल के बारे में और पढ़ें"
+              : currentLang === "hinglish"
+                ? "Popular Hospital ke baare me aur padhein"
+                : "Learn more about Popular Hospital",
+          href: isLocation ? HOSPITAL_MAP_URL : "/about",
+        },
         chips: [
           STRINGS.chips.bookAppointment[currentLang],
           STRINGS.chips.findDoctor[currentLang],
@@ -3227,8 +3460,7 @@ export default function ChatbotWidget() {
         if (aiRes.isEmergency) {
           return botSay({
             text: STRINGS.emergencyAlert[currentLang],
-            phones: true,
-            chips: [STRINGS.chips.bookAppointment[currentLang]],
+            emergencyPhones: true,
           });
         }
         if (aiRes.departmentSlug) {
@@ -3338,19 +3570,20 @@ export default function ChatbotWidget() {
     if (
       c === STRINGS.chips.aboutHospital.en ||
       c === STRINGS.chips.aboutHospital.hinglish ||
-      c === STRINGS.chips.aboutHospital.hi ||
-      /popular hospital/i.test(c)
+      c === STRINGS.chips.aboutHospital.hi
     ) {
       push({ role: "user", text: c });
-      const aboutText =
-        lang === "hi"
-          ? `🏥 **पॉपुलर हॉस्पिटल, वाराणसी**\n\nपूर्वांचल का अग्रणी मल्टी सुपर-स्पेशियलिटी अस्पताल, जो 30+ वर्षों से उच्च गुणवत्तापूर्ण और विश्वसनीय स्वास्थ्य सेवाएं प्रदान कर रहा है।\n\n⭐ **मुख्य विशेषताएं:**\n• 24x7 इमरजेंसी, ट्रॉमा और एम्बुलेंस सेवाएं\n• 40+ विशेषज्ञ विभाग (कार्डियोलॉजी, न्यूरोलॉजी, गैस्ट्रो, ऑर्थोपेडिक्स, पीडियाट्रिक्स, गायनी आदि)\n• अत्याधुनिक ICU, NICU, डायलिसिस यूनिट और आधुनिक मॉड्यूलर OT\n• 24x7 एडवांस्ड पैथोलॉजी लैब, डिजिटल एक्स-रे, सीटी स्कैन और अल्ट्रासाउंड\n\n📍 **स्थान:** ककरमत्ता / DLW रोड, वाराणसी, उत्तर प्रदेश\n📞 **24x7 हेल्पलाइन:** ${PHONES[0].label} / ${PHONES[1].label}`
-          : lang === "hinglish"
-            ? `🏥 **Popular Hospital, Varanasi**\n\nPurvanchal ka leading multi-super specialty hospital jo 30+ saalon se vishwasniya healthcare services provide kar raha hai.\n\n⭐ **Key Highlights:**\n• 24x7 Emergency, Trauma aur Ambulance care\n• 40+ Super Specialties (Cardiology, Neurology, Gastro, Ortho, Gynecology, Pediatrics etc.)\n• Advanced ICUs, NICU, Dialysis aur Modular OTs\n• 24x7 Diagnostic Lab, CT Scan, Ultrasound, X-Ray & Pharmacy\n\n📍 **Address:** Kakarmatta / DLW Road, Varanasi, UP\n📞 **24x7 Helpline:** ${PHONES[0].label} / ${PHONES[1].label}`
-            : `🏥 **Popular Hospital, Varanasi**\n\nA premier multi-super specialty hospital providing trusted, high-quality healthcare to Purvanchal for over 30+ years.\n\n⭐ **Key Highlights:**\n• 24x7 Emergency, Trauma & Ambulance Services\n• 40+ Super Specialties including Cardiology, Neurology, Gastroenterology, Orthopedics, Gynecology & Pediatrics\n• Advanced ICUs, NICU, Dialysis Unit & Modular Operation Theatres\n• Comprehensive Diagnostic Imaging (CT, Ultrasound, Digital X-Ray) & 24x7 NABL Accredited Pathology\n\n📍 **Main Campus:** Kakarmatta / DLW Road, Varanasi, UP\n📞 **24x7 Helpline:** ${PHONES[0].label} / ${PHONES[1].label}`;
-
       botSay({
-        text: aboutText,
+        text: getPopularHospitalAboutText(lang),
+        actionLink: {
+          label:
+            lang === "hi"
+              ? "पॉपुलर हॉस्पिटल के बारे में और पढ़ें"
+              : lang === "hinglish"
+                ? "Popular Hospital ke baare me aur padhein"
+                : "Learn more about Popular Hospital",
+          href: "/about",
+        },
         chips: [
           STRINGS.chips.bookAppointment[lang],
           STRINGS.chips.findDoctor[lang],
@@ -3366,7 +3599,7 @@ export default function ChatbotWidget() {
       c === STRINGS.chips.confirmYes.hinglish ||
       c === STRINGS.chips.confirmYes.hi
     ) {
-      return handleSend("yes");
+      return handleSend("yes", lang);
     }
 
     if (
@@ -3374,7 +3607,7 @@ export default function ChatbotWidget() {
       c === STRINGS.chips.cancel.hinglish ||
       c === STRINGS.chips.cancel.hi
     ) {
-      return handleSend("cancel");
+      return handleSend("cancel", lang);
     }
 
     // 5. Date quick chips
@@ -3383,21 +3616,21 @@ export default function ChatbotWidget() {
       c === STRINGS.chips.dates.today.hinglish ||
       c === STRINGS.chips.dates.today.hi
     ) {
-      return handleSend("today");
+      return handleSend("today", lang);
     }
     if (
       c === STRINGS.chips.dates.tomorrow.en ||
       c === STRINGS.chips.dates.tomorrow.hinglish ||
       c === STRINGS.chips.dates.tomorrow.hi
     ) {
-      return handleSend("tomorrow");
+      return handleSend("tomorrow", lang);
     }
     if (
       c === STRINGS.chips.dates.dayAfter.en ||
       c === STRINGS.chips.dates.dayAfter.hinglish ||
       c === STRINGS.chips.dates.dayAfter.hi
     ) {
-      return handleSend("day after tomorrow");
+      return handleSend("day after tomorrow", lang);
     }
 
     // 6. Direct Book Appointment chip
@@ -3516,14 +3749,18 @@ export default function ChatbotWidget() {
                   </div>
                 )}
 
-                {/* Direct Action Link (e.g. Chairman / VC / MD Desk) */}
+                {/* Direct Action Link (e.g. phone call / information page) */}
                 {m.actionLink && (
                   <div className="mt-2">
                     <a
                       href={m.actionLink.href}
                       className="inline-flex items-center gap-1.5 rounded-xl border border-[#0b1c43]/20 bg-white px-3 py-1.5 text-[12px] font-bold text-[#0b1c43] shadow-sm transition hover:border-[#E85222] hover:bg-[#E85222] hover:text-white"
                     >
-                      <ExternalLink className="h-3.5 w-3.5 text-[#E85222]" />
+                      {m.actionLink.href.startsWith("tel:") ? (
+                        <Phone className="h-3.5 w-3.5 text-[#E85222]" />
+                      ) : (
+                        <ExternalLink className="h-3.5 w-3.5 text-[#E85222]" />
+                      )}
                       {m.actionLink.label}
                     </a>
                   </div>
@@ -3597,15 +3834,30 @@ export default function ChatbotWidget() {
                 )}
 
                 {/* Direct Phone Call Buttons */}
-                {m.phones && (
+                {(m.phones || m.emergencyPhones) && (
                   <div className="mt-2 space-y-2">
-                    {PHONES.map((p) => (
+                    {(m.emergencyPhones
+                      ? [AMBULANCE_PHONE, ...EMERGENCY_CONTACTS]
+                      : PHONES
+                    ).map((p, index) => (
                       <a
                         key={p.href}
                         href={p.href}
-                        className="flex items-center gap-2 rounded-xl bg-emerald-600 px-3 py-2 text-[13px] font-bold text-white shadow-sm transition hover:bg-emerald-700"
+                        className={`flex items-center gap-2 rounded-xl px-3 py-2 text-[13px] font-bold text-white shadow-sm transition ${
+                          m.emergencyPhones && index === 0
+                            ? "bg-red-600 hover:bg-red-700"
+                            : "bg-emerald-600 hover:bg-emerald-700"
+                        }`}
                       >
                         <Phone className="h-4 w-4" />
+                        {m.emergencyPhones &&
+                          (index === 0
+                            ? lang === "hi"
+                              ? "एम्बुलेंस: "
+                              : "Ambulance: "
+                            : lang === "hi"
+                              ? "संपर्क: "
+                              : "Contact: ")}
                         {p.label}
                       </a>
                     ))}

@@ -45,7 +45,6 @@ const sitemapData = [
       { name: "Management Team", href: "/about/management-team" },
       { name: "Awards & Recognition", href: "/about/awards-recognition" },
       { name: "Infrastructure & Technology", href: "/about/infrastructure-technology" },
-      { name: "Social Responsibility (SR)", href: "/about/csr" },
       { name: "Cashless Empanelment", href: "/about/cashless-empanelment" },
       { name: "Our Branches", href: "/locations" },
     ],
