@@ -169,17 +169,27 @@ export default function AdminDashboardLayout({
       router.push("/admin-login");
       return;
     }
-    if (parsed.role === "sub_admin" && pathname === "/admin-dashboard") {
+    if (
+      parsed.role === "sub_admin" &&
+      !["/admin-dashboard/bookings", "/admin-dashboard/contacts", "/admin-dashboard/callback-requests", "/admin-dashboard/second-opinions"].some((p) => pathname.startsWith(p))
+    ) {
       router.replace("/admin-dashboard/bookings");
       return;
     }
-    if (parsed.role === "career_admin" && pathname === "/admin-dashboard") {
+    if (
+      parsed.role === "career_admin" &&
+      !["/admin-dashboard/careers", "/admin-dashboard/applications"].some((p) => pathname.startsWith(p))
+    ) {
       router.replace("/admin-dashboard/careers");
       return;
     }
     setUser(parsed);
     setUserReady(true);
   }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const isSubAdmin = user?.role === "sub_admin";
+  const isCareerAdmin = user?.role === "career_admin";
+  const isSuperAdmin = user?.role === "super_admin" || user?.role === "admin";
 
   const fetcher = async (url: string) => {
     const token = sessionStorage.getItem("admin_token");
@@ -190,10 +200,21 @@ export default function AdminDashboardLayout({
           Authorization: `Bearer ${token}`,
         },
       });
-      if (res.status === 401 || res.status === 403) {
+      if (res.status === 401) {
         sessionStorage.removeItem("admin_token");
         sessionStorage.removeItem("admin_user");
         window.location.href = "/admin-login?reason=session_expired";
+        return null;
+      }
+      if (res.status === 403) {
+        const data = await res.json().catch(() => ({}));
+        if (data?.error === "account_disabled") {
+          sessionStorage.removeItem("admin_token");
+          sessionStorage.removeItem("admin_user");
+          window.location.href = "/admin-login?reason=account_disabled";
+          return null;
+        }
+        // Access denied for endpoint not permitted for this role — do not log out
         return null;
       }
       if (!res.ok) return null;
@@ -204,27 +225,27 @@ export default function AdminDashboardLayout({
   };
 
   const { data: newContacts } = useSWR(
-    user ? "/api-backend/contacts?status=new" : null,
+    user && !isCareerAdmin ? "/api-backend/contacts?status=new" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
   const { data: newApplications } = useSWR(
-    user ? "/api-backend/applications?isRead=false" : null,
+    user && !isSubAdmin ? "/api-backend/applications?isRead=false" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
   const { data: newBookings } = useSWR(
-    user ? "/api-backend/cms/bookings?status=pending" : null,
+    user && !isCareerAdmin ? "/api-backend/cms/bookings?status=pending" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
   const { data: newCallbacks } = useSWR(
-    user ? "/api-backend/callback-requests?status=new" : null,
+    user && !isCareerAdmin ? "/api-backend/callback-requests?status=new" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
   const { data: newSecondOpinions } = useSWR(
-    user ? "/api-backend/second-opinions?status=new" : null,
+    user && !isCareerAdmin ? "/api-backend/second-opinions?status=new" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
@@ -270,8 +291,7 @@ export default function AdminDashboardLayout({
       .find((sub) => pathname === sub.href)?.label ||
     "Dashboard";
 
-  const isSubAdmin = user?.role === "sub_admin";
-  const isCareerAdmin = user?.role === "career_admin";
+
 
   const SUB_ADMIN_ALLOWED = ["Bookings", "Contacts", "Call Backs", "Second Opinion"];
   const CAREER_ADMIN_ALLOWED = ["Career Portal"];
