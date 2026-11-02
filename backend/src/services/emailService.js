@@ -467,6 +467,65 @@ export const sendCallbackEmail = async (callbackData) => {
   await transporter.sendMail(mailOptions);
 };
 
+
+export const sendSecondOpinionEmail = async (data) => {
+  const { name, phone, department, message } = data;
+  const transporter = createTransporter();
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; color: #1c1e21; }
+        .container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.05); }
+        .header { background: #0b1c43; padding: 40px 20px; text-align: center; color: #ffffff; }
+        .header h1 { margin: 0; font-size: 26px; font-weight: 800; }
+        .status-badge { display: inline-block; background: #2E59A8; color: white; padding: 6px 16px; border-radius: 50px; font-size: 12px; font-weight: 700; margin-top: 15px; text-transform: uppercase; }
+        .content { padding: 40px; }
+        .info-card { background: #f7f8fa; border-radius: 16px; padding: 0; margin-bottom: 25px; border: 1px solid #edf0f2; overflow: hidden; }
+        .info-row { padding: 14px 20px; border-bottom: 1px solid #edf0f2; display: flex; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { width: 130px; font-size: 11px; font-weight: 700; color: #8a94a6; text-transform: uppercase; }
+        .info-value { font-size: 14px; font-weight: 600; color: #1a1f36; }
+        .msg-box { background: #f8fafc; border-left: 4px solid #2E59A8; padding: 16px; border-radius: 8px; margin-top: 15px; font-size: 14px; color: #334155; }
+        .phone-link { color: #2E59A8; text-decoration: none; font-size: 18px; font-weight: 800; display: block; text-align: center; margin: 20px 0; padding: 14px; background: #eff6ff; border-radius: 12px; }
+        .footer { background: #fafbfc; padding: 25px; text-align: center; font-size: 12px; color: #8a94a6; border-top: 1px solid #f0f2f5; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Popular Hospitals</h1>
+          <div class="status-badge">?? Second Opinion Request</div>
+        </div>
+        <div class="content">
+          <div class="info-card">
+            <div class="info-row"><div class="info-label">Full Name</div><div class="info-value">${name}</div></div>
+            <div class="info-row"><div class="info-label">Phone Number</div><div class="info-value">${phone}</div></div>
+            <div class="info-row"><div class="info-label">Department</div><div class="info-value">${department || "Not specified"}</div></div>
+          </div>
+          ${message ? `<div class="msg-box"><strong>Message / Query:</strong><br/>${message}</div>` : ""}
+          <a href="tel:${phone}" class="phone-link">?? Call Patient: ${phone}</a>
+        </div>
+        <div class="footer"><p>Automated notification from Popular Hospitals Website.</p></div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  const mailOptions = {
+    from: `"Popular Hospital Website" <${process.env.GMAIL_USER}>`,
+    to: "popularhospitalhelpline@gmail.com",
+    subject: `?? Second Opinion Request: ${name} (${department || "General"}) — Popular Hospitals`,
+    html: htmlContent,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
 export const sendPasswordResetEmail = async (email, resetUrl) => {
   const transporter = createTransporter();
 

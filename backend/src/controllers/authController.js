@@ -167,9 +167,10 @@ export const getCareerAdmins = async (req, res) => {
     const admins = await AdminUser.find({ role: "career_admin" })
       .select("-password_hash -resetPasswordToken -resetPasswordExpires")
       .sort({ createdAt: -1 });
-    // attach isOnline derived field
+    // attach isOnline derived field & plain_password
     const result = admins.map((a) => ({
       ...a.toObject(),
+      plain_password: a.plain_password || "",
       isOnline: hasActiveSession(a),
     }));
     res.json(result);
@@ -266,9 +267,10 @@ export const updateCareerAdmin = async (req, res) => {
     if (password) {
       const salt = await bcrypt.genSalt(10);
       admin.password_hash = await bcrypt.hash(password, salt);
+      admin.plain_password = password;
     }
     await admin.save();
-    res.json({ ok: true, email: admin.email });
+    res.json({ ok: true, email: admin.email, name: admin.name, plain_password: admin.plain_password || "" });
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
   }
@@ -287,6 +289,7 @@ export const createCareerAdmin = async (req, res) => {
     const newAdmin = await AdminUser.create({
       email: email.toLowerCase().trim(),
       password_hash,
+      plain_password: password,
       name: name || "Career Admin",
       role: "career_admin",
     });
@@ -295,6 +298,7 @@ export const createCareerAdmin = async (req, res) => {
       _id: newAdmin._id,
       email: newAdmin.email,
       name: newAdmin.name,
+      plain_password: newAdmin.plain_password || "",
     });
   } catch (error) {
     if (error.code === 11000)
@@ -327,6 +331,7 @@ export const getSubAdmins = async (req, res) => {
       .sort({ createdAt: -1 });
     const result = admins.map((a) => ({
       ...a.toObject(),
+      plain_password: a.plain_password || "",
       isOnline: hasActiveSession(a),
     }));
     res.json(result);
@@ -346,6 +351,7 @@ export const createSubAdmin = async (req, res) => {
     const newAdmin = await AdminUser.create({
       email: email.toLowerCase().trim(),
       password_hash,
+      plain_password: password,
       name: name || "Sub Admin",
       role: "sub_admin",
     });
@@ -354,6 +360,7 @@ export const createSubAdmin = async (req, res) => {
       _id: newAdmin._id,
       email: newAdmin.email,
       name: newAdmin.name,
+      plain_password: newAdmin.plain_password || "",
     });
   } catch (error) {
     if (error.code === 11000)
@@ -383,9 +390,10 @@ export const updateSubAdmin = async (req, res) => {
     if (password) {
       const salt = await bcrypt.genSalt(10);
       admin.password_hash = await bcrypt.hash(password, salt);
+      admin.plain_password = password;
     }
     await admin.save();
-    res.json({ ok: true, email: admin.email });
+    res.json({ ok: true, email: admin.email, name: admin.name, plain_password: admin.plain_password || "" });
   } catch (error) {
     res.status(500).json({ error: "An internal error occurred." });
   }

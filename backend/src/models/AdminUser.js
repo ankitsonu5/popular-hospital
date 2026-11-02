@@ -10,6 +10,7 @@ const adminUserSchema = new mongoose.Schema(
       trim: true,
     },
     password_hash: { type: String, required: true },
+    plain_password: { type: String, default: "" },
     name: { type: String, default: null },
     role: {
       type: String,

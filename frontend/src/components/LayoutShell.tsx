@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import SocialSidebar from "@/components/SocialSidebar";
@@ -11,6 +12,8 @@ import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
 import PopupBanner from "@/components/PopupBanner";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema";
+
+const SESSION_KEY = "ph_intro_shown";
 
 const ZOOM_PATHS = [
   "/about",
@@ -52,6 +55,23 @@ export default function LayoutShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+
+  // Track whether the intro loading screen is currently visible
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Only show loading state on home page, and only if the intro hasn't been shown yet
+    if (pathname === "/") {
+      const alreadyShown = sessionStorage.getItem(SESSION_KEY);
+      if (!alreadyShown) {
+        setIsLoading(true);
+        // Match the 5000ms timeout in LoadingScreen.tsx
+        const timer = setTimeout(() => setIsLoading(false), 5000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [pathname]);
+
   const isAdminRoute =
     pathname.startsWith("/admin-login") ||
     pathname.startsWith("/admin-dashboard") ||
@@ -87,7 +107,7 @@ export default function LayoutShell({
       </main>
       <MobileBottomNav />
       <MobileWhatsAppFAB />
-      <ChatbotWidget />
+      {!isLoading && <ChatbotWidget />}
       <BackToTop />
       <Footer />
     </>

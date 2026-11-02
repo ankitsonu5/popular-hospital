@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -33,6 +33,7 @@ interface CareerAdmin {
   _id: string;
   email: string;
   name: string;
+  plain_password?: string;
   isActive: boolean;
   isOnline: boolean;
 }
@@ -41,6 +42,7 @@ interface SubAdmin {
   _id: string;
   email: string;
   name: string;
+  plain_password?: string;
   isActive: boolean;
   isOnline: boolean;
 }
@@ -112,7 +114,7 @@ function EditModal({
 }) {
   const [name, setName] = useState(admin.name);
   const [email, setEmail] = useState(admin.email);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(admin.plain_password || "");
   const [showPass, setShowPass] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -126,12 +128,12 @@ function EditModal({
         body: JSON.stringify({
           email,
           name,
-          ...(password ? { password } : {}),
+          password,
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Save failed");
-      onSaved({ ...admin, email, name });
+      onSaved({ ...admin, email, name, plain_password: password || admin.plain_password });
       toast.success("Career Admin updated successfully!");
     } catch (e: any) {
       toast.error(e.message || "Save failed");
@@ -166,35 +168,34 @@ function EditModal({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Email (Login ID)
+              Login ID (Email)
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
+              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition font-mono"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Password{" "}
-              <span className="text-gray-400 font-normal">
-                (leave blank to keep unchanged)
-              </span>
+              Password
             </label>
             <div className="relative">
               <input
                 type={showPass ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder={admin ? "New password (optional)" : "Set password"}
-                className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition"
+                placeholder="Enter password"
+                required
+                className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] transition font-mono"
               />
               <button
                 type="button"
                 onClick={() => setShowPass((v) => !v)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                title={showPass ? "Hide password" : "Show password"}
               >
                 {showPass ? (
                   <EyeOff className="w-4 h-4" />
@@ -203,6 +204,9 @@ function EditModal({
                 )}
               </button>
             </div>
+            <p className="text-[11px] text-gray-400 mt-1">
+              Current password is shown above. You can change it here anytime.
+            </p>
           </div>
           <div className="flex gap-3 pt-1">
             <button
@@ -255,6 +259,7 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
         _id: data._id,
         email: data.email,
         name: data.name || name,
+        plain_password: password,
         isActive: true,
         isOnline: false,
       });
@@ -305,7 +310,7 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="Email (Login ID)"
-          className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] bg-white transition"
+          className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] bg-white transition font-mono"
         />
         <div className="relative">
           <input
@@ -314,12 +319,13 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
             onChange={(e) => setPassword(e.target.value)}
             required
             placeholder="Password"
-            className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] bg-white transition"
+            className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0d9488]/30 focus:border-[#0d9488] bg-white transition font-mono"
           />
           <button
             type="button"
             onClick={() => setShowPass((v) => !v)}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            title={showPass ? "Hide password" : "Show password"}
           >
             {showPass ? (
               <EyeOff className="w-3.5 h-3.5" />
@@ -357,9 +363,10 @@ function SubAdminEditModal({
 }) {
   const [name, setName] = useState(admin.name);
   const [email, setEmail] = useState(admin.email);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(admin.plain_password || "");
   const [showPass, setShowPass] = useState(false);
   const [saving, setSaving] = useState(false);
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
@@ -370,12 +377,12 @@ function SubAdminEditModal({
         body: JSON.stringify({
           email,
           name,
-          ...(password ? { password } : {}),
+          password,
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Save failed");
-      onSaved({ ...admin, email, name });
+      onSaved({ ...admin, email, name, plain_password: password || admin.plain_password });
       toast.success("Sub Admin updated successfully!");
     } catch (e: any) {
       toast.error(e.message || "Save failed");
@@ -383,6 +390,7 @@ function SubAdminEditModal({
       setSaving(false);
     }
   };
+
   return (
     <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
@@ -408,35 +416,34 @@ function SubAdminEditModal({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Email (Login ID)
+              Login ID (Email)
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition"
+              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition font-mono"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Password{" "}
-              <span className="text-gray-400 font-normal">
-                (leave blank to keep unchanged)
-              </span>
+              Password
             </label>
             <div className="relative">
               <input
                 type={showPass ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="New password (optional)"
-                className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition"
+                placeholder="Enter password"
+                required
+                className="w-full px-4 py-2.5 pr-11 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 transition font-mono"
               />
               <button
                 type="button"
                 onClick={() => setShowPass((v) => !v)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                title={showPass ? "Hide password" : "Show password"}
               >
                 {showPass ? (
                   <EyeOff className="w-4 h-4" />
@@ -445,6 +452,9 @@ function SubAdminEditModal({
                 )}
               </button>
             </div>
+            <p className="text-[11px] text-gray-400 mt-1">
+              Current password is shown above. You can change it here anytime.
+            </p>
           </div>
           <div className="flex gap-3 pt-1">
             <button
@@ -485,6 +495,7 @@ function SubAdminCreateForm({
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [saving, setSaving] = useState(false);
+
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
@@ -500,6 +511,7 @@ function SubAdminCreateForm({
         _id: data._id,
         email: data.email,
         name: data.name || name,
+        plain_password: password,
         isActive: true,
         isOnline: false,
       });
@@ -514,6 +526,7 @@ function SubAdminCreateForm({
       setSaving(false);
     }
   };
+
   if (!open)
     return (
       <button
@@ -523,6 +536,7 @@ function SubAdminCreateForm({
         <Plus className="w-4 h-4" /> Add Sub Admin
       </button>
     );
+
   return (
     <div className="border border-amber-400/30 rounded-xl p-4 bg-amber-50/50 mt-2">
       <div className="flex items-center justify-between mb-4">
@@ -547,7 +561,7 @@ function SubAdminCreateForm({
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="Email (Login ID)"
-          className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition"
+          className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition font-mono"
         />
         <div className="relative">
           <input
@@ -556,12 +570,13 @@ function SubAdminCreateForm({
             onChange={(e) => setPassword(e.target.value)}
             required
             placeholder="Password"
-            className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition"
+            className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/30 focus:border-amber-400 bg-white transition font-mono"
           />
           <button
             type="button"
             onClick={() => setShowPass((v) => !v)}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            title={showPass ? "Hide password" : "Show password"}
           >
             {showPass ? (
               <EyeOff className="w-3.5 h-3.5" />
@@ -612,6 +627,18 @@ export default function SettingsPage() {
     string | null
   >(null);
   const [loggingOutAllSub, setLoggingOutAllSub] = useState(false);
+
+  // Password visibility toggle states
+  const [visiblePass, setVisiblePass] = useState<Record<string, boolean>>({});
+  const [visibleSubPass, setVisibleSubPass] = useState<Record<string, boolean>>({});
+
+  const togglePassVisibility = (id: string) => {
+    setVisiblePass((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const toggleSubPassVisibility = (id: string) => {
+    setVisibleSubPass((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   // Confirm modal state
   const [confirm, setConfirm] = useState<{
@@ -910,6 +937,7 @@ export default function SettingsPage() {
   };
 
   const onlineAdmins = admins.filter((a) => a.isOnline);
+  const isSuperAdmin = user?.role === "super_admin" || user?.role === "admin";
 
   return (
     <div className="space-y-6 max-w-2xl">
@@ -1008,308 +1036,421 @@ export default function SettingsPage() {
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                 Role
               </p>
-              <p className="text-sm text-gray-900 font-medium">
-                Super Administrator
+              <p className="text-sm text-gray-900 font-medium capitalize">
+                {user?.role?.replace("_", " ") || "Administrator"}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Career Portal Admins */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-        {/* Section Header */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className="w-10 h-10 rounded-xl bg-[#0d9488]/10 flex items-center justify-center shrink-0">
-            <Briefcase className="w-5 h-5 text-[#0d9488]" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-gray-900">Career Portal Admins</h3>
-            <p className="text-xs text-gray-500 mt-0.5">
-              {loadingAdmins ? (
-                "Loading..."
-              ) : (
-                <>
-                  {admins.length} admin{admins.length !== 1 ? "s" : ""}
-                  {onlineAdmins.length > 0 && (
-                    <span className="ml-2 text-emerald-600 font-semibold">
-                      · {onlineAdmins.length} currently online
-                    </span>
-                  )}
-                </>
-              )}
-            </p>
-          </div>
-          {admins.length > 0 && (
-            <button
-              onClick={handleLogoutAll}
-              disabled={loggingOutAll}
-              title="Log out all career admins"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors shrink-0 disabled:opacity-50"
-            >
-              {loggingOutAll ? (
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-              ) : (
-                <ShieldOff className="w-3.5 h-3.5" />
-              )}
-              Logout All
-            </button>
-          )}
-        </div>
-
-        {/* Admin List */}
-        {loadingAdmins ? (
-          <div className="flex items-center justify-center py-8">
-            <Loader2 className="w-6 h-6 animate-spin text-[#0d9488]" />
-          </div>
-        ) : admins.length === 0 ? (
-          <div className="text-center py-6 text-gray-400 text-sm border border-dashed border-gray-200 rounded-xl mb-4">
-            No career admins yet. Create one below.
-          </div>
-        ) : (
-          <div className="space-y-2 mb-4">
-            {admins.map((admin) => (
-              <div
-                key={admin._id}
-                className={`flex items-center gap-3 p-3 rounded-xl border transition-colors
-                  ${
-                    admin.isOnline
-                      ? "bg-emerald-50/60 border-emerald-200"
-                      : "bg-gray-50 border-gray-100 hover:bg-gray-100"
-                  }`}
-              >
-                {/* Avatar */}
-                <div
-                  className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0
-                  ${admin.isOnline ? "bg-emerald-600" : "bg-gradient-to-br from-[#0d9488] to-[#0b1c43]"}`}
-                >
-                  {admin.name?.charAt(0)?.toUpperCase() || "C"}
-                </div>
-
-                {/* Info */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-gray-900 truncate">
-                      {admin.name || "Career Admin"}
-                    </p>
-                    {admin.isOnline && (
-                      <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
-                        <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
-                        Online
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs text-gray-400 truncate">
-                    {admin.email}
-                  </p>
-                </div>
-
-                {/* Active/Disabled badge */}
-                <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0
-                  ${admin.isActive ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-600"}`}
-                >
-                  {admin.isActive ? "Active" : "Disabled"}
-                </span>
-
-                {/* Toggle active */}
-                <button
-                  onClick={() => handleToggle(admin)}
-                  disabled={togglingId === admin._id}
-                  title={admin.isActive ? "Disable" : "Enable"}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none shrink-0
-                    ${admin.isActive ? "bg-[#0d9488]" : "bg-gray-300"}
-                    ${togglingId === admin._id ? "opacity-50" : ""}`}
-                >
-                  <span
-                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform
-                    ${admin.isActive ? "translate-x-4" : "translate-x-0.5"}`}
-                  />
-                </button>
-
-                {/* Force Logout */}
-                <button
-                  onClick={() => handleForceLogout(admin)}
-                  disabled={forceLoggingOutId === admin._id}
-                  title="Force Logout — clear session"
-                  className="p-1.5 rounded-lg transition-colors shrink-0 text-amber-500 hover:text-amber-700 hover:bg-amber-50 disabled:opacity-40"
-                >
-                  {forceLoggingOutId === admin._id ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <WifiOff className="w-4 h-4" />
-                  )}
-                </button>
-
-                {/* Edit */}
-                <button
-                  onClick={() => setEditingAdmin(admin)}
-                  title="Edit"
-                  className="p-1.5 text-gray-400 hover:text-[#0b1c43] hover:bg-white rounded-lg transition-colors shrink-0"
-                >
-                  <Pencil className="w-4 h-4" />
-                </button>
-
-                {/* Delete */}
-                <button
-                  onClick={() => handleDelete(admin)}
-                  disabled={deletingId === admin._id}
-                  title="Delete"
-                  className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
-                >
-                  {deletingId === admin._id ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Trash2 className="w-4 h-4" />
-                  )}
-                </button>
+      {/* Super Admin Only: Career Portal Admins and Sub Admins */}
+      {isSuperAdmin && (
+        <>
+          {/* Career Portal Admins */}
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            {/* Section Header */}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-[#0d9488]/10 flex items-center justify-center shrink-0">
+                <Briefcase className="w-5 h-5 text-[#0d9488]" />
               </div>
-            ))}
-          </div>
-        )}
-
-        {/* Create */}
-        <CreateForm
-          onCreated={(newAdmin) => {
-            setAdmins((prev) => [newAdmin, ...prev]);
-          }}
-        />
-      </div>
-
-      {/* Sub Admins */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-amber-100">
-        <div className="flex items-center gap-3 mb-5">
-          <div className="w-10 h-10 rounded-xl bg-amber-400/10 flex items-center justify-center shrink-0">
-            <CalendarCheck className="w-5 h-5 text-amber-500" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-gray-900">Sub Admins</h3>
-            <p className="text-xs text-gray-500 mt-0.5">
-              {loadingSubAdmins ? (
-                "Loading..."
-              ) : (
-                <>
-                  {subAdmins.length} sub admin
-                  {subAdmins.length !== 1 ? "s" : ""}
-                  {subAdmins.filter((a) => a.isOnline).length > 0 && (
-                    <span className="ml-2 text-emerald-600 font-semibold">
-                      · {subAdmins.filter((a) => a.isOnline).length} currently
-                      online
-                    </span>
-                  )}
-                </>
-              )}
-            </p>
-          </div>
-          {subAdmins.length > 0 && (
-            <button
-              onClick={handleSubAdminLogoutAll}
-              disabled={loggingOutAllSub}
-              title="Log out all sub admins"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors shrink-0 disabled:opacity-50"
-            >
-              {loggingOutAllSub ? (
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-              ) : (
-                <ShieldOff className="w-3.5 h-3.5" />
-              )}
-              Logout All
-            </button>
-          )}
-        </div>
-
-        {loadingSubAdmins ? (
-          <div className="flex items-center justify-center py-8">
-            <Loader2 className="w-6 h-6 animate-spin text-amber-500" />
-          </div>
-        ) : subAdmins.length === 0 ? (
-          <div className="text-center py-6 text-gray-400 text-sm border border-dashed border-amber-200 rounded-xl mb-4">
-            No sub admins yet. Create one below.
-          </div>
-        ) : (
-          <div className="space-y-2 mb-4">
-            {subAdmins.map((admin) => (
-              <div
-                key={admin._id}
-                className={`flex items-center gap-3 p-3 rounded-xl border transition-colors
-                  ${admin.isOnline ? "bg-emerald-50/60 border-emerald-200" : "bg-amber-50/30 border-amber-100 hover:bg-amber-50"}`}
-              >
-                <div
-                  className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${admin.isOnline ? "bg-emerald-600" : "bg-amber-500"}`}
-                >
-                  {admin.name?.charAt(0)?.toUpperCase() || "S"}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-gray-900 truncate">
-                      {admin.name || "Sub Admin"}
-                    </p>
-                    {admin.isOnline && (
-                      <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
-                        <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
-                        Online
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs text-gray-400 truncate">
-                    {admin.email}
-                  </p>
-                </div>
-                <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${admin.isActive ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-600"}`}
-                >
-                  {admin.isActive ? "Active" : "Disabled"}
-                </span>
-                <button
-                  onClick={() => handleSubAdminToggle(admin)}
-                  disabled={togglingSubId === admin._id}
-                  title={admin.isActive ? "Disable" : "Enable"}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none shrink-0 ${admin.isActive ? "bg-amber-500" : "bg-gray-300"} ${togglingSubId === admin._id ? "opacity-50" : ""}`}
-                >
-                  <span
-                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform ${admin.isActive ? "translate-x-4" : "translate-x-0.5"}`}
-                  />
-                </button>
-                <button
-                  onClick={() => handleSubAdminForceLogout(admin)}
-                  disabled={forceLoggingOutSubId === admin._id}
-                  title="Force Logout — clear session"
-                  className="p-1.5 rounded-lg transition-colors shrink-0 text-amber-500 hover:text-amber-700 hover:bg-amber-50 disabled:opacity-40"
-                >
-                  {forceLoggingOutSubId === admin._id ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
+              <div className="flex-1 min-w-0">
+                <h3 className="font-bold text-gray-900">Career Portal Admins</h3>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  {loadingAdmins ? (
+                    "Loading..."
                   ) : (
-                    <WifiOff className="w-4 h-4" />
+                    <>
+                      {admins.length} admin{admins.length !== 1 ? "s" : ""}
+                      {onlineAdmins.length > 0 && (
+                        <span className="ml-2 text-emerald-600 font-semibold">
+                          · {onlineAdmins.length} currently online
+                        </span>
+                      )}
+                    </>
                   )}
-                </button>
-                <button
-                  onClick={() => setEditingSubAdmin(admin)}
-                  title="Edit"
-                  className="p-1.5 text-gray-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors shrink-0"
-                >
-                  <Pencil className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => handleSubAdminDelete(admin)}
-                  disabled={deletingSubId === admin._id}
-                  title="Delete"
-                  className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
-                >
-                  {deletingSubId === admin._id ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Trash2 className="w-4 h-4" />
-                  )}
-                </button>
+                </p>
               </div>
-            ))}
-          </div>
-        )}
+              {admins.length > 0 && (
+                <button
+                  onClick={handleLogoutAll}
+                  disabled={loggingOutAll}
+                  title="Log out all career admins"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors shrink-0 disabled:opacity-50"
+                >
+                  {loggingOutAll ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <ShieldOff className="w-3.5 h-3.5" />
+                  )}
+                  Logout All
+                </button>
+              )}
+            </div>
 
-        <SubAdminCreateForm
-          onCreated={(newAdmin) => setSubAdmins((prev) => [newAdmin, ...prev])}
-        />
-      </div>
+            {loadingAdmins ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-6 h-6 animate-spin text-[#0d9488]" />
+              </div>
+            ) : admins.length === 0 ? (
+              <div className="text-center py-6 text-gray-400 text-sm border border-dashed border-gray-200 rounded-xl mb-4">
+                No career admins yet. Create one below.
+              </div>
+            ) : (
+              <div className="space-y-3 mb-4">
+                {admins.map((admin) => (
+                  <div
+                    key={admin._id}
+                    className={`p-3.5 rounded-xl border transition-colors ${
+                      admin.isOnline
+                        ? "bg-emerald-50/40 border-emerald-200"
+                        : "bg-gray-50/70 border-gray-100 hover:bg-gray-50"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      {/* Avatar */}
+                      <div
+                        className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${
+                          admin.isOnline
+                            ? "bg-emerald-600"
+                            : "bg-gradient-to-br from-[#0d9488] to-[#0b1c43]"
+                        }`}
+                      >
+                        {admin.name?.charAt(0)?.toUpperCase() || "C"}
+                      </div>
+
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-semibold text-gray-900 truncate">
+                            {admin.name || "Career Admin"}
+                          </p>
+                          {admin.isOnline && (
+                            <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
+                              <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                              Online
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-gray-400 truncate">
+                          {admin.email}
+                        </p>
+                      </div>
+
+                      {/* Active/Disabled badge */}
+                      <span
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
+                          admin.isActive
+                            ? "bg-blue-100 text-blue-700"
+                            : "bg-red-100 text-red-600"
+                        }`}
+                      >
+                        {admin.isActive ? "Active" : "Disabled"}
+                      </span>
+
+                      {/* Toggle active */}
+                      <button
+                        onClick={() => handleToggle(admin)}
+                        disabled={togglingId === admin._id}
+                        title={admin.isActive ? "Disable" : "Enable"}
+                        className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none shrink-0 ${
+                          admin.isActive ? "bg-[#0d9488]" : "bg-gray-300"
+                        } ${togglingId === admin._id ? "opacity-50" : ""}`}
+                      >
+                        <span
+                          className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform ${
+                            admin.isActive
+                              ? "translate-x-4"
+                              : "translate-x-0.5"
+                          }`}
+                        />
+                      </button>
+
+                      {/* Force Logout */}
+                      <button
+                        onClick={() => handleForceLogout(admin)}
+                        disabled={forceLoggingOutId === admin._id}
+                        title="Force Logout — clear session"
+                        className="p-1.5 rounded-lg transition-colors shrink-0 text-amber-500 hover:text-amber-700 hover:bg-amber-50 disabled:opacity-40"
+                      >
+                        {forceLoggingOutId === admin._id ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <WifiOff className="w-4 h-4" />
+                        )}
+                      </button>
+
+                      {/* Edit */}
+                      <button
+                        onClick={() => setEditingAdmin(admin)}
+                        title="Edit ID & Password"
+                        className="p-1.5 text-gray-500 hover:text-[#0b1c43] hover:bg-white rounded-lg transition-colors shrink-0"
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </button>
+
+                      {/* Delete */}
+                      <button
+                        onClick={() => handleDelete(admin)}
+                        disabled={deletingId === admin._id}
+                        title="Delete"
+                        className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
+                      >
+                        {deletingId === admin._id ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Trash2 className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Current ID & Password Inputs */}
+                    <div className="mt-3 pt-2.5 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1">
+                          Current Login ID (Email)
+                        </span>
+                        <input
+                          type="text"
+                          readOnly
+                          value={admin.email}
+                          className="w-full text-xs font-mono font-medium bg-white border border-gray-200 px-3 py-1.5 rounded-lg text-gray-800 outline-none select-all focus:border-[#0d9488]"
+                        />
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1">
+                          Current Password
+                        </span>
+                        <div className="relative">
+                          <input
+                            type={visiblePass[admin._id] ? "text" : "password"}
+                            readOnly
+                            value={admin.plain_password || ""}
+                            placeholder={admin.plain_password ? "" : "Not set"}
+                            className="w-full text-xs font-mono font-medium bg-white border border-gray-200 pl-3 pr-9 py-1.5 rounded-lg text-gray-800 outline-none select-all focus:border-[#0d9488]"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => togglePassVisibility(admin._id)}
+                            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 p-0.5"
+                            title={visiblePass[admin._id] ? "Hide Password" : "Show Password"}
+                          >
+                            {visiblePass[admin._id] ? (
+                              <EyeOff className="w-3.5 h-3.5" />
+                            ) : (
+                              <Eye className="w-3.5 h-3.5" />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Create */}
+            <CreateForm
+              onCreated={(newAdmin) => {
+                setAdmins((prev) => [newAdmin, ...prev]);
+              }}
+            />
+          </div>
+
+          {/* Sub Admins */}
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-amber-100">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-amber-400/10 flex items-center justify-center shrink-0">
+                <CalendarCheck className="w-5 h-5 text-amber-500" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-bold text-gray-900">Sub Admins</h3>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  {loadingSubAdmins ? (
+                    "Loading..."
+                  ) : (
+                    <>
+                      {subAdmins.length} sub admin
+                      {subAdmins.length !== 1 ? "s" : ""}
+                      {subAdmins.filter((a) => a.isOnline).length > 0 && (
+                        <span className="ml-2 text-emerald-600 font-semibold">
+                          · {subAdmins.filter((a) => a.isOnline).length} currently
+                          online
+                        </span>
+                      )}
+                    </>
+                  )}
+                </p>
+              </div>
+              {subAdmins.length > 0 && (
+                <button
+                  onClick={handleSubAdminLogoutAll}
+                  disabled={loggingOutAllSub}
+                  title="Log out all sub admins"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors shrink-0 disabled:opacity-50"
+                >
+                  {loggingOutAllSub ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <ShieldOff className="w-3.5 h-3.5" />
+                  )}
+                  Logout All
+                </button>
+              )}
+            </div>
+
+            {loadingSubAdmins ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-6 h-6 animate-spin text-amber-500" />
+              </div>
+            ) : subAdmins.length === 0 ? (
+              <div className="text-center py-6 text-gray-400 text-sm border border-dashed border-amber-200 rounded-xl mb-4">
+                No sub admins yet. Create one below.
+              </div>
+            ) : (
+              <div className="space-y-3 mb-4">
+                {subAdmins.map((admin) => (
+                  <div
+                    key={admin._id}
+                    className={`p-3.5 rounded-xl border transition-colors ${
+                      admin.isOnline
+                        ? "bg-emerald-50/50 border-emerald-200"
+                        : "bg-amber-50/30 border-amber-100 hover:bg-amber-50/50"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${
+                          admin.isOnline ? "bg-emerald-600" : "bg-amber-500"
+                        }`}
+                      >
+                        {admin.name?.charAt(0)?.toUpperCase() || "S"}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-semibold text-gray-900 truncate">
+                            {admin.name || "Sub Admin"}
+                          </p>
+                          {admin.isOnline && (
+                            <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
+                              <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                              Online
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-gray-400 truncate">
+                          {admin.email}
+                        </p>
+                      </div>
+                      <span
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
+                          admin.isActive
+                            ? "bg-blue-100 text-blue-700"
+                            : "bg-red-100 text-red-600"
+                        }`}
+                      >
+                        {admin.isActive ? "Active" : "Disabled"}
+                      </span>
+                      <button
+                        onClick={() => handleSubAdminToggle(admin)}
+                        disabled={togglingSubId === admin._id}
+                        title={admin.isActive ? "Disable" : "Enable"}
+                        className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none shrink-0 ${
+                          admin.isActive ? "bg-amber-500" : "bg-gray-300"
+                        } ${togglingSubId === admin._id ? "opacity-50" : ""}`}
+                      >
+                        <span
+                          className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform ${
+                            admin.isActive
+                              ? "translate-x-4"
+                              : "translate-x-0.5"
+                          }`}
+                        />
+                      </button>
+                      <button
+                        onClick={() => handleSubAdminForceLogout(admin)}
+                        disabled={forceLoggingOutSubId === admin._id}
+                        title="Force Logout — clear session"
+                        className="p-1.5 rounded-lg transition-colors shrink-0 text-amber-500 hover:text-amber-700 hover:bg-amber-50 disabled:opacity-40"
+                      >
+                        {forceLoggingOutSubId === admin._id ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <WifiOff className="w-4 h-4" />
+                        )}
+                      </button>
+                      <button
+                        onClick={() => setEditingSubAdmin(admin)}
+                        title="Edit ID & Password"
+                        className="p-1.5 text-gray-500 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors shrink-0"
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleSubAdminDelete(admin)}
+                        disabled={deletingSubId === admin._id}
+                        title="Delete"
+                        className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
+                      >
+                        {deletingSubId === admin._id ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Trash2 className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Current ID & Password Inputs */}
+                    <div className="mt-3 pt-2.5 border-t border-amber-100/60 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1">
+                          Current Login ID (Email)
+                        </span>
+                        <input
+                          type="text"
+                          readOnly
+                          value={admin.email}
+                          className="w-full text-xs font-mono font-medium bg-white border border-amber-200/60 px-3 py-1.5 rounded-lg text-gray-800 outline-none select-all focus:border-amber-400"
+                        />
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1">
+                          Current Password
+                        </span>
+                        <div className="relative">
+                          <input
+                            type={visibleSubPass[admin._id] ? "text" : "password"}
+                            readOnly
+                            value={admin.plain_password || ""}
+                            placeholder={admin.plain_password ? "" : "Not set"}
+                            className="w-full text-xs font-mono font-medium bg-white border border-amber-200/60 pl-3 pr-9 py-1.5 rounded-lg text-gray-800 outline-none select-all focus:border-amber-400"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => toggleSubPassVisibility(admin._id)}
+                            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 p-0.5"
+                            title={visibleSubPass[admin._id] ? "Hide Password" : "Show Password"}
+                          >
+                            {visibleSubPass[admin._id] ? (
+                              <EyeOff className="w-3.5 h-3.5" />
+                            ) : (
+                              <Eye className="w-3.5 h-3.5" />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <SubAdminCreateForm
+              onCreated={(newAdmin) => setSubAdmins((prev) => [newAdmin, ...prev])}
+            />
+          </div>
+        </>
+      )}
 
       {/* Logout */}
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-red-100">

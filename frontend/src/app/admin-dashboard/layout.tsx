@@ -63,6 +63,11 @@ const sidebarItems = [
     href: "/admin-dashboard/callback-requests",
     icon: PhoneIncoming,
   },
+  {
+    label: "Second Opinion",
+    href: "/admin-dashboard/second-opinions",
+    icon: PhoneIncoming,
+  },
   { label: "Departments", href: "/admin-dashboard/departments", icon: Users },
   {
     label: "Manage Content",
@@ -176,12 +181,27 @@ export default function AdminDashboardLayout({
     setUserReady(true);
   }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const fetcher = (url: string) =>
-    fetch(url, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
-      },
-    }).then((res) => res.json());
+  const fetcher = async (url: string) => {
+    const token = sessionStorage.getItem("admin_token");
+    if (!token) return null;
+    try {
+      const res = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 401 || res.status === 403) {
+        sessionStorage.removeItem("admin_token");
+        sessionStorage.removeItem("admin_user");
+        window.location.href = "/admin-login?reason=session_expired";
+        return null;
+      }
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  };
 
   const { data: newContacts } = useSWR(
     user ? "/api-backend/contacts?status=new" : null,
@@ -203,6 +223,11 @@ export default function AdminDashboardLayout({
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
+  const { data: newSecondOpinions } = useSWR(
+    user ? "/api-backend/second-opinions?status=new" : null,
+    fetcher,
+    { refreshInterval: 15000, revalidateOnFocus: true },
+  );
 
   const unreadCount = Array.isArray(newContacts) ? newContacts.length : 0;
   const unreadAppsCount = Array.isArray(newApplications)
@@ -213,6 +238,9 @@ export default function AdminDashboardLayout({
     : 0;
   const unreadCallbacksCount = Array.isArray(newCallbacks)
     ? newCallbacks.length
+    : 0;
+  const unreadSecondOpinionsCount = Array.isArray(newSecondOpinions)
+    ? newSecondOpinions.length
     : 0;
 
   const handleLogout = async () => {
@@ -245,7 +273,7 @@ export default function AdminDashboardLayout({
   const isSubAdmin = user?.role === "sub_admin";
   const isCareerAdmin = user?.role === "career_admin";
 
-  const SUB_ADMIN_ALLOWED = ["Bookings", "Contacts", "Call Backs"];
+  const SUB_ADMIN_ALLOWED = ["Bookings", "Contacts", "Call Backs", "Second Opinion"];
   const CAREER_ADMIN_ALLOWED = ["Career Portal"];
 
   const visibleSidebarItems = !userReady
@@ -403,6 +431,10 @@ export default function AdminDashboardLayout({
                     )}
                     {item.label === "Call Backs" &&
                       unreadCallbacksCount > 0 && (
+                        <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                      )}
+                    {item.label === "Second Opinion" &&
+                      unreadSecondOpinionsCount > 0 && (
                         <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
                       )}
                     {isActive && (
