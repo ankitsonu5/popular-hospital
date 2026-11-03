@@ -65,6 +65,19 @@ export default function JobPortalPage() {
   const [sortBy, setSortBy] = useState("date-desc");
   const [page, setPage] = useState(0);
   const PAGE_SIZE = 25;
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+
+  useEffect(() => {
+    try {
+      const uStr = sessionStorage.getItem("admin_user");
+      if (uStr) {
+        const u = JSON.parse(uStr);
+        setIsSuperAdmin(u?.role === "super_admin" || u?.role === "admin");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
 
   const authHeader = () => ({
     Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
@@ -213,10 +226,18 @@ export default function JobPortalPage() {
 
   const promptDelete = (id: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
+    if (!isSuperAdmin) {
+      toast.error("Only Super Admin can delete applications");
+      return;
+    }
     setDeleteConfirmId(id);
   };
 
   const confirmDelete = async () => {
+    if (!isSuperAdmin) {
+      toast.error("Only Super Admin can delete applications");
+      return;
+    }
     if (deleteConfirmId === "bulk") {
       try {
         setLoading(true);
@@ -265,7 +286,7 @@ export default function JobPortalPage() {
   };
 
   const renderDeleteModal = () => {
-    if (!deleteConfirmId) return null;
+    if (!isSuperAdmin || !deleteConfirmId) return null;
     return (
       <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200">
         <div className="bg-white rounded-sm shadow-xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
@@ -458,12 +479,14 @@ export default function JobPortalPage() {
             >
               <Printer className="w-4 h-4" /> Print A4 Form
             </button>
-            <button
-              onClick={(e) => promptDelete(selectedApp._id, e)}
-              className="flex items-center gap-2 bg-red-50 text-red-600 px-5 py-2.5 rounded-sm font-bold text-sm hover:bg-red-100 transition-all border border-red-100/50"
-            >
-              <Trash2 className="w-4 h-4" /> Delete Profile
-            </button>
+            {isSuperAdmin && (
+              <button
+                onClick={(e) => promptDelete(selectedApp._id, e)}
+                className="flex items-center gap-2 bg-red-50 text-red-600 px-5 py-2.5 rounded-sm font-bold text-sm hover:bg-red-100 transition-all border border-red-100/50"
+              >
+                <Trash2 className="w-4 h-4" /> Delete Profile
+              </button>
+            )}
           </div>
         </div>
 
@@ -701,13 +724,15 @@ export default function JobPortalPage() {
             </button>
             {selectedIds.length > 0 && (
               <>
-                <button
-                  onClick={() => setDeleteConfirmId("bulk")}
-                  className="p-2 hover:bg-red-50 text-gray-500 hover:text-red-600 rounded-full transition-colors"
-                  title="Delete Selected"
-                >
-                  <Trash2 className="w-5 h-5" />
-                </button>
+                {isSuperAdmin && (
+                  <button
+                    onClick={() => setDeleteConfirmId("bulk")}
+                    className="p-2 hover:bg-red-50 text-gray-500 hover:text-red-600 rounded-full transition-colors"
+                    title="Delete Selected"
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                )}
                 <select
                   defaultValue=""
                   onChange={(e) => {

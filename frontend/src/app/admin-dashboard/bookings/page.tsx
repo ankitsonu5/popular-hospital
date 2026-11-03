@@ -98,6 +98,19 @@ export default function BookingsAdminPage() {
   const [activeTab, setActiveTab] = useState<TabType>("all");
   const [search, setSearch] = useState("");
   const [monthFilter, setMonthFilter] = useState("");
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+
+  useEffect(() => {
+    try {
+      const uStr = sessionStorage.getItem("admin_user");
+      if (uStr) {
+        const u = JSON.parse(uStr);
+        setIsSuperAdmin(u?.role === "super_admin" || u?.role === "admin");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -185,8 +198,12 @@ export default function BookingsAdminPage() {
   );
 
   const promptDelete = useCallback((id: string) => {
+    if (!isSuperAdmin) {
+      toast.error("Only Super Admin can delete bookings");
+      return;
+    }
     setDeleteConfirmId(id);
-  }, []);
+  }, [isSuperAdmin]);
 
   const confirmDelete = useCallback(async () => {
     if (!deleteConfirmId) return;
@@ -470,25 +487,27 @@ export default function BookingsAdminPage() {
             <ArrowLeft className="w-4 h-4" />
             Back to Bookings
           </button>
-          <button
-            onClick={() => {
-              if (selected.status !== "pending") promptDelete(selected._id);
-            }}
-            disabled={selected.status === "pending"}
-            className={`flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg transition-colors ${
-              selected.status === "pending"
-                ? "text-gray-300 cursor-not-allowed"
-                : "text-red-600 hover:bg-red-50 cursor-pointer"
-            }`}
-            title={
-              selected.status === "pending"
-                ? "Cannot delete pending booking"
-                : "Delete Booking"
-            }
-          >
-            <Trash2 className="w-4 h-4" />
-            Delete
-          </button>
+          {isSuperAdmin && (
+            <button
+              onClick={() => {
+                if (selected.status !== "pending") promptDelete(selected._id);
+              }}
+              disabled={selected.status === "pending"}
+              className={`flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg transition-colors ${
+                selected.status === "pending"
+                  ? "text-gray-300 cursor-not-allowed"
+                  : "text-red-600 hover:bg-red-50 cursor-pointer"
+              }`}
+              title={
+                selected.status === "pending"
+                  ? "Cannot delete pending booking"
+                  : "Delete Booking"
+              }
+            >
+              <Trash2 className="w-4 h-4" />
+              Delete
+            </button>
+          )}
         </div>
 
         {/* Detail body */}
@@ -878,7 +897,7 @@ export default function BookingsAdminPage() {
                 booking={booking}
                 onSelect={handleSelectBooking}
                 onStatusChange={updateStatus}
-                onDelete={promptDelete}
+                onDelete={isSuperAdmin ? promptDelete : undefined}
               />
             ))
           )}
@@ -886,7 +905,7 @@ export default function BookingsAdminPage() {
       )}
 
       {/* Delete confirm modal */}
-      {deleteConfirmId && (
+      {isSuperAdmin && deleteConfirmId && (
         <DeleteModal
           onCancel={() => setDeleteConfirmId(null)}
           onConfirm={confirmDelete}
@@ -906,7 +925,7 @@ function BookingRow({
   booking: Booking;
   onSelect: (b: Booking) => void;
   onStatusChange: (b: Booking, status: string) => void;
-  onDelete: (id: string) => void;
+  onDelete?: (id: string) => void;
 }) {
   return (
     <div
@@ -974,25 +993,27 @@ function BookingRow({
           <option value="rejected">Rejected</option>
         </select>
 
-        {/* Delete button */}
-        <button
-          onClick={() => {
-            if (booking.status !== "pending") onDelete(booking._id);
-          }}
-          disabled={booking.status === "pending"}
-          title={
-            booking.status === "pending"
-              ? "Cannot delete pending booking"
-              : "Delete"
-          }
-          className={`p-1.5 rounded-lg transition-all ${
-            booking.status === "pending"
-              ? "text-gray-200 cursor-not-allowed"
-              : "text-red-400 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100"
-          }`}
-        >
-          <Trash2 className="w-3.5 h-3.5" />
-        </button>
+        {/* Delete button - Super Admin Only */}
+        {onDelete && (
+          <button
+            onClick={() => {
+              if (booking.status !== "pending") onDelete(booking._id);
+            }}
+            disabled={booking.status === "pending"}
+            title={
+              booking.status === "pending"
+                ? "Cannot delete pending booking"
+                : "Delete"
+            }
+            className={`p-1.5 rounded-lg transition-all ${
+              booking.status === "pending"
+                ? "text-gray-200 cursor-not-allowed"
+                : "text-red-400 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100"
+            }`}
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+        )}
 
         {/* Created date */}
         <span className="text-[11px] text-gray-400 font-medium w-20 text-right whitespace-nowrap">

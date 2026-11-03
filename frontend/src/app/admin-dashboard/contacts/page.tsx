@@ -79,6 +79,19 @@ export default function GmailContactsPage() {
   const [monthFilter, setMonthFilter] = useState("");
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+
+  useEffect(() => {
+    try {
+      const uStr = sessionStorage.getItem("admin_user");
+      if (uStr) {
+        const u = JSON.parse(uStr);
+        setIsSuperAdmin(u?.role === "super_admin" || u?.role === "admin");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
 
   const PAGE_SIZE = 10;
 
@@ -129,6 +142,10 @@ export default function GmailContactsPage() {
   };
 
   const promptDelete = (id: string) => {
+    if (!isSuperAdmin) {
+      toast.error("Only Super Admin can delete contacts");
+      return;
+    }
     setDeleteConfirmId(id);
   };
 
@@ -325,13 +342,15 @@ export default function GmailContactsPage() {
               <button className="p-2 hover:bg-gray-100 rounded-md">
                 <Archive className="w-4 h-4 text-gray-600" />
               </button>
-              <button
-                onClick={() => promptDelete(selected._id)}
-                className="p-2 hover:bg-gray-100 rounded-md text-red-500"
-                title="Delete"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
+              {isSuperAdmin && (
+                <button
+                  onClick={() => promptDelete(selected._id)}
+                  className="p-2 hover:bg-gray-100 rounded-md text-red-500"
+                  title="Delete"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              )}
               <button className="p-2 hover:bg-gray-100 rounded-md">
                 <Mail className="w-4 h-4 text-gray-600" />
               </button>
@@ -561,16 +580,18 @@ export default function GmailContactsPage() {
                           >
                             <Archive className="w-4 h-4 text-gray-500" />
                           </button>
-                          <button
-                            className="p-1.5 hover:bg-red-50 text-red-500 rounded-full transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              promptDelete(contact._id);
-                            }}
-                            title="Delete"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                          {isSuperAdmin && (
+                            <button
+                              className="p-1.5 hover:bg-red-50 text-red-500 rounded-full transition-colors"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                promptDelete(contact._id);
+                              }}
+                              title="Delete"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          )}
                           <button
                             className="p-1.5 hover:bg-gray-200 rounded-full transition-colors"
                             onClick={(e) => e.stopPropagation()}
@@ -729,8 +750,8 @@ export default function GmailContactsPage() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
-      {deleteConfirmId && (
+      {/* Delete Confirmation Modal - Super Admin Only */}
+      {isSuperAdmin && deleteConfirmId && (
         <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
             <div className="p-6">

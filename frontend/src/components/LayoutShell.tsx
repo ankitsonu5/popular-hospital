@@ -11,6 +11,7 @@ import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
 import PopupBanner from "@/components/PopupBanner";
+import NotificationSubscribeModal from "@/components/NotificationSubscribeModal";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema";
 
@@ -66,10 +67,9 @@ export default function LayoutShell({
       const alreadyShown = sessionStorage.getItem(SESSION_KEY);
       if (!alreadyShown) {
         setIsLoading(true);
-        // Match the 5000ms timeout in LoadingScreen.tsx
-        const timer = setTimeout(() => setIsLoading(false), 5000);
-        return () => clearTimeout(timer);
       }
+    } else {
+      setIsLoading(false);
     }
   }, [pathname]);
 
@@ -78,9 +78,6 @@ export default function LayoutShell({
     pathname.startsWith("/admin-dashboard") ||
     pathname.startsWith("/reset-admin-password") ||
     pathname.startsWith("/careers/admin");
-
-  const isBlogDetailRoute =
-    pathname.startsWith("/blog/") && pathname.split("/").length === 3;
 
   if (isAdminRoute) {
     return <main className="flex-1">{children}</main>;
@@ -95,8 +92,11 @@ export default function LayoutShell({
       >
         Skip to main content
       </a>
-      {pathname === "/" && <LoadingScreen />}
+      {pathname === "/" && (
+        <LoadingScreen onFinished={() => setIsLoading(false)} />
+      )}
       <PopupBanner />
+      {!isLoading && <NotificationSubscribeModal />}
       <Header />
       <SocialSidebar />
       <EmergencySidebar />

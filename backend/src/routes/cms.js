@@ -191,7 +191,7 @@ router.get("/careers", getAdminCareers);
 router.get("/careers/:id", getCareerById);
 router.post("/careers", createCareer);
 router.put("/careers/:id", updateCareer);
-router.delete("/careers/:id", deleteCareer);
+router.delete("/careers/:id", superAdminOnly, deleteCareer);
 
 // ── Sub-Admin self-logout ────────────────────────────────────────────
 router.post("/sub-admin/logout", subAdminLogout);
@@ -214,7 +214,7 @@ router.get("/bookings", superOrSubAdmin, getAllBookings);
 router.patch("/bookings/:id/read", superOrSubAdmin, markBookingRead);
 router.patch("/bookings/:id/status", superOrSubAdmin, updateBookingStatus);
 router.patch("/bookings/:id/admin-notes", superOrSubAdmin, updateAdminNotes);
-router.delete("/bookings/:id", superOrSubAdmin, deleteBooking);
+router.delete("/bookings/:id", superAdminOnly, deleteBooking);
 
 // ── From here: super_admin only ─────────────────────────────────────
 router.use(superAdminOnly);

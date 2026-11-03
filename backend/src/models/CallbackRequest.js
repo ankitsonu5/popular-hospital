@@ -4,7 +4,9 @@ const callbackRequestSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true, maxlength: 200 },
     phone: { type: String, required: true, trim: true, maxlength: 20 },
+    email: { type: String, default: "", trim: true, lowercase: true, maxlength: 200 },
     department: { type: String, default: "", trim: true },
+    source: { type: String, default: "callback_form", trim: true },
     status: { type: String, enum: ["new", "read"], default: "new" },
   },
   { timestamps: true },

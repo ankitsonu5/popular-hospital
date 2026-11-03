@@ -3679,7 +3679,7 @@ export default function ChatbotWidget() {
     <>
       {/* Chat Window */}
       <div
-        className={`fixed bottom-[140px] right-4 z-[9998] flex w-[calc(100vw-2rem)] max-w-[360px] h-[440px] max-h-[calc(100dvh-10.5rem)] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl transition-all duration-300 md:bottom-24 md:right-6 md:w-[350px] md:max-w-[350px] md:h-[490px] md:max-h-[calc(100vh-8rem)] ${
+        className={`fixed bottom-[140px] right-4 z-[70] flex w-[calc(100vw-2rem)] max-w-[360px] h-[440px] max-h-[calc(100dvh-10.5rem)] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl transition-all duration-300 md:bottom-24 md:right-16 lg:right-20 md:w-[350px] md:max-w-[350px] md:h-[490px] md:max-h-[calc(100vh-8rem)] ${
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none translate-y-6 opacity-0"
@@ -3970,7 +3970,7 @@ export default function ChatbotWidget() {
       <button
         id="chatbot-toggle"
         onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-[72px] right-4 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#E85222] to-[#ff7a45] text-white shadow-xl transition hover:scale-110 md:bottom-6 md:right-6"
+        className="fixed bottom-[72px] right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#E85222] to-[#ff7a45] text-white shadow-xl transition hover:scale-110 md:bottom-6 md:right-6"
         aria-label={open ? "Close chat" : "Open chat"}
       >
         {!open && (

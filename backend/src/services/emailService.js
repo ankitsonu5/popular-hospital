@@ -383,7 +383,7 @@ export const sendBookingEmail = async (booking) => {
 };
 
 export const sendCallbackEmail = async (callbackData) => {
-  const { name, phone, department } = callbackData;
+  const { name, phone, email, department, source } = callbackData;
 
   const transporter = createTransporter();
 
@@ -438,10 +438,18 @@ export const sendCallbackEmail = async (callbackData) => {
               <div class="info-label">Phone Number</div>
               <div class="info-value">${phone}</div>
             </div>
+            ${email ? `<div class="info-row">
+              <div class="info-label">Email Address</div>
+              <div class="info-value"><a href="mailto:${email}">${email}</a></div>
+            </div>` : ""}
             <div class="info-row">
-              <div class="info-label">Department</div>
+              <div class="info-label">Department / Speciality</div>
               <div class="info-value">${department || "Not specified"}</div>
             </div>
+            ${source ? `<div class="info-row">
+              <div class="info-label">Source</div>
+              <div class="info-value">${source === "notification_subscribe" ? "Alert Subscribe Modal" : source}</div>
+            </div>` : ""}
           </div>
 
           <a href="tel:${phone}" class="phone-link">📞 Call Now: ${phone}</a>
@@ -519,7 +527,7 @@ export const sendSecondOpinionEmail = async (data) => {
   const mailOptions = {
     from: `"Popular Hospital Website" <${process.env.GMAIL_USER}>`,
     to: "popularhospitalhelpline@gmail.com",
-    subject: `?? Second Opinion Request: ${name} (${department || "General"}) � Popular Hospitals`,
+    subject: `?? Second Opinion Request: ${name} (${department || "General"}) � Popular Hospitals`,
     html: htmlContent,
   };
 
@@ -659,4 +667,67 @@ export const sendPasswordResetSuccessEmail = async (email) => {
   };
 
   await transporter.sendMail(mailOptions);
+};
+
+
+export const sendCustomNotificationEmail = async ({ recipients, subject, message }) => {
+  const transporter = createTransporter();
+
+  const formattedMessage = (message || "").replace(/\n/g, "<br/>");
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f0f2f5; color: #1c1e21; }
+        .container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.05); }
+        .header { background: #0b1c43; padding: 32px 20px; text-align: center; color: #ffffff; }
+        .header h1 { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
+        .header p { margin: 8px 0 0; font-size: 13px; opacity: 0.85; font-weight: 500; color: #e2e8f0; }
+        .content { padding: 32px 28px; line-height: 1.6; color: #2d3748; }
+        .message-box { background: #f8fafc; border-left: 4px solid #0b1c43; padding: 20px; border-radius: 4px 8px 8px 4px; margin: 20px 0; font-size: 15px; }
+        .contact-box { background: #eff6ff; border-radius: 10px; padding: 18px; margin-top: 24px; text-align: center; }
+        .contact-box a { color: #0b1c43; font-weight: 700; text-decoration: none; margin: 0 10px; display: inline-block; }
+        .footer { background: #fafbfc; padding: 24px; text-align: center; border-top: 1px solid #f0f2f5; font-size: 12px; color: #8a94a6; }
+        .footer a { color: #0b1c43; font-weight: 600; text-decoration: none; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Popular Hospital</h1>
+          <p>Excellence in Healthcare | Varanasi</p>
+        </div>
+        <div class="content">
+          <div class="message-box">
+            ${formattedMessage}
+          </div>
+          <div class="contact-box">
+            <p style="margin: 0 0 8px; font-weight: 600; color: #1e293b;">Popular Hospital Helpline & Consultation</p>
+            <a href="tel:+917703000088">📞 +91 7703000088</a>
+            <a href="https://www.popularhospital.in" target="_blank">🌐 popularhospital.in</a>
+          </div>
+        </div>
+        <div class="footer">
+          <p style="margin: 0;">You are receiving this communication from <a href="https://www.popularhospital.in">Popular Hospital</a>.</p>
+          <p style="margin: 6px 0 0;">N2/115-116, BLW-B.H.U. Road, Kakarmata, Varanasi, UP 221005</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  const isSingle = recipients.length === 1;
+  const mailOptions = {
+    from: `"Popular Hospital" <${process.env.GMAIL_USER}>`,
+    to: isSingle ? recipients[0] : process.env.GMAIL_USER,
+    bcc: !isSingle ? recipients : undefined,
+    subject: subject,
+    html: htmlContent,
+  };
+
+  return await transporter.sendMail(mailOptions);
 };

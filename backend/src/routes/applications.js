@@ -9,7 +9,7 @@ import {
   upload,
   updateStatus,
 } from "../controllers/applicationController.js";
-import { cmsAuth } from "../middleware/auth.js";
+import { cmsAuth, superAdminOnly } from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -30,6 +30,6 @@ router.get("/:id", getApplicationById);
 router.patch("/:id/read", toggleRead);
 router.patch("/:id/star", toggleStarred);
 router.patch("/:id/status", updateStatus);
-router.delete("/:id", deleteApplication);
+router.delete("/:id", superAdminOnly, deleteApplication);
 
 export default router;

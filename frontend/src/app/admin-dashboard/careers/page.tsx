@@ -34,6 +34,19 @@ function CareerList() {
   const [selectedCareer, setSelectedCareer] = useState<any | null>(null);
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+
+  useEffect(() => {
+    try {
+      const uStr = sessionStorage.getItem("admin_user");
+      if (uStr) {
+        const u = JSON.parse(uStr);
+        setIsSuperAdmin(u?.role === "super_admin" || u?.role === "admin");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
 
   const getHeaders = useCallback(
     () => ({
@@ -90,6 +103,10 @@ function CareerList() {
   }, [careers, selectedCareer]);
 
   const confirmDelete = async () => {
+    if (!isSuperAdmin) {
+      toast.error("Only Super Admin can delete job postings");
+      return;
+    }
     const targetId = deleteConfirmId;
     if (!targetId) return;
     try {
@@ -415,13 +432,15 @@ function CareerList() {
                         >
                           <Edit2 className="w-4 h-4" />
                         </Link>
-                        <button
-                          onClick={() => setDeleteConfirmId(item._id)}
-                          className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
-                          title="Delete"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        {isSuperAdmin && (
+                          <button
+                            onClick={() => setDeleteConfirmId(item._id)}
+                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                            title="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -597,20 +616,22 @@ function CareerList() {
                 <Edit2 className="w-4 h-4" />
                 <span>Edit Role</span>
               </Link>
-              <button
-                onClick={() => setDeleteConfirmId(selectedCareer._id)}
-                className="px-5 py-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg font-bold text-sm border border-red-100 transition-all active:scale-95 flex items-center justify-center gap-2"
-              >
-                <Trash2 className="w-4 h-4" />
-                <span>Delete</span>
-              </button>
+              {isSuperAdmin && (
+                <button
+                  onClick={() => setDeleteConfirmId(selectedCareer._id)}
+                  className="px-5 py-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg font-bold text-sm border border-red-100 transition-all active:scale-95 flex items-center justify-center gap-2"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  <span>Delete</span>
+                </button>
+              )}
             </div>
           </div>
         </>
       )}
 
-      {/* Delete Confirmation Modal */}
-      {deleteConfirmId && (
+      {/* Delete Confirmation Modal - Super Admin Only */}
+      {isSuperAdmin && deleteConfirmId && (
         <div className="fixed inset-0 bg-black/40 z-[200] flex items-center justify-center p-4 backdrop-blur-xs animate-in fade-in duration-200">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
             <div className="p-6">

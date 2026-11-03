@@ -5,14 +5,21 @@ import Image from "next/image";
 
 const SESSION_KEY = "ph_intro_shown";
 
-const LoadingScreen = () => {
+interface LoadingScreenProps {
+  onFinished?: () => void;
+}
+
+const LoadingScreen: React.FC<LoadingScreenProps> = ({ onFinished }) => {
   // Start hidden — decide in useEffect to avoid SSR mismatch
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Only show the intro loader ONCE per browser session
     const alreadyShown = sessionStorage.getItem(SESSION_KEY);
-    if (alreadyShown) return; // user already saw it this session → skip
+    if (alreadyShown) {
+      onFinished?.();
+      return; // user already saw it this session → skip
+    }
 
     // First visit this session → show loader
     sessionStorage.setItem(SESSION_KEY, "1");
@@ -20,15 +27,16 @@ const LoadingScreen = () => {
 
     const timer = setTimeout(() => {
       setIsVisible(false);
+      onFinished?.();
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [onFinished]);
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700 overflow-hidden">
+    <div className="fixed inset-0 z-[99999] bg-white flex flex-col items-center justify-center transition-opacity duration-700 overflow-hidden">
       <div className="w-full relative flex items-center justify-center h-48">
         {/* Central Logo with Pulsing Rings (Background) */}
         <div className="absolute flex items-center justify-center opacity-40 z-0">
