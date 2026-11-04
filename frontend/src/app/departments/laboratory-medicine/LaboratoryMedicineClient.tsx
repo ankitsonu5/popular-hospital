@@ -3,20 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import GetCallBackButton from "@/components/GetCallBackButton";
 import { CImage, T } from "@/components/content/Editable";
 
-const doctors = [
-  {
-    name: "Dr. Diagnostic Expert",
-    qualifications: "MBBS, MD (Pathology)",
-    designation: "Head, Department of Laboratory Medicine",
-    slug: "laboratory-specialist",
-    image:
-      "https://images.unsplash.com/photo-1559839734-2b71ef197ec2?auto=format&fit=crop&q=80&w=800",
-  },
-];
+const doctors: never[] = []; // No doctors assigned to this department yet
 
 const features = [
   {
@@ -65,7 +56,7 @@ export default function LaboratoryMedicineClient() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative min-h-[200px] md:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-10 md:py-12">
+      <section className="relative w-full bg-[#0b1c43] overflow-hidden flex items-center h-[230px] md:h-[200px] xl:h-[170px] 2xl:h-[clamp(200px,13.02vw,420px)] py-8 md:py-10 xl:py-6 2xl:py-[clamp(2.4rem,2.5vw,5rem)]">
         <div className="absolute inset-0 z-0">
           <CImage k="departments-laboratory-medicine_92bc7e"
             src="/images/banners/laboratory_medicine.png"
@@ -79,12 +70,11 @@ export default function LaboratoryMedicineClient() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1366px] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold mb-6 border border-blue-400/30 backdrop-blur-md uppercase tracking-widest"><T k="departments-laboratory-medicine_f1f9df" d={"Centre of Diagnostic Excellence"} /></span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[1.1] font-heading tracking-tight"><T k="departments-laboratory-medicine_39cea3" d={"Department of Laboratory Medicine — Varanasi"} /></h1>
-            <div className="flex flex-wrap gap-4 mt-8">
+            <h1 className="font-black text-white mb-6 leading-[1.1] font-heading tracking-tight text-lg sm:text-[min(2.25rem,3.81vw)] sm:whitespace-nowrap"><T k="departments-laboratory-medicine_39cea3" d={"Department of Laboratory Medicine"} /></h1>
+            <div className="flex flex-wrap gap-3 sm:gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-4 sm:px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-xs sm:text-sm tracking-wide"
               >
                 <svg
                   className="w-5 h-5"
@@ -99,7 +89,7 @@ export default function LaboratoryMedicineClient() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg><T k="departments-laboratory-medicine_83ca2a" d={"Book a Test"} /></Link>
-              <button className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-bold backdrop-blur-md transition-all border border-white/20 flex items-center gap-2 group uppercase text-sm tracking-wide"><T k="departments-laboratory-medicine_8e3070" d={"Download Reports"} /><svg
+              <button className="bg-white/10 hover:bg-white/20 text-white px-4 sm:px-8 py-3.5 rounded-full font-bold backdrop-blur-md transition-all border border-white/20 flex items-center gap-2 group uppercase text-xs sm:text-sm tracking-wide"><T k="departments-laboratory-medicine_8e3070" d={"Download Reports"} /><svg
                   className="w-5 h-5 group-hover:translate-y-1 transition-transform"
                   fill="none"
                   stroke="currentColor"
@@ -118,12 +108,16 @@ export default function LaboratoryMedicineClient() {
         </div>
       </section>
 
+      {/* ═══════ OUR MEDICAL EXPERTS (DIRECTLY UNDER BANNER) ═══════ */}
+      <DepartmentMedicalExperts doctors={doctors} />
+
+
       {/* ═══════ ABOUT DEPARTMENT + DOCTOR SIDEBAR ═══════ */}
       <section className="py-20 bg-white">
         <div className="mx-auto w-full max-w-[1366px] px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* ── Left Content ── */}
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-12">
               <SectionHeader
                 title="Advancing Healthcare Through"
                 highlight="Pure Science"
@@ -149,36 +143,29 @@ export default function LaboratoryMedicineClient() {
               </div>
             </div>
 
-            {/* ── Right Doctor Slider ── */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit flex flex-col gap-10">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Laboratory Medicine"
-                />
-
-                <div className="bg-[#0b1c43] p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl -mr-16 -mt-16" />
-                  <svg
-                    className="w-12 h-12 text-blue-400 mb-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                    />
-                  </svg>
-                  <h4 className="text-xl font-bold mb-4"><T k="departments-laboratory-medicine_236d68" d={"Precision Diagnostic Reports"} /></h4>
-                  <p className="text-blue-200 text-sm mb-6 leading-relaxed"><T k="departments-laboratory-medicine_01946f" d={"Available online for your convenience. Secure, accurate, and fast."} /></p>
-                  <Link
-                    href="/reports"
-                    className="bg-white text-[#0b1c43] px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-blue-50 transition-all"
-                  ><T k="departments-laboratory-medicine_6bfd17" d={"Access Now"} /></Link>
-                </div>
+            {/* ── Reports Card ── */}
+            <div className="lg:col-span-12 flex justify-center">
+              <div className="bg-[#0b1c43] p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden flex flex-col items-center text-center w-full max-w-md">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl -mr-16 -mt-16" />
+                <svg
+                  className="w-12 h-12 text-blue-400 mb-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                  />
+                </svg>
+                <h4 className="text-xl font-bold mb-4"><T k="departments-laboratory-medicine_236d68" d={"Precision Diagnostic Reports"} /></h4>
+                <p className="text-blue-200 text-sm mb-6 leading-relaxed"><T k="departments-laboratory-medicine_01946f" d={"Available online for your convenience. Secure, accurate, and fast."} /></p>
+                <Link
+                  href="/reports"
+                  className="bg-white text-[#0b1c43] px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-blue-50 transition-all"
+                ><T k="departments-laboratory-medicine_6bfd17" d={"Access Now"} /></Link>
               </div>
             </div>
           </div>

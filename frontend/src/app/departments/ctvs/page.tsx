@@ -22,7 +22,7 @@ export async function generateMetadata() {
 
 
 export default async function CTVSPage() {
-  const dbDoctors = await fetchDoctors({ speciality: "ctvs" });
+  const dbDoctors = await fetchDoctors({ speciality: "ctvs", includeAdditional: true });
   const doctors = dbDoctors.map((d) => ({
     name: d.name,
     qualifications: d.qualification || "",

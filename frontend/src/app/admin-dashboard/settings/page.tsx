@@ -24,6 +24,8 @@ import {
   CalendarCheck,
 } from "lucide-react";
 
+import { ADMIN_FEATURES, DEFAULT_PERMISSIONS } from "@/lib/adminFeatures";
+
 const authHeaders = () => ({
   "Content-Type": "application/json",
   Authorization: `Bearer ${sessionStorage.getItem("admin_token")}`,
@@ -36,6 +38,7 @@ interface CareerAdmin {
   plain_password?: string;
   isActive: boolean;
   isOnline: boolean;
+  permissions?: string[];
 }
 
 interface SubAdmin {
@@ -45,6 +48,7 @@ interface SubAdmin {
   plain_password?: string;
   isActive: boolean;
   isOnline: boolean;
+  permissions?: string[];
 }
 
 // ── Custom Confirm Modal ────────────────────────────────────────────────
@@ -102,6 +106,61 @@ function ConfirmModal({
   );
 }
 
+// ── Feature access picker (what a Sub / Career admin can open) ──────────
+function PermissionPicker({
+  value,
+  onChange,
+}: {
+  value: string[];
+  onChange: (next: string[]) => void;
+}) {
+  const toggle = (key: string) =>
+    onChange(
+      value.includes(key) ? value.filter((k) => k !== key) : [...value, key],
+    );
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-1.5">
+        <p className="text-xs font-semibold text-gray-600">
+          Feature access ({value.length}/{ADMIN_FEATURES.length})
+        </p>
+        <div className="flex gap-3 text-[11px] font-semibold">
+          <button
+            type="button"
+            onClick={() => onChange(ADMIN_FEATURES.map((f) => f.key))}
+            className="text-[#0d9488] hover:underline"
+          >
+            Select all
+          </button>
+          <button
+            type="button"
+            onClick={() => onChange([])}
+            className="text-gray-400 hover:underline"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-1.5 max-h-52 overflow-y-auto rounded-lg border border-gray-200 bg-white p-2">
+        {ADMIN_FEATURES.map((f) => (
+          <label
+            key={f.key}
+            className="flex items-center gap-2 text-xs text-gray-700 px-1.5 py-1 rounded hover:bg-gray-50 cursor-pointer"
+          >
+            <input
+              type="checkbox"
+              checked={value.includes(f.key)}
+              onChange={() => toggle(f.key)}
+              className="accent-[#0d9488]"
+            />
+            {f.label}
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── Edit Modal ──────────────────────────────────────────────────────────
 function EditModal({
   admin,
@@ -116,6 +175,9 @@ function EditModal({
   const [email, setEmail] = useState(admin.email);
   const [password, setPassword] = useState(admin.plain_password || "");
   const [showPass, setShowPass] = useState(false);
+  const [perms, setPerms] = useState<string[]>(
+    admin.permissions ?? DEFAULT_PERMISSIONS.career_admin,
+  );
   const [saving, setSaving] = useState(false);
 
   const handleSave = async (e: React.FormEvent) => {
@@ -129,11 +191,12 @@ function EditModal({
           email,
           name,
           password,
+          permissions: perms,
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Save failed");
-      onSaved({ ...admin, email, name, plain_password: password || admin.plain_password });
+      onSaved({ ...admin, email, name, permissions: perms, plain_password: password || admin.plain_password });
       toast.success("Career Admin updated successfully!");
     } catch (e: any) {
       toast.error(e.message || "Save failed");
@@ -144,7 +207,7 @@ function EditModal({
 
   return (
     <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-bold text-gray-900 text-lg">Edit Career Admin</h3>
           <button
@@ -208,6 +271,7 @@ function EditModal({
               Current password is shown above. You can change it here anytime.
             </p>
           </div>
+          <PermissionPicker value={perms} onChange={setPerms} />
           <div className="flex gap-3 pt-1">
             <button
               type="button"
@@ -242,6 +306,7 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const [perms, setPerms] = useState<string[]>(DEFAULT_PERMISSIONS.career_admin);
   const [saving, setSaving] = useState(false);
 
   const handleCreate = async (e: React.FormEvent) => {
@@ -251,7 +316,7 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
       const res = await fetch("/api-backend/cms/career-admin", {
         method: "POST",
         headers: authHeaders(),
-        body: JSON.stringify({ email, name, password }),
+        body: JSON.stringify({ email, name, password, permissions: perms }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Create failed");
@@ -259,6 +324,7 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
         _id: data._id,
         email: data.email,
         name: data.name || name,
+        permissions: perms,
         plain_password: password,
         isActive: true,
         isOnline: false,
@@ -334,6 +400,7 @@ function CreateForm({ onCreated }: { onCreated: (a: CareerAdmin) => void }) {
             )}
           </button>
         </div>
+        <PermissionPicker value={perms} onChange={setPerms} />
         <button
           type="submit"
           disabled={saving}
@@ -365,6 +432,9 @@ function SubAdminEditModal({
   const [email, setEmail] = useState(admin.email);
   const [password, setPassword] = useState(admin.plain_password || "");
   const [showPass, setShowPass] = useState(false);
+  const [perms, setPerms] = useState<string[]>(
+    admin.permissions ?? DEFAULT_PERMISSIONS.sub_admin,
+  );
   const [saving, setSaving] = useState(false);
 
   const handleSave = async (e: React.FormEvent) => {
@@ -378,11 +448,12 @@ function SubAdminEditModal({
           email,
           name,
           password,
+          permissions: perms,
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Save failed");
-      onSaved({ ...admin, email, name, plain_password: password || admin.plain_password });
+      onSaved({ ...admin, email, name, permissions: perms, plain_password: password || admin.plain_password });
       toast.success("Sub Admin updated successfully!");
     } catch (e: any) {
       toast.error(e.message || "Save failed");
@@ -393,7 +464,7 @@ function SubAdminEditModal({
 
   return (
     <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-bold text-gray-900 text-lg">Edit Sub Admin</h3>
           <button
@@ -456,6 +527,7 @@ function SubAdminEditModal({
               Current password is shown above. You can change it here anytime.
             </p>
           </div>
+          <PermissionPicker value={perms} onChange={setPerms} />
           <div className="flex gap-3 pt-1">
             <button
               type="button"
@@ -494,6 +566,7 @@ function SubAdminCreateForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const [perms, setPerms] = useState<string[]>(DEFAULT_PERMISSIONS.sub_admin);
   const [saving, setSaving] = useState(false);
 
   const handleCreate = async (e: React.FormEvent) => {
@@ -503,7 +576,7 @@ function SubAdminCreateForm({
       const res = await fetch("/api-backend/cms/sub-admin", {
         method: "POST",
         headers: authHeaders(),
-        body: JSON.stringify({ email, name, password }),
+        body: JSON.stringify({ email, name, password, permissions: perms }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Create failed");
@@ -511,6 +584,7 @@ function SubAdminCreateForm({
         _id: data._id,
         email: data.email,
         name: data.name || name,
+        permissions: perms,
         plain_password: password,
         isActive: true,
         isOnline: false,
@@ -585,6 +659,7 @@ function SubAdminCreateForm({
             )}
           </button>
         </div>
+        <PermissionPicker value={perms} onChange={setPerms} />
         <button
           type="submit"
           disabled={saving}

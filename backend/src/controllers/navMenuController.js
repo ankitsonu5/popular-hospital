@@ -15,6 +15,7 @@ const SUPER_SPECIALTIES = [
   ["Interventional Radiology", "/departments/interventional-radiology"],
   ["Pediatric Surgery", "/departments/pediatric-surgery"],
   ["Pediatric Cardiology", "/departments/pediatric-cardiology"],
+  ["IVF & Fertility", "/departments/ivf-fertility"],
 ];
 
 const CORE_SPECIALTIES = [
@@ -23,7 +24,6 @@ const CORE_SPECIALTIES = [
   ["Pediatrics And Neonatology", "/departments/pediatrics"],
   ["Orthopedics & Joint Replacement", "/departments/orthopedics"],
   ["General Medicine", "/departments/general-medicine"],
-  ["IVF & Fertility", "/departments/ivf-fertility"],
   ["ENT", "/departments/ent"],
   ["Dietetics & Nutrition", "/departments/dietetics-nutrition"],
   ["Ophthalmology", "/departments/ophthalmology"],
@@ -75,6 +75,7 @@ const DEFAULT_MENUS = [
       { label: "Patients Testimonial", href: "/stories", hidden: false },
       { label: "International Patients", href: "/services/international-patients", hidden: false },
       { label: "Free OPD and Offer", href: "/services/free-opd-offer", hidden: false },
+      { label: "Patient Reports", href: "/patient-reports", hidden: false },
     ],
   },
   {

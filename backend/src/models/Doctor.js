@@ -15,6 +15,11 @@ const doctorSchema = new mongoose.Schema(
       ref: "Speciality",
       default: null,
     },
+    // Extra departments this doctor is also listed under (department pages
+    // only). The doctors directory (/doctors) uses the main `speciality` above.
+    additional_specialities: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Speciality" },
+    ],
     qualification: { type: String, default: null },
     experience_years: { type: Number, default: null },
     experience_location: { type: String, default: null },

@@ -11,7 +11,7 @@ import {
   Activity,
   HeartPulse,
 } from "lucide-react";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import GetCallBackButton from "@/components/GetCallBackButton";
 import { CImage, T } from "@/components/content/Editable";
 
@@ -154,7 +154,7 @@ export default function PediatricsClient({
       {/* ══════════════════════════════════════
           HERO  (unchanged layout, matching colors)
       ══════════════════════════════════════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
+      <section className="relative w-full bg-[#0b1c43] overflow-hidden flex items-center uppercase tracking-tight h-[230px] md:h-[200px] xl:h-[170px] 2xl:h-[clamp(200px,13.02vw,420px)] py-8 md:py-10 xl:py-6 2xl:py-[clamp(2.4rem,2.5vw,5rem)]">
         <div className="absolute inset-0 z-0">
           <CImage k="departments-pediatrics_15f4f8"
             src="/images/banners/neonatology_banner.png"
@@ -165,23 +165,26 @@ export default function PediatricsClient({
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-[clamp(1024px,66.67vw,1920px)] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-pediatrics_6c086e" d={"Centre of Pediatrics & Neonatology"} /></span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-pediatrics_368aa7" d={"Department of Pediatrics & Neonatology — Varanasi"} /></h1>
+            <h1 className="font-bold text-white mb-6 2xl:mb-[1.25vw] leading-tight font-heading text-lg sm:text-[min(2.25rem,3.31vw)] sm:whitespace-nowrap"><T k="departments-pediatrics_368aa7" d={"Department of Pediatrics & Neonatology"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide"
               ><T k="departments-pediatrics_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Pediatrics & Neonatology"
-                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2 uppercase text-sm tracking-wide"
               ><T k="departments-pediatrics_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ═══════ OUR MEDICAL EXPERTS (DIRECTLY UNDER BANNER) ═══════ */}
+      <DepartmentMedicalExperts doctors={doctors} />
+
 
       {/* ══════════════════════════════════════
           INTRO + DOCTOR SLIDER
@@ -190,7 +193,7 @@ export default function PediatricsClient({
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Content */}
-            <div className="lg:col-span-8 space-y-8">
+            <div className="lg:col-span-12 space-y-8">
               <div className="space-y-4">
                 <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm"><T k="departments-pediatrics_eb7346" d={"Popular Hospital is widely recognized as the "} /><strong><T k="departments-pediatrics_6732bb" d={"best Pediatrics & Neonatology hospital in Varanasi"} /></strong><T k="departments-pediatrics_4d7c26" d={". We are committed to delivering world-class healthcare and advanced medical facilities to patients across "} /><strong><T k="departments-pediatrics_200859" d={"Purvanchal"} /></strong><T k="departments-pediatrics_4f4133" d={" and "} /><strong><T k="departments-pediatrics_81b1a8" d={"Uttar Pradesh"} /></strong>.
                 </p>
@@ -227,16 +230,6 @@ export default function PediatricsClient({
               </div>
             </div>
 
-            {/* Right Doctor Slider */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Pediatrics & Neonatology"
-                  preventBackendFetch
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>

@@ -22,7 +22,7 @@ export async function generateMetadata() {
 
 
 export default async function UrologyPage() {
-  const dbDoctors = await fetchDoctors({ speciality: "urology" });
+  const dbDoctors = await fetchDoctors({ speciality: "urology", includeAdditional: true });
   const doctors = dbDoctors.map((d) => ({
     name: d.name,
     qualifications: d.qualification || "",

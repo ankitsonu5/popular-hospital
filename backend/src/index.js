@@ -46,6 +46,7 @@ import secondOpinionsRouter from "./routes/secondOpinions.js";
 import departmentGalleryRouter from "./routes/departmentGallery.js";
 import seoRouter from "./routes/seoRoutes.js";
 import chatbotRouter from "./routes/chatbot.js";
+import patientReportsRouter from "./routes/patientReports.js";
 import { getActivePopup } from "./controllers/popupController.js";
 import { getPublicSchema } from "./controllers/schemaContentController.js";
 import { getPublicNavMenus } from "./controllers/navMenuController.js";
@@ -128,6 +129,7 @@ app.use("/api/callback-requests", callbackRequestsRouter);
 app.use("/api/second-opinions", secondOpinionsRouter);
 app.use("/api/seo", seoRouter);
 app.use("/api/chatbot", chatbotRouter);
+app.use("/api/patient-reports", patientReportsRouter);
 app.get("/api/popup", getActivePopup);
 app.get("/api/schemas/:pageKey", getPublicSchema);
 // Nav Menu (public — header ke liye)
@@ -135,6 +137,10 @@ app.get("/api/nav-menus", getPublicNavMenus);
 // Page Content (public — pages ke liye)
 app.get("/api/page-content", getAllPublicPageContent);
 app.get("/api/page-content/:pageKey", getPublicPageContent);
+
+// Patient reports are private: never served (or redirected) as static files.
+// They are only available through signed links from /api/patient-reports.
+app.use("/uploads/patient-reports", (req, res) => res.status(404).end());
 
 // Serve uploads (static files)
 app.use(
@@ -144,6 +150,34 @@ app.use(
     immutable: true,
   }),
 );
+
+// Fallback: If an upload file doesn't exist locally (uploaded on live server),
+// redirect to live production CDN so images always display in local development
+app.use("/uploads", async (req, res) => {
+  const liveUrl = `https://www.popularhospital.in/uploads${req.url}`;
+
+  // Local development: the live server marks its files "Cross-Origin-Resource-
+  // Policy: same-origin", so a browser on localhost refuses an <img> that is
+  // redirected there. Fetch the file server-side and serve it from localhost.
+  if (process.env.NODE_ENV !== "production" && req.method === "GET") {
+    try {
+      const upstream = await fetch(liveUrl);
+      if (upstream.ok) {
+        res.status(200);
+        res.setHeader(
+          "Content-Type",
+          upstream.headers.get("content-type") || "application/octet-stream",
+        );
+        res.setHeader("Cache-Control", "public, max-age=3600");
+        return res.end(Buffer.from(await upstream.arrayBuffer()));
+      }
+    } catch {
+      // fall through to the redirect below
+    }
+  }
+
+  res.redirect(302, liveUrl);
+});
 
 // Direct Blog Image Upload for TinyMCE
 import { upload, uploadBlogImage } from "./controllers/blogController.js";

@@ -22,7 +22,7 @@ export async function generateMetadata() {
 
 
 export default async function NeurosurgeryPage() {
-  const doctors = await fetchDoctors({ speciality: "neurosurgery" });
+  const doctors = await fetchDoctors({ speciality: "neurosurgery", includeAdditional: true });
 
   return (
     <>

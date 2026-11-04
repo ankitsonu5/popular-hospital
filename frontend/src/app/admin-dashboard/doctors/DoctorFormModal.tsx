@@ -29,6 +29,7 @@ const emptyForm = {
   consultation_fee: "",
   available_days: "",
   branches: [] as string[],
+  additional_specialities: [] as string[],
   is_active: true,
   opd_timings: defaultOpdTimings,
 };
@@ -68,6 +69,9 @@ export default function DoctorFormModal({
         available_days: editingDoctor.available_days || "",
         branches:
           editingDoctor.branches?.map((b: any) => b._id || b) || [],
+        additional_specialities:
+          editingDoctor.additional_specialities?.map((x: any) => x._id || x) ||
+          ([] as string[]),
         is_active: editingDoctor.is_active !== false,
         opd_timings: editingDoctor.opd_timings || defaultOpdTimings,
       };
@@ -92,7 +96,7 @@ export default function DoctorFormModal({
         (value as string[]).forEach((b: string) =>
           data.append("branches[]", b),
         );
-      } else if (key === "opd_timings") {
+      } else if (key === "opd_timings" || key === "additional_specialities") {
         data.append(key, JSON.stringify(value));
       } else if (key === "image_url" && selectedFile) {
         // Skip old image_url when a new file is selected — let backend use the new upload
@@ -427,6 +431,56 @@ export default function DoctorFormModal({
             >
               Active
             </label>
+          </div>
+          {/* Also list this doctor on other department pages */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Add to more departments
+            </label>
+            <p className="text-xs text-gray-500 mb-2">
+              The doctor will also appear on the selected department pages.
+              The Doctors page (/doctors) lists the doctor only under the
+              Department selected above.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 max-h-44 overflow-y-auto rounded-xl border-2 border-gray-200 p-2">
+              {specialities
+                .filter((s: any) => s._id !== formData.speciality)
+                .map((s: any) => {
+                  const checked = formData.additional_specialities.includes(
+                    s._id,
+                  );
+                  return (
+                    <label
+                      key={s._id}
+                      className="flex items-center gap-2 rounded-lg px-2 py-1 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() =>
+                          setFormData({
+                            ...formData,
+                            additional_specialities: checked
+                              ? formData.additional_specialities.filter(
+                                  (id: string) => id !== s._id,
+                                )
+                              : [...formData.additional_specialities, s._id],
+                          })
+                        }
+                        className="rounded accent-[#0d9488]"
+                      />
+                      <span className="truncate">{s.name}</span>
+                    </label>
+                  );
+                })}
+            </div>
+            {formData.additional_specialities.length > 0 && (
+              <p className="text-xs text-[#0d9488] mt-1">
+                {formData.additional_specialities.length} more department
+                {formData.additional_specialities.length === 1 ? "" : "s"}{" "}
+                selected
+              </p>
+            )}
           </div>
           <div className="flex gap-3 pt-2">
             <button

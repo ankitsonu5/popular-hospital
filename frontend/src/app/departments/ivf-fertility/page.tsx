@@ -22,7 +22,7 @@ export async function generateMetadata() {
 
 
 export default async function IvfFertilityPage() {
-  const dbDoctors = await fetchDoctors({ speciality: "ivf-fertility" });
+  const dbDoctors = await fetchDoctors({ speciality: "ivf-fertility", includeAdditional: true });
   const doctors = dbDoctors.map((d) => ({
     name: d.name,
     qualifications: d.qualification || "",

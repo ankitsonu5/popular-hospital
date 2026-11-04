@@ -28,6 +28,10 @@ import {
   Navigation,
   LayoutTemplate,
 } from "lucide-react";
+import {
+  FEATURE_BY_SIDEBAR_LABEL,
+  permissionsForUser,
+} from "@/lib/adminFeatures";
 
 const sidebarItems = [
   { label: "Dashboard", href: "/admin-dashboard", icon: LayoutDashboard },
@@ -62,6 +66,11 @@ const sidebarItems = [
     label: "Call Backs",
     href: "/admin-dashboard/callback-requests",
     icon: PhoneIncoming,
+  },
+  {
+    label: "Patient Reports",
+    href: "/admin-dashboard/patient-reports",
+    icon: FileText,
   },
   {
     label: "Second Opinion",
@@ -128,6 +137,25 @@ const GROUP_PATHS: Record<string, string[]> = {
 };
 
 
+// Hrefs a user may open given their feature permissions (super admin: all)
+const allowedHrefsFor = (perms: string[]) =>
+  sidebarItems
+    .filter((item) => {
+      const key = FEATURE_BY_SIDEBAR_LABEL[item.label];
+      return key && perms.includes(key);
+    })
+    .flatMap((item) =>
+      item.href
+        ? [item.href]
+        : [
+            ...(item.subItems || []).map((s) => s.href),
+            ...(GROUP_PATHS[item.label] || []),
+          ],
+    );
+
+const pathAllowed = (pathname: string, hrefs: string[]) =>
+  hrefs.some((h) => pathname === h || pathname.startsWith(`${h}/`));
+
 export default function AdminDashboardLayout({
   children,
 }: {
@@ -169,19 +197,18 @@ export default function AdminDashboardLayout({
       router.push("/admin-login");
       return;
     }
-    if (
-      parsed.role === "sub_admin" &&
-      !["/admin-dashboard/bookings", "/admin-dashboard/contacts", "/admin-dashboard/callback-requests", "/admin-dashboard/second-opinions"].some((p) => pathname.startsWith(p))
-    ) {
-      router.replace("/admin-dashboard/bookings");
-      return;
-    }
-    if (
-      parsed.role === "career_admin" &&
-      !["/admin-dashboard/careers", "/admin-dashboard/applications"].some((p) => pathname.startsWith(p))
-    ) {
-      router.replace("/admin-dashboard/careers");
-      return;
+    if (parsed.role === "sub_admin" || parsed.role === "career_admin") {
+      const hrefs = allowedHrefsFor(permissionsForUser(parsed));
+      if (hrefs.length === 0) {
+        sessionStorage.removeItem("admin_token");
+        sessionStorage.removeItem("admin_user");
+        router.push("/admin-login");
+        return;
+      }
+      if (!pathAllowed(pathname, hrefs)) {
+        router.replace(hrefs[0]);
+        return;
+      }
     }
     setUser(parsed);
     setUserReady(true);
@@ -190,6 +217,26 @@ export default function AdminDashboardLayout({
   const isSubAdmin = user?.role === "sub_admin";
   const isCareerAdmin = user?.role === "career_admin";
   const isSuperAdmin = user?.role === "super_admin" || user?.role === "admin";
+  const userPerms: string[] = user ? permissionsForUser(user) : [];
+  const can = (key: string) => isSuperAdmin || userPerms.includes(key);
+
+  // Pick up permission changes made by the super admin without re-login
+  useEffect(() => {
+    if (!user || isSuperAdmin) return;
+    const token = sessionStorage.getItem("admin_token");
+    fetch("/api-backend/auth/me", { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((me) => {
+        if (!me || !Array.isArray(me.permissions)) return;
+        if (JSON.stringify(me.permissions) === JSON.stringify(user.permissions)) return;
+        const updated = { ...user, permissions: me.permissions };
+        sessionStorage.setItem("admin_user", JSON.stringify(updated));
+        setUser(updated);
+        const hrefs = allowedHrefsFor(me.permissions);
+        if (hrefs.length && !pathAllowed(pathname, hrefs)) router.replace(hrefs[0]);
+      })
+      .catch(() => {});
+  }, [user?.id, pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetcher = async (url: string) => {
     const token = sessionStorage.getItem("admin_token");
@@ -225,27 +272,27 @@ export default function AdminDashboardLayout({
   };
 
   const { data: newContacts } = useSWR(
-    user && !isCareerAdmin ? "/api-backend/contacts?status=new" : null,
+    user && can("contacts") ? "/api-backend/contacts?status=new" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
   const { data: newApplications } = useSWR(
-    user && !isSubAdmin ? "/api-backend/applications?isRead=false" : null,
+    user && can("career-portal") ? "/api-backend/applications?isRead=false" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
   const { data: newBookings } = useSWR(
-    user && !isCareerAdmin ? "/api-backend/cms/bookings?status=pending" : null,
+    user && can("bookings") ? "/api-backend/cms/bookings?status=pending" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
   const { data: newCallbacks } = useSWR(
-    user && !isCareerAdmin ? "/api-backend/callback-requests?status=new" : null,
+    user && can("call-backs") ? "/api-backend/callback-requests?status=new" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
   const { data: newSecondOpinions } = useSWR(
-    user && !isCareerAdmin ? "/api-backend/second-opinions?status=new" : null,
+    user && can("second-opinions") ? "/api-backend/second-opinions?status=new" : null,
     fetcher,
     { refreshInterval: 15000, revalidateOnFocus: true },
   );
@@ -293,20 +340,14 @@ export default function AdminDashboardLayout({
 
 
 
-  const SUB_ADMIN_ALLOWED = ["Bookings", "Contacts", "Call Backs", "Second Opinion"];
-  const CAREER_ADMIN_ALLOWED = ["Career Portal"];
-
   const visibleSidebarItems = !userReady
     ? []
-    : isSubAdmin
-      ? sidebarItems.filter(
-          (item) => item.href && SUB_ADMIN_ALLOWED.includes(item.label),
-        )
-      : isCareerAdmin
-        ? sidebarItems.filter((item) =>
-            CAREER_ADMIN_ALLOWED.includes(item.label),
-          )
-        : sidebarItems;
+    : isSuperAdmin
+      ? sidebarItems
+      : sidebarItems.filter((item) => {
+          const key = FEATURE_BY_SIDEBAR_LABEL[item.label];
+          return key && userPerms.includes(key);
+        });
 
   const isActionPage = pathname.includes("/action");
   if (isActionPage) {

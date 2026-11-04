@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import {
   askChatbotAi,
+  askChatbotBrain,
   createBooking,
   fetchBranches,
   fetchDoctors,
@@ -63,7 +64,7 @@ export type Lang = "hi" | "hinglish" | "en";
 type PopularHospitalIntent = "about" | "location";
 
 const POPULAR_HOSPITAL_REFERENCE_RE =
-  /(?:\b(?:popular|populer|poplar)\s+hospitals?\b|(?:पॉपुलर|पापुलर)\s+(?:हॉस्पिटल|अस्पताल))/i;
+  /(?:\b(?:popular|populer|poplar)\b|(?:पॉपुलर|पापुलर))/i;
 
 function detectPopularHospitalIntent(
   input: string,
@@ -82,14 +83,14 @@ function detectPopularHospitalIntent(
   if (isLocationQuery) return "location";
 
   const isAboutQuery =
-    /\b(?:what\s+is|what's|about|tell\s+me|information|info|details?|overview|describe|know\s+about|kya\s+(?:hai|h|he)|kaisa|kaisi|ke\s+baa?re|batao|bataiye|jaankari|jankari|parichay)\b/i.test(
+    /\b(?:what\s+is|what's|about|tell\s+me|information|info|details?|overview|describe|know\s+about|kya\s+(?:hai|h|he|hota|hoti)|kaisa|kaisi|ke\s+baa?re|batao|bataiye|bata\s*do|bata\s*dijiye|kuchh|kuch|jaankari|jankari|parichay)\b/i.test(
       text,
-    ) || /(?:क्या\s+है|के\s+बारे|बताओ|बताइए|जानकारी|परिचय)/.test(input);
+    ) || /(?:क्या\s+है|के\s+बारे|बताओ|बताइए|जानकारी|परिचय|कुछ\s*बताओ)/.test(input);
 
   if (isAboutQuery) return "about";
 
   const brandOnly = text.replace(/[?!.,।]/g, "").trim();
-  return /^(?:(?:popular|populer|poplar)\s+hospitals?|(?:पॉपुलर|पापुलर)\s+(?:हॉस्पिटल|अस्पताल))(?:\s+(?:varanasi|banaras|वाराणसी|बनारस))?$/i.test(
+  return /^(?:(?:popular|populer|poplar)(?:\s+hospitals?)?|(?:पॉपुलर|पापुलर)(?:\s+(?:हॉस्पिटल|अस्पताल))?)(?:\s+(?:varanasi|banaras|वाराणसी|बनारस))?$/i.test(
     brandOnly,
   )
     ? "about"
@@ -135,8 +136,18 @@ function getAppointmentStatusHelpText(lang: Lang): string {
 export function detectLang(text: string): Lang {
   if (/[\u0900-\u097F]/.test(text)) return "hi";
   const hinglishWords =
-    /\b(mujhe|mera|meri|mere|hai|hain|ho|hona|aati|aata|aate|aaye|karein|karo|karte|karna|karwana|karwa|chahiye|dard|bimari|ka|ke|ki|me|mein|se|ko|kya|aur|nahi|nhi|raha|rahi|rahe|batao|apne|sharir|shareer|badan|khashi|khasi|khansi|bukhar|pet|pait|dil|seene|seena|haddi|ghutne|ghutna|sir|sar|chakkar|dikhaye|dekho|doctor|dawai|kahan|namaste|shukriya|theek|thik|aaj|kal|parso|paas|suno|kripya|janab|bhai|bahut)\b/i;
+    /\b(mujhe|mera|meri|mere|hai|hain|hona|aati|aata|aate|aaye|karein|karo|karte|karna|karwana|karwa|chahiye|dard|bimari|ka|ke|ki|mein|se|ko|kya|aur|nahi|nhi|raha|rahi|rahe|batao|apne|sharir|shareer|badan|khashi|khasi|khansi|bukhar|pait|dil|seene|seena|haddi|ghutne|ghutna|sar|chakkar|dikhaye|dekho|dawai|kahan|namaste|shukriya|theek|thik|aaj|kal|parso|paas|suno|kripya|janab|bhai|bahut)\b/i;
   if (hinglishWords.test(text)) return "hinglish";
+  return "en";
+}
+
+// Keep the session language for short / language-neutral input such as
+// "Cardiology", "11 AM" or a name, instead of snapping back to English.
+export function resolveLang(text: string, current: Lang): Lang {
+  const detected = detectLang(text);
+  if (detected !== "en") return detected;
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  if (current !== "en" && words.length <= 3) return current;
   return "en";
 }
 
@@ -341,6 +352,19 @@ function parseTime(input: string): string | null {
   if (m[3] === "pm" && h < 12) h += 12;
   if (m[3] === "am" && h === 12) h = 0;
   return `${String(h).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
+}
+
+function prettyDate(date?: string): string {
+  if (!date) return "";
+  const [year, month, day] = date.split("-").map(Number);
+  if (!year || !month || !day) return date;
+  const value = new Date(year, month - 1, day, 12);
+  if (Number.isNaN(value.getTime())) return date;
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(value);
 }
 
 function bookingDateForSpeech(date: string, lang: Lang): string {
@@ -901,6 +925,96 @@ function symptomSpec(text: string, list: Speciality[]): Speciality | null {
 }
 
 // 6 Featured departments for quick chips
+const QUESTION_RE =
+  /\?|\b(?:kya|kaise|kaun|kab|kyu|kyun|kahan|kitna|kitne|what|how|when|where|why|who|which|can you|do you|is there|are there|timing|timings|price|cost|charges?|fees?|dard|bukhar|pain|fever|help)\b|क्या|कैसे|कौन|कब|कहाँ|क्यों|दर्द|बुखार/i;
+
+// While a booking is in progress: true when the user's message is NOT an
+// answer to the current step but a separate question (so we answer it and
+// then resume the booking instead of getting stuck on "enter a valid name").
+function isSideQuestion(step: Step, text: string, list: Speciality[]): boolean {
+  const t = text.trim();
+  const words = t.split(/\s+/).filter(Boolean).length;
+  const q = QUESTION_RE.test(t);
+  switch (step) {
+    case "name":
+    case "name_confirm":
+      return q || words > 5;
+    case "phone":
+    case "phone_confirm":
+      return !/\d{6,}/.test(t.replace(/[\s-]/g, "")) && (q || words > 4);
+    case "speciality":
+      return (
+        !findSpeciality(t, list, false) &&
+        !symptomSpec(t, list) &&
+        (q || words > 5)
+      );
+    case "doctor":
+      return q || words > 6;
+    case "date":
+      return !parseDate(t) && (q || words > 4);
+    case "time":
+      return !parseTime(t) && (q || words > 4);
+    case "confirm":
+      return !isYes(t) && !isCancel(t) && (q || words > 4);
+    default:
+      return false;
+  }
+}
+
+const RESUME_PHRASE: Record<string, Record<Lang, string>> = {
+  name: {
+    en: "please tell me the patient's full name.",
+    hinglish: "kripya mareez ka poora naam batayein.",
+    hi: "कृपया मरीज का पूरा नाम बताइए।",
+  },
+  name_confirm: {
+    en: "please confirm the name shown above.",
+    hinglish: "kripya upar likha naam confirm karein.",
+    hi: "कृपया ऊपर लिखे नाम की पुष्टि कीजिए।",
+  },
+  phone: {
+    en: "please enter your 10-digit mobile number.",
+    hinglish: "kripya apna 10 digit mobile number batayein.",
+    hi: "कृपया अपना 10 अंकों का मोबाइल नंबर बताइए।",
+  },
+  phone_confirm: {
+    en: "please confirm your mobile number.",
+    hinglish: "kripya apna mobile number confirm karein.",
+    hi: "कृपया अपने मोबाइल नंबर की पुष्टि कीजिए।",
+  },
+  speciality: {
+    en: "please choose a department.",
+    hinglish: "kripya department chunein.",
+    hi: "कृपया विभाग चुनिए।",
+  },
+  doctor: {
+    en: "please choose a doctor.",
+    hinglish: "kripya doctor chunein.",
+    hi: "कृपया डॉक्टर चुनिए।",
+  },
+  date: {
+    en: "please choose a date.",
+    hinglish: "kripya date chunein.",
+    hi: "कृपया तारीख चुनिए।",
+  },
+  time: {
+    en: "please choose a time slot.",
+    hinglish: "kripya time slot chunein.",
+    hi: "कृपया समय चुनिए।",
+  },
+  confirm: {
+    en: "please confirm your booking.",
+    hinglish: "kripya apni booking confirm karein.",
+    hi: "कृपया अपनी बुकिंग की पुष्टि कीजिए।",
+  },
+};
+
+const RESUME_PREFIX: Record<Lang, string> = {
+  en: "Your appointment booking is still in progress — ",
+  hinglish: "Aapki appointment booking abhi jaari hai — ",
+  hi: "आपकी अपॉइंटमेंट बुकिंग अभी जारी है — ",
+};
+
 const FEATURED_PATTERNS = [
   /^cardiology$/i,
   /gastro/i,
@@ -2020,19 +2134,19 @@ const STRINGS = {
   },
   confirmPrompt: {
     en: (d: Draft, timeStr: string) =>
-      `Please confirm your booking details:\n\n👤 Patient: ${d.name}\n📞 Phone: ${d.phone}\n🩺 Doctor: ${d.doctor?.name}\n📅 Date: ${d.date} at ${timeStr}\n\nWould you like to confirm this appointment?`,
+      `Please confirm your booking details:\n\n👤 Patient: ${d.name}\n📞 Phone: ${d.phone}\n🩺 Doctor: ${d.doctor?.name}\n📅 Date: ${prettyDate(d.date)} at ${timeStr}\n\nWould you like to confirm this appointment?`,
     hinglish: (d: Draft, timeStr: string) =>
-      `Kripya apni booking details check karke confirm karein:\n\n👤 Patient: ${d.name}\n📞 Phone: ${d.phone}\n🩺 Doctor: ${d.doctor?.name}\n📅 Date: ${d.date} samay ${timeStr}\n\nKya aap ise confirm karna chahte hain?`,
+      `Kripya apni booking details check karke confirm karein:\n\n👤 Patient: ${d.name}\n📞 Phone: ${d.phone}\n🩺 Doctor: ${d.doctor?.name}\n📅 Date: ${prettyDate(d.date)} samay ${timeStr}\n\nKya aap ise confirm karna chahte hain?`,
     hi: (d: Draft, timeStr: string) =>
-      `कृपया बुकिंग विवरण की पुष्टि करें:\n\n👤 मरीज का नाम: ${d.name}\n📞 मोबाइल: ${d.phone}\n🩺 डॉक्टर: ${d.doctor?.name}\n📅 तारीख: ${d.date} समय ${timeStr}\n\nक्या आप इस अपॉइंटमेंट की पुष्टि करते हैं?`,
+      `कृपया बुकिंग विवरण की पुष्टि करें:\n\n👤 मरीज का नाम: ${d.name}\n📞 मोबाइल: ${d.phone}\n🩺 डॉक्टर: ${d.doctor?.name}\n📅 तारीख: ${prettyDate(d.date)} समय ${timeStr}\n\nक्या आप इस अपॉइंटमेंट की पुष्टि करते हैं?`,
   },
   bookingSuccess: {
     en: (d: Draft, branchName: string, timeStr: string) =>
-      `✅ Booking request received!\n\n👤 ${d.name}\n📞 ${d.phone}\n🩺 ${d.doctor?.name}\n🏥 ${branchName}\n📅 ${d.date} at ${timeStr}\n\nOur team has been notified and will call you on ${d.phone} to confirm your appointment. For urgent help, call ${PHONES[0].label}.`,
+      `✅ Booking request received!\n\n👤 ${d.name}\n📞 ${d.phone}\n🩺 ${d.doctor?.name}\n🏥 ${branchName}\n📅 ${prettyDate(d.date)} at ${timeStr}\n\nOur team has been notified and will call you on ${d.phone} to confirm your appointment. For urgent help, call ${PHONES[0].label}.`,
     hinglish: (d: Draft, branchName: string, timeStr: string) =>
-      `✅ Appointment request prapt ho gayi hai!\n\n👤 ${d.name}\n📞 ${d.phone}\n🩺 ${d.doctor?.name}\n🏥 ${branchName}\n📅 ${d.date} samay ${timeStr}\n\nPopular Hospital team aapse ${d.phone} par call karke appointment confirm karegi. Emergency me ${PHONES[0].label} par call karein.`,
+      `✅ Appointment request prapt ho gayi hai!\n\n👤 ${d.name}\n📞 ${d.phone}\n🩺 ${d.doctor?.name}\n🏥 ${branchName}\n📅 ${prettyDate(d.date)} samay ${timeStr}\n\nPopular Hospital team aapse ${d.phone} par call karke appointment confirm karegi. Emergency me ${PHONES[0].label} par call karein.`,
     hi: (d: Draft, branchName: string, timeStr: string) =>
-      `✅ अपॉइंटमेंट रिक्वेस्ट प्राप्त हो गई है!\n\n👤 ${d.name}\n📞 ${d.phone}\n🩺 ${d.doctor?.name}\n🏥 ${branchName}\n📅 ${d.date} समय ${timeStr}\n\nपॉपुलर हॉस्पिटल की टीम आपके नंबर ${d.phone} पर कॉल करके अपॉइंटमेंट कन्फर्म करेगी। आपात स्थिति में ${PHONES[0].label} पर कॉल करें।`,
+      `✅ अपॉइंटमेंट रिक्वेस्ट प्राप्त हो गई है!\n\n👤 ${d.name}\n📞 ${d.phone}\n🩺 ${d.doctor?.name}\n🏥 ${branchName}\n📅 ${prettyDate(d.date)} समय ${timeStr}\n\nपॉपुलर हॉस्पिटल की टीम आपके नंबर ${d.phone} पर कॉल करके अपॉइंटमेंट कन्फर्म करेगी। आपात स्थिति में ${PHONES[0].label} पर कॉल करें।`,
   },
   bookingFailed: {
     en: "Sorry, booking could not be completed right now. Please call our helpline directly:",
@@ -2135,6 +2249,9 @@ export default function ChatbotWidget() {
   const endRef = useRef<HTMLDivElement>(null);
   const greeted = useRef(false);
   const lastSpecialityRef = useRef<Speciality | null>(null);
+  const allDoctorsRef = useRef<Doctor[] | null>(null);
+  // set when a reply resets/replaces the booking (emergency, new booking)
+  const bookingResetRef = useRef(false);
 
   const push = useCallback((m: Omit<Msg, "id">) => {
     setMessages((prev) => [...prev, { ...m, id: idRef.current++ }]);
@@ -2328,7 +2445,10 @@ export default function ChatbotWidget() {
   ) => {
     lastSpecialityRef.current = spec;
     setTyping(true);
-    const docs = await fetchDoctors({ speciality: spec.slug });
+    const docs = await fetchDoctors({
+      speciality: spec.slug,
+      includeAdditional: true,
+    });
     setTyping(false);
     setDocsOfSpec(docs);
     const deptTitle = specLabelLang(spec, currentLang);
@@ -2408,7 +2528,10 @@ export default function ChatbotWidget() {
     setTyping(true);
     let docs: Doctor[] = [];
     try {
-      docs = await fetchDoctors({ speciality: spec.slug });
+      docs = await fetchDoctors({
+        speciality: spec.slug,
+        includeAdditional: true,
+      });
     } catch {
       docs = [];
     }
@@ -2481,6 +2604,7 @@ export default function ChatbotWidget() {
     spec?: Speciality | null,
     currentLang: Lang = lang,
   ) => {
+    bookingResetRef.current = true;
     const target = spec || lastSpecialityRef.current;
     if (target) {
       lastSpecialityRef.current = target;
@@ -2610,19 +2734,20 @@ export default function ChatbotWidget() {
 
   /* ── Main Input Handler ── */
 
-  const handleSend = async (raw?: string, forcedLang?: Lang) => {
-    const text = (raw ?? input).trim();
+  const handleSendInner = async (raw?: string, forcedLang?: Lang) => {
+    bookingResetRef.current = false;
+    let text = (raw ?? input).trim();
     if (!text || typing) return;
     setInput("");
     push({ role: "user", text });
 
     // Detect language dynamically from user input
-    const detected = forcedLang || detectLang(text);
+    const detected = forcedLang || resolveLang(text, lang);
     if (detected !== lang) {
       setLang(detected);
     }
-    const currentLang = detected;
-    const lower = text.toLowerCase();
+    let currentLang = detected;
+    let lower = text.toLowerCase();
 
     // Global restart / fresh start / greetings reset
     if (isRestart(text) || isGreetingOnly(text)) {
@@ -2640,9 +2765,22 @@ export default function ChatbotWidget() {
           : currentLang === "hinglish"
             ? "🔄 Chat ko shuru se reset kar diya gaya hai.\n\n👋 Namaste! Popular Hospital me aapka swagat hai. Main aapki kya madad kar sakta hoon?"
             : "🔄 Chat has been reset.\n\n👋 Hello! Welcome to Popular Hospital. How can I help you today?"
-        : userName
-          ? STRINGS.nameGreeting[currentLang](userName)
-          : STRINGS.greeting[currentLang];
+        : (() => {
+            const tg = lower.match(/good\s*(morning|afternoon|evening)/);
+            const prefix = tg
+              ? currentLang === "en"
+                ? `Good ${tg[1]}! `
+                : currentLang === "hinglish"
+                  ? `${tg[1] === "morning" ? "Suprabhat" : "Namaste"}! `
+                  : ""
+              : "";
+            return (
+              prefix +
+              (userName
+                ? STRINGS.nameGreeting[currentLang](userName)
+                : STRINGS.greeting[currentLang])
+            );
+          })();
 
       await botSay({
         text: resetGreeting,
@@ -2679,6 +2817,7 @@ export default function ChatbotWidget() {
 
     // Emergency/ambulance requests always take priority, even during booking.
     if (isEmergency(text)) {
+      bookingResetRef.current = true;
       setStep("idle");
       setDraft({});
       lastSpecialityRef.current = null;
@@ -2688,7 +2827,11 @@ export default function ChatbotWidget() {
       });
     }
 
-    switch (step) {
+    // A question in the middle of a booking is answered like an idle message
+    // (booking state is kept) and the booking is resumed afterwards.
+    const sideQuestion = step !== "idle" && isSideQuestion(step, text, specs);
+
+    switch (sideQuestion ? "idle" : step) {
       case "name": {
         const candidateName = extractIntroName(text) || cleanName(text);
         if (!candidateName || !isValidName(candidateName)) {
@@ -2973,6 +3116,238 @@ export default function ChatbotWidget() {
           STRINGS.chips.callUs[currentLang],
         ],
       });
+    }
+
+    // ── Gemini brain: understand the message (intent + language), then
+    // route it to the existing handlers. Falls back to the rule engine below
+    // when Gemini is unavailable.
+    {
+      setTyping(true);
+      if (!allDoctorsRef.current) {
+        allDoctorsRef.current = await fetchDoctors();
+      }
+      const brain = await askChatbotBrain({
+        message: text,
+        sessionLang: lang,
+        specialities: specs.map((s) => ({ name: s.name, slug: s.slug })),
+        doctorNames: allDoctorsRef.current.map((d) => d.name),
+        history: messages
+          .filter((m) => m.text)
+          .slice(-6)
+          .map((m) => ({ role: m.role, text: m.text })),
+        lastDepartmentSlug: lastSpecialityRef.current?.slug || "",
+      });
+      setTyping(false);
+
+      if (brain?.success) {
+        if (brain.lang && brain.lang !== currentLang) {
+          currentLang = brain.lang;
+          setLang(brain.lang);
+        }
+        const brainSpec = brain.departmentSlug
+          ? specs.find((s) => s.slug === brain.departmentSlug)
+          : undefined;
+        const baseChips = [
+          STRINGS.chips.bookAppointment[currentLang],
+          STRINGS.chips.findDoctor[currentLang],
+          STRINGS.chips.callUs[currentLang],
+        ];
+
+        if (brain.isEmergency) {
+          bookingResetRef.current = true;
+          setStep("idle");
+          setDraft({});
+          return botSay({
+            text: STRINGS.emergencyAlert[currentLang],
+            emergencyPhones: true,
+          });
+        }
+
+        switch (brain.intent) {
+          case "greeting":
+            return botSay({
+              text: userName
+                ? STRINGS.nameGreeting[currentLang](userName)
+                : (brain.reply || STRINGS.greeting[currentLang]),
+              chips: [...baseChips, STRINGS.chips.aboutHospital[currentLang]],
+            });
+
+          case "hospital_info":
+            return botSay({
+              text: brain.reply || getPopularHospitalAboutText(currentLang),
+              actionLink: {
+                label:
+                  currentLang === "hi"
+                    ? "पॉपुलर हॉस्पिटल के बारे में और पढ़ें"
+                    : currentLang === "hinglish"
+                      ? "Popular Hospital ke baare me aur padhein"
+                      : "Learn more about Popular Hospital",
+                href: "/about",
+              },
+              chips: [
+                STRINGS.chips.bookAppointment[currentLang],
+                STRINGS.chips.findDoctor[currentLang],
+                STRINGS.chips.callUs[currentLang],
+              ],
+            });
+
+          case "location":
+            return botSay({
+              text: brain.reply || getPopularHospitalLocationText(currentLang),
+              actionLink: {
+                label:
+                  currentLang === "hi"
+                    ? "Google Maps पर रास्ता देखें"
+                    : currentLang === "hinglish"
+                      ? "Google Maps Directions Dekhein"
+                      : "Open Google Maps Directions",
+                href: HOSPITAL_MAP_URL,
+              },
+              chips: [
+                STRINGS.chips.bookAppointment[currentLang],
+                STRINGS.chips.findDoctor[currentLang],
+                STRINGS.chips.callUs[currentLang],
+              ],
+            });
+
+          case "appointment_status":
+            return botSay({
+              text: getAppointmentStatusHelpText(currentLang),
+              phones: true,
+            });
+
+          case "book_appointment": {
+            // A named doctor tells us the department too
+            const wantedDoc = norm(brain.doctorName || "");
+            const bookDoc = wantedDoc
+              ? allDoctorsRef.current.find((d) => norm(d.name) === wantedDoc)
+              : undefined;
+            const docSpecSlug = bookDoc?.speciality?.slug || bookDoc?.speciality_slug;
+            const docSpec = docSpecSlug
+              ? specs.find((s) => s.slug === docSpecSlug)
+              : undefined;
+            return startBooking(
+              brainSpec ||
+                docSpec ||
+                findSpeciality(text, specs, true) ||
+                symptomSpec(text, specs) ||
+                lastSpecialityRef.current,
+              currentLang,
+            );
+          }
+
+          case "find_doctor": {
+            const wanted = norm(brain.doctorName || "");
+            const doc = wanted
+              ? allDoctorsRef.current.find((d) => norm(d.name) === wanted)
+              : undefined;
+            if (doc) {
+              return botSay({
+                text:
+                  currentLang === "hi"
+                    ? "आपके द्वारा खोजे गए डॉक्टर:"
+                    : currentLang === "hinglish"
+                      ? "Aapke dwara search kiye gaye doctor:"
+                      : "Here is the doctor you asked about:",
+                doctors: [doc],
+                doctorsPick: false,
+                chips: [STRINGS.chips.bookAppointment[currentLang]],
+              });
+            }
+            if (brainSpec) {
+              await showDoctors(brainSpec, false, currentLang);
+              return;
+            }
+            return botSay({
+              text: brain.reply || STRINGS.findDoctorInfo[currentLang],
+              doctorsLink: true,
+              chips: [STRINGS.chips.bookAppointment[currentLang]],
+            });
+          }
+
+          case "department_info":
+            if (brainSpec) {
+              if (brain.reply) {
+                const deptTitle = specLabelLang(brainSpec, currentLang);
+                return botSay({
+                  text: brain.reply,
+                  actionLink: {
+                    label:
+                      currentLang === "hi"
+                        ? `${deptTitle} विभाग देखें ↗`
+                        : `${deptTitle} Department ↗`,
+                    href: `/departments/${brainSpec.slug}`,
+                  },
+                  chips: [
+                    currentLang === "hi"
+                      ? `${deptTitle} में बुक करें`
+                      : `${deptTitle} me Book Karein`,
+                    `${deptTitle} Doctors`,
+                  ],
+                });
+              }
+              return showDepartmentInfo(brainSpec, currentLang);
+            }
+            if (brain.reply) {
+              return botSay({ text: brain.reply, chips: baseChips });
+            }
+            break;
+
+          case "symptom":
+            if (brainSpec) {
+              lastSpecialityRef.current = brainSpec;
+              const deptTitle = specLabelLang(brainSpec, currentLang);
+              const bookChip =
+                currentLang === "hi"
+                  ? `${deptTitle} में बुक करें`
+                  : currentLang === "hinglish"
+                    ? `${deptTitle} me Book Karein`
+                    : `Book ${deptTitle} Appointment`;
+              return botSay({
+                text:
+                  brain.reply || STRINGS.symptomAdvice[currentLang](deptTitle),
+                chips: [bookChip, `${deptTitle} Doctors`],
+              });
+            }
+            if (brain.reply) {
+              return botSay({ text: brain.reply, chips: baseChips });
+            }
+            break;
+
+          case "general_answer":
+          case "out_of_scope":
+            if (brain.reply) {
+              return botSay({ text: brain.reply, chips: baseChips });
+            }
+            break;
+
+          default: {
+            if (brain.reply) {
+              return botSay({ text: brain.reply, chips: baseChips });
+            }
+            // Intents served by the built-in rich handlers below
+            const canonical: Record<string, string> = {
+              hospital_info: "tell me about popular hospital",
+              location: "where is popular hospital",
+              timings: "opd timing",
+              datetime: "current time",
+              contact: "call helpline number",
+              chairman: "chairman desk",
+              vice_chairman: "vice chairman desk",
+              md: "md desk",
+              all_departments: "show all departments list",
+              health_packages: "health checkup packages",
+              reports: "download my lab report",
+              insurance: "cashless insurance",
+            };
+            const canon = brain.intent ? canonical[brain.intent] : undefined;
+            if (canon) {
+              text = canon;
+              lower = canon;
+            }
+          }
+        }
+      }
     }
 
     // 1. Existing booking / appointment confirmation intent. Never expose
@@ -3388,6 +3763,66 @@ export default function ChatbotWidget() {
       });
     }
 
+    // 3.9 Service links: health checkup packages, lab reports, cashless/insurance
+    const serviceLink = (() => {
+      if (
+        /health\s*(check|package|card)|check[\s-]*up|body\s*check|wellness\s*package|हेल्थ\s*(चेक|पैकेज)|चेकअप/i.test(
+          lower,
+        )
+      )
+        return {
+          text:
+            currentLang === "hi"
+              ? "हमारे हेल्थ चेकअप एवं वेलनेस पैकेज की जानकारी और कीमत नीचे दिए लिंक पर देखें।"
+              : currentLang === "hinglish"
+                ? "Hamare health checkup aur wellness packages ki jaankari neeche diye link par dekhein."
+                : "You can see our health checkup & wellness packages at the link below.",
+          label:
+            currentLang === "en" ? "View Health Packages" : "Health Packages Dekhein",
+          href: "/services/health-packages",
+        };
+      if (
+        /(report|रिपोर्ट)/i.test(lower) &&
+        /(lab|test|download|dekh|check|online|pathology|blood|मिल|देख|डाउनलोड)/i.test(lower)
+      )
+        return {
+          text:
+            currentLang === "hi"
+              ? "अपनी जांच रिपोर्ट ऑनलाइन देखने/डाउनलोड करने के लिए नीचे दिया लिंक खोलें।"
+              : currentLang === "hinglish"
+                ? "Apni lab/test report online dekhne ya download karne ke liye neeche diya link kholein."
+                : "You can view and download your lab/test reports online using the link below.",
+          label:
+            currentLang === "en" ? "Open Patient Reports" : "Patient Reports Kholein",
+          href: "/patient-reports",
+        };
+      if (
+        /cashless|insurance|tpa|mediclaim|panel|बीमा|कैशलेस/i.test(lower)
+      )
+        return {
+          text:
+            currentLang === "hi"
+              ? "कैशलेस इलाज एवं इंश्योरेंस/TPA पैनल की सूची नीचे दिए लिंक पर देखें। अधिक जानकारी के लिए हेल्पलाइन +91-7800001895 पर कॉल करें।"
+              : currentLang === "hinglish"
+                ? "Cashless treatment aur insurance/TPA panel ki list neeche diye link par dekhein. Adhik jaankari ke liye helpline +91-7800001895 par call karein."
+                : "See our cashless empanelment and insurance/TPA panel list at the link below. For details, call +91-7800001895.",
+          label:
+            currentLang === "en" ? "Cashless Empanelment" : "Cashless Empanelment Dekhein",
+          href: "/about/cashless-empanelment",
+        };
+      return null;
+    })();
+    if (serviceLink) {
+      return botSay({
+        text: serviceLink.text,
+        actionLink: { label: serviceLink.label, href: serviceLink.href },
+        chips: [
+          STRINGS.chips.bookAppointment[currentLang],
+          STRINGS.chips.callUs[currentLang],
+        ],
+      });
+    }
+
     // 4. Exact department or alias match (shows basic info from department page + doctors)
     const exact = findSpeciality(text, specs, true);
     if (exact) {
@@ -3405,6 +3840,37 @@ export default function ChatbotWidget() {
         lower.trim() === norm(deptInquiry.name))
     ) {
       return showDepartmentInfo(deptInquiry, currentLang);
+    }
+
+    // 4c. Doctor lookup by name (e.g. "Dr. Hari Krishan Srivastava", "suraj chaturvedi")
+    {
+      const nameStop = new Set(["dr", "doctor", "doc", "sir", "madam", "mam", "ji", "ka", "ki", "ke", "me", "se", "ko", "kaun", "who", "is", "are", "about", "tell", "batao", "info", "appointment", "book", "the", "mujhe", "milna", "hai", "hain", "see", "meet"]);
+      const tokens = norm(text)
+        .split(/\s+/)
+        .filter((t) => t.length >= 3 && !nameStop.has(t));
+      if (tokens.length > 0 && tokens.length <= 5) {
+        if (!allDoctorsRef.current) {
+          allDoctorsRef.current = await fetchDoctors();
+        }
+        const mentionsDoctor = /dr|doctor|डॉक्टर/i.test(lower);
+        const matches = allDoctorsRef.current.filter((doc) => {
+          const n = norm(doc.name);
+          return tokens.every((t) => n.includes(t));
+        });
+        if (matches.length > 0 && (mentionsDoctor || tokens.length >= 2 || matches.length <= 3)) {
+          return botSay({
+            text:
+              currentLang === "hi"
+                ? "आपके द्वारा खोजे गए डॉक्टर:"
+                : currentLang === "hinglish"
+                  ? "Aapke dwara search kiye gaye doctor:"
+                  : "Here is the doctor you asked about:",
+            doctors: matches.slice(0, 6),
+            doctorsPick: false,
+            chips: [STRINGS.chips.bookAppointment[currentLang]],
+          });
+        }
+      }
     }
 
     // 5. Symptom match
@@ -3509,6 +3975,34 @@ export default function ChatbotWidget() {
         STRINGS.chips.viewAllDepts[currentLang],
       ],
     });
+  };
+
+  const handleSend = async (raw?: string, forcedLang?: Lang) => {
+    const typed = (raw ?? input).trim();
+    const stepAtSend = step;
+    const wasSideQuestion =
+      !!typed && stepAtSend !== "idle" && isSideQuestion(stepAtSend, typed, specs);
+
+    await handleSendInner(raw, forcedLang);
+
+    if (wasSideQuestion && !bookingResetRef.current) {
+      const l = resolveLang(typed, lang);
+      const phrase = RESUME_PHRASE[stepAtSend]?.[l];
+      if (phrase) {
+        const chips =
+          stepAtSend === "date"
+            ? [
+                STRINGS.chips.dates.today[l],
+                STRINGS.chips.dates.tomorrow[l],
+                STRINGS.chips.dates.dayAfter[l],
+                STRINGS.chips.cancel[l],
+              ]
+            : stepAtSend === "confirm"
+              ? [STRINGS.chips.confirmYes[l], STRINGS.chips.cancel[l]]
+              : [STRINGS.chips.cancel[l]];
+        await botSay({ text: RESUME_PREFIX[l] + phrase, chips }, 350);
+      }
+    }
   };
 
   /* ── Quick Chip Click Handler ── */

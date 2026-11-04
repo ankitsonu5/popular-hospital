@@ -21,6 +21,7 @@ const INCLUDED_ROOTS = new Set([
   "stories",
   "our-locations",
   "doctors",
+  "patient-reports",
 ]);
 
 const GROUP_BY_ROOT = {
@@ -29,6 +30,7 @@ const GROUP_BY_ROOT = {
   "our-locations": "Popular Finds",
   stories: "Popular Finds",
   doctors: "Popular Finds",
+  "patient-reports": "Popular Finds",
   departments: "Departments",
   services: "Services",
   careers: "Careers",

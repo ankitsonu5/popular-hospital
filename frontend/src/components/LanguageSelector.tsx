@@ -34,6 +34,54 @@ const languages = [
   { code: "pa", label: "Punjabi", native: "ਪੰਜਾਬੀ", flag: "IN" },
 ];
 
+// Keep the page's <html lang> in step with the chosen language
+// (accessibility / screen readers; Google Translate does not do this itself).
+function setDocumentLang(langCode: string) {
+  document.documentElement.lang = langCode || "en";
+}
+
+// Google Translate wraps text nodes in <font> tags, which makes React throw
+// "Failed to execute 'removeChild'/'insertBefore' on 'Node'" on the next
+// update. This well-known guard makes those two calls tolerant. It is only
+// installed once the visitor actually switches to a translated language.
+function enableTranslateSafety() {
+  const proto = Node.prototype as any;
+  if (proto.__gtSafe) return;
+  proto.__gtSafe = true;
+
+  const originalRemoveChild = proto.removeChild;
+  proto.removeChild = function (child: Node) {
+    if (child && child.parentNode !== this) return child;
+    return originalRemoveChild.call(this, child);
+  };
+
+  const originalInsertBefore = proto.insertBefore;
+  proto.insertBefore = function (newNode: Node, referenceNode: Node | null) {
+    if (referenceNode && referenceNode.parentNode !== this) return newNode;
+    return originalInsertBefore.call(this, newNode, referenceNode);
+  };
+}
+
+// Things that must stay exactly as written when the page is translated:
+// phone numbers, e-mail, WhatsApp links and doctor names.
+const NO_TRANSLATE_SELECTOR = [
+  'a[href^="tel:"]',
+  'a[href^="mailto:"]',
+  'a[href*="wa.me"]',
+  'a[href^="/doctors/"] h2',
+  'a[href^="/doctors/"] h3',
+  "[data-doctor-name]",
+].join(",");
+
+function markNoTranslate(root: ParentNode = document) {
+  root.querySelectorAll(NO_TRANSLATE_SELECTOR).forEach((el) => {
+    if (!el.hasAttribute("translate")) {
+      el.setAttribute("translate", "no");
+      el.classList.add("notranslate");
+    }
+  });
+}
+
 // Helper: trigger the hidden Google Translate combo box to change language
 function triggerGoogleTranslate(langCode: string): boolean {
   const combo = document.querySelector(".goog-te-combo") as HTMLSelectElement;
@@ -193,8 +241,10 @@ const LanguageSelector = ({
     // Sync UI state with saved preference
     const savedLang = localStorage.getItem("user-language") || "en";
     setCurrentLang(savedLang);
+    setDocumentLang(savedLang);
 
     if (savedLang !== "en") {
+      enableTranslateSafety();
       // Script already loaded on a previous visit — load and re-apply
       setGoogleTranslateCookie(savedLang);
       // Wait slightly for the element to init, then trigger
@@ -205,6 +255,26 @@ const LanguageSelector = ({
       resetToEnglish();
     }
   }, [includedLangs]);
+
+  // While a translation is active, protect phone numbers / e-mail / doctor
+  // names, including content that appears later (route changes, lazy lists).
+  useEffect(() => {
+    if (currentLang === "en") return;
+    markNoTranslate();
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const observer = new MutationObserver(() => {
+      if (timer) return;
+      timer = setTimeout(() => {
+        timer = null;
+        markNoTranslate();
+      }, 400);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      observer.disconnect();
+      if (timer) clearTimeout(timer);
+    };
+  }, [currentLang]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -223,6 +293,7 @@ const LanguageSelector = ({
     setCurrentLang(code);
     setIsOpen(false);
     localStorage.setItem("user-language", code);
+    setDocumentLang(code);
 
     if (code === "en") {
       // Restore original English: Clear cookies and reload to restore the clean, default React DOM
@@ -232,6 +303,8 @@ const LanguageSelector = ({
     }
 
     // Non-English: trigger translation immediately without reload
+    enableTranslateSafety();
+    markNoTranslate();
     setGoogleTranslateCookie(code);
     triggerWithRetry(code);
   };

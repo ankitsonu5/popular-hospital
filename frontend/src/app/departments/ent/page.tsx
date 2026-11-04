@@ -22,7 +22,7 @@ export async function generateMetadata() {
 
 
 export default async function ENTPage() {
-  const dbDoctors = await fetchDoctors({ speciality: "ent" });
+  const dbDoctors = await fetchDoctors({ speciality: "ent", includeAdditional: true });
   const doctors = dbDoctors.map((d) => ({
     name: d.name,
     qualifications: d.qualification || "",

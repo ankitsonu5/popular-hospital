@@ -17,6 +17,7 @@ const departmentGalleryItemSchema = new mongoose.Schema(
     title: { type: String, default: "", trim: true },
     mediaUrl: { type: String, required: true },
     thumbnailUrl: { type: String, default: "" },
+    thumbnailMobileUrl: { type: String, default: "" },
     order: { type: Number, default: 0 },
     isActive: { type: Boolean, default: true },
   },

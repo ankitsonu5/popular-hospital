@@ -1,7 +1,7 @@
 import { getImageUrl } from "./api";
 
 const YOUTUBE_REGEX =
-  /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|\&v=)([^#\&\?]*).*/i;
+  /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|live\/|\&v=)([^#\&\?]*).*/i;
 
 type VideoPlatform =
   | "youtube"
@@ -12,6 +12,19 @@ type VideoPlatform =
 
 export function getYoutubeId(url: string) {
   if (!url) return null;
+  try {
+    const parsed = new URL(url);
+    const hostname = parsed.hostname.toLowerCase().replace(/^www\./, "");
+    const isYoutubeHost =
+      hostname === "youtu.be" ||
+      hostname === "youtube.com" ||
+      hostname.endsWith(".youtube.com") ||
+      hostname === "youtube-nocookie.com" ||
+      hostname.endsWith(".youtube-nocookie.com");
+    if (!isYoutubeHost) return null;
+  } catch {
+    return null;
+  }
   const match = url.match(YOUTUBE_REGEX);
   return match && match[2]?.length === 11 ? match[2] : null;
 }

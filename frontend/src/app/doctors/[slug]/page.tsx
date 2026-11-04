@@ -3,9 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchDoctor } from "@/lib/api";
 import DoctorImage from "@/components/DoctorImage";
-import { getPrimaryDoctorImage } from "@/lib/doctorImages";
+import {
+  getPrimaryDoctorImage,
+  getDoctorImageCandidates,
+} from "@/lib/doctorImages";
 import { DoctorSchema } from "@/components/schema/DoctorSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
+import DoctorBookingProvider from "@/components/DoctorBookingProvider";
+import DoctorAvailabilityCalendar from "@/components/DoctorAvailabilityCalendar";
+import DoctorVideoCarousel from "@/components/DoctorVideoCarousel";
+import DoctorShareButton from "@/components/DoctorShareButton";
 
 import { fetchSeoMetadata } from "@/lib/seoApi";
 
@@ -158,7 +165,8 @@ export default async function DoctorPage({ params }: Props) {
     const displayBio = doctor.bio;
     const displayFee = doctor.consultation_fee;
 
-    const displayImage = getPrimaryDoctorImage(doctor);
+    const imageCandidates = getDoctorImageCandidates(doctor);
+    const displayImage = imageCandidates[0] || null;
 
     const normTiming = (val: unknown): string => safeStr(val, "-");
 
@@ -249,7 +257,7 @@ export default async function DoctorPage({ params }: Props) {
           </div>
 
           <div className="relative z-10 mx-auto max-w-[1366px] px-6">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 font-heading">
+            <h1 translate="no" className="notranslate text-4xl md:text-5xl font-bold text-white mb-3 font-heading">
               Doctor Profile
             </h1>
             <nav className="flex items-center gap-2 text-white/80 text-sm flex-wrap">
@@ -272,16 +280,29 @@ export default async function DoctorPage({ params }: Props) {
         {/* ── Main Content ── */}
         <section className="py-14 bg-gray-50">
           <div className="mx-auto max-w-[1366px] px-6">
+            <DoctorBookingProvider
+              doctor={{
+                id: doctor._id || doctor.id,
+                name: displayName,
+                slug: doctor.slug,
+                image: displayImage || "",
+                images: imageCandidates,
+                speciality: displaySpeciality,
+                qualifications: displayQualification,
+              }}
+            >
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-12">
                 {/* ──── Left: Doctor Photo & Summary ──── */}
-                <div className="lg:col-span-4 flex flex-col items-center bg-gray-50/80 border-r border-gray-100 p-10">
-                  <div
-                    className="relative rounded-xl overflow-hidden shadow-md bg-white border border-gray-200 mb-6"
-                    style={{ height: "350px", width: "280px" }}
-                  >
+                <div className="lg:col-span-7 flex items-center bg-[#0b1c43] p-8 lg:p-10">
+                  <div className="flex w-full flex-col items-center gap-6 sm:flex-row sm:items-center">
+                  <div className="relative w-full max-w-[260px] shrink-0 aspect-[4/5] rounded-2xl overflow-hidden shadow-md bg-white sm:w-[240px]">
                     {displayImage ? (
-                      <DoctorImage src={displayImage} alt={displayName} />
+                      <DoctorImage
+                        src={displayImage}
+                        alt={displayName}
+                        fallbacks={imageCandidates.slice(1)}
+                      />
                     ) : (
                       <div className="flex items-center justify-center h-full bg-blue-50">
                         <svg
@@ -301,44 +322,55 @@ export default async function DoctorPage({ params }: Props) {
                     )}
                   </div>
 
-                  <h2 className="text-lg font-bold text-[#3b82f6] text-center leading-tight">
+                  <div className="min-w-0 flex-1 w-full">
+                  <h2 className="font-heading text-3xl font-bold leading-tight text-white">
                     {displayName}
                   </h2>
                   {displayQualification && (
-                    <p className="text-gray-500 text-sm text-center mt-2 leading-relaxed px-2">
+                    <p className="mt-2 text-sm leading-relaxed text-white/80">
                       {displayQualification}
                     </p>
                   )}
                   {displayDesignation && (
-                    <p className="text-gray-700 text-sm font-bold uppercase tracking-wide mt-2 text-center">
+                    <p className="mt-3 text-xl font-semibold leading-snug text-white">
                       {displayDesignation}
                     </p>
                   )}
+                  {displaySpeciality && (
+                    <p className="mt-2 text-base leading-snug text-white/90">
+                      {displaySpeciality}
+                    </p>
+                  )}
+                  {displayExperience && (
+                    <p className="mt-2 text-base text-white/90">
+                      Experience: {displayExperience}
+                    </p>
+                  )}
+                  <DoctorShareButton title={displayName} className="mt-3" />
                   {displayFee != null && (
-                    <div className="mt-5 bg-blue-50 rounded-lg px-4 py-3 text-center w-full">
-                      <p className="text-sm text-gray-500">Consultation Fee</p>
-                      <p className="text-blue-600 font-bold text-xl">
-                        ₹{displayFee}
-                      </p>
+                    <div className="mt-5 w-full rounded-lg bg-white/15 px-4 py-3 text-center">
+                      <p className="text-sm text-white/80">Consultation Fee</p>
+                      <p className="text-xl font-bold text-white">₹{displayFee}</p>
                     </div>
                   )}
+                  </div>
+                  </div>
                 </div>
 
-                {/* ──── Right: Details ──── */}
-                <div className="lg:col-span-8 p-10 lg:p-12">
-                  <div className="mb-8 flex flex-col justify-end gap-3 sm:flex-row">
-                    <Link
-                      href={`/book?doctor=${doctor.slug}`}
-                      className="inline-flex items-center justify-center bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3 rounded-md font-bold text-sm tracking-wide shadow transition-all transform hover:scale-105"
-                    >
-                      SCHEDULE AN APPOINTMENT
-                    </Link>
+                {/* ──── Right: Availability Calendar ──── */}
+                <div className="lg:col-span-5 flex items-center justify-center p-10 lg:p-12">
+                  <div className="w-full max-w-[460px]">
+                    <DoctorAvailabilityCalendar />
                   </div>
+                </div>
+              </div>
 
+              {/* ──── Below: Department, Experience & OPD Timings ──── */}
+              <div className="border-t border-gray-100 p-10 lg:p-12">
                   <div className="mb-6 pb-6 border-b border-gray-100">
                     <h3 className="text-3xl font-bold text-[#0b1c43]">
                       Department -{" "}
-                      <span className="text-[#3b82f6]">
+                      <span className="text-[#284a91]">
                         {displaySpeciality}
                       </span>
                     </h3>
@@ -351,7 +383,7 @@ export default async function DoctorPage({ params }: Props) {
 
                   {(displayExperience || doctor.experience_location) && (
                     <div className="mb-8 pb-6 border-b border-gray-100">
-                      <h4 className="text-lg font-bold text-[#3b82f6] mb-2">
+                      <h4 className="text-lg font-bold text-[#284a91] mb-2">
                         Experience
                       </h4>
                       {displayExperience && (
@@ -370,10 +402,10 @@ export default async function DoctorPage({ params }: Props) {
                   {safeBranches.map((branch, bIdx) => (
                     <div key={bIdx} className={bIdx > 0 ? "mt-8" : ""}>
                       <div className="flex items-center gap-3 mb-4">
-                        <span className="bg-[#3b82f6] text-white text-sm font-bold px-4 py-1.5 rounded">
+                        <span className="bg-[#284a91] text-white text-sm font-bold px-4 py-1.5 rounded">
                           {branch.branch}
                         </span>
-                        <span className="text-[#3b82f6] font-semibold text-sm">
+                        <span className="text-[#284a91] font-semibold text-sm">
                           - OPD Timings
                         </span>
                       </div>
@@ -412,26 +444,33 @@ export default async function DoctorPage({ params }: Props) {
                       </div>
                     </div>
                   ))}
-                </div>
               </div>
             </div>
+            </DoctorBookingProvider>
 
-            {/* ── Video Gallery Section ── */}
+            {/* ── Video Library Section ── */}
             {(() => {
               if (!doctor.videos || doctor.videos.length === 0) return null;
 
-              const validVideos = doctor.videos.map(v => {
-                const match = v.url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
-                return match ? { ...v, videoId: match[1], id: v._id || Math.random().toString() } : null;
-              }).filter(Boolean) as (typeof doctor.videos[0] & { videoId: string, id: string })[];
-              
+              const validVideos = doctor.videos
+                .map((v) => {
+                  const match = v.url.match(
+                    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/,
+                  );
+                  return match
+                    ? {
+                        title: v.title,
+                        videoId: match[1],
+                        id: v._id || match[1],
+                      }
+                    : null;
+                })
+                .filter((v): v is { title: string; videoId: string; id: string } => v !== null);
+
               if (validVideos.length === 0) return null;
-              
+
               return (
-                <div className="mt-12 bg-gradient-to-b from-white to-slate-50/50 rounded-[2.5rem] shadow-sm border border-slate-100 p-8 lg:p-12 overflow-hidden relative">
-                  {/* Background decoration */}
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3"></div>
-                  
+                <>
                   {/* Schema generation for all videos */}
                   {validVideos.map((v) => (
                     <script
@@ -450,91 +489,18 @@ export default async function DoctorPage({ params }: Props) {
                       }}
                     />
                   ))}
-
-                  <div className="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-6 border-b border-slate-200/60 gap-4">
-                    <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="w-12 h-[2px] bg-[#E85222] rounded-full"></span>
-                        <span className="text-[#E85222] font-bold text-sm tracking-widest uppercase">Video Library</span>
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-black text-[#1a3a5c] font-heading tracking-tight">
-                        Watch
-                      </h3>
-                      <p className="text-slate-500 font-medium mt-2">Insights, treatments, and success stories</p>
-                    </div>
-                    
-                    <a
-                      href="https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-red-50 text-red-600 hover:bg-red-600 hover:text-white px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-sm"
-                    >
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-                      </svg>
-                      Subscribe
-                    </a>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10 relative z-10">
-                    {validVideos.map((v, idx) => (
-                      <a
-                        key={v.id}
-                        href={`https://www.youtube.com/watch?v=${v.videoId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col rounded-[1.5rem] bg-white overflow-hidden shadow-sm border border-slate-100 hover:border-blue-100 transition-colors duration-300"
-                      >
-                        {/* HD Thumbnail Banner */}
-                        <div className="relative w-full pb-[56.25%] bg-slate-900 overflow-hidden">
-                          <img
-                            src={`https://img.youtube.com/vi/${v.videoId}/maxresdefault.jpg`}
-                            alt={v.title}
-                            className="absolute top-0 left-0 w-full h-full object-cover group-hover:opacity-90 transition-all duration-300"
-                            loading="lazy"
-                          />
-
-                          {/* Subtle Bottom Gradient */}
-                          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                          
-                          {/* Play Button Overlay (Glassmorphism) */}
-                          <div className="absolute inset-0 z-20 flex items-center justify-center">
-                            <div className="w-16 h-16 bg-white/20 backdrop-blur-md border border-white/40 rounded-full flex items-center justify-center shadow-lg group-hover:bg-[#E85222] group-hover:border-[#E85222] transition-colors duration-300">
-                              <svg className="w-8 h-8 text-white ml-1 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7L8 5z" />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Card Content */}
-                        <div className="p-6 md:p-8 flex flex-col flex-grow relative">
-                          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#E85222]/0 to-transparent group-hover:via-[#E85222] transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
-                          
-                          <h4 className="text-xl font-black text-[#1a3a5c] leading-tight line-clamp-2 group-hover:text-[#E85222] transition-colors duration-300 font-heading">
-                            {v.title}
-                          </h4>
-                          
-                          <div className="mt-auto pt-6 flex items-center justify-between text-sm font-bold text-slate-400 group-hover:text-[#E85222] transition-colors">
-                            <span className="flex items-center gap-2">
-                              Watch Video
-                              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                              </svg>
-                            </span>
-                          </div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
+                  <DoctorVideoCarousel
+                    videos={validVideos}
+                    channelUrl="https://youtube.com/@populargroupofhospitals?si=2WBF3-gr2RQTqMiY"
+                  />
+                </>
               );
             })()}
 
             <div className="mt-8">
               <Link
                 href="/doctors"
-                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-colors text-sm"
+                className="inline-flex items-center gap-2 text-[#284a91] hover:text-[#E85222] font-semibold transition-colors text-sm"
               >
                 <svg
                   className="w-4 h-4"

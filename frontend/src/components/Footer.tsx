@@ -351,8 +351,37 @@ export function Footer() {
           </div>
         </div>
 
+        {/* NABH accreditation */}
+        <section
+          aria-labelledby="nabh-heading"
+          className="mt-12 pt-8 border-t border-gray-500/30 relative z-10 flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left"
+        >
+          <Image
+            src="/images/nabh_logo.jpg"
+            alt="NABH certified logo – Popular Hospital, Varanasi is accredited by the National Accreditation Board for Hospitals & Healthcare Providers"
+            width={892}
+            height={830}
+            sizes="200px"
+            className="h-20 w-auto sm:h-24 shrink-0 rounded-lg bg-white object-contain p-1.5"
+          />
+          <div>
+            <h3
+              id="nabh-heading"
+              className="text-lg font-semibold text-white sm:text-xl"
+            >
+              NABH Certified Hospital in Varanasi
+            </h3>
+            <p className="mt-1.5 max-w-3xl text-sm leading-relaxed text-gray-300 sm:text-base">
+              Popular Hospital, Varanasi is NABH certified &mdash; recognised by
+              the National Accreditation Board for Hospitals &amp; Healthcare
+              Providers for maintaining high standards of quality care, patient
+              safety and ethical clinical practice.
+            </p>
+          </div>
+        </section>
+
         {/* Footer Bottom */}
-        <div className="mt-16 pt-8 border-t border-gray-500/30 text-center text-sm sm:text-base text-gray-300 relative z-10">
+        <div className="mt-10 pt-8 border-t border-gray-500/30 text-center text-sm sm:text-base text-gray-300 relative z-10">
           <p>
             © 2026 Popular Hospital. All rights reserved. made by{" "}
             <a

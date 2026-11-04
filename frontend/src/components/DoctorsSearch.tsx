@@ -259,6 +259,7 @@ export function DoctorsSearch() {
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                        unoptimized={imageSrc.startsWith("/uploads") || imageSrc.startsWith("http")}
                         onError={() =>
                           setImageFallbackIndex((current) => ({
                             ...current,
@@ -284,7 +285,7 @@ export function DoctorsSearch() {
 
                   {/* Content Section */}
                   <div className="px-1 sm:px-3 pb-4 sm:pb-6 min-w-0">
-                    <h3 className="text-[18px] sm:text-[22px] font-black text-[#4285f4] tracking-tight break-words leading-tight mb-2">
+                    <h3 translate="no" className="notranslate text-[18px] sm:text-[22px] font-black text-[#4285f4] tracking-tight break-words leading-tight mb-2">
                       {doc.name}
                     </h3>
 

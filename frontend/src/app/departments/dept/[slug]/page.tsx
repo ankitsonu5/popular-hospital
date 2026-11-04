@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchDepartment, fetchDoctors, getImageUrl } from "@/lib/api";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import GetCallBackButton from "@/components/GetCallBackButton";
 
 export const revalidate = 60;
@@ -52,7 +52,7 @@ export default async function DepartmentPage({ params }: Props) {
   const { slug } = await params;
   const [dept, doctors] = await Promise.all([
     fetchDepartment(slug),
-    fetchDoctors({ speciality: slug }),
+    fetchDoctors({ speciality: slug, includeAdditional: true }),
   ]);
 
   if (!dept) notFound();
@@ -65,7 +65,7 @@ export default async function DepartmentPage({ params }: Props) {
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO ═══════ */}
       <section
-        className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight"
+        className="relative w-full overflow-hidden flex items-center uppercase tracking-tight h-[230px] md:h-[200px] xl:h-[170px] 2xl:h-[clamp(200px,13.02vw,420px)] py-8 md:py-10 xl:py-6 2xl:py-[clamp(2.4rem,2.5vw,5rem)]"
         style={{ backgroundColor: bannerColor }}
       >
         {dept.banner_image && (
@@ -86,21 +86,18 @@ export default async function DepartmentPage({ params }: Props) {
           </div>
         )}
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-[clamp(1024px,66.67vw,1920px)] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm">
-              {dept.banner_subtitle || "Department of"}
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words">
+            <h1 className="font-bold text-white mb-6 2xl:mb-[1.25vw] leading-tight font-heading text-[clamp(1.1rem,3.2vw,2.25rem)]">
               {dept.department_display_name || dept.name}
             </h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 2xl:w-[1.25em] 2xl:h-[1.25em]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -116,10 +113,10 @@ export default async function DepartmentPage({ params }: Props) {
               </Link>
               <GetCallBackButton
                 department={dept.name}
-                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 2xl:w-[1.25em] 2xl:h-[1.25em]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -138,12 +135,29 @@ export default async function DepartmentPage({ params }: Props) {
         </div>
       </section>
 
+      {/* ═══════ OUR MEDICAL EXPERTS (DIRECTLY UNDER BANNER) ═══════ */}
+      <DepartmentMedicalExperts
+        doctors={doctors.map((d) => ({
+          id: String(d._id || d.slug),
+          _id: String(d._id || d.slug),
+          name: d.name,
+          qualifications: d.qualification,
+          designation:
+            typeof d.designation === "object"
+              ? d.designation?.name
+              : d.designation,
+          slug: d.slug,
+          image: d.image_url ? getImageUrl(d.image_url) : "",
+        }))}
+        specialitySlug={slug}
+      />
+
       {/* ═══════ DESCRIPTION + DOCTOR SIDEBAR ═══════ */}
       <section className="py-16 xl:py-10 2xl:py-20 bg-gray-50/50">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content */}
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-12">
               <SectionHeader
                 title="Department of"
                 highlight={dept.department_display_name || dept.name}
@@ -170,25 +184,6 @@ export default async function DepartmentPage({ params }: Props) {
                   ))}
                 </div>
               )}
-            </div>
-
-            {/* Right Doctor Sidebar */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full h-fit">
-                <DoctorSlider
-                  doctors={doctors.map((d) => ({
-                    name: d.name,
-                    qualifications: d.qualification,
-                    designation:
-                      typeof d.designation === "object"
-                        ? d.designation?.name
-                        : d.designation,
-                    slug: d.slug,
-                    image_url: d.image_url ? getImageUrl(d.image_url) : "",
-                  }))}
-                  departmentName={dept.department_display_name || dept.name}
-                />
-              </div>
             </div>
           </div>
         </div>

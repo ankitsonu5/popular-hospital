@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
 import { CImage, T } from "@/components/content/Editable";
@@ -39,8 +39,7 @@ export default function PathologyPage() {
 
           <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
             <div className="animate-fade-in-up max-w-3xl">
-              <span className="inline-block py-1 px-3 rounded-full bg-teal-500/20 text-teal-200 text-sm font-semibold mb-6 border border-teal-400/30 backdrop-blur-sm uppercase tracking-widest"><T k="departments-pathology_954a65" d={"Department of Pathology"} /></span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-pathology_b04bbe" d={"Laboratory & "} /><br /><T k="departments-pathology_b5368e" d={"Medical Research"} /></h1>
+              <h1 className="font-bold text-white mb-6 leading-tight font-heading text-lg sm:text-[min(2.25rem,4.33vw)] sm:whitespace-nowrap"><T k="departments-pathology_b04bbe" d={"Laboratory & "} /><br /><T k="departments-pathology_b5368e" d={"Medical Research"} /></h1>
               <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium"><T k="departments-pathology_90542f" d={"Advanced diagnostic solutions powered by cutting-edge technology and expert pathologists. We deliver precise results for better patient outcomes."} /></p>
               <div className="flex flex-wrap gap-4">
                 <button className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-teal-500/30 flex items-center gap-2 uppercase text-sm tracking-wide">
@@ -75,6 +74,9 @@ export default function PathologyPage() {
             </div>
           </div>
         </section>
+
+        {/* Our Medical Experts (directly under banner) */}
+        <DepartmentMedicalExperts doctors={doctors} />
 
         {/* Floating Cards / Features */}
         <section className="relative z-20 mt-8 md:-mt-16 pb-20 px-4">
@@ -254,13 +256,6 @@ export default function PathologyPage() {
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Doctor Slider Section */}
-        <section className="py-20 bg-white">
-          <div className="mx-auto w-full max-w-[1366px] px-4">
-            <DoctorSlider doctors={doctors} departmentName="Pathology" />
           </div>
         </section>
 

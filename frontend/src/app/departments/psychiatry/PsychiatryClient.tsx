@@ -14,7 +14,7 @@ import {
   Sparkles,
   Shield,
 } from "lucide-react";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import GetCallBackButton from "@/components/GetCallBackButton";
 import { CImage, T } from "@/components/content/Editable";
 
@@ -123,7 +123,7 @@ export default function PsychiatryClient({
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] w-full bg-gradient-to-br from-[#2e1065] to-[#4c1d95] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 uppercase tracking-tight">
+      <section className="relative w-full bg-gradient-to-br from-[#2e1065] to-[#4c1d95] overflow-hidden flex items-center uppercase tracking-tight h-[230px] md:h-[200px] xl:h-[170px] 2xl:h-[clamp(200px,13.02vw,420px)] py-8 md:py-10 xl:py-6 2xl:py-[clamp(2.4rem,2.5vw,5rem)]">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(139,92,246,0.15),transparent)]" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
@@ -137,8 +137,7 @@ export default function PsychiatryClient({
         </div>
         <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-violet-500/20 text-violet-200 text-xs md:text-sm font-bold mb-6 border border-violet-400/30 backdrop-blur-sm uppercase tracking-wider"><T k="departments-psychiatry_c210b3" d={"Compassionate Mental Healthcare"} /></span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading"><T k="departments-psychiatry_7a6aca" d={"Department of Psychiatry Department — Varanasi"} /></h1>
+            <h1 className="font-bold text-white mb-6 leading-[1.1] font-heading text-lg sm:text-[min(2.25rem,3.59vw)] sm:whitespace-nowrap"><T k="departments-psychiatry_7a6aca" d={"Department of Psychiatry"} /></h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book"
@@ -153,13 +152,17 @@ export default function PsychiatryClient({
         </div>
       </section>
 
+      {/* ═══════ OUR MEDICAL EXPERTS (DIRECTLY UNDER BANNER) ═══════ */}
+      <DepartmentMedicalExperts doctors={doctors} />
+
+
       {/* ═══════ MAIN CONTENT SECTION ═══════ */}
       <section className="py-20 xl:py-16 bg-white min-h-[600px]">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           {/* ── Intro + Doctor Grid ── */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Content */}
-            <div className="lg:col-span-8 space-y-6">
+            <div className="lg:col-span-12 space-y-6">
               <SectionLabel text="About the Department" />
               <SectionHeader
                 title="Welcome to the"
@@ -198,16 +201,6 @@ export default function PsychiatryClient({
               </div>
             </div>
 
-            {/* Doctor Sidebar */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Psychiatry"
-                  preventBackendFetch
-                />
-              </div>
-            </div>
           </div>
 
           {/* ── Our Services — Conditions Treated ── */}

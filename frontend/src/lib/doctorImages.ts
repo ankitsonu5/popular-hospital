@@ -58,14 +58,14 @@ const PUBLIC_DOCTOR_IMAGES: Record<string, string> = {
     "/images/departments_doctor/dr_sumit_vishwakarma_new.jpg",
 };
 
-export const getDoctorImageCandidates = (doctor: Doctor) =>
+export const getDoctorImageCandidates = (doctor: Doctor): string[] =>
   Array.from(
     new Set(
       [
         doctor.image_url ? getImageUrl(doctor.image_url) : "",
         PUBLIC_DOCTOR_IMAGES[doctor.slug],
         localDoctors[doctor.slug]?.image,
-      ].filter(Boolean),
+      ].filter((src): src is string => Boolean(src)),
     ),
   );
 

@@ -56,6 +56,7 @@ const menuItems: MenuItem[] = [
         href: "/services/international-patients",
       },
       { label: "Free OPD and Offer", href: "/services/free-opd-offer" },
+      { label: "Patient Reports", href: "/patient-reports" },
     ],
   },
   {
@@ -121,6 +122,7 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
       label: "Pediatric Cardiology",
       href: "/departments/pediatric-cardiology",
     },
+    { label: "IVF & Fertility", href: "/departments/ivf-fertility" },
   ],
   Specialties: [
     {
@@ -134,7 +136,6 @@ const specialtiesContent: Record<string, { label: string; href: string }[]> = {
       href: "/departments/orthopedics",
     },
     { label: "General Medicine", href: "/departments/general-medicine" },
-    { label: "IVF & Fertility", href: "/departments/ivf-fertility" },
     { label: "ENT", href: "/departments/ent" },
     {
       label: "Dietetics & Nutrition",
@@ -160,6 +161,7 @@ const popularFindsIconMap: Record<string, string> = {
   "Patients Testimonial": `${popularFindsIconBasePath}/testimonials.svg`,
   "International Patients": `${popularFindsIconBasePath}/international-patients.svg`,
   "Free OPD and Offer": `${popularFindsIconBasePath}/free-opd-offer.svg`,
+  "Patient Reports": `${popularFindsIconBasePath}/pathology.svg`,
 };
 
 const servicesIconBasePath = "/images/download/popular_finds_icons";
@@ -342,7 +344,8 @@ export function Header() {
           pathname.startsWith("/doctors") ||
           pathname.startsWith("/stories") ||
           pathname === "/services/international-patients" ||
-          pathname === "/services/free-opd-offer"
+          pathname === "/services/free-opd-offer" ||
+          pathname === "/patient-reports"
         );
       }
       if (item.label === "Departments") {

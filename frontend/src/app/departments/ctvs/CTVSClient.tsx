@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import GetCallBackButton from "@/components/GetCallBackButton";
 import { CImage, T } from "@/components/content/Editable";
 
@@ -160,7 +160,7 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO SECTION ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
+      <section className="relative w-full bg-[#0b1c43] overflow-hidden flex items-center uppercase tracking-tight h-[230px] md:h-[200px] xl:h-[170px] 2xl:h-[clamp(200px,13.02vw,420px)] py-8 md:py-10 xl:py-6 2xl:py-[clamp(2.4rem,2.5vw,5rem)]">
         <div className="absolute inset-0 z-0">
           <CImage k="departments-ctvs_3e872e"
             src="/images/banners/cardiothoracic_banner.png"
@@ -172,17 +172,16 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-6 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-[clamp(1024px,66.67vw,1920px)] px-6 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-rose-500/20 text-rose-100 text-xs md:text-sm font-bold mb-6 border border-rose-400/30 backdrop-blur-sm uppercase tracking-wider"><T k="departments-ctvs_4c5284" d={"Department of"} /></span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-[1.1] font-heading"><T k="departments-ctvs_67d0c4" d={"Department of CTVS Department — Varanasi"} /></h1>
+            <h1 className="font-bold text-white mb-6 2xl:mb-[1.25vw] leading-[1.1] font-heading text-lg sm:text-[min(2.25rem,4.33vw)] sm:whitespace-nowrap"><T k="departments-ctvs_67d0c4" d={"Department of CTVS"} /></h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#E85222] text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center justify-center gap-2 text-center"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-10 py-4 2xl:px-[2.5em] 2xl:py-[1em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center justify-center gap-2 text-center"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 2xl:w-[1.25em] 2xl:h-[1.25em]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -196,10 +195,10 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
                 </svg><T k="departments-ctvs_687bd9" d={"Book An Appointment"} /></Link>
               <GetCallBackButton
                 department="Cardiothoracic & Vascular Surgery (CTVS)"
-                className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2"
+                className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 2xl:px-[2.5em] 2xl:py-[1em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-bold backdrop-blur-sm transition-all border border-white/20 flex items-center justify-center gap-2"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 2xl:w-[1.25em] 2xl:h-[1.25em]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -216,12 +215,16 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
         </div>
       </section>
 
+      {/* ═══════ OUR MEDICAL EXPERTS (DIRECTLY UNDER BANNER) ═══════ */}
+      <DepartmentMedicalExperts doctors={doctors} />
+
+
       {/* ═══════ CONTENT SECTION ═══════ */}
       <section className="py-16 xl:py-10 2xl:py-20 bg-white">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content (8 cols) */}
-            <div className="lg:col-span-8 space-y-12">
+            <div className="lg:col-span-12 space-y-12">
               {/* Department Intro */}
               <div>
                 <div className="flex items-center gap-3 mb-2">
@@ -265,16 +268,6 @@ export default function CTVSClient({ doctors }: { doctors: DoctorCard[] }) {
               </div>
             </div>
 
-            {/* Right Sidebar - Doctor Slider */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="CTVS"
-                  preventBackendFetch
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>

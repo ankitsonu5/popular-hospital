@@ -48,6 +48,29 @@ const bannerStorage = multer.diskStorage({
 });
 export const uploadSpecialityBanner = multer({ storage: bannerStorage });
 
+// "additional_specialities" arrives as a JSON string (FormData) or an array.
+// Returns a de-duplicated list of valid ids, never including the main one.
+const parseAdditionalSpecialities = (value, mainId) => {
+  if (value === undefined) return undefined;
+  let list = value;
+  if (typeof value === "string") {
+    try {
+      list = JSON.parse(value || "[]");
+    } catch {
+      list = [];
+    }
+  }
+  if (!Array.isArray(list)) return [];
+  const main = mainId ? String(mainId) : "";
+  return [
+    ...new Set(
+      list
+        .map(String)
+        .filter((id) => /^[0-9a-fA-F]{24}$/.test(id) && id !== main),
+    ),
+  ];
+};
+
 // GET /api/doctors
 export const getAllDoctors = async (req, res) => {
   try {
@@ -66,7 +89,22 @@ export const getAllDoctors = async (req, res) => {
       // No matching department — fail safe with an empty result instead of
       // silently returning every doctor from every department.
       if (!spec) return res.json([]);
-      filter.speciality = spec._id;
+      if (
+        req.query.include_additional === "1" ||
+        req.query.include_additional === "true"
+      ) {
+        // Department pages: main department OR "also listed in" departments
+        filter.$and = [
+          {
+            $or: [
+              { speciality: spec._id },
+              { additional_specialities: spec._id },
+            ],
+          },
+        ];
+      } else {
+        filter.speciality = spec._id;
+      }
     }
 
     if (branch) {
@@ -189,6 +227,7 @@ export const createDoctor = async (req, res) => {
       is_active,
       opd_timings,
       designation,
+      additional_specialities,
     } = req.body;
     if (!name || !slug) {
       return res.status(400).json({ error: "name and slug required" });
@@ -240,6 +279,8 @@ export const createDoctor = async (req, res) => {
       opd_timings: parsedOpdTimings,
       branches: branches || [],
       designation: designationId,
+      additional_specialities:
+        parseAdditionalSpecialities(additional_specialities, specialityId) || [],
       is_active: is_active !== "false" && is_active !== false,
       sortIndex: nextSortIndex,
     });
@@ -259,6 +300,17 @@ export const updateDoctor = async (req, res) => {
         updates.speciality && updates.speciality !== "" && updates.speciality !== "null"
           ? updates.speciality
           : null;
+    }
+    if (updates.additional_specialities !== undefined) {
+      let mainId = updates.speciality;
+      if (mainId === undefined) {
+        const current = await Doctor.findById(req.params.id).select("speciality");
+        mainId = current?.speciality;
+      }
+      updates.additional_specialities = parseAdditionalSpecialities(
+        updates.additional_specialities,
+        mainId,
+      );
     }
     if (updates.designation !== undefined) {
       updates.designation =

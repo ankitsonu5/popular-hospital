@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Check } from "lucide-react";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import GetCallBackButton from "@/components/GetCallBackButton";
 import { CImage, T } from "@/components/content/Editable";
 
@@ -80,7 +80,7 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-[#0b1c43] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
+      <section className="relative w-full bg-[#0b1c43] overflow-hidden flex items-center uppercase tracking-tight h-[230px] md:h-[200px] xl:h-[170px] 2xl:h-[clamp(200px,13.02vw,420px)] py-8 md:py-10 xl:py-6 2xl:py-[clamp(2.4rem,2.5vw,5rem)]">
         <div className="absolute inset-0 z-0">
           <CImage k="departments-neurosurgery_fec49c"
             src="/images/banners/neurosurgery.png"
@@ -92,17 +92,16 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-[clamp(1024px,66.67vw,1920px)] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm"><T k="departments-neurosurgery_4c5284" d={"Department of"} /></span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-neurosurgery_2e0769" d={"Department of Neurosurgery Department — Varanasi"} /></h1>
+            <h1 className="font-bold text-white mb-6 2xl:mb-[1.25vw] leading-tight font-heading text-lg sm:text-[min(2.25rem,3.4vw)] sm:whitespace-nowrap"><T k="departments-neurosurgery_2e0769" d={"Department of Neurosurgery"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 2xl:w-[1.25em] 2xl:h-[1.25em]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -116,10 +115,10 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
                 </svg><T k="departments-neurosurgery_687bd9" d={"Book An Appointment"} /></Link>
               <GetCallBackButton
                 department="Neurosurgery"
-                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
+                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 2xl:w-[1.25em] 2xl:h-[1.25em]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -136,12 +135,16 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
         </div>
       </section>
 
+      {/* ═══════ OUR MEDICAL EXPERTS (DIRECTLY UNDER BANNER) ═══════ */}
+      <DepartmentMedicalExperts doctors={doctors} />
+
+
       {/* ═══════ CONTENT SECTION ═══════ */}
       <section className="pt-16 pb-6 xl:pt-10 2xl:pt-20 2xl:pb-12 bg-gray-50/50">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Content (8 cols) */}
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-12">
               <SectionHeader title="Department of" highlight="Neurosurgery" />
               <div className="prose prose-blue max-w-none text-gray-800 space-y-4 mb-10 leading-relaxed text-base md:text-lg xl:text-[15px] 2xl:text-xl font-medium text-justify">
                 {introParas.map((p, idx) => (
@@ -150,16 +153,6 @@ export default function NeurosurgeryClient({ doctors }: { doctors: any[] }) {
               </div>
             </div>
 
-            {/* Right Sidebar - Doctor Card */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Neurosurgery"
-                  preventBackendFetch
-                />
-              </div>
-            </div>
           </div>
 
           <div className="mt-12">

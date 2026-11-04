@@ -122,10 +122,12 @@ import {
   deleteDepartmentGalleryItem,
   reorderDepartmentGalleryItems,
   uploadDepartmentGallery,
+  validateDepartmentGalleryUploadFields,
 } from "../controllers/departmentGalleryController.js";
 import {
   cmsAuth,
   superAdminOnly,
+  superOrGrantedFeature,
   superOrSubAdmin,
 } from "../middleware/auth.js";
 import {
@@ -216,8 +218,8 @@ router.patch("/bookings/:id/status", superOrSubAdmin, updateBookingStatus);
 router.patch("/bookings/:id/admin-notes", superOrSubAdmin, updateAdminNotes);
 router.delete("/bookings/:id", superAdminOnly, deleteBooking);
 
-// ── From here: super_admin only ─────────────────────────────────────
-router.use(superAdminOnly);
+// ── From here: super_admin, or sub/career admins granted that feature ──
+router.use(superOrGrantedFeature);
 
 // Branches CRUD
 router.get("/branches", getAllBranches);
@@ -279,19 +281,15 @@ router.post("/content", setSiteContent);
 router.get("/department-gallery", getAdminDepartmentGallery);
 router.post(
   "/department-gallery",
-  uploadDepartmentGallery.fields([
-    { name: "media", maxCount: 1 },
-    { name: "thumbnail", maxCount: 1 },
-  ]),
+  uploadDepartmentGallery.any(),
+  validateDepartmentGalleryUploadFields,
   createDepartmentGalleryItem,
 );
 router.put("/department-gallery/reorder", reorderDepartmentGalleryItems);
 router.put(
   "/department-gallery/:id",
-  uploadDepartmentGallery.fields([
-    { name: "media", maxCount: 1 },
-    { name: "thumbnail", maxCount: 1 },
-  ]),
+  uploadDepartmentGallery.any(),
+  validateDepartmentGalleryUploadFields,
   updateDepartmentGalleryItem,
 );
 router.delete("/department-gallery/:id", deleteDepartmentGalleryItem);

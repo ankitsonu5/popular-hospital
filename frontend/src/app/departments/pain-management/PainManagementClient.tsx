@@ -16,7 +16,7 @@ import {
   Phone,
   HelpCircle,
 } from "lucide-react";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import GetCallBackButton from "@/components/GetCallBackButton";
 import { CImage, T } from "@/components/content/Editable";
 
@@ -216,7 +216,7 @@ export default function PainManagementClient({
   return (
     <main className="min-h-screen bg-slate-50/20 overflow-x-hidden">
       {/* ═══════ HERO ═══════ */}
-      <section className="relative min-h-[150px] md:min-h-[200px] xl:min-h-[150px] 2xl:min-h-[250px] w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center py-8 md:py-10 xl:py-6 2xl:py-12 uppercase tracking-tight">
+      <section className="relative w-full bg-gradient-to-br from-[#334155] to-[#1e293b] overflow-hidden flex items-center uppercase tracking-tight h-[230px] md:h-[200px] xl:h-[170px] 2xl:h-[clamp(200px,13.02vw,420px)] py-8 md:py-10 xl:py-6 2xl:py-[clamp(2.4rem,2.5vw,5rem)]">
         <div className="absolute inset-0 z-0">
           <CImage k="departments-pain-management_7df23c"
             src="/images/banners/pain_management_banner.png"
@@ -228,23 +228,26 @@ export default function PainManagementClient({
           <div className="absolute inset-0 bg-[#0b1c43]/80" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4 h-full flex flex-col justify-center">
+        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-[clamp(1024px,66.67vw,1920px)] px-4 h-full flex flex-col justify-center">
           <div className="animate-fade-in-up max-w-3xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-200 text-sm font-semibold mb-6 border border-blue-400/30 backdrop-blur-sm tracking-wide"><T k="departments-pain-management_9e3766" d={"Specialized Care"} /></span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-3xl 2xl:text-6xl font-bold text-white mb-6 leading-tight font-heading break-words"><T k="departments-pain-management_d35bc2" d={"Department of Pain Management Clinic — Varanasi"} /></h1>
+            <h1 className="font-bold text-white mb-6 2xl:mb-[1.25vw] leading-tight font-heading text-lg sm:text-[min(2.25rem,3.49vw)] sm:whitespace-nowrap"><T k="departments-pain-management_d35bc2" d={"Department of Pain Management Clinic"} /></h1>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/book"
-                className="bg-[#E85222] hover:bg-[#d04420] text-white px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2"
+                className="bg-[#E85222] hover:bg-[#d04420] text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-[#E85222]/30 flex items-center gap-2"
               ><T k="departments-pain-management_003d87" d={"Book Appointment"} /></Link>
               <GetCallBackButton
                 department="Pain Medicine"
-                className="bg-transparent hover:bg-white/10 text-white px-8 py-3.5 rounded-full font-bold border border-white/20 transition-all flex items-center gap-2"
+                className="bg-transparent hover:bg-white/10 text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-bold border border-white/20 transition-all flex items-center gap-2"
               ><T k="departments-pain-management_fef4e0" d={"Get a Call Back"} /></GetCallBackButton>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ═══════ OUR MEDICAL EXPERTS (DIRECTLY UNDER BANNER) ═══════ */}
+      <DepartmentMedicalExperts doctors={doctors} />
+
 
       {/* ═══════ MAIN CONTENT SECTION ═══════ */}
       <section className="py-20 xl:py-16 bg-white min-h-[600px]">
@@ -252,7 +255,7 @@ export default function PainManagementClient({
           {/* Intro + Doctor Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Content */}
-            <div className="lg:col-span-8 space-y-6">
+            <div className="lg:col-span-12 space-y-6">
               <SectionLabel text="About the Department" />
               <SectionHeader title="Pain" highlight="Medicine Clinic" />
               <div className="relative border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50/60 to-transparent rounded-r-3xl shadow-sm">
@@ -278,16 +281,6 @@ export default function PainManagementClient({
               </div>
             </div>
 
-            {/* Doctor Sidebar — same style as Cardiology */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="sticky top-24 w-full">
-                <DoctorSlider
-                  doctors={doctors}
-                  departmentName="Pain Medicine"
-                  preventBackendFetch
-                />
-              </div>
-            </div>
           </div>
 
           {/* ── About & FAQ Cards ── */}

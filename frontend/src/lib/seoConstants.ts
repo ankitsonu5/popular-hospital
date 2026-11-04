@@ -18,6 +18,7 @@ export const STANDARD_PAGES = [
   { group: "Popular Finds", label: "Our Locations", route: "/locations" },
   { group: "Popular Finds", label: "Patients Testimonial", route: "/stories", defaultTitle: "Patient Stories | Popular Hospital", defaultDescription: "Hear directly from our patients about their experiences and successful recovery journeys at Popular Hospital." },
   { group: "Popular Finds", label: "International Patients", route: "/international-patients" },
+  { group: "Popular Finds", label: "Patient Reports", route: "/patient-reports" },
   { group: "Popular Finds", label: "Free OPD and Offer", route: "/opd", defaultTitle: "OPD - Outpatient Department", defaultDescription: "OPD timings, walk-in information, and how to book OPD at Popular Hospital branches." },
 
   // Departments

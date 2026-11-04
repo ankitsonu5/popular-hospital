@@ -18,6 +18,9 @@ const adminUserSchema = new mongoose.Schema(
       default: "super_admin",
     },
     isActive: { type: Boolean, default: true },
+    // Admin panel features this sub/career admin may use. When never saved
+    // (undefined) the role's default access applies — see config/adminFeatures.js
+    permissions: { type: [String], default: undefined },
     activeSessions: [{ token: String, expires: Date }],
     // Legacy fields kept for migration safety (unused)
     sessionToken: { type: String, default: null },

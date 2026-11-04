@@ -1,4 +1,6 @@
 import Booking from "../models/Booking.js";
+import Doctor from "../models/Doctor.js";
+import Branch from "../models/Branch.js";
 import mongoose from "mongoose";
 import { sendBookingEmail } from "../services/emailService.js";
 
@@ -38,12 +40,73 @@ export const createBooking = async (req, res) => {
       return res.status(400).json({ error: "Invalid email format" });
     }
 
-    // Validate ObjectIds
-    if (
-      !mongoose.Types.ObjectId.isValid(doctor) ||
-      !mongoose.Types.ObjectId.isValid(branch)
-    ) {
-      return res.status(400).json({ error: "Invalid doctor or branch ID" });
+    // Resolve doctor ObjectId flexibly
+    let doctorId = null;
+    if (mongoose.Types.ObjectId.isValid(doctor)) {
+      const docCheck = await Doctor.findById(doctor);
+      if (docCheck) doctorId = docCheck._id;
+    }
+    if (!doctorId) {
+      const docFound = await Doctor.findOne({
+        $or: [
+          { slug: String(doctor).toLowerCase() },
+          { name: new RegExp(`^${doctor}$`, "i") },
+          { name: new RegExp(String(doctor).replace(/^dr\.?\s*/i, ""), "i") },
+        ],
+      });
+      if (docFound) doctorId = docFound._id;
+    }
+    if (!doctorId) {
+      let docCreate = await Doctor.findOne({
+        slug: String(doctor).toLowerCase(),
+      });
+      if (!docCreate) {
+        docCreate = await Doctor.create({
+          name:
+            req.body.doctor_name ||
+            String(doctor)
+              .replace(/-/g, " ")
+              .replace(/\b\w/g, (c) => c.toUpperCase()),
+          slug: String(doctor)
+            .toLowerCase()
+            .replace(/[^a-z0-9\-]/g, "-"),
+          is_active: true,
+        });
+      }
+      doctorId = docCreate._id;
+    }
+
+    // Resolve branch ObjectId flexibly
+    let branchId = null;
+    if (mongoose.Types.ObjectId.isValid(branch)) {
+      const brCheck = await Branch.findById(branch);
+      if (brCheck) branchId = brCheck._id;
+    }
+    if (!branchId) {
+      const brFound = await Branch.findOne({
+        $or: [
+          { slug: String(branch).toLowerCase() },
+          { name: new RegExp(`^${branch}$`, "i") },
+          { name: new RegExp(String(branch).split(",")[0].trim(), "i") },
+        ],
+      });
+      if (brFound) branchId = brFound._id;
+    }
+    if (!branchId) {
+      const firstBranch =
+        (await Branch.findOne({ is_active: true }).sort({ order: 1 })) ||
+        (await Branch.findOne());
+      if (firstBranch) {
+        branchId = firstBranch._id;
+      } else {
+        const createdBranch = await Branch.create({
+          name:
+            typeof branch === "string" ? branch : "Popular Hospital Varanasi",
+          slug: "popular-hospital-varanasi",
+          is_active: true,
+        });
+        branchId = createdBranch._id;
+      }
     }
 
     const booking = await Booking.create({
@@ -52,8 +115,8 @@ export const createBooking = async (req, res) => {
       patient_email: patient_email
         ? String(patient_email).trim().substring(0, 200)
         : "",
-      doctor,
-      branch,
+      doctor: doctorId,
+      branch: branchId,
       slot_date,
       slot_time,
       notes: notes ? String(notes).trim().substring(0, 1000) : null,
@@ -135,6 +198,7 @@ export const markBookingRead = async (req, res) => {
     res.status(500).json({ error: "Failed to update booking status" });
   }
 };
+
 // PATCH /api/cms/bookings/:id/status
 export const updateBookingStatus = async (req, res) => {
   try {

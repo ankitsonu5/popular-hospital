@@ -6,6 +6,8 @@ import Image from "next/image";
 interface DoctorImageProps {
   src: string;
   alt: string;
+  /** Other images of the same doctor, tried in order if `src` fails to load. */
+  fallbacks?: string[];
 }
 
 /**
@@ -15,8 +17,11 @@ interface DoctorImageProps {
  *   "received null" terminal warnings when image file is missing).
  * - Falls back to an SVG placeholder on load error (broken image, 404, etc.)
  */
-export default function DoctorImage({ src, alt }: DoctorImageProps) {
-  const [hasError, setHasError] = useState(false);
+export default function DoctorImage({ src, alt, fallbacks = [] }: DoctorImageProps) {
+  const [failedCount, setFailedCount] = useState(0);
+  const sources = [src, ...fallbacks];
+  const current = sources[failedCount];
+  const hasError = !current;
 
   if (hasError) {
     return (
@@ -40,7 +45,8 @@ export default function DoctorImage({ src, alt }: DoctorImageProps) {
 
   return (
     <Image
-      src={src}
+      key={current}
+      src={current}
       alt={alt}
       fill
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -48,8 +54,8 @@ export default function DoctorImage({ src, alt }: DoctorImageProps) {
       // Skip Next.js image optimization for backend /uploads/ images.
       // Optimization pipeline fetches the image server-side; if the file
       // doesn't exist on the backend it logs "received null" in the terminal.
-      unoptimized={src.startsWith("/uploads") || src.startsWith("http")}
-      onError={() => setHasError(true)}
+      unoptimized={current.startsWith("/uploads") || current.startsWith("http")}
+      onError={() => setFailedCount((n) => n + 1)}
     />
   );
 }

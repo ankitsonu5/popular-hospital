@@ -14,6 +14,7 @@ const hasActiveSession = (admin) => {
     admin.activeSessions.some((s) => s.expires > now)
   );
 };
+import { effectivePermissions, sanitizePermissions } from "../config/adminFeatures.js";
 import {
   sendPasswordResetEmail,
   sendPasswordResetSuccessEmail,
@@ -79,6 +80,7 @@ export const loginAdmin = async (req, res) => {
         email: admin.email,
         name: admin.name,
         role: admin.role || "super_admin",
+        permissions: effectivePermissions(admin),
       },
     });
   } catch (error) {
@@ -95,7 +97,7 @@ export const getMe = async (req, res) => {
     if (!admin) {
       return res.status(404).json({ error: "Admin not found" });
     }
-    res.json(admin);
+    res.json({ ...admin.toObject(), permissions: effectivePermissions(admin) });
   } catch (error) {
     console.error("[AUTH] getMe error:", error.message);
     res.status(500).json({ error: "An error occurred." });
@@ -171,6 +173,7 @@ export const getCareerAdmins = async (req, res) => {
     const result = admins.map((a) => ({
       ...a.toObject(),
       plain_password: a.plain_password || "",
+      permissions: effectivePermissions(a),
       isOnline: hasActiveSession(a),
     }));
     res.json(result);
@@ -244,7 +247,7 @@ export const toggleCareerAdmin = async (req, res) => {
 // PUT /api/cms/career-admin/:id — update specific career admin
 export const updateCareerAdmin = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, permissions } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required." });
 
     const admin = await AdminUser.findOne({
@@ -263,6 +266,10 @@ export const updateCareerAdmin = async (req, res) => {
       return res.status(400).json({ error: "This email is already in use." });
 
     admin.email = emailLower;
+    {
+      const perms = sanitizePermissions(permissions);
+      if (perms) admin.permissions = perms;
+    }
     if (name) admin.name = name;
     if (password) {
       const salt = await bcrypt.genSalt(10);
@@ -279,7 +286,7 @@ export const updateCareerAdmin = async (req, res) => {
 // POST /api/cms/career-admin — create new career admin
 export const createCareerAdmin = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, permissions } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required." });
     if (!password)
       return res.status(400).json({ error: "Password is required." });
@@ -292,6 +299,7 @@ export const createCareerAdmin = async (req, res) => {
       plain_password: password,
       name: name || "Career Admin",
       role: "career_admin",
+      permissions: sanitizePermissions(permissions),
     });
     res.json({
       ok: true,
@@ -299,6 +307,7 @@ export const createCareerAdmin = async (req, res) => {
       email: newAdmin.email,
       name: newAdmin.name,
       plain_password: newAdmin.plain_password || "",
+      permissions: effectivePermissions(newAdmin),
     });
   } catch (error) {
     if (error.code === 11000)
@@ -332,6 +341,7 @@ export const getSubAdmins = async (req, res) => {
     const result = admins.map((a) => ({
       ...a.toObject(),
       plain_password: a.plain_password || "",
+      permissions: effectivePermissions(a),
       isOnline: hasActiveSession(a),
     }));
     res.json(result);
@@ -342,7 +352,7 @@ export const getSubAdmins = async (req, res) => {
 
 export const createSubAdmin = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, permissions } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required." });
     if (!password)
       return res.status(400).json({ error: "Password is required." });
@@ -354,6 +364,7 @@ export const createSubAdmin = async (req, res) => {
       plain_password: password,
       name: name || "Sub Admin",
       role: "sub_admin",
+      permissions: sanitizePermissions(permissions),
     });
     res.json({
       ok: true,
@@ -361,6 +372,7 @@ export const createSubAdmin = async (req, res) => {
       email: newAdmin.email,
       name: newAdmin.name,
       plain_password: newAdmin.plain_password || "",
+      permissions: effectivePermissions(newAdmin),
     });
   } catch (error) {
     if (error.code === 11000)
@@ -371,7 +383,7 @@ export const createSubAdmin = async (req, res) => {
 
 export const updateSubAdmin = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, permissions } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required." });
     const admin = await AdminUser.findOne({
       _id: req.params.id,
@@ -386,6 +398,10 @@ export const updateSubAdmin = async (req, res) => {
     if (conflict)
       return res.status(400).json({ error: "This email is already in use." });
     admin.email = emailLower;
+    {
+      const perms = sanitizePermissions(permissions);
+      if (perms) admin.permissions = perms;
+    }
     if (name) admin.name = name;
     if (password) {
       const salt = await bcrypt.genSalt(10);

@@ -23,6 +23,7 @@ export async function generateMetadata() {
 export default async function InterventionalRadiologyPage() {
   const doctors = await fetchDoctors({
     speciality: "interventional-radiology",
+    includeAdditional: true,
   });
 
   return (

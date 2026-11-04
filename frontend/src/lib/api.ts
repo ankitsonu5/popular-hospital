@@ -92,12 +92,15 @@ export async function fetchDoctors(params?: {
   speciality?: string;
   branch?: string;
   search?: string;
+  /** Department pages: also include doctors listed under it as an additional department. */
+  includeAdditional?: boolean;
 }): Promise<Doctor[]> {
   try {
     const sp = new URLSearchParams();
     if (params?.speciality) sp.set("speciality", params.speciality);
     if (params?.branch) sp.set("branch", params.branch);
     if (params?.search) sp.set("search", params.search);
+    if (params?.includeAdditional) sp.set("include_additional", "1");
     const q = sp.toString();
     const res = await fetch(api(`/doctors${q ? `?${q}` : ""}`), {
       next: { revalidate: 10 },
@@ -223,6 +226,43 @@ export async function askChatbotAi(
     if (!res.ok) return null;
     return await res.json();
   } catch (e) {
+    return null;
+  }
+}
+
+export interface ChatbotBrainResponse {
+  success: boolean;
+  lang?: "hi" | "hinglish" | "en";
+  intent?: string;
+  departmentSlug?: string;
+  doctorName?: string;
+  isEmergency?: boolean;
+  reply?: string;
+  reason?: string;
+}
+
+/** Gemini "brain": understands intent + language of a chatbot message. */
+export async function askChatbotBrain(payload: {
+  message: string;
+  sessionLang: "hi" | "hinglish" | "en";
+  specialities: { name: string; slug: string }[];
+  doctorNames: string[];
+  history: { role: string; text?: string }[];
+  lastDepartmentSlug: string;
+}): Promise<ChatbotBrainResponse | null> {
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 18000);
+    const res = await fetch(api("/chatbot/brain"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+    clearTimeout(timer);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
     return null;
   }
 }
@@ -486,6 +526,7 @@ export interface DepartmentGalleryItem {
   title?: string;
   mediaUrl: string;
   thumbnailUrl?: string;
+  thumbnailMobileUrl?: string;
   order?: number;
   isActive?: boolean;
 }

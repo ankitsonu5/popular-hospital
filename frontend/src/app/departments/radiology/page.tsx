@@ -1,16 +1,45 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchDoctors, getImageUrl } from "@/lib/api";
 import RadiologyVideoSection from "../../../components/RadiologyVideoSection";
-import DoctorSlider from "@/components/DoctorSlider";
+import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
 import { CImage, T } from "@/components/content/Editable";
 
-const doctors: never[] = []; // No doctors for now
-
 export default function RadiologyPage() {
+  const [doctors, setDoctors] = useState<any[]>([]);
+
+  useEffect(() => {
+    let ignore = false;
+    fetchDoctors({ speciality: "radiology", includeAdditional: true }).then(
+      (list) => {
+        if (ignore) return;
+        setDoctors(
+          list.map((d: any) => ({
+            id: String(d._id || d.id || d.slug),
+            _id: String(d._id || d.id || d.slug),
+            name: d.name,
+            qualifications: d.qualification || "",
+            designation:
+              typeof d.designation === "object"
+                ? d.designation?.name
+                : d.designation,
+            slug: d.slug,
+            image: d.image_url ? getImageUrl(d.image_url) : "",
+            speciality: d.speciality?.name,
+          })),
+        );
+      },
+    );
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
   return (
     <>
       <DynamicSchema
@@ -41,8 +70,7 @@ export default function RadiologyPage() {
 
           <div className="relative z-10 mx-auto w-full max-w-[1366px] px-4 h-full flex flex-col justify-center">
             <div className="animate-fade-in-up max-w-3xl">
-              <span className="inline-block py-1 px-3 rounded-full bg-teal-500/20 text-teal-200 text-sm font-semibold mb-6 border border-teal-400/30 backdrop-blur-sm uppercase tracking-widest"><T k="departments-radiology_760bd6" d={"Department of Radiology"} /></span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-heading"><T k="departments-radiology_d0bce9" d={"Advanced "} /><br /><T k="departments-radiology_fb2574" d={"Diagnostic Imaging"} /></h1>
+              <h1 className="font-bold text-white mb-6 leading-tight font-heading text-lg sm:text-[min(2.25rem,4.66vw)] sm:whitespace-nowrap"><T k="departments-radiology_d0bce9" d={"Advanced "} /><br /><T k="departments-radiology_fb2574" d={"Diagnostic Imaging"} /></h1>
               <p className="text-teal-100/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium text-justify"><T k="departments-radiology_7101a5" d={"State-of-the-art imaging technology provided by expert radiologists. We ensure accurate diagnosis for effective treatment planning."} /></p>
               <div className="flex flex-wrap gap-4">
                 <button className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2 uppercase text-sm tracking-wide">
@@ -77,6 +105,9 @@ export default function RadiologyPage() {
             </div>
           </div>
         </section>
+
+        {/* Our Medical Experts (directly under banner) */}
+        <DepartmentMedicalExperts doctors={doctors} />
 
         {/* Floating Cards / Features - Scan Types */}
         <section className="relative z-20 mt-8 md:-mt-16 pb-10 px-4">
@@ -301,13 +332,6 @@ export default function RadiologyPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Doctor Slider Section */}
-        <section className="py-20 bg-white">
-          <div className="mx-auto w-full max-w-[1366px] px-4">
-            <DoctorSlider doctors={doctors} departmentName="Radiology" />
           </div>
         </section>
 
