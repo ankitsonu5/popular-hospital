@@ -236,6 +236,7 @@ interface Msg {
   doctorsLink?: boolean;
   actionLink?: { label: string; href: string };
   success?: boolean;
+  isDateStep?: boolean;
 }
 
 /* ───────────────────────── Helpers ───────────────────────── */
@@ -307,6 +308,21 @@ const isoDate = (d: Date) => {
   return z.toISOString().slice(0, 10);
 };
 
+const MONTH_NAMES_MAP: Record<string, number> = {
+  jan: 1, january: 1,
+  feb: 2, february: 2,
+  mar: 3, march: 3,
+  apr: 4, april: 4,
+  may: 5,
+  jun: 6, june: 6,
+  jul: 7, july: 7,
+  aug: 8, august: 8,
+  sep: 9, sept: 9, september: 9,
+  oct: 10, october: 10,
+  nov: 11, november: 11,
+  dec: 12, december: 12,
+};
+
 function parseDate(input: string): string | null {
   const t = input.trim().toLowerCase();
   const now = new Date();
@@ -330,8 +346,19 @@ function parseDate(input: string): string | null {
     [y, mo, d] = [+m[1], +m[2], +m[3]];
   } else {
     m = t.match(/^(\d{1,2})[/\-.](\d{1,2})[/\-.](\d{4})$/);
-    if (!m) return null;
-    [d, mo, y] = [+m[1], +m[2], +m[3]];
+    if (m) {
+      [d, mo, y] = [+m[1], +m[2], +m[3]];
+    } else {
+      const cleanInput = t.replace(/^(?:on|date|ko|tarikh|tareekh|📅)\s+/i, "");
+      const mNamed = cleanInput.match(/^(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)(?:\s+(\d{4}))?$/);
+      if (mNamed && MONTH_NAMES_MAP[mNamed[2]]) {
+        d = +mNamed[1];
+        mo = MONTH_NAMES_MAP[mNamed[2]];
+        y = mNamed[3] ? +mNamed[3] : now.getFullYear();
+      } else {
+        return null;
+      }
+    }
   }
   const dt = new Date(y, mo - 1, d);
   if (dt.getFullYear() !== y || dt.getMonth() !== mo - 1 || dt.getDate() !== d)
@@ -583,17 +610,107 @@ function extractIntroName(text: string): string | null {
   return null;
 }
 
-const isNameConfirmYes = (text: string, currentName?: string): boolean => {
+function convertDevanagariDigits(str: string): string {
+  return str.replace(/[०-९]/g, (d) => String(d.charCodeAt(0) - 2406));
+}
+
+function extractPhone(raw: string): string | null {
+  if (!raw) return null;
+  const text = convertDevanagariDigits(raw);
+
+  // 1. Explicit pattern: optional (+91, 91, 0) followed by 10-digit Indian mobile starting with 6-9
+  const m1 = text.match(/(?:(?:\+?91|0)[\s-]?)?([6-9]\d{4}[\s-]?\d{5})\b/);
+  if (m1) {
+    const clean = m1[0].replace(/\D/g, "");
+    if (clean.length === 10 && /^[6-9]\d{9}$/.test(clean)) return clean;
+    if (clean.length === 11 && clean.startsWith("0") && /^[6-9]\d{9}$/.test(clean.slice(1)))
+      return clean.slice(1);
+    if (clean.length === 12 && clean.startsWith("91") && /^[6-9]\d{9}$/.test(clean.slice(2)))
+      return clean.slice(2);
+  }
+
+  // 2. Any 10-digit Indian mobile sequence
+  const m2 = text.match(/\b([6-9]\d{9})\b/);
+  if (m2) return m2[1];
+
+  // 3. Fallback: extract all digits from the input
+  const allDigits = text.replace(/\D/g, "");
+  if (allDigits.length === 10 && /^[6-9]\d{9}$/.test(allDigits)) {
+    return allDigits;
+  }
+  if (allDigits.length === 11 && allDigits.startsWith("0") && /^[6-9]\d{9}$/.test(allDigits.slice(1))) {
+    return allDigits.slice(1);
+  }
+  if (allDigits.length === 12 && allDigits.startsWith("91") && /^[6-9]\d{9}$/.test(allDigits.slice(2))) {
+    return allDigits.slice(2);
+  }
+  if (allDigits.length >= 10 && allDigits.length <= 15) {
+    return allDigits;
+  }
+
+  return null;
+}
+
+const isPhoneConfirmYes = (text: string): boolean => {
   const t = text.trim().toLowerCase();
   if (isYes(t)) return true;
   if (
-    /^(haan|ha|haa|yes|yep|yup|sahi hai|theek hai|thik hai|yahi|yahi hai|confirm|bilkul|sure|ji haan|ji han|हाँ|हां|सही है|कन्फर्म|यही है)$/i.test(
+    /^(haan|ha|haa|yes|yep|yup|sahi|sahi hai|theek|theek hai|thik|thik hai|yahi|yahi hai|confirm|bilkul|sure|ji haan|ji han|mera number yahi hai|yahi number hai|ha mera number hai|haan ye mera number hai|sahi number hai|theek number hai|haan yahi hai|ha yahi hai|हाँ|हां|सही|सही है|कन्फर्म|यही है|यही नंबर है|हाँ यह मेरा नंबर है|हाँ सही है)$/i.test(
       t,
     )
   )
     return true;
   if (
     t.startsWith("haan") ||
+    t.startsWith("ha ") ||
+    t.startsWith("haa ") ||
+    t.startsWith("ha ") ||
+    t.startsWith("haa ") ||
+    t.startsWith("yes") ||
+    t.startsWith("हाँ") ||
+    t.startsWith("हां") ||
+    t.includes("sahi hai") ||
+    t.includes("mera number") ||
+    t.includes("mera phone") ||
+    t.includes("yahi")
+  )
+    return true;
+  return false;
+};
+
+const isPhoneConfirmNo = (text: string): boolean => {
+  const t = text.trim().toLowerCase();
+  if (
+    /^(nahi|nhi|nah|no|na|nope|galat|wrong|change|badalna|badlo|dusra|doosra|nahi badalna|change number|no change|नहीं|गलत|बदलें|दूसरा|नंबर बदलें)$/i.test(
+      t,
+    )
+  )
+    return true;
+  if (t.startsWith("nahi") || t.startsWith("no") || t.startsWith("नहीं"))
+    return true;
+  if (
+    t.includes("badal") ||
+    t.includes("dusra") ||
+    t.includes("different") ||
+    t.includes("change")
+  )
+    return true;
+  return false;
+};
+
+const isNameConfirmYes = (text: string, currentName?: string): boolean => {
+  const t = text.trim().toLowerCase();
+  if (isYes(t)) return true;
+  if (
+    /^(haan|ha|haa|yes|yep|yup|sahi|sahi hai|theek|theek hai|thik|thik hai|yahi|yahi hai|confirm|bilkul|sure|ji haan|ji han|हाँ|हां|सही|सही है|कन्फर्म|यही है)$/i.test(
+      t,
+    )
+  )
+    return true;
+  if (
+    t.startsWith("haan") ||
+    t.startsWith("ha ") ||
+    t.startsWith("haa ") ||
     t.startsWith("yes") ||
     t.startsWith("हाँ") ||
     t.startsWith("हां")
@@ -941,7 +1058,7 @@ function isSideQuestion(step: Step, text: string, list: Speciality[]): boolean {
       return q || words > 5;
     case "phone":
     case "phone_confirm":
-      return !/\d{6,}/.test(t.replace(/[\s-]/g, "")) && (q || words > 4);
+      return !extractPhone(t) && (q || words > 4);
     case "speciality":
       return (
         !findSpeciality(t, list, false) &&
@@ -2123,9 +2240,9 @@ const STRINGS = {
     hi: "कोई बात नहीं। कृपया अपना सही 10 अंकों का मोबाइल नंबर दोबारा दर्ज करें।",
   },
   datePrompt: {
-    en: (doc: string) => `Great, ${doc}. Which date? (Pick below or type e.g. DD/MM/YYYY)`,
-    hinglish: (doc: string) => `Bahut badhiya, ${doc}. Kis date ko appointment chahiye? (Niche se chunein ya DD/MM/YYYY likhein)`,
-    hi: (doc: string) => `बहुत बढ़िया, ${doc}। किस तारीख को अपॉइंटमेंट चाहिए? (नीचे से चुनें या DD/MM/YYYY लिखें)`,
+    en: (doc: string) => `Great, ${doc}. Which date? Pick below or from calendar:`,
+    hinglish: (doc: string) => `Bahut badhiya, ${doc}. Kis date ko appointment chahiye? Niche se chunein ya calendar se select karein:`,
+    hi: (doc: string) => `बहुत बढ़िया, ${doc}। किस तारीख को अपॉइंटमेंट चाहिए? नीचे से चुनें या कैलेंडर से सेलेक्ट करें:`,
   },
   timePrompt: {
     en: "Choose a time slot (or type a time like 11:30 am):",
@@ -2193,6 +2310,7 @@ const STRINGS = {
       today: { en: "Today", hinglish: "Aaj", hi: "आज" },
       tomorrow: { en: "Tomorrow", hinglish: "Kal", hi: "कल" },
       dayAfter: { en: "Day after tomorrow", hinglish: "Parso", hi: "परसों" },
+      selectDate: { en: "📅 Select Date", hinglish: "📅 Date Chunein", hi: "📅 तारीख चुनें" },
     },
   },
 };
@@ -2245,6 +2363,7 @@ export default function ChatbotWidget() {
   const [docsOfSpec, setDocsOfSpec] = useState<Doctor[]>([]);
   const [lang, setLang] = useState<Lang>("en");
   const [userName, setUserName] = useState<string>("");
+  const [customDate, setCustomDate] = useState<string>("");
   const idRef = useRef(1);
   const endRef = useRef<HTMLDivElement>(null);
   const greeted = useRef(false);
@@ -2263,7 +2382,16 @@ export default function ChatbotWidget() {
       return new Promise<void>((resolve) => {
         setTimeout(() => {
           setTyping(false);
-          push({ role: "bot", ...m });
+          const sanitizedChips = m.chips
+            ? Array.from(
+                new Set(
+                  m.chips.filter(
+                    (c): c is string => Boolean(c && typeof c === "string"),
+                  ),
+                ),
+              )
+            : undefined;
+          push({ role: "bot", ...m, chips: sanitizedChips });
           resolve();
         }, delay);
       });
@@ -2373,13 +2501,29 @@ export default function ChatbotWidget() {
       if (dbSpecs && dbSpecs.length > 0) {
         setSpecs((prev) => {
           const map = new Map<string, Speciality>();
-          prev.forEach((s) => map.set(s.slug, s));
-          dbSpecs.forEach((s) => map.set(s.slug, { ...map.get(s.slug), ...s }));
+          // Index by normalized name so duplicate departments with different slugs merge
+          prev.forEach((s) => {
+            const key = (s.name || s.slug || "").trim().toLowerCase();
+            if (key) map.set(key, s);
+          });
+          dbSpecs.forEach((s) => {
+            const key = (s.name || s.slug || "").trim().toLowerCase();
+            if (!key) return;
+            const existing = map.get(key);
+            map.set(key, existing ? { ...existing, ...s } : s);
+          });
           return Array.from(map.values());
         });
       }
     });
     fetchBranches().then(setBranches);
+    fetchDoctors()
+      .then((docs) => {
+        if (docs && docs.length > 0) {
+          allDoctorsRef.current = docs;
+        }
+      })
+      .catch(() => {});
 
     // Auto-open rules:
     // 1. Only on the home page ("/")
@@ -2433,10 +2577,13 @@ export default function ChatbotWidget() {
 
   /* ── Flow actions ── */
 
-  const getDeptChips = (currentLang: Lang) => [
-    ...featuredSpecs(specs).map((s) => specLabelLang(s, currentLang)),
-    STRINGS.chips.viewAllDepts[currentLang],
-  ];
+  const getDeptChips = (currentLang: Lang) => {
+    const raw = [
+      ...featuredSpecs(specs).map((s) => specLabelLang(s, currentLang)),
+      STRINGS.chips.viewAllDepts[currentLang],
+    ];
+    return Array.from(new Set(raw.filter(Boolean)));
+  };
 
   const showDoctors = async (
     spec: Speciality,
@@ -2445,22 +2592,56 @@ export default function ChatbotWidget() {
   ) => {
     lastSpecialityRef.current = spec;
     setTyping(true);
-    const docs = await fetchDoctors({
-      speciality: spec.slug,
-      includeAdditional: true,
-    });
+    let docs: Doctor[] = [];
+    try {
+      docs = await fetchDoctors({
+        speciality: spec.slug,
+        includeAdditional: true,
+      });
+    } catch (err) {
+      console.error("fetchDoctors error:", err);
+      docs = [];
+    }
+
+    // Fallback: If docs returned empty from API, check allDoctorsRef in case of slug mismatch or cache
+    if (!docs.length && allDoctorsRef.current?.length) {
+      docs = allDoctorsRef.current.filter(
+        (d) =>
+          d.speciality?.slug === spec.slug ||
+          d.speciality_slug === spec.slug ||
+          d.speciality?.name?.toLowerCase() === spec.name?.toLowerCase(),
+      );
+    }
+
     setTyping(false);
     setDocsOfSpec(docs);
     const deptTitle = specLabelLang(spec, currentLang);
     if (!docs.length) {
+      if (pick) {
+        // Reset step so appointment flow can proceed with another department smoothly
+        setStep("speciality");
+        setDraft((d) => ({ ...d, speciality: undefined, doctor: undefined }));
+        await botSay({
+          text:
+            currentLang === "hi"
+              ? `क्षमा करें, अभी **${deptTitle}** विभाग में ऑनलाइन अपॉइंटमेंट के लिए कोई डॉक्टर लिस्टेड नहीं हैं।\n\nआप सीधे हमारे हेल्पलाइन नंबर पर कॉल करके अपॉइंटमेंट ले सकते हैं, या नीचे से कोई दूसरा विभाग चुनें:`
+              : currentLang === "hinglish"
+                ? `Maaf kijiye, abhi **${deptTitle}** department me online booking ke liye koi doctor listed nahi hain.\n\nAap direct helpline number par call karke appointment le sakte hain ya niche se doosra department chun sakte hain:`
+                : `Sorry, there are currently no doctors listed for **${deptTitle}** for online appointment booking.\n\nYou can call our helpline directly to book, or select another department below:`,
+          phones: true,
+          chips: getDeptChips(currentLang),
+        });
+        return false;
+      }
       await botSay({
         text:
           currentLang === "hi"
-            ? `क्षमा करें, अभी ${deptTitle} विभाग में कोई डॉक्टर उपलब्ध नहीं हैं। सहायता के लिए हमें कॉल करें:`
+            ? `क्षमा करें, अभी **${deptTitle}** विभाग में कोई डॉक्टर उपलब्ध नहीं हैं। सहायता के लिए हमें कॉल करें या अन्य विभाग देखें:`
             : currentLang === "hinglish"
-              ? `Maaf kijiye, abhi ${deptTitle} department me koi doctor available nahi hain. Call karein:`
-              : `Sorry, I couldn't find doctors for ${deptTitle} right now. You can call us for help:`,
+              ? `Maaf kijiye, abhi **${deptTitle}** department me koi doctor available nahi hain. Call karein ya doosra department dekhein:`
+              : `Sorry, I couldn't find doctors for **${deptTitle}** right now. You can call us or explore other departments:`,
         phones: true,
+        chips: getDeptChips(currentLang),
       });
       return false;
     }
@@ -2470,6 +2651,16 @@ export default function ChatbotWidget() {
         : STRINGS.showDoctorsTitle[currentLang](deptTitle),
       doctors: docs.slice(0, 6),
       doctorsPick: pick,
+      chips: pick
+        ? [
+            currentLang === "hi"
+              ? "दूसरा विभाग चुनें"
+              : currentLang === "hinglish"
+                ? "Doosra Department Chunein"
+                : "Change Department",
+            STRINGS.chips.viewAllDepts[currentLang],
+          ]
+        : undefined,
     });
     if (!pick) {
       await botSay(
@@ -2603,6 +2794,7 @@ export default function ChatbotWidget() {
   const startBooking = async (
     spec?: Speciality | null,
     currentLang: Lang = lang,
+    initialPhone?: string,
   ) => {
     bookingResetRef.current = true;
     const target = spec || lastSpecialityRef.current;
@@ -2611,12 +2803,14 @@ export default function ChatbotWidget() {
     }
     const label = target ? specLabelLang(target, currentLang) : undefined;
     const knownName = userName || draft.name;
+    const phoneToSet = initialPhone || draft.phone;
 
     if (knownName) {
       setDraft((d) => ({
         ...d,
         speciality: target || d.speciality,
         name: knownName,
+        ...(phoneToSet ? { phone: phoneToSet } : {}),
       }));
       setStep("name_confirm");
       await botSay({
@@ -2632,6 +2826,7 @@ export default function ChatbotWidget() {
     setDraft((d) => ({
       ...d,
       speciality: target || d.speciality,
+      ...(phoneToSet ? { phone: phoneToSet } : {}),
     }));
     setStep("name");
     await botSay({
@@ -2717,19 +2912,45 @@ export default function ChatbotWidget() {
     setDraft({});
   };
 
+  const getDateChips = (currentLang: Lang = lang) => [
+    STRINGS.chips.dates.today[currentLang],
+    STRINGS.chips.dates.tomorrow[currentLang],
+    STRINGS.chips.dates.dayAfter[currentLang],
+  ];
+
+  const askDate = async (doc: Doctor, currentLang: Lang = lang) => {
+    setStep("date");
+    await botSay({
+      text: STRINGS.datePrompt[currentLang](doc.name),
+      chips: getDateChips(currentLang),
+      isDateStep: true,
+    });
+  };
+
+  const handleDateSelection = async (dateStr: string, currentLang: Lang = lang) => {
+    const parsed = parseDate(dateStr);
+    if (!parsed) {
+      return botSay({
+        text:
+          currentLang === "hi"
+            ? "कृपया आने वाली कोई मान्य तारीख चुनें (उदा. DD/MM/YYYY)।"
+            : currentLang === "hinglish"
+              ? "Kripya aage ki koi valid date chunein (jaise: DD/MM/YYYY)."
+              : "Please pick a valid future date (e.g. DD/MM/YYYY).",
+      });
+    }
+    const formatted = prettyDate(parsed);
+    push({ role: "user", text: `📅 ${formatted}` });
+    setDraft((d) => ({ ...d, date: parsed }));
+    setCustomDate("");
+    return showTimes(draft.doctor!, parsed, currentLang);
+  };
+
   const pickDoctor = async (doc: Doctor, currentLang: Lang = lang) => {
     push({ role: "user", text: doc.name });
     const next = { ...draft, doctor: doc };
     setDraft(next);
-    setStep("date");
-    await botSay({
-      text: STRINGS.datePrompt[currentLang](doc.name),
-      chips: [
-        STRINGS.chips.dates.today[currentLang],
-        STRINGS.chips.dates.tomorrow[currentLang],
-        STRINGS.chips.dates.dayAfter[currentLang],
-      ],
-    });
+    return askDate(doc, currentLang);
   };
 
   /* ── Main Input Handler ── */
@@ -2833,7 +3054,17 @@ export default function ChatbotWidget() {
 
     switch (sideQuestion ? "idle" : step) {
       case "name": {
-        const candidateName = extractIntroName(text) || cleanName(text);
+        const phoneInText = extractPhone(text);
+        let textWithoutPhone = text;
+        if (phoneInText) {
+          textWithoutPhone = text.replace(phoneInText, "").replace(/[+\d\s-]{6,}/g, " ").trim();
+        }
+        const candidateName =
+          extractIntroName(textWithoutPhone) ||
+          cleanName(textWithoutPhone) ||
+          extractIntroName(text) ||
+          cleanName(text);
+
         if (!candidateName || !isValidName(candidateName)) {
           const errName =
             currentLang === "hi"
@@ -2844,8 +3075,25 @@ export default function ChatbotWidget() {
           return botSay({ text: errName });
         }
 
-        setDraft((d) => ({ ...d, name: candidateName }));
+        const nextDraft = {
+          ...draft,
+          name: candidateName,
+          ...(phoneInText ? { phone: phoneInText } : {}),
+        };
+        setDraft(nextDraft);
         setUserName(candidateName);
+
+        if (phoneInText) {
+          if (nextDraft.doctor) {
+            return askDate(nextDraft.doctor, currentLang);
+          }
+          if (nextDraft.speciality) {
+            setStep("doctor");
+            return showDoctors(nextDraft.speciality, true, currentLang);
+          }
+          return askSpeciality(currentLang);
+        }
+
         setStep("name_confirm");
         return botSay({
           text: STRINGS.nameConfirmEnteredPrompt[currentLang](candidateName),
@@ -2859,15 +3107,40 @@ export default function ChatbotWidget() {
       case "name_confirm": {
         const activeName = draft.name || userName;
 
-        // A phone number here implicitly confirms the name, but the number still needs verification.
-        const digits = text.replace(/[\s\-+]/g, "");
-        if (/^\d{10,15}$/.test(digits)) {
-          setDraft((d) => ({ ...d, phone: digits }));
-          return askPhoneConfirmation(digits, currentLang);
+        // A phone number here implicitly confirms the name, and proceeds immediately!
+        const phone = extractPhone(text);
+        if (phone) {
+          setDraft((d) => ({ ...d, phone }));
+          if (draft.doctor) {
+            return askDate(draft.doctor, currentLang);
+          }
+          if (draft.speciality) {
+            setStep("doctor");
+            return showDoctors(draft.speciality, true, currentLang);
+          }
+          return askSpeciality(currentLang);
         }
 
         // Confirmed name
         if (isNameConfirmYes(text, activeName)) {
+          if (draft.phone) {
+            if (draft.doctor) {
+              setStep("date");
+              return botSay({
+                text: STRINGS.datePrompt[currentLang](draft.doctor.name),
+                chips: [
+                  STRINGS.chips.dates.today[currentLang],
+                  STRINGS.chips.dates.tomorrow[currentLang],
+                  STRINGS.chips.dates.dayAfter[currentLang],
+                ],
+              });
+            }
+            if (draft.speciality) {
+              setStep("doctor");
+              return showDoctors(draft.speciality, true, currentLang);
+            }
+            return askSpeciality(currentLang);
+          }
           setStep("phone");
           return botSay({
             text: STRINGS.phonePrompt[currentLang](activeName),
@@ -2918,30 +3191,37 @@ export default function ChatbotWidget() {
       }
 
       case "phone": {
-        const digits = text.replace(/[\s\-+]/g, "");
-        if (!/^\d{10,15}$/.test(digits)) {
+        const phone = extractPhone(text);
+        if (!phone) {
           const errPhone =
             currentLang === "hi"
-              ? "कृपया एक वैध 10 अंकों का मोबाइल नंबर दर्ज करें।"
+              ? "कृपया एक वैध 10 अंकों का मोबाइल नंबर दर्ज करें (उदा. 9876543210)।"
               : currentLang === "hinglish"
-                ? "Kripya ek valid 10 digit ka mobile number batayein."
-                : "Please enter a valid 10-digit mobile number.";
+                ? "Kripya ek valid 10 digit ka mobile number batayein (jaise: 9876543210)."
+                : "Please enter a valid 10-digit mobile number (e.g. 9876543210).";
           return botSay({ text: errPhone });
         }
-        setDraft((d) => ({ ...d, phone: digits }));
-        return askPhoneConfirmation(digits, currentLang);
+        setDraft((d) => ({ ...d, phone }));
+
+        if (draft.doctor) {
+          return askDate(draft.doctor, currentLang);
+        }
+
+        if (draft.speciality) {
+          setStep("doctor");
+          return showDoctors(draft.speciality, true, currentLang);
+        }
+
+        return askSpeciality(currentLang);
       }
 
       case "phone_confirm": {
-        const digits = text.replace(/[\s\-+]/g, "");
-
-        // Allow the user to type a replacement number directly.
-        if (/^\d{10,15}$/.test(digits)) {
-          setDraft((d) => ({ ...d, phone: digits }));
-          return askPhoneConfirmation(digits, currentLang);
-        }
-
-        if (isNameConfirmYes(text)) {
+        const phone = extractPhone(text);
+        if (phone) {
+          setDraft((d) => ({ ...d, phone }));
+          if (draft.doctor) {
+            return askDate(draft.doctor, currentLang);
+          }
           if (draft.speciality) {
             setStep("doctor");
             return showDoctors(draft.speciality, true, currentLang);
@@ -2949,19 +3229,21 @@ export default function ChatbotWidget() {
           return askSpeciality(currentLang);
         }
 
-        if (isNameConfirmNo(text)) {
+        if (isPhoneConfirmNo(text) || isNameConfirmNo(text)) {
           setDraft((d) => ({ ...d, phone: undefined }));
           setStep("phone");
           return botSay({ text: STRINGS.askNewPhone[currentLang] });
         }
 
-        return botSay({
-          text: STRINGS.phoneConfirmPrompt[currentLang](draft.phone || ""),
-          chips: [
-            STRINGS.phoneConfirmYesChip[currentLang],
-            STRINGS.phoneConfirmNoChip[currentLang],
-          ],
-        });
+        // Affirmative answer or any confirmation
+        if (draft.doctor) {
+          return askDate(draft.doctor, currentLang);
+        }
+        if (draft.speciality) {
+          setStep("doctor");
+          return showDoctors(draft.speciality, true, currentLang);
+        }
+        return askSpeciality(currentLang);
       }
 
       case "speciality": {
@@ -2987,17 +3269,67 @@ export default function ChatbotWidget() {
       }
 
       case "doctor": {
+        // 1. User wants to change department or go back
+        if (
+          /^(badalna|change|dusra|doosra|wapas|back|department|koi aur|nhi|nahi|cancel|dusra department|change department|alag department)$/i.test(
+            text.trim().toLowerCase(),
+          )
+        ) {
+          setStep("speciality");
+          setDraft((d) => ({ ...d, speciality: undefined, doctor: undefined }));
+          return askSpeciality(currentLang);
+        }
+
+        // 2. User typed a department name or symptom
+        const specMatch =
+          findSpeciality(text, specs, true) ||
+          symptomSpec(text, specs) ||
+          findSpeciality(text, specs);
+        if (specMatch) {
+          setDraft((d) => ({ ...d, speciality: specMatch, doctor: undefined }));
+          setStep("doctor");
+          return showDoctors(specMatch, true, currentLang);
+        }
+
+        // 3. User typed a doctor's name from current department
         const doc = docsOfSpec.find((d) =>
           d.name.toLowerCase().includes(lower),
         );
         if (doc) return pickDoctor(doc, currentLang);
+
+        // 4. User typed a doctor's name across any hospital department
+        const anyDoc = (allDoctorsRef.current || []).find((d) =>
+          d.name.toLowerCase().includes(lower),
+        );
+        if (anyDoc) {
+          return pickDoctor(anyDoc, currentLang);
+        }
+
+        // 5. Fallback if current department has 0 doctors: guide user back to speciality
+        if (!docsOfSpec.length) {
+          setStep("speciality");
+          setDraft((d) => ({ ...d, speciality: undefined, doctor: undefined }));
+          return askSpeciality(currentLang);
+        }
+
+        // 6. Still not matched: prompt to tap a doctor or change department
         const tapDoc =
           currentLang === "hi"
-            ? "कृपया जारी रखने के लिए ऊपर दिए गए किसी डॉक्टर पर टैप करें।"
+            ? "कृपया आगे बढ़ने के लिए ऊपर दिए गए किसी डॉक्टर पर टैप करें, या दूसरा विभाग चुनें:"
             : currentLang === "hinglish"
-              ? "Kripya aage badhne ke liye upar diye kisi doctor par tap karein."
-              : "Please tap one of the doctors above to continue.";
-        return botSay({ text: tapDoc });
+              ? "Kripya aage badhne ke liye upar diye kisi doctor par tap karein, ya doosra department chunein:"
+              : "Please tap one of the doctors above to continue, or choose another department:";
+        return botSay({
+          text: tapDoc,
+          chips: [
+            currentLang === "hi"
+              ? "दूसरा विभाग चुनें"
+              : currentLang === "hinglish"
+                ? "Doosra Department Chunein"
+                : "Change Department",
+            STRINGS.chips.viewAllDepts[currentLang],
+          ],
+        });
       }
 
       case "date": {
@@ -3079,7 +3411,7 @@ export default function ChatbotWidget() {
           symptomSpec(text, specs) ||
           findSpeciality(text, specs) ||
           lastSpecialityRef.current;
-        return startBooking(detectedSpec, currentLang);
+        return startBooking(detectedSpec, currentLang, extractPhone(text) || undefined);
       }
 
       // If user also expressed symptoms in the same sentence
@@ -3233,6 +3565,7 @@ export default function ChatbotWidget() {
                 symptomSpec(text, specs) ||
                 lastSpecialityRef.current,
               currentLang,
+              extractPhone(text) || undefined,
             );
           }
 
@@ -3367,7 +3700,7 @@ export default function ChatbotWidget() {
         symptomSpec(text, specs) ||
         findSpeciality(text, specs) ||
         lastSpecialityRef.current;
-      return startBooking(detectedSpec, currentLang);
+      return startBooking(detectedSpec, currentLang, extractPhone(text) || undefined);
     }
 
     // 3. Call / Phone intent
@@ -4015,15 +4348,24 @@ export default function ChatbotWidget() {
       c === STRINGS.chips.viewAllDepts.hi
     ) {
       push({ role: "user", text: c });
+      setStep("speciality");
+      setDraft((d) => ({ ...d, speciality: undefined, doctor: undefined }));
+      const allDeptChips = Array.from(
+        new Set(
+          specs
+            .map((s) => specLabelLang(s, lang))
+            .filter((name): name is string => Boolean(name && name.trim())),
+        ),
+      );
       const deptListPrompt =
         lang === "hi"
-          ? `हमारे सभी ${specs.length} विभाग नीचे दिए गए हैं। अपॉइंटमेंट हेतु किसी एक पर टैप करें:`
+          ? `हमारे सभी ${allDeptChips.length} विभाग नीचे दिए गए हैं। अपॉइंटमेंट हेतु किसी एक पर टैप करें:`
           : lang === "hinglish"
-            ? `Hamare sabhi ${specs.length} departments niche diye gaye hain. Appointment ke liye kisi ek par tap karein:`
-            : `Here are all our ${specs.length} hospital departments. Tap one to book an appointment:`;
+            ? `Hamare sabhi ${allDeptChips.length} departments niche diye gaye hain. Appointment ke liye kisi ek par tap karein:`
+            : `Here are all our ${allDeptChips.length} hospital departments. Tap one to book an appointment:`;
       botSay({
         text: deptListPrompt,
-        chips: specs.map((s) => specLabelLang(s, lang)),
+        chips: allDeptChips,
       });
       return;
     }
@@ -4104,6 +4446,34 @@ export default function ChatbotWidget() {
       return handleSend("cancel", lang);
     }
 
+    // 4.1 Phone confirmation chips
+    if (
+      c === STRINGS.phoneConfirmYesChip.en ||
+      c === STRINGS.phoneConfirmYesChip.hinglish ||
+      c === STRINGS.phoneConfirmYesChip.hi
+    ) {
+      push({ role: "user", text: c });
+      if (draft.doctor) {
+        return askDate(draft.doctor, lang);
+      }
+      if (draft.speciality) {
+        setStep("doctor");
+        return showDoctors(draft.speciality, true, lang);
+      }
+      return askSpeciality(lang);
+    }
+
+    if (
+      c === STRINGS.phoneConfirmNoChip.en ||
+      c === STRINGS.phoneConfirmNoChip.hinglish ||
+      c === STRINGS.phoneConfirmNoChip.hi
+    ) {
+      push({ role: "user", text: c });
+      setDraft((d) => ({ ...d, phone: undefined }));
+      setStep("phone");
+      return botSay({ text: STRINGS.askNewPhone[lang] });
+    }
+
     // 5. Date quick chips
     if (
       c === STRINGS.chips.dates.today.en ||
@@ -4125,6 +4495,24 @@ export default function ChatbotWidget() {
       c === STRINGS.chips.dates.dayAfter.hi
     ) {
       return handleSend("day after tomorrow", lang);
+    }
+    if (
+      c === STRINGS.chips.dates.selectDate.en ||
+      c === STRINGS.chips.dates.selectDate.hinglish ||
+      c === STRINGS.chips.dates.selectDate.hi ||
+      c.includes("Date Chunein") ||
+      c.includes("Select Date") ||
+      c.includes("तारीख चुनें")
+    ) {
+      const picker = document.getElementById("chatbot-custom-date") as HTMLInputElement | null;
+      if (picker) {
+        try {
+          picker.showPicker();
+        } catch (_) {
+          picker.focus();
+        }
+      }
+      return;
     }
 
     // 6. Direct Book Appointment chip
@@ -4160,6 +4548,34 @@ export default function ChatbotWidget() {
         findSpeciality(c, specs);
       push({ role: "user", text: c });
       if (matched) return showDepartmentInfo(matched, lang);
+    }
+
+    // 8.1 Change Department chip
+    if (
+      c === "Doosra Department Chunein" ||
+      c === "दूसरा विभाग चुनें" ||
+      c === "Change Department" ||
+      c.toLowerCase().includes("change department") ||
+      c.toLowerCase().includes("doosra department")
+    ) {
+      push({ role: "user", text: c });
+      setStep("speciality");
+      setDraft((d) => ({ ...d, speciality: undefined, doctor: undefined }));
+      return askSpeciality(lang);
+    }
+
+    // 8.2 Department selection chip clicked when choosing a doctor or department
+    const deptMatch =
+      specs.find(
+        (s) => specLabelLang(s, lang).toLowerCase() === c.toLowerCase(),
+      ) ||
+      findSpeciality(c, specs, true) ||
+      findSpeciality(c, specs);
+    if (deptMatch && (step === "doctor" || step === "speciality")) {
+      push({ role: "user", text: c });
+      setDraft((d) => ({ ...d, speciality: deptMatch, doctor: undefined }));
+      setStep("doctor");
+      return showDoctors(deptMatch, true, lang);
     }
 
     handleSend(c);
@@ -4361,9 +4777,9 @@ export default function ChatbotWidget() {
                 {/* Interactive Action Chips */}
                 {m.chips && m.id === lastBotId && !typing && (
                   <div className="mt-2 flex flex-wrap gap-1.5">
-                    {m.chips.map((c) => (
+                    {m.chips.map((c, i) => (
                       <button
-                        key={c}
+                        key={`${c}-${i}`}
                         onClick={() => onChip(c)}
                         className="rounded-full border border-[#E85222]/40 bg-white px-3 py-1 text-[12px] font-semibold text-[#E85222] transition hover:bg-[#E85222] hover:text-white active:scale-95"
                       >
@@ -4376,6 +4792,45 @@ export default function ChatbotWidget() {
                         {c}
                       </button>
                     ))}
+                  </div>
+                )}
+
+                {/* Calendar Date Picker Card */}
+                {(m.isDateStep || step === "date") && m.id === lastBotId && !typing && (
+                  <div className="mt-2.5 rounded-2xl border border-[#0b1c43]/15 bg-white p-3 shadow-xs">
+                    <div className="mb-2 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 text-[12px] font-bold text-[#0b1c43]">
+                        <Calendar className="h-4 w-4 text-[#E85222]" />
+                        <span>
+                          {lang === "hi"
+                            ? "कैलेंडर से तारीख चुनें:"
+                            : "Pick date from calendar:"}
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-medium text-slate-500">
+                        {lang === "hi" ? "कोई भी तारीख" : "Any future date"}
+                      </span>
+                    </div>
+
+                    <input
+                      type="date"
+                      id="chatbot-custom-date"
+                      min={isoDate(new Date())}
+                      value={customDate}
+                      onClick={(e) => {
+                        try {
+                          e.currentTarget.showPicker();
+                        } catch (_) {}
+                      }}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setCustomDate(val);
+                        if (val) {
+                          handleDateSelection(val, lang);
+                        }
+                      }}
+                      className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-[13px] font-semibold text-[#0b1c43] shadow-inner outline-none transition hover:border-[#E85222] focus:border-[#E85222] focus:bg-white focus:ring-2 focus:ring-[#E85222]/20 cursor-pointer"
+                    />
                   </div>
                 )}
               </div>
