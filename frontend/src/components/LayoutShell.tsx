@@ -11,7 +11,6 @@ import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
 import PopupBanner from "@/components/PopupBanner";
-import NotificationSubscribeModal from "@/components/NotificationSubscribeModal";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema";
 
@@ -96,8 +95,7 @@ export default function LayoutShell({
         <LoadingScreen onFinished={() => setIsLoading(false)} />
       )}
       <PopupBanner />
-      {!isLoading && <NotificationSubscribeModal />}
-      <Header />
+            <Header />
       <SocialSidebar />
       <EmergencySidebar />
       <main
