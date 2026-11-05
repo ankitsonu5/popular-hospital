@@ -421,29 +421,29 @@ export default function BestHospitalInVaranasiPage() {
             {/* #1 Featured Popular Hospital Card */}
             <div
               id="popular-hospital"
-              className="bg-white rounded-3xl border-2 border-teal-200/80 p-6 sm:p-10 shadow-xl relative overflow-hidden mb-16"
+              className="bg-white rounded-3xl border-2 border-teal-200/80 p-5 sm:p-10 shadow-xl relative overflow-hidden mb-12 sm:mb-16 pt-12 sm:pt-10"
             >
               {/* Highlight ribbon */}
-              <div className="absolute top-0 right-0 bg-[#0d9488] text-white text-[11px] font-black uppercase tracking-widest px-6 py-1.5 rounded-bl-2xl shadow-sm">
+              <div className="absolute top-0 right-0 bg-[#0d9488] text-white text-[10px] sm:text-[11px] font-black uppercase tracking-wider sm:tracking-widest px-4 sm:px-6 py-1.5 rounded-bl-2xl shadow-xs">
                 1. Featured Multispeciality Institution
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 {/* Left Side: Hospital Details */}
-                <div className="lg:col-span-7 space-y-5">
-                  <div className="flex items-center gap-2">
+                <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                     <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#0d9488] text-white flex items-center justify-center font-extrabold text-xs shadow-xs shrink-0">
                       1
                     </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#1e3a5f] text-white">
+                    <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold bg-[#1e3a5f] text-white">
                       Established 1992
                     </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-100 text-[#0d9488]">
+                    <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold bg-teal-100 text-[#0d9488]">
                       450+ Beds
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1e3a5f] font-heading tracking-tight leading-snug">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1e3a5f] font-heading tracking-tight leading-snug">
                     Popular Hospital, Varanasi – Multispeciality Healthcare at Kakarmatta
                   </h3>
 
@@ -562,7 +562,7 @@ export default function BestHospitalInVaranasiPage() {
             </div>
 
             {/* 9 Hospital Cards — Compact Cards with Verified Details (Task 5) */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
               {otherHospitals.map((hosp) => (
                 <div
                   key={hosp.id}
@@ -750,9 +750,9 @@ export default function BestHospitalInVaranasiPage() {
                   <span>EXPERIENCED GENERAL &amp; LAPAROSCOPIC SURGICAL CARE</span>
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1e3a5f] font-heading tracking-tight leading-[1.15]">
-                  Best Surgeon in Varanasi – <br />
-                  <span className="whitespace-nowrap">Dr. A. K. Kaushik</span>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1e3a5f] font-heading tracking-tight leading-[1.15]">
+                  Best Surgeon in Varanasi – <br className="hidden sm:inline" />
+                  <span className="inline-block sm:whitespace-nowrap">Dr. A. K. Kaushik</span>
                 </h2>
 
                 {/* Introductory Copy (Doctor Highlight) */}
@@ -1002,7 +1002,7 @@ export default function BestHospitalInVaranasiPage() {
         {/* ═════════════════════════════════════════════════════════════════════
             SECTION 13 — LOCATION & APPOINTMENT
         ═════════════════════════════════════════════════════════════════════ */}
-        <section id="location" className="py-14 sm:py-20 bg-white border-t border-gray-200">
+        <section id="location" className="pt-10 sm:pt-14 pb-28 sm:pb-20 bg-white border-t border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Side: Address & Details */}
