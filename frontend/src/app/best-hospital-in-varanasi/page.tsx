@@ -607,9 +607,9 @@ export default function BestHospitalInVaranasiPage() {
         {/* ═════════════════════════════════════════════════════════════════════
             SECTION 07 — HOW TO CHOOSE A HOSPITAL
         ═════════════════════════════════════════════════════════════════════ */}
-        <section id="how-to-choose" className="py-14 sm:py-20 bg-white border-y border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-12">
+        <section id="how-to-choose" className="py-10 sm:py-20 bg-white border-y border-gray-200">
+          <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 px-2">
               <span className="text-xs font-bold uppercase tracking-widest text-[#0d9488] mb-2 block">
                 Patient Decision Guide
               </span>
@@ -625,83 +625,115 @@ export default function BestHospitalInVaranasiPage() {
               </p>
             </div>
 
-            {/* 8 Evaluation Pillars (Task 6 Refined Content) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              <div className="p-5 rounded-2xl border border-gray-200 bg-[#fafafa] space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 text-[#0d9488] flex items-center justify-center font-bold">
-                  1
+            {/* 8 Evaluation Pillars (Task 6 Refined Content) - Compact Vertical, Expanded Horizontal */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-8 sm:mb-12">
+              <div className="py-3 px-3.5 sm:p-5 rounded-2xl border border-gray-200 bg-[#fafafa]">
+                <div className="flex items-center gap-2.5 mb-1.5 sm:mb-2.5">
+                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-teal-50 text-[#0d9488] flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                    1
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    Qualified Specialist Doctors
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Qualified Specialist Doctors</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Choose a hospital with qualified doctors experienced in treating your medical condition. Check their specialization, clinical expertise, and consultation availability before making a decision.
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl border border-gray-200 bg-[#fafafa] space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#1e3a5f] flex items-center justify-center font-bold">
-                  2
+              <div className="py-3 px-3.5 sm:p-5 rounded-2xl border border-gray-200 bg-[#fafafa]">
+                <div className="flex items-center gap-2.5 mb-1.5 sm:mb-2.5">
+                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-blue-50 text-[#1e3a5f] flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                    2
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    Advanced Medical &amp; Surgical Facilities
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Advanced Medical &amp; Surgical Facilities</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Look for modern operation theatres, appropriate surgical equipment, anesthesia support, and postoperative care. The hospital should have facilities suited to your specific treatment needs.
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl border border-gray-200 bg-[#fafafa] space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-bold">
-                  3
+              <div className="py-3 px-3.5 sm:p-5 rounded-2xl border border-gray-200 bg-[#fafafa]">
+                <div className="flex items-center gap-2.5 mb-1.5 sm:mb-2.5">
+                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                    3
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    24/7 Emergency &amp; Critical Care
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">24/7 Emergency &amp; Critical Care</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   A reliable hospital should offer emergency assessment, intensive care facilities, and trained medical teams. Check the availability of ICU support and specialist services for serious conditions.
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl border border-gray-200 bg-[#fafafa] space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
-                  4
+              <div className="py-3 px-3.5 sm:p-5 rounded-2xl border border-gray-200 bg-[#fafafa]">
+                <div className="flex items-center gap-2.5 mb-1.5 sm:mb-2.5">
+                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                    4
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    Modern Diagnostic &amp; Imaging Services
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Modern Diagnostic &amp; Imaging Services</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Check whether the hospital provides essential laboratory tests, ultrasound, CT scans, MRI, and other diagnostic services. These facilities help doctors investigate medical conditions and plan appropriate treatment.
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl border border-gray-200 bg-[#fafafa] space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold">
-                  5
+              <div className="py-3 px-3.5 sm:p-5 rounded-2xl border border-gray-200 bg-[#fafafa]">
+                <div className="flex items-center gap-2.5 mb-1.5 sm:mb-2.5">
+                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                    5
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    Patient Safety &amp; Quality of Care
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Patient Safety &amp; Quality of Care</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Prioritize hospitals that follow infection-prevention practices, informed consent procedures, and established patient safety protocols. Clear communication about treatment benefits and risks is equally important.
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl border border-gray-200 bg-[#fafafa] space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                  6
+              <div className="py-3 px-3.5 sm:p-5 rounded-2xl border border-gray-200 bg-[#fafafa]">
+                <div className="flex items-center gap-2.5 mb-1.5 sm:mb-2.5">
+                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                    6
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    Treatment Costs &amp; Cashless Insurance
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Treatment Costs &amp; Cashless Insurance</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Compare treatment estimates, available insurance options, and potential additional charges. Confirm cashless eligibility, Ayushman Bharat coverage, and required approvals before planned admission.
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl border border-gray-200 bg-[#fafafa] space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold">
-                  7
+              <div className="py-3 px-3.5 sm:p-5 rounded-2xl border border-gray-200 bg-[#fafafa]">
+                <div className="flex items-center gap-2.5 mb-1.5 sm:mb-2.5">
+                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                    7
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    Convenient Location &amp; Accessibility
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Convenient Location &amp; Accessibility</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Consider the hospital&apos;s location, transportation options, emergency access, and convenience for follow-up visits. Easy accessibility can make ongoing treatment and family support more manageable.
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl border border-gray-200 bg-[#fafafa] space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 text-[#0d9488] flex items-center justify-center font-bold">
-                  8
+              <div className="py-3 px-3.5 sm:p-5 rounded-2xl border border-gray-200 bg-[#fafafa]">
+                <div className="flex items-center gap-2.5 mb-1.5 sm:mb-2.5">
+                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-teal-50 text-[#0d9488] flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                    8
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-snug">
+                    Transparent Treatment &amp; Patient Support
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900">Transparent Treatment &amp; Patient Support</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Choose a hospital that clearly explains your diagnosis, treatment options, expected costs, recovery process, and follow-up care. Good communication helps patients make informed healthcare decisions.
                 </p>
