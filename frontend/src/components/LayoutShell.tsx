@@ -1,16 +1,21 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import SocialSidebar from "@/components/SocialSidebar";
+import EmergencySidebar from "@/components/EmergencySidebar";
 import LoadingScreen from "@/components/LoadingScreen";
 import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
 import PopupBanner from "@/components/PopupBanner";
+import NotificationSubscribeModal from "@/components/NotificationSubscribeModal";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema";
+
+const SESSION_KEY = "ph_intro_shown";
 
 const ZOOM_PATHS = [
   "/about",
@@ -21,7 +26,6 @@ const ZOOM_PATHS = [
   "/about/management-team/dr-manuj-mittal",
   "/about/leadership",
   "/about/awards-recognition",
-  "/about/csr",
   "/about/cashless-empanelment",
   "/doctors",
   "/departments/cardiology",
@@ -45,7 +49,6 @@ const ZOOM_PATHS = [
   "/departments/respiratory",
   "/departments/pain-management",
   "/departments/psychiatry",
-  "/best-hospital-in-varanasi",
 ];
 
 export default function LayoutShell({
@@ -54,6 +57,22 @@ export default function LayoutShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+
+  // Track whether the intro loading screen is currently visible
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Only show loading state on home page, and only if the intro hasn't been shown yet
+    if (pathname === "/") {
+      const alreadyShown = sessionStorage.getItem(SESSION_KEY);
+      if (!alreadyShown) {
+        setIsLoading(true);
+      }
+    } else {
+      setIsLoading(false);
+    }
+  }, [pathname]);
+
   const isAdminRoute =
     pathname.startsWith("/admin-login") ||
     pathname.startsWith("/admin-dashboard") ||
@@ -73,10 +92,14 @@ export default function LayoutShell({
       >
         Skip to main content
       </a>
-      {pathname === "/" && <LoadingScreen />}
+      {pathname === "/" && (
+        <LoadingScreen onFinished={() => setIsLoading(false)} />
+      )}
       <PopupBanner />
+      {!isLoading && <NotificationSubscribeModal />}
       <Header />
       <SocialSidebar />
+      <EmergencySidebar />
       <main
         id="main-content"
         className={`flex-1 pb-[70px] md:pb-0 ${ZOOM_PATHS.includes(pathname) ? "is-zoom-page" : ""}`}
@@ -86,7 +109,7 @@ export default function LayoutShell({
       </main>
       <MobileBottomNav />
       <MobileWhatsAppFAB />
-      <ChatbotWidget />
+      {!isLoading && <ChatbotWidget />}
       <BackToTop />
       <Footer />
     </>
