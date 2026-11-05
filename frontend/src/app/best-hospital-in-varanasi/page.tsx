@@ -562,7 +562,7 @@ export default function BestHospitalInVaranasiPage() {
             </div>
 
             {/* 9 Hospital Cards — Compact Cards with Verified Details (Task 5) */}
-            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4">
               {otherHospitals.map((hosp) => (
                 <div
                   key={hosp.id}
