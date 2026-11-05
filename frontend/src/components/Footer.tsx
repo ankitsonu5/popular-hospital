@@ -142,14 +142,6 @@ export function Footer() {
             <ul className="space-y-3 text-[15px] text-gray-200">
               <li>
                 <Link
-                  href="/best-hospital-in-varanasi"
-                  className="hover:text-white transition-colors"
-                >
-                  Best Hospital in Varanasi
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/book"
                   className="hover:text-white transition-colors"
                 >
