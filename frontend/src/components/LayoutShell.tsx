@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import SocialSidebar from "@/components/SocialSidebar";
-import EmergencySidebar from "@/components/EmergencySidebar";
 import LoadingScreen from "@/components/LoadingScreen";
 import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -99,7 +98,6 @@ export default function LayoutShell({
       {!isLoading && <NotificationSubscribeModal />}
       <Header />
       <SocialSidebar />
-      <EmergencySidebar />
       <main
         id="main-content"
         className={`flex-1 pb-[70px] md:pb-0 ${ZOOM_PATHS.includes(pathname) ? "is-zoom-page" : ""}`}
