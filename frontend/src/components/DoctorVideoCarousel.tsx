@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 
 export interface DoctorVideo {
   id: string;
@@ -19,6 +19,21 @@ export default function DoctorVideoCarousel({
   const [index, setIndex] = useState(0);
   // videoIds whose maxres thumbnail failed to load (fall back to hqdefault)
   const [fallbackIds, setFallbackIds] = useState<Record<string, boolean>>({});
+  const [playing, setPlaying] = useState<DoctorVideo | null>(null);
+
+  useEffect(() => {
+    if (!playing) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setPlaying(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [playing]);
 
   if (videos.length === 0) return null;
 
@@ -58,13 +73,12 @@ export default function DoctorVideoCarousel({
 
         <div className="mx-auto mt-5 max-w-3xl rounded-2xl bg-white p-4 shadow-xl">
           <div className="relative overflow-hidden rounded-xl bg-slate-900">
-            <a
+            <button
               key={current.id}
-              href={`https://www.youtube.com/watch?v=${current.videoId}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              type="button"
+              onClick={() => setPlaying(current)}
               aria-label={`Play video: ${current.title}`}
-              className="group relative block w-full pb-[56.25%]"
+              className="group relative block w-full cursor-pointer pb-[56.25%]"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -74,9 +88,15 @@ export default function DoctorVideoCarousel({
                 onError={() =>
                   setFallbackIds((prev) => ({ ...prev, [current.videoId]: true }))
                 }
-                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-90"
+                className="absolute inset-0 h-full w-full object-cover"
               />
-            </a>
+              <span className="absolute inset-0 bg-black/10" />
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#E85222] shadow-2xl ring-[6px] ring-white/25 sm:h-16 sm:w-16">
+                  <Play className="ml-1 h-6 w-6 fill-current" aria-hidden="true" />
+                </span>
+              </span>
+            </button>
 
             {total > 1 && (
               <>
@@ -112,6 +132,44 @@ export default function DoctorVideoCarousel({
           </div>
         </div>
       </div>
+
+      {playing && (
+        <div
+          className="fixed inset-0 z-[2000] flex items-center justify-center bg-[#020817]/90 p-3 backdrop-blur-md sm:p-6"
+          role="dialog"
+          aria-modal="true"
+          aria-label={playing.title}
+          onClick={() => setPlaying(null)}
+        >
+          <div
+            className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/15 bg-[#071633] shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3 text-white">
+              <p className="truncate text-sm font-bold sm:text-base">
+                {playing.title}
+              </p>
+              <button
+                type="button"
+                onClick={() => setPlaying(null)}
+                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:bg-white hover:text-[#0b1c43]"
+                aria-label="Close video"
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="relative aspect-video bg-black">
+              <iframe
+                src={`https://www.youtube.com/embed/${playing.videoId}?autoplay=1&rel=0`}
+                title={playing.title}
+                className="absolute inset-0 h-full w-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -10,6 +10,7 @@ import BackToTop from "@/components/BackToTop";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import MobileWhatsAppFAB from "@/components/MobileWhatsAppFAB";
 import PopupBanner from "@/components/PopupBanner";
+import NotificationSubscribeModal from "@/components/NotificationSubscribeModal";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema";
 
@@ -79,7 +80,8 @@ export default function LayoutShell({
         <LoadingScreen />
       )}
       <PopupBanner />
-            <Header />
+      <NotificationSubscribeModal />
+      <Header />
       <SocialSidebar />
       <EmergencySidebar />
       <main

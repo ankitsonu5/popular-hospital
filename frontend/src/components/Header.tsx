@@ -323,8 +323,10 @@ export function Header() {
     } else {
       document.body.style.overflow = "unset";
     }
+    document.body.classList.toggle("mobile-menu-open", menuOpen);
     return () => {
       document.body.style.overflow = "unset";
+      document.body.classList.remove("mobile-menu-open");
     };
   }, [menuOpen]);
 

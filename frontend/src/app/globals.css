@@ -633,3 +633,10 @@ body > .skiptranslate {
   filter: none !important;
   opacity: 1 !important;
 }
+
+/* Mobile/tablet nav menu open: keep the Emergency side tab below the menu overlay */
+@media (max-width: 1279px) {
+  body.mobile-menu-open .emergency-sidebar-container {
+    z-index: 40 !important;
+  }
+}
