@@ -50,6 +50,7 @@ const menuItems: MenuItem[] = [
     dropdown: [
       { label: "Our Doctors", href: "/doctors" },
       { label: "Our Locations", href: "/our-locations" },
+      { label: "Best Hospital in Varanasi", href: "/best-hospital-in-varanasi" },
       { label: "Patients Testimonial", href: "/stories" },
       {
         label: "International Patients",
@@ -158,6 +159,7 @@ const popularFindsIconBasePath = "/images/download/popular_finds_icons";
 const popularFindsIconMap: Record<string, string> = {
   "Our Doctors": `${popularFindsIconBasePath}/doctors.svg`,
   "Our Locations": `${popularFindsIconBasePath}/international-patients.svg`,
+  "Best Hospital in Varanasi": `${popularFindsIconBasePath}/emergency-trauma.svg`,
   "Patients Testimonial": `${popularFindsIconBasePath}/testimonials.svg`,
   "International Patients": `${popularFindsIconBasePath}/international-patients.svg`,
   "Free OPD and Offer": `${popularFindsIconBasePath}/free-opd-offer.svg`,
