@@ -662,14 +662,14 @@ export function Header() {
 
         {/* Top Bar */}
         <div
-          className="hidden md:block text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-1.5 bg-[#284a91]"
+          className="header-top-bar hidden md:block text-white relative z-50 overflow-hidden max-h-[200px] opacity-100 py-1.5 2xl:py-2 bg-[#284a91]"
           style={{
             fontFamily: '"Open Sans", arial, sans-serif',
             fontSize: "13px",
             fontWeight: 500,
           }}
         >
-          <div className="max-w-[1280px] mx-auto px-2 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0">
+          <div className="max-w-[1280px] min-[1440px]:max-w-[1400px] 2xl:max-w-[1536px] min-[1920px]:max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-10 2xl:px-12 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-0">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 w-full sm:w-auto">
               <Link
                 href="/online-payment"
@@ -776,27 +776,43 @@ export function Header() {
         </div>
 
         {/* Brand & Desktop Nav */}
-        <div className="relative mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-12">
-          <div className="flex h-16 sm:h-16 items-center justify-between gap-2">
+        <div className="relative mx-auto w-full max-w-[1280px] min-[1440px]:max-w-[1400px] 2xl:max-w-[1536px] min-[1920px]:max-w-[1680px] px-4 sm:px-8 lg:px-10 2xl:px-12">
+          <div className="flex h-16 sm:h-20 2xl:h-[90px] min-[1920px]:h-[100px] items-center justify-between gap-2 sm:gap-4">
             <Link
               href="/"
-              className={`flex items-center transition-all duration-300 header-logo-link ${scrolled || !isTransparentPage
+              className={`flex items-center gap-2 sm:gap-2.5 2xl:gap-3 transition-all duration-300 header-logo-link ${scrolled || !isTransparentPage
                 ? ""
-                : "md:px-3 md:py-1 header-logo-with-bg"
+                : "px-2.5 py-1 md:px-3.5 md:py-1.5 header-logo-with-bg"
                 }`}
+              aria-label="Popular Hospital - 32+ Years of Service and Excellence"
             >
               <Image
                 src="/logo-horizontal.png"
                 alt="Popular Hospital"
                 width={200}
                 height={60}
-                className="h-8 sm:h-10 w-auto object-contain"
+                className="popular-main-logo h-8 sm:h-10 2xl:h-12 min-[1920px]:h-14 w-auto object-contain shrink-0"
+                priority
+              />
+              <span
+                className={`h-7 sm:h-8 2xl:h-10 min-[1920px]:h-11 w-[1.5px] shrink-0 transition-colors ${scrolled || !isTransparentPage
+                  ? "bg-gray-300"
+                  : "bg-gray-300/80"
+                  }`}
+                aria-hidden="true"
+              />
+              <Image
+                src="/images/excellence_badge.png"
+                alt="32+ Years of Service and Excellence"
+                width={1004}
+                height={872}
+                className="header-excellence-badge h-9 sm:h-12 2xl:h-[58px] min-[1920px]:h-[66px] w-auto object-contain shrink-0"
                 priority
               />
             </Link>
 
             <nav
-              className="hidden xl:flex xl:items-center xl:flex-1 xl:justify-center xl:gap-0.5"
+              className="hidden xl:flex xl:items-center xl:flex-1 xl:justify-center xl:gap-0.5 min-[1440px]:gap-1 2xl:gap-1.5"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               {visibleMenuItems.map((item) => (

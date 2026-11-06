@@ -4919,7 +4919,7 @@ export default function ChatbotWidget() {
       <button
         id="chatbot-toggle"
         onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-[72px] right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#E85222] to-[#ff7a45] text-white shadow-xl transition hover:scale-110 md:bottom-6 md:right-6"
+        className="fixed bottom-[72px] right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#E85222] to-[#ff7a45] text-white shadow-xl transition hover:scale-110 md:bottom-6 md:right-16 2xl:right-20"
         aria-label={open ? "Close chat" : "Open chat"}
       >
         {!open && (

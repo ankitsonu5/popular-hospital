@@ -351,34 +351,62 @@ export function Footer() {
           </div>
         </div>
 
-        {/* NABH accreditation */}
-        <section
-          aria-labelledby="nabh-heading"
-          className="mt-12 pt-8 border-t border-gray-500/30 relative z-10 flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:gap-8 sm:text-left"
-        >
-          <Image
-            src="/images/nabh_logo.jpg"
-            alt="NABH certified logo – Popular Hospital, Varanasi is accredited by the National Accreditation Board for Hospitals & Healthcare Providers"
-            width={892}
-            height={830}
-            sizes="200px"
-            className="h-20 w-auto sm:h-24 shrink-0 rounded-lg bg-white object-contain p-1.5"
-          />
-          <div>
-            <h3
-              id="nabh-heading"
-              className="text-lg font-semibold text-white sm:text-xl"
-            >
-              NABH Certified Hospital in Varanasi
-            </h3>
-            <p className="mt-1.5 max-w-3xl text-sm leading-relaxed text-gray-300 sm:text-base">
-              Popular Hospital, Varanasi is NABH certified &mdash; recognised by
-              the National Accreditation Board for Hospitals &amp; Healthcare
-              Providers for maintaining high standards of quality care, patient
-              safety and ethical clinical practice.
-            </p>
-          </div>
-        </section>
+        {/* Trust Badges: NABH Accreditation & Excellence Badge */}
+        <div className="mt-12 pt-8 border-t border-gray-500/30 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* NABH accreditation */}
+          <section
+            aria-labelledby="nabh-heading"
+            className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:gap-6 sm:text-left"
+          >
+            <Image
+              src="/images/nabh_logo.jpg"
+              alt="NABH certified logo – Popular Hospital, Varanasi is accredited by the National Accreditation Board for Hospitals & Healthcare Providers"
+              width={892}
+              height={830}
+              sizes="200px"
+              className="h-20 w-auto sm:h-24 shrink-0 rounded-lg bg-white object-contain p-1.5"
+            />
+            <div>
+              <h3
+                id="nabh-heading"
+                className="text-lg font-semibold text-white sm:text-xl"
+              >
+                NABH Certified Hospital in Varanasi
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-gray-300">
+                Recognised by NABH for maintaining high standards of quality
+                care, patient safety, and ethical clinical practice.
+              </p>
+            </div>
+          </section>
+
+          {/* 32+ Years of Excellence */}
+          <section
+            aria-labelledby="excellence-heading"
+            className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:gap-6 sm:text-left"
+          >
+            <Image
+              src="/images/excellence_badge.png"
+              alt="32+ Years of Service and Excellence – Popular Hospital, Varanasi"
+              width={1004}
+              height={872}
+              sizes="200px"
+              className="h-20 w-auto sm:h-24 shrink-0 rounded-lg bg-white object-contain p-1.5"
+            />
+            <div>
+              <h3
+                id="excellence-heading"
+                className="text-lg font-semibold text-white sm:text-xl"
+              >
+                32+ Years of Service &amp; Excellence
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-gray-300">
+                Over 32+ years of trusted healthcare legacy, advanced multi
+                super-speciality care, and compassionate patient service.
+              </p>
+            </div>
+          </section>
+        </div>
 
         {/* Footer Bottom */}
         <div className="mt-10 pt-8 border-t border-gray-500/30 text-center text-sm sm:text-base text-gray-300 relative z-10">

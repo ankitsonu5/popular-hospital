@@ -43,7 +43,7 @@ const BackToTop = () => {
 
   return (
     <div
-      className={`fixed bottom-[76px] left-4 md:left-auto md:right-[30px] md:bottom-[92px] z-[990] transition-all duration-300 transform ${
+      className={`fixed bottom-[76px] left-4 md:left-auto md:right-[70px] 2xl:right-[86px] md:bottom-[92px] z-[990] transition-all duration-300 transform ${
         show
           ? "translate-y-0 opacity-100 pointer-events-auto"
           : "translate-y-6 opacity-0 pointer-events-none"
