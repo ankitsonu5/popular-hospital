@@ -46,7 +46,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    label: "Popular Finds",
+    label: "Popular",
     dropdown: [
       { label: "Our Doctors", href: "/doctors" },
       { label: "Our Locations", href: "/our-locations" },
@@ -288,7 +288,7 @@ export function Header() {
   // Filter kiya hua menuItems (DB se visibility apply)
   const visibleMenuItems = menuItems
     .filter((item) => {
-      if (hiddenMenus.includes(item.label)) return false; // Poora group hidden
+      if (hiddenMenus.includes(item.label) || (item.label === "Popular" && hiddenMenus.includes("Popular Finds"))) return false; // Poora group hidden
       if (!item.dropdown && item.href && !isHrefVisible(item.href)) return false;
       if (item.label === "Departments" && !hasVisibleDepartments) return false;
       return true;
@@ -341,7 +341,7 @@ export function Header() {
     if (item.href === pathname) return true;
     if (item.dropdown) {
       if (item.dropdown.some((d) => d.href === pathname)) return true;
-      if (item.label === "Popular Finds") {
+      if (item.label === "Popular" || item.label === "Popular Finds") {
         return (
           pathname.startsWith("/doctors") ||
           pathname.startsWith("/stories") ||
@@ -978,7 +978,7 @@ export function Header() {
                                     className="flex items-center gap-4 px-6 py-3 xl:px-5 xl:py-2.5 text-[15px] xl:text-[14px] font-bold text-gray-700 transition-all hover:text-[#1e3a8a] hover:bg-blue-50/80"
                                     onClick={() => setActiveDropdown(null)}
                                   >
-                                    {item.label === "Popular Finds" ? (
+                                    {item.label === "Popular" || item.label === "Popular Finds" ? (
                                       getPopularFindsIcon(dropdownItem.label)
                                     ) : item.label === "Media & Blog" ? (
                                       getMediaIcon(dropdownItem.label)

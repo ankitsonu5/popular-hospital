@@ -52,7 +52,7 @@ interface PageDetail {
   sections: Section[];
 }
 
-const GROUP_ORDER = ["Home", "About Us", "Popular Finds", "Departments", "Services", "Careers", "Media & Blog", "Other"];
+const GROUP_ORDER = ["Home", "About Us", "Popular", "Popular Finds", "Departments", "Services", "Careers", "Media & Blog", "Other"];
 
 export default function PageContentManager() {
   const [pages, setPages] = useState<PageSummary[]>([]);

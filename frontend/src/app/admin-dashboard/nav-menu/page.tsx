@@ -9,6 +9,29 @@ const API_URL = "/api-backend";
 interface MenuItem { label: string; href: string; hidden: boolean; group?: string; }
 interface MenuGroup { _id: string; menuKey: string; label: string; hidden: boolean; items: MenuItem[]; }
 
+const MENU_ORDER = [
+  "home",
+  "about-us",
+  "popular",
+  "popular-finds",
+  "departments",
+  "services",
+  "careers",
+  "media-blog",
+];
+
+const sortMenus = (list: MenuGroup[]) => {
+  return [...list].sort((a, b) => {
+    const keyA = a.menuKey === "popular-finds" ? "popular" : a.menuKey;
+    const keyB = b.menuKey === "popular-finds" ? "popular" : b.menuKey;
+    const idxA = MENU_ORDER.indexOf(keyA);
+    const idxB = MENU_ORDER.indexOf(keyB);
+    const orderA = idxA === -1 ? 999 : idxA;
+    const orderB = idxB === -1 ? 999 : idxB;
+    return orderA - orderB;
+  });
+};
+
 export default function NavMenuManager() {
   const [menus, setMenus] = useState<MenuGroup[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,9 +46,13 @@ export default function NavMenuManager() {
       const res = await fetch(API_URL + "/cms/nav-menus", { headers: getHeaders() });
       const data = await res.json();
       if (Array.isArray(data)) {
-        setMenus(data);
+        const sorted = sortMenus(data).map((m) => ({
+          ...m,
+          label: m.label === "Popular Finds" ? "Popular" : m.label,
+        }));
+        setMenus(sorted);
         const expanded: Record<string, boolean> = {};
-        data.forEach((m: MenuGroup) => { expanded[m.menuKey] = true; });
+        sorted.forEach((m: MenuGroup) => { expanded[m.menuKey] = true; });
         setExpandedGroups(expanded);
       }
     } catch { toast.error("Failed to load menus"); }
@@ -103,7 +130,7 @@ export default function NavMenuManager() {
                   {expandedGroups[menu.menuKey] ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                 </button>
                 <div>
-                  <h3 className="font-bold text-gray-900 text-base">{menu.label}</h3>
+                  <h3 className="font-bold text-gray-900 text-base">{menu.label === "Popular Finds" ? "Popular" : menu.label}</h3>
                   <p className="text-xs text-gray-400 mt-0.5">{menu.items.filter(i => !i.hidden).length} / {menu.items.length} items visible</p>
                 </div>
                 {menu.hidden && <span className="text-xs font-bold bg-red-100 text-red-600 px-2 py-0.5 rounded-full ml-2">HIDDEN</span>}

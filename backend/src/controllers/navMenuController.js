@@ -66,12 +66,13 @@ const DEFAULT_MENUS = [
     ],
   },
   {
-    menuKey: "popular-finds",
-    label: "Popular Finds",
+    menuKey: "popular",
+    label: "Popular",
     hidden: false,
     items: [
       { label: "Our Doctors", href: "/doctors", hidden: false },
       { label: "Our Locations", href: "/our-locations", hidden: false },
+      { label: "Best Hospital in Varanasi", href: "/best-hospital-in-varanasi", hidden: false },
       { label: "Patients Testimonial", href: "/stories", hidden: false },
       { label: "International Patients", href: "/services/international-patients", hidden: false },
       { label: "Free OPD and Offer", href: "/services/free-opd-offer", hidden: false },
@@ -125,6 +126,28 @@ const DEFAULT_MENUS = [
   },
 ];
 
+const MENU_ORDER = [
+  "home",
+  "about-us",
+  "popular",
+  "departments",
+  "services",
+  "careers",
+  "media-blog",
+];
+
+const sortMenus = (list) => {
+  return [...list].sort((a, b) => {
+    const keyA = a.menuKey === "popular-finds" ? "popular" : a.menuKey;
+    const keyB = b.menuKey === "popular-finds" ? "popular" : b.menuKey;
+    const idxA = MENU_ORDER.indexOf(keyA);
+    const idxB = MENU_ORDER.indexOf(keyB);
+    const orderA = idxA === -1 ? 999 : idxA;
+    const orderB = idxB === -1 ? 999 : idxB;
+    return orderA - orderB;
+  });
+};
+
 // Existing DB ko default structure ke saath merge karo.
 // Naye items add hote hain; pehle se hidden items hidden hi rehte hain (href se match).
 let synced = false;
@@ -133,12 +156,29 @@ async function ensureSynced() {
   const existing = await NavMenu.find();
   const byKey = new Map(existing.map((m) => [m.menuKey, m]));
 
+  // Migrate old "popular-finds" document to "popular"
+  if (byKey.has("popular-finds") && !byKey.has("popular")) {
+    const oldPopular = byKey.get("popular-finds");
+    oldPopular.menuKey = "popular";
+    oldPopular.label = "Popular";
+    await oldPopular.save();
+    byKey.delete("popular-finds");
+    byKey.set("popular", oldPopular);
+  }
+
   for (const def of DEFAULT_MENUS) {
-    const cur = byKey.get(def.menuKey);
+    let cur = byKey.get(def.menuKey);
     if (!cur) {
       await NavMenu.create(def);
       continue;
     }
+
+    let modified = false;
+    if (cur.label !== def.label) {
+      cur.label = def.label;
+      modified = true;
+    }
+
     const hiddenByHref = new Map(cur.items.map((i) => [i.href, !!i.hidden]));
     const merged = def.items.map((i) => ({
       label: i.label,
@@ -157,7 +197,7 @@ async function ensureSynced() {
           !!c.hidden === m.hidden
         );
       });
-    if (!same) {
+    if (!same || modified) {
       cur.items = merged;
       await cur.save();
     }
@@ -169,9 +209,9 @@ async function ensureSynced() {
 export const getPublicNavMenus = async (req, res) => {
   try {
     await ensureSynced();
-    const menus = await NavMenu.find().sort({ menuKey: 1 });
+    const menus = await NavMenu.find();
     res.set("Cache-Control", "no-store");
-    res.json(menus);
+    res.json(sortMenus(menus));
   } catch (error) {
     console.error("getPublicNavMenus error:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -182,8 +222,8 @@ export const getPublicNavMenus = async (req, res) => {
 export const getAdminNavMenus = async (req, res) => {
   try {
     await ensureSynced();
-    const menus = await NavMenu.find().sort({ menuKey: 1 });
-    res.json(menus);
+    const menus = await NavMenu.find();
+    res.json(sortMenus(menus));
   } catch (error) {
     console.error("getAdminNavMenus error:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -196,8 +236,13 @@ export const toggleMenuGroup = async (req, res) => {
     const { menuKey } = req.params;
     const { hidden } = req.body;
 
+    const query =
+      menuKey === "popular" || menuKey === "popular-finds"
+        ? { menuKey: { $in: ["popular", "popular-finds"] } }
+        : { menuKey };
+
     const menu = await NavMenu.findOneAndUpdate(
-      { menuKey },
+      query,
       { hidden: !!hidden },
       { new: true, upsert: false }
     );
@@ -220,7 +265,12 @@ export const toggleMenuItem = async (req, res) => {
     const { hidden } = req.body;
     const idx = parseInt(itemIndex, 10);
 
-    const menu = await NavMenu.findOne({ menuKey });
+    const query =
+      menuKey === "popular" || menuKey === "popular-finds"
+        ? { menuKey: { $in: ["popular", "popular-finds"] } }
+        : { menuKey };
+
+    const menu = await NavMenu.findOne(query);
     if (!menu) {
       return res.status(404).json({ error: "Menu not found" });
     }
@@ -245,8 +295,8 @@ export const resetNavMenus = async (req, res) => {
     await NavMenu.deleteMany({});
     await NavMenu.insertMany(DEFAULT_MENUS);
     synced = true;
-    const menus = await NavMenu.find().sort({ menuKey: 1 });
-    res.json({ ok: true, menus });
+    const menus = await NavMenu.find();
+    res.json({ ok: true, menus: sortMenus(menus) });
   } catch (error) {
     console.error("resetNavMenus error:", error);
     res.status(500).json({ error: "Internal server error" });
