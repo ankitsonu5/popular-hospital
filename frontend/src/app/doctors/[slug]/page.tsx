@@ -242,7 +242,7 @@ export default async function DoctorPage({ params }: Props) {
           className="relative py-14 overflow-hidden"
           style={{
             background:
-              "linear-gradient(135deg, #1a4a6b 0%, #2d7a9a 60%, #3aaccc 100%)",
+              "linear-gradient(135deg, #071633 0%, #0b1c43 55%, #1e3a8a 100%)",
           }}
         >
           <div
@@ -260,6 +260,7 @@ export default async function DoctorPage({ params }: Props) {
             <h1 translate="no" className="notranslate text-4xl md:text-5xl font-bold text-white mb-3 font-heading">
               Doctor Profile
             </h1>
+            <span className="mb-4 block h-1 w-14 rounded-full bg-[#E85222]" aria-hidden="true" />
             <nav className="flex items-center gap-2 text-white/80 text-sm flex-wrap">
               <Link href="/" className="hover:text-white transition-colors">
                 Home

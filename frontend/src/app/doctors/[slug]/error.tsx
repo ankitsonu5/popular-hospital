@@ -29,7 +29,7 @@ export default function DoctorPageError({ error, reset }: Props) {
         className="w-full py-10 mb-10"
         style={{
           background:
-            "linear-gradient(135deg, #1a4a6b 0%, #2d7a9a 60%, #3aaccc 100%)",
+            "linear-gradient(135deg, #071633 0%, #0b1c43 55%, #1e3a8a 100%)",
         }}
       >
         <h1 className="text-3xl font-bold text-white">Doctor Profile</h1>

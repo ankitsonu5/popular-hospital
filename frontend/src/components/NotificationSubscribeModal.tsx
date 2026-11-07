@@ -177,36 +177,52 @@ export default function NotificationSubscribeModal() {
           1st DESIGN: Top-Left Notification Prompt Card
       ────────────────────────────────────────────────────────────── */}
       {step === "prompt" && (
-        <div className="fixed top-5 left-4 sm:left-6 md:left-8 z-[8000] w-[calc(100vw-2rem)] sm:w-[370px] max-w-[370px] animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="bg-white rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.18)] border border-gray-100 p-5 text-center relative overflow-hidden backdrop-blur-md">
-            {/* Top decorative accent */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0b1c43] via-[#e11d48] to-[#0b1c43]" />
+        <div className="fixed top-5 md:top-[120px] lg:top-[126px] 2xl:top-[140px] min-[1920px]:top-[154px] left-4 sm:left-6 md:left-8 z-[8000] w-[calc(100vw-2rem)] sm:w-[350px] max-w-[360px] animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="bg-white rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.12)] border border-slate-100/90 p-4 sm:p-5 text-center relative overflow-hidden">
+            {/* Bottom-right decorative overlapping curved circles */}
+            <div className="absolute -bottom-7 -right-7 w-28 h-28 pointer-events-none select-none z-0">
+              <svg
+                viewBox="0 0 160 160"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full h-full"
+              >
+                <circle cx="160" cy="160" r="130" fill="#E8F1FC" />
+                <circle
+                  cx="160"
+                  cy="160"
+                  r="96"
+                  stroke="#FBA86B"
+                  strokeWidth="1.5"
+                  fill="#F1F6FD"
+                />
+                <circle cx="160" cy="160" r="66" fill="#FFF5EC" />
+              </svg>
+            </div>
 
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="p-1.5 bg-blue-50 text-[#0b1c43] rounded-full">
-                <Bell className="w-4 h-4 animate-bounce" />
-              </span>
-              <h3 className="font-bold text-gray-800 text-base sm:text-lg">
-                Welcome to Popular Hospital!
+            <div className="relative z-10 mb-1.5">
+              <h3 className="text-base sm:text-[18.5px] font-extrabold tracking-tight leading-snug">
+                <span className="text-[#004bb1]">Welcome to </span>
+                <span className="text-[#ff5500]">Popular Hospitals!</span>
               </h3>
             </div>
 
-            <p className="text-xs sm:text-sm text-gray-500 mb-5 leading-relaxed">
+            <p className="relative z-10 text-[12px] sm:text-[13px] text-[#556477] font-medium leading-relaxed max-w-[300px] mx-auto mb-4">
               Subscribe to our alerts and receive regular healthcare information.
             </p>
 
-            <div className="flex items-center justify-center gap-3">
+            <div className="relative z-10 flex items-center justify-center gap-2.5">
               <button
                 type="button"
                 onClick={handleDismissPrompt}
-                className="flex-1 py-2 px-3 bg-[#5c7088] hover:bg-[#4a5b70] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors shadow-sm cursor-pointer"
+                className="flex-1 py-2 px-3 bg-white hover:bg-blue-50/50 text-[#004bb1] border-[1.5px] border-[#004bb1] text-xs sm:text-[13.5px] font-bold rounded-lg transition-all duration-200 shadow-sm hover:shadow cursor-pointer active:scale-[0.98]"
               >
                 No, Thanks
               </button>
               <button
                 type="button"
                 onClick={handleAcceptPrompt}
-                className="flex-1 py-2 px-3 bg-[#0b1c43] hover:bg-[#152e68] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors shadow-sm cursor-pointer"
+                className="flex-1 py-2 px-3 bg-[#ff5500] hover:bg-[#e64d00] text-white text-xs sm:text-[13.5px] font-bold rounded-lg transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer active:scale-[0.98]"
               >
                 Subscribe
               </button>
