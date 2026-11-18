@@ -308,36 +308,42 @@ const CENTRES_OF_EXCELLENCE = [
     icon: "/images/pl_icons/cardiology_icon.webp",
     href: "/departments/cardiology",
     cardClass: "from-[#f9c4c8] to-[#f3a9ae]",
+    background: "linear-gradient(90deg, #f9c4c8 0%, #f3a9ae 100%)",
   },
   {
     title: "Orthopedics",
     icon: "/images/pl_icons/orthopedics_icon.webp",
     href: "/departments/orthopedics",
     cardClass: "from-[#ffefc8] to-[#ffdb82]",
+    background: "linear-gradient(90deg, #ffefc8 0%, #ffdb82 100%)",
   },
   {
     title: "Oncology",
     icon: "/images/pl_icons/oncology_icon.webp",
     href: "/departments/oncology",
     cardClass: "from-[#c9f3e5] to-[#5fcf8e]",
+    background: "linear-gradient(90deg, #c9f3e5 0%, #5fcf8e 100%)",
   },
   {
     title: "Neurology",
     icon: "/images/pl_icons/nuerosurgery_icon.webp",
     href: "/departments/neurosurgery",
     cardClass: "from-[#e4c4f5] to-[#c79bea]",
+    background: "linear-gradient(90deg, #e4c4f5 0%, #c79bea 100%)",
   },
   {
     title: "Laparoscopic Surgery",
     icon: "/images/pl_icons/laparoscopy_icon.webp",
     href: "/departments/general-surgery",
     cardClass: "from-[#bdeefa] to-[#62cee7]",
+    background: "linear-gradient(90deg, #bdeefa 0%, #62cee7 100%)",
   },
   {
     title: "IVF & Fertility",
     icon: "/images/pl_icons/obstetrics_icon.webp",
     href: "/departments/ivf-fertility",
-    cardClass: "from-[#d7e8fa] to-[#c6d9ef]",
+    cardClass: "from-[#fce0ed] to-[#f2b9d2]",
+    background: "linear-gradient(90deg, #fce0ed 0%, #f2b9d2 100%)",
   },
 ];
 
@@ -782,7 +788,7 @@ export default function HomeClient({
       <section className="jakarta-font-scope relative z-30 overflow-hidden bg-gradient-to-br from-[#f8fafc] via-white to-[#eef6fb] py-12 sm:py-16">
         <div className="absolute left-0 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-[#E85222]/10 blur-3xl" />
         <div className="absolute right-12 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#1e3a8a]/10 blur-3xl" />
-        <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-[1240px] 2xl:max-w-[1600px]">
+        <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 max-w-6xl xl:max-w-[1240px] 2xl:max-w-[1366px] min-[1920px]:max-w-[1600px]">
           <div className="grid grid-cols-2 gap-4 md:hidden">
             <SimpleCard
               href="/our-locations"
@@ -887,6 +893,10 @@ export default function HomeClient({
                 <Link
                   href="/about"
                   className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#E85222] to-[#d1451a] text-white rounded-full font-bold text-[14px] sm:text-[17px] overflow-hidden transition-all shadow-[0_8px_30px_rgb(232,82,34,0.3)] hover:shadow-[0_8px_30px_rgb(232,82,34,0.5)] hover:scale-105 shrink-0"
+                  style={{
+                    backgroundColor: "#E85222",
+                    backgroundImage: "linear-gradient(90deg, #E85222 0%, #d1451a 100%)",
+                  }}
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
                   <span className="relative flex items-center gap-2 sm:gap-3 whitespace-nowrap"><T k="home_cab73e" d={"Discover More"} /><span className="hidden sm:inline"><T k="home_330ae3" d={" About Us"} /></span>
@@ -1023,8 +1033,14 @@ export default function HomeClient({
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
             {/* Left Column - Main Promo Image */}
-            <div className="lg:col-span-4 relative h-full min-h-[500px] lg:min-h-[auto] rounded-[2.5rem] overflow-hidden group shadow-2xl">
-              <div className="absolute inset-0 bg-[#0b1c43]"></div>
+            <div
+              className="lg:col-span-4 relative h-full min-h-[500px] lg:min-h-[auto] rounded-[2.5rem] overflow-hidden group shadow-2xl"
+              style={{ backgroundColor: "#0b1c43" }}
+            >
+              <div
+                className="absolute inset-0 bg-[#0b1c43]"
+                style={{ backgroundColor: "#0b1c43" }}
+              ></div>
               {/* Main Image */}
               <CImage k="home_c0d5c7"
                 src="/images/departments-images/general-medicine.jpeg"
@@ -1036,11 +1052,24 @@ export default function HomeClient({
               />
 
               {/* Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43] via-[#0b1c43]/60 to-transparent"></div>
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-[#0b1c43] via-[#0b1c43]/60 to-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to top, rgba(11, 28, 67, 0.98) 0%, rgba(11, 28, 67, 0.72) 55%, rgba(11, 28, 67, 0.25) 100%)",
+                }}
+              ></div>
 
               <div className="absolute inset-0 p-4 sm:p-5 md:p-8 flex flex-col justify-end">
                 {/* Content Inside Image */}
-                <div className="bg-white/10 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-8 border border-white/20 transform transition-transform duration-500 group-hover:-translate-y-2 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+                <div
+                  className="bg-white/10 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-8 border border-white/20 transform transition-transform duration-500 group-hover:-translate-y-2 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+                  style={{
+                    backgroundColor: "rgba(11, 28, 67, 0.78)",
+                    backgroundImage:
+                      "linear-gradient(135deg, rgba(30, 58, 138, 0.72) 0%, rgba(11, 28, 67, 0.9) 100%)",
+                  }}
+                >
                   <p className="flex items-center gap-2 text-hospital-teal font-bold tracking-widest text-[10px] sm:text-xs uppercase mb-3">
                     <span className="w-2 h-2 rounded-full bg-hospital-teal animate-ping"></span><T k="home_fb02af" d={"24/7 Emergency Support"} /></p>
                   <div className="text-white font-black mb-5 sm:mb-6 flex items-center gap-3 sm:gap-4 drop-shadow-lg flex-nowrap whitespace-nowrap">
@@ -1302,6 +1331,7 @@ export default function HomeClient({
                 key={centre.title}
                 href={centre.href}
                 className={`group flex min-h-[86px] items-center gap-3 bg-gradient-to-r ${centre.cardClass} px-4 py-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg min-[420px]:min-h-[98px] sm:min-h-[110px] sm:gap-5 sm:px-6 sm:py-6`}
+                style={{ backgroundImage: centre.background }}
               >
                 <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/70 shadow-sm ring-1 ring-white/50 transition-transform duration-300 group-hover:scale-105 sm:h-14 sm:w-14">
                   <Image

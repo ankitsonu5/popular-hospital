@@ -37,7 +37,14 @@ export default function LocationSlider({ branches }: { branches: Branch[] }) {
         </div>
 
         <div className="relative overflow-hidden rounded-lg bg-white px-5 py-6 sm:px-7 lg:min-h-[320px] lg:px-9 lg:py-8">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-full rounded-lg bg-gradient-to-r from-[#203f7d] via-[#284a91] to-[#284a91] lg:w-[43%]" />
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-full rounded-lg bg-gradient-to-r from-[#203f7d] via-[#284a91] to-[#284a91] lg:w-[43%]"
+            style={{
+              backgroundColor: "#203f7d",
+              backgroundImage:
+                "linear-gradient(90deg, #0b1c43 0%, #203f7d 48%, #284a91 100%)",
+            }}
+          />
 
           <div className="relative z-10 grid gap-8 lg:grid-cols-[300px_1fr] xl:grid-cols-[330px_1fr]">
             <div className="flex flex-col justify-center text-white">
