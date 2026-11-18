@@ -50,7 +50,10 @@ import patientReportsRouter from "./routes/patientReports.js";
 import { getActivePopup } from "./controllers/popupController.js";
 import { getPublicSchema } from "./controllers/schemaContentController.js";
 import { getPublicNavMenus } from "./controllers/navMenuController.js";
-import { getPublicPageContent, getAllPublicPageContent } from "./controllers/pageContentController.js";
+import {
+  getPublicPageContent,
+  getAllPublicPageContent,
+} from "./controllers/pageContentController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -156,12 +159,28 @@ app.use(
 app.use("/uploads", async (req, res) => {
   const liveUrl = `https://www.popularhospital.in/uploads${req.url}`;
 
+  // On the live server popularhospital.in IS this server. Fetching or
+  // redirecting there for a missing file loops back into this handler forever:
+  // each loop holds an nginx connection open until nginx runs out and every
+  // site on the server starts returning 500. A missing file is just a 404.
+  const host = String(req.get("x-forwarded-host") || req.get("host") || "");
+  if (
+    process.env.NODE_ENV === "production" ||
+    host.includes("popularhospital.in") ||
+    req.get("x-uploads-fallback")
+  ) {
+    return res.status(404).end();
+  }
+
   // Local development: the live server marks its files "Cross-Origin-Resource-
   // Policy: same-origin", so a browser on localhost refuses an <img> that is
   // redirected there. Fetch the file server-side and serve it from localhost.
-  if (process.env.NODE_ENV !== "production" && req.method === "GET") {
+  if (req.method === "GET") {
     try {
-      const upstream = await fetch(liveUrl);
+      const upstream = await fetch(liveUrl, {
+        headers: { "x-uploads-fallback": "1" },
+        signal: AbortSignal.timeout(5000),
+      });
       if (upstream.ok) {
         res.status(200);
         res.setHeader(
