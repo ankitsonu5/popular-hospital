@@ -20,6 +20,15 @@ export function DoctorsSearch() {
     Record<string, number>
   >({});
 
+  // Pre-fill filters from the URL, e.g. /doctors?speciality=cardiology&search=sharma
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const sp = params.get("speciality");
+    const q = params.get("search");
+    if (sp) setSpeciality(sp);
+    if (q) setSearch(q);
+  }, []);
+
   const { data: departments = EMPTY_DEPARTMENTS } = useSWR(
     "specialities",
     fetchSpecialities,
@@ -36,9 +45,21 @@ export function DoctorsSearch() {
   const getLockedRank = (d: Doctor) => {
     const s = (d.slug || "").toLowerCase();
     const n = (d.name || "").toLowerCase();
-    if (s === "dr-a-k-kaushik" || (n.includes("kaushik") && (n.includes("a.k") || n.includes("a k")))) return 0;
-    if (s === "dr-kiran-kaushik" || (n.includes("kaushik") && n.includes("kiran"))) return 1;
-    if (s === "dr-mohit-kaushik" || (n.includes("kaushik") && n.includes("mohit"))) return 2;
+    if (
+      s === "dr-a-k-kaushik" ||
+      (n.includes("kaushik") && (n.includes("a.k") || n.includes("a k")))
+    )
+      return 0;
+    if (
+      s === "dr-kiran-kaushik" ||
+      (n.includes("kaushik") && n.includes("kiran"))
+    )
+      return 1;
+    if (
+      s === "dr-mohit-kaushik" ||
+      (n.includes("kaushik") && n.includes("mohit"))
+    )
+      return 2;
     return -1;
   };
 
@@ -259,7 +280,10 @@ export function DoctorsSearch() {
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                        unoptimized={imageSrc.startsWith("/uploads") || imageSrc.startsWith("http")}
+                        unoptimized={
+                          imageSrc.startsWith("/uploads") ||
+                          imageSrc.startsWith("http")
+                        }
                         onError={() =>
                           setImageFallbackIndex((current) => ({
                             ...current,
@@ -285,7 +309,10 @@ export function DoctorsSearch() {
 
                   {/* Content Section */}
                   <div className="px-1 sm:px-3 pb-4 sm:pb-6 min-w-0">
-                    <h3 translate="no" className="notranslate text-[18px] sm:text-[22px] font-black text-[#4285f4] tracking-tight break-words leading-tight mb-2">
+                    <h3
+                      translate="no"
+                      className="notranslate text-[18px] sm:text-[22px] font-black text-[#4285f4] tracking-tight break-words leading-tight mb-2"
+                    >
                       {doc.name}
                     </h3>
 

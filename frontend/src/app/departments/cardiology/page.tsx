@@ -3,6 +3,8 @@ import CardiologyClient from "./CardiologyClient";
 import DepartmentSchema from "@/components/schema/DepartmentSchema";
 import DynamicSchema from "@/components/schema/DynamicSchema";
 import MedicalWebPageSchema from "@/components/schema/MedicalWebPageSchema";
+import FAQSchema from "@/components/schema/FAQSchema";
+import { cardiologyFaqs } from "./cardiologyContent";
 import { fetchDoctors, getImageUrl } from "@/lib/api";
 import { generatePageMetadata } from "@/lib/seoApi";
 
@@ -30,6 +32,16 @@ export default async function CardiologyPage() {
   // Real Cardiology department doctors of Popular Hospital
   const fallbackCardiology = [
     {
+      id: "dr-suraj-chaturvedi",
+      name: "Dr. Suraj Chaturvedi",
+      qualifications:
+        "MBBS, MD (General Medicine), DM Cardiology (Gold Medalist - IMS BHU)",
+      designation: "Sr. Interventional Cardiologist",
+      slug: "dr-suraj-chaturvedi",
+      image: "/images/departments_doctor/dr_suraj_chaturvedi.jpg",
+      speciality: "Cardiology, Interventional Cardiology",
+    },
+    {
       id: "dr-hari-krishan-srivastava",
       name: "Dr. Hari Krishan Srivastava",
       qualifications: "DM - Cardiology",
@@ -55,6 +67,8 @@ export default async function CardiologyPage() {
     // Photo uploaded in database takes priority
     if (d?.image_url) return getImageUrl(d.image_url);
     // Local assets only for known doctors; others render without a photo
+    if (slug.includes("suraj") || name.includes("suraj"))
+      return "/images/departments_doctor/dr_suraj_chaturvedi.jpg";
     if (slug.includes("hari") || name.includes("hari"))
       return "/images/departments_doctor/dr-Hari-Krishan-Srivastava.jpg";
     if (slug.includes("manoj") || name.includes("manoj"))
@@ -128,6 +142,7 @@ export default async function CardiologyPage() {
         reviewerName="Dr. Hari Krishan Srivastava"
         dateReviewed={new Date().toISOString().split("T")[0]}
       />
+      <FAQSchema faqs={cardiologyFaqs} />
       <CardiologyClient doctors={doctors} />
     </>
   );

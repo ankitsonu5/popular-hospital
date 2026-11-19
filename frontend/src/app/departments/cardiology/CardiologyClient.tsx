@@ -19,14 +19,28 @@ import {
 import DepartmentGallerySection from "@/components/DepartmentGallerySection";
 import DepartmentMedicalExperts from "@/components/DepartmentMedicalExperts";
 import { CImage, T } from "@/components/content/Editable";
+import CardiologyHero from "./CardiologyHero";
+import {
+  ConditionsSection,
+  DiagnosticsSection,
+  VisitUsSection,
+  WhyChooseSection,
+  SymptomsSection,
+  EmergencySection,
+  FaqSection,
+  PatientJourneySection,
+  PreventionSection,
+  ProceduresSection,
+  WhenToSeeSection,
+} from "./CardiologyDetailSections";
 
 /* ─── Data ─── */
 
 const uspItems = [
   {
-    title: "Hi-Tech Cath Lab:-",
+    title: "Two Modern Cath Labs:-",
     content:
-      "Cardiac department of Popular Hospital have a Cath lab equipped with hi-tech equipment where we carry out tests and procedures including ablation, angiogram, angioplasty, IVUS, Rotablation and implantation of pacemakers/icds etc.",
+      "The cardiac department of Popular Hospital has two modern cath labs with the latest technology, where we carry out tests and procedures including angiography, radial angioplasty, ablation, IVUS, Rotablation and implantation of temporary/permanent pacemakers and ICDs.",
     icon: (
       <svg
         className="w-6 h-6"
@@ -127,9 +141,10 @@ const uspItems = [
 
 const treatmentList = [
   "Coronary angiography",
-  "Coronary angioplasty",
+  "Coronary angioplasty & stenting (Radial route)",
   "Peripheral interventions",
-  "Pacemaker implantation (Single chamber, Dual chamber, CRT, AICD, LBBB Pacing).",
+  "Pacemaker implantation - Temporary & Permanent (Single chamber, Dual chamber, CRT, AICD, LBBB Pacing).",
+  "Valve replacement & structural heart disease treatment",
   "Balloon valvuloplasty",
   "HD IVUS",
   "ROTABLATION",
@@ -164,110 +179,17 @@ export default function CardiologyPage({
 }: {
   doctors: DoctorCard[];
 }) {
-  const [showCallModal, setShowCallModal] = useState(false);
-  const [callForm, setCallForm] = useState({ name: "", phone: "" });
-  const [callStatus, setCallStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
-
-  const handleCallBackSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setCallStatus("loading");
-    try {
-      const res = await fetch("/api-backend/callback-requests", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: callForm.name,
-          phone: callForm.phone,
-          department: "Cardiology",
-        }),
-      });
-      if (!res.ok) throw new Error();
-      setCallStatus("success");
-      setCallForm({ name: "", phone: "" });
-    } catch {
-      setCallStatus("error");
-    }
-  };
-
   return (
     <main className="min-h-screen bg-white">
-      {/* ═══════ HERO BANNER ═══════ */}
-      <section className="relative w-full bg-[#0b1c43] overflow-hidden flex items-center uppercase tracking-tight h-[230px] md:h-[200px] xl:h-[170px] 2xl:h-[clamp(200px,13.02vw,420px)] py-8 md:py-10 xl:py-6 2xl:py-[clamp(2.4rem,2.5vw,5rem)]">
-        <div className="absolute inset-0 z-0">
-          <CImage
-            k="departments-cardiology_280981"
-            src="/images/banners/cardiology_banner.png"
-            alt="Cardiac Care"
-            fill
-            sizes="100vw"
-            className="object-cover object-center opacity-70 mix-blend-overlay"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1c43] via-[#0b1c43]/90 to-transparent" />
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-5xl 2xl:max-w-[clamp(1024px,66.67vw,1920px)] px-4 h-full flex flex-col justify-center">
-          <div className="animate-fade-in-up max-w-3xl">
-            <h1 className="font-bold text-white mb-6 2xl:mb-[1.25vw] leading-tight font-heading text-lg sm:text-[min(2.25rem,5.24vw)] sm:whitespace-nowrap">
-              <T
-                k="departments-cardiology_abdc3c"
-                d={"Department of Cardiology"}
-              />
-            </h1>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/book"
-                className="bg-[#E85222] hover:bg-[#E85222] text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-[#E85222]/30 flex items-center gap-2"
-              >
-                <svg
-                  className="w-5 h-5 2xl:w-[1.25em] 2xl:h-[1.25em]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <T
-                  k="departments-cardiology_687bd9"
-                  d={"Book An Appointment"}
-                />
-              </Link>
-              <button
-                onClick={() => {
-                  setShowCallModal(true);
-                  setCallStatus("idle");
-                }}
-                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3.5 2xl:px-[2em] 2xl:py-[0.875em] 2xl:text-[clamp(0.8rem,0.833vw,1.4rem)] rounded-full font-semibold backdrop-blur-sm transition-all border border-white/20 flex items-center gap-2"
-              >
-                <svg
-                  className="w-5 h-5 2xl:w-[1.25em] 2xl:h-[1.25em]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                <T k="departments-cardiology_fef4e0" d={"Get a Call Back"} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ═══════ HERO (enquiry form + doctor search) ═══════ */}
+      <CardiologyHero />
 
       {/* ═══════ MEDICAL EXPERTS HORIZONTAL CAROUSEL (DIRECTLY UNDER BANNER) ═══════ */}
-      <DepartmentMedicalExperts doctors={doctors} specialitySlug="cardiology" />
+      <DepartmentMedicalExperts
+        doctors={doctors}
+        specialitySlug="cardiology"
+        fourPerView
+      />
 
       {/* ═══════ DEPARTMENT INTRO SECTION ═══════ */}
       <section className="py-14 sm:py-16 bg-white">
@@ -283,7 +205,7 @@ export default function CardiologyPage({
               </h2>
             </div>
             <div className="h-[2px] w-full bg-gradient-to-r from-blue-100 to-transparent mb-6" />
-            <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[17px] 2xl:text-lg font-medium text-justify">
+            <div className="space-y-4 text-gray-700 leading-relaxed text-base md:text-[17px] 2xl:text-lg font-medium text-left md:text-justify">
               <p className="font-semibold text-[#0b1c43] bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100/60 mb-6 text-left shadow-sm">
                 <T
                   k="departments-cardiology_eb7346"
@@ -310,6 +232,8 @@ export default function CardiologyPage({
                 </strong>
                 .
               </p>
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 items-center">
+                <div className="lg:col-span-3 space-y-4">
               <p>
                 <T
                   k="departments-cardiology_9cd602"
@@ -326,6 +250,58 @@ export default function CardiologyPage({
                   }
                 />
               </p>
+                </div>
+
+                {/* Intro image with floating highlight badges */}
+                <div className="lg:col-span-2 relative pb-6 lg:pb-0">
+                  <div className="absolute -top-4 -right-4 w-full h-full rounded-[2rem] bg-gradient-to-br from-[#E85222]/20 to-[#1e3a8a]/20 hidden sm:block" />
+                  <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl shadow-blue-900/15">
+                    <CImage
+                      k="departments-cardiology_intro_img"
+                      src="/images/departments-images/cardiology.jpeg"
+                      alt="Cardiologist listening to a patient's heartbeat at Popular Hospital"
+                      fill
+                      sizes="(min-width: 1024px) 40vw, 100vw"
+                      className="object-cover object-center -scale-x-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/70 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4 text-left">
+                      <p className="text-white font-bold text-lg leading-snug font-heading">
+                        Caring for Your Every Heartbeat
+                      </p>
+                      <p className="text-white/80 text-xs mt-1">
+                        Heart Team approach for every patient
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute -left-3 sm:-left-6 top-6 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 text-left">
+                    <span className="w-10 h-10 rounded-xl bg-[#E85222] text-white flex items-center justify-center">
+                      <Clock className="w-5 h-5" />
+                    </span>
+                    <span>
+                      <span className="block text-[#0b1c43] font-bold text-sm leading-tight">
+                        24x7
+                      </span>
+                      <span className="block text-gray-500 text-xs font-medium">
+                        Cardiac Emergency
+                      </span>
+                    </span>
+                  </div>
+                  <div className="absolute -right-2 sm:-right-5 bottom-20 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 text-left">
+                    <span className="w-10 h-10 rounded-xl bg-[#1e3a8a] text-white flex items-center justify-center">
+                      <Building2 className="w-5 h-5" />
+                    </span>
+                    <span>
+                      <span className="block text-[#0b1c43] font-bold text-sm leading-tight">
+                        2 Cath Labs
+                      </span>
+                      <span className="block text-gray-500 text-xs font-medium">
+                        Latest Technology
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -368,8 +344,11 @@ export default function CardiologyPage({
         </div>
       </section>
 
+      {/* ═══════ TREATMENT JOURNEY ═══════ */}
+      <PatientJourneySection />
+
       {/* ═══════ WHAT WE TREAT + NON-INVASIVE - side by side ═══════ */}
-      <section className="py-16 xl:py-12 2xl:py-20 bg-white">
+      <section className="py-16 xl:py-12 2xl:py-20 bg-slate-50/70 border-t border-slate-100">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* What We Treat */}
@@ -455,108 +434,24 @@ export default function CardiologyPage({
         </div>
       </section>
 
+      {/* ═══════ DETAILED CARDIOLOGY INFORMATION ═══════ */}
+      <SymptomsSection />
+      <ConditionsSection />
+      <DiagnosticsSection />
+      <ProceduresSection />
+      <EmergencySection />
+      <WhenToSeeSection />
+      <WhyChooseSection />
+      <PreventionSection />
+      <FaqSection />
+      <VisitUsSection />
+
       {/* ═══════ GALLERY ═══════ */}
       <DepartmentGallerySection
         departmentSlug="cardiology"
         departmentName="Cardiology"
       />
 
-      {/* ═══════ GET A CALL BACK MODAL ═══════ */}
-      {showCallModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative">
-            <button
-              onClick={() => setShowCallModal(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold"
-            >
-              ×
-            </button>
-            <h3 className="text-2xl font-bold text-[#0b1c43] mb-2 font-heading">
-              <T
-                k="departments-cardiology_fef4e0_2"
-                d={"Get a Call Back"}
-              />
-            </h3>
-            <p className="text-gray-500 text-sm mb-6">
-              <T
-                k="departments-cardiology_0fbf3d"
-                d={"Our team will call you shortly."}
-              />
-            </p>
-
-            {callStatus === "success" ? (
-              <div className="text-center py-6">
-                <div className="text-green-500 text-5xl mb-3">✓</div>
-                <p className="text-gray-700 font-semibold">
-                  <T
-                    k="departments-cardiology_4372a3"
-                    d={"Thank you! We will call you back soon."}
-                  />
-                </p>
-                <button
-                  onClick={() => setShowCallModal(false)}
-                  className="mt-4 bg-[#e11d48] text-white px-6 py-2 rounded-full font-semibold"
-                >
-                  <T k="departments-cardiology_bbfa77" d={"Close"} />
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleCallBackSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    <T k="departments-cardiology_709a23" d={"Name"} />
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={callForm.name}
-                    onChange={(e) =>
-                      setCallForm({ ...callForm, name: e.target.value })
-                    }
-                    placeholder="Your full name"
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#e11d48] focus:ring-2 focus:ring-rose-100 focus:outline-none transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    <T
-                      k="departments-cardiology_ab25d6"
-                      d={"Phone Number"}
-                    />
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    value={callForm.phone}
-                    onChange={(e) =>
-                      setCallForm({ ...callForm, phone: e.target.value })
-                    }
-                    placeholder="Your phone number"
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#e11d48] focus:ring-2 focus:ring-rose-100 focus:outline-none transition-all"
-                  />
-                </div>
-                {callStatus === "error" && (
-                  <p className="text-red-500 text-sm">
-                    <T
-                      k="departments-cardiology_9a3ea0"
-                      d={"Something went wrong. Please try again."}
-                    />
-                  </p>
-                )}
-                <button
-                  type="submit"
-                  disabled={callStatus === "loading"}
-                  className="w-full bg-[#e11d48] hover:bg-rose-700 disabled:opacity-60 text-white py-3 rounded-full font-semibold transition-all"
-                >
-                  {callStatus === "loading"
-                    ? "Submitting..."
-                    : "Request Call Back"}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
     </main>
   );
 }

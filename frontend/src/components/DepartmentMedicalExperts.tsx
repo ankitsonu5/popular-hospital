@@ -73,10 +73,13 @@ const getText = (value?: string | { name?: string }) =>
 export default function DepartmentMedicalExperts({
   doctors,
   specialitySlug,
+  fourPerView = false,
 }: {
   doctors: ExpertDoctor[];
   /** Used for the "Find a Doctor" link; defaults to the department route. */
   specialitySlug?: string;
+  /** Fit 4 doctor cards in view on desktop (narrower intro card and cards). */
+  fourPerView?: boolean;
 }) {
   const pathname = usePathname();
   const slug =
@@ -119,8 +122,11 @@ export default function DepartmentMedicalExperts({
   }, [list.length, checkScroll]);
 
   const scroll = (direction: "left" | "right") => {
+    const step = fourPerView
+      ? (scrollRef.current?.clientWidth ?? 280) / 2
+      : 280;
     scrollRef.current?.scrollBy({
-      left: direction === "left" ? -280 : 280,
+      left: direction === "left" ? -step : step,
       behavior: "smooth",
     });
   };
@@ -153,7 +159,13 @@ export default function DepartmentMedicalExperts({
 
         <div className="flex flex-col lg:flex-row gap-5 items-stretch">
           {/* Left Navy Blue "Our Medical Experts" Card */}
-          <div className="w-full lg:w-[320px] xl:w-[340px] shrink-0 bg-[#0b1c43] text-white rounded-2xl lg:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between shadow-sm">
+          <div
+            className={`w-full shrink-0 bg-[#0b1c43] text-white rounded-2xl lg:rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-sm ${
+              fourPerView
+                ? "lg:w-[240px] 2xl:w-[300px] lg:p-6"
+                : "lg:w-[320px] xl:w-[340px] md:p-8"
+            }`}
+          >
             <div>
               <h2 className="text-2xl sm:text-[26px] font-bold font-heading text-white tracking-tight leading-tight">
                 Our Medical Experts
@@ -201,7 +213,11 @@ export default function DepartmentMedicalExperts({
                   return (
                     <div
                       key={doc.slug || idx}
-                      className="w-[230px] sm:w-[245px] md:w-[255px] shrink-0 bg-white rounded-xl border border-gray-200 shadow-none hover:shadow-none flex flex-col overflow-hidden group relative"
+                      className={`shrink-0 bg-white rounded-xl border border-gray-200 shadow-none hover:shadow-none flex flex-col overflow-hidden group relative ${
+                        fourPerView
+                          ? "w-[230px] sm:w-[245px] lg:w-[calc((100%-3*1.25rem)/4)]"
+                          : "w-[230px] sm:w-[245px] md:w-[255px]"
+                      }`}
                     >
                       <Link
                         href={`/doctors/${doc.slug}`}
@@ -218,7 +234,14 @@ export default function DepartmentMedicalExperts({
                       <div className="px-4 pt-3.5 pb-4 flex-1 flex flex-col justify-between bg-white">
                         <div>
                           <Link href={`/doctors/${doc.slug}`}>
-                            <h3 className="font-semibold text-[#1e293b] text-[16px] sm:text-[16.5px] leading-tight line-clamp-1 group-hover:text-[#E85222] transition-colors">
+                            <h3
+                              className={`font-semibold text-[#1e293b] leading-tight group-hover:text-[#E85222] transition-colors ${
+                                fourPerView
+                                  ? "text-[15px] 2xl:text-[16.5px] line-clamp-2 min-h-[2.5em]"
+                                  : "text-[16px] sm:text-[16.5px] line-clamp-1"
+                              }`}
+                              title={doc.name}
+                            >
                               {doc.name}
                             </h3>
                           </Link>
@@ -237,7 +260,11 @@ export default function DepartmentMedicalExperts({
                             e.stopPropagation();
                             setBookingDoctor(doc);
                           }}
-                          className="mt-3.5 w-full py-2 px-3 rounded-lg text-xs font-bold text-[#E85222] bg-[#E85222]/10 hover:bg-[#E85222] hover:text-white transition-all flex items-center justify-center gap-1.5 active:scale-[0.98]"
+                          className={`mt-3.5 w-full py-2 rounded-lg font-bold text-[#E85222] bg-[#E85222]/10 hover:bg-[#E85222] hover:text-white transition-all flex items-center justify-center gap-1.5 active:scale-[0.98] whitespace-nowrap ${
+                            fourPerView
+                              ? "px-1.5 text-[11px] 2xl:text-xs"
+                              : "px-3 text-xs"
+                          }`}
                         >
                           <Calendar className="w-3.5 h-3.5" />
                           <span>Book Appointment</span>
