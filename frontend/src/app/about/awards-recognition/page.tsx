@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   Share2,
   GraduationCap,
@@ -9,6 +8,8 @@ import {
   Trophy,
 } from "lucide-react";
 import { CImage, T } from "@/components/content/Editable";
+
+export { default } from "./PremiumAwardsRecognition";
 
 const awardsData = [
   {
@@ -66,7 +67,7 @@ const strategicValueData = [
   },
 ];
 
-export default function AwardsRecognitionPage() {
+function LegacyAwardsRecognitionPage() {
   const handleShare = () => {
     if (navigator.share) {
       navigator

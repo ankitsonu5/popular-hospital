@@ -4598,7 +4598,13 @@ export default function ChatbotWidget() {
         aria-label="Popular Hospital smart chat assistant"
       >
         {/* Header */}
-        <div className="flex items-center gap-3 bg-gradient-to-r from-[#0b1c43] to-[#1e3a8a] px-4 py-3 text-white shadow-sm">
+        <div
+          className="flex items-center gap-3 bg-gradient-to-r from-[#0b1c43] to-[#1e3a8a] px-4 py-3 text-white shadow-sm"
+          style={{
+            backgroundColor: "#0b1c43",
+            backgroundImage: "linear-gradient(90deg, #0b1c43 0%, #1e3a8a 100%)",
+          }}
+        >
           <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white p-1.5 shadow-sm">
             <img
               src="/images/favicon/favppl.png"
@@ -4920,6 +4926,10 @@ export default function ChatbotWidget() {
         id="chatbot-toggle"
         onClick={() => setOpen((o) => !o)}
         className="fixed bottom-[72px] right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#E85222] to-[#ff7a45] text-white shadow-xl transition hover:scale-110 md:bottom-6 md:right-16 2xl:right-[66px]"
+        style={{
+          backgroundColor: "#E85222",
+          backgroundImage: "linear-gradient(135deg, #E85222 0%, #ff7a45 100%)",
+        }}
         aria-label={open ? "Close chat" : "Open chat"}
       >
         {!open && (
