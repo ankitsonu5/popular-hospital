@@ -7,6 +7,7 @@ import {
   HOSPITALS_LIST,
 } from "@/data/varanasiHospitalsData";
 import HospitalComparisonTable from "@/components/hospital-guide/HospitalComparisonTable";
+import { generatePageMetadata } from "@/lib/seoApi";
 import {
   Phone,
   Calendar,
@@ -32,18 +33,18 @@ import {
 // METADATA (PHASE 6 — TECHNICAL SEO)
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const metadata: Metadata = {
+const defaultMetadata: Metadata = {
   title: "Top 10 Hospitals in Varanasi (2026) | Patient Guide",
   description:
-    "Compare hospitals in Varanasi by specialties, facilities, emergency services and location. Explore Popular Hospital and other local healthcare options.",
+    "Popular Hospital Varanasi - (Best Multi-Super-Specialty Hospital): 450+ beds, 24/7 emergency & cashless treatment. Compare top 10 hospitals in Varanasi.",
   alternates: {
-    canonical: "https://www.popularhospital.in/best-hospital-in-varanasi/",
+    canonical: "https://www.popularhospital.in/best-hospital-in-varanasi",
   },
   openGraph: {
     title: "Top 10 Hospitals in Varanasi (2026) | Patient Guide",
     description:
-      "Compare hospitals in Varanasi by specialties, facilities, emergency services and location. Explore Popular Hospital and other local healthcare options.",
-    url: "https://www.popularhospital.in/best-hospital-in-varanasi/",
+      "Popular Hospital Varanasi - (Best Multi-Super-Specialty Hospital): 450+ beds, 24/7 emergency & cashless treatment. Compare top 10 hospitals in Varanasi.",
+    url: "https://www.popularhospital.in/best-hospital-in-varanasi",
     siteName: "Popular Hospital",
     locale: "en_IN",
     type: "article",
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Top 10 Hospitals in Varanasi (2026) | Patient Guide",
     description:
-      "Compare hospitals in Varanasi by specialties, facilities, emergency services and location. Explore Popular Hospital and other local healthcare options.",
+      "Popular Hospital Varanasi - (Best Multi-Super-Specialty Hospital): 450+ beds, 24/7 emergency & cashless treatment. Compare top 10 hospitals in Varanasi.",
     images: ["https://www.popularhospital.in/images/branches/varanasi-main/1.webp"],
   },
   robots: {
@@ -75,6 +76,11 @@ export const metadata: Metadata = {
     },
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const custom = await generatePageMetadata("/best-hospital-in-varanasi", defaultMetadata);
+  return { ...defaultMetadata, ...custom };
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PATIENT FAQS & EDITORIAL DATA (TASK 9, 10 & 13)
@@ -133,14 +139,14 @@ function generateJsonLd() {
       // Article & WebPage Schema (Task 13)
       {
         "@type": ["WebPage", "Article"],
-        "@id": "https://www.popularhospital.in/best-hospital-in-varanasi/#article",
-        url: "https://www.popularhospital.in/best-hospital-in-varanasi/",
+        "@id": "https://www.popularhospital.in/best-hospital-in-varanasi#article",
+        url: "https://www.popularhospital.in/best-hospital-in-varanasi",
         name: "Top 10 Best Hospitals in Varanasi (2026) – Updated List & Complete Guide",
         headline: "Top 10 Best Hospitals in Varanasi (2026) – Updated List & Complete Guide",
         description:
-          "Compare hospitals in Varanasi by specialties, facilities, emergency services and location. Explore Popular Hospital and other local healthcare options.",
+          "Popular Hospital Varanasi - (Best Multi-Super-Specialty Hospital): 450+ beds, 24/7 emergency & cashless treatment. Compare top 10 hospitals in Varanasi.",
         datePublished: "2026-01-15T09:00:00+05:30",
-        dateModified: "2026-11-01T10:00:00+05:30",
+        dateModified: "2026-11-19T10:00:00+05:30",
         inLanguage: "en-IN",
         author: {
           "@type": "Organization",
@@ -164,13 +170,13 @@ function generateJsonLd() {
           url: "https://www.popularhospital.in/",
         },
         breadcrumb: {
-          "@id": "https://www.popularhospital.in/best-hospital-in-varanasi/#breadcrumb",
+          "@id": "https://www.popularhospital.in/best-hospital-in-varanasi#breadcrumb",
         },
       },
       // FAQPage Schema (Task 13)
       {
         "@type": "FAQPage",
-        "@id": "https://www.popularhospital.in/best-hospital-in-varanasi/#faq",
+        "@id": "https://www.popularhospital.in/best-hospital-in-varanasi#faq",
         mainEntity: PATIENT_FAQS.map((faq) => ({
           "@type": "Question",
           name: faq.q,
@@ -183,7 +189,7 @@ function generateJsonLd() {
       // BreadcrumbList Schema
       {
         "@type": "BreadcrumbList",
-        "@id": "https://www.popularhospital.in/best-hospital-in-varanasi/#breadcrumb",
+        "@id": "https://www.popularhospital.in/best-hospital-in-varanasi#breadcrumb",
         itemListElement: [
           {
             "@type": "ListItem",
@@ -195,7 +201,7 @@ function generateJsonLd() {
             "@type": "ListItem",
             position: 2,
             name: "Best Hospital in Varanasi",
-            item: "https://www.popularhospital.in/best-hospital-in-varanasi/",
+            item: "https://www.popularhospital.in/best-hospital-in-varanasi",
           },
         ],
       },
@@ -220,10 +226,10 @@ function generateJsonLd() {
         },
         geo: {
           "@type": "GeoCoordinates",
-          latitude: 25.2917,
-          longitude: 82.9739,
+          latitude: 25.2919122,
+          longitude: 82.9702933,
         },
-        hasMap: "https://maps.google.com/?q=Popular+Hospital+Varanasi+Kakarmatta",
+        hasMap: "https://www.google.com/maps/place/Popular+Hospital+Varanasi/@25.2918864,82.9681064,17.25z/data=!4m6!3m5!1s0x398e326d171ec8b9:0xf996b29293133cb9!8m2!3d25.2919122!4d82.9702933!16s%2Fg%2F1hm46979f",
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",
@@ -257,7 +263,7 @@ function generateJsonLd() {
       // ItemList for Top 10 Hospitals in Varanasi
       {
         "@type": "ItemList",
-        "@id": "https://www.popularhospital.in/best-hospital-in-varanasi/#hospitallist",
+        "@id": "https://www.popularhospital.in/best-hospital-in-varanasi#hospitallist",
         name: "Top 10 Hospitals in Varanasi (2026)",
         description: "Comparative guide to 10 prominent hospitals in Varanasi.",
         numberOfItems: HOSPITALS_LIST.length,
@@ -297,7 +303,7 @@ export default function BestHospitalInVaranasiPage() {
         dangerouslySetInnerHTML={{ __html: jsonLd }}
       />
 
-      <div className="bg-[#fafafa] text-gray-800 antialiased selection:bg-[#0d9488] selection:text-white">
+      <div className="jakarta-font-scope bg-[#fafafa] text-gray-800 antialiased selection:bg-[#0d9488] selection:text-white">
         {/* ── BREADCRUMB ── */}
         <div className="bg-white border-b border-gray-100 py-3">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -320,14 +326,14 @@ export default function BestHospitalInVaranasiPage() {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Heading */}
-            <div className="max-w-3xl mx-auto text-center mb-10">
+            <div className="w-full text-center mb-10">
               <span className="text-xs font-bold uppercase tracking-widest text-[#0d9488] mb-2 block">
                 Healthcare Comparison Guide
               </span>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1e3a5f] font-heading tracking-tight mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold text-[#1e3a5f] tracking-tight leading-tight mb-4">
                 Top 10 Best Hospitals in Varanasi (2026) – Updated List &amp; Complete Guide
               </h1>
-              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+              <p className="w-full max-w-6xl mx-auto text-gray-600 text-base sm:text-[17px] leading-relaxed">
                 Finding the{" "}
                 <Link
                   href="https://www.popularhospital.in/"
@@ -343,7 +349,7 @@ export default function BestHospitalInVaranasiPage() {
             </div>
 
             {/* Interactive Collapsible Block: How to Choose the Best Hospital in Varanasi */}
-            <details className="group max-w-4xl mx-auto mb-12 bg-white rounded-2xl border border-gray-200 shadow-sm transition-all hover:border-teal-300 open:border-teal-400 open:shadow-md">
+            <details className="group w-full mb-12 bg-white rounded-2xl border border-gray-200 shadow-sm transition-all hover:border-teal-300 open:border-teal-400 open:shadow-md">
               <summary className="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none select-none text-[#1e3a5f] hover:text-[#0d9488] transition-colors">
                 <h2 className="text-lg sm:text-xl font-bold font-heading">
                   How to Choose the Best Hospital in Varanasi?
@@ -443,9 +449,9 @@ export default function BestHospitalInVaranasiPage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1e3a5f] font-heading tracking-tight leading-snug">
-                    Popular Hospital, Varanasi – Multispeciality Healthcare at Kakarmatta
-                  </h3>
+                  <h4 className="text-xl sm:text-2xl lg:text-[32px] font-extrabold text-[#1e3a5f] tracking-tight leading-snug">
+                    Popular Hospital Varanasi - (Best Multi-Super-Specialty Hospital)
+                  </h4>
 
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 font-medium">
                     <div className="flex items-start gap-1.5">
@@ -552,17 +558,17 @@ export default function BestHospitalInVaranasiPage() {
             </div>
 
             {/* Subhead for remaining 9 hospitals */}
-            <div className="text-center max-w-3xl mx-auto mb-10">
+            <div data-nosnippet className="text-center w-full mb-10">
               <span className="text-xs font-bold uppercase tracking-widest text-[#0d9488] mb-2 block">
                 Regional Healthcare Overview
               </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1e3a5f] font-heading tracking-tight">
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#1e3a5f] tracking-tight">
                 Other Hospitals in Varanasi
-              </h3>
+              </div>
             </div>
 
             {/* 9 Hospital Cards — Compact Cards with Verified Details (Task 5) */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4">
+            <div data-nosnippet className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4">
               {otherHospitals.map((hosp) => (
                 <div
                   key={hosp.id}
@@ -608,16 +614,16 @@ export default function BestHospitalInVaranasiPage() {
             SECTION 07 — HOW TO CHOOSE A HOSPITAL
         ═════════════════════════════════════════════════════════════════════ */}
         <section id="how-to-choose" className="py-10 sm:py-20 bg-white border-y border-gray-200">
-          <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 px-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full text-center mb-8 sm:mb-12">
               <span className="text-xs font-bold uppercase tracking-widest text-[#0d9488] mb-2 block">
                 Patient Decision Guide
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] font-heading tracking-tight mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] tracking-tight leading-tight mb-4">
                 How to Choose the Best Hospital in Varanasi for Your Medical Needs
               </h2>
               {/* Answer-first concise paragraph */}
-              <p className="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">
+              <p className="w-full max-w-6xl mx-auto text-gray-700 text-base sm:text-[17px] leading-relaxed font-medium">
                 The best hospital in Varanasi for your family depends on clinical need, urgency, doctor expertise,
                 in-house emergency capabilities, and financial flexibility rather than a single universal ranking. While
                 routine illnesses can be treated at general clinics, complex surgical, cardiac, or neurosurgical
@@ -746,14 +752,14 @@ export default function BestHospitalInVaranasiPage() {
             SECTION 06 — HOSPITAL COMPARISON TABLE
         ═════════════════════════════════════════════════════════════════════ */}
         <section id="comparison-table" className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-10">
+          <div className="w-full text-center mb-10">
             <span className="text-xs font-bold uppercase tracking-widest text-[#0d9488] mb-2 block">
               Side-by-Side Comparison
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] font-heading tracking-tight mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] tracking-tight leading-tight mb-3">
               Compare Hospitals in Varanasi by Type, Specialties &amp; Facilities
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+            <p className="w-full max-w-5xl mx-auto text-gray-600 text-sm sm:text-base leading-relaxed">
               Use this comparative table to evaluate hospital ownership models, geographical locations, primary medical
               disciplines, and emergency readiness across 10 institutions in Varanasi.
             </p>
@@ -862,15 +868,15 @@ export default function BestHospitalInVaranasiPage() {
             SECTION — PATIENT FAQS (TASK 9)
         ═════════════════════════════════════════════════════════════════════ */}
         <section id="faqs" className="py-14 sm:py-20 bg-[#fafafa] border-t border-gray-200">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full text-center mb-10">
               <span className="text-xs font-bold uppercase tracking-widest text-[#0d9488] block mb-1">
                 Frequently Asked Questions
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1e3a5f] font-heading tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] tracking-tight">
                 Frequently Asked Questions About Hospitals in Varanasi
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+              <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-5xl mx-auto">
                 Common questions about medical specialties, emergency services, doctor appointments, and
                 choosing healthcare providers in Varanasi.
               </p>
@@ -906,7 +912,7 @@ export default function BestHospitalInVaranasiPage() {
             SECTION — ABOUT THIS HOSPITAL GUIDE (EDITORIAL TRANSPARENCY)
         ═════════════════════════════════════════════ */}
         <section id="editorial-info" className="py-14 sm:py-20 bg-white border-t border-gray-200">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="rounded-3xl bg-[#fafafa] border border-gray-200 p-6 sm:p-10 lg:p-12 shadow-xs space-y-10">
               {/* 1. Section Header */}
               <div className="space-y-2">
@@ -1115,7 +1121,7 @@ export default function BestHospitalInVaranasiPage() {
 
                 <div className="flex flex-wrap items-center gap-3 pt-2">
                   <a
-                    href="https://maps.google.com/?q=Popular+Hospital+Varanasi+Kakarmatta"
+                    href="https://www.google.com/maps/place/Popular+Hospital+Varanasi/@25.2918864,82.9681064,17.25z/data=!4m6!3m5!1s0x398e326d171ec8b9:0xf996b29293133cb9!8m2!3d25.2919122!4d82.9702933!16s%2Fg%2F1hm46979f"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-5 py-3 rounded-xl bg-white hover:bg-gray-50 text-[#1e3a5f] border-2 border-[#1e3a5f] text-xs sm:text-sm font-bold transition shadow-sm"
@@ -1131,7 +1137,7 @@ export default function BestHospitalInVaranasiPage() {
                 <div className="relative w-full h-80 sm:h-96 rounded-3xl overflow-hidden border border-gray-200 shadow-md">
                   <iframe
                     title="Popular Hospital Varanasi Kakarmatta Google Maps Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.4870425895786!2d82.96961447605928!3d25.28784347765103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e3230c1e626e5%3A0xe53be0a651f67f2e!2sPopular%20Hospital!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    src="https://maps.google.com/maps?q=25.2919122,82.9702933&z=17&hl=en&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}

@@ -18,8 +18,8 @@ export default function HospitalComparisonTable() {
 
   return (
     <div className="w-full">
-      {/* Mobile View Toggle Bar */}
-      <div className="flex md:hidden items-center justify-between bg-white p-2 rounded-2xl border border-gray-200 mb-4 shadow-xs">
+      {/* Mobile View Toggle Bar (UI only — kept out of Google snippets) */}
+      <div data-nosnippet className="flex md:hidden items-center justify-between bg-white p-2 rounded-2xl border border-gray-200 mb-4 shadow-xs">
         <span className="text-xs font-bold text-gray-700 pl-2">Display Style:</span>
         <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-xl">
           <button
@@ -49,10 +49,12 @@ export default function HospitalComparisonTable() {
         </div>
       </div>
 
-      {/* MOBILE CARDS VIEW (Clean, 100% visible, no clipping on phones) */}
-      <div className={`${activeTab === "cards" ? "block" : "hidden"} md:hidden space-y-4`}>
+      {/* MOBILE CARDS VIEW (Clean, 100% visible, no clipping on phones)
+          Semantic ordered list (Popular Hospital = #1) so Google can build its
+          "Top 10" list snippet from here. Preflight resets ol/li, so no visual change. */}
+      <ol className={`${activeTab === "cards" ? "block" : "hidden"} md:hidden space-y-4`}>
         {HOSPITALS_LIST.map((hosp) => (
-          <div
+          <li
             key={`card-${hosp.id}`}
             id={`m-${hosp.id}`}
             className={`rounded-2xl p-4 sm:p-5 border transition-all ${
@@ -81,7 +83,7 @@ export default function HospitalComparisonTable() {
                     {hosp.name}
                   </a>
                   {hosp.isPopularHospital && (
-                    <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-extrabold uppercase tracking-wider text-[#0d9488] bg-teal-100/80 px-2 py-0.5 rounded-full">
+                    <span data-nosnippet className="inline-flex items-center gap-1 mt-1 text-[10px] font-extrabold uppercase tracking-wider text-[#0d9488] bg-teal-100/80 px-2 py-0.5 rounded-full">
                       <Sparkles className="w-3 h-3" /> Featured Hospital
                     </span>
                   )}
@@ -139,9 +141,9 @@ export default function HospitalComparisonTable() {
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             )}
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
 
       {/* TABLE VIEW (Active on Desktop, and optionally switchable on mobile) */}
       <div
@@ -150,7 +152,7 @@ export default function HospitalComparisonTable() {
         } w-full overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm`}
       >
         {/* Swipe notice only visible on mobile when table is active */}
-        <div className="flex md:hidden items-center justify-between px-4 py-2 bg-amber-50/90 border-b border-amber-200/80 text-[11px] text-amber-900 font-bold">
+        <div data-nosnippet className="flex md:hidden items-center justify-between px-4 py-2 bg-amber-50/90 border-b border-amber-200/80 text-[11px] text-amber-900 font-bold">
           <span className="flex items-center gap-1.5">
             <span>👉</span> Swipe left / right to compare all 6 columns
           </span>
@@ -213,7 +215,7 @@ export default function HospitalComparisonTable() {
                           {hosp.name}
                         </a>
                         {hosp.isPopularHospital && (
-                          <span className="inline-block mt-1 text-[10px] font-extrabold uppercase tracking-wider text-[#0d9488] bg-teal-100/70 px-2 py-0.5 rounded-full">
+                          <span data-nosnippet className="inline-block mt-1 text-[10px] font-extrabold uppercase tracking-wider text-[#0d9488] bg-teal-100/70 px-2 py-0.5 rounded-full">
                             Featured Hospital
                           </span>
                         )}

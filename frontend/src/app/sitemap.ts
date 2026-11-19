@@ -63,6 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/opd`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/online-payment`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/stories`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE}/best-hospital-in-varanasi`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
   ];
 
   // Auto-discover static routes from Next.js app directory structure

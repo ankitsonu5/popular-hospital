@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-04T08:25:53.354Z",
+ "generatedAt": "2026-11-19T09:46:29.148Z",
  "pages": [
   {
    "pageKey": "home",
@@ -2593,38 +2593,7 @@
    "sections": [
     {
      "key": "s1",
-     "label": "Section 1 — Department of Cardiology",
-     "items": [
-      {
-       "key": "departments-cardiology_280981",
-       "type": "image",
-       "label": "Image 1",
-       "default": "/images/banners/cardiology_banner.png",
-       "alt": "Cardiac Care"
-      },
-      {
-       "key": "departments-cardiology_abdc3c",
-       "type": "heading",
-       "label": "Heading 1",
-       "default": "Department of Cardiology"
-      },
-      {
-       "key": "departments-cardiology_687bd9",
-       "type": "link",
-       "label": "Button / Link 1",
-       "default": "Book An Appointment"
-      },
-      {
-       "key": "departments-cardiology_fef4e0",
-       "type": "link",
-       "label": "Button / Link 2",
-       "default": "Get a Call Back"
-      }
-     ]
-    },
-    {
-     "key": "s2",
-     "label": "Section 2 — Department of",
+     "label": "Section 1 — Department of",
      "items": [
       {
        "key": "departments-cardiology_4c5284_2",
@@ -2685,12 +2654,55 @@
        "type": "paragraph",
        "label": "Paragraph 5",
        "default": "The cardiac department at Popular is an integrated healthcare center with a highly experienced, qualified, and dedicated team of cardiologists who work in complete coordination to provide comprehensive and multidisciplinary care to the patients suffering from heart ailments. At Popular we have pioneered the 'Heart Team' approach where all cardiovascular problems are comprehensively evaluated, jointly discussed and individually planned for appropriate indicated therapies."
+      },
+      {
+       "key": "departments-cardiology_intro_img",
+       "type": "image",
+       "label": "Image 1",
+       "default": "/images/departments-images/cardiology.jpeg",
+       "alt": "Cardiologist listening to a patient's heartbeat at Popular Hospital"
+      },
+      {
+       "key": "departments-cardiology_31325e",
+       "type": "paragraph",
+       "label": "Paragraph 6",
+       "default": "Caring for Your Every Heartbeat"
+      },
+      {
+       "key": "departments-cardiology_fa2f20",
+       "type": "paragraph",
+       "label": "Paragraph 7",
+       "default": "Heart Team approach for every patient"
+      },
+      {
+       "key": "departments-cardiology_edd6f1",
+       "type": "text",
+       "label": "Text 5",
+       "default": "24x7"
+      },
+      {
+       "key": "departments-cardiology_b19ffd",
+       "type": "text",
+       "label": "Text 6",
+       "default": "Cardiac Emergency"
+      },
+      {
+       "key": "departments-cardiology_781c24",
+       "type": "text",
+       "label": "Text 7",
+       "default": "2 Cath Labs"
+      },
+      {
+       "key": "departments-cardiology_e3e077",
+       "type": "text",
+       "label": "Text 8",
+       "default": "Latest Technology"
       }
      ]
     },
     {
-     "key": "s3",
-     "label": "Section 3 — USP Of Cardiac ",
+     "key": "s2",
+     "label": "Section 2 — USP Of Cardiac ",
      "items": [
       {
        "key": "departments-cardiology_81cd88",
@@ -2707,8 +2719,8 @@
      ]
     },
     {
-     "key": "s4",
-     "label": "Section 4 — What we ",
+     "key": "s3",
+     "label": "Section 3 — What we ",
      "items": [
       {
        "key": "departments-cardiology_a1795d",
@@ -2747,54 +2759,6 @@
        "type": "text",
        "label": "Text 2",
        "default": "preventive Cardiology:"
-      }
-     ]
-    },
-    {
-     "key": "s5",
-     "label": "Section 5 — Department of Cardiology",
-     "items": [
-      {
-       "key": "departments-cardiology_fef4e0_2",
-       "type": "heading",
-       "label": "Heading 1",
-       "default": "Get a Call Back"
-      },
-      {
-       "key": "departments-cardiology_0fbf3d",
-       "type": "paragraph",
-       "label": "Paragraph 1",
-       "default": "Our team will call you shortly."
-      },
-      {
-       "key": "departments-cardiology_4372a3",
-       "type": "paragraph",
-       "label": "Paragraph 2",
-       "default": "Thank you! We will call you back soon."
-      },
-      {
-       "key": "departments-cardiology_bbfa77",
-       "type": "link",
-       "label": "Button / Link 1",
-       "default": "Close"
-      },
-      {
-       "key": "departments-cardiology_709a23",
-       "type": "text",
-       "label": "Text 1",
-       "default": "Name"
-      },
-      {
-       "key": "departments-cardiology_ab25d6",
-       "type": "text",
-       "label": "Text 2",
-       "default": "Phone Number"
-      },
-      {
-       "key": "departments-cardiology_9a3ea0",
-       "type": "paragraph",
-       "label": "Paragraph 3",
-       "default": "Something went wrong. Please try again."
       }
      ]
     }

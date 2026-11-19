@@ -69,7 +69,7 @@ export const HOSPITALS_LIST: HospitalProfile[] = [
   {
     id: "popular-hospital",
     number: 1,
-    name: "Popular Hospital, Varanasi",
+    name: "Popular Hospital Varanasi - (Best Multi-Super-Specialty Hospital)",
     shortName: "Popular Hospital",
     category: "Private Multi Super-Speciality Hospital",
     location: "Kakarmatta, BLW Road, Varanasi",
@@ -100,7 +100,7 @@ export const HOSPITALS_LIST: HospitalProfile[] = [
     image: "/images/branches/varanasi-main/1.webp",
     alt: "Popular Hospital main campus building at Kakarmatta Varanasi",
     isPopularHospital: true,
-    directionsUrl: "https://maps.google.com/?q=Popular+Hospital+Varanasi+Kakarmatta",
+    directionsUrl: "https://www.google.com/maps/place/Popular+Hospital+Varanasi/@25.2918864,82.9681064,17.25z/data=!4m6!3m5!1s0x398e326d171ec8b9:0xf996b29293133cb9!8m2!3d25.2919122!4d82.9702933!16s%2Fg%2F1hm46979f",
     sourceReference: "Popular Hospital Official Documentation & Institutional Registry (2026)",
     lastVerified: "October 2026",
   },

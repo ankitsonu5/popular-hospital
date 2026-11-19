@@ -266,12 +266,8 @@ export default function CardiologyPage({
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b1c43]/70 via-transparent to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4 text-left">
-                      <p className="text-white font-bold text-lg leading-snug font-heading">
-                        Caring for Your Every Heartbeat
-                      </p>
-                      <p className="text-white/80 text-xs mt-1">
-                        Heart Team approach for every patient
-                      </p>
+                      <p className="text-white font-bold text-lg leading-snug font-heading"><T k="departments-cardiology_31325e" d={"Caring for Your Every Heartbeat"} /></p>
+                      <p className="text-white/80 text-xs mt-1"><T k="departments-cardiology_fa2f20" d={"Heart Team approach for every patient"} /></p>
                     </div>
                   </div>
                   <div className="absolute -left-3 sm:-left-6 top-6 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 text-left">
@@ -279,12 +275,8 @@ export default function CardiologyPage({
                       <Clock className="w-5 h-5" />
                     </span>
                     <span>
-                      <span className="block text-[#0b1c43] font-bold text-sm leading-tight">
-                        24x7
-                      </span>
-                      <span className="block text-gray-500 text-xs font-medium">
-                        Cardiac Emergency
-                      </span>
+                      <span className="block text-[#0b1c43] font-bold text-sm leading-tight"><T k="departments-cardiology_edd6f1" d={"24x7"} /></span>
+                      <span className="block text-gray-500 text-xs font-medium"><T k="departments-cardiology_b19ffd" d={"Cardiac Emergency"} /></span>
                     </span>
                   </div>
                   <div className="absolute -right-2 sm:-right-5 bottom-20 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 text-left">
@@ -292,12 +284,8 @@ export default function CardiologyPage({
                       <Building2 className="w-5 h-5" />
                     </span>
                     <span>
-                      <span className="block text-[#0b1c43] font-bold text-sm leading-tight">
-                        2 Cath Labs
-                      </span>
-                      <span className="block text-gray-500 text-xs font-medium">
-                        Latest Technology
-                      </span>
+                      <span className="block text-[#0b1c43] font-bold text-sm leading-tight"><T k="departments-cardiology_781c24" d={"2 Cath Labs"} /></span>
+                      <span className="block text-gray-500 text-xs font-medium"><T k="departments-cardiology_e3e077" d={"Latest Technology"} /></span>
                     </span>
                   </div>
                 </div>

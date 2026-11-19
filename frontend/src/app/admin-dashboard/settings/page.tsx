@@ -161,6 +161,126 @@ function PermissionPicker({
   );
 }
 
+// ── Inline permissions on each admin card (current access pre-ticked) ───
+function CardPermissions({
+  admin,
+  kind,
+  onSaved,
+}: {
+  admin: CareerAdmin | SubAdmin;
+  kind: "career_admin" | "sub_admin";
+  onSaved: (perms: string[]) => void;
+}) {
+  const current = admin.permissions ?? DEFAULT_PERMISSIONS[kind];
+  const currentKey = [...current].sort().join(",");
+  const [perms, setPerms] = useState<string[]>(current);
+  const [saving, setSaving] = useState(false);
+
+  // Re-sync when the saved permissions change (e.g. after the Edit modal)
+  useEffect(() => {
+    setPerms(currentKey ? currentKey.split(",") : []);
+  }, [currentKey]);
+
+  const dirty = [...perms].sort().join(",") !== currentKey;
+  const isCareer = kind === "career_admin";
+
+  const toggle = (key: string) =>
+    setPerms((p) => (p.includes(key) ? p.filter((k) => k !== key) : [...p, key]));
+
+  const save = async () => {
+    setSaving(true);
+    try {
+      const res = await fetch(
+        `/api-backend/cms/${isCareer ? "career-admin" : "sub-admin"}/${admin._id}`,
+        {
+          method: "PUT",
+          headers: authHeaders(),
+          body: JSON.stringify({ email: admin.email, name: admin.name, permissions: perms }),
+        },
+      );
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Save failed");
+      onSaved(perms);
+      toast.success("Permissions updated!");
+    } catch (e: any) {
+      toast.error(e.message || "Save failed");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className={`mt-3 pt-2.5 border-t ${isCareer ? "border-gray-100" : "border-amber-100/60"}`}>
+      <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
+        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+          Permissions ({perms.length}/{ADMIN_FEATURES.length})
+        </span>
+        <div className="flex items-center gap-3 text-[11px] font-semibold">
+          <button
+            type="button"
+            onClick={() => setPerms(ADMIN_FEATURES.map((f) => f.key))}
+            className={isCareer ? "text-[#0d9488] hover:underline" : "text-amber-600 hover:underline"}
+          >
+            Select all
+          </button>
+          <button type="button" onClick={() => setPerms([])} className="text-gray-400 hover:underline">
+            Clear
+          </button>
+          {dirty && (
+            <button
+              type="button"
+              onClick={() => setPerms(currentKey ? currentKey.split(",") : [])}
+              className="text-gray-500 hover:underline"
+            >
+              Undo
+            </button>
+          )}
+        </div>
+      </div>
+      <div
+        className={`grid grid-cols-2 sm:grid-cols-3 gap-1 rounded-lg border bg-white p-2 ${
+          isCareer ? "border-gray-200" : "border-amber-200/60"
+        }`}
+      >
+        {ADMIN_FEATURES.map((f) => {
+          const on = perms.includes(f.key);
+          return (
+            <label
+              key={f.key}
+              className={`flex items-center gap-2 text-xs px-1.5 py-1 rounded cursor-pointer hover:bg-gray-50 ${
+                on ? "text-gray-900 font-medium" : "text-gray-500"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={on}
+                onChange={() => toggle(f.key)}
+                className={isCareer ? "accent-[#0d9488]" : "accent-amber-500"}
+              />
+              {f.label}
+            </label>
+          );
+        })}
+      </div>
+      {dirty && (
+        <div className="flex justify-end mt-2">
+          <button
+            type="button"
+            onClick={save}
+            disabled={saving}
+            className={`flex items-center gap-1.5 text-white rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-60 ${
+              isCareer ? "bg-[#0d9488] hover:bg-[#0b7a70]" : "bg-amber-500 hover:bg-amber-600"
+            }`}
+          >
+            {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
+            {saving ? "Saving..." : "Save Permissions"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Edit Modal ──────────────────────────────────────────────────────────
 function EditModal({
   admin,
@@ -1319,6 +1439,16 @@ export default function SettingsPage() {
                         </div>
                       </div>
                     </div>
+
+                    <CardPermissions
+                      admin={admin}
+                      kind="career_admin"
+                      onSaved={(perms) =>
+                        setAdmins((prev) =>
+                          prev.map((a) => (a._id === admin._id ? { ...a, permissions: perms } : a)),
+                        )
+                      }
+                    />
                   </div>
                 ))}
               </div>
@@ -1515,6 +1645,16 @@ export default function SettingsPage() {
                         </div>
                       </div>
                     </div>
+
+                    <CardPermissions
+                      admin={admin}
+                      kind="sub_admin"
+                      onSaved={(perms) =>
+                        setSubAdmins((prev) =>
+                          prev.map((a) => (a._id === admin._id ? { ...a, permissions: perms } : a)),
+                        )
+                      }
+                    />
                   </div>
                 ))}
               </div>

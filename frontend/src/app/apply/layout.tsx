@@ -1,4 +1,6 @@
-export const metadata = {
+import { generatePageMetadata } from "@/lib/seoApi";
+
+const defaultMetadata = {
   title: 'Apply',
   description: 'Learn more about Apply at Popular Hospital Varanasi. Best multi super speciality hospital offering top-notch healthcare services.',
   openGraph: {
@@ -9,4 +11,8 @@ export const metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
+}
+
+export async function generateMetadata() {
+  return generatePageMetadata("/apply", defaultMetadata);
 }

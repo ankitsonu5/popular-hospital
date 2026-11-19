@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/seoApi";
 
-export const metadata: Metadata = {
+const defaultMetadata: Metadata = {
   title: "Our Locations",
   description: "Find the nearest Popular Hospital locations.",
   alternates: {
@@ -14,4 +15,8 @@ export default function OurLocationsLayout({
   children: React.ReactNode;
 }) {
   return <>{children}</>;
+}
+
+export async function generateMetadata() {
+  return generatePageMetadata("/our-locations", defaultMetadata);
 }
