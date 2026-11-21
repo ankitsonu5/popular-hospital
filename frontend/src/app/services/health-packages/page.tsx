@@ -444,7 +444,7 @@ const WellnessPage = () => {
                       </div>
                       <div>
                         <span className="block text-gray-400 font-bold uppercase tracking-widest text-xs"><T k="services-health-packages_fb1d12" d={"Email Us"} /></span>
-                        <span className="text-lg md:text-xl font-bold break-all leading-tight"><T k="services-health-packages_3ddf84" d={"info@popularhospitals.in"} /></span>
+                        <span className="text-lg md:text-xl font-bold break-all leading-tight"><T k="services-health-packages_3ddf84" d={"info@popularhospital.com"} /></span>
                       </div>
                     </div>
                   </div>

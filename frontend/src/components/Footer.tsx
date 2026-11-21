@@ -75,7 +75,7 @@ export function Footer() {
                   <span className="text-gray-400 font-bold text-xs uppercase tracking-wider">
                     EMAIL:
                   </span>
-                  <span dangerouslySetInnerHTML={{ __html: '<!--email_off--><a href="mailto:info@popularhospitals.in" class="text-white hover:text-hospital-teal transition-colors font-bold break-all">info@popularhospitals.in</a><!--/email_off-->' }} />
+                  <span dangerouslySetInnerHTML={{ __html: '<!--email_off--><a href="mailto:info@popularhospital.com" class="text-white hover:text-hospital-teal transition-colors font-bold break-all">info@popularhospital.com</a><!--/email_off-->' }} />
                 </div>
               </div>
             </div>
@@ -419,14 +419,14 @@ export function Footer() {
         {/* Footer Bottom */}
         <div className="mt-10 pt-8 border-t border-gray-500/30 text-center text-sm sm:text-base text-gray-300 relative z-10">
           <p>
-            © 2026 Popular Hospital. All rights reserved. made by{" "}
+           © 2026 Popular Hospital. All rights reserved. | Website designed and developed by Sarthak Tech.{" "}
             <a
               href="https://sarthaktech.co.in/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-white hover:text-hospital-teal transition-colors"
             >
-              Sarthak tech
+              Sarthak Tech
             </a>
           </p>
         </div>

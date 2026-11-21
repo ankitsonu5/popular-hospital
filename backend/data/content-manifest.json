@@ -662,7 +662,7 @@
        "key": "home_3ddf84",
        "type": "paragraph",
        "label": "Paragraph 4",
-       "default": "info@popularhospitals.in"
+       "default": "info@popularhospital.com"
       },
       {
        "key": "home_d4701e",
@@ -7741,7 +7741,7 @@
        "key": "patient-reports_e048a4",
        "type": "link",
        "label": "Button / Link 2",
-       "default": " info@popularhospitals.in"
+       "default": " info@popularhospital.com"
       }
      ]
     }
@@ -8527,7 +8527,7 @@
        "key": "services-health-packages_3ddf84",
        "type": "text",
        "label": "Text 5",
-       "default": "info@popularhospitals.in"
+       "default": "info@popularhospital.com"
       },
       {
        "key": "services-health-packages_64346b_2",

@@ -434,13 +434,13 @@ export default function NotificationSubscribeModal() {
                 </a>
 
                 <a
-                  href="mailto:info@popularhospitals.in"
+                  href="mailto:info@popularhospital.com"
                   className="flex items-center justify-center gap-2 hover:text-[#e11d48] transition-colors"
                 >
                   <span className="w-6 h-6 rounded-full bg-[#0b1c43] text-white flex items-center justify-center text-xs">
                     <Mail className="w-3.5 h-3.5" />
                   </span>
-                  <span className="truncate">Email: info@popularhospitals.in</span>
+                  <span className="truncate">Email: info@popularhospital.com</span>
                 </a>
               </div>
             </div>

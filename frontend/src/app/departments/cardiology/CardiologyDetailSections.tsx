@@ -669,10 +669,10 @@ export function VisitUsSection() {
             <div className="flex items-start gap-3">
               <Mail className="w-5 h-5 text-[#E85222] flex-shrink-0 mt-1" />
               <a
-                href="mailto:info@popularhospitals.in"
+                href="mailto:info@popularhospital.com"
                 className="text-sm font-semibold hover:underline"
               >
-                info@popularhospitals.in
+                info@popularhospital.com
               </a>
             </div>
             <p className="text-white/70 text-sm border-t border-white/10 pt-4">

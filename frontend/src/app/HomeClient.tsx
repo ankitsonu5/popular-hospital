@@ -2700,7 +2700,7 @@ export default function HomeClient({
                         <span className="text-[#E85222] mr-2"><T k="home_028ecf_2" d={"CALL:"} /></span>{" "}<T k="home_951297_3" d={"+91-7800001895"} /></p>
                     </div>
                     <p className="text-gray-600 font-bold hover:text-[#E85222] transition-colors cursor-default">
-                      <span className="text-[#E85222] mr-2"><T k="home_1d572d" d={"EMAIL:"} /></span>{" "}<T k="home_3ddf84" d={"info@popularhospitals.in"} /></p>
+                      <span className="text-[#E85222] mr-2"><T k="home_1d572d" d={"EMAIL:"} /></span>{" "}<T k="home_3ddf84" d={"info@popularhospital.com"} /></p>
                   </div>
                 </div>
               </div>

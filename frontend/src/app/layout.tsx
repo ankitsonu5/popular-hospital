@@ -168,7 +168,7 @@ export default async function RootLayout({
                 addressCountry: "IN",
               },
               telephone: "+91-7703000088",
-              email: "info@popularhospitals.in",
+              email: "info@popularhospital.com",
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+91-7703000088",

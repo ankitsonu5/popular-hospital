@@ -286,10 +286,10 @@ export default function PatientReportsPage() {
             >
               <Phone className="h-4 w-4" /><T k="patient-reports_731451" d={" +91-7800001895"} /></a>
             <a
-              href="mailto:info@popularhospitals.in"
+              href="mailto:info@popularhospital.com"
               className="flex items-center gap-2 hover:text-[#0d9488]"
             >
-              <Mail className="h-4 w-4" /><T k="patient-reports_e048a4" d={" info@popularhospitals.in"} /></a>
+              <Mail className="h-4 w-4" /><T k="patient-reports_e048a4" d={" info@popularhospital.com"} /></a>
           </div>
         </section>
       </div>
